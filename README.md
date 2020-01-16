@@ -1,7 +1,7 @@
 # cessda.cmv.core
 CESSDA Metadata Validator Core. Contains business logic of all use cases.
 
-# Dependency Information
+## Dependency Information
 
 Add GESIS Maven Repositories to your `pom.xml`:
 ```xml
