@@ -3,7 +3,7 @@ CESSDA Metadata Validator Core. Contains business logic of all use cases.
 
 # Dependency Information
 
-* Add GESIS Maven Repositories to your `pom.xml`:
+Add GESIS Maven Repositories to your `pom.xml`:
 ```xml
 <repositories>
 	<repository>
@@ -13,7 +13,7 @@ CESSDA Metadata Validator Core. Contains business logic of all use cases.
 </repositories>
 ```  
 
-* Add the dependency to your `pom.xml`:  
+Add the dependency to your `pom.xml`:  
 ```xml
 <dependency>
 	<groupId>eu.cessda.cmv</groupId>
