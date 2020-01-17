@@ -11,7 +11,17 @@ Add CESSDA Maven Repository to your `pom.xml`:
 		<url>https://nexus.cessda.eu/repository/maven-releases</url>
 	</repository>
 </repositories>
-```  
+```
+
+For snapshots add:
+```xml
+<repositories>
+	<repository>
+		<id>cessda-nexus-snapshots</id>
+		<url>https://nexus.cessda.eu/repository/maven-snapshots</url>
+	</repository>
+</repositories>
+```
 
 Add the dependency to your `pom.xml`:  
 ```xml
