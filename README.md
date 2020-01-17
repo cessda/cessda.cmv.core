@@ -1,6 +1,14 @@
 # cessda.cmv.core
 CESSDA Metadata Validator Core. Contains business logic of all use cases.
 
+## Contents
+
+
+* Use Cases
+* Requirements
+* [Components Overview](https://bitbucket.org/cessda/cessda.cmv.core/annotate/master/site/uml/architecture-layers.jpg?fileviewer=file-view-default)
+* [Component cessda.cmv.core](https://bitbucket.org/cessda/cessda.cmv.core/annotate/master/site/uml/component-eu.cessda.cmv.core.jpg?fileviewer=file-view-default)
+
 ## Dependency Information
 
 Add CESSDA Maven Repository to your `pom.xml`:
