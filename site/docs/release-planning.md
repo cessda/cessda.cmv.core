@@ -4,7 +4,7 @@
 |-----|--------------------|---|---|---|
 | X   | Person involved    |   |   |   |
 | X!  | Person responsible |   |   |   |
-| AM  | Alex MÃ¼hlbauer     |   |   |   |
+| AM  | Alex Mühlbauer     |   |   |   |
 | CPK |  Claus-Peter Klas  |   |   |   |
 | DB  | Darren Bell        |   |   |   |
 | CT  | Carsten Thiel      |   |   |   |
@@ -14,7 +14,7 @@
 | Tasks                                 | AM | CPK | DB | CT |
 |---------------------------------------|:--:|:---:|:--:|:--:|
 | Missing profiles created              |    |     | X! |    |
-| Minimal constraint set defined  !!!   | X! |  X  | X  |  X |
+| Minimal constraint set defined  !!! #2, #7, #10   | X! |  X  | X  |  X |
 | OOD for cmv.core finished             | X! |  X  |    |    |
 | OOI for cmv.core finished 1)          | X! |     |    |    |
 | cmv.core is usable as java component  | X! |     |    |    |
