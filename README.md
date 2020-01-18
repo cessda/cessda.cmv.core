@@ -3,11 +3,14 @@ CESSDA Metadata Validator Core. Contains business logic of all use cases.
 
 ## Contents
 
+* OOA
+	* [System context map](https://bitbucket.org/cessda/cessda.cmv.core/src/master/site/uml/system-context-map.jpg)
+	* [Components overview](https://bitbucket.org/cessda/cessda.cmv.core/src/master/site/uml/architecture-layers.jpg)
+	* [Target conflicts](https://bitbucket.org/cessda/cessda.cmv.core/src/master/site/uml/ooa-target-conflict.jpg)
+* OOD
+	* [Component cessda.cmv.core](https://bitbucket.org/cessda/cessda.cmv.core/src/master/site/uml/component-eu.cessda.cmv.core.jpg)
 
-* Use Cases
-* Requirements
-* [Components Overview](https://bitbucket.org/cessda/cessda.cmv.core/annotate/master/site/uml/architecture-layers.jpg?fileviewer=file-view-default)
-* [Component cessda.cmv.core](https://bitbucket.org/cessda/cessda.cmv.core/annotate/master/site/uml/component-eu.cessda.cmv.core.jpg?fileviewer=file-view-default)
+
 
 ## Dependency Information
 
