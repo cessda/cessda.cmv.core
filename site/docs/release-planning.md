@@ -1,10 +1,17 @@
 # Release Planning
 
-## Milestone M1 (2020/03/31)
+# Milestone M1
+
+* Slogan: Proof concept driven by (coded )tests
+    * Build ubiquitous language
+	* Focus on extendable design
+	* Reduce contract implementations to minimum
+* Deadline: 2020/03/31
+
 |                                               | Issues      | AM | CPK | DB | CT |
 |-----------------------------------------------|-------------|:--:|:---:|:--:|:--:|
 | Missing profiles created, no ddi extension!   |             | I  |  I  | R  |  A |
-| **Minimal constraint set defined: Only one**  | #2, #29     | R  |  A  | C  |  A |
+| **Minimal constraint set defined: Only 1!**   | #2, #29     | R  |  A  | C  |  A |
 | OOD for `cmv.core` finished                   |             | R  |  A  | C  |  C |
 | OOI for `cmv.core` finished 1)                |             | R  |  A  | I  |  I |
 | Java component `cmv.core` is usable           |             | R  |  A  | C  |  C |
@@ -12,7 +19,14 @@
 
 1) Minimal constraint set implemented against test cases: every constraint with one bad and one good case
 
-## Milestone M2 (2020/06/30) -> Minimal Viable Product
+# Milestone M2: Minimal Viable Product
+
+* Slogan: Get the product out
+    * Consolidate design
+    * Avoid new features!
+    * User must have value when using product!
+* Deadline: 2020/06/30
+
 |                                            | Issues | AM | CPK | DB | CT |
 |--------------------------------------------|--------|:--:|:---:|:--:|:--:|
 | Bugs in profiles fixed                     |        |  I |  I  |  R |  A |
@@ -22,14 +36,17 @@
 | OOI in `cmv.server` finished               |        |  R |  A  |  I |  I |
 | Server `cmv.server` is usable -> **MVP!**  |        |  R |  A  |  C |  A |
 
-## Milestone M3 (2020/09/31) -> Minimal Viable Service
+# Milestone M3: Minimal Viable Service
+
+* Deadline: 2020/09/31
+
 |                                            | Issues | AM | CPK | DB | CT |
 |--------------------------------------------|--------|:--:|:---:|:--:|:--:|
 | Service `cmv.cessda.eu` is usable          |        |  I |  I  |  I |  R |
 
-## Legend
+# Legend
 
-### RACI Matrix
+## RACI Matrix
 |     | Description        |
 |-----|--------------------|
 | R   | Responsible person |
@@ -38,7 +55,7 @@
 | I   | Informed person    |
 
 
-### Team members
+## Team members
 |     | Full names         |
 |-----|--------------------|
 | AM  | Alex Muehlbauer     |
