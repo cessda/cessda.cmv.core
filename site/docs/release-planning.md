@@ -3,8 +3,8 @@
 # Milestone M1
 
 * Slogan: Proof concept driven by (coded )tests
-    * Build ubiquitous language
-	* Focus on extendable design
+    * Build ubiquitous language (UL)
+	* Focus on extendable design (ED)
 	* Reduce contract implementations to minimum
 * Deadline: 2020/03/31
 
@@ -22,7 +22,7 @@
 # Milestone M2: Minimal Viable Product
 
 * Slogan: Get the product out
-    * Consolidate design
+    * Consolidate UL and ED
     * Avoid new features!
     * User must have value when using product!
 * Deadline: 2020/06/30
