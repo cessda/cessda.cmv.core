@@ -3,6 +3,8 @@ CESSDA Metadata Validator Core. Contains business logic of all use cases.
 
 ## Contents
 
+* PM
+	* [Release Planning](https://bitbucket.org/cessda/cessda.cmv.core/src/master/site/docs/release-planning.md)
 * OOA
 	* [System context map](https://bitbucket.org/cessda/cessda.cmv.core/src/master/site/uml/system-context-map.jpg)
 	* [Components overview](https://bitbucket.org/cessda/cessda.cmv.core/src/master/site/uml/architecture-layers.jpg)
