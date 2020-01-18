@@ -3,7 +3,7 @@
 # Milestone M1
 
 * Slogan: Proof concept driven by (coded )tests
-    * Build ubiquitous language (UL)
+    * Coin ubiquitous language (UL)
 	* Focus on extendable design (ED)
 	* Reduce contract implementations to minimum
 * Deadline: 2020/03/31
