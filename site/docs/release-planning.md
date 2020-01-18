@@ -38,7 +38,7 @@
 ### Team members
 |     | Full names         |
 |-----|--------------------|
-| AM  | Alex Mühlbauer     |
+| AM  | Alex Muehlbauer     |
 | CPK | Claus-Peter Klas   |
 | DB  | Darren Bell        |
 | CT  | Carsten Thiel      |
