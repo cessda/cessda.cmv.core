@@ -11,23 +11,24 @@
 
 ### Milestone M1 (2020/03/31)
 
-| Tasks                                 | AM | CPK | DB | CT |
-|---------------------------------------|:--:|:---:|:--:|:--:|
-| Missing profiles created              |    |     | X! |    |
-| Minimal constraint set defined  !!! #2, #7, #10   | X! |  X  | X  |  X |
-| OOD for cmv.core finished             | X! |  X  |    |    |
-| OOI for cmv.core finished 1)          | X! |     |    |    |
-| cmv.core is usable as java component  | X! |     |    |    |
+|                                             | Issues      | AM | CPK | DB | CT |
+|---------------------------------------------|-------------|:--:|:---:|:--:|:--:|
+| Missing profiles created, no ddi extension! |             |    |     | X! |    |
+| Minimal constraint set defined              | #2, #7, #10 | X! |  X  |  X |  X |
+| OOD for cmv.core finished                   |             | X! |  X  |    |    |
+| OOI for cmv.core finished 1)                |             | X! |     |    |    |
+| cmv.core is usable as java component        |             | X! |     |    |    |
+| OOA in cmv.server finished               |        | X! |  X  |  X |  X |
 
 1) Minimal constraint set implemented against test cases: every constraint with one bad and one good case
 
 ### Milestone M2 (2020/06/30) -> MVP!
 
-|                                        | AM | CPK | DB | CT |
-|----------------------------------------|:--:|:---:|:--:|:--:|
-| Bugfixing created profiles             |  X |  X  | X! |  X |
-| Refactoring of OOD and OOI in cmv.core | X! |     |    |    |
-| Bugfxing in cmv.core                   | X! |     |    |    |
-| OOA in cmv.server                      | X! |  X  |  X |  X |
-| OOD and OOI in cmv.server              | X! |     |    |    |
-| cmv.server is usable -> MVP!           |  X |     |    |    |
+|                                          | Issues | AM | CPK | DB | CT |
+|------------------------------------------|--------|:--:|:---:|:--:|:--:|
+| Bugs in profiles fixed                   |        |  X |  X  | X! |  X |
+| OOD and OOI in cmv.core **refactored** ! |        | X! |     |    |    |
+| Bugs in cmv.core fixed                   |        | X! |     |    |    |
+| OOD in cmv.server finished               |        | X! |     |    |  X |
+| OOI in cmv.server finished               |        | X! |     |    |    |
+| cmv.server is usable -> MVP!             |        | X! |     |    |    |
