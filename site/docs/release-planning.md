@@ -1,14 +1,17 @@
 # Release Planning
 
 
-### RACI Matrix
-|     | Description        |
+### Legend
+
+|     | RACI Matrix        |
 |-----|--------------------|
 | R   | Responsible person |
 | A   | Accountable person |
 | C   | Consulted person   |
 | I   | Informed person    |
-|-----|--------------------|
+
+
+|     | Team members       |
 | AM  | Alex Mühlbauer     |
 | CPK |  Claus-Peter Klas  |
 | DB  | Darren Bell        |
