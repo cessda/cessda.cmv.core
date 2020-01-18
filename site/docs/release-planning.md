@@ -4,7 +4,7 @@
 |                                               | Issues      | AM | CPK | DB | CT |
 |-----------------------------------------------|-------------|:--:|:---:|:--:|:--:|
 | Missing profiles created, no ddi extension!   |             | I  |  I  | R  |  A |
-| **Minimal constraint set defined**            | #2, #29     | R  |  A  | C  |  A |
+| **Minimal constraint set defined: Only one**  | #2, #29     | R  |  A  | C  |  A |
 | OOD for `cmv.core` finished                   |             | R  |  A  | C  |  C |
 | OOI for `cmv.core` finished 1)                |             | R  |  A  | I  |  I |
 | Java component `cmv.core` is usable           |             | R  |  A  | C  |  C |
