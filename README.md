@@ -11,7 +11,8 @@ CESSDA Metadata Validator Core. Contains business logic of all use cases.
 	* [Target conflicts](https://bitbucket.org/cessda/cessda.cmv.core/src/master/site/uml/ooa-target-conflict.jpg)
 * OOD
 	* [Component cessda.cmv.core](https://bitbucket.org/cessda/cessda.cmv.core/src/master/site/uml/component-eu.cessda.cmv.core.jpg)
-
+* OOI
+	* [Definition XPathUsedConstraint](https://bitbucket.org/cessda/cessda.cmv.core/src/master/site/uml/definition-XpathUsedConstraint.jpg)
 
 
 ## Dependency Information
