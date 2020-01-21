@@ -4,15 +4,15 @@ CESSDA Metadata Validator Core. Contains business logic of all use cases.
 ## Contents
 
 * PM
-	* [Release Planning](https://bitbucket.org/cessda/cessda.cmv.core/src/master/site/docs/release-planning.md)
+	* [Release Planning](site/docs/release-planning.md)
 * OOA
-	* [System context map](https://bitbucket.org/cessda/cessda.cmv.core/src/master/site/uml/system-context-map.jpg)
-	* [Components overview](https://bitbucket.org/cessda/cessda.cmv.core/src/master/site/uml/architecture-layers.jpg)
-	* [Target conflicts](https://bitbucket.org/cessda/cessda.cmv.core/src/master/site/uml/ooa-target-conflict.jpg)
+	* [System context map](site/uml/system-context-map.jpg)
+	* [Components overview](site/uml/architecture-layers.jpg)
+	* [Target conflicts](site/uml/ooa-target-conflict.jpg)
 * OOD
-	* [Component cessda.cmv.core](https://bitbucket.org/cessda/cessda.cmv.core/src/master/site/uml/component-eu.cessda.cmv.core.jpg)
+	* [Component cessda.cmv.core](site/uml/component-eu.cessda.cmv.core.jpg)
 * OOI
-	* [Definition XPathUsedConstraint](https://bitbucket.org/cessda/cessda.cmv.core/src/master/site/uml/definition-XpathUsedConstraint.jpg)
+	* [Definition XPathUsedConstraint](site/uml/definition-XpathUsedConstraint.jpg)
 
 
 ## Dependency Information
