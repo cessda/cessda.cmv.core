@@ -98,7 +98,7 @@
 <useStmt>
 <specPerm>Safeguarded</specPerm>
 <restrctn xml:lang="en" >The data are available online at <a href="http://icem.data-archive.ac.uk/" target="_blank">Integrated Census Microdata</a> and <a href=" http://icem-nesstar.data-archive.ac.uk/webview/" target="_blank">ICeM-Nesstar.</a> <br /> <b>Users should note that 1871 England and Wales Census data and 1911 Scottish Census data are <u>not included</u> in I-CeM.</b> </restrctn>
-<contact><a href=https://www.ukdataservice.ac.uk/help/get-in-touch>Get in touch</a></contact>
+<contact><a href="https://www.ukdataservice.ac.uk/help/get-in-touch">Get in touch</a></contact>
 <conditions>See <restrctn></conditions>
 <disclaimer>Although all efforts are made to ensure the quality of the materials, neither the original data creators, depositors or copyright holders, the funders of the data collections, nor the UK Data Archive, nor the UK Data Service bear any responsibility for the accuracy or comprehensiveness of these materials.<br/></disclaimer>
 </useStmt>
