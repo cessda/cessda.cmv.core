@@ -68,7 +68,13 @@ public class ValidationTest
 				.map( constraint -> constraint.validate() )
 				.flatMap( List::stream )
 				.collect( Collectors.toList() );
-		assertThat( constraintViolations, hasSize( 31 + 25 ) );
+		assertThat( constraintViolations, hasSize( 56 ) );
+		assertThat( constraintViolations.stream()
+				.filter( cv -> cv instanceof MandatoryNodeConstraintViolation )
+				.collect( Collectors.toList() ), hasSize( 31 ) );
+		assertThat( constraintViolations.stream()
+				.filter( cv -> cv instanceof RecommendedNodeConstraintViolation )
+				.collect( Collectors.toList() ), hasSize( 25 ) );
 		constraintViolations.stream()
 				.map( ConstraintViolation.V10.class::cast )
 				.map( ConstraintViolation.V10::getMessage )
