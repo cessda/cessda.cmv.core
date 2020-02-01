@@ -1,8 +1,6 @@
 package eu.cessda.cmv.core;
 
-import static java.lang.Boolean.FALSE;
 import static org.gesis.commons.resource.Resource.newResource;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
@@ -19,44 +17,19 @@ import org.gesis.commons.resource.TextResource;
 import org.gesis.commons.xml.DomDocument;
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.junit.jupiter.api.Test;
-import org.w3c.dom.Node;
 
 public class ValidationTest
 {
 	@Test
 	public void inspectDocuments() throws IOException
 	{
+		DomDocument.V10 profileDocument = newDocument( new File( "src/test/resources/ddi-v25/cdc_profile.xml" ) );
 		DomDocument.V10 metadataDocument = newDocument( new File( "src/test/resources/ddi-v25/ukds-7481.xml" ) );
+		// TODO: DomDocument.V11::getNodeXPaths() also with attributes
 		List<String> doucmentXPaths = metadataDocument.getElementXPaths();
 		assertThat( doucmentXPaths, hasSize( 73 ) );
-
-		DomDocument.V10 profileDocument = newDocument( new File( "src/test/resources/ddi-v25/cdc_profile.xml" ) );
-		assertThat( profileDocument.getElementXPaths(), hasSize( 17 ) );
-		List<String> xPaths = profileDocument.selectNodes( "/DDIProfile/Used/@xpath" ).stream()
-				.map( Node::getTextContent )
-				.collect( Collectors.toList() );
-		assertThat( xPaths, hasSize( 88 ) );
-
 		assertFalse( validateProfile( profileDocument ) );
 		assertFalse( validateMetadata( metadataDocument, profileDocument ) );
-
-		// required XPaths
-		List<String> requiredXPaths = profileDocument.selectNodes( "/DDIProfile/Used[@isRequired='true']/@xpath" )
-				.stream()
-				.map( Node::getTextContent )
-				.collect( Collectors.toList() );
-		assertThat( requiredXPaths, hasSize( 42 ) );
-		xPaths = requiredXPaths.stream()
-				.filter( requiredXPath -> !doucmentXPaths.contains( requiredXPath ) )
-				.collect( Collectors.toList() );
-		boolean isValid = xPaths.isEmpty();
-		assertThat( isValid, equalTo( FALSE ) );
-
-		// not required XPaths
-		xPaths = profileDocument.selectNodes( "/DDIProfile/Used[@isRequired='false']/@xpath" ).stream()
-				.map( Node::getTextContent )
-				.collect( Collectors.toList() );
-		assertThat( xPaths, hasSize( 88 - 42 ) );
 	}
 
 	private boolean validateMetadata( DomDocument.V10 metadataDocument, DomDocument.V10 profileDocument )
