@@ -19,6 +19,7 @@ public class ValidationTest
 		Resource resource = new TextResource( newResource( file.toURI() ) );
 		DomDocument.V10 document = XercesXalanDocument.newBuilder()
 				.ofContent( resource.toString() )
+				.printPrettyWithIndentation( 2 )
 				.build();
 		System.out.println( document.getContent() );
 	}
