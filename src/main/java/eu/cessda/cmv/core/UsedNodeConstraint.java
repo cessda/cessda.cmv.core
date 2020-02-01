@@ -37,7 +37,7 @@ abstract class UsedNodeConstraint implements Constraint.V10
 	public List<ConstraintViolation.V10> validate()
 	{
 		List<String> documentXPaths = metadataDocument.getElementXPaths();
-		boolean isRequired = violationClass.equals( MandatoryNodeConstraintViolation.class.getClass() );
+		boolean isRequired = violationClass == MandatoryNodeConstraintViolation.class;
 		String xPath = String.format( "/DDIProfile/Used[@isRequired='%s']/@xpath", isRequired );
 		return profileDocument.selectNodes( xPath ).stream()
 				.map( Node::getTextContent )
