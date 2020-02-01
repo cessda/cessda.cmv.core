@@ -25,5 +25,15 @@ public class ValidationTest
 				.printPrettyWithIndentation( 2 )
 				.build();
 		assertThat( document.getContent(), notNullValue() );
+
+		file = new File( "src/test/resources/ddi-v25/cdc_profile.xml" );
+		resource = new TextResource( newResource( file.toURI() ) );
+		document = XercesXalanDocument.newBuilder()
+				.ofContent( resource.toString() )
+				.printPrettyWithIndentation( 2 )
+				.build();
+		assertThat( document.getContent(), notNullValue() );
+
+		System.out.println( document.getContent() );
 	}
 }
