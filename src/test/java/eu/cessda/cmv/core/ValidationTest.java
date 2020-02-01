@@ -1,4 +1,4 @@
-package cessda.cmv.core;
+package eu.cessda.cmv.core;
 
 import static java.lang.Boolean.FALSE;
 import static org.gesis.commons.resource.Resource.newResource;
@@ -9,6 +9,7 @@ import static org.junit.Assert.assertThat;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,28 +31,40 @@ public class ValidationTest
 
 		DomDocument.V10 profileDocument = newDocument( new File( "src/test/resources/ddi-v25/cdc_profile.xml" ) );
 		assertThat( profileDocument.getElementXPaths(), hasSize( 17 ) );
-		List<String> xpaths = profileDocument.selectNodes( "/DDIProfile/Used/@xpath" ).stream()
+		List<String> xPaths = profileDocument.selectNodes( "/DDIProfile/Used/@xpath" ).stream()
 				.map( Node::getTextContent )
 				.collect( Collectors.toList() );
-		assertThat( xpaths, hasSize( 88 ) );
+		assertThat( xPaths, hasSize( 88 ) );
+		validateProfile( profileDocument );
 
-		// required xpaths
+		// required XPaths
 		List<String> requiredXPaths = profileDocument.selectNodes( "/DDIProfile/Used[@isRequired='true']/@xpath" )
 				.stream()
 				.map( Node::getTextContent )
 				.collect( Collectors.toList() );
 		assertThat( requiredXPaths, hasSize( 42 ) );
-		xpaths = requiredXPaths.stream()
+		xPaths = requiredXPaths.stream()
 				.filter( requiredXPath -> !doucmentXPaths.contains( requiredXPath ) )
 				.collect( Collectors.toList() );
-		boolean isValid = xpaths.isEmpty();
+		boolean isValid = xPaths.isEmpty();
 		assertThat( isValid, equalTo( FALSE ) );
 
-		// not required xpaths
-		xpaths = profileDocument.selectNodes( "/DDIProfile/Used[@isRequired='false']/@xpath" ).stream()
+		// not required XPaths
+		xPaths = profileDocument.selectNodes( "/DDIProfile/Used[@isRequired='false']/@xpath" ).stream()
 				.map( Node::getTextContent )
 				.collect( Collectors.toList() );
-		assertThat( xpaths, hasSize( 88 - 42 ) );
+		assertThat( xPaths, hasSize( 88 - 42 ) );
+	}
+
+	private void validateProfile( DomDocument.V10 profileDocument )
+	{
+		List<ConstraintViolation.V10> constraintViolations = new ArrayList<>();
+		Constraint.V10 compilableXPathConstraint = new CompilableXPathConstraint( profileDocument );
+		constraintViolations.addAll( compilableXPathConstraint.validate() );
+		assertThat( constraintViolations, hasSize( 11 ) );
+		constraintViolations.stream()
+				.map( ConstraintViolation.V10::getMessage )
+				.forEach( System.out::println );
 	}
 
 	private DomDocument.V10 newDocument( File file )
