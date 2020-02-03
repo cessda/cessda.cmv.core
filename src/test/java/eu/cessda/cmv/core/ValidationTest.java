@@ -23,16 +23,16 @@ public class ValidationTest
 	@Test
 	public void inspectDocuments() throws IOException
 	{
-		DomDocument.V10 profileDocument = newDocument( new File( "src/test/resources/ddi-v25/cdc_profile.xml" ) );
-		DomDocument.V10 metadataDocument = newDocument( new File( "src/test/resources/ddi-v25/ukds-7481.xml" ) );
+		DomDocument.V11 profileDocument = newDocument( new File( "src/test/resources/ddi-v25/cdc_profile.xml" ) );
+		DomDocument.V11 metadataDocument = newDocument( new File( "src/test/resources/ddi-v25/ukds-7481.xml" ) );
 		// TODO: DomDocument.V11::getNodeXPaths() also with attributes
-		List<String> doucmentXPaths = metadataDocument.getElementXPaths();
-		assertThat( doucmentXPaths, hasSize( 73 ) );
+		List<String> doucmentXPaths = metadataDocument.getNodeXPaths();
+		assertThat( doucmentXPaths, hasSize( 91 ) );
 		assertFalse( validateProfile( profileDocument ) );
 		assertFalse( validateMetadata( metadataDocument, profileDocument ) );
 	}
 
-	private boolean validateMetadata( DomDocument.V10 metadataDocument, DomDocument.V10 profileDocument )
+	private boolean validateMetadata( DomDocument.V11 metadataDocument, DomDocument.V11 profileDocument )
 	{
 		List<Constraint.V10> constraints = new ArrayList<>();
 		constraints.add( new MandatoryNodeConstraint( metadataDocument, profileDocument ) );
@@ -55,7 +55,7 @@ public class ValidationTest
 		return constraintViolations.isEmpty();
 	}
 
-	private boolean validateProfile( DomDocument.V10 profileDocument )
+	private boolean validateProfile( DomDocument.V11 profileDocument )
 	{
 		List<ConstraintViolation.V10> constraintViolations = new ArrayList<>();
 		Constraint.V10 compilableXPathConstraint = new CompilableXPathConstraint( profileDocument );
@@ -64,12 +64,12 @@ public class ValidationTest
 		return constraintViolations.isEmpty();
 	}
 
-	private DomDocument.V10 newDocument( File file )
+	private DomDocument.V11 newDocument( File file )
 	{
 		return newDocument( file.toURI() );
 	}
 
-	private DomDocument.V10 newDocument( URI uri )
+	private DomDocument.V11 newDocument( URI uri )
 	{
 		Resource resource = new TextResource( newResource( uri ) );
 		return XercesXalanDocument.newBuilder()

@@ -11,17 +11,17 @@ import org.w3c.dom.Node;
 
 abstract class UsedNodeConstraint implements Constraint.V10
 {
-	private DomDocument.V10 metadataDocument;
-	private DomDocument.V10 profileDocument;
+	private DomDocument.V11 metadataDocument;
+	private DomDocument.V11 profileDocument;
 	private Class<? extends UsedNodeConstraintViolation> violationClass;
 
-	public UsedNodeConstraint( DomDocument.V10 metadataDocument, DomDocument.V10 profileDocument )
+	public UsedNodeConstraint( DomDocument.V11 metadataDocument, DomDocument.V11 profileDocument )
 	{
 		this( metadataDocument, profileDocument, MandatoryNodeConstraintViolation.class );
 	}
 
-	public UsedNodeConstraint( DomDocument.V10 metadataDocument,
-			DomDocument.V10 profileDocument,
+	public UsedNodeConstraint( DomDocument.V11 metadataDocument,
+			DomDocument.V11 profileDocument,
 			Class<? extends UsedNodeConstraintViolation> violationClass )
 	{
 		requireNonNull( metadataDocument );
@@ -36,7 +36,7 @@ abstract class UsedNodeConstraint implements Constraint.V10
 	@SuppressWarnings( "unchecked" )
 	public List<ConstraintViolation.V10> validate()
 	{
-		List<String> documentXPaths = metadataDocument.getElementXPaths();
+		List<String> documentXPaths = metadataDocument.getNodeXPaths();
 		boolean isRequired = violationClass == MandatoryNodeConstraintViolation.class;
 		String xPath = String.format( "/DDIProfile/Used[@isRequired='%s']/@xpath", isRequired );
 		return profileDocument.selectNodes( xPath ).stream()
