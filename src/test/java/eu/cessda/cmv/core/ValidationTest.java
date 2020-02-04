@@ -23,18 +23,20 @@ public class ValidationTest
 	@Test
 	public void inspectDocuments() throws IOException
 	{
-		DomDocument.V11 profileDocument = newDocument( new File( "src/test/resources/ddi-v25/cdc_profile.xml" ) );
 		DomDocument.V11 metadataDocument = newDocument( new File( "src/test/resources/ddi-v25/ukds-7481.xml" ) );
-		// TODO: DomDocument.V11::getNodeXPaths() also with attributes
 		List<String> doucmentXPaths = metadataDocument.getNodeXPaths();
 		assertThat( doucmentXPaths, hasSize( 91 ) );
+
+		DomDocument.V11 profileDocument = newDocument( new File( "src/test/resources/ddi-v25/cdc_profile.xml" ) );
 		assertFalse( validateProfile( profileDocument ) );
-		assertFalse( validateMetadata( metadataDocument, profileDocument ) );
 	}
 
-	private boolean validateMetadata( DomDocument.V11 metadataDocument, DomDocument.V11 profileDocument )
+	@Test
+	private void validateMetadataDocument()
 	{
-		Constraint.V10 metadataDocumentValidator = new MetadataDocumentValidator( metadataDocument, profileDocument );
+		Constraint.V10 metadataDocumentValidator = new DomMetadataDocumentValidator(
+				new File( "src/test/resources/ddi-v25/ukds-7481.xml" ).toURI(),
+				new File( "src/test/resources/ddi-v25/cdc_profile.xml" ).toURI() );
 		List<ConstraintViolation.V10> constraintViolations = metadataDocumentValidator.validate();
 		assertThat( constraintViolations, hasSize( 56 ) );
 		assertThat( constraintViolations.stream()
@@ -44,7 +46,7 @@ public class ValidationTest
 				.filter( cv -> cv instanceof RecommendedNodeConstraintViolation )
 				.collect( Collectors.toList() ), hasSize( 25 ) );
 		print( constraintViolations );
-		return constraintViolations.isEmpty();
+		assertFalse( constraintViolations.isEmpty() );
 	}
 
 	private void print( List<ConstraintViolation.V10> constraintViolations )
