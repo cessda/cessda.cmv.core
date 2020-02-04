@@ -31,25 +31,7 @@ public class ValidationTest
 		assertFalse( validateProfile( profileDocument ) );
 	}
 
-	@Test
-	private void validateMetadataDocument()
-	{
-		Constraint.V10 metadataDocumentValidator = new DomMetadataDocumentValidator(
-				new File( "src/test/resources/ddi-v25/ukds-7481.xml" ).toURI(),
-				new File( "src/test/resources/ddi-v25/cdc_profile.xml" ).toURI() );
-		List<ConstraintViolation.V10> constraintViolations = metadataDocumentValidator.validate();
-		assertThat( constraintViolations, hasSize( 56 ) );
-		assertThat( constraintViolations.stream()
-				.filter( cv -> cv instanceof MandatoryNodeConstraintViolation )
-				.collect( Collectors.toList() ), hasSize( 31 ) );
-		assertThat( constraintViolations.stream()
-				.filter( cv -> cv instanceof RecommendedNodeConstraintViolation )
-				.collect( Collectors.toList() ), hasSize( 25 ) );
-		print( constraintViolations );
-		assertFalse( constraintViolations.isEmpty() );
-	}
-
-	private void print( List<ConstraintViolation.V10> constraintViolations )
+	public static void print( List<ConstraintViolation.V10> constraintViolations )
 	{
 		constraintViolations.stream()
 				.map( ConstraintViolation.V10.class::cast )
