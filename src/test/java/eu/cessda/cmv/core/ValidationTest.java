@@ -64,12 +64,12 @@ public class ValidationTest
 		return constraintViolations.isEmpty();
 	}
 
-	private DomDocument.V11 newDocument( File file )
+	public static DomDocument.V11 newDocument( File file )
 	{
 		return newDocument( file.toURI() );
 	}
 
-	private DomDocument.V11 newDocument( URI uri )
+	private static DomDocument.V11 newDocument( URI uri )
 	{
 		Resource resource = new TextResource( newResource( uri ) );
 		return XercesXalanDocument.newBuilder()
