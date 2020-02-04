@@ -34,13 +34,8 @@ public class ValidationTest
 
 	private boolean validateMetadata( DomDocument.V11 metadataDocument, DomDocument.V11 profileDocument )
 	{
-		List<Constraint.V10> constraints = new ArrayList<>();
-		constraints.add( new MandatoryNodeConstraint( metadataDocument, profileDocument ) );
-		constraints.add( new RecommendedNodeConstraint( metadataDocument, profileDocument ) );
-		List<ConstraintViolation> constraintViolations = constraints.stream()
-				.map( constraint -> constraint.validate() )
-				.flatMap( List::stream )
-				.collect( Collectors.toList() );
+		Constraint.V10 metadataDocumentValidator = new MetadataDocumentValidator( metadataDocument, profileDocument );
+		List<ConstraintViolation.V10> constraintViolations = metadataDocumentValidator.validate();
 		assertThat( constraintViolations, hasSize( 56 ) );
 		assertThat( constraintViolations.stream()
 				.filter( cv -> cv instanceof MandatoryNodeConstraintViolation )
@@ -48,11 +43,16 @@ public class ValidationTest
 		assertThat( constraintViolations.stream()
 				.filter( cv -> cv instanceof RecommendedNodeConstraintViolation )
 				.collect( Collectors.toList() ), hasSize( 25 ) );
+		print( constraintViolations );
+		return constraintViolations.isEmpty();
+	}
+
+	private void print( List<ConstraintViolation.V10> constraintViolations )
+	{
 		constraintViolations.stream()
 				.map( ConstraintViolation.V10.class::cast )
 				.map( ConstraintViolation.V10::getMessage )
 				.forEach( System.out::println );
-		return constraintViolations.isEmpty();
 	}
 
 	private boolean validateProfile( DomDocument.V11 profileDocument )
