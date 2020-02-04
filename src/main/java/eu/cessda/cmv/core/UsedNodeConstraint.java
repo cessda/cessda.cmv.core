@@ -15,11 +15,6 @@ abstract class UsedNodeConstraint implements Constraint.V10
 	private DomDocument.V11 profileDocument;
 	private Class<? extends UsedNodeConstraintViolation> violationClass;
 
-	public UsedNodeConstraint( DomDocument.V11 metadataDocument, DomDocument.V11 profileDocument )
-	{
-		this( metadataDocument, profileDocument, MandatoryNodeConstraintViolation.class );
-	}
-
 	public UsedNodeConstraint( DomDocument.V11 metadataDocument,
 			DomDocument.V11 profileDocument,
 			Class<? extends UsedNodeConstraintViolation> violationClass )
