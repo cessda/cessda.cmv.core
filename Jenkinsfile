@@ -47,7 +47,7 @@ pipeline {
         stage("Get Sonar Quality Gate") {
             steps {
                 timeout(time: 1, unit: 'HOURS') {
-                    waitForQualityGate abortPipeline: false
+                    waitForQualityGate abortPipeline: true
                 }
             }
             when { branch 'master' }
@@ -55,7 +55,7 @@ pipeline {
 		stage('Deploy Project') {
 			steps {
 				withMaven {
-					sh "mvn jar:jar deploy:deploy"
+					sh "mvn jar:jar javadoc:jar source:jar deploy:deploy"
 				}
 			}
 			when { branch 'master' }
