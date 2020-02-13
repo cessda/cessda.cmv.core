@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><codeBook version="2.5" xml:lang="en" xsi:schemaLocation="http://www.ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd">
+  <docDscr>
+    <citation>
+      <titlStmt>
+        <titl xml:lang="en">DDI2.5 XML CODEBOOK RECORD FOR STUDY NUMBER 7481</titl>
+      </titlStmt>
+      <prodStmt>
+        <prodDate>2014-04-04 14:42:58.543</prodDate>
+      </prodStmt>
+    <!-- 
+    Missing ending tag makes file not well-formed 
+    </citation>
+    -->
+    
+  </docDscr>
+  <stdyDscr>
+    <citation>
+      <titlStmt>
+        <titl xml:lang="en">Integrated Census Microdata (I-CeM), 1851-1911</titl>
+        <subTitl/>
+        <altTitl>I-CeM</altTitl>
+        <IDNo agency="UKDA" xml:lang="en">7481</IDNo>
+        <IDNo agency="datacite" xml:lang="en">10.5255/UKDA-SN-7481-1</IDNo>
+      </titlStmt>
+      <rspStmt>
+        <AuthEnty xml:lang="en">Schurer, K., University of Essex, UK Data Archive</AuthEnty>
+      </rspStmt>
+      <prodStmt>
+        <copyright>Copyright K. Schürer, E.J. Higgs and BrightSolid</copyright>
+        <fundAg>Economic and Social Research Council</fundAg>
+        <grantNo>RES-062-23-1629</grantNo>
+      </prodStmt>
+      <distStmt>
+        <distrbtr xml:lang="en">UK Data Service</distrbtr>
+        <depositr>Schurer, K., University of Essex, UK Data Archive</depositr>
+        <depDate date="2018-09-06 16:25:04.447">06 September 2018</depDate>
+        <distDate date="2014-04-04 14:42:58.000">04 April 2014</distDate>
+      </distStmt>
+      <verStmt>
+        <version date="2019-07-24 16:12:40.905">1st Edition</version>
+      </verStmt>
+      <holdings URI="http://doi.org/10.5255/UKDA-SN-7481-1" xml:lang="en"/>
+    </citation>
+    <stdyInfo>
+      <subject>
+        <keyword vocab="HASSET" vocabURI="http://lod.data-archive.ac.uk/skoshasset/b1983cbc-c93d-4bb7-8f18-4fd4cbe3f70c" xml:lang="en">SCOTLAND</keyword>
+        <keyword vocab="HASSET" vocabURI="http://lod.data-archive.ac.uk/skoshasset/5bace71f-4940-4f16-a129-e2df29a813c1" xml:lang="en">ENGLAND</keyword>
+        <keyword vocab="HASSET" vocabURI="http://lod.data-archive.ac.uk/skoshasset/dd6f09b7-b378-4daa-bd6f-5ccdadae3575" xml:lang="en">WALES</keyword>
+        <keyword vocab="HASSET" vocabURI="http://lod.data-archive.ac.uk/skoshasset/af82c5dc-19be-4ad3-8f0a-612f314e1436" xml:lang="en">GREAT BRITAIN</keyword>
+        <keyword vocab="HASSET" vocabURI="http://lod.data-archive.ac.uk/skoshasset/56e3afd3-ff43-49bc-b54f-23e7daad7344" xml:lang="en">ISLE OF MAN</keyword>
+        <keyword vocab="HASSET" vocabURI="http://lod.data-archive.ac.uk/skoshasset/2f28a142-15e6-428c-961e-d7144d85676c" xml:lang="en">CHANNEL ISLANDS</keyword>
+        <keyword vocab="HASSET" vocabURI="http://lod.data-archive.ac.uk/skoshasset/f8fdd8f3-1f32-44e6-a26d-b77e6951f05c" xml:lang="en">CENSUS DATA</keyword>
+        <keyword vocab="HASSET" vocabURI="http://lod.data-archive.ac.uk/skoshasset/9f80b4ea-c001-4cf9-a7f7-fc45b70a5dfa" xml:lang="en">CENSUS ENUMERATORS' BOOKS</keyword>
+        <keyword vocab="HASSET" vocabURI="http://lod.data-archive.ac.uk/skoshasset/00f70d52-196f-4da9-a443-70066e97bc7c" xml:lang="en">CENSUS RECORDS</keyword>
+        <keyword vocab="HASSET" vocabURI="http://lod.data-archive.ac.uk/skoshasset/967e74f0-c0b1-420e-8845-bfb5524bddee" xml:lang="en">POPULATION</keyword>
+        <keyword vocab="HASSET" vocabURI="http://lod.data-archive.ac.uk/skoshasset/8b2eef30-7859-4a8d-98f1-1d404002ac2b" xml:lang="en">DEMOGRAPHIC STATISTICS</keyword>
+        <keyword vocab="HASSET" vocabURI="http://lod.data-archive.ac.uk/skoshasset/98c99162-6308-4edc-8974-9c6e10a094cc" xml:lang="en">SOCIAL HISTORY</keyword>
+        <keyword vocab="HASSET" vocabURI="http://lod.data-archive.ac.uk/skoshasset/ef998f68-2cc8-4a7c-82e8-cdd349d97b8e" xml:lang="en">ECONOMIC HISTORY</keyword>
+        <keyword vocab="YEAR" xml:lang="en">1851-1911</keyword>
+        <keyword vocab="GEO" xml:lang="en">Channel Islands</keyword>
+        <keyword vocab="GEO" xml:lang="en">Great Britain</keyword>
+        <keyword vocab="GEO" xml:lang="en">Isle of Man</keyword>
+        <topcClas xml:lang="en">History</topcClas>
+        <topcClas xml:lang="en">Censuses</topcClas>
+      </subject>
+      <abstract xml:lang="en">
+        <P>Abstract copyright UK Data Service and data collection copyright owner.</P>The Integrated Census Microdata (I-CeM) project has produced a standardised, integrated dataset of most of the censuses of Great Britain for the period 1851 to 1911: England and Wales for 1851-1861, 1881-1911 and Scotland for 1851-1901, making available to academic researchers, detailed information at parish level about everyone resident in Great Britain collected at most of the decennial censuses between 1851-1911 during a period of profound social change. The original digital data has been coded and standardised. In addition, the original text and numerical strings have always been preserved in separate variables, so that researchers can go back to the original transcription. However, users should note that name and address details for individuals are not currently included in the database; for reasons of commercial sensitivity, these are held under Special Licence access conditions under SN 7856. <br/>
+        <br/>
+        <strong>Users should note that 1871 England and Wales Census data and 1911 Scottish Census data are <u>not included</u> in I-CeM.</strong>
+        <br/>
+        <br/> Further information about I-CeM can be found on the <a href="https://www1.essex.ac.uk/history/research/icem/" title="I-CeM Integrated Microdata Project">I-CeM Integrated Microdata Project</a> and <a href="https://www1.essex.ac.uk/history/research/icem/documentation.html" title="I-CeM Guide">I-CeM Guide</a> webpages.<br/>
+        <br/>
+      </abstract>
+      <sumDscr>
+        <timePrd>1851 - 1911</timePrd>
+        <timePrd date="1851-01-01 00:00:00.000" event="start">01 January 1851</timePrd>
+        <timePrd date="1911-12-31 12:00:00.000" event="end">31 December 1911</timePrd>
+        <collDate xml:lang="en">2009 - 2014</collDate>
+        <collDate date="2009-01-01 00:00:00.000" event="start">01 January 2009</collDate>
+        <collDate date="2014-12-31 12:00:00.000" event="end">31 December 2014</collDate>
+        <nation xml:lang="en">Channel Islands</nation>
+        <nation xml:lang="en">Great Britain</nation>
+        <nation xml:lang="en">Isle of Man</nation>
+        <geogUnit>Counties (Administrative)</geogUnit>
+        <geogUnit>Counties (Census Registration)</geogUnit>
+        <geogUnit>Parishes (Civil)</geogUnit>
+        <anlyUnit xml:lang="en">Individuals</anlyUnit>
+        <anlyUnit xml:lang="en">Families/households</anlyUnit>
+        <anlyUnit xml:lang="en">National</anlyUnit>
+        <universe>Inhabitants of England, Wales, Scotland, the Channel Islands and the Isle of Man between 1851-1911.</universe>
+        <dataKind>Text</dataKind>
+        <dataKind>Numeric</dataKind>
+      </sumDscr>
+    </stdyInfo>
+    <method>
+      <dataColl>
+        <timeMeth xml:lang="en">Cross-sectional (one-time) study</timeMeth>
+        <sampProc xml:lang="en">No sampling (total universe)</sampProc>
+        <deviat>1851: 20,610,325 cases; 1861: 22,837,316 cases; 1871: 3,349,656 cases; 1881: 29,865,602 cases; 1891: 33,522,822 cases; 1901: 36,931,736 cases; 1911: 36,353,455 cases.</deviat>
+        <collMode xml:lang="en">Transcription</collMode>
+        <weight>Not applicable</weight>
+      </dataColl>
+    </method>
+    <dataAccs>
+      <setAvail>
+        <accsPlac>UK Data Service</accsPlac>
+        <collSize>1851: 20,610,325 cases; 1861: 22,837,316 cases; 1871: 3,349,656 cases; 1881: 29,865,602 cases; 1891: 33,522,822 cases; 1901: 36,931,736 cases; 1911: 36,353,455 cases.</collSize>
+      </setAvail>
+      <useStmt>
+        <specPerm>Safeguarded</specPerm>
+        <restrctn xml:lang="en">The data are available online at <a href="http://icem.data-archive.ac.uk/" target="_blank">Integrated Census Microdata</a> and <a href=" http://icem-nesstar.data-archive.ac.uk/webview/" target="_blank">ICeM-Nesstar.</a>
+          <br/>
+          <b>Users should note that 1871 England and Wales Census data and 1911 Scottish Census data are <u>not included</u> in I-CeM.</b>
+        </restrctn>
+        <contact>
+          <a href="https://www.ukdataservice.ac.uk/help/get-in-touch">Get in touch</a>
+        </contact>
+        <conditions>See <restrctn/>
+        </conditions>
+        <disclaimer>Although all efforts are made to ensure the quality of the materials, neither the original data creators, depositors or copyright holders, the funders of the data collections, nor the UK Data Archive, nor the UK Data Service bear any responsibility for the accuracy or comprehensiveness of these materials.<br/>
+        </disclaimer>
+      </useStmt>
+    </dataAccs>
+    <othrStdyMat>
+      <relStdy source="study">4177 1881 Census for England and Wales, the Channel Islands and the Isle of Man (Enhanced Version)</relStdy>
+      <relStdy source="study">4178 1881 Census for Scotland</relStdy>
+      <relStdy source="study">7856 Integrated Census Microdata (I-CeM) Names and Addresses, 1851-1911: Special Licence Access</relStdy>
+      <othRefs>Language Of Study Description: English</othRefs>
+      <othRefs>Language Of Study Documentation: English</othRefs>
+    </othrStdyMat>
+  </stdyDscr>
+</codeBook>
