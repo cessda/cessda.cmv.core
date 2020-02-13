@@ -1,5 +1,4 @@
-# cessda.cmv.core
-CESSDA Metadata Validator Core. Contains business logic of all use cases.
+# cessda.cmv.core - CESSDA Metadata Validator Core
 
 ## Contents
 
