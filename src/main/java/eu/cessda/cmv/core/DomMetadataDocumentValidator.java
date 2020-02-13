@@ -1,5 +1,6 @@
 package eu.cessda.cmv.core;
 
+import static java.util.Objects.requireNonNull;
 import static org.gesis.commons.resource.Resource.newResource;
 
 import java.net.URI;
@@ -26,6 +27,7 @@ class DomMetadataDocumentValidator implements Constraint.V10
 
 	private DomDocument.V11 newDocument( URI uri )
 	{
+		requireNonNull( uri );
 		return XercesXalanDocument.newBuilder()
 				.ofInputStream( newResource( uri ).readInputStream() )
 				.namespaceUnaware()

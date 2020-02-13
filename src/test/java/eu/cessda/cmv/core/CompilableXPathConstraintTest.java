@@ -21,6 +21,5 @@ public class CompilableXPathConstraintTest
 		assertThat( violations, hasSize( 2 ) );
 		assertThat( violations.get( 0 ).getMessage(), containsString( "A location step was expected" ) );
 		assertThat( violations.get( 1 ).getMessage(), containsString( "Extra illegal tokens" ) );
-
 	}
 }

@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.TextResource;

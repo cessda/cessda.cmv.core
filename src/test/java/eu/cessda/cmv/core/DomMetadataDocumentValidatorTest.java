@@ -22,9 +22,9 @@ public class DomMetadataDocumentValidatorTest
 
 		// when
 		Constraint.V10 validator = new DomMetadataDocumentValidator( documentUri, profileUri );
+		List<ConstraintViolation.V10> constraintViolations = validator.validate();
 
 		// then
-		List<ConstraintViolation.V10> constraintViolations = validator.validate();
 		assertThat( constraintViolations, hasSize( 56 ) );
 		assertThat( constraintViolations.stream()
 				.filter( cv -> cv instanceof MandatoryNodeConstraintViolation )
