@@ -1,6 +1,6 @@
 package eu.cessda.cmv.core;
 
-import static eu.cessda.cmv.core.ValidationTest.newDocument;
+import static eu.cessda.cmv.core.Factory.newDomDocument;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
@@ -16,7 +16,7 @@ public class CompilableXPathConstraintTest
 	public void validate()
 	{
 		File file = new File( "src/test/resources/profiles/not-compilable-xpaths.xml" );
-		CompilableXPathConstraint constraint = new CompilableXPathConstraint( newDocument( file ) );
+		CompilableXPathConstraint constraint = new CompilableXPathConstraint( newDomDocument( file ) );
 		List<ConstraintViolation.V10> violations = constraint.validate();
 		assertThat( violations, hasSize( 2 ) );
 		assertThat( violations.get( 0 ).getMessage(), containsString( "A location step was expected" ) );

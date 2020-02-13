@@ -27,13 +27,13 @@ public class DomMetadataDocumentValidatorTest
 		List<ConstraintViolation.V10> constraintViolations = validator.validate();
 
 		// then
-		assertThat( constraintViolations, hasSize( 56 ) );
+		assertThat( constraintViolations, hasSize( 51 ) );
 		assertThat( constraintViolations.stream()
 				.filter( cv -> cv instanceof MandatoryNodeConstraintViolation )
-				.collect( Collectors.toList() ), hasSize( 31 ) );
+				.collect( Collectors.toList() ), hasSize( 28 ) );
 		assertThat( constraintViolations.stream()
 				.filter( cv -> cv instanceof RecommendedNodeConstraintViolation )
-				.collect( Collectors.toList() ), hasSize( 25 ) );
+				.collect( Collectors.toList() ), hasSize( 23 ) );
 	}
 
 	@Test
