@@ -15,7 +15,7 @@ pipeline {
 		stage('Build Project') {
 			steps {
 				withMaven {
-					sh "mvn clean install"
+					sh "mvn clean install -U"
 				}
 			}
 			when { branch 'master' }
