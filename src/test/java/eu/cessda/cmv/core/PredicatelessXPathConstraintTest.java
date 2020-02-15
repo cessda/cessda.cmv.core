@@ -15,6 +15,8 @@ public class PredicatelessXPathConstraintTest
 	@Test
 	public void validate()
 	{
+		// https://bitbucket.org/cessda/cessda.cmv.core/issues/39
+
 		File file = new File( "src/test/resources/profiles/xpaths-with-predicate.xml" );
 		Constraint.V10 constraint = new PredicatelessXPathConstraint( newDomDocument( file ) );
 		List<ConstraintViolation.V10> violations = constraint.validate();

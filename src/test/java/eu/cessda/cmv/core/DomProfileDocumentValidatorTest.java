@@ -40,8 +40,10 @@ public class DomProfileDocumentValidatorTest
 	}
 
 	@Test
-	public void validate()
+	public void validateXpathWithPredicate()
 	{
+		// https://bitbucket.org/cessda/cessda.cmv.core/issues/39
+
 		URI documentUri = new File( "src/test/resources/profiles/xpaths-with-predicate.xml" ).toURI();
 
 		// when
