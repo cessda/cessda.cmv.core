@@ -38,4 +38,18 @@ public class DomProfileDocumentValidatorTest
 		// then
 		assertThat( constraintViolations, hasSize( 0 ) );
 	}
+
+	@Test
+	public void validate()
+	{
+		URI documentUri = new File( "src/test/resources/profiles/xpaths-with-predicate.xml" ).toURI();
+
+		// when
+		Constraint.V10 validator = new DomProfileDocumentValidator( documentUri );
+		List<ConstraintViolation.V10> constraintViolations = validator.validate();
+
+		// then
+		assertThat( constraintViolations, hasSize( 1 ) );
+	}
+
 }

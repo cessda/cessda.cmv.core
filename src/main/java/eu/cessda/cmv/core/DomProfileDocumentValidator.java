@@ -9,6 +9,7 @@ public class DomProfileDocumentValidator extends DomMetadataDocumentValidator
 	{
 		super( metadataDocumentUri, newProfileDocumentUri() );
 
+		getConstraints().add( new PredicatelessXPathConstraint( getMetadataDocument() ) );
 		getConstraints().add( new CompilableXPathConstraint( getMetadataDocument() ) );
 	}
 
