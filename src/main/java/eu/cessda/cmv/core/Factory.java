@@ -1,6 +1,7 @@
 package eu.cessda.cmv.core;
 
 import static java.util.Objects.requireNonNull;
+import static org.gesis.commons.resource.Resource.newResource;
 
 import java.io.File;
 import java.io.InputStream;
@@ -25,7 +26,7 @@ class Factory
 	public static DomDocument.V11 newDomDocument( URI uri )
 	{
 		requireNonNull( uri );
-		Resource resource = Resource.newResource( uri );
+		Resource resource = newResource( uri );
 		return newDomDocument( resource.readInputStream() );
 	}
 

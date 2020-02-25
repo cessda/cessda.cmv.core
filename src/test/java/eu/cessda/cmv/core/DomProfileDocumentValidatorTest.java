@@ -1,9 +1,12 @@
 package eu.cessda.cmv.core;
 
+import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import org.gesis.commons.resource.Resource;
@@ -12,18 +15,19 @@ import org.junit.jupiter.api.Test;
 public class DomProfileDocumentValidatorTest
 {
 	@Test
-	public void validateCdcProfile()
+	public void validateCdcProfile() throws IOException
 	{
 		// given: the profile as metadata document
-		File file = new File( "src/test/resources/ddi-v25/cdc_profile.xml" );
-		Resource documentResource = Resource.newResource( file.toURI() );
+		File documentFile = new File( "src/test/resources/ddi-v25/cdc_profile.xml" );
+		try (InputStream documentInputStream = newResource( documentFile ).readInputStream())
+		{
+			// when
+			Constraint.V10 validator = new DomProfileDocumentValidator( documentInputStream );
+			List<ConstraintViolation.V10> constraintViolations = validator.validate();
 
-		// when
-		Constraint.V10 validator = new DomProfileDocumentValidator( documentResource.readInputStream() );
-		List<ConstraintViolation.V10> constraintViolations = validator.validate();
-
-		// then
-		assertThat( constraintViolations, hasSize( 11 ) );
+			// then
+			assertThat( constraintViolations, hasSize( 11 ) );
+		}
 	}
 
 	@Test
