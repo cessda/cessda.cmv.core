@@ -1,29 +1,25 @@
 package eu.cessda.cmv.core;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.io.InputStream;
 import java.net.URL;
+
+import org.gesis.commons.resource.Resource;
 
 public class DomProfileDocumentValidator extends DomMetadataDocumentValidator
 {
-	public DomProfileDocumentValidator( URI metadataDocumentUri )
+	public DomProfileDocumentValidator( InputStream metadataDocumentInputStream )
 	{
-		super( metadataDocumentUri, newProfileDocumentUri() );
+		super( metadataDocumentInputStream, newProfileDocumentInputStream() );
 
 		getConstraints().add( new PredicatelessXPathConstraint( getMetadataDocument() ) );
 		getConstraints().add( new CompilableXPathConstraint( getMetadataDocument() ) );
 	}
 
-	private static URI newProfileDocumentUri()
+	private static InputStream newProfileDocumentInputStream()
 	{
-		try
-		{
-			URL url = DomProfileDocumentValidator.class.getResource( "/cmv-profile-ddi-v32.xml" );
-			return url.toURI();
-		}
-		catch (URISyntaxException e)
-		{
-			throw new IllegalArgumentException( e );
-		}
+
+		URL url = DomProfileDocumentValidator.class.getResource( "/cmv-profile-ddi-v32.xml" );
+		Resource resource = Resource.newResource( url );
+		return resource.readInputStream();
 	}
 }

@@ -3,10 +3,10 @@ package eu.cessda.cmv.core;
 import static java.util.Objects.requireNonNull;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.URI;
 
 import org.gesis.commons.resource.Resource;
-import org.gesis.commons.resource.TextResource;
 import org.gesis.commons.xml.DomDocument;
 import org.gesis.commons.xml.XercesXalanDocument;
 
@@ -25,9 +25,15 @@ class Factory
 	public static DomDocument.V11 newDomDocument( URI uri )
 	{
 		requireNonNull( uri );
-		Resource resource = new TextResource( Resource.newResource( uri ) );
+		Resource resource = Resource.newResource( uri );
+		return newDomDocument( resource.readInputStream() );
+	}
+
+	public static DomDocument.V11 newDomDocument( InputStream inputStream )
+	{
+		requireNonNull( inputStream );
 		return XercesXalanDocument.newBuilder()
-				.ofContent( resource.toString() )
+				.ofInputStream( inputStream )
 				.namespaceUnaware()
 				.printPrettyWithIndentation( 2 )
 				.build();

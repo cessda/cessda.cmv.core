@@ -2,7 +2,7 @@ package eu.cessda.cmv.core;
 
 import static eu.cessda.cmv.core.Factory.newDomDocument;
 
-import java.net.URI;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,10 +15,11 @@ public class DomMetadataDocumentValidator implements Constraint.V10
 	private DomDocument.V11 metadataDocument;
 	private DomDocument.V11 profileDocument;
 
-	public DomMetadataDocumentValidator( URI metadataDocumentUri, URI profileDocumentUri )
+	public DomMetadataDocumentValidator(
+			InputStream metadataDocumentInputStream, InputStream profileDocumentInputStream )
 	{
-		metadataDocument = newDomDocument( metadataDocumentUri );
-		profileDocument = newDomDocument( profileDocumentUri );
+		metadataDocument = newDomDocument( metadataDocumentInputStream );
+		profileDocument = newDomDocument( profileDocumentInputStream );
 
 		constraints = new ArrayList<>();
 		constraints.add( new MandatoryNodeConstraint( metadataDocument, profileDocument ) );

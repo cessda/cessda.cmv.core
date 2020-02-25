@@ -4,9 +4,9 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
 
 import java.io.File;
-import java.net.URI;
 import java.util.List;
 
+import org.gesis.commons.resource.Resource;
 import org.junit.jupiter.api.Test;
 
 public class DomProfileDocumentValidatorTest
@@ -15,10 +15,11 @@ public class DomProfileDocumentValidatorTest
 	public void validateCdcProfile()
 	{
 		// given: the profile as metadata document
-		URI documentUri = new File( "src/test/resources/ddi-v25/cdc_profile.xml" ).toURI();
+		File file = new File( "src/test/resources/ddi-v25/cdc_profile.xml" );
+		Resource documentResource = Resource.newResource( file.toURI() );
 
 		// when
-		Constraint.V10 validator = new DomProfileDocumentValidator( documentUri );
+		Constraint.V10 validator = new DomProfileDocumentValidator( documentResource.readInputStream() );
 		List<ConstraintViolation.V10> constraintViolations = validator.validate();
 
 		// then
@@ -29,10 +30,11 @@ public class DomProfileDocumentValidatorTest
 	public void validateCmvProfile()
 	{
 		// given: the profile as metadata document
-		URI documentUri = new File( "src/main/resources/cmv-profile-ddi-v32.xml" ).toURI();
+		File file = new File( "src/main/resources/cmv-profile-ddi-v32.xml" );
+		Resource documentResource = Resource.newResource( file.toURI() );
 
 		// when
-		Constraint.V10 validator = new DomProfileDocumentValidator( documentUri );
+		Constraint.V10 validator = new DomProfileDocumentValidator( documentResource.readInputStream() );
 		List<ConstraintViolation.V10> constraintViolations = validator.validate();
 
 		// then
@@ -43,11 +45,11 @@ public class DomProfileDocumentValidatorTest
 	public void validateXpathWithPredicate()
 	{
 		// https://bitbucket.org/cessda/cessda.cmv.core/issues/39
-
-		URI documentUri = new File( "src/test/resources/profiles/xpaths-with-predicate.xml" ).toURI();
+		File file = new File( "src/test/resources/profiles/xpaths-with-predicate.xml" );
+		Resource documentResource = Resource.newResource( file.toURI() );
 
 		// when
-		Constraint.V10 validator = new DomProfileDocumentValidator( documentUri );
+		Constraint.V10 validator = new DomProfileDocumentValidator( documentResource.readInputStream() );
 		List<ConstraintViolation.V10> constraintViolations = validator.validate();
 
 		// then
