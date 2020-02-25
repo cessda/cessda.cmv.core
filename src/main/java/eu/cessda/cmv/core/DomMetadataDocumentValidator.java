@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.gesis.commons.xml.DomDocument;
+import org.gesis.commons.xml.ddi.DdiInputStream;
 
 public class DomMetadataDocumentValidator implements Constraint.V10
 {
@@ -16,10 +17,11 @@ public class DomMetadataDocumentValidator implements Constraint.V10
 	private DomDocument.V11 profileDocument;
 
 	public DomMetadataDocumentValidator(
-			InputStream metadataDocumentInputStream, InputStream profileDocumentInputStream )
+			InputStream metadataDocumentInputStream,
+			InputStream profileDocumentInputStream )
 	{
-		metadataDocument = newDomDocument( metadataDocumentInputStream );
-		profileDocument = newDomDocument( profileDocumentInputStream );
+		metadataDocument = newDomDocument( new DdiInputStream( metadataDocumentInputStream ) );
+		profileDocument = newDomDocument( new DdiInputStream( profileDocumentInputStream ) );
 
 		constraints = new ArrayList<>();
 		constraints.add( new MandatoryNodeConstraint( metadataDocument, profileDocument ) );
