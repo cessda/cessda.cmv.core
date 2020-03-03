@@ -1,5 +1,7 @@
 package eu.cessda.cmv.core;
 
+import static org.gesis.commons.resource.Resource.newResource;
+
 import java.io.InputStream;
 import java.net.URL;
 
@@ -20,7 +22,7 @@ public class DomProfileDocumentValidator extends DomMetadataDocumentValidator
 	private static InputStream newProfileDocumentInputStream()
 	{
 		URL url = DomProfileDocumentValidator.class.getResource( "/cmv-profile-ddi-v32.xml" );
-		Resource resource = Resource.newResource( url );
+		Resource resource = newResource( url );
 		return resource.readInputStream();
 	}
 }

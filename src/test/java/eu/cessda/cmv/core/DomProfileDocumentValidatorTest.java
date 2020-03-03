@@ -38,7 +38,7 @@ public class DomProfileDocumentValidatorTest
 	{
 		// given: the profile as metadata document
 		File file = new File( "src/main/resources/cmv-profile-ddi-v32.xml" );
-		Resource documentResource = Resource.newResource( file.toURI() );
+		Resource documentResource = newResource( file );
 
 		// when
 		Constraint.V10 validator = new DomProfileDocumentValidator( documentResource.readInputStream() );
@@ -53,7 +53,7 @@ public class DomProfileDocumentValidatorTest
 	{
 		// https://bitbucket.org/cessda/cessda.cmv.core/issues/39
 		File file = new File( "src/test/resources/profiles/xpaths-with-predicate.xml" );
-		Resource documentResource = Resource.newResource( file.toURI() );
+		Resource documentResource = newResource( file );
 
 		// when
 		Constraint.V10 validator = new DomProfileDocumentValidator( documentResource.readInputStream() );
@@ -62,5 +62,4 @@ public class DomProfileDocumentValidatorTest
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
 	}
-
 }
