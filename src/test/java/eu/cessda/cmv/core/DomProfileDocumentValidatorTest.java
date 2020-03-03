@@ -18,7 +18,7 @@ public class DomProfileDocumentValidatorTest
 	public void validateCdcProfile() throws IOException
 	{
 		// given: the profile as metadata document
-		File documentFile = new File( "src/test/resources/ddi-v25/cdc_profile.xml" );
+		File documentFile = new File( "src/test/resources/ddi-v25/cdc25_profile.xml" );
 		try (InputStream documentInputStream = newResource( documentFile ).readInputStream())
 		{
 			// when
@@ -27,6 +27,9 @@ public class DomProfileDocumentValidatorTest
 
 			// then
 			assertThat( constraintViolations, hasSize( 11 ) );
+			constraintViolations.stream()
+					.map( ConstraintViolation.V10::getMessage )
+					.forEach( System.out::println );
 		}
 	}
 
