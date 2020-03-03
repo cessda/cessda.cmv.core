@@ -22,7 +22,7 @@ public class DomMetadataDocumentValidatorTest
 	{
 		// given
 		File documentFile = new File( "src/test/resources/ddi-v25/ukds-7481.xml" );
-		File profileFile = new File( "src/test/resources/ddi-v25/cdc_profile.xml" );
+		File profileFile = new File( "src/test/resources/ddi-v25/cdc25_profile.xml" );
 
 		try (InputStream documentInputStream = newResource( documentFile ).readInputStream();
 				InputStream profileInputStream = newResource( profileFile ).readInputStream())
@@ -49,7 +49,7 @@ public class DomMetadataDocumentValidatorTest
 	{
 		// given
 		File documentFile = new File( "src/test/resources/ddi-v25/ukds-7481-not-wellformed.xml" );
-		File profileFile = new File( "src/test/resources/ddi-v25/cdc_profile.xml" );
+		File profileFile = new File( "src/test/resources/ddi-v25/cdc25_profile.xml" );
 
 		try (InputStream documentInputStream = newResource( documentFile ).readInputStream();
 				InputStream profileInputStream = newResource( profileFile ).readInputStream())
