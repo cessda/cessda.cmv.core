@@ -1,19 +1,19 @@
 package eu.cessda.cmv.core;
 
+import org.gesis.commons.xml.XmlNotWellformedException;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.gesis.commons.xml.XmlNotWellformedException;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 public class DomMetadataDocumentValidatorTest
 {
@@ -21,11 +21,11 @@ public class DomMetadataDocumentValidatorTest
 	public void validate() throws IOException
 	{
 		// given
-		File documentFile = new File( "src/test/resources/ddi-v25/ukds-7481.xml" );
-		File profileFile = new File( "src/test/resources/ddi-v25/cdc25_profile.xml" );
+		URL documentFile = getClass().getResource( "/ddi-v25/ukds-7481.xml" );
+		URL profileFile = getClass().getResource( "/ddi-v25/cdc25_profile.xml" );
 
-		try (InputStream documentInputStream = newResource( documentFile ).readInputStream();
-				InputStream profileInputStream = newResource( profileFile ).readInputStream())
+		try ( InputStream documentInputStream = newResource( documentFile ).readInputStream();
+			  InputStream profileInputStream = newResource( profileFile ).readInputStream() )
 		{
 			// when
 			Constraint.V10 validator = new DomMetadataDocumentValidator(
@@ -48,11 +48,11 @@ public class DomMetadataDocumentValidatorTest
 	public void constructWithNotWellformedMetadataDocument() throws IOException
 	{
 		// given
-		File documentFile = new File( "src/test/resources/ddi-v25/ukds-7481-not-wellformed.xml" );
-		File profileFile = new File( "src/test/resources/ddi-v25/cdc25_profile.xml" );
+		URL documentFile = getClass().getResource( "/ddi-v25/ukds-7481-not-wellformed.xml" );
+		URL profileFile = getClass().getResource( "/ddi-v25/cdc25_profile.xml" );
 
-		try (InputStream documentInputStream = newResource( documentFile ).readInputStream();
-				InputStream profileInputStream = newResource( profileFile ).readInputStream())
+		try ( InputStream documentInputStream = newResource( documentFile ).readInputStream();
+			  InputStream profileInputStream = newResource( profileFile ).readInputStream() )
 		{
 			// when
 			Executable executable = () -> new DomMetadataDocumentValidator(

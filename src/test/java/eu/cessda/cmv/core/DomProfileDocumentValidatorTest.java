@@ -1,16 +1,16 @@
 package eu.cessda.cmv.core;
 
+import org.gesis.commons.resource.Resource;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.List;
+
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-
-import org.gesis.commons.resource.Resource;
-import org.junit.jupiter.api.Test;
 
 public class DomProfileDocumentValidatorTest
 {
@@ -18,10 +18,11 @@ public class DomProfileDocumentValidatorTest
 	public void validateCdcProfile() throws IOException
 	{
 		// given: the profile as metadata document
-		File documentFile = new File( "src/test/resources/ddi-v25/cdc25_profile.xml" );
-		try (InputStream documentInputStream = newResource( documentFile ).readInputStream())
+		URL documentFile = getClass().getResource( "/ddi-v25/cdc25_profile.xml" );
+
+		// when
+		try ( InputStream documentInputStream = newResource( documentFile ).readInputStream() )
 		{
-			// when
 			Constraint.V10 validator = new DomProfileDocumentValidator( documentInputStream );
 			List<ConstraintViolation.V10> constraintViolations = validator.validate();
 
@@ -37,11 +38,12 @@ public class DomProfileDocumentValidatorTest
 	public void validateCmvProfile()
 	{
 		// given: the profile as metadata document
-		File file = new File( "src/main/resources/cmv-profile-ddi-v32.xml" );
+		URL file = getClass().getResource( "/cmv-profile-ddi-v32.xml" );
 		Resource documentResource = newResource( file );
 
 		// when
 		Constraint.V10 validator = new DomProfileDocumentValidator( documentResource.readInputStream() );
+
 		List<ConstraintViolation.V10> constraintViolations = validator.validate();
 
 		// then
@@ -52,7 +54,7 @@ public class DomProfileDocumentValidatorTest
 	public void validateXpathWithPredicate()
 	{
 		// https://bitbucket.org/cessda/cessda.cmv.core/issues/39
-		File file = new File( "src/test/resources/profiles/xpaths-with-predicate.xml" );
+		URL file = getClass().getResource( "/profiles/xpaths-with-predicate.xml" );
 		Resource documentResource = newResource( file );
 
 		// when
