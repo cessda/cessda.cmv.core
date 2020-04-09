@@ -48,7 +48,7 @@ public class DomMetadataDocumentValidatorTest
 	public void constructWithNotWellformedMetadataDocument() throws IOException
 	{
 		// given
-		URL documentFile = getClass().getResource( "/ddi-v25/ukds-7481-not-wellformed.xml" );
+		URL documentFile = getClass().getResource( "/ddi-v25/ukds-7481-not-wellformed.xml-invalid" );
 		URL profileFile = getClass().getResource( "/ddi-v25/cdc25_profile.xml" );
 
 		try ( InputStream documentInputStream = newResource( documentFile ).readInputStream();
