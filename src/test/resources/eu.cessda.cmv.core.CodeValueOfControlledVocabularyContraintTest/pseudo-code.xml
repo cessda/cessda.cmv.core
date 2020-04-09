@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pr:DDIProfile xmlns:r="ddi:reusable:3_2" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:pr="ddi:ddiprofile:3_2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="ddi:ddiprofile:3_2 file:///home/gesis/git/ddi-schemas/DDI_3_2_2014-02-05/DDI_3_2_2014-02-05/DDI_3_2_2014-05-15_Documentation_XMLSchema/XMLSchema/ddiprofile.xsd" versionDate="2019-10-14">
+    <r:Agency>CESSDA</r:Agency>
+    <r:ID>PROFILE</r:ID>
+    <r:Version>0.1.0</r:Version>
+    <pr:XPathVersion>1.0</pr:XPathVersion>
+    <pr:DDINamespace>2.5</pr:DDINamespace>
+    
+    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" isRequired="true">
+        <pr:Instructions>
+			<r:Content>
+				Constraint: UsedNode
+	        		RequirementLevel: Mandatory (default for isRequired="true")
+        	</r:Content>
+        </pr:Instructions>
+    </pr:Used>
+    <!-- XOR -->
+    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" isRequired="false">
+        <pr:Instructions>
+			<r:Content>
+				Constraint: UsedNode
+	        		RequirementLevel: Recommended (default for isRequired="false")
+        	</r:Content>
+        </pr:Instructions>
+    </pr:Used>
+    <!-- XOR -->
+    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" isRequired="false">
+        <pr:Instructions>
+			<r:Content>
+				Constraint: UsedNode
+	        		RequirementLevel: Optional
+        	</r:Content>
+        </pr:Instructions>
+    </pr:Used>
+    
+    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" isRequired="true">
+        <pr:Instructions>
+        	<r:Content>
+	        	Constraint: UsedNode
+	        		RequirementLevel: Mandatory
+	        	Constraint: CodeValueOfControlledVocabulary
+	        		( ControlledVocabularyRepositoryUriXPath: ./@vocabURI )
+	        		( ControlledVocabularyRepositoryImplementation: CessdaControlledVocabularyRepository )
+        	</r:Content>
+        </pr:Instructions>
+    </pr:Used>
+    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocabURI" isRequired="true">
+		<pr:Instructions>
+		    <r:Content>
+	        	Constraint: UsedNode
+	        		RequirementLevel: Mandatory
+	        	Constraint: ResolvableControlledVocabularyCodeValueSet
+	        		ControlledVocabularyRepositoryImplementation: CessdaControlledVocabularyRepository
+	        		resolvable URI returns not-empty set of CV CodeValues
+	        		actually to separate ParsableUri, ResolvableUri
+        	</r:Content>
+        </pr:Instructions>
+    </pr:Used>
+    
+</pr:DDIProfile>

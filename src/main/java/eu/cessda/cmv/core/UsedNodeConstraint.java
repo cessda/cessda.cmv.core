@@ -53,4 +53,13 @@ abstract class UsedNodeConstraint implements Constraint.V10
 				.collect( Collectors.toList() );
 	}
 
+	protected DomDocument.V11 getMetadataDocument()
+	{
+		return metadataDocument;
+	}
+
+	protected DomDocument.V11 getProfileDocument()
+	{
+		return profileDocument;
+	}
 }

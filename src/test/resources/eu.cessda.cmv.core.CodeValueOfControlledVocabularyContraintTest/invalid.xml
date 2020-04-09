@@ -1,0 +1,26 @@
+<codeBook xmlns="ddi:codebook:2_5"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="ddi:codebook:2_5 file:///home/gesis/git/ddi-schemas/ddi_2_5_1/schemas/codebook.xsd"
+	version="2.5" xml:lang="en">
+	<stdyDscr>
+		<citation>
+			<titlStmt>
+				<titl></titl>
+			</titlStmt>
+		</citation>
+		<stdyInfo>
+			<sumDscr>
+				<anlyUnit>
+					<concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0">Individual</concept>
+					<!-- valid, no message -->
+					
+					<concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0">Person</concept>
+					<!-- invalid, this message:
+					CodeValue 'Person' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' is not element 
+					of the controlled vocabulary in 'https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0'
+					 -->
+				</anlyUnit>
+			</sumDscr>
+		</stdyInfo>
+	</stdyDscr>
+</codeBook>
