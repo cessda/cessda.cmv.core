@@ -1,15 +1,15 @@
 package eu.cessda.cmv.core;
 
-import org.junit.jupiter.api.Test;
-
-import java.net.URL;
-import java.util.List;
-
 import static eu.cessda.cmv.core.Factory.newDomDocument;
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
+
+import java.net.URL;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 public class PredicatelessXPathConstraintTest
 {

@@ -1,7 +1,5 @@
 package eu.cessda.cmv.core;
 
-import static java.util.function.Predicate.not;
-
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -44,7 +42,7 @@ class CodeValueOfControlledVocabularyContraint extends MandatoryNodeConstraint
 									.map( Node::getTextContent )
 									.collect( Collectors.toSet() );
 							codeValuesInDocument.stream()
-									.filter( not( codeValuesInControlledVocabulary::contains ) )
+									.filter( codeValue -> !codeValuesInControlledVocabulary.contains( codeValue ) )
 									.forEach(
 											codeValue -> violations.add( newViolation( nodePath, codeValue, cvUri ) ) );
 						} );
