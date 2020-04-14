@@ -1,16 +1,16 @@
 package eu.cessda.cmv.core;
 
-import org.gesis.commons.resource.Resource;
-import org.junit.jupiter.api.Test;
+import static org.gesis.commons.resource.Resource.newResource;
+import static org.hamcrest.Matchers.hasSize;
+import static org.junit.Assert.assertThat;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
-import static org.gesis.commons.resource.Resource.newResource;
-import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.assertThat;
+import org.gesis.commons.resource.Resource;
+import org.junit.jupiter.api.Test;
 
 public class DomProfileDocumentValidatorTest
 {
@@ -27,10 +27,7 @@ public class DomProfileDocumentValidatorTest
 			List<ConstraintViolation.V10> constraintViolations = validator.validate();
 
 			// then
-			assertThat( constraintViolations, hasSize( 11 ) );
-			constraintViolations.stream()
-					.map( ConstraintViolation.V10::getMessage )
-					.forEach( System.out::println );
+			assertThat( constraintViolations, hasSize( 0 ) );
 		}
 	}
 
