@@ -2,6 +2,7 @@ package eu.cessda.cmv.core;
 
 import static eu.cessda.cmv.core.Factory.newDomDocument;
 import static org.gesis.commons.resource.Resource.newResource;
+import static org.gesis.commons.test.hamcrest.OptionalMatchers.isPresentAndIs;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
 
@@ -23,27 +24,29 @@ public class CodeValueOfControlledVocabularyContraintTest
 	@Test
 	public void validate_invalid() throws IOException
 	{
+		String expectedMessage = "CodeValue 'Person' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' is not element of the controlled vocabulary in 'https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0'";
+
 		// given
-		URL documentFile = testEnv.findTestResourceByName( "invalid.xml" ).toURI().toURL();
+		URL documentFile = testEnv.findTestResourceByName( "bad-case.xml" ).toURI().toURL();
 		URL profileFile = testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL();
 
 		try ( InputStream documentInputStream = newResource( documentFile ).readInputStream();
 				InputStream profileInputStream = newResource( profileFile ).readInputStream() )
 		{
-			// when
 			DomDocument.V11 metadataDocument = newDomDocument( new DdiInputStream( documentInputStream ) );
 			DomDocument.V11 profileDocument = newDomDocument( new DdiInputStream( profileInputStream ) );
 
-			// then
+			// when
 			Constraint.V10 constraint = new CodeValueOfControlledVocabularyContraint( metadataDocument,
 					profileDocument );
 			List<ConstraintViolation.V10> constraintViolations = constraint.validate();
 
-			constraintViolations.stream().map( ConstraintViolation.V10::getMessage ).forEach(
-					System.out::println );
-
 			// then
 			assertThat( constraintViolations, hasSize( 1 ) );
+			assertThat( constraintViolations.stream()
+					.map( ConstraintViolation.V10::getMessage )
+					.findFirst(),
+					isPresentAndIs( expectedMessage ) );
 		}
 	}
 
@@ -51,7 +54,7 @@ public class CodeValueOfControlledVocabularyContraintTest
 	public void validate_valid() throws IOException
 	{
 		// given
-		URL documentFile = testEnv.findTestResourceByName( "valid.xml" ).toURI().toURL();
+		URL documentFile = testEnv.findTestResourceByName( "good-case.xml" ).toURI().toURL();
 		URL profileFile = testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL();
 
 		try ( InputStream documentInputStream = newResource( documentFile ).readInputStream();
@@ -68,23 +71,6 @@ public class CodeValueOfControlledVocabularyContraintTest
 
 			// then
 			assertThat( constraintViolations, hasSize( 0 ) );
-		}
-	}
-
-	@Test
-	public void test() throws IOException
-	{
-		URL documentFile = testEnv.findTestResourceByName( "invalid.xml" ).toURI().toURL();
-
-		try ( InputStream documentInputStream = newResource( documentFile ).readInputStream() )
-		{
-			DomDocument.V11 metadataDocument = newDomDocument( new DdiInputStream( documentInputStream ) );
-			metadataDocument.selectNodes( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" ).stream()
-					.forEach( n ->
-					{
-						System.out.println( n.getTextContent() + " " + n.getUserData( "lineNumber" ) );
-
-					} );
 		}
 	}
 }

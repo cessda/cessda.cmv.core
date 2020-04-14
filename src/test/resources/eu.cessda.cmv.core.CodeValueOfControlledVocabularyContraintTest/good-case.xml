@@ -1,6 +1,6 @@
 <codeBook xmlns="ddi:codebook:2_5"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="ddi:codebook:2_5 file:///home/gesis/git/ddi-schemas/ddi_2_5_1/schemas/codebook.xsd"
+	xsi:schemaLocation="ddi:codebook:2_5 https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd"
 	version="2.5" xml:lang="en">
 	<stdyDscr>
 		<citation>
