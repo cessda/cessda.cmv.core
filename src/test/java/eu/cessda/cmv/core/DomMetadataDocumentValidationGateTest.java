@@ -15,7 +15,7 @@ import org.gesis.commons.xml.XmlNotWellformedException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
-public class DomMetadataDocumentValidatorTest
+public class DomMetadataDocumentValidationGateTest
 {
 	@Test
 	public void validate() throws IOException
@@ -28,10 +28,10 @@ public class DomMetadataDocumentValidatorTest
 				InputStream profileInputStream = newResource( profileFile ).readInputStream() )
 		{
 			// when
-			Constraint.V10 validator = new DomMetadataDocumentValidator(
+			Constraint.V10 validatationGate = new DomMetadataDocumentValidationGate(
 					documentInputStream,
 					profileInputStream );
-			List<ConstraintViolation.V10> constraintViolations = validator.validate();
+			List<ConstraintViolation.V10> constraintViolations = validatationGate.validate();
 
 			// then
 			assertThat( constraintViolations, hasSize( 40 ) );
@@ -63,7 +63,7 @@ public class DomMetadataDocumentValidatorTest
 				InputStream profileInputStream = newResource( profileFile ).readInputStream() )
 		{
 			// when
-			Executable executable = () -> new DomMetadataDocumentValidator(
+			Executable executable = () -> new DomMetadataDocumentValidationGate(
 					documentInputStream,
 					profileInputStream );
 			// then

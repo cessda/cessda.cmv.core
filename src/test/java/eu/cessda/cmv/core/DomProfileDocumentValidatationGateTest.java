@@ -12,7 +12,7 @@ import java.util.List;
 import org.gesis.commons.resource.Resource;
 import org.junit.jupiter.api.Test;
 
-public class DomProfileDocumentValidatorTest
+public class DomProfileDocumentValidatationGateTest
 {
 	@Test
 	public void validateCdcProfile() throws IOException
@@ -23,8 +23,8 @@ public class DomProfileDocumentValidatorTest
 		// when
 		try ( InputStream documentInputStream = newResource( documentFile ).readInputStream() )
 		{
-			Constraint.V10 validator = new DomProfileDocumentValidator( documentInputStream );
-			List<ConstraintViolation.V10> constraintViolations = validator.validate();
+			Constraint.V10 validatationGate = new DomProfileDocumentValidationGate( documentInputStream );
+			List<ConstraintViolation.V10> constraintViolations = validatationGate.validate();
 
 			// then
 			assertThat( constraintViolations, hasSize( 0 ) );
@@ -39,9 +39,9 @@ public class DomProfileDocumentValidatorTest
 		Resource documentResource = newResource( file );
 
 		// when
-		Constraint.V10 validator = new DomProfileDocumentValidator( documentResource.readInputStream() );
+		Constraint.V10 validatationGate = new DomProfileDocumentValidationGate( documentResource.readInputStream() );
 
-		List<ConstraintViolation.V10> constraintViolations = validator.validate();
+		List<ConstraintViolation.V10> constraintViolations = validatationGate.validate();
 
 		// then
 		assertThat( constraintViolations, hasSize( 0 ) );
@@ -55,8 +55,8 @@ public class DomProfileDocumentValidatorTest
 		Resource documentResource = newResource( file );
 
 		// when
-		Constraint.V10 validator = new DomProfileDocumentValidator( documentResource.readInputStream() );
-		List<ConstraintViolation.V10> constraintViolations = validator.validate();
+		Constraint.V10 validatationGate = new DomProfileDocumentValidationGate( documentResource.readInputStream() );
+		List<ConstraintViolation.V10> constraintViolations = validatationGate.validate();
 
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );

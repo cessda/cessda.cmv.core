@@ -10,13 +10,13 @@ import java.util.stream.Collectors;
 import org.gesis.commons.xml.DomDocument;
 import org.gesis.commons.xml.ddi.DdiInputStream;
 
-public class DomMetadataDocumentValidator implements Constraint.V10
+public class DomMetadataDocumentValidationGate implements Constraint.V10
 {
 	private List<Constraint> constraints;
 	private DomDocument.V11 metadataDocument;
 	private DomDocument.V11 profileDocument;
 
-	public DomMetadataDocumentValidator(
+	public DomMetadataDocumentValidationGate(
 			InputStream metadataDocumentInputStream,
 			InputStream profileDocumentInputStream )
 	{

@@ -8,9 +8,9 @@ import java.net.URL;
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.xml.ddi.DdiInputStream;
 
-public class DomProfileDocumentValidator extends DomMetadataDocumentValidator
+public class DomProfileDocumentValidationGate extends DomMetadataDocumentValidationGate
 {
-	public DomProfileDocumentValidator( InputStream metadataDocumentInputStream )
+	public DomProfileDocumentValidationGate( InputStream metadataDocumentInputStream )
 	{
 		super( new DdiInputStream( metadataDocumentInputStream ),
 				new DdiInputStream( newProfileDocumentInputStream() ) );
@@ -21,7 +21,7 @@ public class DomProfileDocumentValidator extends DomMetadataDocumentValidator
 
 	private static InputStream newProfileDocumentInputStream()
 	{
-		URL url = DomProfileDocumentValidator.class.getResource( "/cmv-profile-ddi-v32.xml" );
+		URL url = DomProfileDocumentValidationGate.class.getResource( "/cmv-profile-ddi-v32.xml" );
 		Resource resource = newResource( url );
 		return resource.readInputStream();
 	}
