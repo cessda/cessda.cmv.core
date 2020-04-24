@@ -16,6 +16,7 @@ class MandatoryNodeValidator implements Validator.V10
 	}
 
 	@Override
+	@SuppressWarnings( "unchecked" )
 	public <T extends ConstraintViolation> Optional<T> validate()
 	{
 		if ( count == 0 )

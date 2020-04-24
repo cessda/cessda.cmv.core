@@ -1,58 +1,33 @@
 package eu.cessda.cmv.core;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import org.gesis.commons.xml.DomDocument;
-import org.w3c.dom.Node;
-
-class CodeValueOfControlledVocabularyContraint extends MandatoryNodeConstraintV1
+class CodeValueOfControlledVocabularyContraint implements Constraint.V20
 {
-	public CodeValueOfControlledVocabularyContraint( DomDocument.V11 metadataDocument, DomDocument.V11 profileDocument )
+	private String locationPath;
+
+	public CodeValueOfControlledVocabularyContraint( String locationPath )
 	{
-		super( metadataDocument, profileDocument );
+		this.locationPath = locationPath;
 	}
 
 	@Override
-	@SuppressWarnings( { "unchecked", "java:S1075" } )
-	public List<ConstraintViolation.V10> validate()
+	@SuppressWarnings( "unchecked" )
+	public <T extends Validator> List<T> newValidators( Document document )
 	{
-		List<ConstraintViolation.V10> violations = super.validate();
+		requireNonNull( document );
+		Document.V10 d = (Document.V10) document;
 
-		String constraintPath = "/DDIProfile/Used[contains(Instructions/Content, 'CodeValueOfControlledVocabulary')]";
-		getProfileDocument().selectNodes( constraintPath ).forEach( usedNode ->
+		List<Validator.V10> validators = new ArrayList<>();
+		for ( Node node : d.getNodes( locationPath ) )
 		{
-			for ( String nodePath : getProfileDocument()
-					.selectNodes( usedNode, "./@xpath" ).stream()
-					.map( Node::getTextContent )
-					.collect( Collectors.toSet() ) )
-			{
-				getMetadataDocument()
-						.selectNodes( nodePath + "/@vocabURI" ).stream()
-						.map( Node::getTextContent )
-						.distinct()
-						.forEach( cvUri ->
-						{
-							// cvUri not used yet for cv repo
-							ControlledVocabularyRepository repository = new DdiAnalysisUnit10InMemoryControlledVocabularyRepository();
-							Set<String> codeValuesInControlledVocabulary = repository.findCodeValues();
-							Set<String> codeValuesInDocument = getMetadataDocument()
-									.selectNodes( nodePath + "[@vocabURI='" + cvUri + "']" ).stream()
-									.map( Node::getTextContent )
-									.collect( Collectors.toSet() );
-							codeValuesInDocument.stream()
-									.filter( codeValue -> !codeValuesInControlledVocabulary.contains( codeValue ) )
-									.forEach(
-											codeValue -> violations.add( newViolation( nodePath, codeValue, cvUri ) ) );
-						} );
-			}
-		} );
-		return violations;
-	}
-
-	private ConstraintViolation.V10 newViolation( String nodePath, String codeValue, String cvUri )
-	{
-		return new CodeValueOfControlledVocabularyContraintViolation( nodePath, codeValue, cvUri );
+			Validator.V10 validator = new CodeValueOfControlledVocabularyValidator( locationPath, node.getTextContent(),
+					"uri" );
+			validators.add( validator );
+		}
+		return (List<T>) validators;
 	}
 }

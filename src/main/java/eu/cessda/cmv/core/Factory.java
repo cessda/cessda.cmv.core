@@ -5,6 +5,7 @@ import static org.gesis.commons.resource.Resource.newResource;
 
 import java.io.File;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 
@@ -40,6 +41,19 @@ class Factory
 				.namespaceUnaware()
 				.printPrettyWithIndentation( 2 )
 				.build();
+	}
+
+	public static Document.V10 newDocument( File file )
+	{
+		try
+		{
+			requireNonNull( file );
+			return newDocument( file.toURI().toURL() );
+		}
+		catch (MalformedURLException e)
+		{
+			throw new IllegalArgumentException( e );
+		}
 	}
 
 	public static Document.V10 newDocument( URL url )

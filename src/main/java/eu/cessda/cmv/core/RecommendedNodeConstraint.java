@@ -12,6 +12,7 @@ class RecommendedNodeConstraint extends NodeConstraint
 	}
 
 	@Override
+	@SuppressWarnings( "unchecked" )
 	public <T extends Validator> List<T> newValidators( Document document )
 	{
 		long count = ((Document.V10) document).getNodes( getLocationPath() ).size();

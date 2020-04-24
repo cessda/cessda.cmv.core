@@ -36,6 +36,7 @@ public class DomProfile implements Profile.V10
 	}
 
 	@Override
+	@SuppressWarnings( "unchecked" )
 	public <T extends Constraint> List<T> getConstraints()
 	{
 		return unmodifiableList( (List<T>) constraints );
