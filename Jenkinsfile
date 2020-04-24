@@ -8,14 +8,18 @@ pipeline {
 		component_name = "core"
 	}
 
-	agent any
+	agent {
+        docker {
+            image 'maven:3-jdk-8'
+        }
+    }
 
 	stages {
 		// Building on master
 		stage('Build Project') {
 			steps {
 				withMaven {
-					sh "mvn clean install -U"
+					sh "$MVN_CMD clean install -U"
 				}
 			}
 			when { branch 'master' }
@@ -24,7 +28,7 @@ pipeline {
 		stage('Test Project') {
 			steps {
                 withMaven {
-                    sh 'mvn clean test'
+                    sh '$MVN_CMD clean test'
 				}
 			}
             when { not { branch 'master' } }
@@ -38,7 +42,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('cessda-sonar') {
                     withMaven {
-                        sh "mvn sonar:sonar"
+                        sh "$MVN_CMD sonar:sonar"
                     }
                 }
             }
@@ -55,7 +59,7 @@ pipeline {
 		stage('Deploy Project') {
 			steps {
 				withMaven {
-					sh "mvn jar:jar javadoc:jar source:jar deploy:deploy"
+					sh "$MVN_CMD jar:jar javadoc:jar source:jar deploy:deploy"
 				}
 			}
 			when { branch 'master' }
