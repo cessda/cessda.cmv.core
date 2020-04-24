@@ -8,7 +8,11 @@ pipeline {
 		component_name = "core"
 	}
 
-	agent any
+	agent {
+        docker {
+            image 'maven:3-jdk-8'
+        }
+    }
 
 	stages {
 		// Building on master
