@@ -11,7 +11,7 @@ class PredicatelessXPathValidator implements Validator.V10
 {
 	private String locationPath;
 
-	public PredicatelessXPathValidator( String locationPath )
+	PredicatelessXPathValidator( String locationPath )
 	{
 		this.locationPath = locationPath;
 	}

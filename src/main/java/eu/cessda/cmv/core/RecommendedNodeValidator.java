@@ -9,7 +9,7 @@ class RecommendedNodeValidator implements Validator.V10
 	private String locationPath;
 	private long count;
 
-	public RecommendedNodeValidator( String locationPath, long count )
+	RecommendedNodeValidator( String locationPath, long count )
 	{
 		this.locationPath = locationPath;
 		this.count = count;

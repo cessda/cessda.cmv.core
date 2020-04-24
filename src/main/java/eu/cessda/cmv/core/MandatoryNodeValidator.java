@@ -9,7 +9,7 @@ class MandatoryNodeValidator implements Validator.V10
 	private String locationPath;
 	private long count;
 
-	public MandatoryNodeValidator( String locationPath, long count )
+	MandatoryNodeValidator( String locationPath, long count )
 	{
 		this.locationPath = locationPath;
 		this.count = count;

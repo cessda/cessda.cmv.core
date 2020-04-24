@@ -2,7 +2,7 @@ package eu.cessda.cmv.core;
 
 import java.util.Set;
 
-public class ElementInSetConstraintViolation implements ConstraintViolation.V10
+class ElementInSetConstraintViolation implements ConstraintViolation.V10
 {
 	private String element;
 	private Set<String> elementSet;

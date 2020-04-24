@@ -6,7 +6,7 @@ abstract class NodeConstraint implements Constraint.V20
 {
 	private String locationPath;
 
-	public NodeConstraint( String locationPath )
+	NodeConstraint( String locationPath )
 	{
 		requireNonNull( locationPath );
 		this.locationPath = locationPath;

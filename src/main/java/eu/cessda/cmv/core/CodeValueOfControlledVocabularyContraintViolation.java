@@ -6,7 +6,7 @@ class CodeValueOfControlledVocabularyContraintViolation implements ConstraintVio
 	private String codeValue;
 	private String cvUri;
 
-	public CodeValueOfControlledVocabularyContraintViolation( String locationPath, String codeValue, String cvUri )
+	CodeValueOfControlledVocabularyContraintViolation( String locationPath, String codeValue, String cvUri )
 	{
 		this.locationPath = locationPath;
 		this.codeValue = codeValue;

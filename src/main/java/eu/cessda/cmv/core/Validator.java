@@ -2,9 +2,9 @@ package eu.cessda.cmv.core;
 
 import java.util.Optional;
 
-interface Validator
+public interface Validator
 {
-	interface V10 extends Validator
+	public interface V10 extends Validator
 	{
 		<T extends ConstraintViolation> Optional<T> validate();
 	}

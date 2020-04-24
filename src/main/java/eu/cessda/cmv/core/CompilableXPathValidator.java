@@ -12,12 +12,12 @@ class CompilableXPathValidator implements Validator.V10
 	private String locationPath;
 	private XPathFactory factory;
 
-	public CompilableXPathValidator( String locationPath )
+	CompilableXPathValidator( String locationPath )
 	{
 		this( locationPath, XPathFactory.newInstance() );
 	}
 
-	public CompilableXPathValidator( String locationPath, XPathFactory factory )
+	CompilableXPathValidator( String locationPath, XPathFactory factory )
 	{
 		requireNonNull( locationPath );
 		requireNonNull( factory );

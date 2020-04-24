@@ -9,7 +9,7 @@ class CodeValueOfControlledVocabularyContraint implements Constraint.V20
 {
 	private String locationPath;
 
-	public CodeValueOfControlledVocabularyContraint( String locationPath )
+	CodeValueOfControlledVocabularyContraint( String locationPath )
 	{
 		this.locationPath = locationPath;
 	}

@@ -11,7 +11,7 @@ abstract class AbstractValidationGate implements ValidationGate.V10
 {
 	private List<Class<?>> constraintTypes;
 
-	public AbstractValidationGate()
+	AbstractValidationGate()
 	{
 		constraintTypes = new ArrayList<>();
 	}

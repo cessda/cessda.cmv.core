@@ -4,7 +4,7 @@ abstract class NodeConstraintViolation implements ConstraintViolation.V10
 {
 	protected String xPath;
 
-	public NodeConstraintViolation( String xPath )
+	NodeConstraintViolation( String xPath )
 	{
 		this.xPath = xPath;
 	}
