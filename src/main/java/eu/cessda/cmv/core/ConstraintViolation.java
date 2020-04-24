@@ -9,4 +9,11 @@ public interface ConstraintViolation
 		 */
 		public String getMessage();
 	}
+
+	public interface V11 extends ConstraintViolation.V10
+	{
+		public int getLineNumber();
+
+		public int getColumnNumber();
+	}
 }

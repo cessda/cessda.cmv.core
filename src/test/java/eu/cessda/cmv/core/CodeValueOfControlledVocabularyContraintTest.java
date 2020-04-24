@@ -1,20 +1,16 @@
 package eu.cessda.cmv.core;
 
-import static eu.cessda.cmv.core.Factory.newDomDocument;
-import static org.gesis.commons.resource.Resource.newResource;
-import static org.gesis.commons.test.hamcrest.OptionalMatchers.isPresentAndIs;
+import static eu.cessda.cmv.core.Factory.newDocument;
+import static org.gesis.commons.test.hamcrest.OptionalMatchers.isEmpty;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
-import org.gesis.commons.xml.DomDocument;
-import org.gesis.commons.xml.ddi.DdiInputStream;
 import org.junit.jupiter.api.Test;
 
 public class CodeValueOfControlledVocabularyContraintTest
@@ -22,55 +18,43 @@ public class CodeValueOfControlledVocabularyContraintTest
 	private TestEnv.V13 testEnv = DefaultTestEnv.newInstance( CodeValueOfControlledVocabularyContraintTest.class );
 
 	@Test
-	public void validate_invalid() throws IOException
+	public void validate_invalid() throws Exception
 	{
-		String expectedMessage = "CodeValue 'Person' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' is not element of the controlled vocabulary in 'https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0'";
-
 		// given
-		URL documentFile = testEnv.findTestResourceByName( "bad-case.xml" ).toURI().toURL();
-		URL profileFile = testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL();
+		Document document = newDocument( testEnv.findTestResourceByName( "bad-case.xml" ) );
 
-		try ( InputStream documentInputStream = newResource( documentFile ).readInputStream();
-				InputStream profileInputStream = newResource( profileFile ).readInputStream() )
-		{
-			DomDocument.V11 metadataDocument = newDomDocument( new DdiInputStream( documentInputStream ) );
-			DomDocument.V11 profileDocument = newDomDocument( new DdiInputStream( profileInputStream ) );
+		// when
+		String locationPath = "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept";
+		Constraint.V20 constraint = new CodeValueOfControlledVocabularyContraint( locationPath );
+		List<Validator.V10> validators = constraint.newValidators( document );
 
-			// when
-			Constraint.V10 constraint = new CodeValueOfControlledVocabularyContraint( metadataDocument,
-					profileDocument );
-			List<ConstraintViolation.V10> constraintViolations = constraint.validate();
-
-			// then
-			assertThat( constraintViolations, hasSize( 1 ) );
-			assertThat( constraintViolations.stream()
-					.map( ConstraintViolation.V10::getMessage )
-					.findFirst(),
-					isPresentAndIs( expectedMessage ) );
-		}
+		// then
+		assertThat( validators, hasSize( 2 ) );
+		Optional<ConstraintViolation.V10> result;
+		result = validators.get( 0 ).validate();
+		assertThat( result, isEmpty() );
+		result = validators.get( 1 ).validate();
+		assertThat( result.get().getMessage(), containsString( "is not element of the controlled vocabulary in" ) );
+		System.out.println( result.get().getMessage() );
 	}
 
 	@Test
-	public void validate_valid() throws IOException
+	public void validate_valid() throws Exception
 	{
 		// given
-		URL documentFile = testEnv.findTestResourceByName( "good-case.xml" ).toURI().toURL();
-		URL profileFile = testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL();
+		Document document = newDocument( testEnv.findTestResourceByName( "good-case.xml" ) );
 
-		try ( InputStream documentInputStream = newResource( documentFile ).readInputStream();
-				InputStream profileInputStream = newResource( profileFile ).readInputStream() )
-		{
-			// when
-			DomDocument.V11 metadataDocument = newDomDocument( new DdiInputStream( documentInputStream ) );
-			DomDocument.V11 profileDocument = newDomDocument( new DdiInputStream( profileInputStream ) );
+		// when
+		String locationPath = "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept";
+		Constraint.V20 constraint = new CodeValueOfControlledVocabularyContraint( locationPath );
+		List<Validator.V10> validators = constraint.newValidators( document );
 
-			// then
-			Constraint.V10 constraint = new CodeValueOfControlledVocabularyContraint( metadataDocument,
-					profileDocument );
-			List<ConstraintViolation.V10> constraintViolations = constraint.validate();
-
-			// then
-			assertThat( constraintViolations, hasSize( 0 ) );
-		}
+		// then
+		assertThat( validators, hasSize( 2 ) );
+		Optional<ConstraintViolation.V10> result;
+		result = validators.get( 0 ).validate();
+		assertThat( result, isEmpty() );
+		result = validators.get( 1 ).validate();
+		assertThat( result, isEmpty() );
 	}
 }

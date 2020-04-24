@@ -5,7 +5,7 @@ class CompilableXPathConstraintViolation implements ConstraintViolation.V10
 	private String reason;
 	private String xPath;
 
-	public CompilableXPathConstraintViolation( String xPath, String reason )
+	CompilableXPathConstraintViolation( String xPath, String reason )
 	{
 		this.reason = reason;
 		this.xPath = xPath;

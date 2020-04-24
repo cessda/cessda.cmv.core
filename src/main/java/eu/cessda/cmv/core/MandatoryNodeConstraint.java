@@ -1,11 +1,21 @@
 package eu.cessda.cmv.core;
 
-import org.gesis.commons.xml.DomDocument;
+import static java.util.Arrays.asList;
 
-class MandatoryNodeConstraint extends UsedNodeConstraint
+import java.util.List;
+
+class MandatoryNodeConstraint extends NodeConstraint
 {
-	public MandatoryNodeConstraint( DomDocument.V11 metadataDocument, DomDocument.V11 profileDocument )
+	MandatoryNodeConstraint( String locationPath )
 	{
-		super( metadataDocument, profileDocument, MandatoryNodeConstraintViolation.class );
+		super( locationPath );
+	}
+
+	@Override
+	@SuppressWarnings( "unchecked" )
+	public <T extends Validator> List<T> newValidators( Document document )
+	{
+		long count = ((Document.V10) document).getNodes( getLocationPath() ).size();
+		return asList( (T) new MandatoryNodeValidator( getLocationPath(), count ) );
 	}
 }

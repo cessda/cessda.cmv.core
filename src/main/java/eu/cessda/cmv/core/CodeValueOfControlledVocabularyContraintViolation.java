@@ -1,13 +1,14 @@
 package eu.cessda.cmv.core;
 
-class CodeValueOfControlledVocabularyContraintViolation extends MandatoryNodeConstraintViolation
+class CodeValueOfControlledVocabularyContraintViolation implements ConstraintViolation.V10
 {
+	private String locationPath;
 	private String codeValue;
 	private String cvUri;
 
-	public CodeValueOfControlledVocabularyContraintViolation( String nodePath, String codeValue, String cvUri )
+	CodeValueOfControlledVocabularyContraintViolation( String locationPath, String codeValue, String cvUri )
 	{
-		super( nodePath );
+		this.locationPath = locationPath;
 		this.codeValue = codeValue;
 		this.cvUri = cvUri;
 	}
@@ -16,6 +17,6 @@ class CodeValueOfControlledVocabularyContraintViolation extends MandatoryNodeCon
 	public String getMessage()
 	{
 		String message = "CodeValue '%s' in '%s' is not element of the controlled vocabulary in '%s'";
-		return String.format( message, codeValue, super.xPath, cvUri );
+		return String.format( message, codeValue, locationPath, cvUri );
 	}
 }

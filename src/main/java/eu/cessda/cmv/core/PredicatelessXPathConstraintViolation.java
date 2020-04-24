@@ -4,7 +4,7 @@ class PredicatelessXPathConstraintViolation implements ConstraintViolation.V10
 {
 	private String xPath;
 
-	public PredicatelessXPathConstraintViolation( String xPath )
+	PredicatelessXPathConstraintViolation( String xPath )
 	{
 		this.xPath = xPath;
 	}

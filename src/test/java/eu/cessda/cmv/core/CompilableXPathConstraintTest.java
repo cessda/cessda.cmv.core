@@ -1,26 +1,40 @@
 package eu.cessda.cmv.core;
 
-import org.junit.jupiter.api.Test;
-
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.List;
-
-import static eu.cessda.cmv.core.Factory.newDomDocument;
+import static eu.cessda.cmv.core.Factory.newDocument;
+import static org.gesis.commons.test.hamcrest.OptionalMatchers.isEmpty;
+import static org.gesis.commons.test.hamcrest.OptionalMatchers.isPresent;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
 
+import java.net.URL;
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+
 public class CompilableXPathConstraintTest
 {
 	@Test
-	public void validate() throws URISyntaxException
+	public void test()
 	{
-		URL file = getClass().getResource( "/profiles/not-compilable-xpaths.xml" );
-		CompilableXPathConstraint constraint = new CompilableXPathConstraint( newDomDocument( file.toURI() ) );
-		List<ConstraintViolation.V10> violations = constraint.validate();
-		assertThat( violations, hasSize( 2 ) );
-		assertThat( violations.get( 0 ).getMessage(), containsString( "A location step was expected" ) );
-		assertThat( violations.get( 1 ).getMessage(), containsString( "Extra illegal tokens" ) );
+		// given
+		URL url = getClass().getResource( "/profiles/not-compilable-xpaths.xml" );
+
+		// when
+		Constraint.V20 constraint = new CompilableXPathConstraint();
+		List<Validator.V10> validators = constraint.newValidators( newDocument( url ) );
+
+		// then
+		assertThat( validators, hasSize( 3 ) );
+		Optional<ConstraintViolation.V10> result;
+		result = validators.get( 0 ).validate();
+		assertThat( result, isPresent() );
+		assertThat( result.get().getMessage(), containsString( "A location step was expected" ) );
+		result = validators.get( 1 ).validate();
+		assertThat( result, isPresent() );
+		assertThat( result.get().getMessage(), containsString( "Extra illegal tokens" ) );
+		result = validators.get( 2 ).validate();
+		assertThat( result, isEmpty() );
 	}
 }
