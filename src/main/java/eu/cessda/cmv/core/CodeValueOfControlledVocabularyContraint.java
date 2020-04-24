@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.gesis.commons.xml.DomDocument;
 import org.w3c.dom.Node;
 
-class CodeValueOfControlledVocabularyContraint extends MandatoryNodeConstraint
+class CodeValueOfControlledVocabularyContraint extends MandatoryNodeConstraintV1
 {
 	public CodeValueOfControlledVocabularyContraint( DomDocument.V11 metadataDocument, DomDocument.V11 profileDocument )
 	{

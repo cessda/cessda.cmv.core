@@ -1,10 +1,10 @@
 package eu.cessda.cmv.core;
 
-abstract class UsedNodeConstraintViolation implements ConstraintViolation.V10
+abstract class NodeConstraintViolation implements ConstraintViolation.V10
 {
 	protected String xPath;
 
-	public UsedNodeConstraintViolation( String xPath )
+	public NodeConstraintViolation( String xPath )
 	{
 		this.xPath = xPath;
 	}

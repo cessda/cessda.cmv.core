@@ -1,45 +1,17 @@
 package eu.cessda.cmv.core;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.gesis.commons.xml.DefaultXPathTokenizer;
-import org.gesis.commons.xml.DomDocument;
-import org.w3c.dom.Node;
-
-class PredicatelessXPathConstraint implements Constraint.V10
+class PredicatelessXPathConstraint implements Constraint.V20
 {
-	private DomDocument.V10 profileDocument;
-
-	public PredicatelessXPathConstraint( DomDocument.V10 profileDocument )
-	{
-		requireNonNull( profileDocument );
-		this.profileDocument = profileDocument;
-	}
-
 	@Override
 	@SuppressWarnings( "unchecked" )
-	public List<ConstraintViolation.V10> validate()
+	public <T extends Validator> List<T> newValidators( Document profile )
 	{
-		return profileDocument.selectNodes( "/DDIProfile/Used/@xpath" ).stream()
+		return (List<T>) ((Document.V10) profile).getNodes( "/DDIProfile/Used/@xpath" ).stream()
 				.map( Node::getTextContent )
-				.map( this::validate )
-				.filter( Optional::isPresent ).map( Optional::get )
+				.map( PredicatelessXPathValidator::new )
 				.collect( Collectors.toList() );
-	}
-
-	private Optional<ConstraintViolation.V10> validate( String xPath )
-	{
-		if ( new DefaultXPathTokenizer( xPath ).containsPredicate() )
-		{
-			return Optional.of( new PredicatelessXPathConstraintViolation( xPath ) );
-		}
-		else
-		{
-			return Optional.empty();
-		}
 	}
 }

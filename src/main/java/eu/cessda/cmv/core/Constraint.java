@@ -8,4 +8,9 @@ public interface Constraint
 	{
 		public <T extends ConstraintViolation> List<T> validate();
 	}
+
+	public interface V20 extends Constraint
+	{
+		public <T extends Validator> List<T> newValidators( Document document );
+	}
 }

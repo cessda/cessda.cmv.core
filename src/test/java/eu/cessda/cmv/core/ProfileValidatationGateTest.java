@@ -1,0 +1,61 @@
+package eu.cessda.cmv.core;
+
+import static eu.cessda.cmv.core.Factory.newDocument;
+import static eu.cessda.cmv.core.Factory.newProfile;
+import static org.hamcrest.Matchers.hasSize;
+import static org.junit.Assert.assertThat;
+
+import java.io.IOException;
+import java.net.URL;
+
+import org.junit.jupiter.api.Test;
+
+public class ProfileValidatationGateTest
+{
+	@Test
+	public void validateCdcProfile() throws IOException
+	{
+		// given
+		URL documentFile = getClass().getResource( "/ddi-v25/cdc25_profile.xml" );
+		URL profileUrl = getClass().getResource( "/cmv-profile-ddi-v32.xml" );
+
+		// when
+		ValidationGate.V10 validationGate = new ProfileValidationGate();
+		ValidationReport.V10 report = validationGate.validate( newDocument( documentFile ), newProfile( profileUrl ) );
+
+		// then
+		assertThat( report.getConstraintViolations(), hasSize( 0 ) );
+	}
+
+	@Test
+	public void validateCmvProfile()
+	{
+		// given
+		URL documentFile = getClass().getResource( "/cmv-profile-ddi-v32.xml" );
+		URL profileUrl = getClass().getResource( "/cmv-profile-ddi-v32.xml" );
+
+		// when
+		ValidationGate.V10 validationGate = new ProfileValidationGate();
+		ValidationReport.V10 report = validationGate.validate( newDocument( documentFile ), newProfile( profileUrl ) );
+
+		// then
+		assertThat( report.getConstraintViolations(), hasSize( 0 ) );
+	}
+
+	@Test
+	public void validateXpathWithPredicate()
+	{
+		// https://bitbucket.org/cessda/cessda.cmv.core/issues/39
+
+		// given
+		URL documentUrl = getClass().getResource( "/profiles/xpaths-with-predicate.xml" );
+		URL profileUrl = getClass().getResource( "/cmv-profile-ddi-v32.xml" );
+
+		// when
+		ValidationGate.V10 validationGate = new ProfileValidationGate();
+		ValidationReport.V10 report = validationGate.validate( newDocument( documentUrl ), newProfile( profileUrl ) );
+
+		// then
+		assertThat( report.getConstraintViolations(), hasSize( 1 ) );
+	}
+}

@@ -1,7 +1,8 @@
 package eu.cessda.cmv.core;
 
-import static eu.cessda.cmv.core.Factory.newDomDocument;
-import static org.gesis.commons.resource.Resource.newResource;
+import static eu.cessda.cmv.core.Factory.newDocument;
+import static org.gesis.commons.test.hamcrest.OptionalMatchers.isEmpty;
+import static org.gesis.commons.test.hamcrest.OptionalMatchers.isPresent;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
@@ -14,14 +15,20 @@ import org.junit.jupiter.api.Test;
 public class PredicatelessXPathConstraintTest
 {
 	@Test
-	public void validate()
+	public void test()
 	{
-		// https://bitbucket.org/cessda/cessda.cmv.core/issues/39
-		URL file = getClass().getResource( "/profiles/xpaths-with-predicate.xml" );
-		Constraint.V10 constraint = new PredicatelessXPathConstraint( newDomDocument( newResource( file )
-				.readInputStream() ) );
-		List<ConstraintViolation.V10> violations = constraint.validate();
-		assertThat( violations, hasSize( 1 ) );
-		assertThat( violations.get( 0 ).getMessage(), containsString( "contains a predicate" ) );
+		URL url = getClass().getResource( "/profiles/xpaths-with-predicate.xml" );
+
+		Constraint.V20 constraint = new PredicatelessXPathConstraint();
+		List<Validator.V10> validators = constraint.newValidators( newDocument( url ) );
+		assertThat( validators, hasSize( 2 ) );
+		Validator.V10 validator = validators.get( 0 );
+		assertThat( validator.validate(), isEmpty() );
+		validator = validators.get( 1 );
+		assertThat( validator.validate(), isPresent() );
+		assertThat( validator.validate()
+				.map( ConstraintViolation.V10.class::cast )
+				.map( ConstraintViolation.V10::getMessage )
+				.get(), containsString( "contains a predicate" ) );
 	}
 }

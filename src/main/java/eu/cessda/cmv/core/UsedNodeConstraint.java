@@ -9,15 +9,16 @@ import java.util.stream.Collectors;
 import org.gesis.commons.xml.DomDocument;
 import org.w3c.dom.Node;
 
+@Deprecated
 abstract class UsedNodeConstraint implements Constraint.V10
 {
 	private DomDocument.V11 metadataDocument;
 	private DomDocument.V11 profileDocument;
-	private Class<? extends UsedNodeConstraintViolation> violationClass;
+	private Class<? extends NodeConstraintViolation> violationClass;
 
 	public UsedNodeConstraint( DomDocument.V11 metadataDocument,
 			DomDocument.V11 profileDocument,
-			Class<? extends UsedNodeConstraintViolation> violationClass )
+			Class<? extends NodeConstraintViolation> violationClass )
 	{
 		requireNonNull( metadataDocument );
 		requireNonNull( profileDocument );

@@ -1,6 +1,6 @@
 package eu.cessda.cmv.core;
 
-class RecommendedNodeConstraintViolation extends UsedNodeConstraintViolation
+class RecommendedNodeConstraintViolation extends NodeConstraintViolation
 {
 	public RecommendedNodeConstraintViolation( String xPath )
 	{
