@@ -1,22 +1,24 @@
 package eu.cessda.cmv.core;
 
+import static java.util.Objects.requireNonNull;
+
 class CodeValueOfControlledVocabularyContraintViolation implements ConstraintViolation.V10
 {
-	private String locationPath;
-	private String codeValue;
-	private String cvUri;
+	private CodeValueNode node;
 
-	CodeValueOfControlledVocabularyContraintViolation( String locationPath, String codeValue, String cvUri )
+	CodeValueOfControlledVocabularyContraintViolation( CodeValueNode node )
 	{
-		this.locationPath = locationPath;
-		this.codeValue = codeValue;
-		this.cvUri = cvUri;
+		requireNonNull( node );
+		this.node = node;
 	}
 
 	@Override
 	public String getMessage()
 	{
 		String message = "CodeValue '%s' in '%s' is not element of the controlled vocabulary in '%s'";
-		return String.format( message, codeValue, locationPath, cvUri );
+		return String.format( message,
+				node.getTextContent(),
+				node.getTextContent(),
+				node.getControlledVocabularyRepositoryUri() );
 	}
 }

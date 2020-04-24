@@ -54,7 +54,7 @@ public class StandardValidationGateTest
 		try ( DdiInputStream documentInputStream = new DdiInputStream( newResource( documentFile ).readInputStream() );
 				DdiInputStream profileInputStream = new DdiInputStream( newResource( profileFile ).readInputStream() ) )
 		{
-			Document document = new DomDocument( documentInputStream );
+			Document document = new DomCodebookDocument( documentInputStream );
 			Profile profile = new DomProfile( profileInputStream );
 
 			// when

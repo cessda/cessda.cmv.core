@@ -11,7 +11,7 @@ import org.gesis.commons.xml.ddi.DdiInputStream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
-public class DomDocumentTest
+public class DomCodebookDocumentTest
 {
 	@Test
 	public void constructWithNotWellformedDocument() throws IOException
@@ -21,7 +21,7 @@ public class DomDocumentTest
 		try ( DdiInputStream documentInputStream = new DdiInputStream( newResource( url ).readInputStream() ) )
 		{
 			// when
-			Executable executable = () -> new DomDocument( documentInputStream );
+			Executable executable = () -> new DomCodebookDocument( documentInputStream );
 			// then
 			assertThrows( XmlNotWellformedException.class, executable );
 		}

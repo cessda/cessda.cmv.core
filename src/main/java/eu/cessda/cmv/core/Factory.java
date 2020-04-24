@@ -61,7 +61,7 @@ class Factory
 		requireNonNull( url );
 		Resource resource = newResource( url );
 		DdiInputStream inputStream = new DdiInputStream( resource.readInputStream() );
-		return new eu.cessda.cmv.core.DomDocument( inputStream );
+		return new eu.cessda.cmv.core.DomCodebookDocument( inputStream );
 	}
 
 	public static Profile.V10 newProfile( URL url )

@@ -2,8 +2,8 @@ package eu.cessda.cmv.core;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class CodeValueOfControlledVocabularyContraint implements Constraint.V20
 {
@@ -19,15 +19,10 @@ class CodeValueOfControlledVocabularyContraint implements Constraint.V20
 	public <T extends Validator> List<T> newValidators( Document document )
 	{
 		requireNonNull( document );
-		Document.V10 d = (Document.V10) document;
-
-		List<Validator.V10> validators = new ArrayList<>();
-		for ( Node node : d.getNodes( locationPath ) )
-		{
-			Validator.V10 validator = new CodeValueOfControlledVocabularyValidator( locationPath, node.getTextContent(),
-					"uri" );
-			validators.add( validator );
-		}
-		return (List<T>) validators;
+		return (List<T>) ((Document.V10) document).getNodes( locationPath ).stream()
+				.map( CodeValueNode.class::cast )
+				.map( node -> new CodeValueOfControlledVocabularyValidator( node,
+						new DdiAnalysisUnit10InMemoryControlledVocabularyRepository() ) )
+				.collect( Collectors.toList() );
 	}
 }
