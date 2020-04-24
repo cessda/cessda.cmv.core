@@ -8,6 +8,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -27,11 +28,11 @@ public class BasicValidationGateTest
 
 		// when
 		ValidationGate.V10 validatationGate = new BasicValidationGate();
-		ValidationReport.V10 validationReport = validatationGate.validate( document, profile );
+		List<ConstraintViolation.V10> constraintViolations = validatationGate.validate( document, profile );
 
 		// then
-		assertThat( validationReport.getConstraintViolations(), hasSize( 1 ) );
-		assertThat( validationReport.getConstraintViolations().stream()
+		assertThat( constraintViolations, hasSize( 1 ) );
+		assertThat( constraintViolations.stream()
 				.filter( cv -> cv instanceof MandatoryNodeConstraintViolation )
 				.collect( Collectors.toList() ), hasSize( 1 ) );
 	}
@@ -50,9 +51,9 @@ public class BasicValidationGateTest
 
 		// when
 		ValidationGate.V10 validatationGate = new BasicValidationGate();
-		ValidationReport.V10 validationReport = validatationGate.validate( document, profile );
+		List<ConstraintViolation.V10> constraintViolations = validatationGate.validate( document, profile );
 
 		// then
-		assertThat( validationReport.getConstraintViolations(), hasSize( 0 ) );
+		assertThat( constraintViolations, hasSize( 0 ) );
 	}
 }

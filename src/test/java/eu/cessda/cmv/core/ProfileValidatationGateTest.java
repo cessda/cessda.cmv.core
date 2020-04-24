@@ -7,6 +7,7 @@ import static org.junit.Assert.assertThat;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,10 +22,12 @@ public class ProfileValidatationGateTest
 
 		// when
 		ValidationGate.V10 validationGate = new ProfileValidationGate();
-		ValidationReport.V10 report = validationGate.validate( newDocument( documentFile ), newProfile( profileUrl ) );
+		List<ConstraintViolation.V10> constraintViolations = validationGate.validate(
+				newDocument( documentFile ),
+				newProfile( profileUrl ) );
 
 		// then
-		assertThat( report.getConstraintViolations(), hasSize( 0 ) );
+		assertThat( constraintViolations, hasSize( 0 ) );
 	}
 
 	@Test
@@ -36,10 +39,12 @@ public class ProfileValidatationGateTest
 
 		// when
 		ValidationGate.V10 validationGate = new ProfileValidationGate();
-		ValidationReport.V10 report = validationGate.validate( newDocument( documentFile ), newProfile( profileUrl ) );
+		List<ConstraintViolation.V10> constraintViolations = validationGate.validate(
+				newDocument( documentFile ),
+				newProfile( profileUrl ) );
 
 		// then
-		assertThat( report.getConstraintViolations(), hasSize( 0 ) );
+		assertThat( constraintViolations, hasSize( 0 ) );
 	}
 
 	@Test
@@ -53,9 +58,11 @@ public class ProfileValidatationGateTest
 
 		// when
 		ValidationGate.V10 validationGate = new ProfileValidationGate();
-		ValidationReport.V10 report = validationGate.validate( newDocument( documentUrl ), newProfile( profileUrl ) );
+		List<ConstraintViolation.V10> constraintViolations = validationGate.validate(
+				newDocument( documentUrl ),
+				newProfile( profileUrl ) );
 
 		// then
-		assertThat( report.getConstraintViolations(), hasSize( 1 ) );
+		assertThat( constraintViolations, hasSize( 1 ) );
 	}
 }

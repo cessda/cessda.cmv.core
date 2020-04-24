@@ -32,14 +32,14 @@ public class StandardValidationGateTest
 
 		// when
 		ValidationGate.V10 validatationGate = new StandardValidationGate();
-		ValidationReport.V10 validationReport = validatationGate.validate( document, profile );
+		List<ConstraintViolation.V10> constraintViolations = validatationGate.validate( document, profile );
 
 		// then
-		assertThat( validationReport.getConstraintViolations(), hasSize( 2 ) );
-		assertThat( validationReport.getConstraintViolations().stream()
+		assertThat( constraintViolations, hasSize( 2 ) );
+		assertThat( constraintViolations.stream()
 				.filter( cv -> cv instanceof MandatoryNodeConstraintViolation )
 				.collect( Collectors.toList() ), hasSize( 1 ) );
-		assertThat( validationReport.getConstraintViolations().stream()
+		assertThat( constraintViolations.stream()
 				.filter( cv -> cv instanceof RecommendedNodeConstraintViolation )
 				.collect( Collectors.toList() ), hasSize( 1 ) );
 	}
@@ -59,10 +59,9 @@ public class StandardValidationGateTest
 
 			// when
 			ValidationGate.V10 validationGate = new StandardValidationGate();
-			ValidationReport.V10 report = validationGate.validate( document, profile );
+			List<ConstraintViolation.V10> constraintViolations = validationGate.validate( document, profile );
 
 			// then
-			List<ConstraintViolation.V10> constraintViolations = report.getConstraintViolations();
 			assertThat( constraintViolations, hasSize( 40 ) );
 			assertThat( constraintViolations.stream()
 					.filter( cv -> cv instanceof MandatoryNodeConstraintViolation )
