@@ -34,6 +34,6 @@ class MandatoryNodeValidator implements Validator.V10
 	{
 		String message = "'%s' is mandatory";
 		message = String.format( message, locationPath );
-		return new ConstraintViolation( message, 0, 0 );
+		return new ConstraintViolation( message, empty() );
 	}
 }

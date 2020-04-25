@@ -1,23 +1,25 @@
 package eu.cessda.cmv.core;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.Optional;
+
+import org.gesis.commons.xml.LocationInfo;
+
 class Node
 {
 	private String locationPath;
 	private String textContent;
-	private int lineNumber;
-	private int columnNumber;
+	private Optional<LocationInfo> locationInfo;
 
-	Node( String locationPath, String textContent )
+	Node( String locationPath, String textContent, Optional<LocationInfo> locationInfo )
 	{
-		this( locationPath, textContent, 0, 0 );
-	}
+		requireNonNull( locationPath );
+		requireNonNull( locationInfo );
 
-	Node( String locationPath, String textContent, int lineNumber, int columnNumber )
-	{
 		this.locationPath = locationPath;
 		this.textContent = textContent;
-		this.lineNumber = lineNumber;
-		this.columnNumber = columnNumber;
+		this.locationInfo = locationInfo;
 	}
 
 	public String getLocationPath()
@@ -30,13 +32,8 @@ class Node
 		return textContent;
 	}
 
-	public int getLineNumber()
+	public Optional<LocationInfo> getLocationInfo()
 	{
-		return lineNumber;
-	}
-
-	public int getColumnNumber()
-	{
-		return columnNumber;
+		return locationInfo;
 	}
 }

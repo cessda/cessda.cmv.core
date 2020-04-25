@@ -33,6 +33,6 @@ class RecommendedNodeValidator implements Validator.V10
 	{
 		String message = "'%s' is recommended";
 		message = String.format( message, locationPath );
-		return new ConstraintViolation( message, 0, 0 );
+		return new ConstraintViolation( message, empty() );
 	}
 }

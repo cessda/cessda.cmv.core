@@ -33,7 +33,7 @@ class CodeValueOfControlledVocabularyValidator implements Validator.V10
 					node.getTextContent(),
 					node.getTextContent(),
 					node.getControlledVocabularyRepositoryUri() );
-			return of( new ConstraintViolation( message, node.getLineNumber(), node.getColumnNumber() ) );
+			return of( new ConstraintViolation( message, node.getLocationInfo() ) );
 		}
 		else
 		{

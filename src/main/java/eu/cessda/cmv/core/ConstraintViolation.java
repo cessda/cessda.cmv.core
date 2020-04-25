@@ -1,16 +1,23 @@
 package eu.cessda.cmv.core;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.Optional;
+
+import org.gesis.commons.xml.LocationInfo;
+
 public class ConstraintViolation
 {
 	private String message;
-	private int lineNumber;
-	private int columnNumber;
+	private Optional<LocationInfo> locationInfo;
 
-	public ConstraintViolation( String message, int lineNumber, int columnNumber )
+	public ConstraintViolation( String message, Optional<LocationInfo> locationInfo )
 	{
+		requireNonNull( message );
+		requireNonNull( locationInfo );
+
 		this.message = message;
-		this.lineNumber = lineNumber;
-		this.columnNumber = columnNumber;
+		this.locationInfo = locationInfo;
 	}
 
 	public String getMessage()
@@ -18,13 +25,8 @@ public class ConstraintViolation
 		return message;
 	}
 
-	public int getLineNumber()
+	public Optional<LocationInfo> getLocationInfo()
 	{
-		return lineNumber;
-	}
-
-	public int getColumnNumber()
-	{
-		return columnNumber;
+		return locationInfo;
 	}
 }

@@ -34,6 +34,6 @@ class PredicatelessXPathValidator implements Validator.V10
 	{
 		String message = "'%s' contains a predicate";
 		message = String.format( message, locationPath );
-		return new ConstraintViolation( message, 0, 0 ); // TODO lineNumber
+		return new ConstraintViolation( message, empty() );
 	}
 }

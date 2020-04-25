@@ -2,6 +2,7 @@ package eu.cessda.cmv.core;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
+import static java.util.Optional.empty;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -42,7 +43,7 @@ public class BasicValidationGateTest
 		// given
 		Document.V10 document = mock( Document.V10.class );
 		when( document.getNodes( "/path/to/mandatory/node" ) )
-				.thenReturn( asList( new Node( "/path/to/mandatory/node", "at-least-one" ) ) );
+				.thenReturn( asList( new Node( "/path/to/mandatory/node", "at-least-one", empty() ) ) );
 		Profile.V10 profile = mock( Profile.V10.class );
 		when( profile.getConstraints() ).thenReturn( asList(
 				new MandatoryNodeConstraint( "/path/to/mandatory/node" ),

@@ -48,6 +48,6 @@ class CompilableXPathValidator implements Validator.V10
 	{
 		String message = "'%s' is not a compilable XPath: %s";
 		message = String.format( message, node.getTextContent(), reason );
-		return new ConstraintViolation( message, node.getLineNumber(), node.getColumnNumber() );
+		return new ConstraintViolation( message, node.getLocationInfo() );
 	}
 }

@@ -12,7 +12,7 @@ import org.gesis.commons.xml.ddi.DdiInputStream;
 
 public class DomCodebookDocument implements Document.V10
 {
-	private org.gesis.commons.xml.DomDocument.V11 document;
+	private org.gesis.commons.xml.DomDocument.V12 document;
 
 	public DomCodebookDocument( DdiInputStream inputStream )
 	{
@@ -31,11 +31,12 @@ public class DomCodebookDocument implements Document.V10
 			Optional<org.w3c.dom.Node> domUri = getVocabURINode( domNode );
 			if ( domUri.isPresent() )
 			{
-				nodes.add( new CodeValueNode( locationPath, domNode.getTextContent(), domUri.get().getNodeValue() ) );
+				nodes.add( new CodeValueNode( locationPath, domNode.getTextContent(),
+						document.getLocationInfo( domNode ), domUri.get().getNodeValue() ) );
 			}
 			else
 			{
-				nodes.add( new Node( locationPath, domNode.getTextContent() ) );
+				nodes.add( new Node( locationPath, domNode.getTextContent(), document.getLocationInfo( domNode ) ) );
 			}
 		}
 		return nodes;
