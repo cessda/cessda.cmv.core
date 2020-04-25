@@ -1,19 +1,30 @@
 package eu.cessda.cmv.core;
 
-public interface ConstraintViolation
+public class ConstraintViolation
 {
-	public interface V10 extends ConstraintViolation
+	private String message;
+	private int lineNumber;
+	private int columnNumber;
+
+	public ConstraintViolation( String message, int lineNumber, int columnNumber )
 	{
-		/*
-		 * @return the interpolated error message for this constraint violation
-		 */
-		public String getMessage();
+		this.message = message;
+		this.lineNumber = lineNumber;
+		this.columnNumber = columnNumber;
 	}
 
-	public interface V11 extends ConstraintViolation.V10
+	public String getMessage()
 	{
-		public int getLineNumber();
+		return message;
+	}
 
-		public int getColumnNumber();
+	public int getLineNumber()
+	{
+		return lineNumber;
+	}
+
+	public int getColumnNumber()
+	{
+		return columnNumber;
 	}
 }

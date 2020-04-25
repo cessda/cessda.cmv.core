@@ -32,15 +32,15 @@ public class StandardValidationGateTest
 
 		// when
 		ValidationGate.V10 validatationGate = new StandardValidationGate();
-		List<ConstraintViolation.V10> constraintViolations = validatationGate.validate( document, profile );
+		List<ConstraintViolation> constraintViolations = validatationGate.validate( document, profile );
 
 		// then
 		assertThat( constraintViolations, hasSize( 2 ) );
 		assertThat( constraintViolations.stream()
-				.filter( cv -> cv instanceof MandatoryNodeConstraintViolation )
+				.filter( cv -> cv.getMessage().contains( "mandatory" ) )
 				.collect( Collectors.toList() ), hasSize( 1 ) );
 		assertThat( constraintViolations.stream()
-				.filter( cv -> cv instanceof RecommendedNodeConstraintViolation )
+				.filter( cv -> cv.getMessage().contains( "recommended" ) )
 				.collect( Collectors.toList() ), hasSize( 1 ) );
 	}
 
@@ -59,22 +59,22 @@ public class StandardValidationGateTest
 
 			// when
 			ValidationGate.V10 validationGate = new StandardValidationGate();
-			List<ConstraintViolation.V10> constraintViolations = validationGate.validate( document, profile );
+			List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 			// then
 			assertThat( constraintViolations, hasSize( 40 ) );
 			assertThat( constraintViolations.stream()
-					.filter( cv -> cv instanceof MandatoryNodeConstraintViolation )
+					.filter( cv -> cv.getMessage().contains( "mandatory" ) )
 					.collect( Collectors.toList() ), hasSize( 10 ) );
 			assertThat( constraintViolations.stream()
-					.filter( cv -> cv instanceof RecommendedNodeConstraintViolation )
+					.filter( cv -> cv.getMessage().contains( "recommended" ) )
 					.collect( Collectors.toList() ), hasSize( 30 ) );
 
 			System.out.println();
 			System.out.println( profileFile );
 			System.out.println( documentFile );
 			constraintViolations.stream()
-					.map( ConstraintViolation.V10::getMessage )
+					.map( ConstraintViolation::getMessage )
 					.forEach( System.out::println );
 			System.out.println();
 		}

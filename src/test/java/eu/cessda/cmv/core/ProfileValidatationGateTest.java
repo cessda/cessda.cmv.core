@@ -22,7 +22,7 @@ public class ProfileValidatationGateTest
 
 		// when
 		ValidationGate.V10 validationGate = new ProfileValidationGate();
-		List<ConstraintViolation.V10> constraintViolations = validationGate.validate(
+		List<ConstraintViolation> constraintViolations = validationGate.validate(
 				newDocument( documentFile ),
 				newProfile( profileUrl ) );
 
@@ -39,7 +39,7 @@ public class ProfileValidatationGateTest
 
 		// when
 		ValidationGate.V10 validationGate = new ProfileValidationGate();
-		List<ConstraintViolation.V10> constraintViolations = validationGate.validate(
+		List<ConstraintViolation> constraintViolations = validationGate.validate(
 				newDocument( documentFile ),
 				newProfile( profileUrl ) );
 
@@ -58,7 +58,7 @@ public class ProfileValidatationGateTest
 
 		// when
 		ValidationGate.V10 validationGate = new ProfileValidationGate();
-		List<ConstraintViolation.V10> constraintViolations = validationGate.validate(
+		List<ConstraintViolation> constraintViolations = validationGate.validate(
 				newDocument( documentUrl ),
 				newProfile( profileUrl ) );
 

@@ -18,6 +18,7 @@ public class DomCodebookDocument implements Document.V10
 	{
 		document = XercesXalanDocument.newBuilder()
 				.ofInputStream( inputStream )
+				.locationInfoAware()
 				.build();
 	}
 

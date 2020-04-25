@@ -17,17 +17,23 @@ class PredicatelessXPathValidator implements Validator.V10
 	}
 
 	@Override
-	@SuppressWarnings( "unchecked" )
-	public <T extends ConstraintViolation> Optional<T> validate()
+	public Optional<ConstraintViolation> validate()
 	{
 		XPathTokenizer tokenizer = new XPathTokenizer( locationPath );
 		if ( tokenizer.containsPredicates() )
 		{
-			return ofNullable( (T) new PredicatelessXPathConstraintViolation( locationPath ) );
+			return ofNullable( newConstraintViolation() );
 		}
 		else
 		{
 			return empty();
 		}
+	}
+
+	private ConstraintViolation newConstraintViolation()
+	{
+		String message = "'%s' contains a predicate";
+		message = String.format( message, locationPath );
+		return new ConstraintViolation( message, 0, 0 ); // TODO lineNumber
 	}
 }

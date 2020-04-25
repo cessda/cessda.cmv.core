@@ -13,8 +13,7 @@ class CompilableXPathConstraint implements Constraint.V20
 	{
 		XPathFactory factory = XPathFactory.newInstance();
 		return (List<T>) ((Document.V10) profile).getNodes( "/DDIProfile/Used/@xpath" ).stream()
-				.map( Node::getTextContent )
-				.map( locationPath -> new CompilableXPathValidator( locationPath, factory ) )
+				.map( node -> new CompilableXPathValidator( node, factory ) )
 				.collect( Collectors.toList() );
 	}
 }

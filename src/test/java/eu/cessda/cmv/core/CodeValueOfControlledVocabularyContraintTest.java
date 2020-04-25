@@ -30,7 +30,7 @@ public class CodeValueOfControlledVocabularyContraintTest
 
 		// then
 		assertThat( validators, hasSize( 2 ) );
-		Optional<ConstraintViolation.V10> result;
+		Optional<ConstraintViolation> result;
 		result = validators.get( 0 ).validate();
 		assertThat( result, isEmpty() );
 		result = validators.get( 1 ).validate();
@@ -51,7 +51,7 @@ public class CodeValueOfControlledVocabularyContraintTest
 
 		// then
 		assertThat( validators, hasSize( 2 ) );
-		Optional<ConstraintViolation.V10> result;
+		Optional<ConstraintViolation> result;
 		result = validators.get( 0 ).validate();
 		assertThat( result, isEmpty() );
 		result = validators.get( 1 ).validate();

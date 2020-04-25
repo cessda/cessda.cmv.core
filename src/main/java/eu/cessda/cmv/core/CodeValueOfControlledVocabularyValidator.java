@@ -23,13 +23,17 @@ class CodeValueOfControlledVocabularyValidator implements Validator.V10
 	}
 
 	@Override
-	@SuppressWarnings( "unchecked" )
-	public <T extends ConstraintViolation> Optional<T> validate()
+	public Optional<ConstraintViolation> validate()
 	{
 		Set<String> elementSet = controlledVocabularyRepository.findCodeValues();
 		if ( !elementSet.contains( node.getTextContent() ) )
 		{
-			return of( (T) new CodeValueOfControlledVocabularyContraintViolation( node ) );
+			String message = "CodeValue '%s' in '%s' is not element of the controlled vocabulary in '%s'";
+			message = String.format( message,
+					node.getTextContent(),
+					node.getTextContent(),
+					node.getControlledVocabularyRepositoryUri() );
+			return of( new ConstraintViolation( message, node.getLineNumber(), node.getColumnNumber() ) );
 		}
 		else
 		{

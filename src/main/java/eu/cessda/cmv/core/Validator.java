@@ -6,6 +6,6 @@ public interface Validator
 {
 	public interface V10 extends Validator
 	{
-		<T extends ConstraintViolation> Optional<T> validate();
+		Optional<ConstraintViolation> validate();
 	}
 }

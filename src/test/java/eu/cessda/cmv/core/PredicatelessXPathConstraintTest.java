@@ -27,8 +27,8 @@ public class PredicatelessXPathConstraintTest
 		validator = validators.get( 1 );
 		assertThat( validator.validate(), isPresent() );
 		assertThat( validator.validate()
-				.map( ConstraintViolation.V10.class::cast )
-				.map( ConstraintViolation.V10::getMessage )
+				.map( ConstraintViolation.class::cast )
+				.map( ConstraintViolation::getMessage )
 				.get(), containsString( "contains a predicate" ) );
 	}
 }

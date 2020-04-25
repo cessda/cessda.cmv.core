@@ -28,12 +28,11 @@ public class BasicValidationGateTest
 
 		// when
 		ValidationGate.V10 validatationGate = new BasicValidationGate();
-		List<ConstraintViolation.V10> constraintViolations = validatationGate.validate( document, profile );
+		List<ConstraintViolation> constraintViolations = validatationGate.validate( document, profile );
 
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
 		assertThat( constraintViolations.stream()
-				.filter( cv -> cv instanceof MandatoryNodeConstraintViolation )
 				.collect( Collectors.toList() ), hasSize( 1 ) );
 	}
 
@@ -51,7 +50,7 @@ public class BasicValidationGateTest
 
 		// when
 		ValidationGate.V10 validatationGate = new BasicValidationGate();
-		List<ConstraintViolation.V10> constraintViolations = validatationGate.validate( document, profile );
+		List<ConstraintViolation> constraintViolations = validatationGate.validate( document, profile );
 
 		// then
 		assertThat( constraintViolations, hasSize( 0 ) );

@@ -1,6 +1,8 @@
 package eu.cessda.cmv.core;
 
 import static java.util.Objects.requireNonNull;
+import static java.util.Optional.empty;
+import static java.util.Optional.of;
 
 import java.util.Optional;
 
@@ -9,36 +11,43 @@ import javax.xml.xpath.XPathFactory;
 
 class CompilableXPathValidator implements Validator.V10
 {
-	private String locationPath;
 	private XPathFactory factory;
+	private String reason;
+	private Node node;
 
-	CompilableXPathValidator( String locationPath )
+	CompilableXPathValidator( Node node )
 	{
-		this( locationPath, XPathFactory.newInstance() );
+		this( node, XPathFactory.newInstance() );
 	}
 
-	CompilableXPathValidator( String locationPath, XPathFactory factory )
+	CompilableXPathValidator( Node node, XPathFactory factory )
 	{
-		requireNonNull( locationPath );
+		requireNonNull( node );
 		requireNonNull( factory );
 
-		this.locationPath = locationPath;
+		this.node = node;
 		this.factory = factory;
 	}
 
 	@Override
-	@SuppressWarnings( "unchecked" )
-	public <T extends ConstraintViolation> Optional<T> validate()
+	public Optional<ConstraintViolation> validate()
 	{
 		try
 		{
-			factory.newXPath().compile( locationPath );
-			return Optional.empty();
+			factory.newXPath().compile( node.getTextContent() );
+			return empty();
 		}
 		catch (XPathExpressionException e)
 		{
-			String reason = e.getMessage().replace( "javax.xml.transform.TransformerException: ", "" );
-			return Optional.of( (T) new CompilableXPathConstraintViolation( locationPath, reason ) );
+			reason = e.getMessage().replace( "javax.xml.transform.TransformerException: ", "" );
+			return of( newConstraintViolation() );
 		}
+	}
+
+	private ConstraintViolation newConstraintViolation()
+	{
+		String message = "'%s' is not a compilable XPath: %s";
+		message = String.format( message, node.getTextContent(), reason );
+		return new ConstraintViolation( message, node.getLineNumber(), node.getColumnNumber() );
 	}
 }

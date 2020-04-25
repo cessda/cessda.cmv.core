@@ -27,7 +27,7 @@ public class CompilableXPathConstraintTest
 
 		// then
 		assertThat( validators, hasSize( 3 ) );
-		Optional<ConstraintViolation.V10> result;
+		Optional<ConstraintViolation> result;
 		result = validators.get( 0 ).validate();
 		assertThat( result, isPresent() );
 		assertThat( result.get().getMessage(), containsString( "A location step was expected" ) );

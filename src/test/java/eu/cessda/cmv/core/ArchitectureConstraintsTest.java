@@ -32,6 +32,7 @@ public class ArchitectureConstraintsTest extends TestClassesRuleTest
 				.areNotInterfaces()
 				.and().doNotImplement( Document.V10.class )
 				.and().doNotImplement( Profile.V10.class )
+				.and().areNotAssignableFrom( ConstraintViolation.class )
 				.and().areNotAssignableTo( AbstractValidationGate.class )
 				.and().haveSimpleNameNotEndingWith( "Test" )
 				.should().bePackagePrivate()
