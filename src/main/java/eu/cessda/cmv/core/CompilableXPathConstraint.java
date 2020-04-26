@@ -5,14 +5,19 @@ import java.util.stream.Collectors;
 
 import javax.xml.xpath.XPathFactory;
 
-class CompilableXPathConstraint implements Constraint.V20
+class CompilableXPathConstraint extends NodeConstraint
 {
+	CompilableXPathConstraint( String locationPath )
+	{
+		super( locationPath );
+	}
+
 	@Override
 	@SuppressWarnings( "unchecked" )
-	public <T extends Validator> List<T> newValidators( Document profile )
+	public <T extends Validator> List<T> newValidators( Document document )
 	{
 		XPathFactory factory = XPathFactory.newInstance();
-		return (List<T>) ((Document.V10) profile).getNodes( "/DDIProfile/Used/@xpath" ).stream()
+		return (List<T>) ((Document.V10) document).getNodes( getLocationPath() ).stream()
 				.map( node -> new CompilableXPathValidator( node, factory ) )
 				.collect( Collectors.toList() );
 	}

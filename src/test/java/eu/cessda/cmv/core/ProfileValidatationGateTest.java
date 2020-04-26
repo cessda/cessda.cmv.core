@@ -2,6 +2,7 @@ package eu.cessda.cmv.core;
 
 import static eu.cessda.cmv.core.Factory.newDocument;
 import static eu.cessda.cmv.core.Factory.newProfile;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
 
@@ -48,7 +49,7 @@ public class ProfileValidatationGateTest
 	}
 
 	@Test
-	public void validateXpathWithPredicate()
+	public void validateWithPredicatelessXPathConstraint()
 	{
 		// https://bitbucket.org/cessda/cessda.cmv.core/issues/39
 
@@ -64,5 +65,24 @@ public class ProfileValidatationGateTest
 
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
+	}
+
+	@Test
+	public void validateWithCompilableXPathConstraint()
+	{
+		// given
+		URL documentFile = getClass().getResource( "/profiles/not-compilable-xpaths.xml" );
+		URL profileUrl = getClass().getResource( "/cmv-profile-ddi-v32.xml" );
+
+		// when
+		ValidationGate.V10 validationGate = new ProfileValidationGate();
+		List<ConstraintViolation> constraintViolations = validationGate.validate(
+				newDocument( documentFile ),
+				newProfile( profileUrl ) );
+
+		// then
+		assertThat( constraintViolations, hasSize( 2 ) );
+		assertThat( constraintViolations.get( 0 ).getMessage(), containsString( "A location step was expected" ) );
+		assertThat( constraintViolations.get( 1 ).getMessage(), containsString( "Extra illegal tokens" ) );
 	}
 }

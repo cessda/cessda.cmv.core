@@ -35,6 +35,7 @@ public class ArchitectureConstraintsTest extends TestClassesRuleTest
 				.and().areNotAssignableFrom( ConstraintViolation.class )
 				.and().areNotAssignableTo( AbstractValidationGate.class )
 				.and().haveSimpleNameNotEndingWith( "Test" )
+				.and().haveSimpleNameNotEndingWith( "TestParameter" )
 				.should().bePackagePrivate()
 				.check( importedClasses );
 	}

@@ -1,40 +1,84 @@
 package eu.cessda.cmv.core;
 
-import static eu.cessda.cmv.core.Factory.newDocument;
+import static java.util.Arrays.asList;
+import static java.util.Optional.empty;
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isEmpty;
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isPresent;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Test;
+import org.hamcrest.Matcher;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class CompilableXPathConstraintTest
 {
-	@Test
-	public void test()
+	private static final String newTestParameters = "newTestParameters";
+
+	private static class TestParameter
+	{
+		String locationPath;
+		Matcher<Optional<?>> expectedConstraintViolation;
+
+		public String toString()
+		{
+			return locationPath;
+		}
+	}
+
+	public static Stream<TestParameter> newTestParameters()
+	{
+		TestParameter testParameter;
+		List<TestParameter> testParameters = new ArrayList<>();
+
+		// valid
+		testParameter = new TestParameter();
+		testParameter.locationPath = "/codeBook/docDscr/citation/holdings/@URI";
+		testParameter.expectedConstraintViolation = isEmpty();
+		testParameters.add( testParameter );
+
+		// invalid: A location step was expected following the '/' or '//' token.
+		testParameter = new TestParameter();
+		testParameter.locationPath = "/codeBook/docDscr/citation/holdings/";
+		testParameter.expectedConstraintViolation = isPresent();
+		testParameters.add( testParameter );
+
+		// invalid: Extra illegal tokens: '@', 'vocab'
+		testParameter = new TestParameter();
+		testParameter.locationPath = "/codeBook/stdyDscr/stdyInfo/subject/keyword@vocab";
+		testParameter.expectedConstraintViolation = isPresent();
+		testParameters.add( testParameter );
+
+		return testParameters.stream();
+	}
+
+	@ParameterizedTest
+	@MethodSource( newTestParameters )
+	public void newValidators( TestParameter testParameter )
 	{
 		// given
-		URL url = getClass().getResource( "/profiles/not-compilable-xpaths.xml" );
+		Constraint.V20 constraint = new CompilableXPathConstraint( testParameter.locationPath );
 
 		// when
-		Constraint.V20 constraint = new CompilableXPathConstraint();
-		List<Validator.V10> validators = constraint.newValidators( newDocument( url ) );
+		List<Validator.V10> validators = constraint.newValidators( mockDocument( testParameter.locationPath ) );
 
 		// then
-		assertThat( validators, hasSize( 3 ) );
-		Optional<ConstraintViolation> result;
-		result = validators.get( 0 ).validate();
-		assertThat( result, isPresent() );
-		assertThat( result.get().getMessage(), containsString( "A location step was expected" ) );
-		result = validators.get( 1 ).validate();
-		assertThat( result, isPresent() );
-		assertThat( result.get().getMessage(), containsString( "Extra illegal tokens" ) );
-		result = validators.get( 2 ).validate();
-		assertThat( result, isEmpty() );
+		assertThat( validators, hasSize( 1 ) );
+		assertThat( validators.get( 0 ).validate(), testParameter.expectedConstraintViolation );
+	}
+
+	private Document.V10 mockDocument( String locationPath )
+	{
+		Document.V10 document = mock( Document.V10.class );
+		Node node = new Node( "/DDIProfile/Used/@xpath", locationPath, empty() );
+		when( document.getNodes( locationPath ) ).thenReturn( asList( node ) );
+		return document;
 	}
 }

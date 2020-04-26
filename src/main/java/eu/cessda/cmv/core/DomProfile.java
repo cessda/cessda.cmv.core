@@ -20,10 +20,11 @@ public class DomProfile implements Profile.V10
 				.build();
 		constraints = new ArrayList<>();
 		constraints.add( new PredicatelessXPathConstraint() );
-		constraints.add( new CompilableXPathConstraint() );
+
 		for ( org.w3c.dom.Node node : document.selectNodes( "/DDIProfile/Used" ) )
 		{
 			String locationPath = node.getAttributes().getNamedItem( "xpath" ).getNodeValue();
+			constraints.add( new CompilableXPathConstraint( locationPath ) );
 			if ( node.getAttributes().getNamedItem( "isRequired" ).getNodeValue().equalsIgnoreCase( "true" ) )
 			{
 				constraints.add( new MandatoryNodeConstraint( locationPath ) );
