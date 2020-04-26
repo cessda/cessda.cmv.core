@@ -19,12 +19,11 @@ public class DomProfile implements Profile.V10
 				.ofInputStream( inputStream )
 				.build();
 		constraints = new ArrayList<>();
-		constraints.add( new PredicatelessXPathConstraint() );
-
 		for ( org.w3c.dom.Node node : document.selectNodes( "/DDIProfile/Used" ) )
 		{
 			String locationPath = node.getAttributes().getNamedItem( "xpath" ).getNodeValue();
 			constraints.add( new CompilableXPathConstraint( locationPath ) );
+			constraints.add( new PredicatelessXPathConstraint( locationPath ) );
 			if ( node.getAttributes().getNamedItem( "isRequired" ).getNodeValue().equalsIgnoreCase( "true" ) )
 			{
 				constraints.add( new MandatoryNodeConstraint( locationPath ) );

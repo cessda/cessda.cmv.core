@@ -1,34 +1,78 @@
 package eu.cessda.cmv.core;
 
-import static eu.cessda.cmv.core.Factory.newDocument;
+import static java.util.Arrays.asList;
+import static java.util.Optional.empty;
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isEmpty;
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isPresent;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Test;
+import org.hamcrest.Matcher;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class PredicatelessXPathConstraintTest
 {
-	@Test
-	public void test()
-	{
-		URL url = getClass().getResource( "/profiles/xpaths-with-predicate.xml" );
+	private static final String newTestParameters = "newTestParameters";
 
-		Constraint.V20 constraint = new PredicatelessXPathConstraint();
-		List<Validator.V10> validators = constraint.newValidators( newDocument( url ) );
-		assertThat( validators, hasSize( 2 ) );
-		Validator.V10 validator = validators.get( 0 );
-		assertThat( validator.validate(), isEmpty() );
-		validator = validators.get( 1 );
-		assertThat( validator.validate(), isPresent() );
-		assertThat( validator.validate()
-				.map( ConstraintViolation.class::cast )
-				.map( ConstraintViolation::getMessage )
-				.get(), containsString( "contains a predicate" ) );
+	private static class TestParameter
+	{
+		String locationPath;
+		Matcher<Optional<?>> expectedConstraintViolation;
+
+		public String toString()
+		{
+			return locationPath;
+		}
+	}
+
+	public static Stream<TestParameter> newTestParameters()
+	{
+		TestParameter testParameter;
+		List<TestParameter> testParameters = new ArrayList<>();
+
+		// valid
+		testParameter = new TestParameter();
+		testParameter.locationPath = "/codeBook/docDscr/citation/holdings";
+		testParameter.expectedConstraintViolation = isEmpty();
+		testParameters.add( testParameter );
+
+		// invalid
+		testParameter = new TestParameter();
+		testParameter.locationPath = "/codeBook/stdyDscr/citation/titlStmt/IDNo[@agency='UKDA']";
+		testParameter.expectedConstraintViolation = isPresent();
+		testParameters.add( testParameter );
+
+		return testParameters.stream();
+	}
+
+	@ParameterizedTest
+	@MethodSource( newTestParameters )
+	public void newValidators( TestParameter testParameter )
+	{
+		// given
+		Constraint.V20 constraint = new PredicatelessXPathConstraint( testParameter.locationPath );
+
+		// when
+		List<Validator.V10> validators = constraint.newValidators( mockDocument( testParameter.locationPath ) );
+
+		// then
+		assertThat( validators, hasSize( 1 ) );
+		assertThat( validators.get( 0 ).validate(), testParameter.expectedConstraintViolation );
+	}
+
+	private Document.V10 mockDocument( String locationPath )
+	{
+		Document.V10 document = mock( Document.V10.class );
+		Node node = new Node( "/DDIProfile/Used/@xpath", locationPath, empty() );
+		when( document.getNodes( locationPath ) ).thenReturn( asList( node ) );
+		return document;
 	}
 }

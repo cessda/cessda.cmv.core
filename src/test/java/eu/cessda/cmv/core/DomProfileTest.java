@@ -23,7 +23,7 @@ public class DomProfileTest
 			Profile.V10 profile = new DomProfile( profileInputStream );
 
 			// then
-			assertThat( profile.getConstraints(), hasSize( 62 * 2 + 1 ) );
+			assertThat( profile.getConstraints(), hasSize( 62 * 3 ) );
 		}
 	}
 }

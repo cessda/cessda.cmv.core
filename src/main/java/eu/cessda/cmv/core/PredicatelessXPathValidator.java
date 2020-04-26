@@ -9,17 +9,17 @@ import org.gesis.commons.xml.xpath.XPathTokenizer;
 
 class PredicatelessXPathValidator implements Validator.V10
 {
-	private String locationPath;
+	private Node node;
 
-	PredicatelessXPathValidator( String locationPath )
+	PredicatelessXPathValidator( Node node )
 	{
-		this.locationPath = locationPath;
+		this.node = node;
 	}
 
 	@Override
 	public Optional<ConstraintViolation> validate()
 	{
-		XPathTokenizer tokenizer = new XPathTokenizer( locationPath );
+		XPathTokenizer tokenizer = new XPathTokenizer( node.getTextContent() );
 		if ( tokenizer.containsPredicates() )
 		{
 			return ofNullable( newConstraintViolation() );
@@ -33,7 +33,7 @@ class PredicatelessXPathValidator implements Validator.V10
 	private ConstraintViolation newConstraintViolation()
 	{
 		String message = "'%s' contains a predicate";
-		message = String.format( message, locationPath );
+		message = String.format( message, node.getTextContent() );
 		return new ConstraintViolation( message, empty() );
 	}
 }

@@ -65,6 +65,7 @@ public class ProfileValidatationGateTest
 
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
+		assertThat( constraintViolations.get( 0 ).getMessage(), containsString( "contains a predicate" ) );
 	}
 
 	@Test
