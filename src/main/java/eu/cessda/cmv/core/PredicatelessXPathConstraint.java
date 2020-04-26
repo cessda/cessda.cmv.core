@@ -15,21 +15,7 @@ class PredicatelessXPathConstraint extends NodeConstraint
 	public <T extends Validator> List<T> newValidators( Document document )
 	{
 		return (List<T>) ((Document.V10) document).getNodes( getLocationPath() ).stream()
-				.map( node -> new PredicatelessXPathValidator( node ) )
+				.map( PredicatelessXPathValidator::new )
 				.collect( Collectors.toList() );
 	}
-
 }
-
-// implements Constraint.V20{
-//
-// @Override
-// @SuppressWarnings( "unchecked" )
-// public <T extends Validator> List<T> newValidators( Document profile )
-// {
-// return (List<T>) ((Document.V10) profile).getNodes( "/DDIProfile/Used/@xpath" ).stream()
-// .map( Node::getTextContent )
-// .map( PredicatelessXPathValidator::new )
-// .collect( Collectors.toList() );
-// }
-// }

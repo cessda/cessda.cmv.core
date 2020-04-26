@@ -5,6 +5,8 @@ import static java.util.Optional.of;
 
 import java.util.Optional;
 
+import org.gesis.commons.xml.LocationInfo;
+
 class RecommendedNodeValidator implements Validator.V10
 {
 	private String locationPath;
@@ -33,6 +35,6 @@ class RecommendedNodeValidator implements Validator.V10
 	{
 		String message = "'%s' is recommended";
 		message = String.format( message, locationPath );
-		return new ConstraintViolation( message, empty() );
+		return new ConstraintViolation( message, Optional.of( new LocationInfo( 1, 2 ) ) );
 	}
 }

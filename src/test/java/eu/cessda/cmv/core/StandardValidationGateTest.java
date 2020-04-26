@@ -70,13 +70,9 @@ public class StandardValidationGateTest
 					.filter( cv -> cv.getMessage().contains( "recommended" ) )
 					.collect( Collectors.toList() ), hasSize( 30 ) );
 
-			System.out.println();
-			System.out.println( profileFile );
-			System.out.println( documentFile );
-			constraintViolations.stream()
-					.map( ConstraintViolation::getMessage )
-					.forEach( System.out::println );
-			System.out.println();
+			JaxbValidationReport validationReport = new JaxbValidationReport();
+			validationReport.setConstraintViolations( constraintViolations );
+			System.out.println( validationReport.toString() );
 		}
 	}
 }
