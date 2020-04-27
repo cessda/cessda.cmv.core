@@ -69,10 +69,6 @@ public class StandardValidationGateTest
 			assertThat( constraintViolations.stream()
 					.filter( cv -> cv.getMessage().contains( "recommended" ) )
 					.collect( Collectors.toList() ), hasSize( 30 ) );
-
-			JaxbValidationReport validationReport = new JaxbValidationReport();
-			validationReport.setConstraintViolations( constraintViolations );
-			System.out.println( validationReport.toString() );
 		}
 	}
 }
