@@ -1,8 +1,5 @@
 package eu.cessda.cmv.core.mediatype.validationreport.v0.xml;
 
-import static eu.cessda.cmv.core.mediatype.validationreport.v0.xml.JaxbValidationReportV0.JAXB_ELEMENT;
-import static eu.cessda.cmv.core.mediatype.validationreport.v0.xml.JaxbValidationReportV0.JAXB_TYPE;
-
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -21,8 +18,8 @@ import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
 import org.gesis.commons.xml.jaxb.JaxbDocument;
 import org.gesis.commons.xml.jaxb.NamespacePrefixMapper;
 
-@XmlRootElement( name = JAXB_ELEMENT )
-@XmlType( name = JAXB_TYPE )
+@XmlRootElement( name = JaxbValidationReportV0.VALIDATIONREPORT_ELEMENT )
+@XmlType( name = JaxbValidationReportV0.VALIDATIONREPORT_TYPE )
 @XmlAccessorType( XmlAccessType.FIELD )
 public class JaxbValidationReportV0 extends JaxbDocument
 {
@@ -33,17 +30,22 @@ public class JaxbValidationReportV0 extends JaxbDocument
 			+ "+xml";
 	static final String SCHEMALOCATION_HOST = "https://bitbucket.org/cessda/cessda.cmv.core/src/raw/stable/schema";
 	public static final String SCHEMALOCATION_FILENAME = "validation-report-v" + VERSION + ".xsd";
+
 	static final String NAMESPACE_DEFAULT_PREFIX = "vr";
 	static final String NAMESPACE_DEFAULT_URI = "cmv:validation-report:v" + MAJOR;
 	static final String SCHEMALOCATION_URI = SCHEMALOCATION_HOST + "/" + SCHEMALOCATION_FILENAME;
 	static final String SCHEMALOCATION = NAMESPACE_DEFAULT_URI + " " + SCHEMALOCATION_URI;
 
-	static final String JAXB_ELEMENT = "ValidationReport";
-	static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
+	static final String VALIDATIONREPORT_ELEMENT = "ValidationReport";
+	static final String VALIDATIONREPORT_TYPE = VALIDATIONREPORT_ELEMENT + "Type";
+	static final String CONSTRAINTVIOLATION_ELEMENT = "ConstraintViolation";
+	static final String CONSTRAINTVIOLATION_TYPE = CONSTRAINTVIOLATION_ELEMENT + "Type";
+	static final String LOCATIONINFO_ELEMENT = "LocationInfo";
+	static final String LOCATIONINFO_TYPE = LOCATIONINFO_ELEMENT + "Type";
 
 	private static final JAXBContext JAXBCONTEXT = newJaxbContext( JaxbValidationReportV0.class );
 
-	@XmlElement( name = JaxbConstraintViolationV0.JAXB_ELEMENT )
+	@XmlElement( name = CONSTRAINTVIOLATION_ELEMENT )
 	private List<JaxbConstraintViolationV0> constraintViolations;
 
 	protected JaxbValidationReportV0( String schemaLocation, NamespacePrefixMapper namespacePrefixMapper )

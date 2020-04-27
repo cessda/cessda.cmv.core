@@ -5,6 +5,9 @@ import static java.util.Optional.of;
 
 import java.util.Optional;
 
+import org.gesis.commons.xml.LocationInfo;
+import org.mockito.Mockito;
+
 class MandatoryNodeValidator implements Validator.V10
 {
 	private String locationPath;
@@ -33,6 +36,9 @@ class MandatoryNodeValidator implements Validator.V10
 	{
 		String message = "'%s' is mandatory";
 		message = String.format( message, locationPath );
-		return new ConstraintViolation( message, Optional.empty() );
+		LocationInfo locationInfo = Mockito.mock( LocationInfo.class );
+		Mockito.when( locationInfo.getLineNumber() ).thenReturn( 10 );
+		Mockito.when( locationInfo.getColumnNumber() ).thenReturn( 20 );
+		return new ConstraintViolation( message, Optional.of( locationInfo ) );
 	}
 }

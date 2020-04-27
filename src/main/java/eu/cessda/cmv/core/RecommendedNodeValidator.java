@@ -41,6 +41,6 @@ class RecommendedNodeValidator implements Validator.V10
 		LocationInfo locationInfo = Mockito.mock( LocationInfo.class );
 		when( locationInfo.getLineNumber() ).thenReturn( 10 );
 		when( locationInfo.getColumnNumber() ).thenReturn( 20 );
-		return new ConstraintViolation( message, Optional.of( locationInfo ) );
+		return new ConstraintViolation( message, Optional.empty() );
 	}
 }

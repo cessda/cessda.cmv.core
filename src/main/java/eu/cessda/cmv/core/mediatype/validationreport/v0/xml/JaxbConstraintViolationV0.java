@@ -7,25 +7,24 @@ import javax.xml.bind.annotation.XmlType;
 
 import eu.cessda.cmv.core.ConstraintViolation;
 
-@XmlType( name = JaxbConstraintViolationV0.JAXB_TYPE )
+@XmlType( name = JaxbValidationReportV0.CONSTRAINTVIOLATION_TYPE )
 @XmlAccessorType( XmlAccessType.FIELD )
 public class JaxbConstraintViolationV0
 {
-	static final String JAXB_ELEMENT = "ConstraintViolation";
-	static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
-
 	@XmlElement( required = true )
 	private String message;
 
-	@XmlElement( name = JaxbLocationInfoV0.JAXB_ELEMENT )
+	@XmlElement( name = JaxbValidationReportV0.LOCATIONINFO_ELEMENT )
 	private JaxbLocationInfoV0 locationInfo;
 
 	public JaxbConstraintViolationV0()
 	{
+		locationInfo = null;
 	}
 
 	public JaxbConstraintViolationV0( ConstraintViolation constraintViolation )
 	{
+		this();
 		message = constraintViolation.getMessage();
 		constraintViolation.getLocationInfo().ifPresent( li -> locationInfo = new JaxbLocationInfoV0( li ) );
 	}

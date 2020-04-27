@@ -1,5 +1,7 @@
 package eu.cessda.cmv.core.mediatype.validationreport.v0.xml;
 
+import static eu.cessda.cmv.core.mediatype.validationreport.v0.xml.JaxbValidationReportV0.LOCATIONINFO_TYPE;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -7,13 +9,10 @@ import javax.xml.bind.annotation.XmlType;
 
 import org.gesis.commons.xml.LocationInfo;
 
-@XmlType( name = JaxbLocationInfoV0.JAXB_TYPE )
+@XmlType( name = LOCATIONINFO_TYPE )
 @XmlAccessorType( XmlAccessType.FIELD )
 public class JaxbLocationInfoV0
 {
-	static final String JAXB_ELEMENT = "LocationInfo";
-	static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
-
 	@XmlElement
 	private int lineNumber;
 
