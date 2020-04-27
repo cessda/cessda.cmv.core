@@ -43,9 +43,9 @@ public class JaxbValidationReportV0Test
 		File actualFile = new File( testEnv.newDirectory(), SCHEMALOCATION_FILENAME );
 
 		JaxbValidationReportV0.generateSchema( actualFile );
-		assertThat( actualFile, hasEqualContent( expectedFile ) );
-
 		System.out.println( new String( readAllBytes( actualFile.toPath() ) ) );
+
+		assertThat( actualFile, hasEqualContent( expectedFile ) );
 	}
 
 	@Test
