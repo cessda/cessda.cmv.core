@@ -31,7 +31,7 @@ public class JaxbValidationReportV0 extends JaxbDocument
 	static final String SCHEMALOCATION_HOST = "https://bitbucket.org/cessda/cessda.cmv.core/src/raw/stable/schema";
 	public static final String SCHEMALOCATION_FILENAME = "validation-report-v" + VERSION + ".xsd";
 
-	static final String NAMESPACE_DEFAULT_PREFIX = "vr";
+	static final String NAMESPACE_DEFAULT_PREFIX = "";
 	static final String NAMESPACE_DEFAULT_URI = "cmv:validation-report:v" + MAJOR;
 	static final String SCHEMALOCATION_URI = SCHEMALOCATION_HOST + "/" + SCHEMALOCATION_FILENAME;
 	static final String SCHEMALOCATION = NAMESPACE_DEFAULT_URI + " " + SCHEMALOCATION_URI;
