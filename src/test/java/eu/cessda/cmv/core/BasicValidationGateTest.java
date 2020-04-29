@@ -1,5 +1,7 @@
 package eu.cessda.cmv.core;
 
+import static eu.cessda.cmv.core.Factory.newDocument;
+import static eu.cessda.cmv.core.Factory.newProfile;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.Optional.empty;
@@ -55,5 +57,24 @@ public class BasicValidationGateTest
 
 		// then
 		assertThat( constraintViolations, hasSize( 0 ) );
+	}
+
+	@Test
+	public void validate_cdc_fsd()
+	{
+		// given
+		// https://bitbucket.org/cessda/cessda.cmv.core/issues/47
+		Document document = newDocument( getClass().getResource( "/ddi-v25/fsd-3271.xml" ) );
+		Profile profile = newProfile( getClass().getResource( "/ddi-v25/cdc25_profile.xml" ) );
+
+		// when
+		ValidationGate.V10 validationGate = new BasicValidationGate();
+		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
+
+		// then
+		assertThat( constraintViolations, hasSize( 8 ) );
+		assertThat( constraintViolations.stream()
+				.filter( cv -> cv.getMessage().contains( "mandatory" ) )
+				.collect( Collectors.toList() ), hasSize( 8 ) );
 	}
 }
