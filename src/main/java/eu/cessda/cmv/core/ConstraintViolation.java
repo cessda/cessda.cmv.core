@@ -9,9 +9,10 @@ import org.gesis.commons.xml.LocationInfo;
 public class ConstraintViolation
 {
 	private String message;
+
 	private Optional<LocationInfo> locationInfo;
 
-	public ConstraintViolation( String message, Optional<LocationInfo> locationInfo )
+	ConstraintViolation( String message, Optional<LocationInfo> locationInfo )
 	{
 		requireNonNull( message );
 		requireNonNull( locationInfo );

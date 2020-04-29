@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="cmv:validation-report:v0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="cmv:validation-report:v0" elementFormDefault="qualified">
+   <xsd:complexType name="ValidationReportType">
+      <xsd:sequence>
+         <xsd:element name="ConstraintViolation" type="ns0:ConstraintViolationType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ConstraintViolationType">
+      <xsd:sequence>
+         <xsd:element name="Message" type="xsd:string"/>
+         <xsd:element name="LocationInfo" type="ns0:LocationInfoType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="LocationInfoType">
+      <xsd:sequence>
+         <xsd:element name="LineNumber" type="xsd:int"/>
+         <xsd:element name="ColumnNumber" type="xsd:int"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="ValidationReport" type="ns0:ValidationReportType"/>
+</xsd:schema>

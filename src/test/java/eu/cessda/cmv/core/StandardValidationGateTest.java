@@ -69,14 +69,6 @@ public class StandardValidationGateTest
 			assertThat( constraintViolations.stream()
 					.filter( cv -> cv.getMessage().contains( "recommended" ) )
 					.collect( Collectors.toList() ), hasSize( 30 ) );
-
-			System.out.println();
-			System.out.println( profileFile );
-			System.out.println( documentFile );
-			constraintViolations.stream()
-					.map( ConstraintViolation::getMessage )
-					.forEach( System.out::println );
-			System.out.println();
 		}
 	}
 }

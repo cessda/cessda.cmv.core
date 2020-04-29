@@ -36,6 +36,7 @@ public class ArchitectureConstraintsTest extends TestClassesRuleTest
 				.and().areNotAssignableTo( AbstractValidationGate.class )
 				.and().haveSimpleNameNotEndingWith( "Test" )
 				.and().haveSimpleNameNotEndingWith( "TestParameter" )
+				.and().resideOutsideOfPackage( "eu.cessda.cmv.core.mediatype.validationreport.v0.xml" )
 				.should().bePackagePrivate()
 				.check( importedClasses );
 	}
