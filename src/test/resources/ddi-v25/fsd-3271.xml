@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
-  <responseDate>2020-04-29T08:32:39Z</responseDate>
-  <request metadataPrefix="ddi_c" verb="GetRecord" identifier="oai:fsd.uta.fi:FSD3271">http://services.fsd.uta.fi/v0/oai</request>
-  <GetRecord>
-    <record>
-      <header>
-        <identifier>oai:fsd.uta.fi:FSD3271</identifier>
-        <datestamp>2020-04-16T23:00:08Z</datestamp>
-        <setSpec>data_kind:Kvantitatiivinen</setSpec><setSpec>data_kind:Quantitative</setSpec><setSpec>study_groups:yks</setSpec><setSpec>language:fi</setSpec><setSpec>language:en</setSpec>
-      </header>
-      <metadata>
-        <codeBook xmlns="ddi:codebook:2_5" version="2.5" xsi:schemaLocation="ddi:codebook:2_5 http://www.ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd">
+<codeBook xmlns="ddi:codebook:2_5" version="2.5" xsi:schemaLocation="ddi:codebook:2_5 http://www.ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd">
   <docDscr>
     <citation>
       <titlStmt><titl/></titlStmt>
@@ -5299,7 +5288,3 @@
     </var>
   </dataDscr>
 </codeBook>
-      </metadata>
-    </record>
-  </GetRecord>
-</OAI-PMH>
