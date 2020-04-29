@@ -11,8 +11,14 @@
     <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" isRequired="true">
         <pr:Instructions>
 			<r:Content>
-				Constraint: UsedNode
-	        		RequirementLevel: Mandatory (default for isRequired="true")
+				<![CDATA[
+				<!-- Default for isRequired="true" -->
+				<cmv:Constraints>
+					<cmv:Constraint type="eu.cessda.cmv.core.MandatoryNodeConstraint">
+						<!-- default <cmv:ConstraintProperty name="locationPath" value="." /> -->
+					</cmv:Constraint>
+				</cmv:Constraints>
+				]]>
         	</r:Content>
         </pr:Instructions>
     </pr:Used>
@@ -20,8 +26,12 @@
     <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" isRequired="false">
         <pr:Instructions>
 			<r:Content>
-				Constraint: UsedNode
-	        		RequirementLevel: Recommended (default for isRequired="false")
+				<![CDATA[
+				<!-- Default for isRequired="false" -->
+				<cmv:Constraints>
+					<cmv:Constraint type="eu.cessda.cmv.core.RecommenedNodeConstraint"/>
+				</cmv:Constraints>
+				]]>
         	</r:Content>
         </pr:Instructions>
     </pr:Used>
@@ -29,34 +39,56 @@
     <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" isRequired="false">
         <pr:Instructions>
 			<r:Content>
-				Constraint: UsedNode
-	        		RequirementLevel: Optional
+				<![CDATA[
+				<cmv:Constraints>
+					<cmv:Constraint type="eu.cessda.cmv.core.OptionalNodeConstraint"/>
+				</cmv:Constraints>
+				]]>
         	</r:Content>
         </pr:Instructions>
     </pr:Used>
     
+    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" defaultValue="Person" fixedValue="true">
+        <pr:Instructions>
+			<r:Content>
+				<![CDATA[
+				<cmv:Constraints>
+					<!-- Default for isRequired="false" because attribute is not present -->
+					<cmv:Constraint type="eu.cessda.cmv.core.RecommenedNodeConstraint"/>
+					<!-- Default if defaultValue and fixedValue are present -->
+					<cmv:Constraint type="eu.cessda.cmv.core.FixedValueNodeConstraint"/>
+				</cmv:Constraints>
+				]]>
+        	</r:Content>
+        </pr:Instructions>
+    </pr:Used>
+        
     <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" isRequired="true">
         <pr:Instructions>
         	<r:Content>
-	        	Constraint: UsedNode
-	        		RequirementLevel: Mandatory
-	        	Constraint: CodeValueOfControlledVocabulary
-	        		( ControlledVocabularyRepositoryUriXPath: ./@vocabURI )
-	        		( ControlledVocabularyRepositoryImplementation: CessdaControlledVocabularyRepository )
-        	</r:Content>
-        </pr:Instructions>
-    </pr:Used>
-    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocabURI" isRequired="true">
-		<pr:Instructions>
-		    <r:Content>
-	        	Constraint: UsedNode
-	        		RequirementLevel: Mandatory
-	        	Constraint: ResolvableControlledVocabularyCodeValueSet
-	        		ControlledVocabularyRepositoryImplementation: CessdaControlledVocabularyRepository
-	        		resolvable URI returns not-empty set of CV CodeValues
-	        		actually to separate ParsableUri, ResolvableUri
+				<![CDATA[
+				<cmv:Constraints>
+					<!-- <cmv:Constraint type="eu.cessda.cmv.core.MandatoryNodeConstraint"/> -->
+					<cmv:Constraint type="eu.cessda.cmv.core.CodeValueOfControlledVocabularyConstraint">
+						<!-- only if necessary <cmv:ConstraintProperty name="uriPath" value="./@vocabURI" /> -->
+					</cmv:Constraint>					
+				</cmv:Constraints>
+				]]>
         	</r:Content>
         </pr:Instructions>
     </pr:Used>
     
+    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocabURI" isRequired="true">
+		<pr:Instructions>
+		    <r:Content>
+				<![CDATA[
+				<cmv:Constraints>
+					<!-- <cmv:Constraint type="eu.cessda.cmv.core.MandatoryNodeConstraint"/> -->
+					<cmv:Constraint type="eu.cessda.cmv.core.CessdaControlledVocabularyRepositoryConstraint"/>
+				</cmv:Constraints>
+				]]>
+        	</r:Content>
+        </pr:Instructions>
+    </pr:Used>
+        
 </pr:DDIProfile>
