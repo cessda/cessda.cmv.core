@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 class PredicatelessXPathConstraint extends NodeConstraint
 {
-	PredicatelessXPathConstraint( String locationPath )
+	public PredicatelessXPathConstraint( String locationPath )
 	{
 		super( locationPath );
 	}

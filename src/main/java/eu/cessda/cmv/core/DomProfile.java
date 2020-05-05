@@ -1,6 +1,7 @@
 package eu.cessda.cmv.core;
 
 import static java.util.Collections.unmodifiableList;
+import static java.util.stream.Collectors.toList;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -9,8 +10,8 @@ import java.util.List;
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.gesis.commons.xml.ddi.DdiInputStream;
 
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbDdiProfileContraintsV0;
 import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbDdiProfileContraintsV0;
 
 public class DomProfile implements Profile.V10
 {
@@ -19,16 +20,11 @@ public class DomProfile implements Profile.V10
 
 	public DomProfile( DdiInputStream inputStream )
 	{
-		document = XercesXalanDocument.newBuilder()
-				.ofInputStream( inputStream )
-				.build();
+		document = XercesXalanDocument.newBuilder().ofInputStream( inputStream ).build();
 		constraints = new ArrayList<>();
 		for ( org.w3c.dom.Node usedNode : document.selectNodes( "/DDIProfile/Used" ) )
 		{
 			String locationPath = usedNode.getAttributes().getNamedItem( "xpath" ).getNodeValue();
-			constraints.add( new CompilableXPathConstraint( locationPath ) );
-			constraints.add( new PredicatelessXPathConstraint( locationPath ) );
-
 			JaxbDdiProfileContraintsV0 root = getRoot( usedNode );
 			if ( usedNode.getAttributes().getNamedItem( "isRequired" ).getNodeValue().equalsIgnoreCase( "true" ) )
 			{
@@ -36,22 +32,35 @@ public class DomProfile implements Profile.V10
 			}
 			else
 			{
-				try
-				{
-					String canonicalName = root.getConstraints().stream()
-							.map( JaxbConstraintV0::getType )
-							.filter( type -> type.equals( RecommendedNodeConstraint.class.getCanonicalName() ) )
-							.findAny()
-							.orElse( OptionalNodeConstraint.class.getCanonicalName() );
-					Class<?> clazz = Class.forName( canonicalName );
-					Constructor constructor = clazz.getConstructor( String.class );
-					constraints.add( (Constraint) constructor.newInstance( locationPath ) );
-				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
-				}
+				String canonicalName = root.getConstraints().stream()
+						.map( JaxbConstraintV0::getType )
+						.filter( type -> type.equals( RecommendedNodeConstraint.class.getCanonicalName() ) )
+						.findAny()
+						.orElse( OptionalNodeConstraint.class.getCanonicalName() );
+				constraints.add( newConstraint( canonicalName, locationPath ) );
 			}
+			constraints.addAll( root.getConstraints().stream()
+					.map( JaxbConstraintV0::getType )
+					.filter( type -> !type.equals( MandatoryNodeConstraint.class.getCanonicalName() ) )
+					.filter( type -> !type.equals( RecommendedNodeConstraint.class.getCanonicalName() ) )
+					.filter( type -> !type.equals( OptionalNodeConstraint.class.getCanonicalName() ) )
+					.map( canonicalName -> newConstraint( canonicalName, locationPath ) )
+					.collect( toList() ) );
+		}
+	}
+
+	private Constraint newConstraint( String canonicalName, String locationPath )
+	{
+		try
+		{
+			@SuppressWarnings( "unchecked" )
+			Class<Constraint> clazz = (Class<Constraint>) Class.forName( canonicalName );
+			Constructor<Constraint> constructor = clazz.getConstructor( String.class );
+			return constructor.newInstance( locationPath );
+		}
+		catch (Exception e)
+		{
+			throw new IllegalArgumentException( e );
 		}
 	}
 

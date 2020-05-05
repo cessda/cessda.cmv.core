@@ -35,7 +35,6 @@ public class CodeValueOfControlledVocabularyContraintTest
 		assertThat( result, isEmpty() );
 		result = validators.get( 1 ).validate();
 		assertThat( result.get().getMessage(), containsString( "is not element of the controlled vocabulary in" ) );
-		System.out.println( result.get().getMessage() );
 	}
 
 	@Test

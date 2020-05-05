@@ -7,7 +7,7 @@ import javax.xml.xpath.XPathFactory;
 
 class CompilableXPathConstraint extends NodeConstraint
 {
-	CompilableXPathConstraint( String locationPath )
+	public CompilableXPathConstraint( String locationPath )
 	{
 		super( locationPath );
 	}

@@ -1,13 +1,12 @@
 package eu.cessda.cmv.core;
 
-import static org.gesis.commons.resource.Resource.newResource;
+import static eu.cessda.cmv.core.Factory.newProfile;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
 
 import java.io.IOException;
 import java.net.URL;
 
-import org.gesis.commons.xml.ddi.DdiInputStream;
 import org.junit.jupiter.api.Test;
 
 public class DomProfileTest
@@ -16,14 +15,12 @@ public class DomProfileTest
 	public void construct() throws IOException
 	{
 		// given
-		URL profileFile = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
-		try ( DdiInputStream profileInputStream = new DdiInputStream( newResource( profileFile ).readInputStream() ) )
-		{
-			// when
-			Profile.V10 profile = new DomProfile( profileInputStream );
+		URL url = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
 
-			// then
-			assertThat( profile.getConstraints(), hasSize( 62 * 3 ) );
-		}
+		// when
+		Profile.V10 profile = newProfile( url );
+
+		// then
+		assertThat( profile.getConstraints(), hasSize( 62 ) );
 	}
 }
