@@ -1,7 +1,5 @@
 package eu.cessda.cmv.core;
 
-import static eu.cessda.cmv.core.Factory.newDocument;
-import static eu.cessda.cmv.core.Factory.newProfile;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.hamcrest.Matchers.hasSize;
@@ -10,7 +8,6 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,69 +38,5 @@ public class StandardValidationGateTest
 		assertThat( constraintViolations.stream()
 				.filter( cv -> cv.getMessage().contains( "recommended" ) )
 				.collect( Collectors.toList() ), hasSize( 1 ) );
-	}
-
-	@Test
-	public void validate_cdc_ukds7481() throws IOException
-	{
-		// given
-		Document document = newDocument( getClass().getResource( "/ddi-v25/ukds-7481.xml" ) );
-		Profile profile = newProfile( getClass().getResource( "/ddi-v25/cdc25_profile.xml" ) );
-
-		// when
-		ValidationGate.V10 validationGate = new StandardValidationGate();
-		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
-
-		// then
-		assertThat( constraintViolations, hasSize( 19 ) );
-		assertThat( constraintViolations.stream()
-				.filter( cv -> cv.getMessage().contains( "mandatory" ) )
-				.collect( Collectors.toList() ), hasSize( 10 ) );
-		assertThat( constraintViolations.stream()
-				.filter( cv -> cv.getMessage().contains( "recommended" ) )
-				.collect( Collectors.toList() ), hasSize( 9 ) );
-	}
-
-	@Test
-	public void validate_cdc_ukds2000() throws IOException
-	{
-		// given
-		Document document = newDocument( getClass().getResource( "/ddi-v25/ukds-2000.xml" ) );
-		Profile profile = newProfile( getClass().getResource( "/ddi-v25/cdc25_profile.xml" ) );
-
-		// when
-		ValidationGate.V10 validationGate = new StandardValidationGate();
-		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
-
-		// then
-		assertThat( constraintViolations, hasSize( 18 ) );
-		assertThat( constraintViolations.stream()
-				.filter( cv -> cv.getMessage().contains( "mandatory" ) )
-				.collect( Collectors.toList() ), hasSize( 9 ) );
-		assertThat( constraintViolations.stream()
-				.filter( cv -> cv.getMessage().contains( "recommended" ) )
-				.collect( Collectors.toList() ), hasSize( 9 ) );
-	}
-
-	@Test
-	public void validate_cdc_fsd()
-	{
-		// given
-		// https://bitbucket.org/cessda/cessda.cmv.core/issues/47
-		Document document = newDocument( getClass().getResource( "/ddi-v25/fsd-3271.xml" ) );
-		Profile profile = newProfile( getClass().getResource( "/ddi-v25/cdc25_profile.xml" ) );
-
-		// when
-		ValidationGate.V10 validationGate = new StandardValidationGate();
-		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
-
-		// then
-		assertThat( constraintViolations, hasSize( 13 ) );
-		assertThat( constraintViolations.stream()
-				.filter( cv -> cv.getMessage().contains( "mandatory" ) )
-				.collect( Collectors.toList() ), hasSize( 8 ) );
-		assertThat( constraintViolations.stream()
-				.filter( cv -> cv.getMessage().contains( "recommended" ) )
-				.collect( Collectors.toList() ), hasSize( 5 ) );
 	}
 }
