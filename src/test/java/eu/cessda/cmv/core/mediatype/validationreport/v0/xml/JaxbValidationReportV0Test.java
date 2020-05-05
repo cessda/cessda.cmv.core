@@ -51,8 +51,8 @@ public class JaxbValidationReportV0Test
 	@Test
 	public void printOutToString() throws IOException
 	{
-		Document document = newDocument( getClass().getResource( "/ddi-v25/ukds-7481.xml" ) );
-		Profile profile = newProfile( getClass().getResource( "/ddi-v25/cdc25_profile.xml" ) );
+		Document document = newDocument( getClass().getResource( "/demo-documents/ddi-v25/ukds-7481.xml" ) );
+		Profile profile = newProfile( getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ) );
 
 		ValidationGate.V10 validationGate = new StandardValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );

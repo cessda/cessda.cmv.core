@@ -24,7 +24,7 @@ import org.gesis.commons.xml.jaxb.JaxbException;
 import org.gesis.commons.xml.jaxb.NotParseableException;
 
 @XmlRootElement( name = "Constraints" )
-public class DdiProfileContraintsRoot
+public class JaxbDdiProfileContraintsV0
 {
 	@XmlElement( name = JaxbConstraintV0.JAXB_ELEMENT )
 	private List<JaxbConstraintV0> constraints = new ArrayList<>();
@@ -34,11 +34,11 @@ public class DdiProfileContraintsRoot
 		return constraints;
 	}
 
-	public static DdiProfileContraintsRoot fromString( String xml )
+	public static JaxbDdiProfileContraintsV0 fromString( String xml )
 	{
 		try
 		{
-			return read( xml, JAXBContext.newInstance( DdiProfileContraintsRoot.class ) );
+			return read( xml, JAXBContext.newInstance( JaxbDdiProfileContraintsV0.class ) );
 		}
 		catch (JAXBException e)
 		{
@@ -46,7 +46,7 @@ public class DdiProfileContraintsRoot
 		}
 	}
 
-	private static DdiProfileContraintsRoot read( String string, JAXBContext jaxbContext )
+	private static JaxbDdiProfileContraintsV0 read( String string, JAXBContext jaxbContext )
 	{
 		requireNonNull( string );
 		try ( InputStream inputStream = new ByteArrayInputStream( string.getBytes( UTF_8 ) ) )
@@ -60,14 +60,14 @@ public class DdiProfileContraintsRoot
 	}
 
 	@SuppressWarnings( "unchecked" )
-	protected static DdiProfileContraintsRoot read( InputStream inputStream, JAXBContext jaxbContext )
+	protected static JaxbDdiProfileContraintsV0 read( InputStream inputStream, JAXBContext jaxbContext )
 	{
 		requireNonNull( inputStream );
 		requireNonNull( jaxbContext );
 		try
 		{
 			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			return (DdiProfileContraintsRoot) unmarshaller.unmarshal( inputStream );
+			return (JaxbDdiProfileContraintsV0) unmarshaller.unmarshal( inputStream );
 		}
 		catch (UnmarshalException e)
 		{
@@ -83,7 +83,7 @@ public class DdiProfileContraintsRoot
 	{
 		try ( ByteArrayOutputStream outputStream = new ByteArrayOutputStream() )
 		{
-			JAXBContext jaxbContext = JAXBContext.newInstance( DdiProfileContraintsRoot.class );
+			JAXBContext jaxbContext = JAXBContext.newInstance( JaxbDdiProfileContraintsV0.class );
 			Marshaller marshaller = jaxbContext.createMarshaller();
 			marshaller.setProperty( JAXB_FORMATTED_OUTPUT, true );
 			marshaller.setProperty( JAXB_FRAGMENT, Boolean.TRUE );

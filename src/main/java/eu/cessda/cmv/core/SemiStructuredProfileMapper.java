@@ -21,7 +21,7 @@ import org.gesis.commons.xml.DomDocument;
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.w3c.dom.Node;
 
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.DdiProfileContraintsRoot;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbDdiProfileContraintsV0;
 import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbConstraintV0;
 
 class SemiStructuredProfileMapper implements Function<URL, InputStream>
@@ -42,7 +42,7 @@ class SemiStructuredProfileMapper implements Function<URL, InputStream>
 				.build();
 		for ( Node usedNode : document.selectNodes( "/DDIProfile/Used" ) )
 		{
-			DdiProfileContraintsRoot root = new DdiProfileContraintsRoot();
+			JaxbDdiProfileContraintsV0 root = new JaxbDdiProfileContraintsV0();
 			if ( document.selectNode( usedNode, "Description[Content='Required: Mandatory']" ) != null )
 			{
 				root.getConstraints().add( new JaxbConstraintV0( MandatoryNodeConstraint.class.getCanonicalName() ) );
@@ -92,7 +92,7 @@ class SemiStructuredProfileMapper implements Function<URL, InputStream>
 		}
 	}
 
-	private String toXml( DdiProfileContraintsRoot root )
+	private String toXml( JaxbDdiProfileContraintsV0 root )
 	{
 		return XercesXalanDocument.newBuilder()
 				.ofContent( root.toString() )

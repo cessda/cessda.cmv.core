@@ -9,7 +9,7 @@ import java.util.List;
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.gesis.commons.xml.ddi.DdiInputStream;
 
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.DdiProfileContraintsRoot;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbDdiProfileContraintsV0;
 import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbConstraintV0;
 
 public class DomProfile implements Profile.V10
@@ -29,7 +29,7 @@ public class DomProfile implements Profile.V10
 			constraints.add( new CompilableXPathConstraint( locationPath ) );
 			constraints.add( new PredicatelessXPathConstraint( locationPath ) );
 
-			DdiProfileContraintsRoot root = getRoot( usedNode );
+			JaxbDdiProfileContraintsV0 root = getRoot( usedNode );
 			if ( usedNode.getAttributes().getNamedItem( "isRequired" ).getNodeValue().equalsIgnoreCase( "true" ) )
 			{
 				constraints.add( new MandatoryNodeConstraint( locationPath ) );
@@ -55,16 +55,16 @@ public class DomProfile implements Profile.V10
 		}
 	}
 
-	private DdiProfileContraintsRoot getRoot( org.w3c.dom.Node usedNode )
+	private JaxbDdiProfileContraintsV0 getRoot( org.w3c.dom.Node usedNode )
 	{
 		org.w3c.dom.Node cmvNode = document.selectNode( usedNode, "Instructions/Content" );
 		if ( cmvNode != null )
 		{
-			return DdiProfileContraintsRoot.fromString( cmvNode.getTextContent() );
+			return JaxbDdiProfileContraintsV0.fromString( cmvNode.getTextContent() );
 		}
 		else
 		{
-			return new DdiProfileContraintsRoot();
+			return new JaxbDdiProfileContraintsV0();
 		}
 	}
 

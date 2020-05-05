@@ -16,7 +16,7 @@ public class DomProfileTest
 	public void construct() throws IOException
 	{
 		// given
-		URL profileFile = getClass().getResource( "/ddi-v25/cdc25_profile.xml" );
+		URL profileFile = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
 		try ( DdiInputStream profileInputStream = new DdiInputStream( newResource( profileFile ).readInputStream() ) )
 		{
 			// when

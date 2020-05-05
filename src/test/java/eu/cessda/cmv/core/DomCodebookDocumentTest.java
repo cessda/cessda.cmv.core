@@ -17,7 +17,7 @@ public class DomCodebookDocumentTest
 	public void constructWithNotWellformedDocument() throws IOException
 	{
 		// given
-		URL url = getClass().getResource( "/ddi-v25/ukds-7481-not-wellformed.xml-invalid" );
+		URL url = getClass().getResource( "/demo-documents/ddi-v25/ukds-7481-not-wellformed.xml-invalid" );
 		try ( DdiInputStream documentInputStream = new DdiInputStream( newResource( url ).readInputStream() ) )
 		{
 			// when

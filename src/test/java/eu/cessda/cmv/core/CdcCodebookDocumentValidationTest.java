@@ -17,7 +17,7 @@ public class CdcCodebookDocumentValidationTest
 {
 	private static final String newTestParameters = "newTestParameters";
 
-	private Profile profile = newProfile( getClass().getResource( "/ddi-v25/cdc25_profile.xml" ) );
+	private Profile profile = newProfile( getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ) );
 
 	private static class TestParameter
 	{
@@ -38,21 +38,21 @@ public class CdcCodebookDocumentValidationTest
 		List<TestParameter> testParameters = new ArrayList<>();
 
 		testParameter = new TestParameter();
-		testParameter.documentName = "/ddi-v25/ukds-7481.xml";
+		testParameter.documentName = "/demo-documents/ddi-v25/ukds-7481.xml";
 		testParameter.expectedMandatoryCount = 10;
 		testParameter.expectedRecommendedCount = 9;
 		testParameter.expectedOptionalCount = 21;
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
-		testParameter.documentName = "/ddi-v25/ukds-2000.xml";
+		testParameter.documentName = "/demo-documents/ddi-v25/ukds-2000.xml";
 		testParameter.expectedMandatoryCount = 9;
 		testParameter.expectedRecommendedCount = 9;
 		testParameter.expectedOptionalCount = 22;
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
-		testParameter.documentName = "/ddi-v25/fsd-3271.xml";
+		testParameter.documentName = "/demo-documents/ddi-v25/fsd-3271.xml";
 		testParameter.expectedMandatoryCount = 8;
 		testParameter.expectedRecommendedCount = 5;
 		testParameter.expectedOptionalCount = 17;

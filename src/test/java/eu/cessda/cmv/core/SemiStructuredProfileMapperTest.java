@@ -15,7 +15,7 @@ public class SemiStructuredProfileMapperTest
 	@Test
 	public void map() throws IOException
 	{
-		URL sourceUrl = getClass().getResource( "/ddi-v25/cdc25_profile.xml" );
+		URL sourceUrl = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
 		File targetFile = new File( "target/cdc25_profile_converted.xml" );
 		copyInputStreamToFile( SemiStructuredProfileMapper.map( sourceUrl ), targetFile );
 

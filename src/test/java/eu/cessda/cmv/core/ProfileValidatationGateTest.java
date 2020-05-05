@@ -18,7 +18,7 @@ public class ProfileValidatationGateTest
 	public void validateCdcProfile() throws IOException
 	{
 		// given
-		URL documentFile = getClass().getResource( "/ddi-v25/cdc25_profile.xml" );
+		URL documentFile = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
 		URL profileUrl = getClass().getResource( "/cmv-profile-ddi-v32.xml" );
 
 		// when
