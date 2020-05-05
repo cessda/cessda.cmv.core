@@ -21,6 +21,6 @@ public class DomProfileTest
 		Profile.V10 profile = newProfile( url );
 
 		// then
-		assertThat( profile.getConstraints(), hasSize( 62 ) );
+		assertThat( profile.getConstraints(), hasSize( 62 * 3 ) );
 	}
 }

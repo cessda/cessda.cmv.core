@@ -6,6 +6,7 @@ import static java.util.stream.Collectors.toList;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.gesis.commons.xml.ddi.DdiInputStream;
@@ -25,25 +26,30 @@ public class DomProfile implements Profile.V10
 		for ( org.w3c.dom.Node usedNode : document.selectNodes( "/DDIProfile/Used" ) )
 		{
 			String locationPath = usedNode.getAttributes().getNamedItem( "xpath" ).getNodeValue();
-			JaxbDdiProfileContraintsV0 root = getRoot( usedNode );
+			constraints.add( new CompilableXPathConstraint( locationPath ) );
+			constraints.add( new PredicatelessXPathConstraint( locationPath ) );
+
+			JaxbDdiProfileContraintsV0 instructions = getRoot( usedNode );
 			if ( usedNode.getAttributes().getNamedItem( "isRequired" ).getNodeValue().equalsIgnoreCase( "true" ) )
 			{
 				constraints.add( new MandatoryNodeConstraint( locationPath ) );
 			}
 			else
 			{
-				String canonicalName = root.getConstraints().stream()
+				String canonicalName = instructions.getConstraints().stream()
 						.map( JaxbConstraintV0::getType )
 						.filter( type -> type.equals( RecommendedNodeConstraint.class.getCanonicalName() ) )
 						.findAny()
 						.orElse( OptionalNodeConstraint.class.getCanonicalName() );
 				constraints.add( newConstraint( canonicalName, locationPath ) );
 			}
-			constraints.addAll( root.getConstraints().stream()
+
+			List<String> canonicalNames = constraints.stream()
+					.map( c -> c.getClass().getCanonicalName() )
+					.collect( Collectors.toList() );
+			constraints.addAll( instructions.getConstraints().stream()
 					.map( JaxbConstraintV0::getType )
-					.filter( type -> !type.equals( MandatoryNodeConstraint.class.getCanonicalName() ) )
-					.filter( type -> !type.equals( RecommendedNodeConstraint.class.getCanonicalName() ) )
-					.filter( type -> !type.equals( OptionalNodeConstraint.class.getCanonicalName() ) )
+					.filter( type -> !canonicalNames.contains( type ) )
 					.map( canonicalName -> newConstraint( canonicalName, locationPath ) )
 					.collect( toList() ) );
 		}
