@@ -42,7 +42,7 @@ public class DomProfile implements Profile.V10
 							.map( JaxbConstraintV0::getType )
 							.filter( type -> type.equals( RecommendedNodeConstraint.class.getCanonicalName() ) )
 							.findAny()
-							.orElse( "eu.cessda.cmv.core.RecommendedNodeConstraint" );
+							.orElse( OptionalNodeConstraint.class.getCanonicalName() );
 					Class<?> clazz = Class.forName( canonicalName );
 					Constructor constructor = clazz.getConstructor( String.class );
 					constraints.add( (Constraint) constructor.newInstance( locationPath ) );

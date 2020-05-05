@@ -51,7 +51,7 @@ public class StandardValidationGateTest
 		Profile profile = newProfile( getClass().getResource( "/ddi-v25/cdc25_profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = new StandardValidationGate();
+		ValidationGate.V10 validationGate = new StrictValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -61,7 +61,11 @@ public class StandardValidationGateTest
 				.collect( Collectors.toList() ), hasSize( 10 ) );
 		assertThat( constraintViolations.stream()
 				.filter( cv -> cv.getMessage().contains( "recommended" ) )
-				.collect( Collectors.toList() ), hasSize( 30 ) );
+				.collect( Collectors.toList() ), hasSize( 9 ) );
+		assertThat( constraintViolations.stream()
+				.filter( cv -> cv.getMessage().contains( "optional" ) )
+				.collect( Collectors.toList() ), hasSize( 21 ) );
+
 	}
 
 	@Test
@@ -72,7 +76,7 @@ public class StandardValidationGateTest
 		Profile profile = newProfile( getClass().getResource( "/ddi-v25/cdc25_profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = new StandardValidationGate();
+		ValidationGate.V10 validationGate = new StrictValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -82,7 +86,10 @@ public class StandardValidationGateTest
 				.collect( Collectors.toList() ), hasSize( 9 ) );
 		assertThat( constraintViolations.stream()
 				.filter( cv -> cv.getMessage().contains( "recommended" ) )
-				.collect( Collectors.toList() ), hasSize( 31 ) );
+				.collect( Collectors.toList() ), hasSize( 9 ) );
+		assertThat( constraintViolations.stream()
+				.filter( cv -> cv.getMessage().contains( "optional" ) )
+				.collect( Collectors.toList() ), hasSize( 22 ) );
 	}
 
 	@Test
@@ -94,7 +101,7 @@ public class StandardValidationGateTest
 		Profile profile = newProfile( getClass().getResource( "/ddi-v25/cdc25_profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = new StandardValidationGate();
+		ValidationGate.V10 validationGate = new StrictValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -104,6 +111,9 @@ public class StandardValidationGateTest
 				.collect( Collectors.toList() ), hasSize( 8 ) );
 		assertThat( constraintViolations.stream()
 				.filter( cv -> cv.getMessage().contains( "recommended" ) )
-				.collect( Collectors.toList() ), hasSize( 22 ) );
+				.collect( Collectors.toList() ), hasSize( 5 ) );
+		assertThat( constraintViolations.stream()
+				.filter( cv -> cv.getMessage().contains( "optional" ) )
+				.collect( Collectors.toList() ), hasSize( 17 ) );
 	}
 }
