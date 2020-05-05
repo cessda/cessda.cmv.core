@@ -58,17 +58,23 @@ class Factory
 
 	public static Document.V10 newDocument( URL url )
 	{
-		requireNonNull( url );
-		Resource resource = newResource( url );
-		DdiInputStream inputStream = new DdiInputStream( resource.readInputStream() );
-		return new eu.cessda.cmv.core.DomCodebookDocument( inputStream );
+		return new eu.cessda.cmv.core.DomCodebookDocument( newDdiInputStream( url ) );
 	}
 
 	public static Profile.V10 newProfile( URL url )
 	{
+		return new eu.cessda.cmv.core.DomProfile( newDdiInputStream( SemiStructuredProfileMapper.map( url ) ) );
+	}
+
+	public static DdiInputStream newDdiInputStream( URL url )
+	{
 		requireNonNull( url );
 		Resource resource = newResource( url );
-		DdiInputStream inputStream = new DdiInputStream( resource.readInputStream() );
-		return new eu.cessda.cmv.core.DomProfile( inputStream );
+		return newDdiInputStream( resource.readInputStream() );
+	}
+
+	public static DdiInputStream newDdiInputStream( InputStream inputStream )
+	{
+		return new DdiInputStream( inputStream );
 	}
 }

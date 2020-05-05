@@ -2,11 +2,15 @@ package eu.cessda.cmv.core;
 
 import static java.util.Collections.unmodifiableList;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.gesis.commons.xml.ddi.DdiInputStream;
+
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.DdiProfileContraintsRoot;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbConstraintV0;
 
 public class DomProfile implements Profile.V10
 {
@@ -19,19 +23,48 @@ public class DomProfile implements Profile.V10
 				.ofInputStream( inputStream )
 				.build();
 		constraints = new ArrayList<>();
-		for ( org.w3c.dom.Node node : document.selectNodes( "/DDIProfile/Used" ) )
+		for ( org.w3c.dom.Node usedNode : document.selectNodes( "/DDIProfile/Used" ) )
 		{
-			String locationPath = node.getAttributes().getNamedItem( "xpath" ).getNodeValue();
+			String locationPath = usedNode.getAttributes().getNamedItem( "xpath" ).getNodeValue();
 			constraints.add( new CompilableXPathConstraint( locationPath ) );
 			constraints.add( new PredicatelessXPathConstraint( locationPath ) );
-			if ( node.getAttributes().getNamedItem( "isRequired" ).getNodeValue().equalsIgnoreCase( "true" ) )
+
+			DdiProfileContraintsRoot root = getRoot( usedNode );
+			if ( usedNode.getAttributes().getNamedItem( "isRequired" ).getNodeValue().equalsIgnoreCase( "true" ) )
 			{
 				constraints.add( new MandatoryNodeConstraint( locationPath ) );
 			}
 			else
 			{
-				constraints.add( new RecommendedNodeConstraint( locationPath ) );
+				try
+				{
+					String canonicalName = root.getConstraints().stream()
+							.map( JaxbConstraintV0::getType )
+							.filter( type -> type.equals( RecommendedNodeConstraint.class.getCanonicalName() ) )
+							.findAny()
+							.orElse( "eu.cessda.cmv.core.RecommendedNodeConstraint" );
+					Class<?> clazz = Class.forName( canonicalName );
+					Constructor constructor = clazz.getConstructor( String.class );
+					constraints.add( (Constraint) constructor.newInstance( locationPath ) );
+				}
+				catch (Exception e)
+				{
+					e.printStackTrace();
+				}
 			}
+		}
+	}
+
+	private DdiProfileContraintsRoot getRoot( org.w3c.dom.Node usedNode )
+	{
+		org.w3c.dom.Node cmvNode = document.selectNode( usedNode, "Instructions/Content" );
+		if ( cmvNode != null )
+		{
+			return DdiProfileContraintsRoot.fromString( cmvNode.getTextContent() );
+		}
+		else
+		{
+			return new DdiProfileContraintsRoot();
 		}
 	}
 

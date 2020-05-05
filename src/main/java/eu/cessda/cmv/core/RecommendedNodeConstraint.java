@@ -6,7 +6,7 @@ import java.util.List;
 
 class RecommendedNodeConstraint extends NodeConstraint
 {
-	RecommendedNodeConstraint( String locationPath )
+	public RecommendedNodeConstraint( String locationPath )
 	{
 		super( locationPath );
 	}

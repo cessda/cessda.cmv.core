@@ -6,7 +6,7 @@ import java.util.List;
 
 class MandatoryNodeConstraint extends NodeConstraint
 {
-	MandatoryNodeConstraint( String locationPath )
+	public MandatoryNodeConstraint( String locationPath )
 	{
 		super( locationPath );
 	}
