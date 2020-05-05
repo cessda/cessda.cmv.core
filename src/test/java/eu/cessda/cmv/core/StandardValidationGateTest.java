@@ -44,7 +44,7 @@ public class StandardValidationGateTest
 	}
 
 	@Test
-	public void validate_cdc_ukds() throws IOException
+	public void validate_cdc_ukds7481() throws IOException
 	{
 		// given
 		Document document = newDocument( getClass().getResource( "/ddi-v25/ukds-7481.xml" ) );
@@ -62,6 +62,27 @@ public class StandardValidationGateTest
 		assertThat( constraintViolations.stream()
 				.filter( cv -> cv.getMessage().contains( "recommended" ) )
 				.collect( Collectors.toList() ), hasSize( 30 ) );
+	}
+
+	@Test
+	public void validate_cdc_ukds2000() throws IOException
+	{
+		// given
+		Document document = newDocument( getClass().getResource( "/ddi-v25/ukds-2000.xml" ) );
+		Profile profile = newProfile( getClass().getResource( "/ddi-v25/cdc25_profile.xml" ) );
+
+		// when
+		ValidationGate.V10 validationGate = new StandardValidationGate();
+		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
+
+		// then
+		assertThat( constraintViolations, hasSize( 40 ) );
+		assertThat( constraintViolations.stream()
+				.filter( cv -> cv.getMessage().contains( "mandatory" ) )
+				.collect( Collectors.toList() ), hasSize( 9 ) );
+		assertThat( constraintViolations.stream()
+				.filter( cv -> cv.getMessage().contains( "recommended" ) )
+				.collect( Collectors.toList() ), hasSize( 31 ) );
 	}
 
 	@Test
