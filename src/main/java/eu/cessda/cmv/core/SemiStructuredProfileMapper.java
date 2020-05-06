@@ -1,6 +1,8 @@
 package eu.cessda.cmv.core;
 
 import static java.util.Objects.requireNonNull;
+import static javax.xml.XMLConstants.FEATURE_SECURE_PROCESSING;
+import static javax.xml.transform.OutputKeys.INDENT;
 import static org.gesis.commons.resource.Resource.newResource;
 
 import java.io.ByteArrayInputStream;
@@ -9,7 +11,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.function.Function;
 
-import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
@@ -21,8 +22,8 @@ import org.gesis.commons.xml.DomDocument;
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.w3c.dom.Node;
 
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbDdiProfileContraintsV0;
 import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbDdiProfileContraintsV0;
 
 class SemiStructuredProfileMapper implements Function<URL, InputStream>
 {
@@ -80,8 +81,10 @@ class SemiStructuredProfileMapper implements Function<URL, InputStream>
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			Source xmlSource = new DOMSource( document );
 			Result outputTarget = new StreamResult( outputStream );
-			Transformer transformer = TransformerFactory.newInstance().newTransformer();
-			transformer.setOutputProperty( OutputKeys.INDENT, "yes" );
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			transformerFactory.setFeature( FEATURE_SECURE_PROCESSING, true );
+			Transformer transformer = transformerFactory.newTransformer();
+			transformer.setOutputProperty( INDENT, "yes" );
 			transformer.setOutputProperty( "{http://xml.apache.org/xslt}indent-amount", "2" );
 			transformer.transform( xmlSource, outputTarget );
 			return new ByteArrayInputStream( outputStream.toByteArray() );
