@@ -9,24 +9,24 @@ import java.util.Optional;
 class MaximumElementOccuranceValidator implements Validator.V10
 {
 	private String locationPath;
-	private long actualCount;
-	private long maximalCount;
+	private long actualOccurs;
+	private long maxOccurs;
 
-	MaximumElementOccuranceValidator( String locationPath, long actualCount, long maximalCount )
+	MaximumElementOccuranceValidator( String locationPath, long actualCount, long maxOccurs )
 	{
 		requireNonNull( locationPath );
 		requireNonNegativeLong( actualCount );
-		requireNonNegativeLong( maximalCount );
+		requireNonNegativeLong( maxOccurs );
 
 		this.locationPath = locationPath;
-		this.actualCount = actualCount;
-		this.maximalCount = maximalCount;
+		this.actualOccurs = actualCount;
+		this.maxOccurs = maxOccurs;
 	}
 
 	@Override
 	public Optional<ConstraintViolation> validate()
 	{
-		if ( actualCount > maximalCount )
+		if ( actualOccurs > maxOccurs )
 		{
 			return of( newConstraintViolation() );
 		}
@@ -47,7 +47,7 @@ class MaximumElementOccuranceValidator implements Validator.V10
 	private ConstraintViolation newConstraintViolation()
 	{
 		String message = "'%s' exceeds maximal count of %s";
-		message = String.format( message, locationPath, maximalCount );
+		message = String.format( message, locationPath, maxOccurs );
 		return new ConstraintViolation( message, Optional.empty() );
 	}
 }
