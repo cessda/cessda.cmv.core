@@ -14,9 +14,11 @@ import java.util.List;
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.TextResource;
 import org.gesis.commons.xml.XercesXalanDocument;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Node;
 
+@Disabled( "Code for dev work in progress" )
 public class DemoDocumentsTest
 {
 	private List<String> demoDocumentFileNames = asList( "fsd-3271.xml", "ukds-2000.xml", "ukds-7481.xml" );
@@ -56,7 +58,7 @@ public class DemoDocumentsTest
 				.forEach( resource ->
 				{
 					System.out.println( resource.getUri() );
-					// System.out.println( resource.toString() );
+					System.out.println( resource.toString() );
 				} );
 	}
 

@@ -1,7 +1,6 @@
 package eu.cessda.cmv.core.mediatype.validationreport.v0.xml;
 
 import static eu.cessda.cmv.core.mediatype.validationreport.v0.xml.JaxbValidationReportV0.SCHEMALOCATION_FILENAME;
-import static java.nio.file.Files.readAllBytes;
 import static java.util.Objects.requireNonNull;
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.gesis.commons.test.hamcrest.FileMatchers.hasEqualContent;
@@ -17,6 +16,7 @@ import org.gesis.commons.resource.Resource;
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
 import org.gesis.commons.xml.ddi.DdiInputStream;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
 import eu.cessda.cmv.core.ConstraintViolation;
@@ -43,7 +43,7 @@ public class JaxbValidationReportV0Test
 		File actualFile = new File( testEnv.newDirectory(), SCHEMALOCATION_FILENAME );
 
 		JaxbValidationReportV0.generateSchema( actualFile );
-		System.out.println( new String( readAllBytes( actualFile.toPath() ) ) );
+		// System.out.println( new String( readAllBytes( actualFile.toPath() ) ) );
 
 		assertThat( actualFile, hasEqualContent( expectedFile ) );
 	}
@@ -51,6 +51,8 @@ public class JaxbValidationReportV0Test
 	@Test
 	public void printOutToString() throws IOException
 	{
+		assertThat( JaxbValidationReportV0.MEDIATYPE, Matchers.equalTo( JaxbValidationReportV0.MEDIATYPE ) );
+
 		Document document = newDocument( getClass().getResource( "/demo-documents/ddi-v25/ukds-7481.xml" ) );
 		Profile profile = newProfile( getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ) );
 
@@ -61,8 +63,7 @@ public class JaxbValidationReportV0Test
 				.map( JaxbConstraintViolationV0::new )
 				.collect( Collectors.toList() ) );
 
-		System.out.println( validationReport.toString() );
-		System.out.println( JaxbValidationReportV0.MEDIATYPE );
+		// System.out.println( validationReport.toString() );
 	}
 
 	private static Document.V10 newDocument( URL url )
