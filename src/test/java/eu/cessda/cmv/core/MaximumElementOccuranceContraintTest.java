@@ -9,11 +9,20 @@ import java.util.List;
 
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
+import org.gesis.commons.xml.SaxXercesAgainstSchemaValidator;
+import org.gesis.commons.xml.ddi.Ddi251ClasspathEntityResolver;
 import org.junit.jupiter.api.Test;
 
 public class MaximumElementOccuranceContraintTest
 {
 	private TestEnv.V13 testEnv = DefaultTestEnv.newInstance( MaximumElementOccuranceContraintTest.class );
+
+	public MaximumElementOccuranceContraintTest()
+	{
+		SaxXercesAgainstSchemaValidator xmlValidator = new SaxXercesAgainstSchemaValidator();
+		xmlValidator.validate( testEnv.findTestResourceByName( "bad-case.xml" ), new Ddi251ClasspathEntityResolver() );
+		xmlValidator.validate( testEnv.findTestResourceByName( "good-case.xml" ), new Ddi251ClasspathEntityResolver() );
+	}
 
 	@Test
 	public void validate_invalid() throws Exception

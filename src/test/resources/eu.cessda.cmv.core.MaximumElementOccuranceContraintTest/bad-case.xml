@@ -11,10 +11,10 @@
 		<stdyInfo>
 			<sumDscr>
 				<anlyUnit>
-					<concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0">Individual</concept>
-					<concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0">HousingUnit</concept>
-					<concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0">Organization</concept>
-					<concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0">TimeUnit</concept>
+					<concept>Individual</concept>
+					<concept>HousingUnit</concept>
+					<concept>Organization</concept>
+					<concept>TimeUnit</concept>
 				</anlyUnit>
 			</sumDscr>
 		</stdyInfo>
