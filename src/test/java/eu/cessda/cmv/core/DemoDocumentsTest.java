@@ -56,7 +56,7 @@ public class DemoDocumentsTest
 				.forEach( resource ->
 				{
 					System.out.println( resource.getUri() );
-					System.out.println( resource.toString() );
+					// System.out.println( resource.toString() );
 				} );
 	}
 

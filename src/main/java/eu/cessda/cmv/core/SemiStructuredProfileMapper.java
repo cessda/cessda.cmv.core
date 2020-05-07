@@ -1,22 +1,11 @@
 package eu.cessda.cmv.core;
 
 import static java.util.Objects.requireNonNull;
-import static javax.xml.XMLConstants.FEATURE_SECURE_PROCESSING;
-import static javax.xml.transform.OutputKeys.INDENT;
 import static org.gesis.commons.resource.Resource.newResource;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.function.Function;
-
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import org.gesis.commons.xml.DomDocument;
 import org.gesis.commons.xml.XercesXalanDocument;
@@ -37,7 +26,7 @@ class SemiStructuredProfileMapper implements Function<URL, InputStream>
 	{
 		requireNonNull( url );
 
-		DomDocument.V11 document = XercesXalanDocument.newBuilder()
+		DomDocument.V13 document = XercesXalanDocument.newBuilder()
 				.ofInputStream( newResource( url ).readInputStream() )
 				.printPrettyWithIndentation( 2 )
 				.build();
@@ -71,28 +60,7 @@ class SemiStructuredProfileMapper implements Function<URL, InputStream>
 				usedNode.appendChild( instructionNode );
 			}
 		}
-		return toInputStream( document );
-	}
-
-	private InputStream toInputStream( DomDocument.V11 document )
-	{
-		try
-		{
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			Source xmlSource = new DOMSource( document );
-			Result outputTarget = new StreamResult( outputStream );
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			transformerFactory.setFeature( FEATURE_SECURE_PROCESSING, true );
-			Transformer transformer = transformerFactory.newTransformer();
-			transformer.setOutputProperty( INDENT, "yes" );
-			transformer.setOutputProperty( "{http://xml.apache.org/xslt}indent-amount", "2" );
-			transformer.transform( xmlSource, outputTarget );
-			return new ByteArrayInputStream( outputStream.toByteArray() );
-		}
-		catch (Exception e)
-		{
-			throw new IllegalArgumentException( e );
-		}
+		return document.toInputStream();
 	}
 
 	private String toXml( JaxbDdiProfileContraintsV0 root )
