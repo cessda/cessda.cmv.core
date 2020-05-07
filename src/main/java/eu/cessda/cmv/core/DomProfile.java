@@ -1,5 +1,6 @@
 package eu.cessda.cmv.core;
 
+import static java.lang.Long.valueOf;
 import static java.util.Collections.unmodifiableList;
 import static java.util.stream.Collectors.toList;
 
@@ -25,33 +26,61 @@ public class DomProfile implements Profile.V10
 		constraints = new ArrayList<>();
 		for ( org.w3c.dom.Node usedNode : document.selectNodes( "/DDIProfile/Used" ) )
 		{
-			String locationPath = usedNode.getAttributes().getNamedItem( "xpath" ).getNodeValue();
-			constraints.add( new CompilableXPathConstraint( locationPath ) );
-			constraints.add( new PredicatelessXPathConstraint( locationPath ) );
+			constraints.add( new CompilableXPathConstraint( getLocationPath( usedNode ) ) );
+			constraints.add( new PredicatelessXPathConstraint( getLocationPath( usedNode ) ) );
+
+			parseMandatoryNodeConstraint( usedNode );
+			parseOptionalNodeConstraint( usedNode );
+			parseMaximumElementOccuranceConstraint( usedNode );
 
 			JaxbDdiProfileContraintsV0 instructions = getRoot( usedNode );
-			if ( usedNode.getAttributes().getNamedItem( "isRequired" ).getNodeValue().equalsIgnoreCase( "true" ) )
-			{
-				constraints.add( new MandatoryNodeConstraint( locationPath ) );
-			}
-			else
-			{
-				String canonicalName = instructions.getConstraints().stream()
-						.map( JaxbConstraintV0::getType )
-						.filter( type -> type.equals( RecommendedNodeConstraint.class.getCanonicalName() ) )
-						.findAny()
-						.orElse( OptionalNodeConstraint.class.getCanonicalName() );
-				constraints.add( newConstraint( canonicalName, locationPath ) );
-			}
-
 			List<String> canonicalNames = constraints.stream()
 					.map( c -> c.getClass().getCanonicalName() )
 					.collect( Collectors.toList() );
 			constraints.addAll( instructions.getConstraints().stream()
 					.map( JaxbConstraintV0::getType )
 					.filter( type -> !canonicalNames.contains( type ) )
-					.map( canonicalName -> newConstraint( canonicalName, locationPath ) )
+					.map( canonicalName -> newConstraint( canonicalName, getLocationPath( usedNode ) ) )
 					.collect( toList() ) );
+		}
+	}
+
+	private String getLocationPath( org.w3c.dom.Node usedNode )
+	{
+		return usedNode.getAttributes().getNamedItem( "xpath" ).getTextContent();
+	}
+
+	private void parseMandatoryNodeConstraint( org.w3c.dom.Node usedNode )
+	{
+		org.w3c.dom.Node isRequiredNode = usedNode.getAttributes().getNamedItem( "isRequired" );
+		if ( isRequiredNode != null && isRequiredNode.getNodeValue().equalsIgnoreCase( "true" ) )
+		{
+			constraints.add( new MandatoryNodeConstraint( getLocationPath( usedNode ) ) );
+		}
+	}
+
+	private void parseOptionalNodeConstraint( org.w3c.dom.Node usedNode )
+	{
+		org.w3c.dom.Node isRequiredNode = usedNode.getAttributes().getNamedItem( "isRequired" );
+		if ( isRequiredNode == null || isRequiredNode.getNodeValue().equalsIgnoreCase( "false" ) )
+		{
+			String canonicalName = getRoot( usedNode ).getConstraints().stream()
+					.map( JaxbConstraintV0::getType )
+					.filter( type -> type.equals( RecommendedNodeConstraint.class.getCanonicalName() ) )
+					.findAny()
+					.orElse( OptionalNodeConstraint.class.getCanonicalName() );
+			constraints.add( newConstraint( canonicalName, getLocationPath( usedNode ) ) );
+		}
+	}
+
+	private void parseMaximumElementOccuranceConstraint( org.w3c.dom.Node usedNode )
+	{
+		org.w3c.dom.Node limitMaxOccursNode = usedNode.getAttributes().getNamedItem( "limitMaxOccurs" );
+		if ( limitMaxOccursNode != null )
+		{
+			constraints.add( new MaximumElementOccuranceConstraint(
+					getLocationPath( usedNode ),
+					valueOf( limitMaxOccursNode.getNodeValue() ) ) );
 		}
 	}
 
