@@ -13,7 +13,7 @@ import org.gesis.commons.xml.XercesXalanDocument;
 import org.gesis.commons.xml.ddi.DdiInputStream;
 
 import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbDdiProfileContraintsV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbDdiProfileConstraintsV0;
 
 public class DomProfile implements Profile.V10
 {
@@ -33,7 +33,7 @@ public class DomProfile implements Profile.V10
 			parseOptionalNodeConstraint( usedNode );
 			parseMaximumElementOccuranceConstraint( usedNode );
 
-			JaxbDdiProfileContraintsV0 instructions = getRoot( usedNode );
+			JaxbDdiProfileConstraintsV0 instructions = getDdiProfileConstraints( usedNode );
 			List<String> canonicalNames = constraints.stream()
 					.map( c -> c.getClass().getCanonicalName() )
 					.collect( Collectors.toList() );
@@ -64,7 +64,7 @@ public class DomProfile implements Profile.V10
 		org.w3c.dom.Node isRequiredNode = usedNode.getAttributes().getNamedItem( "isRequired" );
 		if ( isRequiredNode == null || isRequiredNode.getNodeValue().equalsIgnoreCase( "false" ) )
 		{
-			String canonicalName = getRoot( usedNode ).getConstraints().stream()
+			String canonicalName = getDdiProfileConstraints( usedNode ).getConstraints().stream()
 					.map( JaxbConstraintV0::getType )
 					.filter( type -> type.equals( RecommendedNodeConstraint.class.getCanonicalName() ) )
 					.findAny()
@@ -99,16 +99,16 @@ public class DomProfile implements Profile.V10
 		}
 	}
 
-	private JaxbDdiProfileContraintsV0 getRoot( org.w3c.dom.Node usedNode )
+	private JaxbDdiProfileConstraintsV0 getDdiProfileConstraints( org.w3c.dom.Node usedNode )
 	{
 		org.w3c.dom.Node cmvNode = document.selectNode( usedNode, "Instructions/Content" );
 		if ( cmvNode != null )
 		{
-			return JaxbDdiProfileContraintsV0.fromString( cmvNode.getTextContent() );
+			return JaxbDdiProfileConstraintsV0.fromString( cmvNode.getTextContent() );
 		}
 		else
 		{
-			return new JaxbDdiProfileContraintsV0();
+			return new JaxbDdiProfileConstraintsV0();
 		}
 	}
 
