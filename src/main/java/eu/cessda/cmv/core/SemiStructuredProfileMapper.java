@@ -15,6 +15,9 @@ import org.w3c.dom.Node;
 
 import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbConstraintV0;
 import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbDdiProfileConstraintsV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbMandatoryNodeConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbOptionalNodeConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbRecommendedNodeConstraintV0;
 
 class SemiStructuredProfileMapper implements Function<URL, InputStream>
 {
@@ -40,21 +43,15 @@ class SemiStructuredProfileMapper implements Function<URL, InputStream>
 			JaxbDdiProfileConstraintsV0 root = new JaxbDdiProfileConstraintsV0();
 			if ( document.selectNode( usedNode, "Description[Content='Required: Mandatory']" ) != null )
 			{
-				constraint = new JaxbConstraintV0();
-				constraint.setType( MandatoryNodeConstraint.class.getCanonicalName() );
-				root.getConstraints().add( constraint );
+				root.getConstraints().add( new JaxbMandatoryNodeConstraintV0( getLocationPath( usedNode ) ) );
 			}
 			if ( document.selectNode( usedNode, "Description[Content='Required: Recommended']" ) != null )
 			{
-				constraint = new JaxbConstraintV0();
-				constraint.setType( RecommendedNodeConstraint.class.getCanonicalName() );
-				root.getConstraints().add( constraint );
+				root.getConstraints().add( new JaxbRecommendedNodeConstraintV0( getLocationPath( usedNode ) ) );
 			}
 			if ( document.selectNode( usedNode, "Description[Content='Required: Optional']" ) != null )
 			{
-				constraint = new JaxbConstraintV0();
-				constraint.setType( OptionalNodeConstraint.class.getCanonicalName() );
-				root.getConstraints().add( constraint );
+				root.getConstraints().add( new JaxbOptionalNodeConstraintV0( getLocationPath( usedNode ) ) );
 			}
 			if ( root.getConstraints().isEmpty() )
 			{
@@ -71,6 +68,11 @@ class SemiStructuredProfileMapper implements Function<URL, InputStream>
 			}
 		}
 		return document.toInputStream();
+	}
+
+	private String getLocationPath( org.w3c.dom.Node usedNode )
+	{
+		return usedNode.getAttributes().getNamedItem( "xpath" ).getTextContent();
 	}
 
 	private String toXml( JaxbDdiProfileConstraintsV0 root )

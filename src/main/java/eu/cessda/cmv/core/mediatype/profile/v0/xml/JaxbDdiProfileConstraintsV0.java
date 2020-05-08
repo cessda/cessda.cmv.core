@@ -20,6 +20,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -34,7 +35,20 @@ public class JaxbDdiProfileConstraintsV0
 	static final String JAXB_ELEMENT = "Constraints";
 	static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
 
-	@XmlElement( name = JaxbConstraintV0.JAXB_ELEMENT )
+	@XmlElements( {
+			@XmlElement(
+					name = JaxbMaximumElementOccuranceConstraintV0.JAXB_ELEMENT,
+					type = JaxbMaximumElementOccuranceConstraintV0.class ),
+			@XmlElement(
+					name = JaxbMandatoryNodeConstraintV0.JAXB_ELEMENT,
+					type = JaxbMandatoryNodeConstraintV0.class ),
+			@XmlElement(
+					name = JaxbOptionalNodeConstraintV0.JAXB_ELEMENT,
+					type = JaxbOptionalNodeConstraintV0.class ),
+			@XmlElement(
+					name = JaxbRecommendedNodeConstraintV0.JAXB_ELEMENT,
+					type = JaxbRecommendedNodeConstraintV0.class )
+	} )
 	private List<JaxbConstraintV0> constraints;
 
 	public JaxbDdiProfileConstraintsV0()

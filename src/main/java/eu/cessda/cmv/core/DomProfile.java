@@ -2,18 +2,16 @@ package eu.cessda.cmv.core;
 
 import static java.lang.Long.valueOf;
 import static java.util.Collections.unmodifiableList;
-import static java.util.stream.Collectors.toList;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.gesis.commons.xml.ddi.DdiInputStream;
 
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbConstraintV0;
 import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbDdiProfileConstraintsV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbRecommendedNodeConstraintV0;
 
 public class DomProfile implements Profile.V10
 {
@@ -32,16 +30,6 @@ public class DomProfile implements Profile.V10
 			parseMandatoryNodeConstraint( usedNode );
 			parseOptionalNodeConstraint( usedNode );
 			parseMaximumElementOccuranceConstraint( usedNode );
-
-			JaxbDdiProfileConstraintsV0 instructions = getDdiProfileConstraints( usedNode );
-			List<String> canonicalNames = constraints.stream()
-					.map( c -> c.getClass().getCanonicalName() )
-					.collect( Collectors.toList() );
-			constraints.addAll( instructions.getConstraints().stream()
-					.map( JaxbConstraintV0::getType )
-					.filter( type -> !canonicalNames.contains( type ) )
-					.map( canonicalName -> newConstraint( canonicalName, getLocationPath( usedNode ) ) )
-					.collect( toList() ) );
 		}
 	}
 
@@ -65,8 +53,8 @@ public class DomProfile implements Profile.V10
 		if ( isRequiredNode == null || isRequiredNode.getNodeValue().equalsIgnoreCase( "false" ) )
 		{
 			String canonicalName = getDdiProfileConstraints( usedNode ).getConstraints().stream()
-					.map( JaxbConstraintV0::getType )
-					.filter( type -> type.equals( RecommendedNodeConstraint.class.getCanonicalName() ) )
+					.filter( c -> c instanceof JaxbRecommendedNodeConstraintV0 )
+					.map( c -> RecommendedNodeConstraint.class.getCanonicalName() )
 					.findAny()
 					.orElse( OptionalNodeConstraint.class.getCanonicalName() );
 			constraints.add( newConstraint( canonicalName, getLocationPath( usedNode ) ) );

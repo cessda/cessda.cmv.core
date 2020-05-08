@@ -2,8 +2,6 @@ package eu.cessda.cmv.core.mediatype.profile.v0.xml;
 
 import org.junit.jupiter.api.Test;
 
-import eu.cessda.cmv.core.MaximumElementOccuranceConstraint;
-
 public class JaxbCmvProfileV0Test
 {
 	@Test
@@ -11,20 +9,14 @@ public class JaxbCmvProfileV0Test
 	{
 		JaxbCmvProfileV0 profile = new JaxbCmvProfileV0();
 		profile.setName( "cdc" );
-		JaxbConstraintV0 constraint = new JaxbConstraintV0();
-		constraint.setType( "eu.cessda.cmv.core.MaximumElementOccuranceConstraint" );
-		profile.getConstraints().add( constraint );
-		JaxbConstraintPropertyV0 constraintProperty = new JaxbConstraintPropertyV0();
-		constraintProperty = new JaxbConstraintPropertyV0();
-		constraintProperty.setName( "locationPath" );
-		constraintProperty.setValue( "/path/to/element" );
-		constraint.getConstraintProperties().add( constraintProperty );
-		constraintProperty = new JaxbConstraintPropertyV0();
-		constraintProperty.setName( "maxOccurs" );
-		constraintProperty.setValue( "3" );
-		constraint.getConstraintProperties().add( constraintProperty );
 
+		JaxbMaximumElementOccuranceConstraintV0 mecc = new JaxbMaximumElementOccuranceConstraintV0();
+		mecc.setLocationPath( "/path/to/element" );
+		mecc.setMaxOccurs( 3 );
+		profile.getConstraints().add( mecc );
+
+		profile.getConstraints().add( new JaxbMandatoryNodeConstraintV0( "/path/to/element" ) );
+		profile.getConstraints().add( new JaxbOptionalNodeConstraintV0( "/path/to/element" ) );
 		System.out.println( profile.toString() );
-		System.out.println( MaximumElementOccuranceConstraint.PROPERTIES );
 	}
 }
