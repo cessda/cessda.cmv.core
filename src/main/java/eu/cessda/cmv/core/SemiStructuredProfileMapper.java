@@ -36,18 +36,25 @@ class SemiStructuredProfileMapper implements Function<URL, InputStream>
 				.build();
 		for ( Node usedNode : document.selectNodes( "/DDIProfile/Used" ) )
 		{
+			JaxbConstraintV0 constraint;
 			JaxbDdiProfileConstraintsV0 root = new JaxbDdiProfileConstraintsV0();
 			if ( document.selectNode( usedNode, "Description[Content='Required: Mandatory']" ) != null )
 			{
-				root.getConstraints().add( new JaxbConstraintV0( MandatoryNodeConstraint.class.getCanonicalName() ) );
+				constraint = new JaxbConstraintV0();
+				constraint.setType( MandatoryNodeConstraint.class.getCanonicalName() );
+				root.getConstraints().add( constraint );
 			}
 			if ( document.selectNode( usedNode, "Description[Content='Required: Recommended']" ) != null )
 			{
-				root.getConstraints().add( new JaxbConstraintV0( RecommendedNodeConstraint.class.getCanonicalName() ) );
+				constraint = new JaxbConstraintV0();
+				constraint.setType( RecommendedNodeConstraint.class.getCanonicalName() );
+				root.getConstraints().add( constraint );
 			}
 			if ( document.selectNode( usedNode, "Description[Content='Required: Optional']" ) != null )
 			{
-				root.getConstraints().add( new JaxbConstraintV0( "eu.cessda.cmv.core.OptionalNodeConstraint" ) );
+				constraint = new JaxbConstraintV0();
+				constraint.setType( OptionalNodeConstraint.class.getCanonicalName() );
+				root.getConstraints().add( constraint );
 			}
 			if ( root.getConstraints().isEmpty() )
 			{

@@ -17,17 +17,30 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 import org.gesis.commons.xml.jaxb.JaxbException;
 import org.gesis.commons.xml.jaxb.NotParseableException;
 
-@XmlRootElement( name = "Constraints" )
+@XmlRootElement( name = JaxbDdiProfileConstraintsV0.JAXB_ELEMENT )
+@XmlType( name = JaxbDdiProfileConstraintsV0.JAXB_TYPE )
+@XmlAccessorType( XmlAccessType.FIELD )
 public class JaxbDdiProfileConstraintsV0
 {
+	static final String JAXB_ELEMENT = "Constraints";
+	static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
+
 	@XmlElement( name = JaxbConstraintV0.JAXB_ELEMENT )
-	private List<JaxbConstraintV0> constraints = new ArrayList<>();
+	private List<JaxbConstraintV0> constraints;
+
+	public JaxbDdiProfileConstraintsV0()
+	{
+		constraints = new ArrayList<>();
+	}
 
 	public List<JaxbConstraintV0> getConstraints()
 	{
