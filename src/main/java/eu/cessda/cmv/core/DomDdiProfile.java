@@ -47,9 +47,9 @@ public class DomDdiProfile implements Profile.V10
 		org.w3c.dom.Node isRequiredNode = usedNode.getAttributes().getNamedItem( "isRequired" );
 		if ( isRequiredNode == null || isRequiredNode.getNodeValue().equalsIgnoreCase( "false" ) )
 		{
-			if ( document.selectNode( usedNode, "Description[Content='Required: Recommended']" ) != null )
+			if ( document.selectNode( usedNode, "Description[Content='Required: Recommended']" ) != null
+					|| document.selectNode( usedNode, "Description[Content='Recommended']" ) != null )
 			{
-				// || document.selectNode( usedNode, "Description[Content='Recommended']" ) != null
 				constraints.add( new RecommendedNodeConstraint( getLocationPath( usedNode ) ) );
 			}
 			else
