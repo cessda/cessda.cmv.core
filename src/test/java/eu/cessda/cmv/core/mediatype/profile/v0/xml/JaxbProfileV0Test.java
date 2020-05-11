@@ -1,22 +1,27 @@
 package eu.cessda.cmv.core.mediatype.profile.v0.xml;
 
+import static org.gesis.commons.resource.Resource.newResource;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.io.FileMatchers.anExistingFile;
+import static org.junit.Assert.assertThat;
+
+import java.io.File;
+import java.net.URL;
+
 import org.junit.jupiter.api.Test;
 
 public class JaxbProfileV0Test
 {
 	@Test
-	public void test()
+	public void readSemiStructuredDdiProfile()
 	{
-		JaxbProfileV0 profile = new JaxbProfileV0();
-		profile.setName( "cdc" );
+		URL sourceUrl = this.getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
+		File targetFile = new File( "src/main/resources/", "demo-documents/ddi-v25/cdc25_profile_cmv.xml" );
 
-		JaxbMaximumElementOccuranceConstraintV0 mecc = new JaxbMaximumElementOccuranceConstraintV0();
-		mecc.setLocationPath( "/path/to/element" );
-		mecc.setMaxOccurs( 3 );
-		profile.getConstraints().add( mecc );
+		JaxbProfileV0 profile = JaxbProfileV0.readSemiStructuredDdiProfile( newResource( sourceUrl ) );
+		profile.saveAs( targetFile );
 
-		profile.getConstraints().add( new JaxbMandatoryNodeConstraintV0( "/path/to/element" ) );
-		profile.getConstraints().add( new JaxbOptionalNodeConstraintV0( "/path/to/element" ) );
-		System.out.println( profile.toString() );
+		assertThat( targetFile, anExistingFile() );
+		assertThat( profile.getConstraints(), hasSize( 46 ) );
 	}
 }
