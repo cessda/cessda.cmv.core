@@ -2,12 +2,12 @@ package eu.cessda.cmv.core.mediatype.profile.v0.xml;
 
 import org.junit.jupiter.api.Test;
 
-public class JaxbCmvProfileV0Test
+public class JaxbProfileV0Test
 {
 	@Test
 	public void test()
 	{
-		JaxbCmvProfileV0 profile = new JaxbCmvProfileV0();
+		JaxbProfileV0 profile = new JaxbProfileV0();
 		profile.setName( "cdc" );
 
 		JaxbMaximumElementOccuranceConstraintV0 mecc = new JaxbMaximumElementOccuranceConstraintV0();

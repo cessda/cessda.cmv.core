@@ -18,10 +18,10 @@ import javax.xml.bind.annotation.XmlType;
 import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
 import org.gesis.commons.xml.jaxb.JaxbDocument;
 
-@XmlRootElement( name = JaxbCmvProfileV0.JAXB_ELEMENT )
-@XmlType( name = JaxbCmvProfileV0.JAXB_TYPE )
+@XmlRootElement( name = JaxbProfileV0.JAXB_ELEMENT )
+@XmlType( name = JaxbProfileV0.JAXB_TYPE )
 @XmlAccessorType( XmlAccessType.FIELD )
-public class JaxbCmvProfileV0 extends JaxbDocument
+public class JaxbProfileV0 extends JaxbDocument
 {
 	static final String MAJOR = "0";
 	static final String MINOR = "1";
@@ -38,7 +38,7 @@ public class JaxbCmvProfileV0 extends JaxbDocument
 	static final String JAXB_ELEMENT = "Profile";
 	static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
 
-	private static final JAXBContext JAXBCONTEXT = newJaxbContext( JaxbCmvProfileV0.class );
+	private static final JAXBContext JAXBCONTEXT = newJaxbContext( JaxbProfileV0.class );
 
 	@XmlElement
 	private String name;
@@ -59,9 +59,9 @@ public class JaxbCmvProfileV0 extends JaxbDocument
 	} )
 	private List<JaxbConstraintV0> constraints;
 
-	public JaxbCmvProfileV0()
+	public JaxbProfileV0()
 	{
-		super( JaxbCmvProfileV0.SCHEMALOCATION, new DefaultNamespacePrefixMapper( NAMESPACE_DEFAULT_URI ) );
+		super( JaxbProfileV0.SCHEMALOCATION, new DefaultNamespacePrefixMapper( NAMESPACE_DEFAULT_URI ) );
 		constraints = new ArrayList<>();
 	}
 
@@ -85,17 +85,17 @@ public class JaxbCmvProfileV0 extends JaxbDocument
 		this.constraints = constraints;
 	}
 
-	public static JaxbCmvProfileV0 read( InputStream inputStream )
+	public static JaxbProfileV0 read( InputStream inputStream )
 	{
 		return JaxbDocument.read( inputStream, JAXBCONTEXT );
 	}
 
-	public static JaxbCmvProfileV0 open( File file ) throws NoSuchFileException
+	public static JaxbProfileV0 open( File file ) throws NoSuchFileException
 	{
 		return JaxbDocument.open( file, JAXBCONTEXT );
 	}
 
-	public static JaxbCmvProfileV0 read( String string )
+	public static JaxbProfileV0 read( String string )
 	{
 		return JaxbDocument.read( string, JAXBCONTEXT );
 	}
