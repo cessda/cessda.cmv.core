@@ -1,140 +1,561 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xsi:schemaLocation="cmv:profile:v0 https://bitbucket.org/cessda/cessda.cmv.core/src/raw/stable/schema/profile-v0.1.xsd" xmlns="cmv:profile:v0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <Name>CESSDA DATA CATALOGUE (CDC) DDI2.5 PROFILE</Name>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
    <MandatoryNodeConstraint>
       <LocationPath>/codeBook/@xml:lang</LocationPath>
    </MandatoryNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/@xsi:schemaLocation</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/@xsi:schemaLocation</LocationPath>
+   </PredicatelessXPathConstraint>
    <MandatoryNodeConstraint>
       <LocationPath>/codeBook/@xsi:schemaLocation</LocationPath>
    </MandatoryNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/docDscr/citation/titlStmt/titl</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/docDscr/citation/titlStmt/titl</LocationPath>
+   </PredicatelessXPathConstraint>
    <MandatoryNodeConstraint>
       <LocationPath>/codeBook/docDscr/citation/titlStmt/titl</LocationPath>
    </MandatoryNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/docDscr/citation/titlStmt/titl/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/docDscr/citation/titlStmt/titl/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
    <MandatoryNodeConstraint>
       <LocationPath>/codeBook/docDscr/citation/titlStmt/titl/@xml:lang</LocationPath>
    </MandatoryNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/docDscr/citation/holdings/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/docDscr/citation/holdings/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
    <MandatoryNodeConstraint>
       <LocationPath>/codeBook/docDscr/citation/holdings/@xml:lang</LocationPath>
    </MandatoryNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/docDscr/citation/holdings/@URI</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/docDscr/citation/holdings/@URI</LocationPath>
+   </PredicatelessXPathConstraint>
    <MandatoryNodeConstraint>
       <LocationPath>/codeBook/docDscr/citation/holdings/@URI</LocationPath>
    </MandatoryNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/titlStmt/titl</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/titlStmt/titl</LocationPath>
+   </PredicatelessXPathConstraint>
    <MandatoryNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/citation/titlStmt/titl</LocationPath>
    </MandatoryNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/titlStmt/titl/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/titlStmt/titl/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
    <MandatoryNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/citation/titlStmt/titl/@xml:lang</LocationPath>
    </MandatoryNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/titlStmt/parTitl</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/titlStmt/parTitl</LocationPath>
+   </PredicatelessXPathConstraint>
    <OptionalNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/citation/titlStmt/parTitl</LocationPath>
    </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/titlStmt/parTitl/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/titlStmt/parTitl/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/titlStmt/parTitl/@xml:lang</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/titlStmt/IDNo</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/titlStmt/IDNo</LocationPath>
+   </PredicatelessXPathConstraint>
    <MandatoryNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/citation/titlStmt/IDNo</LocationPath>
    </MandatoryNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/titlStmt/IDNo/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/titlStmt/IDNo/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/citation/titlStmt/IDNo/@xml:lang</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/titlStmt/IDNo/@agency</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/titlStmt/IDNo/@agency</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/titlStmt/IDNo/@agency</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/rspStmt/AuthEnty</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/rspStmt/AuthEnty</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/citation/rspStmt/AuthEnty</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/rspStmt/AuthEnty/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/rspStmt/AuthEnty/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/rspStmt/AuthEnty/@xml:lang</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/rspStmt/AuthEnty/@affiliation</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/rspStmt/AuthEnty/@affiliation</LocationPath>
+   </PredicatelessXPathConstraint>
    <OptionalNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/citation/rspStmt/AuthEnty/@affiliation</LocationPath>
    </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/distStmt/distrbtr</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/distStmt/distrbtr</LocationPath>
+   </PredicatelessXPathConstraint>
    <MandatoryNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/citation/distStmt/distrbtr</LocationPath>
    </MandatoryNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/distStmt/distrbtr/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/distStmt/distrbtr/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
    <MandatoryNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/citation/distStmt/distrbtr/@xml:lang</LocationPath>
    </MandatoryNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/distStmt/distrbtr/@abbr</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/distStmt/distrbtr/@abbr</LocationPath>
+   </PredicatelessXPathConstraint>
    <OptionalNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/citation/distStmt/distrbtr/@abbr</LocationPath>
    </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/distStmt/distDate</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/distStmt/distDate</LocationPath>
+   </PredicatelessXPathConstraint>
    <OptionalNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/citation/distStmt/distDate</LocationPath>
    </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/distStmt/distDate/@date</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/distStmt/distDate/@date</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/citation/distStmt/distDate/@date</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@xml:lang</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocab</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocab</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocab</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocabURI</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocabURI</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocabURI</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/keyword</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/keyword</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/keyword</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/keyword/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/keyword/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/keyword/@xml:lang</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/keyword/@vocab</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/keyword/@vocab</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/keyword/@vocab</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/keyword/@vocabURI</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/keyword/@vocabURI</LocationPath>
+   </PredicatelessXPathConstraint>
    <OptionalNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/keyword/@vocabURI</LocationPath>
    </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/abstract</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/abstract</LocationPath>
+   </PredicatelessXPathConstraint>
    <MandatoryNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/abstract</LocationPath>
    </MandatoryNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/abstract/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/abstract/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
    <MandatoryNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/abstract/@xml:lang</LocationPath>
    </MandatoryNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate</LocationPath>
+   </PredicatelessXPathConstraint>
    <OptionalNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate</LocationPath>
    </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate/@xml:lang</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate/@event</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate/@event</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate/@event</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate/@date</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate/@date</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate/@date</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/nation</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/nation</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/nation</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/nation/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/nation/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/nation/@xml:lang</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/nation/@abbr</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/nation/@abbr</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/nation/@abbr</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/@xml:lang</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocab</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocab</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocab</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocabURI</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocabURI</LocationPath>
+   </PredicatelessXPathConstraint>
    <OptionalNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocabURI</LocationPath>
    </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/timeMeth</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/timeMeth</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/method/dataColl/timeMeth</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/timeMeth/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/timeMeth/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/timeMeth/@xml:lang</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/timeMeth/concept</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/timeMeth/concept</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/method/dataColl/timeMeth/concept</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/timeMeth/concept/@vocab</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/timeMeth/concept/@vocab</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/method/dataColl/timeMeth/concept/@vocab</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/timeMeth/concept/@vocabURI</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/timeMeth/concept/@vocabURI</LocationPath>
+   </PredicatelessXPathConstraint>
    <OptionalNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/method/dataColl/timeMeth/concept/@vocabURI</LocationPath>
    </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/sampProc</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/sampProc</LocationPath>
+   </PredicatelessXPathConstraint>
    <OptionalNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/method/dataColl/sampProc</LocationPath>
    </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/sampProc/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/sampProc/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/sampProc/@xml:lang</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/sampProc/concept</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/sampProc/concept</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/method/dataColl/sampProc/concept</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/sampProc/concept/@vocab</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/sampProc/concept/@vocab</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/method/dataColl/sampProc/concept/@vocab</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/sampProc/concept/@vocabURI</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/sampProc/concept/@vocabURI</LocationPath>
+   </PredicatelessXPathConstraint>
    <OptionalNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/method/dataColl/sampProc/concept/@vocabURI</LocationPath>
    </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/collMode</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/collMode</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/method/dataColl/collMode</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/collMode/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/collMode/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/collMode/@xml:lang</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/collMode/concept</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/collMode/concept</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/method/dataColl/collMode/concept</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/collMode/concept/@vocab</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/collMode/concept/@vocab</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/method/dataColl/collMode/concept/@vocab</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/collMode/concept/@vocabURI</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/method/dataColl/collMode/concept/@vocabURI</LocationPath>
+   </PredicatelessXPathConstraint>
    <OptionalNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/method/dataColl/collMode/concept/@vocabURI</LocationPath>
    </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/dataAccs/useStmt/restrctn</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/dataAccs/useStmt/restrctn</LocationPath>
+   </PredicatelessXPathConstraint>
    <RecommendedNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/dataAccs/useStmt/restrctn</LocationPath>
    </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/dataAccs/useStmt/restrctn/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/dataAccs/useStmt/restrctn/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/dataAccs/useStmt/restrctn/@xml:lang</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/fileDscr/fileTxt/fileName</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/fileDscr/fileTxt/fileName</LocationPath>
+   </PredicatelessXPathConstraint>
    <MandatoryNodeConstraint>
       <LocationPath>/codeBook/fileDscr/fileTxt/fileName</LocationPath>
    </MandatoryNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/fileDscr/fileTxt/fileName/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/fileDscr/fileTxt/fileName/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
    <MandatoryNodeConstraint>
       <LocationPath>/codeBook/fileDscr/fileTxt/fileName/@xml:lang</LocationPath>
    </MandatoryNodeConstraint>

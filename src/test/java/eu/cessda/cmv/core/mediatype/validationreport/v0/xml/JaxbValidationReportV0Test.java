@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Test;
 import eu.cessda.cmv.core.ConstraintViolation;
 import eu.cessda.cmv.core.Document;
 import eu.cessda.cmv.core.DomCodebookDocument;
-import eu.cessda.cmv.core.DomDdiProfile;
+import eu.cessda.cmv.core.DomSemiStructuredDdiProfile;
 import eu.cessda.cmv.core.Profile;
 import eu.cessda.cmv.core.StandardValidationGate;
 import eu.cessda.cmv.core.ValidationGate;
@@ -83,6 +83,6 @@ public class JaxbValidationReportV0Test
 		requireNonNull( url );
 		Resource resource = newResource( url );
 		DdiInputStream inputStream = new DdiInputStream( resource.readInputStream() );
-		return new DomDdiProfile( inputStream );
+		return new DomSemiStructuredDdiProfile( inputStream );
 	}
 }

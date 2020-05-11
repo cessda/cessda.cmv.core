@@ -15,14 +15,10 @@ import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.gesis.commons.resource.Resource;
-import org.gesis.commons.xml.DomDocument;
-import org.gesis.commons.xml.XercesXalanDocument;
 import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
 import org.gesis.commons.xml.jaxb.JaxbDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.w3c.dom.Node;
 
 @XmlRootElement( name = JaxbProfileV0.JAXB_ELEMENT )
 @XmlType( name = JaxbProfileV0.JAXB_TYPE )
@@ -63,7 +59,13 @@ public class JaxbProfileV0 extends JaxbDocument
 					type = JaxbOptionalNodeConstraintV0.class ),
 			@XmlElement(
 					name = JaxbRecommendedNodeConstraintV0.JAXB_ELEMENT,
-					type = JaxbRecommendedNodeConstraintV0.class )
+					type = JaxbRecommendedNodeConstraintV0.class ),
+			@XmlElement(
+					name = JaxbPredicatelessXPathConstraintV0.JAXB_ELEMENT,
+					type = JaxbPredicatelessXPathConstraintV0.class ),
+			@XmlElement(
+					name = JaxbCompilableXPathConstraintV0.JAXB_ELEMENT,
+					type = JaxbCompilableXPathConstraintV0.class )
 	} )
 	private List<JaxbConstraintV0> constraints;
 
@@ -129,46 +131,5 @@ public class JaxbProfileV0 extends JaxbDocument
 	public String toString()
 	{
 		return toString( JAXBCONTEXT );
-	}
-
-	public static JaxbProfileV0 readSemiStructuredDdiProfile( Resource resource )
-	{
-		JaxbProfileV0 profile = new JaxbProfileV0();
-		DomDocument.V13 document = XercesXalanDocument.newBuilder().ofInputStream( resource.readInputStream() ).build();
-		for ( Node usedNode : document.selectNodes( "/DDIProfile/Used" ) )
-		{
-			boolean atLeastOneConstraint = false;
-			JaxbConstraintV0 constraint;
-			if ( document.selectNode( usedNode, "Description[Content='Required: Mandatory']" ) != null )
-			{
-				constraint = new JaxbMandatoryNodeConstraintV0( getLocationPath( usedNode ) );
-				profile.getConstraints().add( constraint );
-				atLeastOneConstraint = true;
-			}
-			if ( document.selectNode( usedNode, "Description[Content='Required: Recommended']" ) != null
-					|| document.selectNode( usedNode, "Description[Content='Recommended']" ) != null )
-			{
-				constraint = new JaxbRecommendedNodeConstraintV0( getLocationPath( usedNode ) );
-				profile.getConstraints().add( constraint );
-				atLeastOneConstraint = true;
-			}
-			if ( document.selectNode( usedNode, "Description[Content='Required: Optional']" ) != null )
-			{
-				constraint = new JaxbOptionalNodeConstraintV0( getLocationPath( usedNode ) );
-				profile.getConstraints().add( constraint );
-				atLeastOneConstraint = true;
-			}
-
-			if ( !atLeastOneConstraint )
-			{
-				LOGGER.warn( "usedNode element has really any constraints? \n{}", document.getContent( usedNode ) );
-			}
-		}
-		return profile;
-	}
-
-	private static String getLocationPath( org.w3c.dom.Node usedNode )
-	{
-		return usedNode.getAttributes().getNamedItem( "xpath" ).getTextContent();
 	}
 }

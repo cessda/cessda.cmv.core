@@ -20,7 +20,7 @@ public class JaxbMaximumElementOccuranceConstraintV0 extends JaxbNodeConstraint
 		super( null );
 	}
 
-	protected JaxbMaximumElementOccuranceConstraintV0( String locationPath )
+	public JaxbMaximumElementOccuranceConstraintV0( String locationPath, long maxOccurs )
 	{
 		super( locationPath );
 	}
