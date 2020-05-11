@@ -3,22 +3,18 @@ package eu.cessda.cmv.core;
 import static java.lang.Long.valueOf;
 import static java.util.Collections.unmodifiableList;
 
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.gesis.commons.xml.ddi.DdiInputStream;
 
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbDdiProfileConstraintsV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbRecommendedNodeConstraintV0;
-
-public class DomProfile implements Profile.V10
+public class DomDdiProfile implements Profile.V10
 {
 	private org.gesis.commons.xml.DomDocument.V11 document;
 	private List<Constraint> constraints;
 
-	public DomProfile( DdiInputStream inputStream )
+	public DomDdiProfile( DdiInputStream inputStream )
 	{
 		document = XercesXalanDocument.newBuilder().ofInputStream( inputStream ).build();
 		constraints = new ArrayList<>();
@@ -26,7 +22,6 @@ public class DomProfile implements Profile.V10
 		{
 			constraints.add( new CompilableXPathConstraint( getLocationPath( usedNode ) ) );
 			constraints.add( new PredicatelessXPathConstraint( getLocationPath( usedNode ) ) );
-
 			parseMandatoryNodeConstraint( usedNode );
 			parseOptionalNodeConstraint( usedNode );
 			parseMaximumElementOccuranceConstraint( usedNode );
@@ -52,12 +47,15 @@ public class DomProfile implements Profile.V10
 		org.w3c.dom.Node isRequiredNode = usedNode.getAttributes().getNamedItem( "isRequired" );
 		if ( isRequiredNode == null || isRequiredNode.getNodeValue().equalsIgnoreCase( "false" ) )
 		{
-			String canonicalName = getDdiProfileConstraints( usedNode ).getConstraints().stream()
-					.filter( c -> c instanceof JaxbRecommendedNodeConstraintV0 )
-					.map( c -> RecommendedNodeConstraint.class.getCanonicalName() )
-					.findAny()
-					.orElse( OptionalNodeConstraint.class.getCanonicalName() );
-			constraints.add( newConstraint( canonicalName, getLocationPath( usedNode ) ) );
+			if ( document.selectNode( usedNode, "Description[Content='Required: Recommended']" ) != null )
+			{
+				// || document.selectNode( usedNode, "Description[Content='Recommended']" ) != null
+				constraints.add( new RecommendedNodeConstraint( getLocationPath( usedNode ) ) );
+			}
+			else
+			{
+				constraints.add( new OptionalNodeConstraint( getLocationPath( usedNode ) ) );
+			}
 		}
 	}
 
@@ -69,34 +67,6 @@ public class DomProfile implements Profile.V10
 			constraints.add( new MaximumElementOccuranceConstraint(
 					getLocationPath( usedNode ),
 					valueOf( limitMaxOccursNode.getNodeValue() ) ) );
-		}
-	}
-
-	private Constraint newConstraint( String canonicalName, String locationPath )
-	{
-		try
-		{
-			@SuppressWarnings( "unchecked" )
-			Class<Constraint> clazz = (Class<Constraint>) Class.forName( canonicalName );
-			Constructor<Constraint> constructor = clazz.getConstructor( String.class );
-			return constructor.newInstance( locationPath );
-		}
-		catch (Exception e)
-		{
-			throw new IllegalArgumentException( e );
-		}
-	}
-
-	private JaxbDdiProfileConstraintsV0 getDdiProfileConstraints( org.w3c.dom.Node usedNode )
-	{
-		org.w3c.dom.Node cmvNode = document.selectNode( usedNode, "Instructions/Content" );
-		if ( cmvNode != null )
-		{
-			return JaxbDdiProfileConstraintsV0.fromString( cmvNode.getTextContent() );
-		}
-		else
-		{
-			return new JaxbDdiProfileConstraintsV0();
 		}
 	}
 
