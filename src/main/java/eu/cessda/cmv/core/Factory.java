@@ -63,7 +63,7 @@ class Factory
 
 	public static Profile.V10 newProfile( URL url )
 	{
-		return new eu.cessda.cmv.core.DomProfile( newDdiInputStream( SemiStructuredProfileMapper.map( url ) ) );
+		return new eu.cessda.cmv.core.DomSemiStructuredDdiProfile( newDdiInputStream( url ) );
 	}
 
 	public static DdiInputStream newDdiInputStream( URL url )

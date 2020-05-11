@@ -2,46 +2,43 @@ package eu.cessda.cmv.core;
 
 import static java.lang.Long.valueOf;
 import static java.util.Collections.unmodifiableList;
-import static java.util.stream.Collectors.toList;
 
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.gesis.commons.xml.ddi.DdiInputStream;
 
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbDdiProfileConstraintsV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbCompilableXPathConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbMandatoryNodeConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbMaximumElementOccuranceConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbOptionalNodeConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbPredicatelessXPathConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbProfileV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbRecommendedNodeConstraintV0;
 
-public class DomProfile implements Profile.V10
+public class DomSemiStructuredDdiProfile implements Profile.V10
 {
 	private org.gesis.commons.xml.DomDocument.V11 document;
 	private List<Constraint> constraints;
+	private JaxbProfileV0 jaxbProfile;
 
-	public DomProfile( DdiInputStream inputStream )
+	public DomSemiStructuredDdiProfile( DdiInputStream inputStream )
 	{
 		document = XercesXalanDocument.newBuilder().ofInputStream( inputStream ).build();
 		constraints = new ArrayList<>();
+		jaxbProfile = new JaxbProfileV0();
+
+		parseProfileName();
 		for ( org.w3c.dom.Node usedNode : document.selectNodes( "/DDIProfile/Used" ) )
 		{
 			constraints.add( new CompilableXPathConstraint( getLocationPath( usedNode ) ) );
+			jaxbProfile.getConstraints().add( new JaxbCompilableXPathConstraintV0( getLocationPath( usedNode ) ) );
 			constraints.add( new PredicatelessXPathConstraint( getLocationPath( usedNode ) ) );
-
+			jaxbProfile.getConstraints().add( new JaxbPredicatelessXPathConstraintV0( getLocationPath( usedNode ) ) );
 			parseMandatoryNodeConstraint( usedNode );
 			parseOptionalNodeConstraint( usedNode );
 			parseMaximumElementOccuranceConstraint( usedNode );
-
-			JaxbDdiProfileConstraintsV0 instructions = getDdiProfileConstraints( usedNode );
-			List<String> canonicalNames = constraints.stream()
-					.map( c -> c.getClass().getCanonicalName() )
-					.collect( Collectors.toList() );
-			constraints.addAll( instructions.getConstraints().stream()
-					.map( JaxbConstraintV0::getType )
-					.filter( type -> !canonicalNames.contains( type ) )
-					.map( canonicalName -> newConstraint( canonicalName, getLocationPath( usedNode ) ) )
-					.collect( toList() ) );
 		}
 	}
 
@@ -50,12 +47,22 @@ public class DomProfile implements Profile.V10
 		return usedNode.getAttributes().getNamedItem( "xpath" ).getTextContent();
 	}
 
+	private void parseProfileName()
+	{
+		org.w3c.dom.Node nameNode = document.selectNode( "/DDIProfile/DDIProfileName" );
+		if ( nameNode != null )
+		{
+			jaxbProfile.setName( nameNode.getTextContent().trim() );
+		}
+	}
+
 	private void parseMandatoryNodeConstraint( org.w3c.dom.Node usedNode )
 	{
 		org.w3c.dom.Node isRequiredNode = usedNode.getAttributes().getNamedItem( "isRequired" );
 		if ( isRequiredNode != null && isRequiredNode.getNodeValue().equalsIgnoreCase( "true" ) )
 		{
 			constraints.add( new MandatoryNodeConstraint( getLocationPath( usedNode ) ) );
+			jaxbProfile.getConstraints().add( new JaxbMandatoryNodeConstraintV0( getLocationPath( usedNode ) ) );
 		}
 	}
 
@@ -64,12 +71,17 @@ public class DomProfile implements Profile.V10
 		org.w3c.dom.Node isRequiredNode = usedNode.getAttributes().getNamedItem( "isRequired" );
 		if ( isRequiredNode == null || isRequiredNode.getNodeValue().equalsIgnoreCase( "false" ) )
 		{
-			String canonicalName = getDdiProfileConstraints( usedNode ).getConstraints().stream()
-					.map( JaxbConstraintV0::getType )
-					.filter( type -> type.equals( RecommendedNodeConstraint.class.getCanonicalName() ) )
-					.findAny()
-					.orElse( OptionalNodeConstraint.class.getCanonicalName() );
-			constraints.add( newConstraint( canonicalName, getLocationPath( usedNode ) ) );
+			if ( document.selectNode( usedNode, "Description[Content='Required: Recommended']" ) != null
+					|| document.selectNode( usedNode, "Description[Content='Recommended']" ) != null )
+			{
+				constraints.add( new RecommendedNodeConstraint( getLocationPath( usedNode ) ) );
+				jaxbProfile.getConstraints().add( new JaxbRecommendedNodeConstraintV0( getLocationPath( usedNode ) ) );
+			}
+			else
+			{
+				constraints.add( new OptionalNodeConstraint( getLocationPath( usedNode ) ) );
+				jaxbProfile.getConstraints().add( new JaxbOptionalNodeConstraintV0( getLocationPath( usedNode ) ) );
+			}
 		}
 	}
 
@@ -81,34 +93,9 @@ public class DomProfile implements Profile.V10
 			constraints.add( new MaximumElementOccuranceConstraint(
 					getLocationPath( usedNode ),
 					valueOf( limitMaxOccursNode.getNodeValue() ) ) );
-		}
-	}
-
-	private Constraint newConstraint( String canonicalName, String locationPath )
-	{
-		try
-		{
-			@SuppressWarnings( "unchecked" )
-			Class<Constraint> clazz = (Class<Constraint>) Class.forName( canonicalName );
-			Constructor<Constraint> constructor = clazz.getConstructor( String.class );
-			return constructor.newInstance( locationPath );
-		}
-		catch (Exception e)
-		{
-			throw new IllegalArgumentException( e );
-		}
-	}
-
-	private JaxbDdiProfileConstraintsV0 getDdiProfileConstraints( org.w3c.dom.Node usedNode )
-	{
-		org.w3c.dom.Node cmvNode = document.selectNode( usedNode, "Instructions/Content" );
-		if ( cmvNode != null )
-		{
-			return JaxbDdiProfileConstraintsV0.fromString( cmvNode.getTextContent() );
-		}
-		else
-		{
-			return new JaxbDdiProfileConstraintsV0();
+			jaxbProfile.getConstraints().add( new JaxbMaximumElementOccuranceConstraintV0(
+					getLocationPath( usedNode ),
+					valueOf( limitMaxOccursNode.getNodeValue() ) ) );
 		}
 	}
 
@@ -117,5 +104,10 @@ public class DomProfile implements Profile.V10
 	public <T extends Constraint> List<T> getConstraints()
 	{
 		return unmodifiableList( (List<T>) constraints );
+	}
+
+	public JaxbProfileV0 toJaxbProfileV0()
+	{
+		return jaxbProfile;
 	}
 }
