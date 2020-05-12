@@ -23,7 +23,14 @@ public class ConstraintViolation
 
 	public String getMessage()
 	{
-		return message;
+		if ( locationInfo.isPresent() )
+		{
+			return message + " (lineNumber: " + locationInfo.get().getLineNumber() + ")";
+		}
+		else
+		{
+			return message;
+		}
 	}
 
 	public Optional<LocationInfo> getLocationInfo()

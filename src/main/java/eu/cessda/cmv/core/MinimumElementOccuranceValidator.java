@@ -44,6 +44,11 @@ class MinimumElementOccuranceValidator implements Validator.V10
 		}
 	}
 
+	protected String getLocationPath()
+	{
+		return locationPath;
+	}
+
 	protected ConstraintViolation newConstraintViolation()
 	{
 		String message = "'%s' deceeds minimal count of %s";

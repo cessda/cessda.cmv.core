@@ -2,7 +2,6 @@ package eu.cessda.cmv.core;
 
 import static eu.cessda.cmv.core.Factory.newDocument;
 import static eu.cessda.cmv.core.Factory.newProfile;
-import static java.util.stream.Collectors.toList;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
 
@@ -22,9 +21,9 @@ public class CdcCodebookDocumentValidationTest
 	private static class TestParameter
 	{
 		String documentName;
-		int expectedMandatoryCount;
-		int expectedRecommendedCount;
-		int expectedOptionalCount;
+		int expectedViolationsAtBasicValidationGate;
+		int expectedViolationsAtStandardValidationGate;
+		int expectedViolationsAtStrictValidationGate;
 
 		public String toString()
 		{
@@ -39,23 +38,26 @@ public class CdcCodebookDocumentValidationTest
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/ukds-7481.xml";
-		testParameter.expectedMandatoryCount = 10;
-		testParameter.expectedRecommendedCount = 12;
-		testParameter.expectedOptionalCount = 18;
+		testParameter.expectedViolationsAtBasicValidationGate = 10;
+		testParameter.expectedViolationsAtStandardValidationGate = 10 + 12;
+		testParameter.expectedViolationsAtStrictValidationGate = 10 + 12 + 18;
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/ukds-2000.xml";
-		testParameter.expectedMandatoryCount = 9;
-		testParameter.expectedRecommendedCount = 12;
-		testParameter.expectedOptionalCount = 19;
+		testParameter.expectedViolationsAtBasicValidationGate = 9;
+		testParameter.expectedViolationsAtStandardValidationGate = 9 + 12;
+		testParameter.expectedViolationsAtStrictValidationGate = 9 + 12 + 19;
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/fsd-3271.xml";
-		testParameter.expectedMandatoryCount = 8;
-		testParameter.expectedRecommendedCount = 6;
-		testParameter.expectedOptionalCount = 16;
+		// mandatory + blank
+		testParameter.expectedViolationsAtBasicValidationGate = 8 + 1;
+		// mandatory + recommended + blank
+		testParameter.expectedViolationsAtStandardValidationGate = 8 + 6 + 3;
+		// mandatory + recommended + optional + blank
+		testParameter.expectedViolationsAtStrictValidationGate = 8 + 6 + 16 + 9;
 		testParameters.add( testParameter );
 
 		return testParameters.stream();
@@ -73,10 +75,7 @@ public class CdcCodebookDocumentValidationTest
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
-		assertThat( constraintViolations, hasSize( param.expectedMandatoryCount ) );
-		assertThat( constraintViolations.stream()
-				.filter( cv -> cv.getMessage().contains( "mandatory" ) )
-				.collect( toList() ), hasSize( param.expectedMandatoryCount ) );
+		assertThat( constraintViolations, hasSize( param.expectedViolationsAtBasicValidationGate ) );
 	}
 
 	@ParameterizedTest
@@ -91,13 +90,7 @@ public class CdcCodebookDocumentValidationTest
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
-		assertThat( constraintViolations, hasSize( param.expectedMandatoryCount + param.expectedRecommendedCount ) );
-		assertThat( constraintViolations.stream()
-				.filter( cv -> cv.getMessage().contains( "mandatory" ) )
-				.collect( toList() ), hasSize( param.expectedMandatoryCount ) );
-		assertThat( constraintViolations.stream()
-				.filter( cv -> cv.getMessage().contains( "recommended" ) )
-				.collect( toList() ), hasSize( param.expectedRecommendedCount ) );
+		assertThat( constraintViolations, hasSize( param.expectedViolationsAtStandardValidationGate ) );
 	}
 
 	@ParameterizedTest
@@ -112,16 +105,6 @@ public class CdcCodebookDocumentValidationTest
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
-		assertThat( constraintViolations, hasSize( param.expectedMandatoryCount + param.expectedRecommendedCount
-				+ param.expectedOptionalCount ) );
-		assertThat( constraintViolations.stream()
-				.filter( cv -> cv.getMessage().contains( "mandatory" ) )
-				.collect( toList() ), hasSize( param.expectedMandatoryCount ) );
-		assertThat( constraintViolations.stream()
-				.filter( cv -> cv.getMessage().contains( "recommended" ) )
-				.collect( toList() ), hasSize( param.expectedRecommendedCount ) );
-		assertThat( constraintViolations.stream()
-				.filter( cv -> cv.getMessage().contains( "optional" ) )
-				.collect( toList() ), hasSize( param.expectedOptionalCount ) );
+		assertThat( constraintViolations, hasSize( param.expectedViolationsAtStrictValidationGate ) );
 	}
 }

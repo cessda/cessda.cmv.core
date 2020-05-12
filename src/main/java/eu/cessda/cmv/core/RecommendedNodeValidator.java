@@ -4,9 +4,7 @@ import java.util.Optional;
 
 class RecommendedNodeValidator extends MinimumElementOccuranceValidator
 {
-	private String locationPath;
-
-	RecommendedNodeValidator( String locationPath, long actualCount )
+	public RecommendedNodeValidator( String locationPath, long actualCount )
 	{
 		super( locationPath, actualCount, 1 );
 	}
@@ -15,7 +13,7 @@ class RecommendedNodeValidator extends MinimumElementOccuranceValidator
 	protected ConstraintViolation newConstraintViolation()
 	{
 		String message = "'%s' is recommended";
-		message = String.format( message, locationPath );
+		message = String.format( message, getLocationPath() );
 		return new ConstraintViolation( message, Optional.empty() );
 	}
 }

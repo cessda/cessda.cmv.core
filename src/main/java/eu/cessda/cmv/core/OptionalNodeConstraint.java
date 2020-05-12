@@ -1,8 +1,8 @@
 package eu.cessda.cmv.core;
 
-import static java.util.Arrays.asList;
-
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class OptionalNodeConstraint extends NodeConstraint
 {
@@ -15,7 +15,10 @@ class OptionalNodeConstraint extends NodeConstraint
 	@SuppressWarnings( "unchecked" )
 	public <T extends Validator> List<T> newValidators( Document document )
 	{
-		long count = ((Document.V10) document).getNodes( getLocationPath() ).size();
-		return asList( (T) new OptionalNodeValidator( getLocationPath(), count ) );
+		List<Node> nodes = ((Document.V10) document).getNodes( getLocationPath() );
+		List<Validator> validators = new ArrayList<>();
+		validators.add( new OptionalNodeValidator( getLocationPath(), nodes.size() ) );
+		validators.addAll( nodes.stream().map( NotBlankNodeValidator::new ).collect( Collectors.toList() ) );
+		return (List<T>) validators;
 	}
 }
