@@ -10,4 +10,9 @@ public abstract class JaxbConstraintV0
 {
 	public static final String JAXB_ELEMENT = "Constraint";
 	public static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
+
+	public JaxbConstraintV0()
+	{
+		// Sonar expects explicit constructor
+	}
 }

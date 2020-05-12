@@ -17,16 +17,12 @@ import javax.xml.bind.annotation.XmlType;
 
 import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
 import org.gesis.commons.xml.jaxb.JaxbDocument;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @XmlRootElement( name = JaxbProfileV0.JAXB_ELEMENT )
 @XmlType( name = JaxbProfileV0.JAXB_TYPE )
 @XmlAccessorType( XmlAccessType.FIELD )
 public class JaxbProfileV0 extends JaxbDocument
 {
-	private static final Logger LOGGER = LoggerFactory.getLogger( JaxbProfileV0.class );
-
 	static final String MAJOR = "0";
 	static final String MINOR = "1";
 	static final String VERSION = MAJOR + "." + MINOR;
