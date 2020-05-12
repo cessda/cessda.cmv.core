@@ -1,35 +1,18 @@
 package eu.cessda.cmv.core;
 
-import static java.util.Optional.empty;
-import static java.util.Optional.of;
-
 import java.util.Optional;
 
-class RecommendedNodeValidator implements Validator.V10
+class RecommendedNodeValidator extends MinimumElementOccuranceValidator
 {
 	private String locationPath;
-	private long count;
 
-	RecommendedNodeValidator( String locationPath, long count )
+	RecommendedNodeValidator( String locationPath, long actualCount )
 	{
-		this.locationPath = locationPath;
-		this.count = count;
+		super( locationPath, actualCount, 1 );
 	}
 
 	@Override
-	public Optional<ConstraintViolation> validate()
-	{
-		if ( count == 0 )
-		{
-			return of( newConstraintViolation() );
-		}
-		else
-		{
-			return empty();
-		}
-	}
-
-	private ConstraintViolation newConstraintViolation()
+	protected ConstraintViolation newConstraintViolation()
 	{
 		String message = "'%s' is recommended";
 		message = String.format( message, locationPath );
