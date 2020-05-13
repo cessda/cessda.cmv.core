@@ -28,6 +28,23 @@ public class ArchitectureConstraintsTest extends TestClassesRuleTest
 	@Test
 	public void ensureEncapsulation()
 	{
+		// All implementations of Constraint, Validator should be package private
+		classes().that()
+				.areNotInterfaces()
+				.and().implement( Constraint.class )
+				.and().implement( Validator.class )
+				.should().bePackagePrivate()
+				.check( importedClasses );
+
+		// All extensions of AbstractValidationGate should be public
+		classes().that()
+				.areNotInterfaces()
+				.and().areNotAssignableTo( AbstractValidationGate.class )
+				.and().areAssignableTo( AbstractValidationGate.class )
+				.should().bePublic()
+				.check( importedClasses );
+
+		// Everything else in 'eu.cessda.cmv.core' should be package private
 		classes().that()
 				.areNotInterfaces()
 				.and().doNotImplement( Document.V10.class )
@@ -37,6 +54,7 @@ public class ArchitectureConstraintsTest extends TestClassesRuleTest
 				.and().haveSimpleNameNotEndingWith( "Test" )
 				.and().haveSimpleNameNotEndingWith( "TestParameter" )
 				.and().resideOutsideOfPackage( "eu.cessda.cmv.core.mediatype.(**)" )
+				.and().resideOutsideOfPackage( "eu.cessda.cmv.core.controlledvocabulary" )
 				.should().bePackagePrivate()
 				.check( importedClasses );
 	}

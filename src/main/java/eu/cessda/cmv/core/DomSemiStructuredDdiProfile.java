@@ -4,8 +4,11 @@ import static java.lang.Long.valueOf;
 import static java.util.Collections.unmodifiableList;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
+import org.gesis.commons.xml.DomDocument;
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.gesis.commons.xml.ddi.DdiInputStream;
 
@@ -26,20 +29,43 @@ public class DomSemiStructuredDdiProfile implements Profile.V10
 	public DomSemiStructuredDdiProfile( DdiInputStream inputStream )
 	{
 		document = XercesXalanDocument.newBuilder().ofInputStream( inputStream ).build();
-		constraints = new ArrayList<>();
-		jaxbProfile = new JaxbProfileV0();
 
+		jaxbProfile = new JaxbProfileV0();
 		parseProfileName();
+
+		constraints = new ArrayList<>();
 		for ( org.w3c.dom.Node usedNode : document.selectNodes( "/DDIProfile/Used" ) )
 		{
 			constraints.add( new CompilableXPathConstraint( getLocationPath( usedNode ) ) );
 			jaxbProfile.getConstraints().add( new JaxbCompilableXPathConstraintV0( getLocationPath( usedNode ) ) );
 			constraints.add( new PredicatelessXPathConstraint( getLocationPath( usedNode ) ) );
 			jaxbProfile.getConstraints().add( new JaxbPredicatelessXPathConstraintV0( getLocationPath( usedNode ) ) );
+			parseControlledVocabularyRepositoryConstraint( usedNode );
+
 			parseMandatoryNodeConstraint( usedNode );
 			parseOptionalNodeConstraint( usedNode );
 			parseMaximumElementOccuranceConstraint( usedNode );
+
+			parseCodeValueOfControlledVocabularyConstraint( usedNode );
 		}
+		constraints = forceConstraintReordering( constraints );
+	}
+
+	private List<Constraint> forceConstraintReordering( List<Constraint> constraints )
+	{
+		LinkedList<Constraint> list = new LinkedList<>();
+		for ( Constraint c : constraints )
+		{
+			if ( c instanceof CodeValueOfControlledVocabularyConstraint )
+			{
+				list.addLast( c );
+			}
+			else
+			{
+				list.addFirst( c );
+			}
+		}
+		return list;
 	}
 
 	private String getLocationPath( org.w3c.dom.Node usedNode )
@@ -53,6 +79,24 @@ public class DomSemiStructuredDdiProfile implements Profile.V10
 		if ( nameNode != null )
 		{
 			jaxbProfile.setName( nameNode.getTextContent().trim() );
+		}
+	}
+
+	private Optional<DomDocument.V13> findExtension( org.w3c.dom.Node usedNode )
+	{
+		String extensionRecognizingXPath = "Instructions/Content[contains(.,'<Constraints>')]";
+		org.w3c.dom.Node constraintsNode = document.selectNode( usedNode, extensionRecognizingXPath );
+		if ( constraintsNode != null )
+		{
+			return Optional.of( (DomDocument.V13) XercesXalanDocument.newBuilder()
+					.ofContent( constraintsNode.getTextContent().trim() )
+					.printPrettyWithIndentation( 2 )
+					.build()
+					.omitWhitespaceOnlyTextNodes() );
+		}
+		else
+		{
+			return Optional.empty();
 		}
 	}
 
@@ -83,6 +127,35 @@ public class DomSemiStructuredDdiProfile implements Profile.V10
 				jaxbProfile.getConstraints().add( new JaxbOptionalNodeConstraintV0( getLocationPath( usedNode ) ) );
 			}
 		}
+	}
+
+	private void parseCodeValueOfControlledVocabularyConstraint( org.w3c.dom.Node usedNode )
+	{
+		findExtension( usedNode ).ifPresent( extension ->
+		{
+			String locationPath = "/Constraints/CodeValueOfControlledVocabularyConstraint";
+			for ( @SuppressWarnings( "unused" )
+			org.w3c.dom.Node constraintNode : extension.selectNodes( locationPath ) )
+			{
+				constraints.add( new CodeValueOfControlledVocabularyConstraint( getLocationPath( usedNode ) ) );
+			}
+		} );
+	}
+
+	private void parseControlledVocabularyRepositoryConstraint( org.w3c.dom.Node usedNode )
+	{
+		findExtension( usedNode ).ifPresent( extension ->
+		{
+			String locationPath = "/Constraints/ControlledVocabularyRepositoryConstraint";
+			for ( org.w3c.dom.Node constraintNode : extension.selectNodes( locationPath ) )
+			{
+				Constraint constraint = new ControlledVocabularyRepositoryConstraint(
+						getLocationPath( usedNode ),
+						extension.selectNode( constraintNode, "./RepositoryType" ).getTextContent(),
+						extension.selectNode( constraintNode, "./RepositoryUri" ).getTextContent() );
+				constraints.add( constraint );
+			}
+		} );
 	}
 
 	private void parseMaximumElementOccuranceConstraint( org.w3c.dom.Node usedNode )

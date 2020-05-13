@@ -1,9 +1,9 @@
-package eu.cessda.cmv.core;
+package eu.cessda.cmv.core.controlledvocabulary;
 
 import java.util.HashSet;
 import java.util.Set;
 
-class DdiAnalysisUnit10InMemoryControlledVocabularyRepository implements ControlledVocabularyRepository
+public class InMemoryAnalysisUnit10ControlledVocabularyRepository implements ControlledVocabularyRepository.V10
 {
 	@Override
 	public Set<String> findCodeValues()

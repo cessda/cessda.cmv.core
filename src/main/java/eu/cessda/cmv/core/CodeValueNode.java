@@ -6,24 +6,26 @@ import java.util.Optional;
 
 import org.gesis.commons.xml.LocationInfo;
 
+import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
+
 class CodeValueNode extends Node
 {
-	private String controlledVocabularyRepositoryUri;
+	private ControlledVocabularyRepository.V10 controlledVocabularyRepository;
 
 	CodeValueNode( String locationPath,
 			String textContent,
 			Optional<LocationInfo> locationInfo,
-			String controlledVocabularyRepositoryUri )
+			ControlledVocabularyRepository.V10 controlledVocabularyRepository )
 	{
 		super( locationPath, textContent, locationInfo );
 
-		requireNonNull( controlledVocabularyRepositoryUri );
-		this.controlledVocabularyRepositoryUri = controlledVocabularyRepositoryUri;
+		requireNonNull( controlledVocabularyRepository );
+		this.controlledVocabularyRepository = controlledVocabularyRepository;
 
 	}
 
-	public String getControlledVocabularyRepositoryUri()
+	public ControlledVocabularyRepository.V10 getControlledVocabularyRepository()
 	{
-		return controlledVocabularyRepositoryUri;
+		return controlledVocabularyRepository;
 	}
 }

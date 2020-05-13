@@ -10,29 +10,24 @@ import java.util.Set;
 class CodeValueOfControlledVocabularyValidator implements Validator.V10
 {
 	private CodeValueNode node;
-	private ControlledVocabularyRepository controlledVocabularyRepository;
 
-	CodeValueOfControlledVocabularyValidator( CodeValueNode node,
-			ControlledVocabularyRepository controlledVocabularyRepository )
+	CodeValueOfControlledVocabularyValidator( CodeValueNode node )
 	{
 		requireNonNull( node );
-		requireNonNull( controlledVocabularyRepository );
-
 		this.node = node;
-		this.controlledVocabularyRepository = controlledVocabularyRepository;
 	}
 
 	@Override
 	public Optional<ConstraintViolation> validate()
 	{
-		Set<String> elementSet = controlledVocabularyRepository.findCodeValues();
+		Set<String> elementSet = node.getControlledVocabularyRepository().findCodeValues();
 		if ( !elementSet.contains( node.getTextContent() ) )
 		{
 			String message = "CodeValue '%s' in '%s' is not element of the controlled vocabulary in '%s'";
 			message = String.format( message,
 					node.getTextContent(),
-					node.getTextContent(),
-					node.getControlledVocabularyRepositoryUri() );
+					node.getLocationPath(),
+					"TODO node.getControlledVocabularyRepositoryUri()" );
 			return of( new ConstraintViolation( message, node.getLocationInfo() ) );
 		}
 		else

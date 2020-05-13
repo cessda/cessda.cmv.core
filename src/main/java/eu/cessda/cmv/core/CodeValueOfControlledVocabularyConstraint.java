@@ -5,11 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class CodeValueOfControlledVocabularyContraint implements Constraint.V20
+class CodeValueOfControlledVocabularyConstraint implements Constraint.V20
 {
 	private String locationPath;
 
-	CodeValueOfControlledVocabularyContraint( String locationPath )
+	CodeValueOfControlledVocabularyConstraint( String locationPath )
 	{
 		this.locationPath = locationPath;
 	}
@@ -21,8 +21,7 @@ class CodeValueOfControlledVocabularyContraint implements Constraint.V20
 		requireNonNull( document );
 		return (List<T>) ((Document.V10) document).getNodes( locationPath ).stream()
 				.map( CodeValueNode.class::cast )
-				.map( node -> new CodeValueOfControlledVocabularyValidator( node,
-						new DdiAnalysisUnit10InMemoryControlledVocabularyRepository() ) )
+				.map( node -> new CodeValueOfControlledVocabularyValidator( node ) )
 				.collect( Collectors.toList() );
 	}
 }
