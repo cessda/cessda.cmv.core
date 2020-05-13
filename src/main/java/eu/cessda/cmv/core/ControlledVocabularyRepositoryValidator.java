@@ -5,14 +5,13 @@ import static java.util.Optional.empty;
 
 import java.util.Optional;
 
-import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepositoryProxy;
 
 class ControlledVocabularyRepositoryValidator implements Validator.V10
 {
 	private ControlledVocabularyRepositoryProxy proxy;
 
-	ControlledVocabularyRepositoryValidator( ControlledVocabularyRepositoryProxy proxy )
+	public ControlledVocabularyRepositoryValidator( ControlledVocabularyRepositoryProxy proxy )
 	{
 		requireNonNull( proxy );
 		this.proxy = proxy;
@@ -29,7 +28,7 @@ class ControlledVocabularyRepositoryValidator implements Validator.V10
 		{
 			return Optional.of( new ConstraintViolation( e.getMessage(), empty() ) );
 		}
-		if ( ((ControlledVocabularyRepository.V10) proxy).findCodeValues().isEmpty() )
+		if ( proxy.findCodeValues().isEmpty() )
 		{
 			return Optional.of( new ConstraintViolation( "No values", empty() ) );
 		}

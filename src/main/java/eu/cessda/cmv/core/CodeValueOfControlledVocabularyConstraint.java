@@ -9,8 +9,9 @@ class CodeValueOfControlledVocabularyConstraint implements Constraint.V20
 {
 	private String locationPath;
 
-	CodeValueOfControlledVocabularyConstraint( String locationPath )
+	public CodeValueOfControlledVocabularyConstraint( String locationPath )
 	{
+		requireNonNull( locationPath );
 		this.locationPath = locationPath;
 	}
 
@@ -21,7 +22,7 @@ class CodeValueOfControlledVocabularyConstraint implements Constraint.V20
 		requireNonNull( document );
 		return (List<T>) ((Document.V10) document).getNodes( locationPath ).stream()
 				.map( CodeValueNode.class::cast )
-				.map( node -> new CodeValueOfControlledVocabularyValidator( node ) )
+				.map( CodeValueOfControlledVocabularyValidator::new )
 				.collect( Collectors.toList() );
 	}
 }

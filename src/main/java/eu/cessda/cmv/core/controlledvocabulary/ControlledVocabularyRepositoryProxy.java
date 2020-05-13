@@ -19,7 +19,6 @@ public class ControlledVocabularyRepositoryProxy implements ControlledVocabulary
 
 		this.canonicalName = canonicalName;
 		this.uri = uri;
-		// repository = new InMemoryAnalysisUnit10ControlledVocabularyRepository();
 	}
 
 	public void unproxy()

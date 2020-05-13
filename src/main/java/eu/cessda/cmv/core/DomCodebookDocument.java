@@ -12,14 +12,17 @@ import java.util.Optional;
 
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.gesis.commons.xml.ddi.DdiInputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 import eu.cessda.cmv.core.controlledvocabulary.EmptyControlledVocabularyRepository;
 
 public class DomCodebookDocument implements Document.V11
 {
-	private org.gesis.commons.xml.DomDocument.V12 document;
+	private static final Logger LOGGER = LoggerFactory.getLogger( DomCodebookDocument.class );
 
+	private org.gesis.commons.xml.DomDocument.V12 document;
 	private Map<String, ControlledVocabularyRepository> controlledVocabularyRepositoryMap;
 
 	public DomCodebookDocument( DdiInputStream inputStream )
@@ -39,13 +42,13 @@ public class DomCodebookDocument implements Document.V11
 		List<Node> nodes = new ArrayList<>();
 		for ( org.w3c.dom.Node domNode : document.selectNodes( locationPath ) )
 		{
-			Optional<org.w3c.dom.Node> domUri = getVocabURINode( domNode );
-			if ( domUri.isPresent() )
+			Optional<org.w3c.dom.Node> vocabUriNode = getVocabURINode( domNode );
+			if ( vocabUriNode.isPresent() )
 			{
 				nodes.add( new CodeValueNode( locationPath,
 						domNode.getTextContent(),
 						document.getLocationInfo( domNode ),
-						findControlledVocabularyRepository( domUri.get().getNodeValue() ) ) );
+						findControlledVocabularyRepository( vocabUriNode.get().getNodeValue() ) ) );
 			}
 			else
 			{
@@ -83,8 +86,7 @@ public class DomCodebookDocument implements Document.V11
 		}
 		else
 		{
-			// format( "ControlledVocabularyRepository for '%s' not found", uri )
-			// throw new IllegalArgumentException( );
+			LOGGER.warn( "ControlledVocabularyRepository for '{}' not found", uri );
 			return (T) new EmptyControlledVocabularyRepository();
 		}
 	}
