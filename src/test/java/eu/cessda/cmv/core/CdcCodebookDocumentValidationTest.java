@@ -1,7 +1,5 @@
 package eu.cessda.cmv.core;
 
-import static eu.cessda.cmv.core.Factory.newDocument;
-import static eu.cessda.cmv.core.Factory.newProfile;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
 
@@ -16,7 +14,14 @@ public class CdcCodebookDocumentValidationTest
 {
 	private static final String newTestParameters = "newTestParameters";
 
-	private Profile profile = newProfile( getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ) );
+	private Profile profile;
+	private CessdaMetadataValidatorFactory factory;
+
+	public CdcCodebookDocumentValidationTest()
+	{
+		factory = new CessdaMetadataValidatorFactory();
+		profile = factory.newProfile( getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ) );
+	}
 
 	private static class TestParameter
 	{
@@ -68,7 +73,7 @@ public class CdcCodebookDocumentValidationTest
 	public void validateWithBasicValidationGate( TestParameter param )
 	{
 		// given
-		Document document = newDocument( getClass().getResource( param.documentName ) );
+		Document document = factory.newDocument( getClass().getResource( param.documentName ) );
 
 		// when
 		ValidationGate.V10 validationGate = new BasicValidationGate();
@@ -83,7 +88,7 @@ public class CdcCodebookDocumentValidationTest
 	public void validateWithStandardValidationGate( TestParameter param )
 	{
 		// given
-		Document document = newDocument( getClass().getResource( param.documentName ) );
+		Document document = factory.newDocument( getClass().getResource( param.documentName ) );
 
 		// when
 		ValidationGate.V10 validationGate = new StandardValidationGate();
@@ -98,7 +103,7 @@ public class CdcCodebookDocumentValidationTest
 	public void validateWithStrictValidationGate( TestParameter param )
 	{
 		// given
-		Document document = newDocument( getClass().getResource( param.documentName ) );
+		Document document = factory.newDocument( getClass().getResource( param.documentName ) );
 
 		// when
 		ValidationGate.V10 validationGate = new StrictValidationGate();

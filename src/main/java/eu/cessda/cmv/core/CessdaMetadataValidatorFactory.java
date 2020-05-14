@@ -14,26 +14,22 @@ import org.gesis.commons.xml.DomDocument;
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.gesis.commons.xml.ddi.DdiInputStream;
 
-class Factory
+public class CessdaMetadataValidatorFactory
 {
-	private Factory()
-	{
-	}
-
-	public static DomDocument.V11 newDomDocument( File file )
+	public DomDocument.V11 newDomDocument( File file )
 	{
 		requireNonNull( file );
 		return newDomDocument( file.toURI() );
 	}
 
-	public static DomDocument.V11 newDomDocument( URI uri )
+	public DomDocument.V11 newDomDocument( URI uri )
 	{
 		requireNonNull( uri );
 		Resource resource = newResource( uri );
 		return newDomDocument( resource.readInputStream() );
 	}
 
-	public static DomDocument.V11 newDomDocument( InputStream inputStream )
+	public DomDocument.V11 newDomDocument( InputStream inputStream )
 	{
 		requireNonNull( inputStream );
 		return XercesXalanDocument.newBuilder()
@@ -43,7 +39,7 @@ class Factory
 				.build();
 	}
 
-	public static Document.V10 newDocument( File file )
+	public Document.V10 newDocument( File file )
 	{
 		try
 		{
@@ -56,24 +52,24 @@ class Factory
 		}
 	}
 
-	public static Document.V10 newDocument( URL url )
+	public Document.V10 newDocument( URL url )
 	{
 		return new eu.cessda.cmv.core.DomCodebookDocument( newDdiInputStream( url ) );
 	}
 
-	public static Profile.V10 newProfile( URL url )
+	public Profile.V10 newProfile( URL url )
 	{
 		return new eu.cessda.cmv.core.DomSemiStructuredDdiProfile( newDdiInputStream( url ) );
 	}
 
-	public static DdiInputStream newDdiInputStream( URL url )
+	public DdiInputStream newDdiInputStream( URL url )
 	{
 		requireNonNull( url );
 		Resource resource = newResource( url );
 		return newDdiInputStream( resource.readInputStream() );
 	}
 
-	public static DdiInputStream newDdiInputStream( InputStream inputStream )
+	public DdiInputStream newDdiInputStream( InputStream inputStream )
 	{
 		return new DdiInputStream( inputStream );
 	}

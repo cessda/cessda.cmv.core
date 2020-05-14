@@ -1,6 +1,5 @@
 package eu.cessda.cmv.core;
 
-import static eu.cessda.cmv.core.Factory.newDocument;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
@@ -15,10 +14,13 @@ import org.junit.jupiter.api.Test;
 
 public class MaximumElementOccuranceContraintTest
 {
-	private TestEnv.V13 testEnv = DefaultTestEnv.newInstance( MaximumElementOccuranceContraintTest.class );
+	private TestEnv.V13 testEnv;
+	private CessdaMetadataValidatorFactory factory;
 
 	public MaximumElementOccuranceContraintTest()
 	{
+		testEnv = DefaultTestEnv.newInstance( MaximumElementOccuranceContraintTest.class );
+		factory = new CessdaMetadataValidatorFactory();
 		SaxXercesAgainstSchemaValidator xmlValidator = new SaxXercesAgainstSchemaValidator();
 		xmlValidator.validate( testEnv.findTestResourceByName( "bad-case.xml" ), new Ddi251ClasspathEntityResolver() );
 		xmlValidator.validate( testEnv.findTestResourceByName( "good-case.xml" ), new Ddi251ClasspathEntityResolver() );
@@ -28,8 +30,8 @@ public class MaximumElementOccuranceContraintTest
 	public void validate_invalid() throws Exception
 	{
 		// given
-		Document document = newDocument( testEnv.findTestResourceByName( "bad-case.xml" ) );
-		Profile profile = Factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
+		Document document = factory.newDocument( testEnv.findTestResourceByName( "bad-case.xml" ) );
+		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
 
 		// when
 		ValidationGate.V10 validationGate = new ExtendedValidationGate();
@@ -44,8 +46,8 @@ public class MaximumElementOccuranceContraintTest
 	public void validate_valid() throws Exception
 	{
 		// given
-		Document document = newDocument( testEnv.findTestResourceByName( "good-case.xml" ) );
-		Profile profile = Factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
+		Document document = factory.newDocument( testEnv.findTestResourceByName( "good-case.xml" ) );
+		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
 
 		// when
 		ValidationGate.V10 validationGate = new ExtendedValidationGate();

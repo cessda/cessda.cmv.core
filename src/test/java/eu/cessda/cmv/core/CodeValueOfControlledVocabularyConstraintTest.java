@@ -1,7 +1,5 @@
 package eu.cessda.cmv.core;
 
-import static eu.cessda.cmv.core.Factory.newDocument;
-import static eu.cessda.cmv.core.Factory.newProfile;
 import static java.lang.Long.valueOf;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
@@ -16,14 +14,21 @@ import org.junit.jupiter.api.Test;
 
 public class CodeValueOfControlledVocabularyConstraintTest
 {
-	private TestEnv.V13 testEnv = DefaultTestEnv.newInstance( CodeValueOfControlledVocabularyConstraintTest.class );
+	private TestEnv.V13 testEnv;
+	private CessdaMetadataValidatorFactory factory;
+
+	public CodeValueOfControlledVocabularyConstraintTest()
+	{
+		testEnv = DefaultTestEnv.newInstance( CodeValueOfControlledVocabularyConstraintTest.class );
+		factory = new CessdaMetadataValidatorFactory();
+	}
 
 	@Test
 	public void validate_invalid() throws Exception
 	{
 		// given
-		Document document = newDocument( testEnv.findTestResourceByName( "bad-case.xml" ) );
-		Profile.V10 profile = newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
+		Document document = factory.newDocument( testEnv.findTestResourceByName( "bad-case.xml" ) );
+		Profile.V10 profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
 
 		// when
 		ValidationGate.V10 validationGate = new StandardValidationGate();
@@ -45,8 +50,8 @@ public class CodeValueOfControlledVocabularyConstraintTest
 	public void validate_valid() throws Exception
 	{
 		// given
-		Document document = newDocument( testEnv.findTestResourceByName( "good-case.xml" ) );
-		Profile.V10 profile = newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
+		Document document = factory.newDocument( testEnv.findTestResourceByName( "good-case.xml" ) );
+		Profile.V10 profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
 
 		// when
 		ValidationGate.V10 validationGate = new StandardValidationGate();

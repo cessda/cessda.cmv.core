@@ -1,7 +1,5 @@
 package eu.cessda.cmv.core;
 
-import static eu.cessda.cmv.core.Factory.newDocument;
-import static eu.cessda.cmv.core.Factory.newProfile;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
@@ -14,14 +12,21 @@ import org.junit.jupiter.api.Test;
 
 public class MandatoryNodeConstraintTest
 {
-	private TestEnv.V13 testEnv = DefaultTestEnv.newInstance( MandatoryNodeConstraintTest.class );
+	private TestEnv.V13 testEnv;
+	private CessdaMetadataValidatorFactory factory;
+
+	public MandatoryNodeConstraintTest()
+	{
+		testEnv = DefaultTestEnv.newInstance( MandatoryNodeConstraintTest.class );
+		factory = new CessdaMetadataValidatorFactory();
+	}
 
 	@Test
 	public void validate_missing() throws Exception
 	{
 		// given
-		Document document = newDocument( testEnv.findTestResourceByName( "bad-case-missing.xml-invalid" ) );
-		Profile profile = newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
+		Document document = factory.newDocument( testEnv.findTestResourceByName( "bad-case-missing.xml-invalid" ) );
+		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
 
 		// when
 		ValidationGate.V10 validationGate = new StrictValidationGate();
@@ -36,8 +41,8 @@ public class MandatoryNodeConstraintTest
 	public void validate_blank() throws Exception
 	{
 		// given
-		Document document = newDocument( testEnv.findTestResourceByName( "bad-case-blank.xml" ) );
-		Profile profile = newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
+		Document document = factory.newDocument( testEnv.findTestResourceByName( "bad-case-blank.xml" ) );
+		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
 
 		// when
 		ValidationGate.V10 validationGate = new StrictValidationGate();
@@ -52,8 +57,8 @@ public class MandatoryNodeConstraintTest
 	public void validate_valid() throws Exception
 	{
 		// given
-		Document document = newDocument( testEnv.findTestResourceByName( "good-case.xml" ) );
-		Profile profile = newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
+		Document document = factory.newDocument( testEnv.findTestResourceByName( "good-case.xml" ) );
+		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
 
 		// when
 		ValidationGate.V10 validationGate = new StrictValidationGate();

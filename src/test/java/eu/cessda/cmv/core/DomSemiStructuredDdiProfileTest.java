@@ -1,7 +1,5 @@
 package eu.cessda.cmv.core;
 
-import static eu.cessda.cmv.core.Factory.newDdiInputStream;
-import static eu.cessda.cmv.core.Factory.newProfile;
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.io.FileMatchers.anExistingFile;
@@ -16,6 +14,13 @@ import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbProfileV0;
 
 public class DomSemiStructuredDdiProfileTest
 {
+	private CessdaMetadataValidatorFactory factory;
+
+	public DomSemiStructuredDdiProfileTest()
+	{
+		factory = new CessdaMetadataValidatorFactory();
+	}
+
 	@Test
 	public void construct()
 	{
@@ -23,7 +28,7 @@ public class DomSemiStructuredDdiProfileTest
 		URL url = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
 
 		// when
-		Profile.V10 profile = newProfile( url );
+		Profile.V10 profile = factory.newProfile( url );
 
 		// then
 		assertThat( profile.getConstraints(), hasSize( 62 * 3 ) );
@@ -38,7 +43,7 @@ public class DomSemiStructuredDdiProfileTest
 
 		// when
 		DomSemiStructuredDdiProfile profile = new DomSemiStructuredDdiProfile(
-				newDdiInputStream( newResource( sourceUrl ).readInputStream() ) );
+				factory.newDdiInputStream( newResource( sourceUrl ).readInputStream() ) );
 		JaxbProfileV0 jaxbProfile = profile.toJaxbProfileV0();
 		jaxbProfile.saveAs( targetFile );
 		assertThat( targetFile, anExistingFile() );

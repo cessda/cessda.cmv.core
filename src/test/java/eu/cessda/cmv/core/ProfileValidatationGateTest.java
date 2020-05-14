@@ -1,7 +1,5 @@
 package eu.cessda.cmv.core;
 
-import static eu.cessda.cmv.core.Factory.newDocument;
-import static eu.cessda.cmv.core.Factory.newProfile;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
@@ -14,6 +12,13 @@ import org.junit.jupiter.api.Test;
 
 public class ProfileValidatationGateTest
 {
+	private CessdaMetadataValidatorFactory factory;
+
+	public ProfileValidatationGateTest()
+	{
+		factory = new CessdaMetadataValidatorFactory();
+	}
+
 	@Test
 	public void validateCdcProfile() throws IOException
 	{
@@ -24,8 +29,8 @@ public class ProfileValidatationGateTest
 		// when
 		ValidationGate.V10 validationGate = new ProfileValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate(
-				newDocument( documentFile ),
-				newProfile( profileUrl ) );
+				factory.newDocument( documentFile ),
+				factory.newProfile( profileUrl ) );
 
 		// then
 		assertThat( constraintViolations, hasSize( 0 ) );
@@ -41,8 +46,8 @@ public class ProfileValidatationGateTest
 		// when
 		ValidationGate.V10 validationGate = new ProfileValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate(
-				newDocument( documentFile ),
-				newProfile( profileUrl ) );
+				factory.newDocument( documentFile ),
+				factory.newProfile( profileUrl ) );
 
 		// then
 		assertThat( constraintViolations, hasSize( 0 ) );
@@ -60,8 +65,8 @@ public class ProfileValidatationGateTest
 		// when
 		ValidationGate.V10 validationGate = new ProfileValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate(
-				newDocument( documentUrl ),
-				newProfile( profileUrl ) );
+				factory.newDocument( documentUrl ),
+				factory.newProfile( profileUrl ) );
 
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
@@ -78,8 +83,8 @@ public class ProfileValidatationGateTest
 		// when
 		ValidationGate.V10 validationGate = new ProfileValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate(
-				newDocument( documentFile ),
-				newProfile( profileUrl ) );
+				factory.newDocument( documentFile ),
+				factory.newProfile( profileUrl ) );
 
 		// then
 		assertThat( constraintViolations, hasSize( 2 ) );

@@ -51,6 +51,7 @@ public class ArchitectureConstraintsTest extends TestClassesRuleTest
 				.and().doNotImplement( Profile.V10.class )
 				.and().areNotAssignableFrom( ConstraintViolation.class )
 				.and().areNotAssignableTo( AbstractValidationGate.class )
+				.and().haveSimpleNameNotContaining( "CessdaMetadataValidatorFactory" )
 				.and().haveSimpleNameNotEndingWith( "Test" )
 				.and().haveSimpleNameNotEndingWith( "TestParameter" )
 				.and().resideOutsideOfPackage( "eu.cessda.cmv.core.mediatype.(**)" )
