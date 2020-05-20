@@ -9,16 +9,25 @@ import java.util.stream.Collectors;
 
 abstract class AbstractValidationGate implements ValidationGate.V10
 {
-	private List<Class<?>> constraintTypes;
+	private List<Class<? extends ValidationGate.V10>> constraintTypes;
 
 	AbstractValidationGate()
 	{
 		constraintTypes = new ArrayList<>();
 	}
 
-	protected List<Class<?>> getConstraintTypes()
+	@SuppressWarnings( "unchecked" )
+	protected void addConstraintType( String canonicalName )
 	{
-		return constraintTypes;
+		requireNonNull( canonicalName );
+		try
+		{
+			constraintTypes.add( (Class<? extends ValidationGate.V10>) Class.forName( canonicalName ) );
+		}
+		catch (Exception e)
+		{
+			throw new IllegalArgumentException( e );
+		}
 	}
 
 	@Override

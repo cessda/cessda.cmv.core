@@ -4,6 +4,6 @@ public class BasicValidationGate extends AbstractValidationGate
 {
 	public BasicValidationGate()
 	{
-		getConstraintTypes().add( MandatoryNodeConstraint.class );
+		addConstraintType( MandatoryNodeConstraint.class.getCanonicalName() );
 	}
 }

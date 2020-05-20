@@ -4,6 +4,6 @@ public class ExtendedValidationGate extends StandardValidationGate
 {
 	public ExtendedValidationGate()
 	{
-		getConstraintTypes().add( MaximumElementOccuranceConstraint.class );
+		addConstraintType( MaximumElementOccuranceConstraint.class.getCanonicalName() );
 	}
 }

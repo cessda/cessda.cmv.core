@@ -4,8 +4,8 @@ public class StandardValidationGate extends BasicValidationGate
 {
 	public StandardValidationGate()
 	{
-		getConstraintTypes().add( RecommendedNodeConstraint.class );
-		getConstraintTypes().add( CodeValueOfControlledVocabularyConstraint.class );
-		getConstraintTypes().add( ControlledVocabularyRepositoryConstraint.class );
+		addConstraintType( RecommendedNodeConstraint.class.getCanonicalName() );
+		addConstraintType( CodeValueOfControlledVocabularyConstraint.class.getCanonicalName() );
+		addConstraintType( ControlledVocabularyRepositoryConstraint.class.getCanonicalName() );
 	}
 }

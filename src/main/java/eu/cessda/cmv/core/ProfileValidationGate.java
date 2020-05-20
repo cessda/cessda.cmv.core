@@ -4,7 +4,7 @@ public class ProfileValidationGate extends BasicValidationGate
 {
 	public ProfileValidationGate()
 	{
-		getConstraintTypes().add( PredicatelessXPathConstraint.class );
-		getConstraintTypes().add( CompilableXPathConstraint.class );
+		addConstraintType( PredicatelessXPathConstraint.class.getCanonicalName() );
+		addConstraintType( CompilableXPathConstraint.class.getCanonicalName() );
 	}
 }

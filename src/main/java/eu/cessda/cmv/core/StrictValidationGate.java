@@ -4,6 +4,6 @@ public class StrictValidationGate extends ExtendedValidationGate
 {
 	public StrictValidationGate()
 	{
-		getConstraintTypes().add( OptionalNodeConstraint.class );
+		addConstraintType( OptionalNodeConstraint.class.getCanonicalName() );
 	}
 }
