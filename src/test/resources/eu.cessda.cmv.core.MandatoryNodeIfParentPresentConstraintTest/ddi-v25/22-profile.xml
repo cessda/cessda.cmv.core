@@ -5,7 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="ddi:ddiprofile:3_2 https://ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/ddiprofile.xsd">
 	<r:Agency>int.cessda</r:Agency>
-	<r:ID>ddi-v25/profile-22</r:ID>
+	<r:ID>ddi-v25/22-profile</r:ID>
 	<r:Version>1</r:Version>
 	<pr:XPathVersion>1.0</pr:XPathVersion>
 	<pr:DDINamespace>2.5</pr:DDINamespace>
