@@ -3,8 +3,8 @@ package eu.cessda.cmv.core;
 import static java.util.Arrays.asList;
 import static java.util.Objects.requireNonNull;
 import static org.gesis.commons.resource.Resource.newResource;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.io.FileMatchers.anExistingFile;
-import static org.junit.Assert.assertThat;
 
 import java.io.File;
 import java.net.MalformedURLException;

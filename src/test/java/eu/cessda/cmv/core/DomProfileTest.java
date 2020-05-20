@@ -2,7 +2,7 @@ package eu.cessda.cmv.core;
 
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.net.URL;
 
