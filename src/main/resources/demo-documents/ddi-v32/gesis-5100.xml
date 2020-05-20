@@ -1,97 +1,151 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ddi:DDIInstance versionDate="2020-05-13" xmlns:ddi="ddi:instance:3_2" xmlns:s="ddi:studyunit:3_2" xmlns:p="ddi:physicaldataproduct:3_2" xmlns:pi="ddi:physicalinstance:3_2" xmlns:c="ddi:conceptualcomponent:3_2" xmlns:l="ddi:logicalproduct:3_2" xmlns:r="ddi:reusable:3_2" xmlns:d="ddi:datacollection:3_2" xmlns:a="ddi:archive:3_2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dc="http://purl.org/dc/terms/" xmlns:m2="ddi:physicaldataproduct_ncube_tabular:3_2" xmlns:g="ddi:group:3_2" xmlns:ds="ddi:dataSet:3_2" xsi:schemaLocation="ddi:instance:3_2 http://www.ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/instance.xsd">
-	<r:Agency>de.gesis</r:Agency><r:ID>gesis_ZA5100</r:ID><r:Version>1.0.0</r:Version>
-	<r:Citation>
-		<r:Title><r:String xml:lang="en">DDI3.2 study level documentation for study ZA5100 Politbarometer - Gesamtkumulation</r:String>
-			<r:String xml:lang="de">DDI3.2 Dokumentation auf Studienebene für Studie ZA5100 Politbarometer - Gesamtkumulation</r:String></r:Title>
-		<r:Creator><r:CreatorName><r:String xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</r:String>
-				<r:String xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</r:String></r:CreatorName></r:Creator>
-		<r:Publisher><r:PublisherName><r:String xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</r:String>
-				<r:String xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</r:String></r:PublisherName></r:Publisher>
-		<r:PublicationDate><r:SimpleDate>2020-05-13</r:SimpleDate></r:PublicationDate>
-		<r:Language>de</r:Language>
-		<r:Copyright>
-			<r:String xml:lang="en">All metadata from GESIS DBK are available free of restriction under the Creative Commons CC0 1.0 Universal Public Domain Dedication. However, GESIS requests that you actively acknowledge and give attribution to all metadata sources, such as the data providers and any data aggregators, including GESIS. For further information see https://dbk.gesis.org/dbksearch/guidelines.asp </r:String>
-			<r:String xml:lang="de">Alle im GESIS DBK veröffentlichten Metadaten sind frei verfügbar unter den Creative Commons CC0 1.0 Universal Public Domain Dedication. GESIS bittet jedoch darum, dass Sie alle Metadatenquellen anerkennen und sie nennen, etwa die Datengeber oder jeglichen Aggregator, inklusive GESIS selbst. Für weitere Informationen siehe https://dbk.gesis.org/dbksearch/guidelines.asp?db=d </r:String>
-		</r:Copyright>
-		<dc:hasVersion>2.0.0</dc:hasVersion>
-	</r:Citation>
-	<g:Group externalReferenceDefaultURI="https://dbk.gesis.org/dbksearch/gdesc2.asp?no=0010">
-		<r:Agency>de.gesis</r:Agency><r:ID>GN0010</r:ID><r:Version>1.0.0</r:Version>
-		<r:Citation><r:Title>
-				<r:String xml:lang="en">Politbarometer</r:String><r:String xml:lang="de">Politbarometer</r:String></r:Title>
-		</r:Citation>
-		<r:Abstract>
-			<r:Content xml:lang="en">The "Politbarometer" surveys are performed since 1977 at about monthly intervals by the Forschungsgruppe Wahlen (Institute for election research) for the ZDF (Second German TV network). Since 1990 it is also available for the newly formed German states.
+<?xml version="1.0" encoding="UTF-8"?><ddi:DDIInstance xmlns:a="ddi:archive:3_2" xmlns:c="ddi:conceptualcomponent:3_2" xmlns:d="ddi:datacollection:3_2" xmlns:dc="http://purl.org/dc/terms/" xmlns:ddi="ddi:instance:3_2" xmlns:ds="ddi:dataSet:3_2" xmlns:g="ddi:group:3_2" xmlns:l="ddi:logicalproduct:3_2" xmlns:m2="ddi:physicaldataproduct_ncube_tabular:3_2" xmlns:p="ddi:physicaldataproduct:3_2" xmlns:pi="ddi:physicalinstance:3_2" xmlns:r="ddi:reusable:3_2" xmlns:s="ddi:studyunit:3_2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" versionDate="2020-05-13" xsi:schemaLocation="ddi:instance:3_2 http://www.ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/instance.xsd">
+  <r:Agency>de.gesis</r:Agency>
+  <r:ID>gesis_ZA5100</r:ID>
+  <r:Version>1.0.0</r:Version>
+  <r:Citation>
+    <r:Title>
+      <r:String xml:lang="en">DDI3.2 study level documentation for study ZA5100 Politbarometer - Gesamtkumulation</r:String>
+      <r:String xml:lang="de">DDI3.2 Dokumentation auf Studienebene für Studie ZA5100 Politbarometer - Gesamtkumulation</r:String>
+    </r:Title>
+    <r:Creator>
+      <r:CreatorName>
+        <r:String xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</r:String>
+        <r:String xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</r:String>
+      </r:CreatorName>
+    </r:Creator>
+    <r:Publisher>
+      <r:PublisherName>
+        <r:String xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</r:String>
+        <r:String xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</r:String>
+      </r:PublisherName>
+    </r:Publisher>
+    <r:PublicationDate>
+      <r:SimpleDate>2020-05-13</r:SimpleDate>
+    </r:PublicationDate>
+    <r:Language>de</r:Language>
+    <r:Copyright>
+      <r:String xml:lang="en">All metadata from GESIS DBK are available free of restriction under the Creative Commons CC0 1.0 Universal Public Domain Dedication. However, GESIS requests that you actively acknowledge and give attribution to all metadata sources, such as the data providers and any data aggregators, including GESIS. For further information see https://dbk.gesis.org/dbksearch/guidelines.asp </r:String>
+      <r:String xml:lang="de">Alle im GESIS DBK veröffentlichten Metadaten sind frei verfügbar unter den Creative Commons CC0 1.0 Universal Public Domain Dedication. GESIS bittet jedoch darum, dass Sie alle Metadatenquellen anerkennen und sie nennen, etwa die Datengeber oder jeglichen Aggregator, inklusive GESIS selbst. Für weitere Informationen siehe https://dbk.gesis.org/dbksearch/guidelines.asp?db=d </r:String>
+    </r:Copyright>
+    <dc:hasVersion>2.0.0</dc:hasVersion>
+  </r:Citation>
+  <g:Group externalReferenceDefaultURI="https://dbk.gesis.org/dbksearch/gdesc2.asp?no=0010">
+    <r:Agency>de.gesis</r:Agency>
+    <r:ID>GN0010</r:ID>
+    <r:Version>1.0.0</r:Version>
+    <r:Citation>
+      <r:Title>
+        <r:String xml:lang="en">Politbarometer</r:String>
+        <r:String xml:lang="de">Politbarometer</r:String>
+      </r:Title>
+    </r:Citation>
+    <r:Abstract>
+      <r:Content xml:lang="en">The "Politbarometer" surveys are performed since 1977 at about monthly intervals by the Forschungsgruppe Wahlen (Institute for election research) for the ZDF (Second German TV network). Since 1990 it is also available for the newly formed German states.
 
-They are intended to poll the opinions and attitudes of eligible Germans with regard to current events and issues as well as to political parties and individual politicians. </r:Content><r:Content xml:lang="de">Die Politbarometer werden seit 1977 etwa monatlich von der Forschungsgruppe Wahlen für das Zweite Deutsche Fernsehen durchgeführt. Seit 1990 steht diese Datenbasis auch für die neuen Bundesländer zur Verfügung.
+They are intended to poll the opinions and attitudes of eligible Germans with regard to current events and issues as well as to political parties and individual politicians. </r:Content>
+      <r:Content xml:lang="de">Die Politbarometer werden seit 1977 etwa monatlich von der Forschungsgruppe Wahlen für das Zweite Deutsche Fernsehen durchgeführt. Seit 1990 steht diese Datenbasis auch für die neuen Bundesländer zur Verfügung.
 
-Mit der Untersuchung von Meinungen und Einstellungen der wahlberechtigten Bevölkerung in der Bundesrepublik zu aktuellen Ereignissen, Parteien und Politikern stellen die Politbarometer ein wichtiges Instrument der politischen Meinungs- und Einstellungsforschung dar.</r:Content></r:Abstract>
-		<r:StudyUnitReference>
-			<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_SU</r:ID><r:Version>1.0.0</r:Version>
-			<r:TypeOfObject>StudyUnit</r:TypeOfObject>
-		</r:StudyUnitReference>
-	</g:Group>
-	<g:Group>
-		<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_G</r:ID><r:Version>1.0.0</r:Version>
-		<g:SubGroup geography="G2">
-			<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_SG</r:ID><r:Version>1.0.0</r:Version>
-			<s:StudyUnit versionDate="2019-05-01">
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_SU</r:ID><r:Version>1.0.0</r:Version>
-				<r:UserID typeOfUserID="StudyNumber">ZA5100</r:UserID>
-				<r:UserID typeOfUserID="VersionNumber">2.0.0</r:UserID>
-				<r:Note>
-					<r:TypeOfNote codeListName="GesisTypeOfNote" codeListAgencyName="Gesis" codeListURN="">FurtherRemarks</r:TypeOfNote>
-					<r:Relationship>
-						<r:RelatedToReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_SU</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>StudyUnit</r:TypeOfObject>
-						</r:RelatedToReference>
-					</r:Relationship>
-					<r:Header><r:String xml:lang="en">Further Remarks</r:String>
-						<r:String xml:lang="de">Weitere Hinweise</r:String></r:Header>
-					<r:NoteContent><r:Content xml:lang="en"> &lt;a href=https://dbk.gesis.org/Politbarometer/Variables/ target=_blank&gt;Online Variable Overview &lt;/a&gt;
+Mit der Untersuchung von Meinungen und Einstellungen der wahlberechtigten Bevölkerung in der Bundesrepublik zu aktuellen Ereignissen, Parteien und Politikern stellen die Politbarometer ein wichtiges Instrument der politischen Meinungs- und Einstellungsforschung dar.</r:Content>
+    </r:Abstract>
+    <r:StudyUnitReference>
+      <r:Agency>de.gesis</r:Agency>
+      <r:ID>ZA5100_SU</r:ID>
+      <r:Version>1.0.0</r:Version>
+      <r:TypeOfObject>StudyUnit</r:TypeOfObject>
+    </r:StudyUnitReference>
+  </g:Group>
+  <g:Group>
+    <r:Agency>de.gesis</r:Agency>
+    <r:ID>ZA5100_G</r:ID>
+    <r:Version>1.0.0</r:Version>
+    <g:SubGroup geography="G2">
+      <r:Agency>de.gesis</r:Agency>
+      <r:ID>ZA5100_SG</r:ID>
+      <r:Version>1.0.0</r:Version>
+      <s:StudyUnit versionDate="2019-05-01">
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5100_SU</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <r:UserID typeOfUserID="StudyNumber">ZA5100</r:UserID>
+        <r:UserID typeOfUserID="VersionNumber">2.0.0</r:UserID>
+        <r:Note>
+          <r:TypeOfNote codeListAgencyName="Gesis" codeListName="GesisTypeOfNote" codeListURN="">FurtherRemarks</r:TypeOfNote>
+          <r:Relationship>
+            <r:RelatedToReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5100_SU</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>StudyUnit</r:TypeOfObject>
+            </r:RelatedToReference>
+          </r:Relationship>
+          <r:Header>
+            <r:String xml:lang="en">Further Remarks</r:String>
+            <r:String xml:lang="de">Weitere Hinweise</r:String>
+          </r:Header>
+          <r:NoteContent>
+            <r:Content xml:lang="en"> &lt;a href=https://dbk.gesis.org/Politbarometer/Variables/ target=_blank&gt;Online Variable Overview &lt;/a&gt;
 
 In addition to the Codebookexplorer, the online variable overview shows which variable from which year has been integrated into the respective variable of the total cumulation. At the same time, it documents the original question and answer text in the annual cumulation, which may differ from the master question of the total cumulation. </r:Content>
-						<r:Content xml:lang="de"> &lt;a href=https://dbk.gesis.org/Politbarometer/Variables/ target=_blank&gt;Online Variable Overview &lt;/a&gt;
+            <r:Content xml:lang="de"> &lt;a href=https://dbk.gesis.org/Politbarometer/Variables/ target=_blank&gt;Online Variable Overview &lt;/a&gt;
 
-Der Online-Variable-Overview zeigt zusätzlich zum Codebookexplorer, welche Variable aus welchem Jahr in die jeweilige Variable der Gesamtkumulation integriert worden ist. Gleichzeitig wird dokumentiert, wie der Original Frage- und Antworttext in der Jahreskumulation lautet, der möglicherweise von der Masterfrage der Gesamtkumulation abweicht. </r:Content></r:NoteContent>
-				</r:Note>
-				<r:Citation>
-					<r:Title><r:String xml:lang="en">Politbarometer - Overall Cumulation</r:String>
-						<r:String xml:lang="de">Politbarometer - Gesamtkumulation</r:String></r:Title>
-					<r:Creator><r:CreatorReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Org_Cre1</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Organization</r:TypeOfObject>
-						</r:CreatorReference></r:Creator>
-					<r:Publisher>
-						<r:PublisherReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Org_Pub1</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Organization</r:TypeOfObject>
-						</r:PublisherReference>
-					</r:Publisher>
-					<r:Contributor>
-						<r:ContributorName><r:String>Kratz, Sophia</r:String></r:ContributorName>
-						<r:ContributorRole codeListName="DataCiteContributorType">DataCurator</r:ContributorRole>
-						<r:ContributorReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Ind_Con1</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Individual</r:TypeOfObject>
-						</r:ContributorReference></r:Contributor>
-					<r:Contributor>
-						<r:ContributorName><r:String>Langhans, Monika</r:String></r:ContributorName>
-						<r:ContributorRole codeListName="DataCiteContributorType">DataCurator</r:ContributorRole>
-						<r:ContributorReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Ind_Con2</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Individual</r:TypeOfObject>
-						</r:ContributorReference></r:Contributor>
-					<r:PublicationDate>
-						<r:SimpleDate>2019</r:SimpleDate>
-					</r:PublicationDate>
-					<r:InternationalIdentifier><r:IdentifierContent>doi:10.4232/1.13299</r:IdentifierContent>
-						<r:ManagingAgency>DOI</r:ManagingAgency></r:InternationalIdentifier>
-				</r:Citation>
-				<r:Abstract>
-					<r:Content xml:lang="en">Cumulative data set with all variables from the 1977 to 2016 Politbarometer that were collected more than once.
+Der Online-Variable-Overview zeigt zusätzlich zum Codebookexplorer, welche Variable aus welchem Jahr in die jeweilige Variable der Gesamtkumulation integriert worden ist. Gleichzeitig wird dokumentiert, wie der Original Frage- und Antworttext in der Jahreskumulation lautet, der möglicherweise von der Masterfrage der Gesamtkumulation abweicht. </r:Content>
+          </r:NoteContent>
+        </r:Note>
+        <r:Citation>
+          <r:Title>
+            <r:String xml:lang="en">Politbarometer - Overall Cumulation</r:String>
+            <r:String xml:lang="de">Politbarometer - Gesamtkumulation</r:String>
+          </r:Title>
+          <r:Creator>
+            <r:CreatorReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5100_Org_Cre1</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Organization</r:TypeOfObject>
+            </r:CreatorReference>
+          </r:Creator>
+          <r:Publisher>
+            <r:PublisherReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5100_Org_Pub1</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Organization</r:TypeOfObject>
+            </r:PublisherReference>
+          </r:Publisher>
+          <r:Contributor>
+            <r:ContributorName>
+              <r:String>Kratz, Sophia</r:String>
+            </r:ContributorName>
+            <r:ContributorRole codeListName="DataCiteContributorType">DataCurator</r:ContributorRole>
+            <r:ContributorReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5100_Ind_Con1</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Individual</r:TypeOfObject>
+            </r:ContributorReference>
+          </r:Contributor>
+          <r:Contributor>
+            <r:ContributorName>
+              <r:String>Langhans, Monika</r:String>
+            </r:ContributorName>
+            <r:ContributorRole codeListName="DataCiteContributorType">DataCurator</r:ContributorRole>
+            <r:ContributorReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5100_Ind_Con2</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Individual</r:TypeOfObject>
+            </r:ContributorReference>
+          </r:Contributor>
+          <r:PublicationDate>
+            <r:SimpleDate>2019</r:SimpleDate>
+          </r:PublicationDate>
+          <r:InternationalIdentifier>
+            <r:IdentifierContent>doi:10.4232/1.13299</r:IdentifierContent>
+            <r:ManagingAgency>DOI</r:ManagingAgency>
+          </r:InternationalIdentifier>
+        </r:Citation>
+        <r:Abstract>
+          <r:Content xml:lang="en">Cumulative data set with all variables from the 1977 to 2016 Politbarometer that were collected more than once.
 
 Variable Overview for the comparable variables of the Politbarometer Total Cumulation:
 
@@ -100,7 +154,7 @@ Variable Overview for the comparable variables of the Politbarometer Total Cumul
 Topics: Intention to vote and party preference (Sunday question); voting behaviour in the last Bundestag election; eligibility or Non-eligibility of parties; various questions about Bundestag and state elections; sympathy scale for the parties; satisfaction scale for the performance of the federal government and the opposition parties; competent parties for various policy fields; democracy satisfaction; correct politicians in leading positions; political interest; self-assessment on a left-right continuum; assessment of the economic situation in the Federal Republic and presumed further development; own economic situation and expected further development; competence of the government or the opposition to various policy fields; most important politicians; scalometers of political personalities; government coalitions; role of various parties in government coalitions; questions on the reunification of the two German states; questions on foreign policy and international relations; questions on European cooperation and the financial crisis; questions on a wide range of domestic policy issues, such as fear of crime, counter-terrorism, data protection or right-wing extremists; questions on social policy, such as pension security, health care, social security systems or birth rate in Germany; questions on economic policy, such as collective bargaining, minimum wage, working hours or tax issues; questions on education policy; questions on defence and disarmament, such as attitudes towards an increased assumption of global political responsibility by the united Germany, deployment of the Bundeswehr or arms trade; questions on environmental protection, energy policy and technical development; ethical and religious questions, such as the evaluation of different views on abortion; questions on migration and policy on foreigners, such as assessment of the proportion of foreigners, attitude to asylum law in Germany, reception and integration of refugees; satisfaction with the state of society; comparison of society with other Western European countries; perceived military threat; peace security; annual review of political events; personal annual outlook; questions on various areas of life, such as holidays, sports or television.
 
 Demography: denomination; church attendance frequency; gender; age; marital status; cohabitation with a partner; children in the household; school education; completed vocational training; university degree; educational aspiration level; occupation; occupational group; household size; head of household; job security; party affiliation; party identification; trade union member in the household; federal state; city size.</r:Content>
-					<r:Content xml:lang="de">Kumulierter Datensatz mit allen Variablen aus den Politbarometern der Jahre 1977 bis 2016, die mehr als einmal erhoben wurden.
+          <r:Content xml:lang="de">Kumulierter Datensatz mit allen Variablen aus den Politbarometern der Jahre 1977 bis 2016, die mehr als einmal erhoben wurden.
 
 Variable Overview für die vergleichbaren Variablen der Politbarometer Gesamtkumulation:
 
@@ -109,218 +163,299 @@ Variable Overview für die vergleichbaren Variablen der Politbarometer Gesamtkum
 Themen: Wahlbeteiligungsabsicht und Parteipräferenz (Sonntagsfrage); Wahlverhalten bei der letzten Bundestagswahl; Wählbarkeit bzw. Nichtwählbarkeit von Parteien; verschieden Fragen rund um Bundestags- und Landtagswahlen; Sympathie-Skalometer für die Parteien; Zufriedenheits-Skalometer für die Leistungen der Bundesregierung und der Oppositionsparteien; Kompetente Parteien für verschiedene Politikfelder; Demokratiezufriedenheit; richtige Politiker in den führenden Positionen; Politikinteresse des Befragten; Selbsteinschätzung auf einem Links-Rechts-Kontinuum; Beurteilung der wirtschaftlichen Lage in der Bundesrepublik und vermutete weitere Entwicklung; eigene wirtschaftliche Situation und erwartete weitere Entwicklung; Kompetenz der Regierung oder der Opposition zu verschiedenen Politikfeldern; wichtigste Politiker und Politikerinnen; Skalometer politischer Persönlichkeiten; Regierungskoalitionen; Rolle verschiedener Parteien in Regierungskoalitionen; Fragen zur Wiedervereinigung der beiden deutschen Staaten; Fragen zur Außenpolitik und internationalen Beziehungen;  Fragen zur europäischen Zusammenarbeit und zur Finanzkrise; Fragen zu vielfältigen innenpolitischen Themen, wie Kriminalitätsfurcht, Terrorabwehr, Datenschutz oder Rechtsradikale; Fragen zur Sozialpolitik, wie Rentensicherung, Gesundheitswesen, soziale Sicherungssysteme oder Geburtsrate in Deutschland; Fragen zur Wirtschaftspolitik, wie Tarifverhandlungen, Mindestlohn, Arbeitszeit oder Steuerfragen; Fragen zur Bildungspolitik; Fragen zu Verteidigung und Abrüstung, wie etwa Einstellung zu einer vermehrten Übernahme weltpolitischer Verantwortung durch das vereinte Deutschland, Einsatz der Bundeswehr oder Waffenhandel; Fragen zu Umweltschutz, Energiepolitik und technischer Entwicklung; Ethische und religiöse Fragen, wie die Bewertung verschiedener Auffassungen zum Thema Abtreibung; Fragen zu Migration und Ausländerpolitik, wie Beurteilung des Ausländeranteils, Einstellung zum Asylrecht in Deutschland, Aufnahme und Integration von Flüchtlingen; Zufriedenheit mit dem Zustand der Gesellschaft; Vergleich der Gesellschaft mit anderen westeuropäischen Ländern; empfundene militärische Bedrohung; Friedenssicherheit; Jahresrückblick auf das politische Geschehen; persönlicher Jahresausblick; Fragen zu verschiedensten Bereichen des Lebens, wie Urlaub, Sport oder Fernsehen.
 
 Demographie: Konfession; Kirchgangshäufigkeit; Geschlecht; Alter; Familienstand; Zusammenleben mit einem Partner; Kinder im Haushalt; Schulbildung; abgeschlossene Berufsausbildung; Hochschulabschluss; Bildungsaspirationsniveau; Berufstätigkeit; Berufsgruppe; Haushaltsgröße; Haushaltsvorstand; eigene Arbeitsplatzgefährdung; Parteineigung; Parteiidentifikation; Gewerkschaftsmitglied im Haushalt; Bundesland; Ortsgröße.</r:Content>
-				</r:Abstract>
-				<r:UniverseReference>
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Uni1</r:ID><r:Version>1.0.0</r:Version>
-					<r:TypeOfObject>Universe</r:TypeOfObject>
-				</r:UniverseReference>
-				<r:Coverage>
-					<r:TopicalCoverage>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Top</r:ID><r:Version>1.0.0</r:Version>
-						<r:Subject xml:lang="en" codeListAgencyName="de.gesis" codeListName="ZA-Categories">Political Issues</r:Subject>
-						<r:Subject xml:lang="de" codeListAgencyName="de.gesis" codeListName="ZA-Kategorien">Politische Fragen (Issues)</r:Subject>
-						<r:Subject xml:lang="en" codeListAgencyName="de.gesis" codeListName="ZA-Categories">Political Attitudes and Behavior</r:Subject>
-						<r:Subject xml:lang="de" codeListAgencyName="de.gesis" codeListName="ZA-Kategorien">Politische Einstellungen und Verhaltensweisen</r:Subject>
-						<r:Subject xml:lang="en" codeListAgencyName="de.gesis" codeListName="ZA-Categories">Political Parties, Organizations</r:Subject>
-						<r:Subject xml:lang="de" codeListAgencyName="de.gesis" codeListName="ZA-Kategorien">Politische Parteien, Verbände</r:Subject>
-						<r:Subject xml:lang="en" codeListAgencyName="cessda" codeListName="CESSDA Topic Classification">Mass political behaviour, attitudes/opinion</r:Subject>
-						<r:Subject xml:lang="de" codeListAgencyName="cessda" codeListName="CESSDA Topic Classification">Politische Verhaltensweisen und Einstellungen/Meinungen</r:Subject>
-						<r:Subject xml:lang="en" codeListAgencyName="cessda" codeListName="CESSDA Topic Classification">Government, political systems and organisation</r:Subject>
-						<r:Subject xml:lang="de" codeListAgencyName="cessda" codeListName="CESSDA Topic Classification">Regierung, politische Systeme, Parteien und Verbände</r:Subject>
-					</r:TopicalCoverage>
-					<r:SpatialCoverage>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Spa</r:ID><r:Version>1.0.0</r:Version>
-						<r:GeographicLocationReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_GeoLocDE</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>GeographicLocation</r:TypeOfObject>
-						</r:GeographicLocationReference>
-					</r:SpatialCoverage>
-					<r:TemporalCoverage>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Tem</r:ID><r:Version>1.0.0</r:Version>
-						<r:ReferenceDate>
-							<r:StartDate>1977</r:StartDate>
-							<r:EndDate>2017</r:EndDate>
-							<r:Subject xml:lang="en"></r:Subject>
-							<r:Subject xml:lang="de"></r:Subject>
-						</r:ReferenceDate>
-					</r:TemporalCoverage>
-				</r:Coverage>
-				<r:AnalysisUnit codeListName="AnalysisUnit" codeListAgencyName="DDIAlliance" codeListVersionID="1.0">Individual</r:AnalysisUnit>
-				<r:KindOfData codeListName="KindOfDataFormat" codeListAgencyName="DDIAlliance" codeListVersionID="2.0">Numeric</r:KindOfData>
-				<r:KindOfData codeListName="KindOfDataFormat" codeListAgencyName="DDIAlliance" codeListVersionID="2.0">Text</r:KindOfData>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_OthMat66331</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">66331</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en">Stata</r:Content>
-						<r:Content xml:lang="de">Stata</r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5100_v2-0-0.dta.zip (Dataset)</r:String>
-							<r:String xml:lang="de">ZA5100_v2-0-0.dta.zip (Datensatz)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=66331</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_OthMat66332</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">66332</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en">SPSS</r:Content>
-						<r:Content xml:lang="de">SPSS</r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5100_v2-0-0.sav.zip (Dataset)</r:String>
-							<r:String xml:lang="de">ZA5100_v2-0-0.sav.zip (Datensatz)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=66332</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_OthMat63063</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">63063</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Table</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en"></r:Content>
-						<r:Content xml:lang="de"></r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5100_Korrespondenzliste.xlsx (Table)</r:String>
-							<r:String xml:lang="de">ZA5100_Korrespondenzliste.xlsx (Tabelle)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=63063</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_OthMat63060</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">63060</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Variable Report</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en"></r:Content>
-						<r:Content xml:lang="de"></r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5100_cdb.pdf (Variable Report)</r:String>
-							<r:String xml:lang="de">ZA5100_cdb.pdf (Variablenreport)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=63060</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<d:DataCollection>
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_DatCol</r:ID><r:Version>1.0.0</r:Version>
-					<d:Methodology>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Met</r:ID><r:Version>1.0.0</r:Version>
-						<d:TimeMethod>
-							<r:Agency>de.gesis</r:Agency>
-							<r:ID>ZA5100_TimMet1</r:ID><r:Version>1.0.0</r:Version>
-							<d:TypeOfTimeMethod codeListName="TimeMethod" codeListAgencyName="DDIAlliance" codeListVersionID="1.2">Longitudinal: Trend/Repeated cross-section</d:TypeOfTimeMethod>
-						</d:TimeMethod>
-						<d:SamplingProcedure>
-							<r:Agency>de.gesis</r:Agency>
-							<r:ID>ZA5100_SamPro1</r:ID><r:Version>1.0.0</r:Version>
-							<d:TypeOfSamplingProcedure codeListName="SamplingProcedure" codeListAgencyName="DDIAlliance" codeListVersionID="1.1">Probability: Multistage</d:TypeOfSamplingProcedure>
-						</d:SamplingProcedure>
-						<d:SamplingProcedure>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_SamPro</r:ID><r:Version>1.0.0</r:Version>
-							<r:Description>
-								<r:Content xml:lang="en">Probability Sample: Multistage Sample
+        </r:Abstract>
+        <r:UniverseReference>
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5100_Uni1</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:TypeOfObject>Universe</r:TypeOfObject>
+        </r:UniverseReference>
+        <r:Coverage>
+          <r:TopicalCoverage>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5100_Top</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:Subject codeListAgencyName="de.gesis" codeListName="ZA-Categories" xml:lang="en">Political Issues</r:Subject>
+            <r:Subject codeListAgencyName="de.gesis" codeListName="ZA-Kategorien" xml:lang="de">Politische Fragen (Issues)</r:Subject>
+            <r:Subject codeListAgencyName="de.gesis" codeListName="ZA-Categories" xml:lang="en">Political Attitudes and Behavior</r:Subject>
+            <r:Subject codeListAgencyName="de.gesis" codeListName="ZA-Kategorien" xml:lang="de">Politische Einstellungen und Verhaltensweisen</r:Subject>
+            <r:Subject codeListAgencyName="de.gesis" codeListName="ZA-Categories" xml:lang="en">Political Parties, Organizations</r:Subject>
+            <r:Subject codeListAgencyName="de.gesis" codeListName="ZA-Kategorien" xml:lang="de">Politische Parteien, Verbände</r:Subject>
+            <r:Subject codeListAgencyName="cessda" codeListName="CESSDA Topic Classification" xml:lang="en">Mass political behaviour, attitudes/opinion</r:Subject>
+            <r:Subject codeListAgencyName="cessda" codeListName="CESSDA Topic Classification" xml:lang="de">Politische Verhaltensweisen und Einstellungen/Meinungen</r:Subject>
+            <r:Subject codeListAgencyName="cessda" codeListName="CESSDA Topic Classification" xml:lang="en">Government, political systems and organisation</r:Subject>
+            <r:Subject codeListAgencyName="cessda" codeListName="CESSDA Topic Classification" xml:lang="de">Regierung, politische Systeme, Parteien und Verbände</r:Subject>
+          </r:TopicalCoverage>
+          <r:SpatialCoverage>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5100_Spa</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:GeographicLocationReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5100_GeoLocDE</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>GeographicLocation</r:TypeOfObject>
+            </r:GeographicLocationReference>
+          </r:SpatialCoverage>
+          <r:TemporalCoverage>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5100_Tem</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:ReferenceDate>
+              <r:StartDate>1977</r:StartDate>
+              <r:EndDate>2017</r:EndDate>
+              <r:Subject xml:lang="en"/>
+              <r:Subject xml:lang="de"/>
+            </r:ReferenceDate>
+          </r:TemporalCoverage>
+        </r:Coverage>
+        <r:AnalysisUnit codeListAgencyName="DDIAlliance" codeListName="AnalysisUnit" codeListVersionID="1.0">Individual</r:AnalysisUnit>
+        <r:KindOfData codeListAgencyName="DDIAlliance" codeListName="KindOfDataFormat" codeListVersionID="2.0">Numeric</r:KindOfData>
+        <r:KindOfData codeListAgencyName="DDIAlliance" codeListName="KindOfDataFormat" codeListVersionID="2.0">Text</r:KindOfData>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5100_OthMat66331</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">66331</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en">Stata</r:Content>
+            <r:Content xml:lang="de">Stata</r:Content>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5100_v2-0-0.dta.zip (Dataset)</r:String>
+              <r:String xml:lang="de">ZA5100_v2-0-0.dta.zip (Datensatz)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=66331</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5100_OthMat66332</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">66332</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en">SPSS</r:Content>
+            <r:Content xml:lang="de">SPSS</r:Content>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5100_v2-0-0.sav.zip (Dataset)</r:String>
+              <r:String xml:lang="de">ZA5100_v2-0-0.sav.zip (Datensatz)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=66332</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5100_OthMat63063</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">63063</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Table</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en"/>
+            <r:Content xml:lang="de"/>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5100_Korrespondenzliste.xlsx (Table)</r:String>
+              <r:String xml:lang="de">ZA5100_Korrespondenzliste.xlsx (Tabelle)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=63063</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5100_OthMat63060</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">63060</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Variable Report</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en"/>
+            <r:Content xml:lang="de"/>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5100_cdb.pdf (Variable Report)</r:String>
+              <r:String xml:lang="de">ZA5100_cdb.pdf (Variablenreport)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=63060</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <d:DataCollection>
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5100_DatCol</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <d:Methodology>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5100_Met</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <d:TimeMethod>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5100_TimMet1</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <d:TypeOfTimeMethod codeListAgencyName="DDIAlliance" codeListName="TimeMethod" codeListVersionID="1.2">Longitudinal: Trend/Repeated cross-section</d:TypeOfTimeMethod>
+            </d:TimeMethod>
+            <d:SamplingProcedure>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5100_SamPro1</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <d:TypeOfSamplingProcedure codeListAgencyName="DDIAlliance" codeListName="SamplingProcedure" codeListVersionID="1.1">Probability: Multistage</d:TypeOfSamplingProcedure>
+            </d:SamplingProcedure>
+            <d:SamplingProcedure>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5100_SamPro</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:Description>
+                <r:Content xml:lang="en">Probability Sample: Multistage Sample
 
 The results are representative of the total electorate in the study area. According to the Elections research group, this is ensured by a strict random selection of the persons to be interviewed. Since August 1988, a two-stage random sample according to the RLD method (Randomize Last Digit) has been used for the sample: First private households are selected, then one person from each household. The person who had the last birthday of the eligible voters in the household is interviewed. The selection basis also includes households that are not listed in the telephone directory and can in principle be reached by telephone via a landline number. The basis is the private numbers entered in the telephone directory, where the last three digits are deleted and then filled with the numbers ´000´ to ´999´ . This database is critically reviewed and adjusted accordingly by consulting the information provided by the Federal Network Agency on the (partial) allocation of number blocks and the directory.
 
 From 1977 to June 1988, a multi-stage stratified random sample according to the ADM master sample was carried out.</r:Content>
-								<r:Content xml:lang="de">Wahrscheinlichkeitsauswahl: Mehrstufige Zufallsauswahl
+                <r:Content xml:lang="de">Wahrscheinlichkeitsauswahl: Mehrstufige Zufallsauswahl
 
 Die Ergebnisse sind repräsentativ für die Gesamtheit der wahlberechtigten Bevölkerung im Untersuchungsgebiet. Dies wird nach Angaben der Forschungsgruppe Wahlen durch eine strenge Zufallsauswahl bei der Bestimmung der zu befragenden Personen gewährleistet. Für die Stichprobe wird seit August 1988 eine zweistufige Zufallsauswahl nach dem RLD-Verfahren (Randomize Last Digit) verwendet: Zunächst werden Privathaushalte ausgewählt, dann eine Person eines jeden Haushalts. Hierbei wird diejenige Person befragt, die von den Wahlberechtigten im Haushalt als letzte Geburtstag hatte. Die Auswahlgrundlage umfasst auch nicht im Telefonbuch eingetragene Haushalte, die prinzipiell über eine Festnetznummer telefonisch erreichbar sind. Basis sind die im Telefonbuch eingetragenen Privatnummern, bei denen die letzten drei Ziffern gelöscht und anschließend mit den Zahlen ´000´ bis ´999´ aufgefüllt werden. Dieser Datenbestand wird durch Hinzuziehung der Informationen der Bundesnetzagentur über die (Teil-)Belegung von Rufnummernblöcken und des Branchenverzeichnisses kritisch geprüft und entsprechend bereinigt.
 
 Von 1977 bis Juni 1988 erfolgte eine mehrstufig geschichtete Zufallsauswahl nach ADM-Mastersample.</r:Content>
-							</r:Description>
-						</d:SamplingProcedure>
-					</d:Methodology>
-					<d:CollectionEvent>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_ColEve</r:ID><r:Version>1.0.0</r:Version>
-						<d:DataCollectorOrganizationReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Org_DC</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Organization</r:TypeOfObject>
-						</d:DataCollectorOrganizationReference>
-						<d:ModeOfCollection>
-							<r:Agency>de.gesis</r:Agency>
-							<r:ID>ZA5100_ModOfC1</r:ID><r:Version>1.0.0</r:Version>
-							<d:TypeOfModeOfCollection codeListName="ModeOfCollection" codeListAgencyName="DDIAlliance" codeListVersionID="3.0">Telephone interview</d:TypeOfModeOfCollection>
-						</d:ModeOfCollection>
-						<d:ModeOfCollection>
-							<r:Agency>de.gesis</r:Agency>
-							<r:ID>ZA5100_ModOfC2</r:ID><r:Version>1.0.0</r:Version>
-							<d:TypeOfModeOfCollection codeListName="ModeOfCollection" codeListAgencyName="DDIAlliance" codeListVersionID="3.0">Face-to-face interview:  Paper-and-pencil (PAPI)</d:TypeOfModeOfCollection>
-						</d:ModeOfCollection>
-						<d:ModeOfCollection>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_ModOfC</r:ID><r:Version>1.0.0</r:Version>
-							<r:Description>
-								<r:Content xml:lang="en">1977 to mid 1988: Face-to-face interview: Paper-and-pencil (PAPI)
+              </r:Description>
+            </d:SamplingProcedure>
+          </d:Methodology>
+          <d:CollectionEvent>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5100_ColEve</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <d:DataCollectorOrganizationReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5100_Org_DC</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Organization</r:TypeOfObject>
+            </d:DataCollectorOrganizationReference>
+            <d:ModeOfCollection>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5100_ModOfC1</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <d:TypeOfModeOfCollection codeListAgencyName="DDIAlliance" codeListName="ModeOfCollection" codeListVersionID="3.0">Telephone interview</d:TypeOfModeOfCollection>
+            </d:ModeOfCollection>
+            <d:ModeOfCollection>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5100_ModOfC2</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <d:TypeOfModeOfCollection codeListAgencyName="DDIAlliance" codeListName="ModeOfCollection" codeListVersionID="3.0">Face-to-face interview:  Paper-and-pencil (PAPI)</d:TypeOfModeOfCollection>
+            </d:ModeOfCollection>
+            <d:ModeOfCollection>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5100_ModOfC</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:Description>
+                <r:Content xml:lang="en">1977 to mid 1988: Face-to-face interview: Paper-and-pencil (PAPI)
 From mid 1988: Telephone interview</r:Content>
-								<r:Content xml:lang="de">1977 bis Mitte 1988: Persönliches Interview: PAPI (Papierfragebogen)
+                <r:Content xml:lang="de">1977 bis Mitte 1988: Persönliches Interview: PAPI (Papierfragebogen)
 Ab Mitte 1988: Telefonisches Interview</r:Content>
-							</r:Description>
-						</d:ModeOfCollection>
-					</d:CollectionEvent>
-					<d:InstrumentScheme>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_InstrumentSch</r:ID><r:Version>1.0.0</r:Version>
-						<d:InstrumentReference objectLanguage="de-DE">
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Instrument</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Instrument</r:TypeOfObject>
-						</d:InstrumentReference>
-					</d:InstrumentScheme>
-				</d:DataCollection>
-				<l:LogicalProduct>
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_LogPro</r:ID><r:Version>1.0.0</r:Version>
-					<r:Note>
-						<r:TypeOfNote codeListName="GesisTypeOfNote" codeListAgencyName="Gesis" codeListURN="">Software</r:TypeOfNote>
-						<r:Relationship>
-							<r:RelatedToReference>
-								<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_LogPro</r:ID><r:Version>1.0.0</r:Version>
-								<r:TypeOfObject>LogicalProduct</r:TypeOfObject>
-							</r:RelatedToReference>
-						</r:Relationship>
-						<r:NoteContent><r:Content xml:lang="en">SPSS, Stata</r:Content>
-							<r:Content xml:lang="de">SPSS, Stata</r:Content></r:NoteContent>
-					</r:Note>
-					<r:Note>
-						<r:TypeOfNote codeListName="GesisTypeOfNote" codeListAgencyName="Gesis" codeListURN="">VariableQuantity</r:TypeOfNote>
-						<r:Relationship>
-							<r:RelatedToReference>
-								<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_LogPro</r:ID><r:Version>1.0.0</r:Version>
-								<r:TypeOfObject>LogicalProduct</r:TypeOfObject>
-							</r:RelatedToReference>
-						</r:Relationship>
-						<r:NoteContent><r:Content xml:lang="en">1455</r:Content>
-							<r:Content xml:lang="de">1455</r:Content></r:NoteContent>
-					</r:Note>
-				</l:LogicalProduct>
-				<pi:PhysicalInstance>
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_PhyIns</r:ID><r:Version>1.0.0</r:Version>
-					<pi:GrossFileStructure>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_GroFilStr</r:ID><r:Version>1.0.0</r:Version>
-						<pi:CaseQuantity>913526</pi:CaseQuantity>
-					</pi:GrossFileStructure>
-				</pi:PhysicalInstance>
-				<a:Archive>
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Arc</r:ID><r:Version>1.0.0</r:Version>
-					<a:ArchiveSpecific>
-						<a:Item>
-							<a:Access>
-								<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Acc</r:ID><r:Version>1.0.0</r:Version>
-								<a:AccessTypeName><r:String>A</r:String></a:AccessTypeName>
-								<r:Description>
-									<r:Content xml:lang="en">Data and documents are released for academic research and teaching.</r:Content>
-									<r:Content xml:lang="de">Daten und Dokumente sind für die akademische Forschung und Lehre freigegeben.</r:Content>
-								</r:Description>
-								<a:ContactOrganizationReference>
-									<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Org_AR</r:ID><r:Version>1.0.0</r:Version>
-									<r:TypeOfObject>Organization</r:TypeOfObject>
-								</a:ContactOrganizationReference>
-							</a:Access>
-						</a:Item>
-					</a:ArchiveSpecific>
-					<r:LifecycleInformation>
-						<r:LifecycleEvent>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_LifEve</r:ID><r:Version>1.0.0</r:Version>
-							<r:Date>
-								<r:SimpleDate>2020-05-13</r:SimpleDate>
-							</r:Date>
-							<r:AgencyOrganizationReference>
-								<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Org_AR</r:ID><r:Version>1.0.0</r:Version>
-								<r:TypeOfObject>Organization</r:TypeOfObject>
-							</r:AgencyOrganizationReference>
-							<r:Description><r:Content><![CDATA[                                            
+              </r:Description>
+            </d:ModeOfCollection>
+          </d:CollectionEvent>
+          <d:InstrumentScheme>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5100_InstrumentSch</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <d:InstrumentReference objectLanguage="de-DE">
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5100_Instrument</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Instrument</r:TypeOfObject>
+            </d:InstrumentReference>
+          </d:InstrumentScheme>
+        </d:DataCollection>
+        <l:LogicalProduct>
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5100_LogPro</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:Note>
+            <r:TypeOfNote codeListAgencyName="Gesis" codeListName="GesisTypeOfNote" codeListURN="">Software</r:TypeOfNote>
+            <r:Relationship>
+              <r:RelatedToReference>
+                <r:Agency>de.gesis</r:Agency>
+                <r:ID>ZA5100_LogPro</r:ID>
+                <r:Version>1.0.0</r:Version>
+                <r:TypeOfObject>LogicalProduct</r:TypeOfObject>
+              </r:RelatedToReference>
+            </r:Relationship>
+            <r:NoteContent>
+              <r:Content xml:lang="en">SPSS, Stata</r:Content>
+              <r:Content xml:lang="de">SPSS, Stata</r:Content>
+            </r:NoteContent>
+          </r:Note>
+          <r:Note>
+            <r:TypeOfNote codeListAgencyName="Gesis" codeListName="GesisTypeOfNote" codeListURN="">VariableQuantity</r:TypeOfNote>
+            <r:Relationship>
+              <r:RelatedToReference>
+                <r:Agency>de.gesis</r:Agency>
+                <r:ID>ZA5100_LogPro</r:ID>
+                <r:Version>1.0.0</r:Version>
+                <r:TypeOfObject>LogicalProduct</r:TypeOfObject>
+              </r:RelatedToReference>
+            </r:Relationship>
+            <r:NoteContent>
+              <r:Content xml:lang="en">1455</r:Content>
+              <r:Content xml:lang="de">1455</r:Content>
+            </r:NoteContent>
+          </r:Note>
+        </l:LogicalProduct>
+        <pi:PhysicalInstance>
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5100_PhyIns</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <pi:GrossFileStructure>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5100_GroFilStr</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <pi:CaseQuantity>913526</pi:CaseQuantity>
+          </pi:GrossFileStructure>
+        </pi:PhysicalInstance>
+        <a:Archive>
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5100_Arc</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <a:ArchiveSpecific>
+            <a:Item>
+              <a:Access>
+                <r:Agency>de.gesis</r:Agency>
+                <r:ID>ZA5100_Acc</r:ID>
+                <r:Version>1.0.0</r:Version>
+                <a:AccessTypeName>
+                  <r:String>A</r:String>
+                </a:AccessTypeName>
+                <r:Description>
+                  <r:Content xml:lang="en">Data and documents are released for academic research and teaching.</r:Content>
+                  <r:Content xml:lang="de">Daten und Dokumente sind für die akademische Forschung und Lehre freigegeben.</r:Content>
+                </r:Description>
+                <a:ContactOrganizationReference>
+                  <r:Agency>de.gesis</r:Agency>
+                  <r:ID>ZA5100_Org_AR</r:ID>
+                  <r:Version>1.0.0</r:Version>
+                  <r:TypeOfObject>Organization</r:TypeOfObject>
+                </a:ContactOrganizationReference>
+              </a:Access>
+            </a:Item>
+          </a:ArchiveSpecific>
+          <r:LifecycleInformation>
+            <r:LifecycleEvent>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5100_LifEve</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:Date>
+                <r:SimpleDate>2020-05-13</r:SimpleDate>
+              </r:Date>
+              <r:AgencyOrganizationReference>
+                <r:Agency>de.gesis</r:Agency>
+                <r:ID>ZA5100_Org_AR</r:ID>
+                <r:Version>1.0.0</r:Version>
+                <r:TypeOfObject>Organization</r:TypeOfObject>
+              </r:AgencyOrganizationReference>
+              <r:Description>
+                <r:Content><![CDATA[                                            
  Selection of DDI 3.2 Elements and Attributes used by DBK for DDI3.2 Export 
  The original DDI 3.2 Schema can be found at http://www.ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/ 
  A copy of the DDI 3.2 Schema can be found at https://dbk.gesis.org/DDI/3_2 
@@ -340,161 +475,219 @@ Ab Mitte 1988: Telefonisches Interview</r:Content>
                                          
  DBK 2.2 to DDI 3.2 Export - 2.8.5       
                                          
-]]>
-								</r:Content></r:Description>
-						</r:LifecycleEvent>
-					</r:LifecycleInformation>
-				</a:Archive>
-			</s:StudyUnit>
-		</g:SubGroup>
-	</g:Group>
-	<g:ResourcePackage>
-		<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_ResPac</r:ID><r:Version>1.0.0</r:Version>
-		<a:OrganizationScheme>
-			<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_OrgSch</r:ID><r:Version>1.0.0</r:Version>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Org_Cre1</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String>Forschungsgruppe Wahlen, Mannheim</r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Org_Con1</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String>GESIS - Leibniz-Institut für Sozialwissenschaften</r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Org_Con2</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String>GESIS - Leibniz-Institut für Sozialwissenschaften</r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Org_Pub1</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</r:String>
-						<r:String xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Org_AR</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</r:String>
-						<r:String xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-				<r:Description>
-					<r:Content xml:lang="en">GESIS Data service</r:Content>
-					<r:Content xml:lang="de">GESIS Datenservice</r:Content>
-				</r:Description>
-				<a:ContactInformation>
-					<a:Telephone><a:TelephoneNumber>+49 (0)221-476 94-420</a:TelephoneNumber></a:Telephone>
-					<a:URL>http://www.gesis.org/</a:URL>
-					<a:Email><r:InternetEmail>datenservice.das@gesis.org</r:InternetEmail></a:Email>
-				</a:ContactInformation>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Org_DC</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName><r:String>Forschungsgruppe Wahlen, Mannheim</r:String></a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Individual>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Ind_Con1</r:ID><r:Version>1.0.0</r:Version>
-				<a:IndividualIdentification>
-					<a:IndividualName>
-						<a:FullName><r:String>Kratz, Sophia</r:String></a:FullName>
-					</a:IndividualName>
-				</a:IndividualIdentification>
-			</a:Individual>
-			<a:Individual>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Ind_Con2</r:ID><r:Version>1.0.0</r:Version>
-				<a:IndividualIdentification>
-					<a:IndividualName>
-						<a:FullName><r:String>Langhans, Monika</r:String></a:FullName>
-					</a:IndividualName>
-				</a:IndividualIdentification>
-			</a:Individual>
-			<a:Relation>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Org_RelCon1</r:ID><r:Version>1.0.0</r:Version>
-				<a:SourceObject>
-					<a:IndividualReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Ind_Con1</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Individual</r:TypeOfObject>
-					</a:IndividualReference>
-				</a:SourceObject>
-				<a:TargetObject>
-					<a:OrganizationReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Org_Con1</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Organization</r:TypeOfObject>
-					</a:OrganizationReference>
-					<a:Role>
-						<r:Description><r:Content>Affiliation</r:Content></r:Description>
-					</a:Role>
-				</a:TargetObject>
-			</a:Relation>
-			<a:Relation>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Org_RelCon2</r:ID><r:Version>1.0.0</r:Version>
-				<a:SourceObject>
-					<a:IndividualReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Ind_Con2</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Individual</r:TypeOfObject>
-					</a:IndividualReference>
-				</a:SourceObject>
-				<a:TargetObject>
-					<a:OrganizationReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Org_Con2</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Organization</r:TypeOfObject>
-					</a:OrganizationReference>
-					<a:Role>
-						<r:Description><r:Content>Affiliation</r:Content></r:Description>
-					</a:Role>
-				</a:TargetObject>
-			</a:Relation>
-		</a:OrganizationScheme>
-		<c:UniverseScheme>
-			<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_UniSch</r:ID><r:Version>1.0.0</r:Version>
-			<c:Universe>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_Uni1</r:ID><r:Version>1.0.0</r:Version>
-				<r:Description>
-					<r:Content xml:lang="en">1977 to June 1988: persons eligible to vote in the Bundestag elections;
+]]></r:Content>
+              </r:Description>
+            </r:LifecycleEvent>
+          </r:LifecycleInformation>
+        </a:Archive>
+      </s:StudyUnit>
+    </g:SubGroup>
+  </g:Group>
+  <g:ResourcePackage>
+    <r:Agency>de.gesis</r:Agency>
+    <r:ID>ZA5100_ResPac</r:ID>
+    <r:Version>1.0.0</r:Version>
+    <a:OrganizationScheme>
+      <r:Agency>de.gesis</r:Agency>
+      <r:ID>ZA5100_OrgSch</r:ID>
+      <r:Version>1.0.0</r:Version>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5100_Org_Cre1</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>Forschungsgruppe Wahlen, Mannheim</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5100_Org_Con1</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>GESIS - Leibniz-Institut für Sozialwissenschaften</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5100_Org_Con2</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>GESIS - Leibniz-Institut für Sozialwissenschaften</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5100_Org_Pub1</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</r:String>
+            <r:String xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5100_Org_AR</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</r:String>
+            <r:String xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+        <r:Description>
+          <r:Content xml:lang="en">GESIS Data service</r:Content>
+          <r:Content xml:lang="de">GESIS Datenservice</r:Content>
+        </r:Description>
+        <a:ContactInformation>
+          <a:Telephone>
+            <a:TelephoneNumber>+49 (0)221-476 94-420</a:TelephoneNumber>
+          </a:Telephone>
+          <a:URL>http://www.gesis.org/</a:URL>
+          <a:Email>
+            <r:InternetEmail>datenservice.das@gesis.org</r:InternetEmail>
+          </a:Email>
+        </a:ContactInformation>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5100_Org_DC</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>Forschungsgruppe Wahlen, Mannheim</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Individual>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5100_Ind_Con1</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:IndividualIdentification>
+          <a:IndividualName>
+            <a:FullName>
+              <r:String>Kratz, Sophia</r:String>
+            </a:FullName>
+          </a:IndividualName>
+        </a:IndividualIdentification>
+      </a:Individual>
+      <a:Individual>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5100_Ind_Con2</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:IndividualIdentification>
+          <a:IndividualName>
+            <a:FullName>
+              <r:String>Langhans, Monika</r:String>
+            </a:FullName>
+          </a:IndividualName>
+        </a:IndividualIdentification>
+      </a:Individual>
+      <a:Relation>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5100_Org_RelCon1</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:SourceObject>
+          <a:IndividualReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5100_Ind_Con1</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Individual</r:TypeOfObject>
+          </a:IndividualReference>
+        </a:SourceObject>
+        <a:TargetObject>
+          <a:OrganizationReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5100_Org_Con1</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Organization</r:TypeOfObject>
+          </a:OrganizationReference>
+          <a:Role>
+            <r:Description>
+              <r:Content>Affiliation</r:Content>
+            </r:Description>
+          </a:Role>
+        </a:TargetObject>
+      </a:Relation>
+      <a:Relation>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5100_Org_RelCon2</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:SourceObject>
+          <a:IndividualReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5100_Ind_Con2</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Individual</r:TypeOfObject>
+          </a:IndividualReference>
+        </a:SourceObject>
+        <a:TargetObject>
+          <a:OrganizationReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5100_Org_Con2</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Organization</r:TypeOfObject>
+          </a:OrganizationReference>
+          <a:Role>
+            <r:Description>
+              <r:Content>Affiliation</r:Content>
+            </r:Description>
+          </a:Role>
+        </a:TargetObject>
+      </a:Relation>
+    </a:OrganizationScheme>
+    <c:UniverseScheme>
+      <r:Agency>de.gesis</r:Agency>
+      <r:ID>ZA5100_UniSch</r:ID>
+      <r:Version>1.0.0</r:Version>
+      <c:Universe>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5100_Uni1</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <r:Description>
+          <r:Content xml:lang="en">1977 to June 1988: persons eligible to vote in the Bundestag elections;
 from August 1988: eligible voters in private households with a telephone connection</r:Content>
-					<r:Content xml:lang="de">1977 bis Juni 1988: Personen, die zur Bundestagswahl wahlberechtigt sind; 
+          <r:Content xml:lang="de">1977 bis Juni 1988: Personen, die zur Bundestagswahl wahlberechtigt sind; 
 ab August 1988: Wahlberechtigte, die in Privathaushalten mit Telefonanschluss leben</r:Content>
-				</r:Description>
-			</c:Universe>
-		</c:UniverseScheme>
-		<c:GeographicLocationScheme>
-			<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_GeoLocSch</r:ID><r:Version>1.0.0</r:Version>
-			<r:GeographicLocation>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_GeoLocDE</r:ID><r:Version>1.0.0</r:Version>
-				<r:Description><r:Content xml:lang="en"></r:Content>
-					<r:Content xml:lang="de">1977 bis 1989: alte Bundesländer
-Ab 1990: Deutschland gesamt inkl. neue Bundesländer</r:Content></r:Description>
-				<r:GeographicLevelDescription>
-					<r:Content>Countries and Regions (ISO3166-1/2)</r:Content>
-				</r:GeographicLevelDescription>
-				<r:LocationValue>
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5100_LocValDE</r:ID><r:Version>1.0.0</r:Version>
-					<r:LocationValueName>
-						<r:String xml:lang="en">Germany</r:String>
-						<r:String xml:lang="de">Deutschland</r:String>
-					</r:LocationValueName>
-					<r:GeographicLocationIdentifier>
-						<r:GeographicCode>DE</r:GeographicCode>
-					</r:GeographicLocationIdentifier>
-				</r:LocationValue>
-			</r:GeographicLocation>
-		</c:GeographicLocationScheme>
-	</g:ResourcePackage>
+        </r:Description>
+      </c:Universe>
+    </c:UniverseScheme>
+    <c:GeographicLocationScheme>
+      <r:Agency>de.gesis</r:Agency>
+      <r:ID>ZA5100_GeoLocSch</r:ID>
+      <r:Version>1.0.0</r:Version>
+      <r:GeographicLocation>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5100_GeoLocDE</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <r:Description>
+          <r:Content xml:lang="en"/>
+          <r:Content xml:lang="de">1977 bis 1989: alte Bundesländer
+Ab 1990: Deutschland gesamt inkl. neue Bundesländer</r:Content>
+        </r:Description>
+        <r:GeographicLevelDescription>
+          <r:Content>Countries and Regions (ISO3166-1/2)</r:Content>
+        </r:GeographicLevelDescription>
+        <r:LocationValue>
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5100_LocValDE</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:LocationValueName>
+            <r:String xml:lang="en">Germany</r:String>
+            <r:String xml:lang="de">Deutschland</r:String>
+          </r:LocationValueName>
+          <r:GeographicLocationIdentifier>
+            <r:GeographicCode>DE</r:GeographicCode>
+          </r:GeographicLocationIdentifier>
+        </r:LocationValue>
+      </r:GeographicLocation>
+    </c:GeographicLocationScheme>
+  </g:ResourcePackage>
 </ddi:DDIInstance>

@@ -1,160 +1,262 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ddi:DDIInstance versionDate="2020-05-13" xmlns:ddi="ddi:instance:3_2" xmlns:s="ddi:studyunit:3_2" xmlns:p="ddi:physicaldataproduct:3_2" xmlns:pi="ddi:physicalinstance:3_2" xmlns:c="ddi:conceptualcomponent:3_2" xmlns:l="ddi:logicalproduct:3_2" xmlns:r="ddi:reusable:3_2" xmlns:d="ddi:datacollection:3_2" xmlns:a="ddi:archive:3_2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dc="http://purl.org/dc/terms/" xmlns:m2="ddi:physicaldataproduct_ncube_tabular:3_2" xmlns:g="ddi:group:3_2" xmlns:ds="ddi:dataSet:3_2" xsi:schemaLocation="ddi:instance:3_2 http://www.ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/instance.xsd">
-	<r:Agency>de.gesis</r:Agency><r:ID>gesis_ZA5300</r:ID><r:Version>1.0.0</r:Version>
-	<r:Citation>
-		<r:Title><r:String xml:lang="en">DDI3.2 study level documentation for study ZA5300 Vorwahl-Querschnitt (GLES 2009)</r:String>
-			<r:String xml:lang="de">DDI3.2 Dokumentation auf Studienebene für Studie ZA5300 Vorwahl-Querschnitt (GLES 2009)</r:String></r:Title>
-		<r:Creator><r:CreatorName><r:String xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</r:String>
-				<r:String xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</r:String></r:CreatorName></r:Creator>
-		<r:Publisher><r:PublisherName><r:String xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</r:String>
-				<r:String xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</r:String></r:PublisherName></r:Publisher>
-		<r:PublicationDate><r:SimpleDate>2020-05-13</r:SimpleDate></r:PublicationDate>
-		<r:Language>de</r:Language>
-		<r:Copyright>
-			<r:String xml:lang="en">All metadata from GESIS DBK are available free of restriction under the Creative Commons CC0 1.0 Universal Public Domain Dedication. However, GESIS requests that you actively acknowledge and give attribution to all metadata sources, such as the data providers and any data aggregators, including GESIS. For further information see https://dbk.gesis.org/dbksearch/guidelines.asp </r:String>
-			<r:String xml:lang="de">Alle im GESIS DBK veröffentlichten Metadaten sind frei verfügbar unter den Creative Commons CC0 1.0 Universal Public Domain Dedication. GESIS bittet jedoch darum, dass Sie alle Metadatenquellen anerkennen und sie nennen, etwa die Datengeber oder jeglichen Aggregator, inklusive GESIS selbst. Für weitere Informationen siehe https://dbk.gesis.org/dbksearch/guidelines.asp?db=d </r:String>
-		</r:Copyright>
-		<dc:hasVersion>5.0.2</dc:hasVersion>
-	</r:Citation>
-	<g:Group externalReferenceDefaultURI="https://dbk.gesis.org/dbksearch/gdesc2.asp?no=0011">
-		<r:Agency>de.gesis</r:Agency><r:ID>GN0011</r:ID><r:Version>1.0.0</r:Version>
-		<r:Citation><r:Title>
-				<r:String xml:lang="en">German Longitudinal Election Study (GLES)</r:String><r:String xml:lang="de">German Longitudinal Election Study (GLES)</r:String></r:Title>
-		</r:Citation>
-		<r:Abstract>
-			<r:Content xml:lang="en">The German Longitudinal Election Study (GLES) is a DFG-funded project which made its debut just prior to the 2009 federal election. GLES is the largest and most ambitious election study held so far in Germany. Although the initial mandate is to examine and analyse the electorate for three consecutive elections, the aspired goal is to integrate the project within GESIS as an institutionalized election study after the federal election of 2017, and hence to make it a permanent study. </r:Content><r:Content xml:lang="de">Die German Longitudinal Election Study (GLES) ist ein von der DFG gefördertes Projekt, welches mit der Bundestagswahl 2009 startete. Als bislang größte deutsche nationale Wahlstudie soll sie die Wählerschaft bei vorerst drei aufeinanderfolgenden Wahlen beobachten und analysieren. Dabei wird angestrebt, auch nach der Wahl 2017 das Projekt als institutionalisierte Wahlstudie innerhalb von GESIS weiterzuführen.
-</r:Content></r:Abstract>
-		<r:StudyUnitReference>
-			<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_SU</r:ID><r:Version>1.0.0</r:Version>
-			<r:TypeOfObject>StudyUnit</r:TypeOfObject>
-		</r:StudyUnitReference>
-	</g:Group>
-	<g:Group>
-		<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_G</r:ID><r:Version>1.0.0</r:Version>
-		<g:SubGroup geography="G2">
-			<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_SG</r:ID><r:Version>1.0.0</r:Version>
-			<s:StudyUnit versionDate="2019-02-26">
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_SU</r:ID><r:Version>1.0.0</r:Version>
-				<r:UserID typeOfUserID="StudyNumber">ZA5300</r:UserID>
-				<r:UserID typeOfUserID="VersionNumber">5.0.2</r:UserID>
-				<r:Note>
-					<r:TypeOfNote codeListName="GesisTypeOfNote" codeListAgencyName="Gesis" codeListURN="">FurtherRemarks</r:TypeOfNote>
-					<r:Relationship>
-						<r:RelatedToReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_SU</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>StudyUnit</r:TypeOfObject>
-						</r:RelatedToReference>
-					</r:Relationship>
-					<r:Header><r:String xml:lang="en">Further Remarks</r:String>
-						<r:String xml:lang="de">Weitere Hinweise</r:String></r:Header>
-					<r:NoteContent><r:Content xml:lang="en">The documented study was conducted in the context of the German
+<?xml version="1.0" encoding="UTF-8"?><ddi:DDIInstance xmlns:a="ddi:archive:3_2" xmlns:c="ddi:conceptualcomponent:3_2" xmlns:d="ddi:datacollection:3_2" xmlns:dc="http://purl.org/dc/terms/" xmlns:ddi="ddi:instance:3_2" xmlns:ds="ddi:dataSet:3_2" xmlns:g="ddi:group:3_2" xmlns:l="ddi:logicalproduct:3_2" xmlns:m2="ddi:physicaldataproduct_ncube_tabular:3_2" xmlns:p="ddi:physicaldataproduct:3_2" xmlns:pi="ddi:physicalinstance:3_2" xmlns:r="ddi:reusable:3_2" xmlns:s="ddi:studyunit:3_2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" versionDate="2020-05-13" xsi:schemaLocation="ddi:instance:3_2 http://www.ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/instance.xsd">
+  <r:Agency>de.gesis</r:Agency>
+  <r:ID>gesis_ZA5300</r:ID>
+  <r:Version>1.0.0</r:Version>
+  <r:Citation>
+    <r:Title>
+      <r:String xml:lang="en">DDI3.2 study level documentation for study ZA5300 Vorwahl-Querschnitt (GLES 2009)</r:String>
+      <r:String xml:lang="de">DDI3.2 Dokumentation auf Studienebene für Studie ZA5300 Vorwahl-Querschnitt (GLES 2009)</r:String>
+    </r:Title>
+    <r:Creator>
+      <r:CreatorName>
+        <r:String xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</r:String>
+        <r:String xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</r:String>
+      </r:CreatorName>
+    </r:Creator>
+    <r:Publisher>
+      <r:PublisherName>
+        <r:String xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</r:String>
+        <r:String xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</r:String>
+      </r:PublisherName>
+    </r:Publisher>
+    <r:PublicationDate>
+      <r:SimpleDate>2020-05-13</r:SimpleDate>
+    </r:PublicationDate>
+    <r:Language>de</r:Language>
+    <r:Copyright>
+      <r:String xml:lang="en">All metadata from GESIS DBK are available free of restriction under the Creative Commons CC0 1.0 Universal Public Domain Dedication. However, GESIS requests that you actively acknowledge and give attribution to all metadata sources, such as the data providers and any data aggregators, including GESIS. For further information see https://dbk.gesis.org/dbksearch/guidelines.asp </r:String>
+      <r:String xml:lang="de">Alle im GESIS DBK veröffentlichten Metadaten sind frei verfügbar unter den Creative Commons CC0 1.0 Universal Public Domain Dedication. GESIS bittet jedoch darum, dass Sie alle Metadatenquellen anerkennen und sie nennen, etwa die Datengeber oder jeglichen Aggregator, inklusive GESIS selbst. Für weitere Informationen siehe https://dbk.gesis.org/dbksearch/guidelines.asp?db=d </r:String>
+    </r:Copyright>
+    <dc:hasVersion>5.0.2</dc:hasVersion>
+  </r:Citation>
+  <g:Group externalReferenceDefaultURI="https://dbk.gesis.org/dbksearch/gdesc2.asp?no=0011">
+    <r:Agency>de.gesis</r:Agency>
+    <r:ID>GN0011</r:ID>
+    <r:Version>1.0.0</r:Version>
+    <r:Citation>
+      <r:Title>
+        <r:String xml:lang="en">German Longitudinal Election Study (GLES)</r:String>
+        <r:String xml:lang="de">German Longitudinal Election Study (GLES)</r:String>
+      </r:Title>
+    </r:Citation>
+    <r:Abstract>
+      <r:Content xml:lang="en">The German Longitudinal Election Study (GLES) is a DFG-funded project which made its debut just prior to the 2009 federal election. GLES is the largest and most ambitious election study held so far in Germany. Although the initial mandate is to examine and analyse the electorate for three consecutive elections, the aspired goal is to integrate the project within GESIS as an institutionalized election study after the federal election of 2017, and hence to make it a permanent study. </r:Content>
+      <r:Content xml:lang="de">Die German Longitudinal Election Study (GLES) ist ein von der DFG gefördertes Projekt, welches mit der Bundestagswahl 2009 startete. Als bislang größte deutsche nationale Wahlstudie soll sie die Wählerschaft bei vorerst drei aufeinanderfolgenden Wahlen beobachten und analysieren. Dabei wird angestrebt, auch nach der Wahl 2017 das Projekt als institutionalisierte Wahlstudie innerhalb von GESIS weiterzuführen.
+</r:Content>
+    </r:Abstract>
+    <r:StudyUnitReference>
+      <r:Agency>de.gesis</r:Agency>
+      <r:ID>ZA5300_SU</r:ID>
+      <r:Version>1.0.0</r:Version>
+      <r:TypeOfObject>StudyUnit</r:TypeOfObject>
+    </r:StudyUnitReference>
+  </g:Group>
+  <g:Group>
+    <r:Agency>de.gesis</r:Agency>
+    <r:ID>ZA5300_G</r:ID>
+    <r:Version>1.0.0</r:Version>
+    <g:SubGroup geography="G2">
+      <r:Agency>de.gesis</r:Agency>
+      <r:ID>ZA5300_SG</r:ID>
+      <r:Version>1.0.0</r:Version>
+      <s:StudyUnit versionDate="2019-02-26">
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_SU</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <r:UserID typeOfUserID="StudyNumber">ZA5300</r:UserID>
+        <r:UserID typeOfUserID="VersionNumber">5.0.2</r:UserID>
+        <r:Note>
+          <r:TypeOfNote codeListAgencyName="Gesis" codeListName="GesisTypeOfNote" codeListURN="">FurtherRemarks</r:TypeOfNote>
+          <r:Relationship>
+            <r:RelatedToReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_SU</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>StudyUnit</r:TypeOfObject>
+            </r:RelatedToReference>
+          </r:Relationship>
+          <r:Header>
+            <r:String xml:lang="en">Further Remarks</r:String>
+            <r:String xml:lang="de">Weitere Hinweise</r:String>
+          </r:Header>
+          <r:NoteContent>
+            <r:Content xml:lang="en">The documented study was conducted in the context of the German
 Longitudinal Election Study (GLES), 2009.
 
 The data of this study are also available as cumulation (ZA5302) with
 the Post-election Cross Section.</r:Content>
-						<r:Content xml:lang="de">Die hier dokumentierte Studie ist im Rahmen der German Longitudinal
+            <r:Content xml:lang="de">Die hier dokumentierte Studie ist im Rahmen der German Longitudinal
 Election Study (GLES), 2009 erhoben worden.
 
 Die Daten der dokumentierten Studie liegen auch in einer mit dem
 Nachwahl-Querschnitt (ZA5301) kumulierten Fassung unter der
-Studiennumer ZA5302 vor.</r:Content></r:NoteContent>
-				</r:Note>
-				<r:Citation>
-					<r:Title><r:String xml:lang="en">Pre-election Cross Section (GLES 2009)</r:String>
-						<r:String xml:lang="de">Vorwahl-Querschnitt (GLES 2009)</r:String></r:Title>
-					<r:SubTitle><r:String>German Longitudinal Election Study</r:String></r:SubTitle>
-					<r:Creator><r:CreatorReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Cre1</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Individual</r:TypeOfObject>
-						</r:CreatorReference></r:Creator>
-					<r:Creator><r:CreatorReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Cre2</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Individual</r:TypeOfObject>
-						</r:CreatorReference></r:Creator>
-					<r:Creator><r:CreatorReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Cre3</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Individual</r:TypeOfObject>
-						</r:CreatorReference></r:Creator>
-					<r:Creator><r:CreatorReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Cre4</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Individual</r:TypeOfObject>
-						</r:CreatorReference></r:Creator>
-					<r:Publisher>
-						<r:PublisherReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Pub1</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Organization</r:TypeOfObject>
-						</r:PublisherReference>
-					</r:Publisher>
-					<r:Contributor>
-						<r:ContributorName><r:String xml:lang="en">GLES</r:String></r:ContributorName>
-						<r:ContributorName><r:String xml:lang="de">GLES</r:String></r:ContributorName>
-						<r:ContributorRole codeListName="GESISTypeOfContributor">CitedAuthor</r:ContributorRole>
-					</r:Contributor>
-					<r:Contributor>
-						<r:ContributorName><r:String>Roßteutscher, Sigrid</r:String></r:ContributorName>
-						<r:ContributorRole codeListName="DataCiteContributorType">ProjectLeader</r:ContributorRole>
-						<r:ContributorReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con1</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Individual</r:TypeOfObject>
-						</r:ContributorReference></r:Contributor>
-					<r:Contributor>
-						<r:ContributorName><r:String>Scherer, Philipp</r:String></r:ContributorName>
-						<r:ContributorRole codeListName="DataCiteContributorType">ProjectManager</r:ContributorRole>
-						<r:ContributorReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con2</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Individual</r:TypeOfObject>
-						</r:ContributorReference></r:Contributor>
-					<r:Contributor>
-						<r:ContributorName><r:String>Bieber, Ina</r:String></r:ContributorName>
-						<r:ContributorRole codeListName="DataCiteContributorType">ProjectMember</r:ContributorRole>
-						<r:ContributorReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con3</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Individual</r:TypeOfObject>
-						</r:ContributorReference></r:Contributor>
-					<r:Contributor>
-						<r:ContributorName><r:String>Bytzek, Evelyn</r:String></r:ContributorName>
-						<r:ContributorRole codeListName="DataCiteContributorType">ProjectMember</r:ContributorRole>
-						<r:ContributorReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con4</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Individual</r:TypeOfObject>
-						</r:ContributorReference></r:Contributor>
-					<r:Contributor>
-						<r:ContributorName><r:String>Förster, André</r:String></r:ContributorName>
-						<r:ContributorRole codeListName="DataCiteContributorType">DataCurator</r:ContributorRole>
-						<r:ContributorReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con5</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Individual</r:TypeOfObject>
-						</r:ContributorReference></r:Contributor>
-					<r:Contributor>
-						<r:ContributorName><r:String>Kratz, Sophia</r:String></r:ContributorName>
-						<r:ContributorRole codeListName="DataCiteContributorType">DataCurator</r:ContributorRole>
-						<r:ContributorReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con6</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Individual</r:TypeOfObject>
-						</r:ContributorReference></r:Contributor>
-					<r:Contributor>
-						<r:ContributorName><r:String>Kulick, Manuela </r:String></r:ContributorName>
-						<r:ContributorRole codeListName="DataCiteContributorType">DataCurator</r:ContributorRole>
-						<r:ContributorReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con7</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Individual</r:TypeOfObject>
-						</r:ContributorReference></r:Contributor>
-					<r:Contributor>
-						<r:ContributorName><r:String>Roßmann, Joss</r:String></r:ContributorName>
-						<r:ContributorRole codeListName="DataCiteContributorType">DataCurator</r:ContributorRole>
-						<r:ContributorReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con8</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Individual</r:TypeOfObject>
-						</r:ContributorReference></r:Contributor>
-					<r:PublicationDate>
-						<r:SimpleDate>2019</r:SimpleDate>
-					</r:PublicationDate>
-					<r:InternationalIdentifier><r:IdentifierContent>doi:10.4232/1.13228</r:IdentifierContent>
-						<r:ManagingAgency>DOI</r:ManagingAgency></r:InternationalIdentifier>
-				</r:Citation>
-				<r:Abstract>
-					<r:Content xml:lang="en">Evaluation of parties and politicians. Attitude to political questions.</r:Content>
-					<r:Content xml:lang="de">Politische Fragen (Issues). Politische Einstellungen und
+Studiennumer ZA5302 vor.</r:Content>
+          </r:NoteContent>
+        </r:Note>
+        <r:Citation>
+          <r:Title>
+            <r:String xml:lang="en">Pre-election Cross Section (GLES 2009)</r:String>
+            <r:String xml:lang="de">Vorwahl-Querschnitt (GLES 2009)</r:String>
+          </r:Title>
+          <r:SubTitle>
+            <r:String>German Longitudinal Election Study</r:String>
+          </r:SubTitle>
+          <r:Creator>
+            <r:CreatorReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_Ind_Cre1</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Individual</r:TypeOfObject>
+            </r:CreatorReference>
+          </r:Creator>
+          <r:Creator>
+            <r:CreatorReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_Ind_Cre2</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Individual</r:TypeOfObject>
+            </r:CreatorReference>
+          </r:Creator>
+          <r:Creator>
+            <r:CreatorReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_Ind_Cre3</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Individual</r:TypeOfObject>
+            </r:CreatorReference>
+          </r:Creator>
+          <r:Creator>
+            <r:CreatorReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_Ind_Cre4</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Individual</r:TypeOfObject>
+            </r:CreatorReference>
+          </r:Creator>
+          <r:Publisher>
+            <r:PublisherReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_Org_Pub1</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Organization</r:TypeOfObject>
+            </r:PublisherReference>
+          </r:Publisher>
+          <r:Contributor>
+            <r:ContributorName>
+              <r:String xml:lang="en">GLES</r:String>
+            </r:ContributorName>
+            <r:ContributorName>
+              <r:String xml:lang="de">GLES</r:String>
+            </r:ContributorName>
+            <r:ContributorRole codeListName="GESISTypeOfContributor">CitedAuthor</r:ContributorRole>
+          </r:Contributor>
+          <r:Contributor>
+            <r:ContributorName>
+              <r:String>Roßteutscher, Sigrid</r:String>
+            </r:ContributorName>
+            <r:ContributorRole codeListName="DataCiteContributorType">ProjectLeader</r:ContributorRole>
+            <r:ContributorReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_Ind_Con1</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Individual</r:TypeOfObject>
+            </r:ContributorReference>
+          </r:Contributor>
+          <r:Contributor>
+            <r:ContributorName>
+              <r:String>Scherer, Philipp</r:String>
+            </r:ContributorName>
+            <r:ContributorRole codeListName="DataCiteContributorType">ProjectManager</r:ContributorRole>
+            <r:ContributorReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_Ind_Con2</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Individual</r:TypeOfObject>
+            </r:ContributorReference>
+          </r:Contributor>
+          <r:Contributor>
+            <r:ContributorName>
+              <r:String>Bieber, Ina</r:String>
+            </r:ContributorName>
+            <r:ContributorRole codeListName="DataCiteContributorType">ProjectMember</r:ContributorRole>
+            <r:ContributorReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_Ind_Con3</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Individual</r:TypeOfObject>
+            </r:ContributorReference>
+          </r:Contributor>
+          <r:Contributor>
+            <r:ContributorName>
+              <r:String>Bytzek, Evelyn</r:String>
+            </r:ContributorName>
+            <r:ContributorRole codeListName="DataCiteContributorType">ProjectMember</r:ContributorRole>
+            <r:ContributorReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_Ind_Con4</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Individual</r:TypeOfObject>
+            </r:ContributorReference>
+          </r:Contributor>
+          <r:Contributor>
+            <r:ContributorName>
+              <r:String>Förster, André</r:String>
+            </r:ContributorName>
+            <r:ContributorRole codeListName="DataCiteContributorType">DataCurator</r:ContributorRole>
+            <r:ContributorReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_Ind_Con5</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Individual</r:TypeOfObject>
+            </r:ContributorReference>
+          </r:Contributor>
+          <r:Contributor>
+            <r:ContributorName>
+              <r:String>Kratz, Sophia</r:String>
+            </r:ContributorName>
+            <r:ContributorRole codeListName="DataCiteContributorType">DataCurator</r:ContributorRole>
+            <r:ContributorReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_Ind_Con6</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Individual</r:TypeOfObject>
+            </r:ContributorReference>
+          </r:Contributor>
+          <r:Contributor>
+            <r:ContributorName>
+              <r:String>Kulick, Manuela </r:String>
+            </r:ContributorName>
+            <r:ContributorRole codeListName="DataCiteContributorType">DataCurator</r:ContributorRole>
+            <r:ContributorReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_Ind_Con7</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Individual</r:TypeOfObject>
+            </r:ContributorReference>
+          </r:Contributor>
+          <r:Contributor>
+            <r:ContributorName>
+              <r:String>Roßmann, Joss</r:String>
+            </r:ContributorName>
+            <r:ContributorRole codeListName="DataCiteContributorType">DataCurator</r:ContributorRole>
+            <r:ContributorReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_Ind_Con8</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Individual</r:TypeOfObject>
+            </r:ContributorReference>
+          </r:Contributor>
+          <r:PublicationDate>
+            <r:SimpleDate>2019</r:SimpleDate>
+          </r:PublicationDate>
+          <r:InternationalIdentifier>
+            <r:IdentifierContent>doi:10.4232/1.13228</r:IdentifierContent>
+            <r:ManagingAgency>DOI</r:ManagingAgency>
+          </r:InternationalIdentifier>
+        </r:Citation>
+        <r:Abstract>
+          <r:Content xml:lang="en">Evaluation of parties and politicians. Attitude to political questions.</r:Content>
+          <r:Content xml:lang="de">Politische Fragen (Issues). Politische Einstellungen und
 Verhaltensweisen.
 
 Themen: Politikinteresse (politisches Interesse); Interesse am
@@ -281,354 +383,508 @@ EmpfängerInnen nach SGB II); Beruf und früherer Beruf des Befragten und
 seines Partners (ISCO-88; siops; isei; mps); Interviewdatum;
 Interviewdauer; Flaggenvariable (problematische oder nicht plausible
 Werte).</r:Content>
-				</r:Abstract>
-				<r:UniverseReference>
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Uni1</r:ID><r:Version>1.0.0</r:Version>
-					<r:TypeOfObject>Universe</r:TypeOfObject>
-				</r:UniverseReference>
-				<r:Coverage>
-					<r:TopicalCoverage>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Top</r:ID><r:Version>1.0.0</r:Version>
-						<r:Subject xml:lang="en" codeListAgencyName="de.gesis" codeListName="ZA-Categories">Political Attitudes and Behavior</r:Subject>
-						<r:Subject xml:lang="de" codeListAgencyName="de.gesis" codeListName="ZA-Kategorien">Politische Einstellungen und Verhaltensweisen</r:Subject>
-						<r:Subject xml:lang="en" codeListAgencyName="cessda" codeListName="CESSDA Topic Classification">Social conditions and indicators</r:Subject>
-						<r:Subject xml:lang="de" codeListAgencyName="cessda" codeListName="CESSDA Topic Classification">Soziale Lage und Indikatoren</r:Subject>
-						<r:Subject xml:lang="en" codeListAgencyName="cessda" codeListName="CESSDA Topic Classification">Social behaviour and attitudes</r:Subject>
-						<r:Subject xml:lang="de" codeListAgencyName="cessda" codeListName="CESSDA Topic Classification">Soziales Verhalten und soziale Einstellungen</r:Subject>
-						<r:Subject xml:lang="en" codeListAgencyName="cessda" codeListName="CESSDA Topic Classification">Mass media</r:Subject>
-						<r:Subject xml:lang="de" codeListAgencyName="cessda" codeListName="CESSDA Topic Classification">Massenmedien</r:Subject>
-						<r:Subject xml:lang="en" codeListAgencyName="cessda" codeListName="CESSDA Topic Classification">Mass political behaviour, attitudes/opinion</r:Subject>
-						<r:Subject xml:lang="de" codeListAgencyName="cessda" codeListName="CESSDA Topic Classification">Politische Verhaltensweisen und Einstellungen/Meinungen</r:Subject>
-						<r:Subject xml:lang="en" codeListAgencyName="cessda" codeListName="CESSDA Topic Classification">Government, political systems and organisation</r:Subject>
-						<r:Subject xml:lang="de" codeListAgencyName="cessda" codeListName="CESSDA Topic Classification">Regierung, politische Systeme, Parteien und Verbände</r:Subject>
-						<r:Subject xml:lang="en" codeListAgencyName="cessda" codeListName="CESSDA Topic Classification">Elections</r:Subject>
-						<r:Subject xml:lang="de" codeListAgencyName="cessda" codeListName="CESSDA Topic Classification">Wahlen</r:Subject>
-					</r:TopicalCoverage>
-					<r:SpatialCoverage>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Spa</r:ID><r:Version>1.0.0</r:Version>
-						<r:GeographicLocationReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_GeoLocDE</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>GeographicLocation</r:TypeOfObject>
-						</r:GeographicLocationReference>
-					</r:SpatialCoverage>
-					<r:TemporalCoverage>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Tem</r:ID><r:Version>1.0.0</r:Version>
-						<r:ReferenceDate>
-							<r:StartDate>2009-08-10</r:StartDate>
-							<r:EndDate>2009-09-26</r:EndDate>
-							<r:Subject xml:lang="en"></r:Subject>
-							<r:Subject xml:lang="de"></r:Subject>
-						</r:ReferenceDate>
-					</r:TemporalCoverage>
-				</r:Coverage>
-				<r:AnalysisUnit codeListName="AnalysisUnit" codeListAgencyName="DDIAlliance" codeListVersionID="1.0">Individual</r:AnalysisUnit>
-				<r:KindOfData codeListName="KindOfDataFormat" codeListAgencyName="DDIAlliance" codeListVersionID="2.0">Numeric</r:KindOfData>
-				<r:KindOfData codeListName="KindOfDataFormat" codeListAgencyName="DDIAlliance" codeListVersionID="2.0">Text</r:KindOfData>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OthMat65451</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">65451</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en">for conformance with missing values in wave 2013 (ZA5700) - German/Stata</r:Content>
-						<r:Content xml:lang="de">zur Anpassung der Missing Values an die 2013er Welle (ZA5700) - deutsch/Stata</r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5300_de_RecodeMissings_v5-0-2.do (Dataset)</r:String>
-							<r:String xml:lang="de">ZA5300_de_RecodeMissings_v5-0-2.do (Datensatz)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65451</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OthMat65452</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">65452</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en">for conformance with missing values in wave 2013 (ZA5700) - German/SPSS</r:Content>
-						<r:Content xml:lang="de">zur Anpassung der Missing Values an die 2013er Welle (ZA5700) - deutsch/SPSS</r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5300_de_RecodeMissings_v5-0-2.sps (Dataset)</r:String>
-							<r:String xml:lang="de">ZA5300_de_RecodeMissings_v5-0-2.sps (Datensatz)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65452</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OthMat65453</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">65453</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en">German</r:Content>
-						<r:Content xml:lang="de">deutsch</r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5300_de_v5-0-2.dta (Dataset)</r:String>
-							<r:String xml:lang="de">ZA5300_de_v5-0-2.dta (Datensatz)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65453</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OthMat65454</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">65454</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en">German</r:Content>
-						<r:Content xml:lang="de">deutsch</r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5300_de_v5-0-2.sav (Dataset)</r:String>
-							<r:String xml:lang="de">ZA5300_de_v5-0-2.sav (Datensatz)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65454</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OthMat65455</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">65455</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en">for conformance with missing values in wave 2013 (ZA5700) - English/Stata</r:Content>
-						<r:Content xml:lang="de">zur Anpassung der Missing Values an die 2013er Welle (ZA5700) - englisch/Stata</r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5300_en_RecodeMissings_v5-0-2.do (Dataset)</r:String>
-							<r:String xml:lang="de">ZA5300_en_RecodeMissings_v5-0-2.do (Datensatz)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65455</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OthMat65456</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">65456</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en">for conformance with missing values in wave 2013 (ZA5700) - English/SPSS</r:Content>
-						<r:Content xml:lang="de">zur Anpassung der Missing Values an die 2013er Welle (ZA5700) - englisch/SPSS</r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5300_en_RecodeMissings_v5-0-2.sps (Dataset)</r:String>
-							<r:String xml:lang="de">ZA5300_en_RecodeMissings_v5-0-2.sps (Datensatz)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65456</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OthMat65457</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">65457</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en">English</r:Content>
-						<r:Content xml:lang="de">englisch</r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5300_en_v5-0-2.dta (Dataset)</r:String>
-							<r:String xml:lang="de">ZA5300_en_v5-0-2.dta (Datensatz)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65457</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OthMat65458</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">65458</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en">English</r:Content>
-						<r:Content xml:lang="de">englisch</r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5300_en_v5-0-2.sav (Dataset)</r:String>
-							<r:String xml:lang="de">ZA5300_en_v5-0-2.sav (Datensatz)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65458</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OthMat62248</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">62248</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Questionnaire</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en">Questionnaire incl. short study description (German)</r:Content>
-						<r:Content xml:lang="de">Fragebogen inkl. kurzer Studienbeschreibung (deutsch)</r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5300_fb.pdf (Questionnaire)</r:String>
-							<r:String xml:lang="de">ZA5300_fb.pdf (Fragebogen)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=62248</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OthMat65741</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">65741</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Questionnaire</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en"></r:Content>
-						<r:Content xml:lang="de"></r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5300_Listenheft.pdf (Questionnaire)</r:String>
-							<r:String xml:lang="de">ZA5300_Listenheft.pdf (Fragebogen)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65741</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OthMat65742</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">65742</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Questionnaire</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en"></r:Content>
-						<r:Content xml:lang="de"></r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5300_Listenheft_Soziodemographie.pdf (Questionnaire)</r:String>
-							<r:String xml:lang="de">ZA5300_Listenheft_Soziodemographie.pdf (Fragebogen)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65742</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OthMat62249</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">62249</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Questionnaire</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en">Questionnaire incl. short study description (English)</r:Content>
-						<r:Content xml:lang="de">Fragebogen inkl. kurzer Studienbeschreibung (englisch)</r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5300_q.pdf (Questionnaire)</r:String>
-							<r:String xml:lang="de">ZA5300_q.pdf (Fragebogen)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=62249</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OthMat45790</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">45790</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Other Document</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en">codeplans and correspondence lists for GLES as a whole</r:Content>
-						<r:Content xml:lang="de">Codepläne und Korrespondenzlisten für GLES insgesamt</r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5300-57_GLES_Doku_insgesamt.zip (Other Document)</r:String>
-							<r:String xml:lang="de">ZA5300-57_GLES_Doku_insgesamt.zip (sonstiges)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=45790</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OthMat45500</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">45500</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Other Document</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en"></r:Content>
-						<r:Content xml:lang="de"></r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5300_Aenderungen_v4-0-0_zu_v5-0-0.pdf (Other Document)</r:String>
-							<r:String xml:lang="de">ZA5300_Aenderungen_v4-0-0_zu_v5-0-0.pdf (sonstiges)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=45500</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OthMat20723</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">20723</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Other Document</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en"></r:Content>
-						<r:Content xml:lang="de"></r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5300_Variablenlabels_v5-0-0.pdf (Other Document)</r:String>
-							<r:String xml:lang="de">ZA5300_Variablenlabels_v5-0-0.pdf (sonstiges)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=20723</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial xml:lang="de">
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OthMat57514</r:ID><r:Version>1.0.0</r:Version>
-					<r:UserID typeOfUserID="Dokument-ID">57514</r:UserID>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Study Description</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en"></r:Content>
-						<r:Content xml:lang="de"></r:Content></r:Description>
-					<r:Citation>
-						<r:Title><r:String xml:lang="en">ZA5300_sb.pdf (Study Description)</r:String>
-							<r:String xml:lang="de">ZA5300_sb.pdf (Studienbeschreibung)</r:String></r:Title>
-					</r:Citation>
-					<r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=57514</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<r:OtherMaterial>
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_MatURL890</r:ID><r:Version>1.0.0</r:Version>
-					<r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Link</r:TypeOfMaterial>
-					<r:Description><r:Content xml:lang="en">GLES-topic at gesis</r:Content>
-						<r:Content xml:lang="de">GLES-Themenseite bei gesis</r:Content></r:Description>
-					<r:ExternalURLReference>http://www.gesis.org/wahlen/gles/</r:ExternalURLReference>
-				</r:OtherMaterial>
-				<d:DataCollection>
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_DatCol</r:ID><r:Version>1.0.0</r:Version>
-					<d:Methodology>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Met</r:ID><r:Version>1.0.0</r:Version>
-						<d:TimeMethod>
-							<r:Agency>de.gesis</r:Agency>
-							<r:ID>ZA5300_TimMet1</r:ID><r:Version>1.0.0</r:Version>
-							<d:TypeOfTimeMethod codeListName="TimeMethod" codeListAgencyName="DDIAlliance" codeListVersionID="1.2">Cross-section</d:TypeOfTimeMethod>
-						</d:TimeMethod>
-						<d:SamplingProcedure>
-							<r:Agency>de.gesis</r:Agency>
-							<r:ID>ZA5300_SamPro1</r:ID><r:Version>1.0.0</r:Version>
-							<d:TypeOfSamplingProcedure codeListName="SamplingProcedure" codeListAgencyName="DDIAlliance" codeListVersionID="1.1">Probability: Stratified: Disproportional</d:TypeOfSamplingProcedure>
-						</d:SamplingProcedure>
-						<d:SamplingProcedure>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_SamPro</r:ID><r:Version>1.0.0</r:Version>
-							<r:Description>
-								<r:Content xml:lang="en"></r:Content>
-								<r:Content xml:lang="de"></r:Content>
-							</r:Description>
-						</d:SamplingProcedure>
-					</d:Methodology>
-					<d:CollectionEvent>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_ColEve</r:ID><r:Version>1.0.0</r:Version>
-						<d:DataCollectorOrganizationReference>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_DC</r:ID><r:Version>1.0.0</r:Version>
-							<r:TypeOfObject>Organization</r:TypeOfObject>
-						</d:DataCollectorOrganizationReference>
-						<d:ModeOfCollection>
-							<r:Agency>de.gesis</r:Agency>
-							<r:ID>ZA5300_ModOfC1</r:ID><r:Version>1.0.0</r:Version>
-							<d:TypeOfModeOfCollection codeListName="ModeOfCollection" codeListAgencyName="DDIAlliance" codeListVersionID="3.0">Face-to-face interview: Computer-assisted (CAPI/CAMI)</d:TypeOfModeOfCollection>
-						</d:ModeOfCollection>
-						<d:ModeOfCollection>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_ModOfC</r:ID><r:Version>1.0.0</r:Version>
-							<r:Description>
-								<r:Content xml:lang="en"></r:Content>
-								<r:Content xml:lang="de"></r:Content>
-							</r:Description>
-						</d:ModeOfCollection>
-					</d:CollectionEvent>
-					<d:InstrumentScheme>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_InstrumentSch</r:ID><r:Version>1.0.0</r:Version>
-					</d:InstrumentScheme>
-				</d:DataCollection>
-				<l:LogicalProduct>
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_LogPro</r:ID><r:Version>1.0.0</r:Version>
-					<r:Note>
-						<r:TypeOfNote codeListName="GesisTypeOfNote" codeListAgencyName="Gesis" codeListURN="">Software</r:TypeOfNote>
-						<r:Relationship>
-							<r:RelatedToReference>
-								<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_LogPro</r:ID><r:Version>1.0.0</r:Version>
-								<r:TypeOfObject>LogicalProduct</r:TypeOfObject>
-							</r:RelatedToReference>
-						</r:Relationship>
-						<r:NoteContent><r:Content xml:lang="en">SPSS, Stata</r:Content>
-							<r:Content xml:lang="de">SPSS, Stata</r:Content></r:NoteContent>
-					</r:Note>
-					<r:Note>
-						<r:TypeOfNote codeListName="GesisTypeOfNote" codeListAgencyName="Gesis" codeListURN="">VariableQuantity</r:TypeOfNote>
-						<r:Relationship>
-							<r:RelatedToReference>
-								<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_LogPro</r:ID><r:Version>1.0.0</r:Version>
-								<r:TypeOfObject>LogicalProduct</r:TypeOfObject>
-							</r:RelatedToReference>
-						</r:Relationship>
-						<r:NoteContent><r:Content xml:lang="en">638</r:Content>
-							<r:Content xml:lang="de">638</r:Content></r:NoteContent>
-					</r:Note>
-				</l:LogicalProduct>
-				<pi:PhysicalInstance>
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_PhyIns</r:ID><r:Version>1.0.0</r:Version>
-					<pi:GrossFileStructure>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_GroFilStr</r:ID><r:Version>1.0.0</r:Version>
-						<pi:CaseQuantity>2173</pi:CaseQuantity>
-					</pi:GrossFileStructure>
-				</pi:PhysicalInstance>
-				<a:Archive>
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Arc</r:ID><r:Version>1.0.0</r:Version>
-					<a:ArchiveSpecific>
-						<a:Item>
-							<a:Access>
-								<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Acc</r:ID><r:Version>1.0.0</r:Version>
-								<a:AccessTypeName><r:String>A</r:String></a:AccessTypeName>
-								<r:Description>
-									<r:Content xml:lang="en">Data and documents are released for academic research and teaching.</r:Content>
-									<r:Content xml:lang="de">Daten und Dokumente sind für die akademische Forschung und Lehre freigegeben.</r:Content>
-								</r:Description>
-								<a:ContactOrganizationReference>
-									<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_AR</r:ID><r:Version>1.0.0</r:Version>
-									<r:TypeOfObject>Organization</r:TypeOfObject>
-								</a:ContactOrganizationReference>
-							</a:Access>
-						</a:Item>
-					</a:ArchiveSpecific>
-					<r:LifecycleInformation>
-						<r:LifecycleEvent>
-							<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_LifEve</r:ID><r:Version>1.0.0</r:Version>
-							<r:Date>
-								<r:SimpleDate>2020-05-13</r:SimpleDate>
-							</r:Date>
-							<r:AgencyOrganizationReference>
-								<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_AR</r:ID><r:Version>1.0.0</r:Version>
-								<r:TypeOfObject>Organization</r:TypeOfObject>
-							</r:AgencyOrganizationReference>
-							<r:Description><r:Content><![CDATA[                                            
+        </r:Abstract>
+        <r:UniverseReference>
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_Uni1</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:TypeOfObject>Universe</r:TypeOfObject>
+        </r:UniverseReference>
+        <r:Coverage>
+          <r:TopicalCoverage>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Top</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:Subject codeListAgencyName="de.gesis" codeListName="ZA-Categories" xml:lang="en">Political Attitudes and Behavior</r:Subject>
+            <r:Subject codeListAgencyName="de.gesis" codeListName="ZA-Kategorien" xml:lang="de">Politische Einstellungen und Verhaltensweisen</r:Subject>
+            <r:Subject codeListAgencyName="cessda" codeListName="CESSDA Topic Classification" xml:lang="en">Social conditions and indicators</r:Subject>
+            <r:Subject codeListAgencyName="cessda" codeListName="CESSDA Topic Classification" xml:lang="de">Soziale Lage und Indikatoren</r:Subject>
+            <r:Subject codeListAgencyName="cessda" codeListName="CESSDA Topic Classification" xml:lang="en">Social behaviour and attitudes</r:Subject>
+            <r:Subject codeListAgencyName="cessda" codeListName="CESSDA Topic Classification" xml:lang="de">Soziales Verhalten und soziale Einstellungen</r:Subject>
+            <r:Subject codeListAgencyName="cessda" codeListName="CESSDA Topic Classification" xml:lang="en">Mass media</r:Subject>
+            <r:Subject codeListAgencyName="cessda" codeListName="CESSDA Topic Classification" xml:lang="de">Massenmedien</r:Subject>
+            <r:Subject codeListAgencyName="cessda" codeListName="CESSDA Topic Classification" xml:lang="en">Mass political behaviour, attitudes/opinion</r:Subject>
+            <r:Subject codeListAgencyName="cessda" codeListName="CESSDA Topic Classification" xml:lang="de">Politische Verhaltensweisen und Einstellungen/Meinungen</r:Subject>
+            <r:Subject codeListAgencyName="cessda" codeListName="CESSDA Topic Classification" xml:lang="en">Government, political systems and organisation</r:Subject>
+            <r:Subject codeListAgencyName="cessda" codeListName="CESSDA Topic Classification" xml:lang="de">Regierung, politische Systeme, Parteien und Verbände</r:Subject>
+            <r:Subject codeListAgencyName="cessda" codeListName="CESSDA Topic Classification" xml:lang="en">Elections</r:Subject>
+            <r:Subject codeListAgencyName="cessda" codeListName="CESSDA Topic Classification" xml:lang="de">Wahlen</r:Subject>
+          </r:TopicalCoverage>
+          <r:SpatialCoverage>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Spa</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:GeographicLocationReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_GeoLocDE</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>GeographicLocation</r:TypeOfObject>
+            </r:GeographicLocationReference>
+          </r:SpatialCoverage>
+          <r:TemporalCoverage>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Tem</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:ReferenceDate>
+              <r:StartDate>2009-08-10</r:StartDate>
+              <r:EndDate>2009-09-26</r:EndDate>
+              <r:Subject xml:lang="en"/>
+              <r:Subject xml:lang="de"/>
+            </r:ReferenceDate>
+          </r:TemporalCoverage>
+        </r:Coverage>
+        <r:AnalysisUnit codeListAgencyName="DDIAlliance" codeListName="AnalysisUnit" codeListVersionID="1.0">Individual</r:AnalysisUnit>
+        <r:KindOfData codeListAgencyName="DDIAlliance" codeListName="KindOfDataFormat" codeListVersionID="2.0">Numeric</r:KindOfData>
+        <r:KindOfData codeListAgencyName="DDIAlliance" codeListName="KindOfDataFormat" codeListVersionID="2.0">Text</r:KindOfData>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_OthMat65451</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">65451</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en">for conformance with missing values in wave 2013 (ZA5700) - German/Stata</r:Content>
+            <r:Content xml:lang="de">zur Anpassung der Missing Values an die 2013er Welle (ZA5700) - deutsch/Stata</r:Content>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5300_de_RecodeMissings_v5-0-2.do (Dataset)</r:String>
+              <r:String xml:lang="de">ZA5300_de_RecodeMissings_v5-0-2.do (Datensatz)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65451</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_OthMat65452</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">65452</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en">for conformance with missing values in wave 2013 (ZA5700) - German/SPSS</r:Content>
+            <r:Content xml:lang="de">zur Anpassung der Missing Values an die 2013er Welle (ZA5700) - deutsch/SPSS</r:Content>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5300_de_RecodeMissings_v5-0-2.sps (Dataset)</r:String>
+              <r:String xml:lang="de">ZA5300_de_RecodeMissings_v5-0-2.sps (Datensatz)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65452</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_OthMat65453</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">65453</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en">German</r:Content>
+            <r:Content xml:lang="de">deutsch</r:Content>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5300_de_v5-0-2.dta (Dataset)</r:String>
+              <r:String xml:lang="de">ZA5300_de_v5-0-2.dta (Datensatz)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65453</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_OthMat65454</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">65454</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en">German</r:Content>
+            <r:Content xml:lang="de">deutsch</r:Content>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5300_de_v5-0-2.sav (Dataset)</r:String>
+              <r:String xml:lang="de">ZA5300_de_v5-0-2.sav (Datensatz)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65454</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_OthMat65455</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">65455</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en">for conformance with missing values in wave 2013 (ZA5700) - English/Stata</r:Content>
+            <r:Content xml:lang="de">zur Anpassung der Missing Values an die 2013er Welle (ZA5700) - englisch/Stata</r:Content>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5300_en_RecodeMissings_v5-0-2.do (Dataset)</r:String>
+              <r:String xml:lang="de">ZA5300_en_RecodeMissings_v5-0-2.do (Datensatz)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65455</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_OthMat65456</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">65456</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en">for conformance with missing values in wave 2013 (ZA5700) - English/SPSS</r:Content>
+            <r:Content xml:lang="de">zur Anpassung der Missing Values an die 2013er Welle (ZA5700) - englisch/SPSS</r:Content>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5300_en_RecodeMissings_v5-0-2.sps (Dataset)</r:String>
+              <r:String xml:lang="de">ZA5300_en_RecodeMissings_v5-0-2.sps (Datensatz)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65456</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_OthMat65457</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">65457</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en">English</r:Content>
+            <r:Content xml:lang="de">englisch</r:Content>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5300_en_v5-0-2.dta (Dataset)</r:String>
+              <r:String xml:lang="de">ZA5300_en_v5-0-2.dta (Datensatz)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65457</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_OthMat65458</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">65458</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Dataset</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en">English</r:Content>
+            <r:Content xml:lang="de">englisch</r:Content>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5300_en_v5-0-2.sav (Dataset)</r:String>
+              <r:String xml:lang="de">ZA5300_en_v5-0-2.sav (Datensatz)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65458</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_OthMat62248</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">62248</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Questionnaire</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en">Questionnaire incl. short study description (German)</r:Content>
+            <r:Content xml:lang="de">Fragebogen inkl. kurzer Studienbeschreibung (deutsch)</r:Content>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5300_fb.pdf (Questionnaire)</r:String>
+              <r:String xml:lang="de">ZA5300_fb.pdf (Fragebogen)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=62248</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_OthMat65741</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">65741</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Questionnaire</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en"/>
+            <r:Content xml:lang="de"/>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5300_Listenheft.pdf (Questionnaire)</r:String>
+              <r:String xml:lang="de">ZA5300_Listenheft.pdf (Fragebogen)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65741</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_OthMat65742</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">65742</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Questionnaire</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en"/>
+            <r:Content xml:lang="de"/>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5300_Listenheft_Soziodemographie.pdf (Questionnaire)</r:String>
+              <r:String xml:lang="de">ZA5300_Listenheft_Soziodemographie.pdf (Fragebogen)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=65742</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_OthMat62249</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">62249</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Questionnaire</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en">Questionnaire incl. short study description (English)</r:Content>
+            <r:Content xml:lang="de">Fragebogen inkl. kurzer Studienbeschreibung (englisch)</r:Content>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5300_q.pdf (Questionnaire)</r:String>
+              <r:String xml:lang="de">ZA5300_q.pdf (Fragebogen)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=62249</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_OthMat45790</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">45790</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Other Document</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en">codeplans and correspondence lists for GLES as a whole</r:Content>
+            <r:Content xml:lang="de">Codepläne und Korrespondenzlisten für GLES insgesamt</r:Content>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5300-57_GLES_Doku_insgesamt.zip (Other Document)</r:String>
+              <r:String xml:lang="de">ZA5300-57_GLES_Doku_insgesamt.zip (sonstiges)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=45790</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_OthMat45500</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">45500</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Other Document</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en"/>
+            <r:Content xml:lang="de"/>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5300_Aenderungen_v4-0-0_zu_v5-0-0.pdf (Other Document)</r:String>
+              <r:String xml:lang="de">ZA5300_Aenderungen_v4-0-0_zu_v5-0-0.pdf (sonstiges)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=45500</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_OthMat20723</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">20723</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Other Document</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en"/>
+            <r:Content xml:lang="de"/>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5300_Variablenlabels_v5-0-0.pdf (Other Document)</r:String>
+              <r:String xml:lang="de">ZA5300_Variablenlabels_v5-0-0.pdf (sonstiges)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=20723</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial xml:lang="de">
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_OthMat57514</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:UserID typeOfUserID="Dokument-ID">57514</r:UserID>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Study Description</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en"/>
+            <r:Content xml:lang="de"/>
+          </r:Description>
+          <r:Citation>
+            <r:Title>
+              <r:String xml:lang="en">ZA5300_sb.pdf (Study Description)</r:String>
+              <r:String xml:lang="de">ZA5300_sb.pdf (Studienbeschreibung)</r:String>
+            </r:Title>
+          </r:Citation>
+          <r:ExternalURLReference>https://dbk.gesis.org/dbksearch/download.asp?id=57514</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <r:OtherMaterial>
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_MatURL890</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:TypeOfMaterial codeListName="GesisDBKTypeOfMaterial">Link</r:TypeOfMaterial>
+          <r:Description>
+            <r:Content xml:lang="en">GLES-topic at gesis</r:Content>
+            <r:Content xml:lang="de">GLES-Themenseite bei gesis</r:Content>
+          </r:Description>
+          <r:ExternalURLReference>http://www.gesis.org/wahlen/gles/</r:ExternalURLReference>
+        </r:OtherMaterial>
+        <d:DataCollection>
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_DatCol</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <d:Methodology>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Met</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <d:TimeMethod>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_TimMet1</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <d:TypeOfTimeMethod codeListAgencyName="DDIAlliance" codeListName="TimeMethod" codeListVersionID="1.2">Cross-section</d:TypeOfTimeMethod>
+            </d:TimeMethod>
+            <d:SamplingProcedure>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_SamPro1</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <d:TypeOfSamplingProcedure codeListAgencyName="DDIAlliance" codeListName="SamplingProcedure" codeListVersionID="1.1">Probability: Stratified: Disproportional</d:TypeOfSamplingProcedure>
+            </d:SamplingProcedure>
+            <d:SamplingProcedure>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_SamPro</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:Description>
+                <r:Content xml:lang="en"/>
+                <r:Content xml:lang="de"/>
+              </r:Description>
+            </d:SamplingProcedure>
+          </d:Methodology>
+          <d:CollectionEvent>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_ColEve</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <d:DataCollectorOrganizationReference>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_Org_DC</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:TypeOfObject>Organization</r:TypeOfObject>
+            </d:DataCollectorOrganizationReference>
+            <d:ModeOfCollection>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_ModOfC1</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <d:TypeOfModeOfCollection codeListAgencyName="DDIAlliance" codeListName="ModeOfCollection" codeListVersionID="3.0">Face-to-face interview: Computer-assisted (CAPI/CAMI)</d:TypeOfModeOfCollection>
+            </d:ModeOfCollection>
+            <d:ModeOfCollection>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_ModOfC</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:Description>
+                <r:Content xml:lang="en"/>
+                <r:Content xml:lang="de"/>
+              </r:Description>
+            </d:ModeOfCollection>
+          </d:CollectionEvent>
+          <d:InstrumentScheme>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_InstrumentSch</r:ID>
+            <r:Version>1.0.0</r:Version>
+          </d:InstrumentScheme>
+        </d:DataCollection>
+        <l:LogicalProduct>
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_LogPro</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:Note>
+            <r:TypeOfNote codeListAgencyName="Gesis" codeListName="GesisTypeOfNote" codeListURN="">Software</r:TypeOfNote>
+            <r:Relationship>
+              <r:RelatedToReference>
+                <r:Agency>de.gesis</r:Agency>
+                <r:ID>ZA5300_LogPro</r:ID>
+                <r:Version>1.0.0</r:Version>
+                <r:TypeOfObject>LogicalProduct</r:TypeOfObject>
+              </r:RelatedToReference>
+            </r:Relationship>
+            <r:NoteContent>
+              <r:Content xml:lang="en">SPSS, Stata</r:Content>
+              <r:Content xml:lang="de">SPSS, Stata</r:Content>
+            </r:NoteContent>
+          </r:Note>
+          <r:Note>
+            <r:TypeOfNote codeListAgencyName="Gesis" codeListName="GesisTypeOfNote" codeListURN="">VariableQuantity</r:TypeOfNote>
+            <r:Relationship>
+              <r:RelatedToReference>
+                <r:Agency>de.gesis</r:Agency>
+                <r:ID>ZA5300_LogPro</r:ID>
+                <r:Version>1.0.0</r:Version>
+                <r:TypeOfObject>LogicalProduct</r:TypeOfObject>
+              </r:RelatedToReference>
+            </r:Relationship>
+            <r:NoteContent>
+              <r:Content xml:lang="en">638</r:Content>
+              <r:Content xml:lang="de">638</r:Content>
+            </r:NoteContent>
+          </r:Note>
+        </l:LogicalProduct>
+        <pi:PhysicalInstance>
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_PhyIns</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <pi:GrossFileStructure>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_GroFilStr</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <pi:CaseQuantity>2173</pi:CaseQuantity>
+          </pi:GrossFileStructure>
+        </pi:PhysicalInstance>
+        <a:Archive>
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_Arc</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <a:ArchiveSpecific>
+            <a:Item>
+              <a:Access>
+                <r:Agency>de.gesis</r:Agency>
+                <r:ID>ZA5300_Acc</r:ID>
+                <r:Version>1.0.0</r:Version>
+                <a:AccessTypeName>
+                  <r:String>A</r:String>
+                </a:AccessTypeName>
+                <r:Description>
+                  <r:Content xml:lang="en">Data and documents are released for academic research and teaching.</r:Content>
+                  <r:Content xml:lang="de">Daten und Dokumente sind für die akademische Forschung und Lehre freigegeben.</r:Content>
+                </r:Description>
+                <a:ContactOrganizationReference>
+                  <r:Agency>de.gesis</r:Agency>
+                  <r:ID>ZA5300_Org_AR</r:ID>
+                  <r:Version>1.0.0</r:Version>
+                  <r:TypeOfObject>Organization</r:TypeOfObject>
+                </a:ContactOrganizationReference>
+              </a:Access>
+            </a:Item>
+          </a:ArchiveSpecific>
+          <r:LifecycleInformation>
+            <r:LifecycleEvent>
+              <r:Agency>de.gesis</r:Agency>
+              <r:ID>ZA5300_LifEve</r:ID>
+              <r:Version>1.0.0</r:Version>
+              <r:Date>
+                <r:SimpleDate>2020-05-13</r:SimpleDate>
+              </r:Date>
+              <r:AgencyOrganizationReference>
+                <r:Agency>de.gesis</r:Agency>
+                <r:ID>ZA5300_Org_AR</r:ID>
+                <r:Version>1.0.0</r:Version>
+                <r:TypeOfObject>Organization</r:TypeOfObject>
+              </r:AgencyOrganizationReference>
+              <r:Description>
+                <r:Content><![CDATA[                                            
  Selection of DDI 3.2 Elements and Attributes used by DBK for DDI3.2 Export 
  The original DDI 3.2 Schema can be found at http://www.ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/ 
  A copy of the DDI 3.2 Schema can be found at https://dbk.gesis.org/DDI/3_2 
@@ -648,500 +904,696 @@ Werte).</r:Content>
                                          
  DBK 2.2 to DDI 3.2 Export - 2.8.5       
                                          
-]]>
-								</r:Content></r:Description>
-						</r:LifecycleEvent>
-					</r:LifecycleInformation>
-				</a:Archive>
-			</s:StudyUnit>
-		</g:SubGroup>
-	</g:Group>
-	<g:ResourcePackage>
-		<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_ResPac</r:ID><r:Version>1.0.0</r:Version>
-		<a:OrganizationScheme>
-			<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_OrgSch</r:ID><r:Version>1.0.0</r:Version>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Cre1</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String>Universität Mannheim
+]]></r:Content>
+              </r:Description>
+            </r:LifecycleEvent>
+          </r:LifecycleInformation>
+        </a:Archive>
+      </s:StudyUnit>
+    </g:SubGroup>
+  </g:Group>
+  <g:ResourcePackage>
+    <r:Agency>de.gesis</r:Agency>
+    <r:ID>ZA5300_ResPac</r:ID>
+    <r:Version>1.0.0</r:Version>
+    <a:OrganizationScheme>
+      <r:Agency>de.gesis</r:Agency>
+      <r:ID>ZA5300_OrgSch</r:ID>
+      <r:Version>1.0.0</r:Version>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_Cre1</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>Universität Mannheim
 </r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Cre2</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String>Universität Frankfurt
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_Cre2</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>Universität Frankfurt
 </r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Cre3</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String>Universität Mannheim
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_Cre3</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>Universität Mannheim
 </r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Cre4</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String>Wissenschaftszentrum Berlin für Sozialforschung
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_Cre4</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>Wissenschaftszentrum Berlin für Sozialforschung
 </r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Con1</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String>Universität Frankfurt</r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Con2</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String>Universität Frankfurt</r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Con3</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String>GESIS - Leibniz-Institut für Sozialwissenschaften</r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Con4</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String>Universität Frankfurt</r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Con5</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String>GESIS - Leibniz-Institut für Sozialwissenschaften</r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Con6</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String>GESIS - Leibniz-Institut für Sozialwissenschaften</r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Con7</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String>GESIS - Leibniz-Institut für Sozialwissenschaften</r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Con8</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String>GESIS - Leibniz-Institut für Sozialwissenschaften</r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Pub1</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</r:String>
-						<r:String xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_AR</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName>
-						<r:String xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</r:String>
-						<r:String xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</r:String>
-					</a:OrganizationName>
-				</a:OrganizationIdentification>
-				<r:Description>
-					<r:Content xml:lang="en">GESIS Data service</r:Content>
-					<r:Content xml:lang="de">GESIS Datenservice</r:Content>
-				</r:Description>
-				<a:ContactInformation>
-					<a:Telephone><a:TelephoneNumber>+49 (0)221-476 94-420</a:TelephoneNumber></a:Telephone>
-					<a:URL>http://www.gesis.org/</a:URL>
-					<a:Email><r:InternetEmail>datenservice.das@gesis.org</r:InternetEmail></a:Email>
-				</a:ContactInformation>
-			</a:Organization>
-			<a:Organization>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_DC</r:ID><r:Version>1.0.0</r:Version>
-				<a:OrganizationIdentification>
-					<a:OrganizationName><r:String>BIK MARPLAN, Offenbach</r:String></a:OrganizationName>
-				</a:OrganizationIdentification>
-			</a:Organization>
-			<a:Individual>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Cre1</r:ID><r:Version>1.0.0</r:Version>
-				<a:IndividualIdentification>
-					<a:IndividualName>
-						<a:FullName><r:String>Rattinger, Hans</r:String></a:FullName>
-					</a:IndividualName>
-				</a:IndividualIdentification>
-			</a:Individual>
-			<a:Individual>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Cre2</r:ID><r:Version>1.0.0</r:Version>
-				<a:IndividualIdentification>
-					<a:IndividualName>
-						<a:FullName><r:String>Roßteutscher, Sigrid</r:String></a:FullName>
-					</a:IndividualName>
-				</a:IndividualIdentification>
-			</a:Individual>
-			<a:Individual>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Cre3</r:ID><r:Version>1.0.0</r:Version>
-				<a:IndividualIdentification>
-					<a:IndividualName>
-						<a:FullName><r:String>Schmitt-Beck, Rüdiger</r:String></a:FullName>
-					</a:IndividualName>
-				</a:IndividualIdentification>
-			</a:Individual>
-			<a:Individual>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Cre4</r:ID><r:Version>1.0.0</r:Version>
-				<a:IndividualIdentification>
-					<a:IndividualName>
-						<a:FullName><r:String>Weßels, Bernhard</r:String></a:FullName>
-					</a:IndividualName>
-				</a:IndividualIdentification>
-			</a:Individual>
-			<a:Individual>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con1</r:ID><r:Version>1.0.0</r:Version>
-				<a:IndividualIdentification>
-					<a:IndividualName>
-						<a:FullName><r:String>Roßteutscher, Sigrid</r:String></a:FullName>
-					</a:IndividualName>
-				</a:IndividualIdentification>
-			</a:Individual>
-			<a:Individual>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con2</r:ID><r:Version>1.0.0</r:Version>
-				<a:IndividualIdentification>
-					<a:IndividualName>
-						<a:FullName><r:String>Scherer, Philipp</r:String></a:FullName>
-					</a:IndividualName>
-				</a:IndividualIdentification>
-			</a:Individual>
-			<a:Individual>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con3</r:ID><r:Version>1.0.0</r:Version>
-				<a:IndividualIdentification>
-					<a:IndividualName>
-						<a:FullName><r:String>Bieber, Ina</r:String></a:FullName>
-					</a:IndividualName>
-				</a:IndividualIdentification>
-			</a:Individual>
-			<a:Individual>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con4</r:ID><r:Version>1.0.0</r:Version>
-				<a:IndividualIdentification>
-					<a:IndividualName>
-						<a:FullName><r:String>Bytzek, Evelyn</r:String></a:FullName>
-					</a:IndividualName>
-				</a:IndividualIdentification>
-			</a:Individual>
-			<a:Individual>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con5</r:ID><r:Version>1.0.0</r:Version>
-				<a:IndividualIdentification>
-					<a:IndividualName>
-						<a:FullName><r:String>Förster, André</r:String></a:FullName>
-					</a:IndividualName>
-				</a:IndividualIdentification>
-			</a:Individual>
-			<a:Individual>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con6</r:ID><r:Version>1.0.0</r:Version>
-				<a:IndividualIdentification>
-					<a:IndividualName>
-						<a:FullName><r:String>Kratz, Sophia</r:String></a:FullName>
-					</a:IndividualName>
-				</a:IndividualIdentification>
-			</a:Individual>
-			<a:Individual>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con7</r:ID><r:Version>1.0.0</r:Version>
-				<a:IndividualIdentification>
-					<a:IndividualName>
-						<a:FullName><r:String>Kulick, Manuela </r:String></a:FullName>
-					</a:IndividualName>
-				</a:IndividualIdentification>
-			</a:Individual>
-			<a:Individual>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con8</r:ID><r:Version>1.0.0</r:Version>
-				<a:IndividualIdentification>
-					<a:IndividualName>
-						<a:FullName><r:String>Roßmann, Joss</r:String></a:FullName>
-					</a:IndividualName>
-				</a:IndividualIdentification>
-			</a:Individual>
-			<a:Relation>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_RelCre1</r:ID><r:Version>1.0.0</r:Version>
-				<a:SourceObject>
-					<a:IndividualReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Cre1</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Individual</r:TypeOfObject>
-					</a:IndividualReference>
-				</a:SourceObject>
-				<a:TargetObject>
-					<a:OrganizationReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Cre1</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Organization</r:TypeOfObject>
-					</a:OrganizationReference>
-					<a:Role>
-						<r:Description><r:Content>Affiliation</r:Content></r:Description>
-					</a:Role>
-				</a:TargetObject>
-			</a:Relation>
-			<a:Relation>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_RelCre2</r:ID><r:Version>1.0.0</r:Version>
-				<a:SourceObject>
-					<a:IndividualReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Cre2</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Individual</r:TypeOfObject>
-					</a:IndividualReference>
-				</a:SourceObject>
-				<a:TargetObject>
-					<a:OrganizationReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Cre2</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Organization</r:TypeOfObject>
-					</a:OrganizationReference>
-					<a:Role>
-						<r:Description><r:Content>Affiliation</r:Content></r:Description>
-					</a:Role>
-				</a:TargetObject>
-			</a:Relation>
-			<a:Relation>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_RelCre3</r:ID><r:Version>1.0.0</r:Version>
-				<a:SourceObject>
-					<a:IndividualReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Cre3</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Individual</r:TypeOfObject>
-					</a:IndividualReference>
-				</a:SourceObject>
-				<a:TargetObject>
-					<a:OrganizationReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Cre3</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Organization</r:TypeOfObject>
-					</a:OrganizationReference>
-					<a:Role>
-						<r:Description><r:Content>Affiliation</r:Content></r:Description>
-					</a:Role>
-				</a:TargetObject>
-			</a:Relation>
-			<a:Relation>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_RelCre4</r:ID><r:Version>1.0.0</r:Version>
-				<a:SourceObject>
-					<a:IndividualReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Cre4</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Individual</r:TypeOfObject>
-					</a:IndividualReference>
-				</a:SourceObject>
-				<a:TargetObject>
-					<a:OrganizationReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Cre4</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Organization</r:TypeOfObject>
-					</a:OrganizationReference>
-					<a:Role>
-						<r:Description><r:Content>Affiliation</r:Content></r:Description>
-					</a:Role>
-				</a:TargetObject>
-			</a:Relation>
-			<a:Relation>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_RelCon1</r:ID><r:Version>1.0.0</r:Version>
-				<a:SourceObject>
-					<a:IndividualReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con1</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Individual</r:TypeOfObject>
-					</a:IndividualReference>
-				</a:SourceObject>
-				<a:TargetObject>
-					<a:OrganizationReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Con1</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Organization</r:TypeOfObject>
-					</a:OrganizationReference>
-					<a:Role>
-						<r:Description><r:Content>Affiliation</r:Content></r:Description>
-					</a:Role>
-				</a:TargetObject>
-			</a:Relation>
-			<a:Relation>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_RelCon2</r:ID><r:Version>1.0.0</r:Version>
-				<a:SourceObject>
-					<a:IndividualReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con2</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Individual</r:TypeOfObject>
-					</a:IndividualReference>
-				</a:SourceObject>
-				<a:TargetObject>
-					<a:OrganizationReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Con2</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Organization</r:TypeOfObject>
-					</a:OrganizationReference>
-					<a:Role>
-						<r:Description><r:Content>Affiliation</r:Content></r:Description>
-					</a:Role>
-				</a:TargetObject>
-			</a:Relation>
-			<a:Relation>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_RelCon3</r:ID><r:Version>1.0.0</r:Version>
-				<a:SourceObject>
-					<a:IndividualReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con3</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Individual</r:TypeOfObject>
-					</a:IndividualReference>
-				</a:SourceObject>
-				<a:TargetObject>
-					<a:OrganizationReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Con3</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Organization</r:TypeOfObject>
-					</a:OrganizationReference>
-					<a:Role>
-						<r:Description><r:Content>Affiliation</r:Content></r:Description>
-					</a:Role>
-				</a:TargetObject>
-			</a:Relation>
-			<a:Relation>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_RelCon4</r:ID><r:Version>1.0.0</r:Version>
-				<a:SourceObject>
-					<a:IndividualReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con4</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Individual</r:TypeOfObject>
-					</a:IndividualReference>
-				</a:SourceObject>
-				<a:TargetObject>
-					<a:OrganizationReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Con4</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Organization</r:TypeOfObject>
-					</a:OrganizationReference>
-					<a:Role>
-						<r:Description><r:Content>Affiliation</r:Content></r:Description>
-					</a:Role>
-				</a:TargetObject>
-			</a:Relation>
-			<a:Relation>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_RelCon5</r:ID><r:Version>1.0.0</r:Version>
-				<a:SourceObject>
-					<a:IndividualReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con5</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Individual</r:TypeOfObject>
-					</a:IndividualReference>
-				</a:SourceObject>
-				<a:TargetObject>
-					<a:OrganizationReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Con5</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Organization</r:TypeOfObject>
-					</a:OrganizationReference>
-					<a:Role>
-						<r:Description><r:Content>Affiliation</r:Content></r:Description>
-					</a:Role>
-				</a:TargetObject>
-			</a:Relation>
-			<a:Relation>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_RelCon6</r:ID><r:Version>1.0.0</r:Version>
-				<a:SourceObject>
-					<a:IndividualReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con6</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Individual</r:TypeOfObject>
-					</a:IndividualReference>
-				</a:SourceObject>
-				<a:TargetObject>
-					<a:OrganizationReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Con6</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Organization</r:TypeOfObject>
-					</a:OrganizationReference>
-					<a:Role>
-						<r:Description><r:Content>Affiliation</r:Content></r:Description>
-					</a:Role>
-				</a:TargetObject>
-			</a:Relation>
-			<a:Relation>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_RelCon7</r:ID><r:Version>1.0.0</r:Version>
-				<a:SourceObject>
-					<a:IndividualReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con7</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Individual</r:TypeOfObject>
-					</a:IndividualReference>
-				</a:SourceObject>
-				<a:TargetObject>
-					<a:OrganizationReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Con7</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Organization</r:TypeOfObject>
-					</a:OrganizationReference>
-					<a:Role>
-						<r:Description><r:Content>Affiliation</r:Content></r:Description>
-					</a:Role>
-				</a:TargetObject>
-			</a:Relation>
-			<a:Relation>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_RelCon8</r:ID><r:Version>1.0.0</r:Version>
-				<a:SourceObject>
-					<a:IndividualReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Ind_Con8</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Individual</r:TypeOfObject>
-					</a:IndividualReference>
-				</a:SourceObject>
-				<a:TargetObject>
-					<a:OrganizationReference>
-						<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Org_Con8</r:ID><r:Version>1.0.0</r:Version>
-						<r:TypeOfObject>Organization</r:TypeOfObject>
-					</a:OrganizationReference>
-					<a:Role>
-						<r:Description><r:Content>Affiliation</r:Content></r:Description>
-					</a:Role>
-				</a:TargetObject>
-			</a:Relation>
-		</a:OrganizationScheme>
-		<c:UniverseScheme>
-			<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_UniSch</r:ID><r:Version>1.0.0</r:Version>
-			<c:Universe>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_Uni1</r:ID><r:Version>1.0.0</r:Version>
-				<r:Description>
-					<r:Content xml:lang="en">The population comprises all persons with German citizenship resident
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_Con1</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>Universität Frankfurt</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_Con2</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>Universität Frankfurt</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_Con3</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>GESIS - Leibniz-Institut für Sozialwissenschaften</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_Con4</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>Universität Frankfurt</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_Con5</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>GESIS - Leibniz-Institut für Sozialwissenschaften</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_Con6</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>GESIS - Leibniz-Institut für Sozialwissenschaften</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_Con7</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>GESIS - Leibniz-Institut für Sozialwissenschaften</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_Con8</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>GESIS - Leibniz-Institut für Sozialwissenschaften</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_Pub1</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</r:String>
+            <r:String xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_AR</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</r:String>
+            <r:String xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+        <r:Description>
+          <r:Content xml:lang="en">GESIS Data service</r:Content>
+          <r:Content xml:lang="de">GESIS Datenservice</r:Content>
+        </r:Description>
+        <a:ContactInformation>
+          <a:Telephone>
+            <a:TelephoneNumber>+49 (0)221-476 94-420</a:TelephoneNumber>
+          </a:Telephone>
+          <a:URL>http://www.gesis.org/</a:URL>
+          <a:Email>
+            <r:InternetEmail>datenservice.das@gesis.org</r:InternetEmail>
+          </a:Email>
+        </a:ContactInformation>
+      </a:Organization>
+      <a:Organization>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_DC</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:OrganizationIdentification>
+          <a:OrganizationName>
+            <r:String>BIK MARPLAN, Offenbach</r:String>
+          </a:OrganizationName>
+        </a:OrganizationIdentification>
+      </a:Organization>
+      <a:Individual>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Ind_Cre1</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:IndividualIdentification>
+          <a:IndividualName>
+            <a:FullName>
+              <r:String>Rattinger, Hans</r:String>
+            </a:FullName>
+          </a:IndividualName>
+        </a:IndividualIdentification>
+      </a:Individual>
+      <a:Individual>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Ind_Cre2</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:IndividualIdentification>
+          <a:IndividualName>
+            <a:FullName>
+              <r:String>Roßteutscher, Sigrid</r:String>
+            </a:FullName>
+          </a:IndividualName>
+        </a:IndividualIdentification>
+      </a:Individual>
+      <a:Individual>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Ind_Cre3</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:IndividualIdentification>
+          <a:IndividualName>
+            <a:FullName>
+              <r:String>Schmitt-Beck, Rüdiger</r:String>
+            </a:FullName>
+          </a:IndividualName>
+        </a:IndividualIdentification>
+      </a:Individual>
+      <a:Individual>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Ind_Cre4</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:IndividualIdentification>
+          <a:IndividualName>
+            <a:FullName>
+              <r:String>Weßels, Bernhard</r:String>
+            </a:FullName>
+          </a:IndividualName>
+        </a:IndividualIdentification>
+      </a:Individual>
+      <a:Individual>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Ind_Con1</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:IndividualIdentification>
+          <a:IndividualName>
+            <a:FullName>
+              <r:String>Roßteutscher, Sigrid</r:String>
+            </a:FullName>
+          </a:IndividualName>
+        </a:IndividualIdentification>
+      </a:Individual>
+      <a:Individual>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Ind_Con2</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:IndividualIdentification>
+          <a:IndividualName>
+            <a:FullName>
+              <r:String>Scherer, Philipp</r:String>
+            </a:FullName>
+          </a:IndividualName>
+        </a:IndividualIdentification>
+      </a:Individual>
+      <a:Individual>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Ind_Con3</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:IndividualIdentification>
+          <a:IndividualName>
+            <a:FullName>
+              <r:String>Bieber, Ina</r:String>
+            </a:FullName>
+          </a:IndividualName>
+        </a:IndividualIdentification>
+      </a:Individual>
+      <a:Individual>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Ind_Con4</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:IndividualIdentification>
+          <a:IndividualName>
+            <a:FullName>
+              <r:String>Bytzek, Evelyn</r:String>
+            </a:FullName>
+          </a:IndividualName>
+        </a:IndividualIdentification>
+      </a:Individual>
+      <a:Individual>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Ind_Con5</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:IndividualIdentification>
+          <a:IndividualName>
+            <a:FullName>
+              <r:String>Förster, André</r:String>
+            </a:FullName>
+          </a:IndividualName>
+        </a:IndividualIdentification>
+      </a:Individual>
+      <a:Individual>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Ind_Con6</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:IndividualIdentification>
+          <a:IndividualName>
+            <a:FullName>
+              <r:String>Kratz, Sophia</r:String>
+            </a:FullName>
+          </a:IndividualName>
+        </a:IndividualIdentification>
+      </a:Individual>
+      <a:Individual>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Ind_Con7</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:IndividualIdentification>
+          <a:IndividualName>
+            <a:FullName>
+              <r:String>Kulick, Manuela </r:String>
+            </a:FullName>
+          </a:IndividualName>
+        </a:IndividualIdentification>
+      </a:Individual>
+      <a:Individual>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Ind_Con8</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:IndividualIdentification>
+          <a:IndividualName>
+            <a:FullName>
+              <r:String>Roßmann, Joss</r:String>
+            </a:FullName>
+          </a:IndividualName>
+        </a:IndividualIdentification>
+      </a:Individual>
+      <a:Relation>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_RelCre1</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:SourceObject>
+          <a:IndividualReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Ind_Cre1</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Individual</r:TypeOfObject>
+          </a:IndividualReference>
+        </a:SourceObject>
+        <a:TargetObject>
+          <a:OrganizationReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Org_Cre1</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Organization</r:TypeOfObject>
+          </a:OrganizationReference>
+          <a:Role>
+            <r:Description>
+              <r:Content>Affiliation</r:Content>
+            </r:Description>
+          </a:Role>
+        </a:TargetObject>
+      </a:Relation>
+      <a:Relation>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_RelCre2</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:SourceObject>
+          <a:IndividualReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Ind_Cre2</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Individual</r:TypeOfObject>
+          </a:IndividualReference>
+        </a:SourceObject>
+        <a:TargetObject>
+          <a:OrganizationReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Org_Cre2</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Organization</r:TypeOfObject>
+          </a:OrganizationReference>
+          <a:Role>
+            <r:Description>
+              <r:Content>Affiliation</r:Content>
+            </r:Description>
+          </a:Role>
+        </a:TargetObject>
+      </a:Relation>
+      <a:Relation>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_RelCre3</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:SourceObject>
+          <a:IndividualReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Ind_Cre3</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Individual</r:TypeOfObject>
+          </a:IndividualReference>
+        </a:SourceObject>
+        <a:TargetObject>
+          <a:OrganizationReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Org_Cre3</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Organization</r:TypeOfObject>
+          </a:OrganizationReference>
+          <a:Role>
+            <r:Description>
+              <r:Content>Affiliation</r:Content>
+            </r:Description>
+          </a:Role>
+        </a:TargetObject>
+      </a:Relation>
+      <a:Relation>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_RelCre4</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:SourceObject>
+          <a:IndividualReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Ind_Cre4</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Individual</r:TypeOfObject>
+          </a:IndividualReference>
+        </a:SourceObject>
+        <a:TargetObject>
+          <a:OrganizationReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Org_Cre4</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Organization</r:TypeOfObject>
+          </a:OrganizationReference>
+          <a:Role>
+            <r:Description>
+              <r:Content>Affiliation</r:Content>
+            </r:Description>
+          </a:Role>
+        </a:TargetObject>
+      </a:Relation>
+      <a:Relation>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_RelCon1</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:SourceObject>
+          <a:IndividualReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Ind_Con1</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Individual</r:TypeOfObject>
+          </a:IndividualReference>
+        </a:SourceObject>
+        <a:TargetObject>
+          <a:OrganizationReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Org_Con1</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Organization</r:TypeOfObject>
+          </a:OrganizationReference>
+          <a:Role>
+            <r:Description>
+              <r:Content>Affiliation</r:Content>
+            </r:Description>
+          </a:Role>
+        </a:TargetObject>
+      </a:Relation>
+      <a:Relation>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_RelCon2</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:SourceObject>
+          <a:IndividualReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Ind_Con2</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Individual</r:TypeOfObject>
+          </a:IndividualReference>
+        </a:SourceObject>
+        <a:TargetObject>
+          <a:OrganizationReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Org_Con2</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Organization</r:TypeOfObject>
+          </a:OrganizationReference>
+          <a:Role>
+            <r:Description>
+              <r:Content>Affiliation</r:Content>
+            </r:Description>
+          </a:Role>
+        </a:TargetObject>
+      </a:Relation>
+      <a:Relation>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_RelCon3</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:SourceObject>
+          <a:IndividualReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Ind_Con3</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Individual</r:TypeOfObject>
+          </a:IndividualReference>
+        </a:SourceObject>
+        <a:TargetObject>
+          <a:OrganizationReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Org_Con3</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Organization</r:TypeOfObject>
+          </a:OrganizationReference>
+          <a:Role>
+            <r:Description>
+              <r:Content>Affiliation</r:Content>
+            </r:Description>
+          </a:Role>
+        </a:TargetObject>
+      </a:Relation>
+      <a:Relation>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_RelCon4</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:SourceObject>
+          <a:IndividualReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Ind_Con4</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Individual</r:TypeOfObject>
+          </a:IndividualReference>
+        </a:SourceObject>
+        <a:TargetObject>
+          <a:OrganizationReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Org_Con4</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Organization</r:TypeOfObject>
+          </a:OrganizationReference>
+          <a:Role>
+            <r:Description>
+              <r:Content>Affiliation</r:Content>
+            </r:Description>
+          </a:Role>
+        </a:TargetObject>
+      </a:Relation>
+      <a:Relation>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_RelCon5</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:SourceObject>
+          <a:IndividualReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Ind_Con5</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Individual</r:TypeOfObject>
+          </a:IndividualReference>
+        </a:SourceObject>
+        <a:TargetObject>
+          <a:OrganizationReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Org_Con5</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Organization</r:TypeOfObject>
+          </a:OrganizationReference>
+          <a:Role>
+            <r:Description>
+              <r:Content>Affiliation</r:Content>
+            </r:Description>
+          </a:Role>
+        </a:TargetObject>
+      </a:Relation>
+      <a:Relation>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_RelCon6</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:SourceObject>
+          <a:IndividualReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Ind_Con6</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Individual</r:TypeOfObject>
+          </a:IndividualReference>
+        </a:SourceObject>
+        <a:TargetObject>
+          <a:OrganizationReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Org_Con6</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Organization</r:TypeOfObject>
+          </a:OrganizationReference>
+          <a:Role>
+            <r:Description>
+              <r:Content>Affiliation</r:Content>
+            </r:Description>
+          </a:Role>
+        </a:TargetObject>
+      </a:Relation>
+      <a:Relation>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_RelCon7</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:SourceObject>
+          <a:IndividualReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Ind_Con7</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Individual</r:TypeOfObject>
+          </a:IndividualReference>
+        </a:SourceObject>
+        <a:TargetObject>
+          <a:OrganizationReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Org_Con7</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Organization</r:TypeOfObject>
+          </a:OrganizationReference>
+          <a:Role>
+            <r:Description>
+              <r:Content>Affiliation</r:Content>
+            </r:Description>
+          </a:Role>
+        </a:TargetObject>
+      </a:Relation>
+      <a:Relation>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Org_RelCon8</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <a:SourceObject>
+          <a:IndividualReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Ind_Con8</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Individual</r:TypeOfObject>
+          </a:IndividualReference>
+        </a:SourceObject>
+        <a:TargetObject>
+          <a:OrganizationReference>
+            <r:Agency>de.gesis</r:Agency>
+            <r:ID>ZA5300_Org_Con8</r:ID>
+            <r:Version>1.0.0</r:Version>
+            <r:TypeOfObject>Organization</r:TypeOfObject>
+          </a:OrganizationReference>
+          <a:Role>
+            <r:Description>
+              <r:Content>Affiliation</r:Content>
+            </r:Description>
+          </a:Role>
+        </a:TargetObject>
+      </a:Relation>
+    </a:OrganizationScheme>
+    <c:UniverseScheme>
+      <r:Agency>de.gesis</r:Agency>
+      <r:ID>ZA5300_UniSch</r:ID>
+      <r:Version>1.0.0</r:Version>
+      <c:Universe>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_Uni1</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <r:Description>
+          <r:Content xml:lang="en">The population comprises all persons with German citizenship resident
 in the Federal Republic of Germany, who had a minimum age of 16 years
 and lived in private households at the time the survey was being
 conducted.	</r:Content>
-					<r:Content xml:lang="de">Alle in der Bundesrepublik Deutschland in Privathaushalten lebenden
+          <r:Content xml:lang="de">Alle in der Bundesrepublik Deutschland in Privathaushalten lebenden
 Personen mit deutscher Staatsangehörigkeit ab 16 Jahren, die bei der
 Bundestagswahl am 27. September 2009 wahlberechtigt waren oder – falls
 noch nicht 18 – im Prinzip wahlberechtigt gewesen wären.</r:Content>
-				</r:Description>
-			</c:Universe>
-		</c:UniverseScheme>
-		<c:GeographicLocationScheme>
-			<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_GeoLocSch</r:ID><r:Version>1.0.0</r:Version>
-			<r:GeographicLocation>
-				<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_GeoLocDE</r:ID><r:Version>1.0.0</r:Version>
-				<r:Description><r:Content xml:lang="en"></r:Content>
-					<r:Content xml:lang="de"></r:Content></r:Description>
-				<r:GeographicLevelDescription>
-					<r:Content>Countries and Regions (ISO3166-1/2)</r:Content>
-				</r:GeographicLevelDescription>
-				<r:LocationValue>
-					<r:Agency>de.gesis</r:Agency><r:ID>ZA5300_LocValDE</r:ID><r:Version>1.0.0</r:Version>
-					<r:LocationValueName>
-						<r:String xml:lang="en">Germany</r:String>
-						<r:String xml:lang="de">Deutschland</r:String>
-					</r:LocationValueName>
-					<r:GeographicLocationIdentifier>
-						<r:GeographicCode>DE</r:GeographicCode>
-					</r:GeographicLocationIdentifier>
-				</r:LocationValue>
-			</r:GeographicLocation>
-		</c:GeographicLocationScheme>
-	</g:ResourcePackage>
+        </r:Description>
+      </c:Universe>
+    </c:UniverseScheme>
+    <c:GeographicLocationScheme>
+      <r:Agency>de.gesis</r:Agency>
+      <r:ID>ZA5300_GeoLocSch</r:ID>
+      <r:Version>1.0.0</r:Version>
+      <r:GeographicLocation>
+        <r:Agency>de.gesis</r:Agency>
+        <r:ID>ZA5300_GeoLocDE</r:ID>
+        <r:Version>1.0.0</r:Version>
+        <r:Description>
+          <r:Content xml:lang="en"/>
+          <r:Content xml:lang="de"/>
+        </r:Description>
+        <r:GeographicLevelDescription>
+          <r:Content>Countries and Regions (ISO3166-1/2)</r:Content>
+        </r:GeographicLevelDescription>
+        <r:LocationValue>
+          <r:Agency>de.gesis</r:Agency>
+          <r:ID>ZA5300_LocValDE</r:ID>
+          <r:Version>1.0.0</r:Version>
+          <r:LocationValueName>
+            <r:String xml:lang="en">Germany</r:String>
+            <r:String xml:lang="de">Deutschland</r:String>
+          </r:LocationValueName>
+          <r:GeographicLocationIdentifier>
+            <r:GeographicCode>DE</r:GeographicCode>
+          </r:GeographicLocationIdentifier>
+        </r:LocationValue>
+      </r:GeographicLocation>
+    </c:GeographicLocationScheme>
+  </g:ResourcePackage>
 </ddi:DDIInstance>

@@ -1,69 +1,71 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<codeBook xmlns="ddi:codebook:2_5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ddi:codebook:2_5 https://dbkapps.gesis.org/DDI/CDC/OAI-PMH-2-5_v0_4.xsd" version="2.5">
-	<docDscr>
-		<citation>
-			<titlStmt>
-				<titl xml:lang="en">DDI study level documentation for study ZA2800 ALLBUS/GGSS 1996 (Allgemeine Bevölkerungsumfrage der  Sozialwissenschaften/German General Social  Survey 1996) </titl>
-			</titlStmt>
-			<rspStmt>
-				<AuthEnty xml:lang="en" affiliation="GESIS">GESIS - Leibniz Institute for the Social Sciences</AuthEnty>
-				<AuthEnty xml:lang="de" affiliation="GESIS">GESIS - Leibniz Institut für Sozialwissenschaften</AuthEnty>
-			</rspStmt>
-			<prodStmt/>
-			<holdings URI="https://dbk.gesis.org/dbksearch/sdesc2.asp?no=2800&amp;db=e" xml:lang="en"/>
-			<holdings URI="https://dbk.gesis.org/dbksearch/sdesc2.asp?no=2800&amp;db=d" xml:lang="de"/>
-		</citation></docDscr>
-	<stdyDscr>
-		<citation>
-			<titlStmt>
-				<titl xml:lang="en">ALLBUS/GGSS 1996 (Allgemeine Bevölkerungsumfrage der  Sozialwissenschaften/German General Social  Survey 1996) </titl>
-				<parTitl xml:lang="de">Allgemeine Bevölkerungsumfrage der Sozialwissenschaften ALLBUS 1996 </parTitl>
-				<IDNo agency="GESIS">ZA2800</IDNo>
-				<IDNo agency="DataCite">10.4232/1.11888</IDNo>
-			</titlStmt>
-			<rspStmt>
-				<AuthEnty xml:lang="en" affiliation="Universität Frankfurt">Allerbeck, Klaus R.</AuthEnty>
-				<AuthEnty xml:lang="de" affiliation="Universität Frankfurt">Allerbeck, Klaus R.</AuthEnty>
-				<AuthEnty xml:lang="en" affiliation="Universität München">Allmendinger, Jutta</AuthEnty>
-				<AuthEnty xml:lang="de" affiliation="Universität München">Allmendinger, Jutta</AuthEnty>
-				<AuthEnty xml:lang="en" affiliation="Universität Potsdam">Bürklin, Wilhelm</AuthEnty>
-				<AuthEnty xml:lang="de" affiliation="Universität Potsdam">Bürklin, Wilhelm</AuthEnty>
-				<AuthEnty xml:lang="en" affiliation="Universität Wien">Kiefer, Marie-Luise</AuthEnty>
-				<AuthEnty xml:lang="de" affiliation="Universität Wien">Kiefer, Marie-Luise</AuthEnty>
-				<AuthEnty xml:lang="en" affiliation="Universität Mannheim">Müller, Walter</AuthEnty>
-				<AuthEnty xml:lang="de" affiliation="Universität Mannheim">Müller, Walter</AuthEnty>
-				<AuthEnty xml:lang="en" affiliation="Universität Leipzig">Opp, Karl-Dieter</AuthEnty>
-				<AuthEnty xml:lang="de" affiliation="Universität Leipzig">Opp, Karl-Dieter</AuthEnty>
-				<AuthEnty xml:lang="en" affiliation="Universität Köln ">Scheuch, Erwin K.</AuthEnty>
-				<AuthEnty xml:lang="de" affiliation="Universität Köln ">Scheuch, Erwin K.</AuthEnty>
-			</rspStmt>
-			<prodStmt/>
-			<distStmt>
-				<distDate date="2014-04-14" xml:lang="en"/>
-				<distDate date="2014-04-14" xml:lang="de"/>
-				<distrbtr xml:lang="en" abbr="GESIS" affiliation="GESIS - Leibniz Institute for the Social Sciences" URI="http://www.gesis.org/">GESIS Data Archive for the Social Sciences</distrbtr>
-				<distrbtr xml:lang="de" abbr="GESIS" affiliation="GESIS - Leibniz Institut für Sozialwissenschaften" URI="http://www.gesis.org/">GESIS Datenarchiv für Sozialwissenschaften</distrbtr>
-			</distStmt>
-			<serStmt><serName xml:lang="en" ID="A1"></serName></serStmt>
-			<verStmt>
-				<version xml:lang="en" date="2014-04-14"/>
-			</verStmt>
-		</citation>
-		<stdyInfo>
-			<subject>
-				<topcClas xml:lang="en" vocab="ZA Category System" vocabURI="https://dbk.gesis.org/dbksearch/Categories.htm">
+<?xml version="1.0" encoding="UTF-8"?><codeBook xmlns="ddi:codebook:2_5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="ddi:codebook:2_5 https://dbkapps.gesis.org/DDI/CDC/OAI-PMH-2-5_v0_4.xsd">
+  <docDscr>
+    <citation>
+      <titlStmt>
+        <titl xml:lang="en">DDI study level documentation for study ZA2800 ALLBUS/GGSS 1996 (Allgemeine Bevölkerungsumfrage der  Sozialwissenschaften/German General Social  Survey 1996) </titl>
+      </titlStmt>
+      <rspStmt>
+        <AuthEnty affiliation="GESIS" xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</AuthEnty>
+        <AuthEnty affiliation="GESIS" xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</AuthEnty>
+      </rspStmt>
+      <prodStmt/>
+      <holdings URI="https://dbk.gesis.org/dbksearch/sdesc2.asp?no=2800&amp;db=e" xml:lang="en"/>
+      <holdings URI="https://dbk.gesis.org/dbksearch/sdesc2.asp?no=2800&amp;db=d" xml:lang="de"/>
+    </citation>
+  </docDscr>
+  <stdyDscr>
+    <citation>
+      <titlStmt>
+        <titl xml:lang="en">ALLBUS/GGSS 1996 (Allgemeine Bevölkerungsumfrage der  Sozialwissenschaften/German General Social  Survey 1996) </titl>
+        <parTitl xml:lang="de">Allgemeine Bevölkerungsumfrage der Sozialwissenschaften ALLBUS 1996 </parTitl>
+        <IDNo agency="GESIS">ZA2800</IDNo>
+        <IDNo agency="DataCite">10.4232/1.11888</IDNo>
+      </titlStmt>
+      <rspStmt>
+        <AuthEnty affiliation="Universität Frankfurt" xml:lang="en">Allerbeck, Klaus R.</AuthEnty>
+        <AuthEnty affiliation="Universität Frankfurt" xml:lang="de">Allerbeck, Klaus R.</AuthEnty>
+        <AuthEnty affiliation="Universität München" xml:lang="en">Allmendinger, Jutta</AuthEnty>
+        <AuthEnty affiliation="Universität München" xml:lang="de">Allmendinger, Jutta</AuthEnty>
+        <AuthEnty affiliation="Universität Potsdam" xml:lang="en">Bürklin, Wilhelm</AuthEnty>
+        <AuthEnty affiliation="Universität Potsdam" xml:lang="de">Bürklin, Wilhelm</AuthEnty>
+        <AuthEnty affiliation="Universität Wien" xml:lang="en">Kiefer, Marie-Luise</AuthEnty>
+        <AuthEnty affiliation="Universität Wien" xml:lang="de">Kiefer, Marie-Luise</AuthEnty>
+        <AuthEnty affiliation="Universität Mannheim" xml:lang="en">Müller, Walter</AuthEnty>
+        <AuthEnty affiliation="Universität Mannheim" xml:lang="de">Müller, Walter</AuthEnty>
+        <AuthEnty affiliation="Universität Leipzig" xml:lang="en">Opp, Karl-Dieter</AuthEnty>
+        <AuthEnty affiliation="Universität Leipzig" xml:lang="de">Opp, Karl-Dieter</AuthEnty>
+        <AuthEnty affiliation="Universität Köln " xml:lang="en">Scheuch, Erwin K.</AuthEnty>
+        <AuthEnty affiliation="Universität Köln " xml:lang="de">Scheuch, Erwin K.</AuthEnty>
+      </rspStmt>
+      <prodStmt/>
+      <distStmt>
+        <distDate date="2014-04-14" xml:lang="en"/>
+        <distDate date="2014-04-14" xml:lang="de"/>
+        <distrbtr URI="http://www.gesis.org/" abbr="GESIS" affiliation="GESIS - Leibniz Institute for the Social Sciences" xml:lang="en">GESIS Data Archive for the Social Sciences</distrbtr>
+        <distrbtr URI="http://www.gesis.org/" abbr="GESIS" affiliation="GESIS - Leibniz Institut für Sozialwissenschaften" xml:lang="de">GESIS Datenarchiv für Sozialwissenschaften</distrbtr>
+      </distStmt>
+      <serStmt>
+        <serName ID="A1" xml:lang="en"/>
+      </serStmt>
+      <verStmt>
+        <version date="2014-04-14" xml:lang="en"/>
+      </verStmt>
+    </citation>
+    <stdyInfo>
+      <subject>
+        <topcClas vocab="ZA Category System" vocabURI="https://dbk.gesis.org/dbksearch/Categories.htm" xml:lang="en">
 Society, Culture</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Migration</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Cultural and national identity</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Social conditions and indicators</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Social behaviour and attitudes</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Law, crime and legal systems</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Mass political behaviour, attitudes/opinion</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Government, political systems and organisation</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Social stratification and groupings</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Economic policy</topcClas>
-			</subject>
-			<abstract xml:lang="en">
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Migration</topcClas>
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Cultural and national identity</topcClas>
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Social conditions and indicators</topcClas>
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Social behaviour and attitudes</topcClas>
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Law, crime and legal systems</topcClas>
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Mass political behaviour, attitudes/opinion</topcClas>
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Government, political systems and organisation</topcClas>
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Social stratification and groupings</topcClas>
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Economic policy</topcClas>
+      </subject>
+      <abstract xml:lang="en">
 Social monitoring of trends in attitudes, behavior, and societal change
 in the Federal Republic of Germany.
 
@@ -179,7 +181,7 @@ position (according to Goldthorpe); occupational prestige (according to
 Treiman); magnitude prestige (according to Wegener); occupational
 meta-classification (according to Terwey); weights. 
 </abstract>
-			<abstract xml:lang="de">
+      <abstract xml:lang="de">
 Trenderhebung zur gesellschaftlichen Dauerbeobachtung von
 Einstellungen, Verhalten und sozialem Wandel in Deutschland.
 Die Schwerpunkte dieser Untersuchung sind für 1996:
@@ -314,20 +316,20 @@ Einordnungsberufe (nach Terwey); Ost-West-Gewicht für gesamtdeutsche
 Auswertungen.
 
 </abstract>
-			<sumDscr>
-				<nation xml:lang="en" abbr="DE">Germany</nation>
-				<nation xml:lang="de" abbr="DE">Deutschland</nation>
-				<anlyUnit/>
-				<universe clusion="B2" xml:lang="en"/>
-				<collDate date="1996-03" event="start"/>
-				<collDate date="1996-06" event="end"/>
-			</sumDscr>
-		</stdyInfo>
-		<method>
-			<dataColl>
-				<timeMeth/>
-				<dataCollector/>
-				<sampProc xml:lang="en">Sample of individuals: Two stage disproportionate random sample in
+      <sumDscr>
+        <nation abbr="DE" xml:lang="en">Germany</nation>
+        <nation abbr="DE" xml:lang="de">Deutschland</nation>
+        <anlyUnit/>
+        <universe clusion="B2" xml:lang="en"/>
+        <collDate date="1996-03" event="start"/>
+        <collDate date="1996-06" event="end"/>
+      </sumDscr>
+    </stdyInfo>
+    <method>
+      <dataColl>
+        <timeMeth/>
+        <dataCollector/>
+        <sampProc xml:lang="en">Sample of individuals: Two stage disproportionate random sample in
 western Germany (incl. West Berlin) and eastern Germany (incl. East
 Berlin). 
 In the first sampling stage, 104 municipalities (Gemeinde) were selected in West Germany and 47 in East Germany with a probability proportional to their total
@@ -336,7 +338,7 @@ large cities a corresponding multiple thereof) were selected at random
 from the municipal registers of residents.
 Targeted individuals who did not have adequate knowledge of German to
 conduct the interview were treated as systematic unit non-responses.	</sampProc>
-				<sampProc xml:lang="de">Personenstichprobe: Zweistufige, disproportional geschichtete
+        <sampProc xml:lang="de">Personenstichprobe: Zweistufige, disproportional geschichtete
 Zufallsauswahl in Westdeutschland (incl. West-Berlin) und
 Ostdeutschland (incl. Ost-Berlin). In der ersten Auswahlstufe wurden
 104 Gemeinden in Westdeutschland und 47 Gemeinden in Ostdeutschland mit
@@ -347,27 +349,27 @@ gelangten, ein entsprechendes Vielfaches davon) aus den
 Einwohnermeldekarteien zufällig gezogen. Zielpersonen mit nicht
 hinreichend guten Deutschkenntnissen zählen zu den systematischen
 Ausfällen. 	</sampProc>
-				<deviat/>
-				<collMode/>
-				<sources/>
-				<weight/>
-				<cleanOps>C3</cleanOps>
-			</dataColl>
-		</method>
-		<dataAccs>
-			<useStmt>
-				<restrctn xml:lang="en">A - Data and documents are released for academic research and teaching.</restrctn>
-				<restrctn xml:lang="de">A - Daten und Dokumente sind für die akademische Forschung und Lehre freigegeben.</restrctn>
-				<conditions xml:lang="en"/>
-				<specPerm xml:lang="en"/>
-			</useStmt>
-			<setAvail>
-				<avlStatus xml:lang="en"/>
-			</setAvail>
-		</dataAccs>
-		<othrStdyMat/>
-	</stdyDscr>
-	<fileDscr>
-		<fileTxt xml:lang="en"/>
-	</fileDscr>
+        <deviat/>
+        <collMode/>
+        <sources/>
+        <weight/>
+        <cleanOps>C3</cleanOps>
+      </dataColl>
+    </method>
+    <dataAccs>
+      <useStmt>
+        <restrctn xml:lang="en">A - Data and documents are released for academic research and teaching.</restrctn>
+        <restrctn xml:lang="de">A - Daten und Dokumente sind für die akademische Forschung und Lehre freigegeben.</restrctn>
+        <conditions xml:lang="en"/>
+        <specPerm xml:lang="en"/>
+      </useStmt>
+      <setAvail>
+        <avlStatus xml:lang="en"/>
+      </setAvail>
+    </dataAccs>
+    <othrStdyMat/>
+  </stdyDscr>
+  <fileDscr>
+    <fileTxt xml:lang="en"/>
+  </fileDscr>
 </codeBook>

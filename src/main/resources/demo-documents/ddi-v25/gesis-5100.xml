@@ -1,54 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<codeBook xmlns="ddi:codebook:2_5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ddi:codebook:2_5 https://dbkapps.gesis.org/DDI/CDC/OAI-PMH-2-5_v0_4.xsd" version="2.5">
-	<docDscr>
-		<citation>
-			<titlStmt>
-				<titl xml:lang="en">DDI study level documentation for study ZA5100 Politbarometer - Overall Cumulation</titl>
-			</titlStmt>
-			<rspStmt>
-				<AuthEnty xml:lang="en" affiliation="GESIS">GESIS - Leibniz Institute for the Social Sciences</AuthEnty>
-				<AuthEnty xml:lang="de" affiliation="GESIS">GESIS - Leibniz Institut für Sozialwissenschaften</AuthEnty>
-			</rspStmt>
-			<prodStmt/>
-			<holdings URI="https://dbk.gesis.org/dbksearch/sdesc2.asp?no=5100&amp;db=e" xml:lang="en"/>
-			<holdings URI="https://dbk.gesis.org/dbksearch/sdesc2.asp?no=5100&amp;db=d" xml:lang="de"/>
-		</citation></docDscr>
-	<stdyDscr>
-		<citation>
-			<titlStmt>
-				<titl xml:lang="en">Politbarometer - Overall Cumulation</titl>
-				<parTitl xml:lang="de">Politbarometer - Gesamtkumulation</parTitl>
-				<IDNo agency="GESIS">ZA5100</IDNo>
-				<IDNo agency="DataCite">10.4232/1.13299</IDNo>
-			</titlStmt>
-			<rspStmt>
-				<AuthEnty xml:lang="en">Forschungsgruppe Wahlen, Mannheim</AuthEnty>
-				<AuthEnty xml:lang="de">Forschungsgruppe Wahlen, Mannheim</AuthEnty>
-			</rspStmt>
-			<prodStmt/>
-			<distStmt>
-				<distDate date="2019-05-01" xml:lang="en"/>
-				<distDate date="2019-05-01" xml:lang="de"/>
-				<distrbtr xml:lang="en" abbr="GESIS" affiliation="GESIS - Leibniz Institute for the Social Sciences" URI="http://www.gesis.org/">GESIS Data Archive for the Social Sciences</distrbtr>
-				<distrbtr xml:lang="de" abbr="GESIS" affiliation="GESIS - Leibniz Institut für Sozialwissenschaften" URI="http://www.gesis.org/">GESIS Datenarchiv für Sozialwissenschaften</distrbtr>
-			</distStmt>
-			<serStmt><serName xml:lang="en" ID="A1"></serName></serStmt>
-			<verStmt>
-				<version xml:lang="en" date="2019-05-01"/>
-			</verStmt>
-		</citation>
-		<stdyInfo>
-			<subject>
-				<topcClas xml:lang="en" vocab="ZA Category System" vocabURI="https://dbk.gesis.org/dbksearch/Categories.htm">
+<?xml version="1.0" encoding="UTF-8"?><codeBook xmlns="ddi:codebook:2_5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="ddi:codebook:2_5 https://dbkapps.gesis.org/DDI/CDC/OAI-PMH-2-5_v0_4.xsd">
+  <docDscr>
+    <citation>
+      <titlStmt>
+        <titl xml:lang="en">DDI study level documentation for study ZA5100 Politbarometer - Overall Cumulation</titl>
+      </titlStmt>
+      <rspStmt>
+        <AuthEnty affiliation="GESIS" xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</AuthEnty>
+        <AuthEnty affiliation="GESIS" xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</AuthEnty>
+      </rspStmt>
+      <prodStmt/>
+      <holdings URI="https://dbk.gesis.org/dbksearch/sdesc2.asp?no=5100&amp;db=e" xml:lang="en"/>
+      <holdings URI="https://dbk.gesis.org/dbksearch/sdesc2.asp?no=5100&amp;db=d" xml:lang="de"/>
+    </citation>
+  </docDscr>
+  <stdyDscr>
+    <citation>
+      <titlStmt>
+        <titl xml:lang="en">Politbarometer - Overall Cumulation</titl>
+        <parTitl xml:lang="de">Politbarometer - Gesamtkumulation</parTitl>
+        <IDNo agency="GESIS">ZA5100</IDNo>
+        <IDNo agency="DataCite">10.4232/1.13299</IDNo>
+      </titlStmt>
+      <rspStmt>
+        <AuthEnty xml:lang="en">Forschungsgruppe Wahlen, Mannheim</AuthEnty>
+        <AuthEnty xml:lang="de">Forschungsgruppe Wahlen, Mannheim</AuthEnty>
+      </rspStmt>
+      <prodStmt/>
+      <distStmt>
+        <distDate date="2019-05-01" xml:lang="en"/>
+        <distDate date="2019-05-01" xml:lang="de"/>
+        <distrbtr URI="http://www.gesis.org/" abbr="GESIS" affiliation="GESIS - Leibniz Institute for the Social Sciences" xml:lang="en">GESIS Data Archive for the Social Sciences</distrbtr>
+        <distrbtr URI="http://www.gesis.org/" abbr="GESIS" affiliation="GESIS - Leibniz Institut für Sozialwissenschaften" xml:lang="de">GESIS Datenarchiv für Sozialwissenschaften</distrbtr>
+      </distStmt>
+      <serStmt>
+        <serName ID="A1" xml:lang="en"/>
+      </serStmt>
+      <verStmt>
+        <version date="2019-05-01" xml:lang="en"/>
+      </verStmt>
+    </citation>
+    <stdyInfo>
+      <subject>
+        <topcClas vocab="ZA Category System" vocabURI="https://dbk.gesis.org/dbksearch/Categories.htm" xml:lang="en">
 Political Issues</topcClas>
-				<topcClas xml:lang="en" vocab="ZA Category System" vocabURI="https://dbk.gesis.org/dbksearch/Categories.htm">
+        <topcClas vocab="ZA Category System" vocabURI="https://dbk.gesis.org/dbksearch/Categories.htm" xml:lang="en">
 Political Attitudes and Behavior</topcClas>
-				<topcClas xml:lang="en" vocab="ZA Category System" vocabURI="https://dbk.gesis.org/dbksearch/Categories.htm">
+        <topcClas vocab="ZA Category System" vocabURI="https://dbk.gesis.org/dbksearch/Categories.htm" xml:lang="en">
 Political Parties, Organizations</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Mass political behaviour, attitudes/opinion</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Government, political systems and organisation</topcClas>
-			</subject>
-			<abstract xml:lang="en">
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Mass political behaviour, attitudes/opinion</topcClas>
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Government, political systems and organisation</topcClas>
+      </subject>
+      <abstract xml:lang="en">
 Cumulative data set with all variables from the 1977 to 2016 Politbarometer that were collected more than once.
 
 Variable Overview for the comparable variables of the Politbarometer Total Cumulation:
@@ -59,7 +61,7 @@ Topics: Intention to vote and party preference (Sunday question); voting behavio
 
 Demography: denomination; church attendance frequency; gender; age; marital status; cohabitation with a partner; children in the household; school education; completed vocational training; university degree; educational aspiration level; occupation; occupational group; household size; head of household; job security; party affiliation; party identification; trade union member in the household; federal state; city size.
 </abstract>
-			<abstract xml:lang="de">
+      <abstract xml:lang="de">
 Kumulierter Datensatz mit allen Variablen aus den Politbarometern der Jahre 1977 bis 2016, die mehr als einmal erhoben wurden.
 
 Variable Overview für die vergleichbaren Variablen der Politbarometer Gesamtkumulation:
@@ -70,50 +72,50 @@ Themen: Wahlbeteiligungsabsicht und Parteipräferenz (Sonntagsfrage); Wahlverhal
 
 Demographie: Konfession; Kirchgangshäufigkeit; Geschlecht; Alter; Familienstand; Zusammenleben mit einem Partner; Kinder im Haushalt; Schulbildung; abgeschlossene Berufsausbildung; Hochschulabschluss; Bildungsaspirationsniveau; Berufstätigkeit; Berufsgruppe; Haushaltsgröße; Haushaltsvorstand; eigene Arbeitsplatzgefährdung; Parteineigung; Parteiidentifikation; Gewerkschaftsmitglied im Haushalt; Bundesland; Ortsgröße.
 </abstract>
-			<sumDscr>
-				<nation xml:lang="en" abbr="DE">Germany</nation>
-				<nation xml:lang="de" abbr="DE">Deutschland</nation>
-				<anlyUnit/>
-				<universe clusion="B2" xml:lang="en"/>
-				<collDate date="1977" event="start"/>
-				<collDate date="2017" event="end"/>
-			</sumDscr>
-		</stdyInfo>
-		<method>
-			<dataColl>
-				<timeMeth/>
-				<dataCollector/>
-				<sampProc xml:lang="en">Probability Sample: Multistage Sample
+      <sumDscr>
+        <nation abbr="DE" xml:lang="en">Germany</nation>
+        <nation abbr="DE" xml:lang="de">Deutschland</nation>
+        <anlyUnit/>
+        <universe clusion="B2" xml:lang="en"/>
+        <collDate date="1977" event="start"/>
+        <collDate date="2017" event="end"/>
+      </sumDscr>
+    </stdyInfo>
+    <method>
+      <dataColl>
+        <timeMeth/>
+        <dataCollector/>
+        <sampProc xml:lang="en">Probability Sample: Multistage Sample
 
 The results are representative of the total electorate in the study area. According to the Elections research group, this is ensured by a strict random selection of the persons to be interviewed. Since August 1988, a two-stage random sample according to the RLD method (Randomize Last Digit) has been used for the sample: First private households are selected, then one person from each household. The person who had the last birthday of the eligible voters in the household is interviewed. The selection basis also includes households that are not listed in the telephone directory and can in principle be reached by telephone via a landline number. The basis is the private numbers entered in the telephone directory, where the last three digits are deleted and then filled with the numbers ´000´ to ´999´ . This database is critically reviewed and adjusted accordingly by consulting the information provided by the Federal Network Agency on the (partial) allocation of number blocks and the directory.
 
 From 1977 to June 1988, a multi-stage stratified random sample according to the ADM master sample was carried out.	</sampProc>
-				<sampProc xml:lang="de">Wahrscheinlichkeitsauswahl: Mehrstufige Zufallsauswahl
+        <sampProc xml:lang="de">Wahrscheinlichkeitsauswahl: Mehrstufige Zufallsauswahl
 
 Die Ergebnisse sind repräsentativ für die Gesamtheit der wahlberechtigten Bevölkerung im Untersuchungsgebiet. Dies wird nach Angaben der Forschungsgruppe Wahlen durch eine strenge Zufallsauswahl bei der Bestimmung der zu befragenden Personen gewährleistet. Für die Stichprobe wird seit August 1988 eine zweistufige Zufallsauswahl nach dem RLD-Verfahren (Randomize Last Digit) verwendet: Zunächst werden Privathaushalte ausgewählt, dann eine Person eines jeden Haushalts. Hierbei wird diejenige Person befragt, die von den Wahlberechtigten im Haushalt als letzte Geburtstag hatte. Die Auswahlgrundlage umfasst auch nicht im Telefonbuch eingetragene Haushalte, die prinzipiell über eine Festnetznummer telefonisch erreichbar sind. Basis sind die im Telefonbuch eingetragenen Privatnummern, bei denen die letzten drei Ziffern gelöscht und anschließend mit den Zahlen ´000´ bis ´999´ aufgefüllt werden. Dieser Datenbestand wird durch Hinzuziehung der Informationen der Bundesnetzagentur über die (Teil-)Belegung von Rufnummernblöcken und des Branchenverzeichnisses kritisch geprüft und entsprechend bereinigt.
 
 Von 1977 bis Juni 1988 erfolgte eine mehrstufig geschichtete Zufallsauswahl nach ADM-Mastersample.	</sampProc>
-				<deviat/>
-				<collMode/>
-				<sources/>
-				<weight/>
-				<cleanOps>C3</cleanOps>
-			</dataColl>
-		</method>
-		<dataAccs>
-			<useStmt>
-				<restrctn xml:lang="en">A - Data and documents are released for academic research and teaching.</restrctn>
-				<restrctn xml:lang="de">A - Daten und Dokumente sind für die akademische Forschung und Lehre freigegeben.</restrctn>
-				<conditions xml:lang="en"/>
-				<specPerm xml:lang="en"/>
-			</useStmt>
-			<setAvail>
-				<avlStatus xml:lang="en"/>
-			</setAvail>
-		</dataAccs>
-		<othrStdyMat/>
-	</stdyDscr>
-	<fileDscr>
-		<fileTxt xml:lang="en"/>
-	</fileDscr>
+        <deviat/>
+        <collMode/>
+        <sources/>
+        <weight/>
+        <cleanOps>C3</cleanOps>
+      </dataColl>
+    </method>
+    <dataAccs>
+      <useStmt>
+        <restrctn xml:lang="en">A - Data and documents are released for academic research and teaching.</restrctn>
+        <restrctn xml:lang="de">A - Daten und Dokumente sind für die akademische Forschung und Lehre freigegeben.</restrctn>
+        <conditions xml:lang="en"/>
+        <specPerm xml:lang="en"/>
+      </useStmt>
+      <setAvail>
+        <avlStatus xml:lang="en"/>
+      </setAvail>
+    </dataAccs>
+    <othrStdyMat/>
+  </stdyDscr>
+  <fileDscr>
+    <fileTxt xml:lang="en"/>
+  </fileDscr>
 </codeBook>

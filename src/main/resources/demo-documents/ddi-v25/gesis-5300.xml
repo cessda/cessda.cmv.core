@@ -1,63 +1,65 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<codeBook xmlns="ddi:codebook:2_5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ddi:codebook:2_5 https://dbkapps.gesis.org/DDI/CDC/OAI-PMH-2-5_v0_4.xsd" version="2.5">
-	<docDscr>
-		<citation>
-			<titlStmt>
-				<titl xml:lang="en">DDI study level documentation for study ZA5300 Pre-election Cross Section (GLES 2009)</titl>
-			</titlStmt>
-			<rspStmt>
-				<AuthEnty xml:lang="en" affiliation="GESIS">GESIS - Leibniz Institute for the Social Sciences</AuthEnty>
-				<AuthEnty xml:lang="de" affiliation="GESIS">GESIS - Leibniz Institut für Sozialwissenschaften</AuthEnty>
-			</rspStmt>
-			<prodStmt/>
-			<holdings URI="https://dbk.gesis.org/dbksearch/sdesc2.asp?no=5300&amp;db=e" xml:lang="en"/>
-			<holdings URI="https://dbk.gesis.org/dbksearch/sdesc2.asp?no=5300&amp;db=d" xml:lang="de"/>
-		</citation></docDscr>
-	<stdyDscr>
-		<citation>
-			<titlStmt>
-				<titl xml:lang="en">Pre-election Cross Section (GLES 2009)</titl>
-				<parTitl xml:lang="de">Vorwahl-Querschnitt (GLES 2009)</parTitl>
-				<IDNo agency="GESIS">ZA5300</IDNo>
-				<IDNo agency="DataCite">10.4232/1.13228</IDNo>
-			</titlStmt>
-			<rspStmt>
-				<AuthEnty xml:lang="en" affiliation="Universität Mannheim ">Rattinger, Hans</AuthEnty>
-				<AuthEnty xml:lang="de" affiliation="Universität Mannheim ">Rattinger, Hans</AuthEnty>
-				<AuthEnty xml:lang="en" affiliation="Universität Frankfurt ">Roßteutscher, Sigrid</AuthEnty>
-				<AuthEnty xml:lang="de" affiliation="Universität Frankfurt ">Roßteutscher, Sigrid</AuthEnty>
-				<AuthEnty xml:lang="en" affiliation="Universität Mannheim ">Schmitt-Beck, Rüdiger</AuthEnty>
-				<AuthEnty xml:lang="de" affiliation="Universität Mannheim ">Schmitt-Beck, Rüdiger</AuthEnty>
-				<AuthEnty xml:lang="en" affiliation="Wissenschaftszentrum Berlin für Sozialforschung ">Weßels, Bernhard</AuthEnty>
-				<AuthEnty xml:lang="de" affiliation="Wissenschaftszentrum Berlin für Sozialforschung ">Weßels, Bernhard</AuthEnty>
-			</rspStmt>
-			<prodStmt/>
-			<distStmt>
-				<distDate date="2019-02-26" xml:lang="en"/>
-				<distDate date="2019-02-26" xml:lang="de"/>
-				<distrbtr xml:lang="en" abbr="GESIS" affiliation="GESIS - Leibniz Institute for the Social Sciences" URI="http://www.gesis.org/">GESIS Data Archive for the Social Sciences</distrbtr>
-				<distrbtr xml:lang="de" abbr="GESIS" affiliation="GESIS - Leibniz Institut für Sozialwissenschaften" URI="http://www.gesis.org/">GESIS Datenarchiv für Sozialwissenschaften</distrbtr>
-			</distStmt>
-			<serStmt><serName xml:lang="en" ID="A1"></serName></serStmt>
-			<verStmt>
-				<version xml:lang="en" date="2019-02-26"/>
-			</verStmt>
-		</citation>
-		<stdyInfo>
-			<subject>
-				<topcClas xml:lang="en" vocab="ZA Category System" vocabURI="https://dbk.gesis.org/dbksearch/Categories.htm">
+<?xml version="1.0" encoding="UTF-8"?><codeBook xmlns="ddi:codebook:2_5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="ddi:codebook:2_5 https://dbkapps.gesis.org/DDI/CDC/OAI-PMH-2-5_v0_4.xsd">
+  <docDscr>
+    <citation>
+      <titlStmt>
+        <titl xml:lang="en">DDI study level documentation for study ZA5300 Pre-election Cross Section (GLES 2009)</titl>
+      </titlStmt>
+      <rspStmt>
+        <AuthEnty affiliation="GESIS" xml:lang="en">GESIS - Leibniz Institute for the Social Sciences</AuthEnty>
+        <AuthEnty affiliation="GESIS" xml:lang="de">GESIS - Leibniz Institut für Sozialwissenschaften</AuthEnty>
+      </rspStmt>
+      <prodStmt/>
+      <holdings URI="https://dbk.gesis.org/dbksearch/sdesc2.asp?no=5300&amp;db=e" xml:lang="en"/>
+      <holdings URI="https://dbk.gesis.org/dbksearch/sdesc2.asp?no=5300&amp;db=d" xml:lang="de"/>
+    </citation>
+  </docDscr>
+  <stdyDscr>
+    <citation>
+      <titlStmt>
+        <titl xml:lang="en">Pre-election Cross Section (GLES 2009)</titl>
+        <parTitl xml:lang="de">Vorwahl-Querschnitt (GLES 2009)</parTitl>
+        <IDNo agency="GESIS">ZA5300</IDNo>
+        <IDNo agency="DataCite">10.4232/1.13228</IDNo>
+      </titlStmt>
+      <rspStmt>
+        <AuthEnty affiliation="Universität Mannheim " xml:lang="en">Rattinger, Hans</AuthEnty>
+        <AuthEnty affiliation="Universität Mannheim " xml:lang="de">Rattinger, Hans</AuthEnty>
+        <AuthEnty affiliation="Universität Frankfurt " xml:lang="en">Roßteutscher, Sigrid</AuthEnty>
+        <AuthEnty affiliation="Universität Frankfurt " xml:lang="de">Roßteutscher, Sigrid</AuthEnty>
+        <AuthEnty affiliation="Universität Mannheim " xml:lang="en">Schmitt-Beck, Rüdiger</AuthEnty>
+        <AuthEnty affiliation="Universität Mannheim " xml:lang="de">Schmitt-Beck, Rüdiger</AuthEnty>
+        <AuthEnty affiliation="Wissenschaftszentrum Berlin für Sozialforschung " xml:lang="en">Weßels, Bernhard</AuthEnty>
+        <AuthEnty affiliation="Wissenschaftszentrum Berlin für Sozialforschung " xml:lang="de">Weßels, Bernhard</AuthEnty>
+      </rspStmt>
+      <prodStmt/>
+      <distStmt>
+        <distDate date="2019-02-26" xml:lang="en"/>
+        <distDate date="2019-02-26" xml:lang="de"/>
+        <distrbtr URI="http://www.gesis.org/" abbr="GESIS" affiliation="GESIS - Leibniz Institute for the Social Sciences" xml:lang="en">GESIS Data Archive for the Social Sciences</distrbtr>
+        <distrbtr URI="http://www.gesis.org/" abbr="GESIS" affiliation="GESIS - Leibniz Institut für Sozialwissenschaften" xml:lang="de">GESIS Datenarchiv für Sozialwissenschaften</distrbtr>
+      </distStmt>
+      <serStmt>
+        <serName ID="A1" xml:lang="en"/>
+      </serStmt>
+      <verStmt>
+        <version date="2019-02-26" xml:lang="en"/>
+      </verStmt>
+    </citation>
+    <stdyInfo>
+      <subject>
+        <topcClas vocab="ZA Category System" vocabURI="https://dbk.gesis.org/dbksearch/Categories.htm" xml:lang="en">
 Political Attitudes and Behavior</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Social conditions and indicators</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Social behaviour and attitudes</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Mass media</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Mass political behaviour, attitudes/opinion</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Government, political systems and organisation</topcClas>
-				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Elections</topcClas>
-			</subject>
-			<abstract xml:lang="en">
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Social conditions and indicators</topcClas>
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Social behaviour and attitudes</topcClas>
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Mass media</topcClas>
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Mass political behaviour, attitudes/opinion</topcClas>
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Government, political systems and organisation</topcClas>
+        <topcClas vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e" xml:lang="en">Elections</topcClas>
+      </subject>
+      <abstract xml:lang="en">
 Evaluation of parties and politicians. Attitude to political questions.
 </abstract>
-			<abstract xml:lang="de">
+      <abstract xml:lang="de">
 Politische Fragen (Issues). Politische Einstellungen und
 Verhaltensweisen.
 
@@ -186,44 +188,42 @@ seines Partners (ISCO-88; siops; isei; mps); Interviewdatum;
 Interviewdauer; Flaggenvariable (problematische oder nicht plausible
 Werte).
 </abstract>
-			<sumDscr>
-				<nation xml:lang="en" abbr="DE">Germany</nation>
-				<nation xml:lang="de" abbr="DE">Deutschland</nation>
-				<anlyUnit/>
-				<universe clusion="B2" xml:lang="en"/>
-				<collDate date="2009-08-10" event="start"/>
-				<collDate date="2009-09-26" event="end"/>
-			</sumDscr>
-		</stdyInfo>
-		<method>
-			<dataColl>
-				<timeMeth/>
-				<dataCollector/>
-				<sampProc xml:lang="en">
-				</sampProc>
-				<sampProc xml:lang="de">
-				</sampProc>
-				<deviat/>
-				<collMode/>
-				<sources/>
-				<weight/>
-				<cleanOps>C3</cleanOps>
-			</dataColl>
-		</method>
-		<dataAccs>
-			<useStmt>
-				<restrctn xml:lang="en">A - Data and documents are released for academic research and teaching.</restrctn>
-				<restrctn xml:lang="de">A - Daten und Dokumente sind für die akademische Forschung und Lehre freigegeben.</restrctn>
-				<conditions xml:lang="en"/>
-				<specPerm xml:lang="en"/>
-			</useStmt>
-			<setAvail>
-				<avlStatus xml:lang="en"/>
-			</setAvail>
-		</dataAccs>
-		<othrStdyMat/>
-	</stdyDscr>
-	<fileDscr>
-		<fileTxt xml:lang="en"/>
-	</fileDscr>
+      <sumDscr>
+        <nation abbr="DE" xml:lang="en">Germany</nation>
+        <nation abbr="DE" xml:lang="de">Deutschland</nation>
+        <anlyUnit/>
+        <universe clusion="B2" xml:lang="en"/>
+        <collDate date="2009-08-10" event="start"/>
+        <collDate date="2009-09-26" event="end"/>
+      </sumDscr>
+    </stdyInfo>
+    <method>
+      <dataColl>
+        <timeMeth/>
+        <dataCollector/>
+        <sampProc xml:lang="en"/>
+        <sampProc xml:lang="de"/>
+        <deviat/>
+        <collMode/>
+        <sources/>
+        <weight/>
+        <cleanOps>C3</cleanOps>
+      </dataColl>
+    </method>
+    <dataAccs>
+      <useStmt>
+        <restrctn xml:lang="en">A - Data and documents are released for academic research and teaching.</restrctn>
+        <restrctn xml:lang="de">A - Daten und Dokumente sind für die akademische Forschung und Lehre freigegeben.</restrctn>
+        <conditions xml:lang="en"/>
+        <specPerm xml:lang="en"/>
+      </useStmt>
+      <setAvail>
+        <avlStatus xml:lang="en"/>
+      </setAvail>
+    </dataAccs>
+    <othrStdyMat/>
+  </stdyDscr>
+  <fileDscr>
+    <fileTxt xml:lang="en"/>
+  </fileDscr>
 </codeBook>

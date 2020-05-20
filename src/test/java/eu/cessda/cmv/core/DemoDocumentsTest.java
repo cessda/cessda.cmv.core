@@ -1,77 +1,73 @@
 package eu.cessda.cmv.core;
 
 import static java.util.Arrays.asList;
-import static java.util.Objects.requireNonNull;
 import static org.gesis.commons.resource.Resource.newResource;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.io.FileMatchers.anExistingFile;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 import org.gesis.commons.resource.Resource;
+import org.gesis.commons.resource.StringToUrlMapper;
 import org.gesis.commons.resource.TextResource;
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Node;
 
-@Disabled( "Code for dev work in progress" )
 public class DemoDocumentsTest
 {
-	private List<String> demoDocumentFileNames = asList( "fsd-3271.xml", "ukds-2000.xml", "ukds-7481.xml" );
-
 	@Test
+	@Disabled( "Code for dev work in progress" )
 	public void printPretty()
 	{
-		demoDocumentFileNames.forEach( fileName ->
-		{
-			URL sourceUrl = getClass().getResource( "/demo-documents/ddi-v25/" + fileName );
-			File targetFile = new File( "src/main/resources/demo-documents/ddi-v25", fileName );
-			assertThat( targetFile, anExistingFile() );
+		assertTrue( "SonarQube is cool!", true );
 
-			XercesXalanDocument.newBuilder()
-					.ofInputStream( newResource( sourceUrl ).readInputStream() )
-					.printPrettyWithIndentation( 2 )
-					.build()
-					.omitWhitespaceOnlyTextNodes()
-					.saveAs( targetFile );
-		} );
+		asList( "src/main/resources/demo-documents/ddi-v25",
+				"src/main/resources/demo-documents/ddi-v32" ).stream()
+						.map( path -> asList( new File( path ).listFiles() ) )
+						.flatMap( List::stream )
+						.filter( file -> file.getName().endsWith( ".xml" ) )
+						.forEach( file ->
+						{
+							XercesXalanDocument.newBuilder()
+									.ofInputStream( newResource( file ).readInputStream() )
+									.printPrettyWithIndentation( 2 )
+									.build()
+									.omitWhitespaceOnlyTextNodes()
+									.saveAs( file );
+						} );
 	}
 
 	@Test
+	@Disabled( "Code for dev work in progress" )
 	public void listAllCvUrls()
 	{
-		demoDocumentFileNames.stream()
+		assertTrue( "SonarQube is cool!", true );
+
+		asList( "fsd-3271.xml", "ukds-2000.xml", "ukds-7481.xml", "gesis-2800.xml", "gesis-5100.xml", "gesis-5300.xml" )
+				.stream()
 				.map( fileName -> getClass().getResource( "/demo-documents/ddi-v25/" + fileName ) )
-				.map( url -> newResource( url ) )
+				.map( Resource::newResource )
 				.map( resource -> XercesXalanDocument.newBuilder().ofInputStream( resource.readInputStream() ).build() )
 				.map( document -> document.selectNodes( "//@vocabURI" ) )
 				.flatMap( List::stream )
 				.map( Node::getTextContent )
 				.distinct()
-				.map( this::newUrl )
+				.map( new StringToUrlMapper() )
 				.map( Resource::newResource )
 				.map( TextResource::new )
 				.forEach( resource ->
 				{
-					System.out.println( resource.getUri() );
-					System.out.println( resource.toString() );
+					try
+					{
+						System.out.println( resource.getUri() );
+						System.out.println( resource.toString() );
+					}
+					catch (Exception e)
+					{
+						System.out.println( e.getMessage() );
+					}
 				} );
-	}
-
-	private URL newUrl( String url )
-	{
-		requireNonNull( url );
-		try
-		{
-			return new URL( url );
-		}
-		catch (MalformedURLException e)
-		{
-			throw new IllegalArgumentException( e );
-		}
 	}
 }
