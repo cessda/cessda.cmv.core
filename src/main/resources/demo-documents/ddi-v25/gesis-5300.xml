@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codeBook xmlns="ddi:codebook:2_5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ddi:codebook:2_5 https://dbkapps.gesis.org/DDI/CDC/OAI-PMH-2-5_v0_4.xsd" version="2.5">
+	<docDscr>
+		<citation>
+			<titlStmt>
+				<titl xml:lang="en">DDI study level documentation for study ZA5300 Pre-election Cross Section (GLES 2009)</titl>
+			</titlStmt>
+			<rspStmt>
+				<AuthEnty xml:lang="en" affiliation="GESIS">GESIS - Leibniz Institute for the Social Sciences</AuthEnty>
+				<AuthEnty xml:lang="de" affiliation="GESIS">GESIS - Leibniz Institut für Sozialwissenschaften</AuthEnty>
+			</rspStmt>
+			<prodStmt/>
+			<holdings URI="https://dbk.gesis.org/dbksearch/sdesc2.asp?no=5300&amp;db=e" xml:lang="en"/>
+			<holdings URI="https://dbk.gesis.org/dbksearch/sdesc2.asp?no=5300&amp;db=d" xml:lang="de"/>
+		</citation></docDscr>
+	<stdyDscr>
+		<citation>
+			<titlStmt>
+				<titl xml:lang="en">Pre-election Cross Section (GLES 2009)</titl>
+				<parTitl xml:lang="de">Vorwahl-Querschnitt (GLES 2009)</parTitl>
+				<IDNo agency="GESIS">ZA5300</IDNo>
+				<IDNo agency="DataCite">10.4232/1.13228</IDNo>
+			</titlStmt>
+			<rspStmt>
+				<AuthEnty xml:lang="en" affiliation="Universität Mannheim ">Rattinger, Hans</AuthEnty>
+				<AuthEnty xml:lang="de" affiliation="Universität Mannheim ">Rattinger, Hans</AuthEnty>
+				<AuthEnty xml:lang="en" affiliation="Universität Frankfurt ">Roßteutscher, Sigrid</AuthEnty>
+				<AuthEnty xml:lang="de" affiliation="Universität Frankfurt ">Roßteutscher, Sigrid</AuthEnty>
+				<AuthEnty xml:lang="en" affiliation="Universität Mannheim ">Schmitt-Beck, Rüdiger</AuthEnty>
+				<AuthEnty xml:lang="de" affiliation="Universität Mannheim ">Schmitt-Beck, Rüdiger</AuthEnty>
+				<AuthEnty xml:lang="en" affiliation="Wissenschaftszentrum Berlin für Sozialforschung ">Weßels, Bernhard</AuthEnty>
+				<AuthEnty xml:lang="de" affiliation="Wissenschaftszentrum Berlin für Sozialforschung ">Weßels, Bernhard</AuthEnty>
+			</rspStmt>
+			<prodStmt/>
+			<distStmt>
+				<distDate date="2019-02-26" xml:lang="en"/>
+				<distDate date="2019-02-26" xml:lang="de"/>
+				<distrbtr xml:lang="en" abbr="GESIS" affiliation="GESIS - Leibniz Institute for the Social Sciences" URI="http://www.gesis.org/">GESIS Data Archive for the Social Sciences</distrbtr>
+				<distrbtr xml:lang="de" abbr="GESIS" affiliation="GESIS - Leibniz Institut für Sozialwissenschaften" URI="http://www.gesis.org/">GESIS Datenarchiv für Sozialwissenschaften</distrbtr>
+			</distStmt>
+			<serStmt><serName xml:lang="en" ID="A1"></serName></serStmt>
+			<verStmt>
+				<version xml:lang="en" date="2019-02-26"/>
+			</verStmt>
+		</citation>
+		<stdyInfo>
+			<subject>
+				<topcClas xml:lang="en" vocab="ZA Category System" vocabURI="https://dbk.gesis.org/dbksearch/Categories.htm">
+Political Attitudes and Behavior</topcClas>
+				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Social conditions and indicators</topcClas>
+				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Social behaviour and attitudes</topcClas>
+				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Mass media</topcClas>
+				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Mass political behaviour, attitudes/opinion</topcClas>
+				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Government, political systems and organisation</topcClas>
+				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Elections</topcClas>
+			</subject>
+			<abstract xml:lang="en">
+Evaluation of parties and politicians. Attitude to political questions.
+</abstract>
+			<abstract xml:lang="de">
+Politische Fragen (Issues). Politische Einstellungen und
+Verhaltensweisen.
+
+Themen: Politikinteresse (politisches Interesse); Interesse am
+Wahlkampf; Interesse am Ausgang der Bundestagswahl;
+Demokratiezufriedenheit; politisches Wissen (Erststimme und
+Zweitstimme, 5%-Hürde, Kenntnis der Wahlkreiskandidaten); Hypothetische
+Wahlbeteiligungsabsicht und Parteipräferenz für die kommende
+Bundestagswahl (Hypothetische Wahlabsicht Erststimme und Zweitstimme)
+der unter 18jährigen Personen; Wahlbeteiligungsabsicht und Art der
+Stimmabgabe (Briefwahl); Parteipräferenz für die kommende
+Bundestagswahl (Wahlabsicht Erststimme und Zweitstimme); Sicherheit der
+eigenen Wahlabsicht; wichtigster Grund für die eigene Wahlabsicht;
+geschätzte Wahrscheinlichkeit des Einzugs ausgewählter kleinerer
+Parteien in den Bundestag (FDP, Bündnis 90/Die Grünen, Die Linke);
+aktuelle, retrospektive und zukünftige Beurteilung der persönlichen
+wirtschaftlichen Lage sowie der wirtschaftlichen Lage Deutschlands;
+Beurteilung der aktuellen regionalen wirtschaftlichen Lage;
+Verantwortlichkeit der Politik der Bundesregierung für die eigene
+wirtschaftliche sowie für die wirtschaftliche Lage Deutschlands;
+Sympathie-Skalometer für die Bundestagsparteien und ausgewählte
+Spitzenpolitiker (Skalometer: Angela Merkel, Karl-Theodor zu
+Guttenberg, Frank-Walter Steinmeier, Guido Westerwelle, Renate Künast,
+Oskar Lafontaine, Gregor Gysi); Bewertung des Ausmaßes der Bemühungen
+zur Angleichung der Lebensverhältnisse in Ostdeutschland an
+Westdeutschland; Angst vor der Wirtschaftskrise; wichtigstes
+politisches Problem in Deutschland; Einschätzung zur
+Problemlösungskompetenz der Parteien; Bundeskanzlerpräferenz;
+Beurteilung der Kanzlerkandidaten Angela Merkel und Frank-Walter
+Steinmeier bezüglich ihrer Durchsetzungsfähigkeit und Führungsstärke,
+Vertrauenswürdigkeit, Sympathie und ihrer Vorstellungen zur Bewältigung
+der Wirtschaftskrise; Werte-Batterie (Fleiß und Leistung, füreinander
+Verantwortung tragen, sich an die Regeln halten, selbstbewusst und
+kritisch sein, Sicherheit und Wohlstand, politische
+Partizipation); Wahlberechtigung bei der Bundestagswahl 2005;
+Wahlverhalten bei der Bundestagswahl 2005 (Recall); persönliche
+Parteikontakte und Kontakte zu Parteivertretern sowie aktive
+Wahrnehmung der Parteien und Parteivertretern im Wahlkampf (Besuch der
+Wahlveranstaltungen und Kundgebungen, E-Mail/SMS von Partei, Hausbesuch
+von Parteivertretern,
+Flugblätter/Handzettel/Broschüren/Postwurfsendungen, Wahlanzeigen aus
+Zeitungen/Zeitschriften, Wahlplakate, Besuch der Wahlkampfstände,
+Werbesendungen im Fernsehen); Einstufung der Parteien und Politiker und
+Selbsteinstufung auf Links-Rechts-Kontinuum (Skalometer);
+Positionsissues (Parteien, Ego, Salienz): sozioökonomische Dimension
+(weniger Steuern und weniger sozialstaatliche Leistungen versus mehr
+sozialstaatliche Leistungen und mehr Steuern), libertär-autoritäre
+Dimension (Zuzugsmöglichkeiten für Ausländer), Ausbau der Kernenergie
+versus sofortige Abschaltung aller Kraftwerke (Skalometer);
+Einstellungen zur Politik im Allgemeinen; Zufriedenheit mit den
+Leistungen der Bundesregierung (Skalometer); Zufriedenheit mit den
+Leistungen der einzelnen Regierungsparteien (CDU, CSU, SPD,
+Skalometer); politische Partizipation (Teilnahme an einer
+Bürgerinitiative, Demonstration, Unterstützung der Parteien im
+Wahlkampf); Einstellung zu ausgewählten Koalitionskonstellationen
+(Skalometer); Wahrnehmung der Koalitionsbereitschaft der Parteien;
+erwartete Koalitionsbildung nach der Bundestagswahl; Beurteilung der
+Glaubwürdigkeit der Koalitionsaussage der SPD bezüglich der Partei Die
+Linke; Parteizugehörigkeit des erwarteten Wahlkreisgewinners bei der
+Bundestagswahl; Beurteilung der Wahlkreiskandidaten (Skalometer);
+Einstufung der Wahlkreiskandidaten auf Links-Rechts Kontinuum
+(Skalometer); Repräsentationsnormen (Abgeordneter als Repräsentant
+seiner Wähler im Wahlkreis, aller Bürger im Wahlkreis, der Wähler der
+eigenen Partei, einer gesellschaftlichen Gruppe, aller Bürger
+Deutschlands, Skalometer); Erwartungen an Abgeordneten bezüglich Lösung
+konkreter Probleme der Bürger, Durchsetzung der Wählerinteressen, der
+Sorge über das wirtschaftliche Wohl des Wahlkreises, Kontakt zu den
+Wählern, Wahrung von Traditionen (Skalometer); Selbstdarstellung der
+Wahlkreiskandidaten im Wahlkampf (Parteien- oder Kandidatenwahlkampf,
+Skalometer); wichtigste Informationsquelle zur politischen Information;
+Nutzung und Rezeptionshäufigkeit von Nachrichtensendungen verschiedener
+Fernsehsender (Tagesschau/Tagesthemen (ARD), heute/heute journal (ZDF),
+RTL Aktuell (RTL), Sat.1 Nachrichten (SAT1)); Einschätzung des
+Parteienbias der Berichterstattung in den Nachrichten verschiedener
+Fernsehsender; Nutzung und Rezeptionshäufigkeit von Tageszeitungen und
+der BILD; Einschätzung des Parteienbias der Berichterstattung in den
+Tageszeitungen und der BILD; Internetnutzung zur politischen
+Information; Besuch von Internetseiten der Parteien und Kandidaten
+sowie der Nachrichtenseiten der Zeitungen, Zeitschriften,
+Fernsehsendern; Parteiidentifikation (Parteineigung) sowie Stärke und
+Dauer der Parteiidentifikation; Art der Parteiidentifikation;
+Persönlichkeitsbatterie (allgemeines Vertrauen in Menschen;
+psychologische Selbstcharakterisierung); Wahlbeteiligung und
+Wahlentscheidung bzw. Wahlabsicht bei Europawahl, Landtagswahl;
+Häufigkeit politischer Gespräche im sozialen Umfeld und Beziehung zu
+den Gesprächspartnern; Einschätzung der politischen Kompetenz des
+Gesprächspartners; Häufigkeit politischer Meinungsverschiedenheiten;
+Wahlabsicht des Gesprächspartners; Parteiidentifikation (Parteineigung)
+der Eltern (Vater und Mutter); Einschätzung der Gerechtigkeit der
+Gesellschaftsordnung in der Bundesrepublik.
+
+Demographie: Geschlecht; Alter und Geburtsjahr des Befragten; Alter
+der Haushaltsmitglieder; Haushaltsgröße; Familienstand; Zusammenleben
+mit Partner/In; Schulabschluss (eigener und von Partner/In);
+angestrebter Schulabschluss; berufliche Bildung; Erwerbstätigkeit
+(eigene und von Partner/In, aktuell und früher); Dauer der
+Arbeitslosigkeit (eigene und von Partner/In, in vergangenen 10 Jahren);
+früherer und aktueller Beruf (eigener und von Partner/In);
+Aufsichtsfunktion (eigene und von Partner/In); Beschäftigungssektor
+(eigener und von Partner/In); Wirtschaftssektor (eigener und von
+Partner/In); Zeit/Leiharbeit (eigene und von Partner/In); Angst vor
+Stellenverlust und/oder vor Betriebsverlust (eigene und von
+Partner/In); Haushaltsnettoeinkommen (kategorial); Schichtzugehörigkeit
+(subjektive und die der Eltern); Religionszugehörigkeit;
+Kirchgangshäufigkeit; Häufigkeit des Besuchs der Synagoge bzw. der
+Moschee; Religiosität; deutsche Staatsbürgerschaft von Geburt an; Dauer
+der deutschen Staatsbürgerschaft; Geburtsland (eigenes, der Eltern und
+von Partner/in); Alter bei Zuzug; im Haushalt gesprochene Sprache;
+Organisationsmitgliedschaft; Gewerkschaftsmitgliedschaft.
+
+zusätzlich verkodet wurde: Gewichtungsfaktoren; Studiennummer
+(ZA-Nr.); Bundestagswahl-ID; GESIS Archiv Version; GLES-Komponente;
+Laufende Nummer; Erhebung (Vorwahl/Nachwahl); Ortsgröße (rekodierte
+Gemeindegrößenklassen BIK); Wahlkreisnummer; Namen der
+Wahlkreiskandidaten; Strukturdaten auf Wahlkreisebene (Anzahl der
+Gemeinden; Fläche; Einwohneranzahl; Anteil der deutschen und Anteil der
+männlichen Bevölkerung; Bevölkerungsdichte; Veränderung der
+Einwohneranzahl; Altersstruktur; Bildungsniveau; Kraftfahrzeugbestand;
+fertiggestellte Wohnungen; Bestand an Wohnungen; Betriebe und
+Beschäftigte im Bergbau und im verarbeitenden Gewerbe;
+Gewerbeanmeldungen; Gewerbeabmeldungen; Gewerbesteuereinnahmen;
+Insolvenzverfahren; Schulden der Gemeinden;
+sozialversicherungspflichtige Beschäftigte; Arbeitslosenquote;
+EmpfängerInnen nach SGB II); Beruf und früherer Beruf des Befragten und
+seines Partners (ISCO-88; siops; isei; mps); Interviewdatum;
+Interviewdauer; Flaggenvariable (problematische oder nicht plausible
+Werte).
+</abstract>
+			<sumDscr>
+				<nation xml:lang="en" abbr="DE">Germany</nation>
+				<nation xml:lang="de" abbr="DE">Deutschland</nation>
+				<anlyUnit/>
+				<universe clusion="B2" xml:lang="en"/>
+				<collDate date="2009-08-10" event="start"/>
+				<collDate date="2009-09-26" event="end"/>
+			</sumDscr>
+		</stdyInfo>
+		<method>
+			<dataColl>
+				<timeMeth/>
+				<dataCollector/>
+				<sampProc xml:lang="en">
+				</sampProc>
+				<sampProc xml:lang="de">
+				</sampProc>
+				<deviat/>
+				<collMode/>
+				<sources/>
+				<weight/>
+				<cleanOps>C3</cleanOps>
+			</dataColl>
+		</method>
+		<dataAccs>
+			<useStmt>
+				<restrctn xml:lang="en">A - Data and documents are released for academic research and teaching.</restrctn>
+				<restrctn xml:lang="de">A - Daten und Dokumente sind für die akademische Forschung und Lehre freigegeben.</restrctn>
+				<conditions xml:lang="en"/>
+				<specPerm xml:lang="en"/>
+			</useStmt>
+			<setAvail>
+				<avlStatus xml:lang="en"/>
+			</setAvail>
+		</dataAccs>
+		<othrStdyMat/>
+	</stdyDscr>
+	<fileDscr>
+		<fileTxt xml:lang="en"/>
+	</fileDscr>
+</codeBook>

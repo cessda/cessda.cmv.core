@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codeBook xmlns="ddi:codebook:2_5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ddi:codebook:2_5 https://dbkapps.gesis.org/DDI/CDC/OAI-PMH-2-5_v0_4.xsd" version="2.5">
+	<docDscr>
+		<citation>
+			<titlStmt>
+				<titl xml:lang="en">DDI study level documentation for study ZA2800 ALLBUS/GGSS 1996 (Allgemeine Bevölkerungsumfrage der  Sozialwissenschaften/German General Social  Survey 1996) </titl>
+			</titlStmt>
+			<rspStmt>
+				<AuthEnty xml:lang="en" affiliation="GESIS">GESIS - Leibniz Institute for the Social Sciences</AuthEnty>
+				<AuthEnty xml:lang="de" affiliation="GESIS">GESIS - Leibniz Institut für Sozialwissenschaften</AuthEnty>
+			</rspStmt>
+			<prodStmt/>
+			<holdings URI="https://dbk.gesis.org/dbksearch/sdesc2.asp?no=2800&amp;db=e" xml:lang="en"/>
+			<holdings URI="https://dbk.gesis.org/dbksearch/sdesc2.asp?no=2800&amp;db=d" xml:lang="de"/>
+		</citation></docDscr>
+	<stdyDscr>
+		<citation>
+			<titlStmt>
+				<titl xml:lang="en">ALLBUS/GGSS 1996 (Allgemeine Bevölkerungsumfrage der  Sozialwissenschaften/German General Social  Survey 1996) </titl>
+				<parTitl xml:lang="de">Allgemeine Bevölkerungsumfrage der Sozialwissenschaften ALLBUS 1996 </parTitl>
+				<IDNo agency="GESIS">ZA2800</IDNo>
+				<IDNo agency="DataCite">10.4232/1.11888</IDNo>
+			</titlStmt>
+			<rspStmt>
+				<AuthEnty xml:lang="en" affiliation="Universität Frankfurt">Allerbeck, Klaus R.</AuthEnty>
+				<AuthEnty xml:lang="de" affiliation="Universität Frankfurt">Allerbeck, Klaus R.</AuthEnty>
+				<AuthEnty xml:lang="en" affiliation="Universität München">Allmendinger, Jutta</AuthEnty>
+				<AuthEnty xml:lang="de" affiliation="Universität München">Allmendinger, Jutta</AuthEnty>
+				<AuthEnty xml:lang="en" affiliation="Universität Potsdam">Bürklin, Wilhelm</AuthEnty>
+				<AuthEnty xml:lang="de" affiliation="Universität Potsdam">Bürklin, Wilhelm</AuthEnty>
+				<AuthEnty xml:lang="en" affiliation="Universität Wien">Kiefer, Marie-Luise</AuthEnty>
+				<AuthEnty xml:lang="de" affiliation="Universität Wien">Kiefer, Marie-Luise</AuthEnty>
+				<AuthEnty xml:lang="en" affiliation="Universität Mannheim">Müller, Walter</AuthEnty>
+				<AuthEnty xml:lang="de" affiliation="Universität Mannheim">Müller, Walter</AuthEnty>
+				<AuthEnty xml:lang="en" affiliation="Universität Leipzig">Opp, Karl-Dieter</AuthEnty>
+				<AuthEnty xml:lang="de" affiliation="Universität Leipzig">Opp, Karl-Dieter</AuthEnty>
+				<AuthEnty xml:lang="en" affiliation="Universität Köln ">Scheuch, Erwin K.</AuthEnty>
+				<AuthEnty xml:lang="de" affiliation="Universität Köln ">Scheuch, Erwin K.</AuthEnty>
+			</rspStmt>
+			<prodStmt/>
+			<distStmt>
+				<distDate date="2014-04-14" xml:lang="en"/>
+				<distDate date="2014-04-14" xml:lang="de"/>
+				<distrbtr xml:lang="en" abbr="GESIS" affiliation="GESIS - Leibniz Institute for the Social Sciences" URI="http://www.gesis.org/">GESIS Data Archive for the Social Sciences</distrbtr>
+				<distrbtr xml:lang="de" abbr="GESIS" affiliation="GESIS - Leibniz Institut für Sozialwissenschaften" URI="http://www.gesis.org/">GESIS Datenarchiv für Sozialwissenschaften</distrbtr>
+			</distStmt>
+			<serStmt><serName xml:lang="en" ID="A1"></serName></serStmt>
+			<verStmt>
+				<version xml:lang="en" date="2014-04-14"/>
+			</verStmt>
+		</citation>
+		<stdyInfo>
+			<subject>
+				<topcClas xml:lang="en" vocab="ZA Category System" vocabURI="https://dbk.gesis.org/dbksearch/Categories.htm">
+Society, Culture</topcClas>
+				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Migration</topcClas>
+				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Cultural and national identity</topcClas>
+				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Social conditions and indicators</topcClas>
+				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Social behaviour and attitudes</topcClas>
+				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Law, crime and legal systems</topcClas>
+				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Mass political behaviour, attitudes/opinion</topcClas>
+				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Government, political systems and organisation</topcClas>
+				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Social stratification and groupings</topcClas>
+				<topcClas xml:lang="en" vocab="CESSDA Topic Classification" vocabURI="https://dbk.gesis.org/dbksearch/Topics.asp?db=e">Economic policy</topcClas>
+			</subject>
+			<abstract xml:lang="en">
+Social monitoring of trends in attitudes, behavior, and societal change
+in the Federal Republic of Germany.
+
+The main topics in 1996 are: 
+1.) Attitudes towards ethnic groups in
+Germany and to migration 
+2.) Citizenship and country of origin 
+3.)Attitudes towards marriage, family, and partnership 
+4.) Other topics
+5.) ALLBUS-Demography 
+6.) Data on the interview (paradata) 
+7.) Role of government III (ISSP 1996) 
+8.) Added value
+
+Topics: 
+
+1.) Attitudes towards ethnic groups in Germany and to
+migration: perceived consequences of presence of foreigners in Germany;
+attitude towards the influx of eastern European ethnic Germans, asylum
+seekers, labor from EC or non-EC countries; ranking in terms of
+importance of different citizenship requirements; perception and
+evaluation of discriminatory behavior towards foreigners; opinion on
+dual citizenship and on equality under the law for foreigners;
+indicators for social distance to ethnic minorities and foreigners;
+perceived differences in lifestyle; items on anti-Semitism; support for
+the teaching of Islam in public schools; estimation of proportion of
+foreigners in East and West Germany; percentage of foreigners in local
+county (Kreis).
+
+2.) Nationality and country of origin: first, second, and third
+citizenship of respondent and spouse or partner; original citizenship
+of respondent and of spouse or partner; country of origin of respondent
+and of respondent´s parents and grandparents; length of stay in
+Germany.
+
+3.) Attitudes towards marriage, family, and partnership: family as a
+prerequisite for happiness; marriage in case of steady partnership;
+attitudes towards the role of women in the family; relative importance
+of selected educational goals for a child.
+
+4.) Other topics: attitudes towards abortion; general trust in fellow
+men and politicians; social pessimism and orientation towards the
+future (anomia); reasons for being proud to be a German;
+authoritarianism; self-assessment of social class; fair share in the
+standard of living; political interest; questions on postmaterialism
+(importance of law and order, fighting rising prices, free expression
+of opinions, and influence on governmental decisions); self-placement
+on a left-right continuum; assessment of economic situations; recall of
+past vote in federal elections; reasons for non-voting; fear of
+unemployment or loss of business.
+
+5.) ALLBUS-Demography: Details about the respondent: gender; month and
+year of birth, age; geographical origin and citizenship; place of
+residence (federal state, administrative region, size of municipality,
+BIK-type of municipality) and length of residence; religious
+denomination, frequency of church attendance; voting intention
+(Sonntagsfrage); vote in last election; general education, vocational
+training; employment status; details about current occupation,
+affiliation to public service, supervisory functions; length of
+unemployment; date of termination of full- or part-time employment;
+details about former occupation; respondent´s income; marital status.
+Details about respondent´s current spouse: general education,
+vocational training; employment status; details about current
+occupation; current and former citizenships. Details about respondent´s
+steady extra-marital partner: common household; month and year of
+birth, age; geographical origin and citizenship; general education,
+vocational training; employment status; details about current
+occupation. Details about respondent´s parents: parent´s and
+grandparent´s country of origin; general education of father and
+mother; father´s occupation. Composition of household: size of
+household; household income; type of dwelling; telephone. Details about
+household members: relation to respondent; gender; month and year of
+birth, age; marital status. Respondent´s current memberships (Deutscher
+Gewerkschaftsbund (DGB, blue-collar union), Deutsche
+Angestelltengewerkschaft (DAG, white-collar union), other trade union,
+political party).
+
+6.) Data on the interview (paradata): date of interview; time and length of
+interview; presence of other people during the interview; respondent´s
+willingness to answer questions; evaluation of reliability of
+respondent answers; gender, age, and general education of the
+interviewer.
+
+7.) Role of government III (ISSP): attitudes towards the observance of
+laws; attitudes towards different forms of protest against the
+government; willingness to participate and actual participation in
+public protest activities or demonstrations against the government;
+opinions on freedom of speech for extremists; attitude towards a
+miscarriage of justice; perceived threats in the private life through
+governmental data collections and computer networks; assessment of
+social responsibility of the state in relation to job creation and just
+distribution of incomes; attitudes towards economically oriented
+government measures; attitudes towards an increase of expenditures of
+the government for environmental protection, health service, police,
+the educational system, defense, pensions, unemployment benefit,
+culture; assessment of the power of the trade unions, private
+enterprise and the state; assessment of state responsibility for
+socio-political tasks (social support for the elderly, students,
+housing provision, job creation; economic growth through assistance to
+industry, price stability, etc.); political interest; overall attitude
+towards politics and the political system (subjective assessment of
+political influence (political efficacy), level of political awareness,
+politicians and election promises); lower taxes vs. more extensive
+social services; assessment of fairness of tax levels for different
+income groups; attitudes towards privatization or nationalization of
+selected public institutions; preferences for enactment of
+environmental regulations by the Federal parliament or the EU.
+
+8.) Added value: Inglehart-index; family typology, classification
+of private households (according to Porst and Funk); International
+Standard Classification of Occupations (ISCO 1968, 1988); class
+position (according to Goldthorpe); occupational prestige (according to
+Treiman); magnitude prestige (according to Wegener); occupational
+meta-classification (according to Terwey); weights. 
+</abstract>
+			<abstract xml:lang="de">
+Trenderhebung zur gesellschaftlichen Dauerbeobachtung von
+Einstellungen, Verhalten und sozialem Wandel in Deutschland.
+Die Schwerpunkte dieser Untersuchung sind für 1996:
+
+1. Einstellungen zu ethnischen Gruppen in Deutschland und zur
+Immigration
+
+2. Staatsbürgerschaften und Herkunftsland
+
+3. Einstellungen zu Familie, Ehe und Partnerschaft
+
+4. Sonstiges
+
+5. ALLBUS-Demographie
+
+6. Daten zum Interview (Paradaten)
+
+7. Rolle der Regierung III (ISSP 1996)
+
+8. Ergänzungen und abgeleitete Variablen
+
+Themen: 
+
+1. Einstellungen zu ethnischen Gruppen in Deutschland und zur
+Immigration: Wahrgenommene Konsequenzen der Anwesenheit von Ausländern
+in Deutschland; Einstellungen zum Zuzug verschiedener Zuwanderergruppen;
+Wichtigkeitseinstufung verschiedener Einbürgerungsvoraussetzungen;
+Wahrnehmung und Bewertung von diskriminierendem Verhalten gegenüber
+Ausländern; Einstellung zur doppelten Staatsbürgerschaft und zur
+Rechtsgleichstellung von Ausländern; Indikatoren für soziale Distanz zu
+ethnischen Minderheiten und Ausländern; perzipierte
+Lebensstildifferenzen; Items zum Antisemitismus; Befürwortung von
+Islamunterricht an Schulen; Ausländeranteilsschätzung für Ost- und
+Westdeutschland; prozentualer Ausländeranteil auf Kreisebene.
+
+2. Staatsbürgerschaften und Herkunftsland: Erste, zweite und dritte
+Staatsbürgerschaft des Befragten und des Ehe- oder Lebenspartners;
+Anzahl der Staatsbürgerschaften des Befragten und des Ehe- oder
+Lebenspartners; ursprüngliche Staatsbürgerschaft des Befragten und des
+Ehe- oder Lebenspartners; Herkunftsland des Befragten und der Eltern und
+Großeltern des Befragten; bisherige Aufenthaltsdauer von eingewanderten
+Personen in Deutschland.
+
+3. Einstellungen zu Familie, Ehe und Partnerschaft: Familie als
+Voraussetzung für Glück; Einstellung zur Heirat bei dauerndem
+Zusammenleben der Partner; Einstellung zur Rolle der Frau in der
+Familie; Einstufung der Wichtigkeit ausgewählter Lernziele für ein Kind.
+
+4. Sonstiges: Einstellungen zum Schwangerschaftsabbruch; allgemeines
+Vertrauen zu Mitmenschen und zu Politikern; sozialer Pessimismus und
+Zukunftsorientierung (Anomia); Gründe, als Deutscher stolz sein zu
+können; Nationalstolz; Autoritarismus; Selbsteinschätzung der sozialen
+Schichtzugehörigkeit; gerechter Anteil am Lebensstandard; politisches
+Interesse; Postmaterialismus (Wichtigkeit von Ruhe und Ordnung, von
+Bürgereinfluss, von Inflationsbekämpfung und von freier
+Meinungsäußerung); Selbsteinstufung auf einem Links-Rechts-Kontinuum;
+Einschätzung von Wirtschaftslagen; Wahlrückerinnerung; Grund für
+Wahlenthaltung; Furcht vor Verlust des Arbeitsplatzes bzw. der
+betrieblichen Existenz.
+
+5. ALLBUS-Demographie: Angaben zur befragten Person: Geschlecht;
+Geburtsmonat, Geburtsjahr, Alter; Herkunft und Staatsangehörigkeit;
+Wohnort (Bundesland, Regierungsbezirk, politische Gemeindegröße, BIK-
+Stadtregion) und Wohndauer; Konfession, Kirchgangshäufigkeit;
+Wahlabsicht (Sonntagsfrage) und Wahlrückerinnerung; allgemeiner
+Schulabschluss, berufliche Ausbildung; Erwerbsstatus; Angaben zum
+gegenwärtigen Beruf, Zugehörigkeit zum öffentlichen Dienst, berufliche
+Aufsichtsfunktion; Dauer von Arbeitslosigkeit; Angaben zum ehemaligen
+Beruf; Zeitpunkt der Aufgabe hauptberuflicher Erwerbstätigkeit;
+Befragteneinkommen; Familienstand.
+
+Angaben zum gegenwärtigen Ehepartner: allgemeiner Schulabschluss,
+berufliche Ausbildung; Erwerbsstatus; Angaben zum gegenwärtigen Beruf;
+frühere und gegenwärtige Staatsbürgerschaft.
+
+Angaben zum nichtehelichen Lebenspartner: Gemeinsamer Haushalt mit
+Lebenspartner; Geburtsmonat, Geburtsjahr, Alter des Partners; Herkunft
+und Staatsbürgerschaft; allgemeiner Schulabschluss, berufliche
+Ausbildung; Erwerbsstatus; Angaben zum gegenwärtigen Beruf.
+
+Angaben zu den Eltern des Befragten: Herkunftsland der Eltern und der
+Großeltern; allgemeiner Schulabschluss von Mutter und Vater; Angaben zum
+Beruf des Vaters.
+
+Haushaltsbeschreibung: Haushaltsgröße; Haushaltseinkommen; Wohnungstyp;
+Telefonanschluß.
+
+Angaben zu den einzelnen Haushaltspersonen (Haushaltsliste):
+Verwandtschaft der Haushaltspersonen zum Befragten; Geschlecht der
+Personen; ihr Geburtsmonat, Geburtsjahr, Alter; Familienstand.
+
+Gegenwärtige Mitgliedschaften des Befragten (Deutscher
+Gewerkschaftsbund (DGB), Deutsche
+Angestelltengewerkschaft (DAG), andere Gewerkschaft, politische Partei).
+
+6. Daten zum Interview (Paradaten): Interviewdatum, Interviewzeitpunkt und
+Interviewdauer; Anwesenheit anderer Personen beim Interview;
+Antwortbereitschaft des Befragten; Interviewereinschätzung zur
+Zuverlässigkeit der Angaben des Befragten; Geschlecht, Alter und
+Schulabschluss des Interviewers.
+
+7. Rolle der Regierung III (ISSP 1996): Einstellung zur Befolgung von
+Gesetzen; Einstellungen zu verschiedenen Protestformen gegen die
+Regierung; Teilnahmebereitschaft und tatsächliche Teilnahme an
+öffentlichen Protestveranstaltungen oder Demonstrationen gegen die
+Regierung; Ansichten bezüglich der Meinungsfreiheit für Extremisten;
+Einstellung zu einem Justizirrtum; empfundene Bedrohung der Privatsphäre
+durch staatliche Datensammlungen und Computer-Vernetzungen
+(Datenschutz); Einkommensangleichung als Staatsaufgabe und Haltung zu
+wirtschaftsbezogenen Maßnahmen der Regierung; Einstellung zur Erhöhung
+von Regierungsausgaben für Umweltschutz, Gesundheitswesen, Polizei,
+Bildungswesen, Verteidigung, Renten, Arbeitslosenunterstützung, Kultur;
+Einschätzung der Macht von Gewerkschaften, Wirtschaft und Staat;
+Einschätzung der staatlichen Verantwortlichkeit für sozialpolitische
+Aufgaben (Absicherung von alten Menschen, Studenten, Wohnungsversorgung,
+Arbeitsplätzen, Wirtschaftswachstum durch Hilfen an die Industrie,
+Preisstabilität etc.); politisches Interesse; generelle Einstellungen
+zur Politik und zum politischen System (subjektive Einschätzung der
+politischen Einflussmöglichkeiten (efficacy), politische Informiertheit,
+Politiker und Wahlversprechen); Steuersenkung versus
+Sozialleistungsausbau; Einschätzung der Steuergerechtigkeit bei
+verschiedenen Einkommensgruppen; Einstellung zur Privatisierung oder
+Verstaatlichung ausgewählter öffentlicher Einrichtungen; Präferenz für
+Erlass von Umweltgesetzen durch den deutschen Bundestag oder die EU.
+
+8. Ergänzungen und abgeleitete Variablen: Postmaterialismus-Index (nach Inglehart);
+Familientypologie, Haushaltsklassifikationen (nach Porst und Funk);
+Berufsvercodung gemäß ISCO (International Standard Classification of
+Occupations) 1968 und 1988; Klassenlage (nach Goldthorpe);
+Berufsprestige (nach Treiman); Magnitudeprestige (nach Wegener);
+Einordnungsberufe (nach Terwey); Ost-West-Gewicht für gesamtdeutsche
+Auswertungen.
+
+</abstract>
+			<sumDscr>
+				<nation xml:lang="en" abbr="DE">Germany</nation>
+				<nation xml:lang="de" abbr="DE">Deutschland</nation>
+				<anlyUnit/>
+				<universe clusion="B2" xml:lang="en"/>
+				<collDate date="1996-03" event="start"/>
+				<collDate date="1996-06" event="end"/>
+			</sumDscr>
+		</stdyInfo>
+		<method>
+			<dataColl>
+				<timeMeth/>
+				<dataCollector/>
+				<sampProc xml:lang="en">Sample of individuals: Two stage disproportionate random sample in
+western Germany (incl. West Berlin) and eastern Germany (incl. East
+Berlin). 
+In the first sampling stage, 104 municipalities (Gemeinde) were selected in West Germany and 47 in East Germany with a probability proportional to their total
+number of adult residents; in the second stage, 40 persons (in five
+large cities a corresponding multiple thereof) were selected at random
+from the municipal registers of residents.
+Targeted individuals who did not have adequate knowledge of German to
+conduct the interview were treated as systematic unit non-responses.	</sampProc>
+				<sampProc xml:lang="de">Personenstichprobe: Zweistufige, disproportional geschichtete
+Zufallsauswahl in Westdeutschland (incl. West-Berlin) und
+Ostdeutschland (incl. Ost-Berlin). In der ersten Auswahlstufe wurden
+104 Gemeinden in Westdeutschland und 47 Gemeinden in Ostdeutschland mit
+einer Wahrscheinlichkeit proportional zur Zahl ihrer erwachsenen
+Einwohner ausgewählt, in der zweiten Auswahlstufe wurden jeweils 40
+Personen (in fünf Großstädten, die mehrmals in die Stichprobe
+gelangten, ein entsprechendes Vielfaches davon) aus den
+Einwohnermeldekarteien zufällig gezogen. Zielpersonen mit nicht
+hinreichend guten Deutschkenntnissen zählen zu den systematischen
+Ausfällen. 	</sampProc>
+				<deviat/>
+				<collMode/>
+				<sources/>
+				<weight/>
+				<cleanOps>C3</cleanOps>
+			</dataColl>
+		</method>
+		<dataAccs>
+			<useStmt>
+				<restrctn xml:lang="en">A - Data and documents are released for academic research and teaching.</restrctn>
+				<restrctn xml:lang="de">A - Daten und Dokumente sind für die akademische Forschung und Lehre freigegeben.</restrctn>
+				<conditions xml:lang="en"/>
+				<specPerm xml:lang="en"/>
+			</useStmt>
+			<setAvail>
+				<avlStatus xml:lang="en"/>
+			</setAvail>
+		</dataAccs>
+		<othrStdyMat/>
+	</stdyDscr>
+	<fileDscr>
+		<fileTxt xml:lang="en"/>
+	</fileDscr>
+</codeBook>
