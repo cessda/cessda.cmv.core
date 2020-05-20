@@ -10,18 +10,19 @@ import org.junit.jupiter.api.Test;
 
 public class MandatoryNodeIfParentPresentConstraintTest
 {
-	private TestEnv.V13 testEnv;
-	private CessdaMetadataValidatorFactory factory;
+	private TestEnv.V14 testEnv;
 
 	public MandatoryNodeIfParentPresentConstraintTest()
 	{
 		testEnv = DefaultTestEnv.newInstance( MandatoryNodeIfParentPresentConstraintTest.class );
-		factory = new CessdaMetadataValidatorFactory();
 		SaxXercesAgainstSchemaValidator xmlValidator = new SaxXercesAgainstSchemaValidator();
-		xmlValidator.validate( testEnv.findTestResourceByName( "cdc25_GESIS_ZA2800_ex22invalid.xml" ), new Ddi251ClasspathEntityResolver() );
-		xmlValidator.validate( testEnv.findTestResourceByName( "cdc25_GESIS_ZA2800_ex22invalid2.xml" ), new Ddi251ClasspathEntityResolver() );
-		xmlValidator.validate( testEnv.findTestResourceByName( "cdc25_GESIS_ZA2800_ex22valid.xml" ), new Ddi251ClasspathEntityResolver() );
-		xmlValidator.validate( testEnv.findTestResourceByName( "cdc25_profile_ex22.xml" ), new Ddi251ClasspathEntityResolver() );
+		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/22-document-invalid-1.xml" ),
+				new Ddi251ClasspathEntityResolver() );
+		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/22-document-invalid-2.xml" ),
+				new Ddi251ClasspathEntityResolver() );
+		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/22-document-valid.xml" ),
+				new Ddi251ClasspathEntityResolver() );
+		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/22-profile.xml" ) );
 	}
 
 	@Test
