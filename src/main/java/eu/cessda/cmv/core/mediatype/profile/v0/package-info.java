@@ -4,10 +4,10 @@
 				@XmlNs( prefix = "xsi", namespaceURI = W3C_XML_SCHEMA_INSTANCE_NS_URI ) },
 		elementFormDefault = XmlNsForm.QUALIFIED )
 @XmlNameTransformer( UpperCamelCaseNameTransformer.class )
-package eu.cessda.cmv.core.mediatype.profile.v0.xml;
+package eu.cessda.cmv.core.mediatype.profile.v0;
 
-import static eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbProfileV0.NAMESPACE_DEFAULT_PREFIX;
-import static eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbProfileV0.NAMESPACE_DEFAULT_URI;
+import static eu.cessda.cmv.core.mediatype.profile.v0.ProfileV0.NAMESPACE_DEFAULT_PREFIX;
+import static eu.cessda.cmv.core.mediatype.profile.v0.ProfileV0.NAMESPACE_DEFAULT_URI;
 import static javax.xml.XMLConstants.W3C_XML_SCHEMA_INSTANCE_NS_URI;
 
 import javax.xml.bind.annotation.XmlNs;

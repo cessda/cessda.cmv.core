@@ -4,14 +4,14 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbCompilableXPathConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbMandatoryNodeConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbMaximumElementOccuranceConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbOptionalNodeConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbPredicatelessXPathConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbProfileV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbRecommendedNodeConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.CompilableXPathConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.ConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.MandatoryNodeConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.MaximumElementOccuranceConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.OptionalNodeConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.PredicatelessXPathConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.ProfileV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.RecommendedNodeConstraintV0;
 
 class DomProfile implements Profile.V10
 {
@@ -21,32 +21,32 @@ class DomProfile implements Profile.V10
 	{
 		constraints = new ArrayList<>();
 
-		JaxbProfileV0 profile = JaxbProfileV0.read( inputStream );
-		for ( JaxbConstraintV0 constraint : profile.getConstraints() )
+		ProfileV0 profile = ProfileV0.read( inputStream );
+		for ( ConstraintV0 constraint : profile.getConstraints() )
 		{
-			if ( constraint instanceof JaxbCompilableXPathConstraintV0 )
+			if ( constraint instanceof CompilableXPathConstraintV0 )
 			{
-				parse( (JaxbCompilableXPathConstraintV0) constraint );
+				parse( (CompilableXPathConstraintV0) constraint );
 			}
-			else if ( constraint instanceof JaxbPredicatelessXPathConstraintV0 )
+			else if ( constraint instanceof PredicatelessXPathConstraintV0 )
 			{
-				parse( (JaxbPredicatelessXPathConstraintV0) constraint );
+				parse( (PredicatelessXPathConstraintV0) constraint );
 			}
-			else if ( constraint instanceof JaxbMandatoryNodeConstraintV0 )
+			else if ( constraint instanceof MandatoryNodeConstraintV0 )
 			{
-				parse( (JaxbMandatoryNodeConstraintV0) constraint );
+				parse( (MandatoryNodeConstraintV0) constraint );
 			}
-			else if ( constraint instanceof JaxbRecommendedNodeConstraintV0 )
+			else if ( constraint instanceof RecommendedNodeConstraintV0 )
 			{
-				parse( (JaxbRecommendedNodeConstraintV0) constraint );
+				parse( (RecommendedNodeConstraintV0) constraint );
 			}
-			else if ( constraint instanceof JaxbOptionalNodeConstraintV0 )
+			else if ( constraint instanceof OptionalNodeConstraintV0 )
 			{
-				parse( (JaxbOptionalNodeConstraintV0) constraint );
+				parse( (OptionalNodeConstraintV0) constraint );
 			}
-			else if ( constraint instanceof JaxbMaximumElementOccuranceConstraintV0 )
+			else if ( constraint instanceof MaximumElementOccuranceConstraintV0 )
 			{
-				parse( (JaxbMaximumElementOccuranceConstraintV0) constraint );
+				parse( (MaximumElementOccuranceConstraintV0) constraint );
 			}
 		}
 	}
@@ -58,7 +58,7 @@ class DomProfile implements Profile.V10
 		return (List<T>) constraints;
 	}
 
-	private void parse( JaxbMaximumElementOccuranceConstraintV0 jaxbConstraint )
+	private void parse( MaximumElementOccuranceConstraintV0 jaxbConstraint )
 	{
 		MaximumElementOccuranceConstraint constraint = new MaximumElementOccuranceConstraint(
 				jaxbConstraint.getLocationPath(),
@@ -66,31 +66,31 @@ class DomProfile implements Profile.V10
 		constraints.add( constraint );
 	}
 
-	private void parse( JaxbOptionalNodeConstraintV0 jaxbConstraint )
+	private void parse( OptionalNodeConstraintV0 jaxbConstraint )
 	{
 		OptionalNodeConstraint constraint = new OptionalNodeConstraint( jaxbConstraint.getLocationPath() );
 		constraints.add( constraint );
 	}
 
-	private void parse( JaxbRecommendedNodeConstraintV0 jaxbConstraint )
+	private void parse( RecommendedNodeConstraintV0 jaxbConstraint )
 	{
 		RecommendedNodeConstraint constraint = new RecommendedNodeConstraint( jaxbConstraint.getLocationPath() );
 		constraints.add( constraint );
 	}
 
-	private void parse( JaxbMandatoryNodeConstraintV0 jaxbConstraint )
+	private void parse( MandatoryNodeConstraintV0 jaxbConstraint )
 	{
 		MandatoryNodeConstraint constraint = new MandatoryNodeConstraint( jaxbConstraint.getLocationPath() );
 		constraints.add( constraint );
 	}
 
-	private void parse( JaxbPredicatelessXPathConstraintV0 jaxbConstraint )
+	private void parse( PredicatelessXPathConstraintV0 jaxbConstraint )
 	{
 		PredicatelessXPathConstraint constraint = new PredicatelessXPathConstraint( jaxbConstraint.getLocationPath() );
 		constraints.add( constraint );
 	}
 
-	private void parse( JaxbCompilableXPathConstraintV0 jaxbConstraint )
+	private void parse( CompilableXPathConstraintV0 jaxbConstraint )
 	{
 		CompilableXPathConstraint constraint = new CompilableXPathConstraint( jaxbConstraint.getLocationPath() );
 		constraints.add( constraint );

@@ -1,13 +1,13 @@
-package eu.cessda.cmv.core.mediatype.profile.v0.xml;
+package eu.cessda.cmv.core.mediatype.profile.v0;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public abstract class JaxbNodeConstraint extends JaxbConstraintV0
+public abstract class NodeConstraint extends ConstraintV0
 {
 	@XmlElement
 	protected String locationPath;
 
-	protected JaxbNodeConstraint( String locationPath )
+	protected NodeConstraint( String locationPath )
 	{
 		this.locationPath = locationPath;
 	}

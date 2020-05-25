@@ -10,7 +10,7 @@ import java.net.URL;
 
 import org.junit.jupiter.api.Test;
 
-import eu.cessda.cmv.core.mediatype.profile.v0.xml.JaxbProfileV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.ProfileV0;
 
 public class DomSemiStructuredDdiProfileTest
 {
@@ -44,7 +44,7 @@ public class DomSemiStructuredDdiProfileTest
 		// when
 		DomSemiStructuredDdiProfile profile = new DomSemiStructuredDdiProfile(
 				factory.newDdiInputStream( newResource( sourceUrl ).readInputStream() ) );
-		JaxbProfileV0 jaxbProfile = profile.toJaxbProfileV0();
+		ProfileV0 jaxbProfile = profile.toJaxbProfileV0();
 		jaxbProfile.saveAs( targetFile );
 		assertThat( targetFile, anExistingFile() );
 		assertThat( jaxbProfile.getConstraints(), hasSize( 62 * 3 ) );

@@ -1,6 +1,6 @@
-package eu.cessda.cmv.core.mediatype.validationreport.v0.xml;
+package eu.cessda.cmv.core.mediatype.validationreport.v0;
 
-import static eu.cessda.cmv.core.mediatype.validationreport.v0.xml.JaxbValidationReportV0.SCHEMALOCATION_FILENAME;
+import static eu.cessda.cmv.core.mediatype.validationreport.v0.ValidationReportV0.SCHEMALOCATION_FILENAME;
 import static java.util.Objects.requireNonNull;
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.gesis.commons.test.hamcrest.FileMatchers.hasEqualContent;
@@ -26,14 +26,16 @@ import eu.cessda.cmv.core.DomSemiStructuredDdiProfile;
 import eu.cessda.cmv.core.Profile;
 import eu.cessda.cmv.core.StandardValidationGate;
 import eu.cessda.cmv.core.ValidationGate;
+import eu.cessda.cmv.core.mediatype.validationreport.v0.ConstraintViolationV0;
+import eu.cessda.cmv.core.mediatype.validationreport.v0.ValidationReportV0;
 
-public class JaxbValidationReportV0Test
+public class ValidationReportV0Test
 {
 	private TestEnv.V11 testEnv;
 
-	public JaxbValidationReportV0Test()
+	public ValidationReportV0Test()
 	{
-		testEnv = DefaultTestEnv.newInstance( JaxbValidationReportV0Test.class );
+		testEnv = DefaultTestEnv.newInstance( ValidationReportV0Test.class );
 	}
 
 	@Test
@@ -42,7 +44,7 @@ public class JaxbValidationReportV0Test
 		File expectedFile = testEnv.findTestResourceByName( SCHEMALOCATION_FILENAME );
 		File actualFile = new File( testEnv.newDirectory(), SCHEMALOCATION_FILENAME );
 
-		JaxbValidationReportV0.generateSchema( actualFile );
+		ValidationReportV0.generateSchema( actualFile );
 		// System.out.println( new String( readAllBytes( actualFile.toPath() ) ) );
 
 		assertThat( actualFile, hasEqualContent( expectedFile ) );
@@ -51,16 +53,16 @@ public class JaxbValidationReportV0Test
 	@Test
 	public void printOutToString() throws IOException
 	{
-		assertThat( JaxbValidationReportV0.MEDIATYPE, Matchers.equalTo( JaxbValidationReportV0.MEDIATYPE ) );
+		assertThat( ValidationReportV0.MEDIATYPE, Matchers.equalTo( ValidationReportV0.MEDIATYPE ) );
 
 		Document document = newDocument( getClass().getResource( "/demo-documents/ddi-v25/ukds-7481.xml" ) );
 		Profile profile = newProfile( getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ) );
 
 		ValidationGate.V10 validationGate = new StandardValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
-		JaxbValidationReportV0 validationReport = new JaxbValidationReportV0();
+		ValidationReportV0 validationReport = new ValidationReportV0();
 		validationReport.setConstraintViolations( constraintViolations.stream()
-				.map( JaxbConstraintViolationV0::new )
+				.map( ConstraintViolationV0::new )
 				.collect( Collectors.toList() ) );
 
 		// System.out.println( validationReport.toString() );

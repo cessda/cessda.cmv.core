@@ -1,4 +1,4 @@
-package eu.cessda.cmv.core.mediatype.profile.v0.xml;
+package eu.cessda.cmv.core.mediatype.profile.v0;
 
 import java.io.File;
 import java.io.InputStream;
@@ -18,10 +18,10 @@ import javax.xml.bind.annotation.XmlType;
 import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
 import org.gesis.commons.xml.jaxb.JaxbDocument;
 
-@XmlRootElement( name = JaxbProfileV0.JAXB_ELEMENT )
-@XmlType( name = JaxbProfileV0.JAXB_TYPE )
+@XmlRootElement( name = ProfileV0.JAXB_ELEMENT )
+@XmlType( name = ProfileV0.JAXB_TYPE )
 @XmlAccessorType( XmlAccessType.FIELD )
-public class JaxbProfileV0 extends JaxbDocument
+public class ProfileV0 extends JaxbDocument
 {
 	static final String MAJOR = "0";
 	static final String MINOR = "1";
@@ -38,36 +38,36 @@ public class JaxbProfileV0 extends JaxbDocument
 	static final String JAXB_ELEMENT = "Profile";
 	static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
 
-	private static final JAXBContext JAXBCONTEXT = newJaxbContext( JaxbProfileV0.class );
+	private static final JAXBContext JAXBCONTEXT = newJaxbContext( ProfileV0.class );
 
 	@XmlElement
 	private String name;
 
 	@XmlElements( {
 			@XmlElement(
-					name = JaxbMaximumElementOccuranceConstraintV0.JAXB_ELEMENT,
-					type = JaxbMaximumElementOccuranceConstraintV0.class ),
+					name = MaximumElementOccuranceConstraintV0.JAXB_ELEMENT,
+					type = MaximumElementOccuranceConstraintV0.class ),
 			@XmlElement(
-					name = JaxbMandatoryNodeConstraintV0.JAXB_ELEMENT,
-					type = JaxbMandatoryNodeConstraintV0.class ),
+					name = MandatoryNodeConstraintV0.JAXB_ELEMENT,
+					type = MandatoryNodeConstraintV0.class ),
 			@XmlElement(
-					name = JaxbOptionalNodeConstraintV0.JAXB_ELEMENT,
-					type = JaxbOptionalNodeConstraintV0.class ),
+					name = OptionalNodeConstraintV0.JAXB_ELEMENT,
+					type = OptionalNodeConstraintV0.class ),
 			@XmlElement(
-					name = JaxbRecommendedNodeConstraintV0.JAXB_ELEMENT,
-					type = JaxbRecommendedNodeConstraintV0.class ),
+					name = RecommendedNodeConstraintV0.JAXB_ELEMENT,
+					type = RecommendedNodeConstraintV0.class ),
 			@XmlElement(
-					name = JaxbPredicatelessXPathConstraintV0.JAXB_ELEMENT,
-					type = JaxbPredicatelessXPathConstraintV0.class ),
+					name = PredicatelessXPathConstraintV0.JAXB_ELEMENT,
+					type = PredicatelessXPathConstraintV0.class ),
 			@XmlElement(
-					name = JaxbCompilableXPathConstraintV0.JAXB_ELEMENT,
-					type = JaxbCompilableXPathConstraintV0.class )
+					name = CompilableXPathConstraintV0.JAXB_ELEMENT,
+					type = CompilableXPathConstraintV0.class )
 	} )
-	private List<JaxbConstraintV0> constraints;
+	private List<ConstraintV0> constraints;
 
-	public JaxbProfileV0()
+	public ProfileV0()
 	{
-		super( JaxbProfileV0.SCHEMALOCATION, new DefaultNamespacePrefixMapper( NAMESPACE_DEFAULT_URI ) );
+		super( ProfileV0.SCHEMALOCATION, new DefaultNamespacePrefixMapper( NAMESPACE_DEFAULT_URI ) );
 		constraints = new ArrayList<>();
 	}
 
@@ -81,27 +81,27 @@ public class JaxbProfileV0 extends JaxbDocument
 		this.name = name;
 	}
 
-	public List<JaxbConstraintV0> getConstraints()
+	public List<ConstraintV0> getConstraints()
 	{
 		return constraints;
 	}
 
-	public void setConstraints( List<JaxbConstraintV0> constraints )
+	public void setConstraints( List<ConstraintV0> constraints )
 	{
 		this.constraints = constraints;
 	}
 
-	public static JaxbProfileV0 read( InputStream inputStream )
+	public static ProfileV0 read( InputStream inputStream )
 	{
 		return JaxbDocument.read( inputStream, JAXBCONTEXT );
 	}
 
-	public static JaxbProfileV0 open( File file ) throws NoSuchFileException
+	public static ProfileV0 open( File file ) throws NoSuchFileException
 	{
 		return JaxbDocument.open( file, JAXBCONTEXT );
 	}
 
-	public static JaxbProfileV0 read( String string )
+	public static ProfileV0 read( String string )
 	{
 		return JaxbDocument.read( string, JAXBCONTEXT );
 	}

@@ -1,4 +1,4 @@
-package eu.cessda.cmv.core.mediatype.validationreport.v0.xml;
+package eu.cessda.cmv.core.mediatype.validationreport.v0;
 
 import java.io.File;
 import java.io.InputStream;
@@ -18,10 +18,10 @@ import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
 import org.gesis.commons.xml.jaxb.JaxbDocument;
 import org.gesis.commons.xml.jaxb.NamespacePrefixMapper;
 
-@XmlRootElement( name = JaxbValidationReportV0.VALIDATIONREPORT_ELEMENT )
-@XmlType( name = JaxbValidationReportV0.VALIDATIONREPORT_TYPE )
+@XmlRootElement( name = ValidationReportV0.VALIDATIONREPORT_ELEMENT )
+@XmlType( name = ValidationReportV0.VALIDATIONREPORT_TYPE )
 @XmlAccessorType( XmlAccessType.FIELD )
-public class JaxbValidationReportV0 extends JaxbDocument
+public class ValidationReportV0 extends JaxbDocument
 {
 	static final String MAJOR = "0";
 	static final String MINOR = "1";
@@ -43,43 +43,43 @@ public class JaxbValidationReportV0 extends JaxbDocument
 	static final String LOCATIONINFO_ELEMENT = "LocationInfo";
 	static final String LOCATIONINFO_TYPE = LOCATIONINFO_ELEMENT + "Type";
 
-	private static final JAXBContext JAXBCONTEXT = newJaxbContext( JaxbValidationReportV0.class );
+	private static final JAXBContext JAXBCONTEXT = newJaxbContext( ValidationReportV0.class );
 
 	@XmlElement( name = CONSTRAINTVIOLATION_ELEMENT )
-	private List<JaxbConstraintViolationV0> constraintViolations;
+	private List<ConstraintViolationV0> constraintViolations;
 
-	protected JaxbValidationReportV0( String schemaLocation, NamespacePrefixMapper namespacePrefixMapper )
+	protected ValidationReportV0( String schemaLocation, NamespacePrefixMapper namespacePrefixMapper )
 	{
 		super( schemaLocation, namespacePrefixMapper );
 	}
 
-	public JaxbValidationReportV0()
+	public ValidationReportV0()
 	{
 		super( SCHEMALOCATION, new DefaultNamespacePrefixMapper( NAMESPACE_DEFAULT_URI ) );
 		constraintViolations = new ArrayList<>();
 	}
 
-	public List<JaxbConstraintViolationV0> getConstraintViolations()
+	public List<ConstraintViolationV0> getConstraintViolations()
 	{
 		return constraintViolations;
 	}
 
-	public void setConstraintViolations( List<JaxbConstraintViolationV0> constraintViolations )
+	public void setConstraintViolations( List<ConstraintViolationV0> constraintViolations )
 	{
 		this.constraintViolations = constraintViolations;
 	}
 
-	public static JaxbValidationReportV0 read( InputStream inputStream )
+	public static ValidationReportV0 read( InputStream inputStream )
 	{
 		return JaxbDocument.read( inputStream, JAXBCONTEXT );
 	}
 
-	public static JaxbValidationReportV0 open( File file ) throws NoSuchFileException
+	public static ValidationReportV0 open( File file ) throws NoSuchFileException
 	{
 		return JaxbDocument.open( file, JAXBCONTEXT );
 	}
 
-	public static JaxbValidationReportV0 read( String string )
+	public static ValidationReportV0 read( String string )
 	{
 		return JaxbDocument.read( string, JAXBCONTEXT );
 	}

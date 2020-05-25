@@ -1,13 +1,13 @@
-package eu.cessda.cmv.core.mediatype.profile.v0.xml;
+package eu.cessda.cmv.core.mediatype.profile.v0;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType( name = JaxbMaximumElementOccuranceConstraintV0.JAXB_TYPE )
+@XmlType( name = MaximumElementOccuranceConstraintV0.JAXB_TYPE )
 @XmlAccessorType( XmlAccessType.FIELD )
-public class JaxbMaximumElementOccuranceConstraintV0 extends JaxbNodeConstraint
+public class MaximumElementOccuranceConstraintV0 extends NodeConstraint
 {
 	public static final String JAXB_ELEMENT = "MaximumElementOccuranceConstraint";
 	public static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
@@ -15,12 +15,12 @@ public class JaxbMaximumElementOccuranceConstraintV0 extends JaxbNodeConstraint
 	@XmlElement
 	private long maxOccurs;
 
-	public JaxbMaximumElementOccuranceConstraintV0()
+	public MaximumElementOccuranceConstraintV0()
 	{
 		super( null );
 	}
 
-	public JaxbMaximumElementOccuranceConstraintV0( String locationPath, long maxOccurs )
+	public MaximumElementOccuranceConstraintV0( String locationPath, long maxOccurs )
 	{
 		super( locationPath );
 		this.maxOccurs = maxOccurs;
