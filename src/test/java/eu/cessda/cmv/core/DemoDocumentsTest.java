@@ -18,25 +18,24 @@ import org.w3c.dom.Node;
 public class DemoDocumentsTest
 {
 	@Test
-	@Disabled( "Code for dev work in progress" )
+	// @Disabled( "Code for dev work in progress" )
 	public void printPretty()
 	{
 		assertTrue( "SonarQube is cool!", true );
 
-		asList( "src/main/resources/demo-documents/ddi-v25",
-				"src/main/resources/demo-documents/ddi-v32" ).stream()
-						.map( path -> asList( new File( path ).listFiles() ) )
-						.flatMap( List::stream )
-						.filter( file -> file.getName().endsWith( ".xml" ) )
-						.forEach( file ->
-						{
-							XercesXalanDocument.newBuilder()
-									.ofInputStream( newResource( file ).readInputStream() )
-									.printPrettyWithIndentation( 2 )
-									.build()
-									.omitWhitespaceOnlyTextNodes()
-									.saveAs( file );
-						} );
+		asList( "src/test/resources/eu.cessda.cmv.core.RecommendedNodeConstraintTest" ).stream()
+				.map( path -> asList( new File( path ).listFiles() ) )
+				.flatMap( List::stream )
+				.filter( file -> file.getName().endsWith( ".xml" ) )
+				.forEach( file ->
+				{
+					XercesXalanDocument.newBuilder()
+							.ofInputStream( newResource( file ).readInputStream() )
+							.printPrettyWithIndentation( 2 )
+							.build()
+							.omitWhitespaceOnlyTextNodes()
+							.saveAs( file );
+				} );
 	}
 
 	@Test

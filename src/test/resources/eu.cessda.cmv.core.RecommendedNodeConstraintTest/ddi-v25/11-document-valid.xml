@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><codeBook xmlns="ddi:codebook:2_5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="ddi:codebook:2_5 http://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd">
+  <stdyDscr>
+    <citation>
+      <titlStmt>
+        <titl/>
+      </titlStmt>
+    </citation>
+    <dataAccs>
+      <useStmt>
+        <restrctn>Usage of this dataset is granted only with a valid researcher ID</restrctn>
+        <!-- valid, recommended element restrctn is present and not empty -->
+      </useStmt>
+    </dataAccs>
+  </stdyDscr>
+</codeBook>
