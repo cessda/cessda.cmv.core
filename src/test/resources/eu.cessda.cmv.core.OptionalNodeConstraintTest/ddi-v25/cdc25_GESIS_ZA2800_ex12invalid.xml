@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codeBook xmlns="ddi:codebook:2_5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ddi:codebook:2_5 http://www.ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd" version="2.5" xml:lang="en">
+	
+	<stdyDscr>
+		<citation>
+			<titlStmt>
+				<titl>
+ALLBUS/GGSS 1996 (Allgemeine Bevölkerungsumfrage der  Sozialwissenschaften/German General Social  Survey 1996) </titl>
+				<altTitl>ALLBUS 1996</altTitl>
+				<!-- invalid, because altTitl element is present, but not specified as optional one -->				
+				<IDNo>ZA2800</IDNo>
+			</titlStmt>
+		</citation>
+	</stdyDscr>
+</codeBook>
