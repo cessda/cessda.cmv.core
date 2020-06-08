@@ -18,12 +18,12 @@ import org.w3c.dom.Node;
 public class DemoDocumentsTest
 {
 	@Test
-	// @Disabled( "Code for dev work in progress" )
+	@Disabled( "Code for dev work in progress" )
 	public void printPretty()
 	{
 		assertTrue( "SonarQube is cool!", true );
 
-		asList( "src/test/resources/eu.cessda.cmv.core.RecommendedNodeConstraintTest" ).stream()
+		asList( "src/test/resources/eu.cessda.cmv.core.MandatoryNodeConstraintTest" ).stream()
 				.map( path -> asList( new File( path ).listFiles() ) )
 				.flatMap( List::stream )
 				.filter( file -> file.getName().endsWith( ".xml" ) )
