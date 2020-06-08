@@ -59,7 +59,19 @@ public class CessdaMetadataValidatorFactory
 
 	public Profile.V10 newProfile( URL url )
 	{
-		return new eu.cessda.cmv.core.DomSemiStructuredDdiProfile( newDdiInputStream( url ) );
+		return new DomSemiStructuredDdiProfile( newDdiInputStream( url ) );
+	}
+
+	public Profile.V10 newProfile( File file )
+	{
+		try
+		{
+			return newProfile( file.toURI().toURL() );
+		}
+		catch (MalformedURLException e)
+		{
+			throw new IllegalArgumentException( e );
+		}
 	}
 
 	public DdiInputStream newDdiInputStream( URL url )

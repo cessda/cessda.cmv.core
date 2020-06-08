@@ -116,7 +116,8 @@ public class DomSemiStructuredDdiProfile implements Profile.V10
 		if ( isRequiredNode == null || isRequiredNode.getNodeValue().equalsIgnoreCase( "false" ) )
 		{
 			if ( document.selectNode( usedNode, "Description[Content='Required: Recommended']" ) != null
-					|| document.selectNode( usedNode, "Description[Content='Recommended']" ) != null )
+					|| document.selectNode( usedNode, "Description[Content='Recommended']" ) != null
+					|| hasRecommendedNodeConstraintExtension( usedNode ) )
 			{
 				constraints.add( new RecommendedNodeConstraint( getLocationPath( usedNode ) ) );
 				jaxbProfile.getConstraints().add( new RecommendedNodeConstraintV0( getLocationPath( usedNode ) ) );
@@ -129,13 +130,23 @@ public class DomSemiStructuredDdiProfile implements Profile.V10
 		}
 	}
 
+	private boolean hasRecommendedNodeConstraintExtension( org.w3c.dom.Node usedNode )
+	{
+		Optional<DomDocument.V13> extension = findExtension( usedNode );
+		if ( extension.isPresent() )
+		{
+			String locationPath = "/Constraints/RecommendedNodeConstraint";
+			return !extension.get().selectNodes( locationPath ).isEmpty();
+		}
+		return false;
+	}
+
 	private void parseCodeValueOfControlledVocabularyConstraint( org.w3c.dom.Node usedNode )
 	{
 		findExtension( usedNode ).ifPresent( extension ->
 		{
 			String locationPath = "/Constraints/CodeValueOfControlledVocabularyConstraint";
-			for ( @SuppressWarnings( "unused" )
-			org.w3c.dom.Node constraintNode : extension.selectNodes( locationPath ) )
+			for ( org.w3c.dom.Node constraintNode : extension.selectNodes( locationPath ) )
 			{
 				constraints.add( new CodeValueOfControlledVocabularyConstraint( getLocationPath( usedNode ) ) );
 			}
