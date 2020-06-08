@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codeBook xmlns="ddi:codebook:2_5" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="ddi:codebook:2_5 http://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd" 
+	version="2.5">
+	<stdyDscr>
+		<citation>
+			<titlStmt>
+				<titl></titl>
+				<!-- valid, because IDNo is present and not blank -->		
+				<IDNo>ZA2800</IDNo>
+			</titlStmt>
+		</citation>
+	</stdyDscr>
+</codeBook>
