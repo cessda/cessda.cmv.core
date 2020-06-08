@@ -4,7 +4,7 @@
   <r:Version>1</r:Version>
   <pr:XPathVersion>1.0</pr:XPathVersion>
   <pr:DDINamespace>2.5</pr:DDINamespace>
-  <pr:Used isRequired="false" xpath="/codeBook/stdyDscr/dataAccs/useStmt/restrctn">
+  <pr:Used xpath="/codeBook/stdyDscr/dataAccs/useStmt/restrctn" isRequired="false">
     <pr:Instructions>
       <r:Content><![CDATA[
 			<Constraints>
