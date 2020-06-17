@@ -191,42 +191,6 @@
       <LocationPath>/codeBook/stdyDscr/citation/distStmt/distDate/@date</LocationPath>
    </OptionalNodeConstraint>
    <CompilableXPathConstraint>
-      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas</LocationPath>
-   </CompilableXPathConstraint>
-   <PredicatelessXPathConstraint>
-      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas</LocationPath>
-   </PredicatelessXPathConstraint>
-   <RecommendedNodeConstraint>
-      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas</LocationPath>
-   </RecommendedNodeConstraint>
-   <CompilableXPathConstraint>
-      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@xml:lang</LocationPath>
-   </CompilableXPathConstraint>
-   <PredicatelessXPathConstraint>
-      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@xml:lang</LocationPath>
-   </PredicatelessXPathConstraint>
-   <OptionalNodeConstraint>
-      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@xml:lang</LocationPath>
-   </OptionalNodeConstraint>
-   <CompilableXPathConstraint>
-      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocab</LocationPath>
-   </CompilableXPathConstraint>
-   <PredicatelessXPathConstraint>
-      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocab</LocationPath>
-   </PredicatelessXPathConstraint>
-   <RecommendedNodeConstraint>
-      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocab</LocationPath>
-   </RecommendedNodeConstraint>
-   <CompilableXPathConstraint>
-      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocabURI</LocationPath>
-   </CompilableXPathConstraint>
-   <PredicatelessXPathConstraint>
-      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocabURI</LocationPath>
-   </PredicatelessXPathConstraint>
-   <RecommendedNodeConstraint>
-      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocabURI</LocationPath>
-   </RecommendedNodeConstraint>
-   <CompilableXPathConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/keyword</LocationPath>
    </CompilableXPathConstraint>
    <PredicatelessXPathConstraint>
@@ -262,6 +226,42 @@
    <OptionalNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/keyword/@vocabURI</LocationPath>
    </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas</LocationPath>
+   </PredicatelessXPathConstraint>
+   <RecommendedNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas</LocationPath>
+   </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@xml:lang</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@xml:lang</LocationPath>
+   </PredicatelessXPathConstraint>
+   <OptionalNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@xml:lang</LocationPath>
+   </OptionalNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocab</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocab</LocationPath>
+   </PredicatelessXPathConstraint>
+   <RecommendedNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocab</LocationPath>
+   </RecommendedNodeConstraint>
+   <CompilableXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocabURI</LocationPath>
+   </CompilableXPathConstraint>
+   <PredicatelessXPathConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocabURI</LocationPath>
+   </PredicatelessXPathConstraint>
+   <RecommendedNodeConstraint>
+      <LocationPath>/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocabURI</LocationPath>
+   </RecommendedNodeConstraint>
    <CompilableXPathConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/abstract</LocationPath>
    </CompilableXPathConstraint>
