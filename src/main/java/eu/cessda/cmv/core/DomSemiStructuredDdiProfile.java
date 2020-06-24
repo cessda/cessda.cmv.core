@@ -20,7 +20,7 @@ import eu.cessda.cmv.core.mediatype.profile.v0.PredicatelessXPathConstraintV0;
 import eu.cessda.cmv.core.mediatype.profile.v0.ProfileV0;
 import eu.cessda.cmv.core.mediatype.profile.v0.RecommendedNodeConstraintV0;
 
-public class DomSemiStructuredDdiProfile implements Profile.V10
+class DomSemiStructuredDdiProfile implements Profile.V10
 {
 	private org.gesis.commons.xml.DomDocument.V11 document;
 	private List<Constraint> constraints;

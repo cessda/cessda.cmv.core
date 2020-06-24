@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 import eu.cessda.cmv.core.controlledvocabulary.EmptyControlledVocabularyRepository;
 
-public class DomCodebookDocument implements Document.V11
+class DomCodebookDocument implements Document.V11
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger( DomCodebookDocument.class );
 

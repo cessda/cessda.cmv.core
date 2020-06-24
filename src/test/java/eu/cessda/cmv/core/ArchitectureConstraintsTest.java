@@ -28,13 +28,6 @@ public class ArchitectureConstraintsTest extends TestClassesRuleTest
 	@Test
 	public void ensureEncapsulation()
 	{
-		// All implementations of Constraint, Validator should be package private
-		classes().that()
-				.areNotInterfaces()
-				.and().implement( Constraint.class )
-				.and().implement( Validator.class )
-				.should().bePackagePrivate()
-				.check( importedClasses );
 
 		// All extensions of AbstractValidationGate should be public
 		classes().that()
@@ -45,8 +38,6 @@ public class ArchitectureConstraintsTest extends TestClassesRuleTest
 		// Everything else in 'eu.cessda.cmv.core' should be package private
 		classes().that()
 				.areNotInterfaces().and().areNotEnums()
-				.and().doNotImplement( Document.V10.class )
-				.and().doNotImplement( Profile.V10.class )
 				.and().areNotAssignableFrom( ConstraintViolation.class )
 				.and().haveSimpleNameNotContaining( "CessdaMetadataValidatorFactory" )
 				.and().haveSimpleNameNotEndingWith( "Test" )
