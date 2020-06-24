@@ -1,11 +1,10 @@
 package eu.cessda.cmv.core;
 
-class StandardValidationGate extends BasicValidationGate
+class StandardValidationGate extends BasicPlusValidationGate
 {
 	public StandardValidationGate()
 	{
 		addConstraintType( RecommendedNodeConstraint.class.getCanonicalName() );
-		addConstraintType( CodeValueOfControlledVocabularyConstraint.class.getCanonicalName() );
-		addConstraintType( ControlledVocabularyRepositoryConstraint.class.getCanonicalName() );
+		addConstraintType( DescriptiveTermOfControlledVocabularyConstraint.class.getCanonicalName() );
 	}
 }

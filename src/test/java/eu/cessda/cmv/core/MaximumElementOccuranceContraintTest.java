@@ -1,8 +1,9 @@
 package eu.cessda.cmv.core;
 
+import static eu.cessda.cmv.core.ValidationGateName.STRICT;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class MaximumElementOccuranceContraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
 
 		// when
-		ValidationGate.V10 validationGate = new ExtendedValidationGate();
+		ValidationGate.V10 validationGate = factory.newValidationGate( STRICT );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -50,7 +51,7 @@ public class MaximumElementOccuranceContraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
 
 		// when
-		ValidationGate.V10 validationGate = new ExtendedValidationGate();
+		ValidationGate.V10 validationGate = factory.newValidationGate( STRICT );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
