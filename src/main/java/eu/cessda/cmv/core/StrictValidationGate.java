@@ -1,6 +1,6 @@
 package eu.cessda.cmv.core;
 
-public class StrictValidationGate extends ExtendedValidationGate
+class StrictValidationGate extends ExtendedValidationGate
 {
 	public StrictValidationGate()
 	{

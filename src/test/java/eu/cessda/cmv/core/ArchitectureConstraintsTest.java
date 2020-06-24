@@ -38,19 +38,16 @@ public class ArchitectureConstraintsTest extends TestClassesRuleTest
 
 		// All extensions of AbstractValidationGate should be public
 		classes().that()
-				.areNotInterfaces()
-				.and().areNotAssignableTo( AbstractValidationGate.class )
-				.and().areAssignableTo( AbstractValidationGate.class )
+				.areInterfaces().and().areEnums()
 				.should().bePublic()
 				.check( importedClasses );
 
 		// Everything else in 'eu.cessda.cmv.core' should be package private
 		classes().that()
-				.areNotInterfaces()
+				.areNotInterfaces().and().areNotEnums()
 				.and().doNotImplement( Document.V10.class )
 				.and().doNotImplement( Profile.V10.class )
 				.and().areNotAssignableFrom( ConstraintViolation.class )
-				.and().areNotAssignableTo( AbstractValidationGate.class )
 				.and().haveSimpleNameNotContaining( "CessdaMetadataValidatorFactory" )
 				.and().haveSimpleNameNotEndingWith( "Test" )
 				.and().haveSimpleNameNotEndingWith( "TestParameter" )

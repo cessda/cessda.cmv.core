@@ -1,5 +1,10 @@
 package eu.cessda.cmv.core;
 
+import static eu.cessda.cmv.core.ValidationGateName.BASIC;
+import static eu.cessda.cmv.core.ValidationGateName.BASICPLUS;
+import static eu.cessda.cmv.core.ValidationGateName.EXTENDED;
+import static eu.cessda.cmv.core.ValidationGateName.STANDARD;
+import static eu.cessda.cmv.core.ValidationGateName.STRICT;
 import static java.util.Objects.requireNonNull;
 import static org.gesis.commons.resource.Resource.newResource;
 
@@ -84,5 +89,34 @@ public class CessdaMetadataValidatorFactory
 	public DdiInputStream newDdiInputStream( InputStream inputStream )
 	{
 		return new DdiInputStream( inputStream );
+	}
+
+	public ValidationGate.V10 newValidationGate( ValidationGateName name )
+	{
+		requireNonNull( name );
+		if ( name.equals( BASIC ) )
+		{
+			return new BasicValidationGate();
+		}
+		else if ( name.equals( BASICPLUS ) )
+		{
+			return new BasicValidationGate();
+		}
+		else if ( name.equals( STANDARD ) )
+		{
+			return new StandardValidationGate();
+		}
+		else if ( name.equals( EXTENDED ) )
+		{
+			return new ExtendedValidationGate();
+		}
+		else if ( name.equals( STRICT ) )
+		{
+			return new StrictValidationGate();
+		}
+		else
+		{
+			throw new IllegalArgumentException( name + " not supported" );
+		}
 	}
 }

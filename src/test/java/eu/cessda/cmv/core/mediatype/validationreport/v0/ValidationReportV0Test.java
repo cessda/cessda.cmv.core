@@ -1,5 +1,6 @@
 package eu.cessda.cmv.core.mediatype.validationreport.v0;
 
+import static eu.cessda.cmv.core.ValidationGateName.STANDARD;
 import static eu.cessda.cmv.core.mediatype.validationreport.v0.ValidationReportV0.SCHEMALOCATION_FILENAME;
 import static java.util.Objects.requireNonNull;
 import static org.gesis.commons.resource.Resource.newResource;
@@ -19,19 +20,18 @@ import org.gesis.commons.xml.ddi.DdiInputStream;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
+import eu.cessda.cmv.core.CessdaMetadataValidatorFactory;
 import eu.cessda.cmv.core.ConstraintViolation;
 import eu.cessda.cmv.core.Document;
 import eu.cessda.cmv.core.DomCodebookDocument;
 import eu.cessda.cmv.core.DomSemiStructuredDdiProfile;
 import eu.cessda.cmv.core.Profile;
-import eu.cessda.cmv.core.StandardValidationGate;
 import eu.cessda.cmv.core.ValidationGate;
-import eu.cessda.cmv.core.mediatype.validationreport.v0.ConstraintViolationV0;
-import eu.cessda.cmv.core.mediatype.validationreport.v0.ValidationReportV0;
 
 public class ValidationReportV0Test
 {
 	private TestEnv.V11 testEnv;
+	private CessdaMetadataValidatorFactory factory = new CessdaMetadataValidatorFactory();
 
 	public ValidationReportV0Test()
 	{
@@ -58,7 +58,7 @@ public class ValidationReportV0Test
 		Document document = newDocument( getClass().getResource( "/demo-documents/ddi-v25/ukds-7481.xml" ) );
 		Profile profile = newProfile( getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ) );
 
-		ValidationGate.V10 validationGate = new StandardValidationGate();
+		ValidationGate.V10 validationGate = factory.newValidationGate( STANDARD );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 		ValidationReportV0 validationReport = new ValidationReportV0();
 		validationReport.setConstraintViolations( constraintViolations.stream()
