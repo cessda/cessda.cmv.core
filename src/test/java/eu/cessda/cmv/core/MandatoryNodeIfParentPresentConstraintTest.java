@@ -28,7 +28,9 @@ public class MandatoryNodeIfParentPresentConstraintTest
 				new Ddi251ClasspathEntityResolver() );
 		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/22-document-invalid-2.xml" ),
 				new Ddi251ClasspathEntityResolver() );
-		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/22-document-valid.xml" ),
+		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/22-document-valid-1.xml" ),
+				new Ddi251ClasspathEntityResolver() );
+		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/22-document-valid-2.xml" ),
 				new Ddi251ClasspathEntityResolver() );
 		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/22-profile.xml" ) );
 	}
@@ -71,7 +73,23 @@ public class MandatoryNodeIfParentPresentConstraintTest
 	public void validate_valid()
 	{
 		// given
-		File file = testEnv.findTestResourceByName( "22-document-valid.xml" );
+		File file = testEnv.findTestResourceByName( "22-document-valid-1.xml" );
+		Document document = factory.newDocument( file );
+		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "22-profile.xml" ) );
+
+		// when
+		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );
+		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
+
+		// then
+		assertThat( constraintViolations, hasSize( 0 ) );
+	}
+
+	@Test
+	public void validate_valid_parentNotPresent()
+	{
+		// given
+		File file = testEnv.findTestResourceByName( "22-document-valid-2.xml" );
 		Document document = factory.newDocument( file );
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "22-profile.xml" ) );
 
