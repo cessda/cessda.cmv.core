@@ -42,20 +42,39 @@ class DomCodebookDocument implements Document.V11
 		List<Node> nodes = new ArrayList<>();
 		for ( org.w3c.dom.Node domNode : document.selectNodes( locationPath ) )
 		{
+			Node node = null;
 			Optional<org.w3c.dom.Node> vocabUriNode = getVocabURINode( domNode );
 			if ( vocabUriNode.isPresent() )
 			{
-				nodes.add( new CodeValueNode( locationPath,
+				node = new CodeValueNode( locationPath,
 						domNode.getTextContent(),
 						document.getLocationInfo( domNode ),
-						findControlledVocabularyRepository( vocabUriNode.get().getNodeValue() ) ) );
+						findControlledVocabularyRepository( vocabUriNode.get().getNodeValue() ) );
+
 			}
 			else
 			{
-				nodes.add( new Node( locationPath, domNode.getTextContent(), document.getLocationInfo( domNode ) ) );
+				node = new Node( locationPath, domNode.getTextContent(), document.getLocationInfo( domNode ) );
 			}
+			countChildNodes( node, domNode );
+			nodes.add( node );
 		}
 		return nodes;
+	}
+
+	private void countChildNodes( Node node, org.w3c.dom.Node domNode )
+	{
+		if ( domNode.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE )
+		{
+			for ( int i = 0; i < domNode.getAttributes().getLength(); i++ )
+			{
+				node.incrementChildCount( "./@" + domNode.getAttributes().item( i ).getNodeName() );
+			}
+			for ( int i = 0; i < domNode.getChildNodes().getLength(); i++ )
+			{
+				node.incrementChildCount( "./" + domNode.getChildNodes().item( i ).getNodeName() );
+			}
+		}
 	}
 
 	private Optional<org.w3c.dom.Node> getVocabURINode( org.w3c.dom.Node node )

@@ -16,7 +16,7 @@
 				<![CDATA[
 					<Constraints>
 						<MandatoryNodeIfParentPresentConstraint/>
-					<Constraints>
+					</Constraints>
 				]]>
 			</r:Content>
 		</pr:Instructions>

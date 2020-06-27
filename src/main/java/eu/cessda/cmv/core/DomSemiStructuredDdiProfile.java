@@ -45,6 +45,7 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 			parseMandatoryNodeConstraint( usedNode );
 			parseOptionalNodeConstraint( usedNode );
 			parseMaximumElementOccuranceConstraint( usedNode );
+			parseMandatoryNodeIfParentPresentConstraint( usedNode );
 
 			parseCodeValueOfControlledVocabularyConstraint( usedNode );
 		}
@@ -181,6 +182,19 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 					getLocationPath( usedNode ),
 					valueOf( limitMaxOccursNode.getNodeValue() ) ) );
 		}
+	}
+
+	private void parseMandatoryNodeIfParentPresentConstraint( org.w3c.dom.Node usedNode )
+	{
+		findExtension( usedNode ).ifPresent( extension ->
+		{
+			String locationPath = "/Constraints/MandatoryNodeIfParentPresentConstraint";
+			if ( !extension.selectNodes( locationPath ).isEmpty() )
+			{
+				Constraint constraint = new MandatoryNodeIfParentPresentConstraint( getLocationPath( usedNode ) );
+				constraints.add( constraint );
+			}
+		} );
 	}
 
 	@Override

@@ -44,7 +44,7 @@ public class CessdaMetadataValidatorFactory
 				.build();
 	}
 
-	public Document.V10 newDocument( File file )
+	public Document.V11 newDocument( File file )
 	{
 		try
 		{
@@ -57,7 +57,7 @@ public class CessdaMetadataValidatorFactory
 		}
 	}
 
-	public Document.V10 newDocument( URL url )
+	public Document.V11 newDocument( URL url )
 	{
 		return new eu.cessda.cmv.core.DomCodebookDocument( newDdiInputStream( url ) );
 	}
@@ -100,7 +100,7 @@ public class CessdaMetadataValidatorFactory
 		}
 		else if ( name.equals( BASICPLUS ) )
 		{
-			return new BasicValidationGate();
+			return new BasicPlusValidationGate();
 		}
 		else if ( name.equals( STANDARD ) )
 		{
