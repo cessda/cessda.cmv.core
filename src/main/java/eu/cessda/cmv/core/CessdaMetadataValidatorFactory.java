@@ -119,4 +119,9 @@ public class CessdaMetadataValidatorFactory
 			throw new IllegalArgumentException( name + " not supported" );
 		}
 	}
+
+	public ValidationService.V10 newValidationService()
+	{
+		return new JdkValidationService( this );
+	}
 }
