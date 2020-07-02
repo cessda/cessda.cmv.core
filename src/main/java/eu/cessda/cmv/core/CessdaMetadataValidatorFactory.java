@@ -57,9 +57,19 @@ public class CessdaMetadataValidatorFactory
 		}
 	}
 
+	public Document.V11 newDocument( Resource resource )
+	{
+		return new DomCodebookDocument( newDdiInputStream( resource ) );
+	}
+
 	public Document.V11 newDocument( URL url )
 	{
-		return new eu.cessda.cmv.core.DomCodebookDocument( newDdiInputStream( url ) );
+		return new DomCodebookDocument( newDdiInputStream( url ) );
+	}
+
+	public Profile.V10 newProfile( Resource resource )
+	{
+		return new DomSemiStructuredDdiProfile( newDdiInputStream( resource ) );
 	}
 
 	public Profile.V10 newProfile( URL url )
@@ -79,11 +89,16 @@ public class CessdaMetadataValidatorFactory
 		}
 	}
 
+	public DdiInputStream newDdiInputStream( Resource resource )
+	{
+		requireNonNull( resource );
+		return newDdiInputStream( resource.readInputStream() );
+	}
+
 	public DdiInputStream newDdiInputStream( URL url )
 	{
 		requireNonNull( url );
-		Resource resource = newResource( url );
-		return newDdiInputStream( resource.readInputStream() );
+		return newDdiInputStream( newResource( url ) );
 	}
 
 	public DdiInputStream newDdiInputStream( InputStream inputStream )
