@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 *- Fixed (for any bug fixes)*  
 *- Security (in case of vulnerabilities)*
 
-## [0.2.0-SNAPSHOT] - 07-07-2020
+## [0.2.0] - 07-07-2020
 
 ### Added
 - Finalized MinimumElementOccuranceValidator
