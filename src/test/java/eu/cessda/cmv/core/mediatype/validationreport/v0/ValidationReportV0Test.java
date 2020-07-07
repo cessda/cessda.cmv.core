@@ -35,6 +35,7 @@ public class ValidationReportV0Test
 		File actualFile = new File( testEnv.newDirectory(), SCHEMALOCATION_FILENAME );
 
 		ValidationReportV0.generateSchema( actualFile );
+		System.out.println( actualFile );
 
 		assertThat( actualFile, hasEqualContent( expectedFile ) );
 	}
