@@ -1,6 +1,7 @@
 package eu.cessda.cmv.core;
 
-import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,9 +31,20 @@ class ValidationServiceV0 implements ValidationService.V10
 			URL profileUrl,
 			ValidationGateName validationGateName )
 	{
-		Document document = factory.newDocument( documentUrl );
-		Profile profile = factory.newProfile( profileUrl );
-		return validate( document, documentUrl, profile, profileUrl, validationGateName );
+		try
+		{
+			Document document = factory.newDocument( documentUrl );
+			Profile profile = factory.newProfile( profileUrl );
+			return validate( document,
+					documentUrl.toURI(),
+					profile,
+					profileUrl.toURI(),
+					validationGateName );
+		}
+		catch (URISyntaxException e)
+		{
+			throw new IllegalArgumentException( e );
+		}
 	}
 
 	@Override
@@ -42,36 +54,31 @@ class ValidationServiceV0 implements ValidationService.V10
 			Resource profileResource,
 			ValidationGateName validationGateName )
 	{
-		try
-		{
-			Document document = factory.newDocument( documentResource );
-			Profile profile = factory.newProfile( profileResource );
-			return validate( document, documentResource.getUri().toURL(),
-					profile, profileResource.getUri().toURL(),
-					validationGateName );
-		}
-		catch (MalformedURLException e)
-		{
-			throw new IllegalArgumentException( e );
-		}
+		Document document = factory.newDocument( documentResource );
+		Profile profile = factory.newProfile( profileResource );
+		return validate( document,
+				documentResource.getUri(),
+				profile,
+				profileResource.getUri(),
+				validationGateName );
 	}
 
 	private ValidationReportV0 validate(
 			Document document,
-			URL documentUrl,
+			URI documentUri,
 			Profile profile,
-			URL profileUrl,
+			URI profileUri,
 			ValidationGateName validationGateName )
 	{
 		ValidationGate.V10 validationGate = factory.newValidationGate( validationGateName );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		ValidationReportV0 validationReport = new ValidationReportV0();
-		validationReport.setDocumentUrl( documentUrl );
+		validationReport.setDocumentUri( documentUri );
 		validationReport.setConstraintViolations( constraintViolations.stream()
 				.map( ConstraintViolationV0::new )
 				.collect( Collectors.toList() ) );
-		LOGGER.info( "Validation executed: {}, {}, {}", validationGateName, documentUrl, profileUrl );
+		LOGGER.info( "Validation executed: {}, {}, {}", validationGateName, documentUri, profileUri );
 		return validationReport;
 	}
 }
