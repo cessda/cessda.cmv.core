@@ -137,6 +137,6 @@ public class CessdaMetadataValidatorFactory
 
 	public ValidationService.V10 newValidationService()
 	{
-		return new JdkValidationService( this );
+		return new ValidationServiceV0( this );
 	}
 }
