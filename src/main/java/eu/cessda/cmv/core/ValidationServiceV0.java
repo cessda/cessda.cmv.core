@@ -74,6 +74,7 @@ class ValidationServiceV0 implements ValidationService.V10
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		ValidationReportV0 validationReport = new ValidationReportV0();
+		validationReport.setDocumentUri( documentUri );
 		validationReport.setConstraintViolations( constraintViolations.stream()
 				.map( ConstraintViolationV0::new )
 				.collect( Collectors.toList() ) );

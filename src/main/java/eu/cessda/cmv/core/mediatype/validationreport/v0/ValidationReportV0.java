@@ -3,6 +3,7 @@ package eu.cessda.cmv.core.mediatype.validationreport.v0;
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URI;
 import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,12 +42,16 @@ public class ValidationReportV0 extends JaxbDocument
 
 	static final String VALIDATIONREPORT_ELEMENT = "ValidationReport";
 	static final String VALIDATIONREPORT_TYPE = VALIDATIONREPORT_ELEMENT + "Type";
+	static final String DOCUMENTURI_ELEMENT = "DocumentUri";
 	static final String CONSTRAINTVIOLATION_ELEMENT = "ConstraintViolation";
 	static final String CONSTRAINTVIOLATION_TYPE = CONSTRAINTVIOLATION_ELEMENT + "Type";
 	static final String LOCATIONINFO_ELEMENT = "LocationInfo";
 	static final String LOCATIONINFO_TYPE = LOCATIONINFO_ELEMENT + "Type";
 
 	private static final JAXBContext JAXBCONTEXT = newJaxbContext( ValidationReportV0.class );
+
+	@XmlElement( name = DOCUMENTURI_ELEMENT )
+	private URI documentUri;
 
 	@XmlElement( name = CONSTRAINTVIOLATION_ELEMENT )
 	private List<ConstraintViolationV0> constraintViolations;
@@ -70,6 +75,16 @@ public class ValidationReportV0 extends JaxbDocument
 	public void setConstraintViolations( List<ConstraintViolationV0> constraintViolations )
 	{
 		this.constraintViolations = constraintViolations;
+	}
+
+	public URI getDocumentUri()
+	{
+		return documentUri;
+	}
+
+	public void setDocumentUri( URI documentUri )
+	{
+		this.documentUri = documentUri;
 	}
 
 	public static ValidationReportV0 read( InputStream inputStream )

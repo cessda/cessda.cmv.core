@@ -7,19 +7,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.net.URL;
 
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import eu.cessda.cmv.core.CessdaMetadataValidatorFactory;
-import eu.cessda.cmv.core.ConstraintViolation;
-import eu.cessda.cmv.core.Document;
-import eu.cessda.cmv.core.Profile;
-import eu.cessda.cmv.core.ValidationGate;
+import eu.cessda.cmv.core.ValidationService;
 
 public class ValidationReportV0Test
 {
@@ -38,26 +35,21 @@ public class ValidationReportV0Test
 		File actualFile = new File( testEnv.newDirectory(), SCHEMALOCATION_FILENAME );
 
 		ValidationReportV0.generateSchema( actualFile );
-		// System.out.println( new String( readAllBytes( actualFile.toPath() ) ) );
 
 		assertThat( actualFile, hasEqualContent( expectedFile ) );
 	}
 
 	@Test
+	@Disabled
 	public void printOutToString() throws IOException
 	{
 		assertThat( ValidationReportV0.MEDIATYPE, Matchers.equalTo( ValidationReportV0.MEDIATYPE ) );
 
-		Document document = factory.newDocument( getClass().getResource( "/demo-documents/ddi-v25/ukds-7481.xml" ) );
-		Profile profile = factory.newProfile( getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ) );
+		URL documentUrl = getClass().getResource( "/demo-documents/ddi-v25/ukds-7481.xml" );
+		URL profileUrl = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
 
-		ValidationGate.V10 validationGate = factory.newValidationGate( STANDARD );
-		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
-		ValidationReportV0 validationReport = new ValidationReportV0();
-		validationReport.setConstraintViolations( constraintViolations.stream()
-				.map( ConstraintViolationV0::new )
-				.collect( Collectors.toList() ) );
-
-		// System.out.println( validationReport.toString() );
+		ValidationService.V10 validationService = factory.newValidationService();
+		ValidationReportV0 validationReport = validationService.validate( documentUrl, profileUrl, STANDARD );
+		System.out.println( validationReport.toString() );
 	}
 }
