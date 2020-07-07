@@ -12,12 +12,34 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 *- Fixed (for any bug fixes)*  
 *- Security (in case of vulnerabilities)*
 
-## [Unreleased]
+## [0.2.0-SNAPSHOT] - 07-07-2020
+
+### Added
+- Finalized MinimumElementOccuranceValidator
+- Finalized CodeValueOfControlledVocabularyContraint
+- Finalized MandatoryNodeIfParentPresent
+- Finalized RecommendedNodeConstraint
+- Finalized MandatoryNodeConstraint
+- Finalized OptionalNodeConstraint
 - Added Code of Conduct, Changelog ([#54](https://bitbucket.org/cessda/cessda.cmv.core/issues/54))
 - Added badges to REAMDME ([#53](https://bitbucket.org/cessda/cessda.cmv.core/issues/53))
 
+### Changed
+- 
 
-## [0.1.0] - DD-MM-YYYY    
+### Deprecated
+-
+
+### Removed
+-
+
+### Fixed
+-
+
+### Security
+- 
+
+## [0.1.0] - 11-03-2020    
 
 
 ### Added
