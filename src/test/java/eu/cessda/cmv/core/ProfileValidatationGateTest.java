@@ -23,13 +23,13 @@ public class ProfileValidatationGateTest
 	public void validateCdcProfile() throws IOException
 	{
 		// given
-		URL documentFile = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
+		URL documentUrl = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
 		URL profileUrl = getClass().getResource( "/cmv-profile-ddi-v32.xml" );
 
 		// when
 		ValidationGate.V10 validationGate = new ProfileValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate(
-				factory.newDocument( documentFile ),
+				factory.newDocument( documentUrl ),
 				factory.newProfile( profileUrl ) );
 
 		// then
@@ -77,13 +77,13 @@ public class ProfileValidatationGateTest
 	public void validateWithCompilableXPathConstraint()
 	{
 		// given
-		URL documentFile = getClass().getResource( "/profiles/not-compilable-xpaths.xml" );
+		URL documentUrl = getClass().getResource( "/profiles/not-compilable-xpaths.xml" );
 		URL profileUrl = getClass().getResource( "/cmv-profile-ddi-v32.xml" );
 
 		// when
 		ValidationGate.V10 validationGate = new ProfileValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate(
-				factory.newDocument( documentFile ),
+				factory.newDocument( documentUrl ),
 				factory.newProfile( profileUrl ) );
 
 		// then

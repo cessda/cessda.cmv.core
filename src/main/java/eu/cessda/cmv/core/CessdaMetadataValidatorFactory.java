@@ -62,6 +62,19 @@ public class CessdaMetadataValidatorFactory
 		return new DomCodebookDocument( newDdiInputStream( resource ) );
 	}
 
+	public Document.V11 newDocument( URI uri )
+	{
+		requireNonNull( uri );
+		try
+		{
+			return newDocument( uri.toURL() );
+		}
+		catch (MalformedURLException e)
+		{
+			throw new IllegalArgumentException( e );
+		}
+	}
+
 	public Document.V11 newDocument( URL url )
 	{
 		return new DomCodebookDocument( newDdiInputStream( url ) );
@@ -70,6 +83,19 @@ public class CessdaMetadataValidatorFactory
 	public Profile.V10 newProfile( Resource resource )
 	{
 		return new DomSemiStructuredDdiProfile( newDdiInputStream( resource ) );
+	}
+
+	public Profile.V10 newProfile( URI uri )
+	{
+		requireNonNull( uri );
+		try
+		{
+			return newProfile( uri.toURL() );
+		}
+		catch (MalformedURLException e)
+		{
+			throw new IllegalArgumentException( e );
+		}
 	}
 
 	public Profile.V10 newProfile( URL url )

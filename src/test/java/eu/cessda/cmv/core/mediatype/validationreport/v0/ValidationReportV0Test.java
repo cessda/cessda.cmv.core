@@ -7,7 +7,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.net.URI;
 
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
@@ -41,15 +41,15 @@ public class ValidationReportV0Test
 
 	@Test
 	@Disabled
-	public void printOutToString() throws IOException
+	public void printOutToString() throws Exception
 	{
 		assertThat( ValidationReportV0.MEDIATYPE, Matchers.equalTo( ValidationReportV0.MEDIATYPE ) );
 
-		URL documentUrl = getClass().getResource( "/demo-documents/ddi-v25/ukds-7481.xml" );
-		URL profileUrl = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
+		URI documentUri = getClass().getResource( "/demo-documents/ddi-v25/ukds-7481.xml" ).toURI();
+		URI profileUri = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ).toURI();
 
 		ValidationService.V10 validationService = factory.newValidationService();
-		ValidationReportV0 validationReport = validationService.validate( documentUrl, profileUrl, STANDARD );
+		ValidationReportV0 validationReport = validationService.validate( documentUri, profileUri, STANDARD );
 		System.out.println( validationReport.toString() );
 	}
 }

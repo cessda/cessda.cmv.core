@@ -28,7 +28,7 @@ public class CodeValueOfControlledVocabularyConstraintTest
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "bad-case.xml" ) );
-		Profile.V10 profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
+		Profile.V10 profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ) );
 
 		// when
 		ValidationGate.V10 validationGate = new StandardValidationGate();

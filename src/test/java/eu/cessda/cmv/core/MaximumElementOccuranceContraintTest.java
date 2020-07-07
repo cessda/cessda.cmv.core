@@ -32,7 +32,7 @@ public class MaximumElementOccuranceContraintTest
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "bad-case.xml" ) );
-		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
+		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ) );
 
 		// when
 		ValidationGate.V10 validationGate = factory.newValidationGate( STRICT );

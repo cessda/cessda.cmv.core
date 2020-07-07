@@ -1,8 +1,6 @@
 package eu.cessda.cmv.core;
 
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,24 +25,17 @@ class ValidationServiceV0 implements ValidationService.V10
 	@Override
 	@SuppressWarnings( "unchecked" )
 	public ValidationReportV0 validate(
-			URL documentUrl,
-			URL profileUrl,
+			URI documentUri,
+			URI profileUri,
 			ValidationGateName validationGateName )
 	{
-		try
-		{
-			Document document = factory.newDocument( documentUrl );
-			Profile profile = factory.newProfile( profileUrl );
-			return validate( document,
-					documentUrl.toURI(),
-					profile,
-					profileUrl.toURI(),
-					validationGateName );
-		}
-		catch (URISyntaxException e)
-		{
-			throw new IllegalArgumentException( e );
-		}
+		Document document = factory.newDocument( documentUri );
+		Profile profile = factory.newProfile( profileUri );
+		return validate( document,
+				documentUri,
+				profile,
+				profileUri,
+				validationGateName );
 	}
 
 	@Override

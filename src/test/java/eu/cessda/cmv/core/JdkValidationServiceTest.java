@@ -7,7 +7,7 @@ import static org.hamcrest.Matchers.hasSize;
 
 import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
 
 import org.gesis.commons.resource.Resource;
 import org.junit.jupiter.api.Test;
@@ -27,9 +27,9 @@ public class JdkValidationServiceTest
 	public void validateWithUrls() throws MalformedURLException
 	{
 		ValidationService.V10 validationService = factory.newValidationService();
-		URL documentUrl = new File( "src/main/resources/demo-documents/ddi-v25/gesis-2800.xml" ).toURI().toURL();
-		URL profileUrl = new File( "src/main/resources/demo-documents/ddi-v25/cdc25_profile.xml" ).toURI().toURL();
-		ValidationReportV0 validationReport = validationService.validate( documentUrl, profileUrl, BASIC );
+		URI documentUri = new File( "src/main/resources/demo-documents/ddi-v25/gesis-2800.xml" ).toURI();
+		URI profileUri = new File( "src/main/resources/demo-documents/ddi-v25/cdc25_profile.xml" ).toURI();
+		ValidationReportV0 validationReport = validationService.validate( documentUri, profileUri, BASIC );
 		assertThat( validationReport.getConstraintViolations(), hasSize( 9 ) );
 	}
 
