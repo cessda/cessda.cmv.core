@@ -6,6 +6,6 @@ class BasicPlusValidationGate extends BasicValidationGate
 	{
 		addConstraintType( CodeValueOfControlledVocabularyConstraint.class.getCanonicalName() );
 		addConstraintType( ControlledVocabularyRepositoryConstraint.class.getCanonicalName() );
-		addConstraintType( MandatoryNodeIfParentPresentConstraint.class.getCanonicalName() );
+		addConstraintType( DescriptiveTermOfControlledVocabularyConstraint.class.getCanonicalName() );
 	}
 }

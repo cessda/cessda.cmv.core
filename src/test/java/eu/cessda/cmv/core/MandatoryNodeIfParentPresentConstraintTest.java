@@ -1,6 +1,6 @@
 package eu.cessda.cmv.core;
 
-import static eu.cessda.cmv.core.ValidationGateName.BASICPLUS;
+import static eu.cessda.cmv.core.ValidationGateName.BASIC;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
@@ -44,7 +44,7 @@ public class MandatoryNodeIfParentPresentConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "22-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );
+		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -61,7 +61,7 @@ public class MandatoryNodeIfParentPresentConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "22-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );
+		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -78,7 +78,7 @@ public class MandatoryNodeIfParentPresentConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "22-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );
+		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -94,7 +94,7 @@ public class MandatoryNodeIfParentPresentConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "22-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );
+		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then

@@ -5,6 +5,5 @@ class StandardValidationGate extends BasicPlusValidationGate
 	public StandardValidationGate()
 	{
 		addConstraintType( RecommendedNodeConstraint.class.getCanonicalName() );
-		addConstraintType( DescriptiveTermOfControlledVocabularyConstraint.class.getCanonicalName() );
 	}
 }
