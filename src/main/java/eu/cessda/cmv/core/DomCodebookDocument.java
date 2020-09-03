@@ -31,7 +31,8 @@ class DomCodebookDocument implements Document.V11
 
 		document = XercesXalanDocument.newBuilder()
 				.ofInputStream( inputStream )
-				.locationInfoAware()
+				// TODO .locationInfoAware()
+				.namespaceAware()
 				.build();
 		controlledVocabularyRepositoryMap = new HashMap<>();
 	}
@@ -50,7 +51,6 @@ class DomCodebookDocument implements Document.V11
 						domNode.getTextContent(),
 						document.getLocationInfo( domNode ),
 						findControlledVocabularyRepository( vocabUriNode.get().getNodeValue() ) );
-
 			}
 			else
 			{

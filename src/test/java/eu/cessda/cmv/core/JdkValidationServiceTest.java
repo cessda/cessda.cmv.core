@@ -30,7 +30,7 @@ public class JdkValidationServiceTest
 		URI documentUri = new File( "src/main/resources/demo-documents/ddi-v25/gesis-2800.xml" ).toURI();
 		URI profileUri = new File( "src/main/resources/demo-documents/ddi-v25/cdc25_profile.xml" ).toURI();
 		ValidationReportV0 validationReport = validationService.validate( documentUri, profileUri, BASIC );
-		assertThat( validationReport.getConstraintViolations(), hasSize( 9 ) );
+		assertThat( validationReport.getConstraintViolations(), hasSize( 3 ) );
 	}
 
 	@Test
@@ -40,6 +40,6 @@ public class JdkValidationServiceTest
 		Resource document = newResource( new File( "src/main/resources/demo-documents/ddi-v25/gesis-2800.xml" ) );
 		Resource profile = newResource( new File( "src/main/resources/demo-documents/ddi-v25/cdc25_profile.xml" ) );
 		ValidationReportV0 validationReport = validationService.validate( document, profile, BASIC );
-		assertThat( validationReport.getConstraintViolations(), hasSize( 9 ) );
+		assertThat( validationReport.getConstraintViolations(), hasSize( 3 ) );
 	}
 }

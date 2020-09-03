@@ -9,6 +9,6 @@
   <r:Version>1.0.0</r:Version>
   <pr:XPathVersion>1.0</pr:XPathVersion>
   <pr:DDINamespace>3.2</pr:DDINamespace>
-  <pr:Used xpath="/DDIProfile/Used/@xpath" isRequired="true" />
-  <pr:Used xpath="/DDIProfile/Used/@isRequired" isRequired="true" />
+  <pr:Used xpath="/pr:DDIProfile/pr:Used/@xpath" isRequired="true" />
+  <pr:Used xpath="/pr:DDIProfile/pr:Used/@isRequired" isRequired="true" />
 </pr:DDIProfile>

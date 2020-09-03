@@ -39,7 +39,7 @@ public class CessdaMetadataValidatorFactory
 		requireNonNull( inputStream );
 		return XercesXalanDocument.newBuilder()
 				.ofInputStream( inputStream )
-				.namespaceUnaware()
+				.namespaceAware()
 				.printPrettyWithIndentation( 2 )
 				.build();
 	}
