@@ -2,18 +2,18 @@ package eu.cessda.cmv.core;
 
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isEmpty;
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isPresent;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-public class MinimumElementOccuranceValidatorTest
+class MinimumElementOccuranceValidatorTest
 {
 	@Test
-	public void validateValid()
+	void validateValid()
 	{
 		// given
 		long actualOccurs = 1;
@@ -28,7 +28,7 @@ public class MinimumElementOccuranceValidatorTest
 	}
 
 	@Test
-	public void validateInvalid()
+	void validateInvalid()
 	{
 		// given
 		long actualOccurs = 7;
@@ -44,7 +44,7 @@ public class MinimumElementOccuranceValidatorTest
 	}
 
 	@Test
-	public void construct()
+	void construct()
 	{
 		assertThrows( NullPointerException.class, () -> new MinimumElementOccuranceValidator( null, 1, 1 ) );
 		assertThrows( IllegalArgumentException.class,

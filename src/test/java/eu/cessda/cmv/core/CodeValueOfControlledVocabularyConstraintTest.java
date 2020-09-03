@@ -12,19 +12,19 @@ import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
 import org.junit.jupiter.api.Test;
 
-public class CodeValueOfControlledVocabularyConstraintTest
+class CodeValueOfControlledVocabularyConstraintTest
 {
 	private TestEnv.V13 testEnv;
 	private CessdaMetadataValidatorFactory factory;
 
-	public CodeValueOfControlledVocabularyConstraintTest()
+	CodeValueOfControlledVocabularyConstraintTest()
 	{
 		testEnv = DefaultTestEnv.newInstance( CodeValueOfControlledVocabularyConstraintTest.class );
 		factory = new CessdaMetadataValidatorFactory();
 	}
 
 	@Test
-	public void validate_invalid() throws Exception
+	void validate_invalid() throws Exception
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "bad-case.xml" ) );
@@ -47,7 +47,7 @@ public class CodeValueOfControlledVocabularyConstraintTest
 	}
 
 	@Test
-	public void validate_valid() throws Exception
+	void validate_valid() throws Exception
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "good-case.xml" ) );

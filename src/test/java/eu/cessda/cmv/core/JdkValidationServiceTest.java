@@ -14,17 +14,17 @@ import org.junit.jupiter.api.Test;
 
 import eu.cessda.cmv.core.mediatype.validationreport.v0.ValidationReportV0;
 
-public class JdkValidationServiceTest
+class JdkValidationServiceTest
 {
 	private CessdaMetadataValidatorFactory factory;
 
-	public JdkValidationServiceTest()
+	JdkValidationServiceTest()
 	{
 		factory = new CessdaMetadataValidatorFactory();
 	}
 
 	@Test
-	public void validateWithUrls() throws MalformedURLException
+	void validateWithUrls() throws MalformedURLException
 	{
 		ValidationService.V10 validationService = factory.newValidationService();
 		URI documentUri = new File( "src/main/resources/demo-documents/ddi-v25/gesis-2800.xml" ).toURI();
@@ -34,7 +34,7 @@ public class JdkValidationServiceTest
 	}
 
 	@Test
-	public void validateWithResources()
+	void validateWithResources()
 	{
 		ValidationService.V10 validationService = factory.newValidationService();
 		Resource document = newResource( new File( "src/main/resources/demo-documents/ddi-v25/gesis-2800.xml" ) );

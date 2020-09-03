@@ -13,12 +13,12 @@ import org.gesis.commons.xml.SaxXercesAgainstSchemaValidator;
 import org.gesis.commons.xml.ddi.Ddi251ClasspathEntityResolver;
 import org.junit.jupiter.api.Test;
 
-public class MandatoryNodeConstraintTest
+class MandatoryNodeConstraintTest
 {
 	private TestEnv.V13 testEnv;
 	private CessdaMetadataValidatorFactory factory;
 
-	public MandatoryNodeConstraintTest()
+	MandatoryNodeConstraintTest()
 	{
 		testEnv = DefaultTestEnv.newInstance( MandatoryNodeConstraintTest.class );
 		SaxXercesAgainstSchemaValidator xmlValidator = new SaxXercesAgainstSchemaValidator();
@@ -31,7 +31,7 @@ public class MandatoryNodeConstraintTest
 	}
 
 	@Test
-	public void validate_missing()
+	void validate_missing()
 	{
 		// given
 		File file = testEnv.findTestResourceByName( "10-document-invalid-missing.xml-invalid" );
@@ -48,7 +48,7 @@ public class MandatoryNodeConstraintTest
 	}
 
 	@Test
-	public void validate_blank()
+	void validate_blank()
 	{
 		// given
 		File file = testEnv.findTestResourceByName( "10-document-invalid-blank.xml" );
@@ -65,7 +65,7 @@ public class MandatoryNodeConstraintTest
 	}
 
 	@Test
-	public void validate_valid()
+	void validate_valid()
 	{
 		// given
 		File file = testEnv.findTestResourceByName( "10-document-valid.xml" );

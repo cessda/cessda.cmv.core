@@ -2,8 +2,8 @@ package eu.cessda.cmv.core;
 
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isEmpty;
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isPresent;
-import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
@@ -13,10 +13,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-public class ElementInSetValidatorTest
+class ElementInSetValidatorTest
 {
 	@Test
-	public void validate()
+	void validate()
 	{
 		Set<String> elementSet = new HashSet<>( Arrays.asList( "a", "B", "c", "C" ) );
 		assertThat( elementSet, hasSize( 4 ) );

@@ -14,12 +14,12 @@ import org.gesis.commons.xml.SaxXercesAgainstSchemaValidator;
 import org.gesis.commons.xml.ddi.Ddi251ClasspathEntityResolver;
 import org.junit.jupiter.api.Test;
 
-public class MandatoryNodeIfParentPresentConstraintTest
+class MandatoryNodeIfParentPresentConstraintTest
 {
 	private TestEnv.V14 testEnv;
 	private CessdaMetadataValidatorFactory factory;
 
-	public MandatoryNodeIfParentPresentConstraintTest()
+	MandatoryNodeIfParentPresentConstraintTest()
 	{
 		testEnv = DefaultTestEnv.newInstance( MandatoryNodeIfParentPresentConstraintTest.class );
 		factory = new CessdaMetadataValidatorFactory();
@@ -36,7 +36,7 @@ public class MandatoryNodeIfParentPresentConstraintTest
 	}
 
 	@Test
-	public void validate_missing()
+	void validate_missing()
 	{
 		// given
 		File file = testEnv.findTestResourceByName( "22-document-invalid-1.xml" );
@@ -53,7 +53,7 @@ public class MandatoryNodeIfParentPresentConstraintTest
 	}
 
 	@Test
-	public void validate_blank()
+	void validate_blank()
 	{
 		// given
 		File file = testEnv.findTestResourceByName( "22-document-invalid-2.xml" );
@@ -70,7 +70,7 @@ public class MandatoryNodeIfParentPresentConstraintTest
 	}
 
 	@Test
-	public void validate_valid()
+	void validate_valid()
 	{
 		// given
 		File file = testEnv.findTestResourceByName( "22-document-valid-1.xml" );
@@ -86,7 +86,7 @@ public class MandatoryNodeIfParentPresentConstraintTest
 	}
 
 	@Test
-	public void validate_valid_parentNotPresent()
+	void validate_valid_parentNotPresent()
 	{
 		// given
 		File file = testEnv.findTestResourceByName( "22-document-valid-2.xml" );

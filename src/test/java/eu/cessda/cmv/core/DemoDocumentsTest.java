@@ -15,11 +15,11 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Node;
 
-public class DemoDocumentsTest
+class DemoDocumentsTest
 {
 	@Test
 	@Disabled( "Code for dev work in progress" )
-	public void printPretty()
+	void printPretty()
 	{
 		assertTrue( "SonarQube is cool!", true );
 
@@ -40,7 +40,7 @@ public class DemoDocumentsTest
 
 	@Test
 	@Disabled( "Code for dev work in progress" )
-	public void listAllCvUrls()
+	void listAllCvUrls()
 	{
 		assertTrue( "SonarQube is cool!", true );
 

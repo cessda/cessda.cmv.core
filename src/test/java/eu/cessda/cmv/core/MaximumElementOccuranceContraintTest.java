@@ -13,12 +13,12 @@ import org.gesis.commons.xml.SaxXercesAgainstSchemaValidator;
 import org.gesis.commons.xml.ddi.Ddi251ClasspathEntityResolver;
 import org.junit.jupiter.api.Test;
 
-public class MaximumElementOccuranceContraintTest
+class MaximumElementOccuranceContraintTest
 {
 	private TestEnv.V13 testEnv;
 	private CessdaMetadataValidatorFactory factory;
 
-	public MaximumElementOccuranceContraintTest()
+	MaximumElementOccuranceContraintTest()
 	{
 		testEnv = DefaultTestEnv.newInstance( MaximumElementOccuranceContraintTest.class );
 		factory = new CessdaMetadataValidatorFactory();
@@ -28,7 +28,7 @@ public class MaximumElementOccuranceContraintTest
 	}
 
 	@Test
-	public void validate_invalid() throws Exception
+	void validate_invalid() throws Exception
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "bad-case.xml" ) );
@@ -44,7 +44,7 @@ public class MaximumElementOccuranceContraintTest
 	}
 
 	@Test
-	public void validate_valid() throws Exception
+	void validate_valid() throws Exception
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "good-case.xml" ) );

@@ -18,18 +18,18 @@ import org.junit.jupiter.api.Test;
 import eu.cessda.cmv.core.CessdaMetadataValidatorFactory;
 import eu.cessda.cmv.core.ValidationService;
 
-public class ValidationReportV0Test
+class ValidationReportV0Test
 {
 	private TestEnv.V11 testEnv;
 	private CessdaMetadataValidatorFactory factory = new CessdaMetadataValidatorFactory();
 
-	public ValidationReportV0Test()
+	ValidationReportV0Test()
 	{
 		testEnv = DefaultTestEnv.newInstance( ValidationReportV0Test.class );
 	}
 
 	@Test
-	public void generateSchema() throws IOException
+	void generateSchema() throws IOException
 	{
 		File expectedFile = testEnv.findTestResourceByName( SCHEMALOCATION_FILENAME );
 		File actualFile = new File( testEnv.newDirectory(), SCHEMALOCATION_FILENAME );
@@ -41,7 +41,7 @@ public class ValidationReportV0Test
 
 	@Test
 	@Disabled
-	public void printOutToString() throws Exception
+	void printOutToString() throws Exception
 	{
 		assertThat( ValidationReportV0.MEDIATYPE, Matchers.equalTo( ValidationReportV0.MEDIATYPE ) );
 

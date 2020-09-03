@@ -10,14 +10,14 @@ import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class CdcCodebookDocumentValidationTest
+class CdcCodebookDocumentValidationTest
 {
 	private static final String newTestParameters = "newTestParameters";
 
 	private Profile profile;
 	private CessdaMetadataValidatorFactory factory;
 
-	public CdcCodebookDocumentValidationTest()
+	CdcCodebookDocumentValidationTest()
 	{
 		factory = new CessdaMetadataValidatorFactory();
 		profile = factory.newProfile( getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ) );
@@ -36,7 +36,7 @@ public class CdcCodebookDocumentValidationTest
 		}
 	}
 
-	public static Stream<TestParameter> newTestParameters()
+	static Stream<TestParameter> newTestParameters()
 	{
 		TestParameter testParameter;
 		List<TestParameter> testParameters = new ArrayList<>();
@@ -95,7 +95,7 @@ public class CdcCodebookDocumentValidationTest
 
 	@ParameterizedTest
 	@MethodSource( newTestParameters )
-	public void validateWithBasicValidationGate( TestParameter param )
+	void validateWithBasicValidationGate( TestParameter param )
 	{
 		// given
 		Document document = factory.newDocument( getClass().getResource( param.documentName ) );
@@ -112,7 +112,7 @@ public class CdcCodebookDocumentValidationTest
 
 	@ParameterizedTest
 	@MethodSource( newTestParameters )
-	public void validateWithStandardValidationGate( TestParameter param )
+	void validateWithStandardValidationGate( TestParameter param )
 	{
 		// given
 		Document document = factory.newDocument( getClass().getResource( param.documentName ) );
@@ -129,7 +129,7 @@ public class CdcCodebookDocumentValidationTest
 
 	@ParameterizedTest
 	@MethodSource( newTestParameters )
-	public void validateWithStrictValidationGate( TestParameter param )
+	void validateWithStrictValidationGate( TestParameter param )
 	{
 		// given
 		Document document = factory.newDocument( getClass().getResource( param.documentName ) );

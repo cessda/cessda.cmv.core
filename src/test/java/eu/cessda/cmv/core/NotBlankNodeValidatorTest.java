@@ -9,10 +9,10 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-public class NotBlankNodeValidatorTest
+class NotBlankNodeValidatorTest
 {
 	@Test
-	public void validate_empty()
+	void validate_empty()
 	{
 		// given: empty text content
 		Node node = new Node( "/path/to/node", "", empty() );
@@ -26,7 +26,7 @@ public class NotBlankNodeValidatorTest
 	}
 
 	@Test
-	public void validate_blank()
+	void validate_blank()
 	{
 		// given: blank text content
 		Node node = new Node( "/path/to/node", "   ", empty() );
@@ -40,7 +40,7 @@ public class NotBlankNodeValidatorTest
 	}
 
 	@Test
-	public void validate_notBlank()
+	void validate_notBlank()
 	{
 		// given: not blank text content
 		Node node = new Node( "/path/to/node", "not blank", empty() );

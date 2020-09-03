@@ -6,10 +6,10 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.junit.jupiter.api.Test;
 
-public class NodeTest
+class NodeTest
 {
 	@Test
-	public void getChildCount()
+	void getChildCount()
 	{
 		Node node = new Node( "/path/to/element", "value", empty() );
 		String locationPath = "./@attribute";

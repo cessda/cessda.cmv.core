@@ -11,10 +11,10 @@ import org.gesis.commons.xml.ddi.DdiInputStream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
-public class DomCodebookDocumentTest
+class DomCodebookDocumentTest
 {
 	@Test
-	public void constructWithNotWellformedDocument() throws IOException
+	void constructWithNotWellformedDocument() throws IOException
 	{
 		// given
 		URL url = getClass().getResource( "/demo-documents/ddi-v25/ukds-7481-not-wellformed.xml-invalid" );

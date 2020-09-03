@@ -8,25 +8,26 @@ import org.junit.jupiter.api.Test;
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 
-public class ArchitectureConstraintsTest extends TestClassesRuleTest
+class ArchitectureConstraintsTest extends TestClassesRuleTest
 {
 	private JavaClasses importedClasses;
 	private String[] packageNames;
 
-	public ArchitectureConstraintsTest()
+	ArchitectureConstraintsTest()
 	{
 		packageNames = new String[] { this.getClass().getPackage().getName() };
 		importedClasses = new ClassFileImporter().importPackages( packageNames );
 	}
 
 	@Test
+	@SuppressWarnings( "java:S5786" )
 	public void testClassesShouldEndWithTestSuffix()
 	{
 		testClassesShouldEndWithTestSuffix( packageNames );
 	}
 
 	@Test
-	public void ensureEncapsulation()
+	void ensureEncapsulation()
 	{
 		// Everything else in 'eu.cessda.cmv.core' should be package private
 		classes().that()

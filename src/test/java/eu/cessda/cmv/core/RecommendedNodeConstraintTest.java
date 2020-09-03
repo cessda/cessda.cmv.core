@@ -12,13 +12,13 @@ import org.gesis.commons.xml.SaxXercesAgainstSchemaValidator;
 import org.gesis.commons.xml.ddi.Ddi251ClasspathEntityResolver;
 import org.junit.jupiter.api.Test;
 
-public class RecommendedNodeConstraintTest
+class RecommendedNodeConstraintTest
 {
 	private TestEnv.V14 testEnv;
 	private CessdaMetadataValidatorFactory factory;
 	private ValidationGate.V10 validationGate;
 
-	public RecommendedNodeConstraintTest()
+	RecommendedNodeConstraintTest()
 	{
 		testEnv = DefaultTestEnv.newInstance( RecommendedNodeConstraintTest.class );
 		SaxXercesAgainstSchemaValidator xmlValidator = new SaxXercesAgainstSchemaValidator();
@@ -34,7 +34,7 @@ public class RecommendedNodeConstraintTest
 	}
 
 	@Test
-	public void validate_valid()
+	void validate_valid()
 	{
 		// given
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/11-profile.xml" ) );
@@ -48,7 +48,7 @@ public class RecommendedNodeConstraintTest
 	}
 
 	@Test
-	public void validate_invalid_missing()
+	void validate_invalid_missing()
 	{
 		// given
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "11-profile.xml" ) );
@@ -63,7 +63,7 @@ public class RecommendedNodeConstraintTest
 	}
 
 	@Test
-	public void validate_invalid_blank()
+	void validate_invalid_blank()
 	{
 		// given
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "11-profile.xml" ) );

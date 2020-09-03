@@ -12,17 +12,17 @@ import org.junit.jupiter.api.Test;
 
 import eu.cessda.cmv.core.mediatype.profile.v0.ProfileV0;
 
-public class DomSemiStructuredDdiProfileTest
+class DomSemiStructuredDdiProfileTest
 {
 	private CessdaMetadataValidatorFactory factory;
 
-	public DomSemiStructuredDdiProfileTest()
+	DomSemiStructuredDdiProfileTest()
 	{
 		factory = new CessdaMetadataValidatorFactory();
 	}
 
 	@Test
-	public void construct()
+	void construct()
 	{
 		// given
 		URL url = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
@@ -35,7 +35,7 @@ public class DomSemiStructuredDdiProfileTest
 	}
 
 	@Test
-	public void toJaxbProfileV0()
+	void toJaxbProfileV0()
 	{
 		// given
 		URL sourceUrl = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );

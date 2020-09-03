@@ -13,12 +13,12 @@ import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
 import org.junit.jupiter.api.Test;
 
-public class CessdaControlledVocabularyRepositoryTest
+class CessdaControlledVocabularyRepositoryTest
 {
 	private TestEnv.V13 testEnv = DefaultTestEnv.newInstance( CessdaControlledVocabularyRepositoryTest.class );
 
 	@Test
-	public void findCodeValues_AnalysisUnit_10() throws Exception
+	void findCodeValues_AnalysisUnit_10() throws Exception
 	{
 		org.hamcrest.Matcher<Iterable<? extends String>> expectedCodeValues = contains( "Group",
 				"Organization",
@@ -41,7 +41,7 @@ public class CessdaControlledVocabularyRepositoryTest
 	}
 
 	@Test
-	public void findCodeValues_AnalysisUnit_20() throws Exception
+	void findCodeValues_AnalysisUnit_20() throws Exception
 	{
 		org.hamcrest.Matcher<Iterable<? extends String>> expectedCodeValues = contains( "Group",
 				"MediaUnit.Video",
@@ -74,7 +74,7 @@ public class CessdaControlledVocabularyRepositoryTest
 	}
 
 	@Test
-	public void construct_ResourceNotFound()
+	void construct_ResourceNotFound()
 	{
 		Exception exception = assertThrows( Exception.class, () ->
 		{

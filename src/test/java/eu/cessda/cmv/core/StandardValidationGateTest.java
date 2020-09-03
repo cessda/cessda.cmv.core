@@ -2,8 +2,8 @@ package eu.cessda.cmv.core;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
-import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-public class StandardValidationGateTest
+class StandardValidationGateTest
 {
 	@Test
-	public void validate()
+	void validate()
 	{
 		// given
 		Document.V10 document = mock( Document.V10.class );

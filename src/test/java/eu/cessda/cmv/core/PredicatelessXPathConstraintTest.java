@@ -4,8 +4,8 @@ import static java.util.Arrays.asList;
 import static java.util.Optional.empty;
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isEmpty;
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isPresent;
-import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -18,7 +18,7 @@ import org.hamcrest.Matcher;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class PredicatelessXPathConstraintTest
+class PredicatelessXPathConstraintTest
 {
 	private static final String newTestParameters = "newTestParameters";
 
@@ -33,7 +33,7 @@ public class PredicatelessXPathConstraintTest
 		}
 	}
 
-	public static Stream<TestParameter> newTestParameters()
+	static Stream<TestParameter> newTestParameters()
 	{
 		TestParameter testParameter;
 		List<TestParameter> testParameters = new ArrayList<>();
@@ -55,7 +55,7 @@ public class PredicatelessXPathConstraintTest
 
 	@ParameterizedTest
 	@MethodSource( newTestParameters )
-	public void newValidators( TestParameter testParameter )
+	void newValidators( TestParameter testParameter )
 	{
 		// given
 		Constraint.V20 constraint = new PredicatelessXPathConstraint( testParameter.locationPath );

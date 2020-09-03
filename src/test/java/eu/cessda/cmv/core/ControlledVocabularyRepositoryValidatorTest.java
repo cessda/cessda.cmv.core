@@ -2,8 +2,8 @@ package eu.cessda.cmv.core;
 
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isEmpty;
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isPresent;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 
 import java.util.Optional;
 
@@ -11,10 +11,10 @@ import org.junit.jupiter.api.Test;
 
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepositoryProxy;
 
-public class ControlledVocabularyRepositoryValidatorTest
+class ControlledVocabularyRepositoryValidatorTest
 {
 	@Test
-	public void validate_valid()
+	void validate_valid()
 	{
 		// given
 		String canonicalName = "eu.cessda.cmv.core.controlledvocabulary.CessdaControlledVocabularyRepository";
@@ -30,7 +30,7 @@ public class ControlledVocabularyRepositoryValidatorTest
 	}
 
 	@Test
-	public void validate_invalid()
+	void validate_invalid()
 	{
 		// given
 		String canonicalName = "eu.cessda.cmv.core.controlledvocabulary.CessdaControlledVocabularyRepository";

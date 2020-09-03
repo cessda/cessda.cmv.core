@@ -1,8 +1,8 @@
 package eu.cessda.cmv.core;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.IOException;
 import java.net.URL;
@@ -10,17 +10,17 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-public class ProfileValidatationGateTest
+class ProfileValidatationGateTest
 {
 	private CessdaMetadataValidatorFactory factory;
 
-	public ProfileValidatationGateTest()
+	ProfileValidatationGateTest()
 	{
 		factory = new CessdaMetadataValidatorFactory();
 	}
 
 	@Test
-	public void validateCdcProfile() throws IOException
+	void validateCdcProfile() throws IOException
 	{
 		// given
 		URL documentUrl = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
@@ -37,7 +37,7 @@ public class ProfileValidatationGateTest
 	}
 
 	@Test
-	public void validateCmvProfile()
+	void validateCmvProfile()
 	{
 		// given
 		URL documentFile = getClass().getResource( "/cmv-profile-ddi-v32.xml" );
@@ -54,7 +54,7 @@ public class ProfileValidatationGateTest
 	}
 
 	@Test
-	public void validateWithPredicatelessXPathConstraint()
+	void validateWithPredicatelessXPathConstraint()
 	{
 		// https://bitbucket.org/cessda/cessda.cmv.core/issues/39
 
@@ -74,7 +74,7 @@ public class ProfileValidatationGateTest
 	}
 
 	@Test
-	public void validateWithCompilableXPathConstraint()
+	void validateWithCompilableXPathConstraint()
 	{
 		// given
 		URL documentUrl = getClass().getResource( "/profiles/not-compilable-xpaths.xml" );
