@@ -1,5 +1,6 @@
 package eu.cessda.cmv.core;
 
+import static eu.cessda.cmv.core.ValidationGateName.STANDARD;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
@@ -30,7 +31,7 @@ class RecommendedNodeConstraintTest
 				new Ddi251ClasspathEntityResolver() );
 		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/11-profile.xml" ) );
 		factory = new CessdaMetadataValidatorFactory();
-		validationGate = new StandardValidationGate();
+		validationGate = factory.newValidationGate( STANDARD );
 	}
 
 	@Test

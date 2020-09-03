@@ -1,5 +1,8 @@
 package eu.cessda.cmv.core;
 
+import static eu.cessda.cmv.core.ValidationGateName.BASIC;
+import static eu.cessda.cmv.core.ValidationGateName.STANDARD;
+import static eu.cessda.cmv.core.ValidationGateName.STRICT;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 
@@ -101,7 +104,7 @@ class CdcCodebookDocumentValidationTest
 		Document document = factory.newDocument( getClass().getResource( param.documentName ) );
 
 		// when
-		ValidationGate.V10 validationGate = new BasicValidationGate();
+		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 		// printReport( param.documentName, validationGate.getClass().getSimpleName(),
 		// constraintViolations );
@@ -118,7 +121,7 @@ class CdcCodebookDocumentValidationTest
 		Document document = factory.newDocument( getClass().getResource( param.documentName ) );
 
 		// when
-		ValidationGate.V10 validationGate = new StandardValidationGate();
+		ValidationGate.V10 validationGate = factory.newValidationGate( STANDARD );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 		// printReport( param.documentName, validationGate.getClass().getSimpleName(),
 		// constraintViolations );
@@ -135,7 +138,7 @@ class CdcCodebookDocumentValidationTest
 		Document document = factory.newDocument( getClass().getResource( param.documentName ) );
 
 		// when
-		ValidationGate.V10 validationGate = new StrictValidationGate();
+		ValidationGate.V10 validationGate = factory.newValidationGate( STRICT );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 		// printReport( param.documentName, validationGate.getClass().getSimpleName(),
 		// constraintViolations );

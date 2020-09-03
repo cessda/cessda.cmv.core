@@ -27,8 +27,8 @@ class StandardValidationGateTest
 				new RecommendedNodeConstraint( "/path/to/recommended/node" ) ) );
 
 		// when
-		ValidationGate.V10 validatationGate = new StandardValidationGate();
-		List<ConstraintViolation> constraintViolations = validatationGate.validate( document, profile );
+		ValidationGate.V10 validationGate = new StandardValidationGate();
+		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
 		assertThat( constraintViolations, hasSize( 2 ) );

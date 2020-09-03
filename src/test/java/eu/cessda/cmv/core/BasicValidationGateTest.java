@@ -1,5 +1,6 @@
 package eu.cessda.cmv.core;
 
+import static eu.cessda.cmv.core.ValidationGateName.BASIC;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.Optional.empty;
@@ -16,6 +17,13 @@ import org.junit.jupiter.api.Test;
 
 class BasicValidationGateTest
 {
+	private CessdaMetadataValidatorFactory factory;
+
+	BasicValidationGateTest()
+	{
+		factory = new CessdaMetadataValidatorFactory();
+	}
+
 	@Test
 	void invalid()
 	{
@@ -28,8 +36,8 @@ class BasicValidationGateTest
 				new RecommendedNodeConstraint( "/path/to/recommended/node" ) ) );
 
 		// when
-		ValidationGate.V10 validatationGate = new BasicValidationGate();
-		List<ConstraintViolation> constraintViolations = validatationGate.validate( document, profile );
+		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
+		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
@@ -50,8 +58,8 @@ class BasicValidationGateTest
 				new RecommendedNodeConstraint( "/path/to/recommended/node" ) ) );
 
 		// when
-		ValidationGate.V10 validatationGate = new BasicValidationGate();
-		List<ConstraintViolation> constraintViolations = validatationGate.validate( document, profile );
+		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
+		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
 		assertThat( constraintViolations, hasSize( 0 ) );
