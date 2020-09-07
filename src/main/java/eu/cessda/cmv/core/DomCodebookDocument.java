@@ -1,14 +1,11 @@
 package eu.cessda.cmv.core;
 
 import static java.util.Objects.requireNonNull;
-import static java.util.Optional.empty;
-import static java.util.Optional.ofNullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.gesis.commons.xml.ddi.DdiInputStream;
@@ -44,15 +41,30 @@ class DomCodebookDocument implements Document.V11
 		for ( org.w3c.dom.Node domNode : document.selectNodes( locationPath ) )
 		{
 			Node node = null;
-			Optional<org.w3c.dom.Node> vocabUriNode = getVocabURINode( domNode );
-			if ( vocabUriNode.isPresent() )
+			if ( locationPath.contentEquals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" ) )
 			{
-				node = new CodeValueNode( locationPath,
-						domNode.getTextContent(),
-						document.getLocationInfo( domNode ),
-						findControlledVocabularyRepository( vocabUriNode.get().getNodeValue() ) );
+				String vocabUri = getVocabURI( domNode );
+				if ( vocabUri != null )
+				{
+					node = new CodeValueNode( locationPath,
+							domNode.getFirstChild().getTextContent().trim(),
+							document.getLocationInfo( domNode ),
+							findControlledVocabularyRepository( vocabUri ) );
+				}
 			}
-			else
+			if ( locationPath.contentEquals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit" ) )
+			{
+				String vocabUri = getVocabURI( domNode );
+				if ( vocabUri != null )
+				{
+					node = new DescriptiveTermNode( locationPath,
+							domNode.getFirstChild().getTextContent().trim(),
+							document.getLocationInfo( domNode ),
+							findControlledVocabularyRepository( vocabUri ) );
+				}
+			}
+
+			if ( node == null )
 			{
 				node = new Node( locationPath, domNode.getTextContent(), document.getLocationInfo( domNode ) );
 			}
@@ -77,15 +89,29 @@ class DomCodebookDocument implements Document.V11
 		}
 	}
 
-	private Optional<org.w3c.dom.Node> getVocabURINode( org.w3c.dom.Node node )
+	private String getVocabURI( org.w3c.dom.Node node )
 	{
-		if ( node.getAttributes() != null )
+		org.w3c.dom.Node result = null;
+		if ( node.getNodeName().equals( "concept" ) )
 		{
-			return ofNullable( node.getAttributes().getNamedItem( "vocabURI" ) );
+			// result = document.selectNode( node, "@vocabURI" );
+			if ( node.getAttributes() != null )
+			{
+				result = node.getAttributes().getNamedItem( "vocabURI" );
+			}
+
+		}
+		else if ( node.getNodeName().equals( "anlyUnit" ) )
+		{
+			result = document.selectNode( node, "concept/@vocabURI" );
+		}
+		if ( result == null )
+		{
+			return null;
 		}
 		else
 		{
-			return empty();
+			return result.getTextContent();
 		}
 	}
 

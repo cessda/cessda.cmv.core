@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pr:DDIProfile xmlns:r="ddi:reusable:3_2" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:pr="ddi:ddiprofile:3_2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="ddi:ddiprofile:3_2 https://ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/ddiprofile.xsd">
+    <r:Agency>CESSDA</r:Agency>
+    <r:ID>PROFILE</r:ID>
+    <r:Version>0.1.0</r:Version>
+    <pr:XPathVersion>1.0</pr:XPathVersion>
+    <pr:DDINamespace>2.5</pr:DDINamespace>
+	<pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit">
+	  <pr:Instructions>
+	    <r:Content>
+	      <![CDATA[
+	        <Constraints>
+	          <DescriptiveTermOfControlledVocabularyConstraint/>
+	        </Constraints>
+	      ]]>
+	    </r:Content>
+	  </pr:Instructions>
+	</pr:Used>
+	<pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocabURI">
+	  <pr:Instructions>
+	    <r:Content>
+	      <![CDATA[
+	        <Constraints>
+	          <ControlledVocabularyRepositoryConstraint>
+                <RepositoryUri>https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0</RepositoryUri>
+                <RepositoryType>eu.cessda.cmv.core.controlledvocabulary.CessdaControlledVocabularyRepository</RepositoryType>
+	          </ControlledVocabularyRepositoryConstraint>
+	          <ControlledVocabularyRepositoryConstraint>
+                <RepositoryUri>https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/1.0</RepositoryUri>
+                <RepositoryType>eu.cessda.cmv.core.controlledvocabulary.CessdaControlledVocabularyRepository</RepositoryType>
+	          </ControlledVocabularyRepositoryConstraint>
+	          <ControlledVocabularyRepositoryConstraint>
+                <RepositoryUri>https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/de/1.0.1</RepositoryUri>
+                <RepositoryType>eu.cessda.cmv.core.controlledvocabulary.CessdaControlledVocabularyRepository</RepositoryType>
+	          </ControlledVocabularyRepositoryConstraint>
+	          <ControlledVocabularyRepositoryConstraint>
+                <RepositoryUri>https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/fi/2.0.2</RepositoryUri>
+                <RepositoryType>eu.cessda.cmv.core.controlledvocabulary.CessdaControlledVocabularyRepository</RepositoryType>
+	          </ControlledVocabularyRepositoryConstraint>
+	        </Constraints>
+	      ]]>
+	    </r:Content>
+	  </pr:Instructions>
+	</pr:Used>
+</pr:DDIProfile>
