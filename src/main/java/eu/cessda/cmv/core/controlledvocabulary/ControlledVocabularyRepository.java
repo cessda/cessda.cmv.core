@@ -8,4 +8,9 @@ public interface ControlledVocabularyRepository
 	{
 		public Set<String> findCodeValues();
 	}
+
+	public interface V11 extends V10
+	{
+		public Set<String> findDescriptiveTerms();
+	}
 }
