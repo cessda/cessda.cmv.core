@@ -1,5 +1,6 @@
 package eu.cessda.cmv.core.controlledvocabulary;
 
+import static java.util.Objects.requireNonNull;
 import static org.gesis.commons.resource.Resource.newResource;
 
 import java.net.URI;
@@ -20,8 +21,15 @@ public class CessdaControlledVocabularyRepository implements ControlledVocabular
 
 	public CessdaControlledVocabularyRepository( URI uri )
 	{
-		Resource resource = new TextResource( newResource( uri ) );
-		Object document = Configuration.defaultConfiguration().jsonProvider().parse( resource.toString() );
+		this( newResource( requireNonNull( uri ) ) );
+	}
+
+	public CessdaControlledVocabularyRepository( Resource resource )
+	{
+		requireNonNull( resource );
+
+		Object document = Configuration.defaultConfiguration().jsonProvider()
+				.parse( new TextResource( resource ).toString() );
 		List<String> list = JsonPath.read( document, "$.conceptAsMap.*.notation" );
 		codeValues = list.stream().collect( Collectors.toSet() );
 		list = JsonPath.read( document, "$.conceptAsMap.*.title" );
