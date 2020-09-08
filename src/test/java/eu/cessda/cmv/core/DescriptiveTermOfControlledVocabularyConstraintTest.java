@@ -44,7 +44,7 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 	}
 
 	@Test
-	void validate_invalid()
+	void validate_invalid_1()
 	{
 		// given
 		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "27-document-invalid-1.xml" ) );
@@ -63,5 +63,20 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 				.count(), is( valueOf( 1 ) ) );
 		assertThat( constraintViolations, hasSize( 1 ) );
 		System.out.println( constraintViolations.get( 0 ).getMessage() );
+	}
+
+	@Test
+	void validate_invalid_2()
+	{
+		// given
+		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "27-document-invalid-2.xml" ) );
+		Profile.V10 profile = factory.newProfile( testEnv.findTestResourceByName( "27-profile.xml" ) );
+
+		// when
+		ValidationGate.V10 validationGate = new StandardValidationGate();
+		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
+
+		// then
+		assertThat( constraintViolations, hasSize( 1 ) );
 	}
 }
