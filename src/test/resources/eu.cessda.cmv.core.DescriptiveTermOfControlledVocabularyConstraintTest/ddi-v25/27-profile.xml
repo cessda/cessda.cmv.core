@@ -2,11 +2,11 @@
 <pr:DDIProfile xmlns:r="ddi:reusable:3_2" xmlns:xhtml="http://www.w3.org/1999/xhtml"
     xmlns:pr="ddi:ddiprofile:3_2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="ddi:ddiprofile:3_2 https://ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/ddiprofile.xsd">
-    <r:Agency>CESSDA</r:Agency>
-    <r:ID>PROFILE</r:ID>
-    <r:Version>0.1.0</r:Version>
-    <pr:XPathVersion>1.0</pr:XPathVersion>
-    <pr:DDINamespace>2.5</pr:DDINamespace>
+	<r:Agency>int.cessda</r:Agency>
+	<r:ID>ddi-v25-22-profile</r:ID>
+	<r:Version>1</r:Version>
+	<pr:XPathVersion>1.0</pr:XPathVersion>
+	<pr:DDINamespace>2.5</pr:DDINamespace>
 	<pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit">
 	  <pr:Instructions>
 	    <r:Content>

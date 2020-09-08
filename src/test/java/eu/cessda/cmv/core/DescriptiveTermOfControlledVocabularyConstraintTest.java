@@ -23,11 +23,11 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 	}
 
 	@Test
-	void validate_valid() throws Exception
+	void validate_valid()
 	{
 		// given
-		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "good-case.xml" ) );
-		Profile.V10 profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
+		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "27-document-valid-1.xml" ) );
+		Profile.V10 profile = factory.newProfile( testEnv.findTestResourceByName( "27-profile.xml" ) );
 
 		// when
 		ValidationGate.V10 validationGate = new StandardValidationGate();
@@ -41,5 +41,27 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 				.filter( cv -> cv instanceof DescriptiveTermOfControlledVocabularyConstraint )
 				.count(), is( valueOf( 1 ) ) );
 		assertThat( constraintViolations, hasSize( 0 ) );
+	}
+
+	@Test
+	void validate_invalid()
+	{
+		// given
+		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "27-document-invalid-1.xml" ) );
+		Profile.V10 profile = factory.newProfile( testEnv.findTestResourceByName( "27-profile.xml" ) );
+
+		// when
+		ValidationGate.V10 validationGate = new StandardValidationGate();
+		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
+
+		// then
+		assertThat( profile.getConstraints().stream()
+				.filter( cv -> cv instanceof ControlledVocabularyRepositoryConstraint )
+				.count(), is( valueOf( 4 ) ) );
+		assertThat( profile.getConstraints().stream()
+				.filter( cv -> cv instanceof DescriptiveTermOfControlledVocabularyConstraint )
+				.count(), is( valueOf( 1 ) ) );
+		assertThat( constraintViolations, hasSize( 1 ) );
+		System.out.println( constraintViolations.get( 0 ).getMessage() );
 	}
 }
