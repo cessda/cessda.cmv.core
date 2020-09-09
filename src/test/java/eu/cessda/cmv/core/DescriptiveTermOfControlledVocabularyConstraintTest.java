@@ -1,5 +1,6 @@
 package eu.cessda.cmv.core;
 
+import static eu.cessda.cmv.core.ValidationGateName.BASICPLUS;
 import static java.lang.Long.valueOf;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
@@ -15,12 +16,20 @@ import org.junit.jupiter.api.Test;
 class DescriptiveTermOfControlledVocabularyConstraintTest
 {
 	private TestEnv.V13 testEnv;
+	private Profile.V10 profile;
 	private CessdaMetadataValidatorFactory factory;
 
 	DescriptiveTermOfControlledVocabularyConstraintTest()
 	{
 		testEnv = DefaultTestEnv.newInstance( DescriptiveTermOfControlledVocabularyConstraintTest.class );
 		factory = new CessdaMetadataValidatorFactory();
+		profile = factory.newProfile( testEnv.findTestResourceByName( "27-profile.xml" ) );
+		assertThat( profile.getConstraints().stream()
+				.filter( ControlledVocabularyRepositoryConstraint.class::isInstance )
+				.count(), is( valueOf( 4 ) ) );
+		assertThat( profile.getConstraints().stream()
+				.filter( DescriptiveTermOfControlledVocabularyConstraint.class::isInstance )
+				.count(), is( valueOf( 1 ) ) );
 	}
 
 	@Test
@@ -28,19 +37,12 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 	{
 		// given
 		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "27-document-valid-1.xml" ) );
-		Profile.V10 profile = factory.newProfile( testEnv.findTestResourceByName( "27-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = new StandardValidationGate();
+		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
-		assertThat( profile.getConstraints().stream()
-				.filter( cv -> cv instanceof ControlledVocabularyRepositoryConstraint )
-				.count(), is( valueOf( 4 ) ) );
-		assertThat( profile.getConstraints().stream()
-				.filter( cv -> cv instanceof DescriptiveTermOfControlledVocabularyConstraint )
-				.count(), is( valueOf( 1 ) ) );
 		assertThat( constraintViolations, hasSize( 0 ) );
 	}
 
@@ -49,19 +51,12 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 	{
 		// given
 		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "27-document-invalid-1.xml" ) );
-		Profile.V10 profile = factory.newProfile( testEnv.findTestResourceByName( "27-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = new StandardValidationGate();
+		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
-		assertThat( profile.getConstraints().stream()
-				.filter( cv -> cv instanceof ControlledVocabularyRepositoryConstraint )
-				.count(), is( valueOf( 4 ) ) );
-		assertThat( profile.getConstraints().stream()
-				.filter( cv -> cv instanceof DescriptiveTermOfControlledVocabularyConstraint )
-				.count(), is( valueOf( 1 ) ) );
 		assertThat( constraintViolations, hasSize( 1 ) );
 		assertThat( constraintViolations.get( 0 ).getMessage(),
 				containsString( "is not element of the controlled vocabulary" ) );
@@ -72,10 +67,9 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 	{
 		// given
 		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "27-document-invalid-2.xml" ) );
-		Profile.V10 profile = factory.newProfile( testEnv.findTestResourceByName( "27-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = new StandardValidationGate();
+		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
