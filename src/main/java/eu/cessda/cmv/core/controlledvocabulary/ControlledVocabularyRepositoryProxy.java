@@ -6,11 +6,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.util.Set;
 
-public class ControlledVocabularyRepositoryProxy implements ControlledVocabularyRepository.V10
+public class ControlledVocabularyRepositoryProxy implements ControlledVocabularyRepository.V11
 {
 	private String canonicalName;
 	private String uri;
-	private ControlledVocabularyRepository.V10 repository;
+	private ControlledVocabularyRepository.V11 repository;
 
 	public ControlledVocabularyRepositoryProxy( String canonicalName, String uri )
 	{
@@ -34,7 +34,7 @@ public class ControlledVocabularyRepositoryProxy implements ControlledVocabulary
 		}
 		try
 		{
-			repository = (eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository.V10) clazz
+			repository = (eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository.V11) clazz
 					.getDeclaredConstructor( URI.class )
 					.newInstance( new URI( uri ) );
 		}
@@ -52,5 +52,11 @@ public class ControlledVocabularyRepositoryProxy implements ControlledVocabulary
 	public Set<String> findCodeValues()
 	{
 		return repository.findCodeValues();
+	}
+
+	@Override
+	public Set<String> findDescriptiveTerms()
+	{
+		return repository.findDescriptiveTerms();
 	}
 }

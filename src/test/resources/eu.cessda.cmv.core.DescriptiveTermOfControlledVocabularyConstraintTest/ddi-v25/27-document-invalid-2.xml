@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codeBook xmlns="ddi:codebook:2_5"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="ddi:codebook:2_5 https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd">
+    <stdyDscr>
+        <citation>
+            <titlStmt>
+                <titl></titl>
+            </titlStmt>
+        </citation>
+        <stdyInfo>
+            <sumDscr>
+                
+                <!-- valid, 
+                     because 'Family: Household family' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit'
+                     is a descriptiveTerm of the controlled vocabulary 
+                     in 'https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0'
+                -->
+                <anlyUnit xml:lang="en">Family: Household family
+                    <concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0">Family.HouseholdFamily</concept>
+                </anlyUnit>
+                
+                <!-- invalid, 
+                     because 'Family: Household family' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit' could not be checked, 
+                     there is no CV specified at '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocabURI' 
+                -->
+                <anlyUnit xml:lang="en">Family: Household family</anlyUnit>
+            </sumDscr>
+        </stdyInfo>
+    </stdyDscr>
+</codeBook>

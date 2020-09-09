@@ -151,7 +151,7 @@ class CdcCodebookDocumentValidationTest
 	{
 		System.out.println( documentName );
 		System.out.println( gateName );
-		constraintViolations.forEach( cv -> System.out.println( " -" + cv.getMessage() ) );
+		constraintViolations.stream().map( cv -> " -" + cv.getMessage() ).sorted().forEach( System.out::println );
 		System.out.println();
 	}
 }

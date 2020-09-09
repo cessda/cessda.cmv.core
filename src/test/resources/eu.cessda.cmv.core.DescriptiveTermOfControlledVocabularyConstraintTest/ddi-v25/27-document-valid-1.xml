@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codeBook xmlns="ddi:codebook:2_5"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="ddi:codebook:2_5 https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd"
+    version="2.5" xml:lang="en">
+    <stdyDscr>
+        <citation>
+            <titlStmt>
+                <titl></titl>
+            </titlStmt>
+        </citation>
+        <stdyInfo>
+            <sumDscr>
+                <anlyUnit xml:lang="en">Media unit: Sound
+                    <concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0">MediaUnit.Sound</concept>
+                </anlyUnit>
+                <anlyUnit xml:lang="en">Family: Household family
+                    <concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0">Family.HouseholdFamily</concept>
+                </anlyUnit>
+                <anlyUnit xml:lang="en">Housing Unit
+                    <concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/1.0">HousingUnit</concept> 
+                </anlyUnit><!-- note that correct value in 1.0 is "Housing Unit" (code HousingUnit) and in 2.0 it is "Housing unit" (code HousingUnit) -->
+                
+                <anlyUnit xml:lang="fi">Perhe: perhekotitalous
+                    <concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/fi/2.0.2">Family.HouseholdFamily</concept>
+                </anlyUnit>
+                <anlyUnit xml:lang="de">Familie: Familienhaushalt
+                    <concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/de/1.0.1">Family.HouseholdFamily</concept>
+                </anlyUnit>
+            </sumDscr>
+        </stdyInfo>
+    </stdyDscr>
+</codeBook>

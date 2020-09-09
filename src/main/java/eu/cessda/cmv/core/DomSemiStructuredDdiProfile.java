@@ -48,6 +48,7 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 			parseMandatoryNodeIfParentPresentConstraint( usedNode );
 
 			parseCodeValueOfControlledVocabularyConstraint( usedNode );
+			parseDescriptiveTermOfControlledVocabularyConstraint( usedNode );
 		}
 		constraints = forceConstraintReordering( constraints );
 	}
@@ -57,13 +58,13 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 		LinkedList<Constraint> list = new LinkedList<>();
 		for ( Constraint c : constraints )
 		{
-			if ( c instanceof CodeValueOfControlledVocabularyConstraint )
+			if ( c instanceof ControlledVocabularyRepositoryConstraint )
 			{
-				list.addLast( c );
+				list.addFirst( c );
 			}
 			else
 			{
-				list.addFirst( c );
+				list.add( c );
 			}
 		}
 		return list;
@@ -150,6 +151,18 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 			for ( org.w3c.dom.Node constraintNode : extension.selectNodes( locationPath ) )
 			{
 				constraints.add( new CodeValueOfControlledVocabularyConstraint( getLocationPath( usedNode ) ) );
+			}
+		} );
+	}
+
+	private void parseDescriptiveTermOfControlledVocabularyConstraint( org.w3c.dom.Node usedNode )
+	{
+		findExtension( usedNode ).ifPresent( extension ->
+		{
+			String locationPath = "/Constraints/DescriptiveTermOfControlledVocabularyConstraint";
+			for ( org.w3c.dom.Node constraintNode : extension.selectNodes( locationPath ) )
+			{
+				constraints.add( new DescriptiveTermOfControlledVocabularyConstraint( getLocationPath( usedNode ) ) );
 			}
 		} );
 	}
