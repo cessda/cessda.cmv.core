@@ -20,19 +20,26 @@ class DescriptiveTermOfControlledVocabularyValidator implements Validator.V10
 	@Override
 	public Optional<ConstraintViolation> validate()
 	{
-		Set<String> elementSet = node.getControlledVocabularyRepository().findDescriptiveTerms();
-		if ( !elementSet.contains( node.getTextContent() ) )
+		if ( node.getControlledVocabularyRepository() == null )
 		{
-			String message = "Descriptive term '%s' in '%s' is not element of the controlled vocabulary in '%s'";
-			message = String.format( message,
-					node.getTextContent(),
-					node.getLocationPath(),
-					"TODO node.getControlledVocabularyRepositoryUri()" );
+			String message = "Descriptive term '%s' in '%s' is not validateable because no controlled vocabulary is declared";
+			message = String.format( message, node.getTextContent(), node.getLocationPath() );
 			return of( new ConstraintViolation( message, node.getLocationInfo() ) );
 		}
 		else
 		{
-			return empty();
+			Set<String> elementSet = node.getControlledVocabularyRepository().findDescriptiveTerms();
+			if ( !elementSet.contains( node.getTextContent() ) )
+			{
+				String message = "Descriptive term '%s' in '%s' is not element of the controlled vocabulary in '%s'";
+				message = String.format( message, node.getTextContent(), node.getLocationPath(),
+						"TODO node.getControlledVocabularyRepositoryUri()" );
+				return of( new ConstraintViolation( message, node.getLocationInfo() ) );
+			}
+			else
+			{
+				return empty();
+			}
 		}
 	}
 }

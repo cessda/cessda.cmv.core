@@ -2,6 +2,7 @@ package eu.cessda.cmv.core;
 
 import static java.lang.Long.valueOf;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 
@@ -44,7 +45,7 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 	}
 
 	@Test
-	void validate_invalid_1()
+	void validate_invalid_not_element()
 	{
 		// given
 		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "27-document-invalid-1.xml" ) );
@@ -62,11 +63,12 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 				.filter( cv -> cv instanceof DescriptiveTermOfControlledVocabularyConstraint )
 				.count(), is( valueOf( 1 ) ) );
 		assertThat( constraintViolations, hasSize( 1 ) );
-		System.out.println( constraintViolations.get( 0 ).getMessage() );
+		assertThat( constraintViolations.get( 0 ).getMessage(),
+				containsString( "is not element of the controlled vocabulary" ) );
 	}
 
 	@Test
-	void validate_invalid_2()
+	void validate_invalid_missing_url()
 	{
 		// given
 		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "27-document-invalid-2.xml" ) );
@@ -78,5 +80,7 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
+		assertThat( constraintViolations.get( 0 ).getMessage(),
+				containsString( "is not validateable because no controlled vocabulary is declared" ) );
 	}
 }

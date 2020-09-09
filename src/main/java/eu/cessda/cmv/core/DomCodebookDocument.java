@@ -47,21 +47,17 @@ class DomCodebookDocument implements Document.V11
 				if ( vocabUri != null )
 				{
 					node = new CodeValueNode( locationPath,
-							domNode.getFirstChild().getTextContent().trim(),
+							mapNodeToText( domNode ),
 							document.getLocationInfo( domNode ),
 							findControlledVocabularyRepository( vocabUri ) );
 				}
 			}
 			if ( locationPath.contentEquals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit" ) )
 			{
-				String vocabUri = getVocabURI( domNode );
-				if ( vocabUri != null )
-				{
-					node = new DescriptiveTermNode( locationPath,
-							domNode.getFirstChild().getTextContent().trim(),
-							document.getLocationInfo( domNode ),
-							findControlledVocabularyRepository( vocabUri ) );
-				}
+				node = new DescriptiveTermNode( locationPath,
+						mapNodeToText( domNode ),
+						document.getLocationInfo( domNode ),
+						findControlledVocabularyRepository( getVocabURI( domNode ) ) );
 			}
 
 			if ( node == null )
@@ -74,8 +70,25 @@ class DomCodebookDocument implements Document.V11
 		return nodes;
 	}
 
+	private String mapNodeToText( org.w3c.dom.Node domNode )
+	{
+		requireNonNull( domNode );
+
+		if ( domNode.getChildNodes().getLength() == 0 )
+		{
+			return domNode.getTextContent().trim();
+		}
+		else
+		{
+			return domNode.getFirstChild().getTextContent().trim();
+		}
+	}
+
 	private void countChildNodes( Node node, org.w3c.dom.Node domNode )
 	{
+		requireNonNull( node );
+		requireNonNull( domNode );
+
 		if ( domNode.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE )
 		{
 			for ( int i = 0; i < domNode.getAttributes().getLength(); i++ )
@@ -125,7 +138,11 @@ class DomCodebookDocument implements Document.V11
 	@SuppressWarnings( "unchecked" )
 	public <T extends ControlledVocabularyRepository> T findControlledVocabularyRepository( String uri )
 	{
-		if ( controlledVocabularyRepositoryMap.containsKey( uri ) )
+		if ( uri == null )
+		{
+			return null;
+		}
+		else if ( controlledVocabularyRepositoryMap.containsKey( uri ) )
 		{
 			return (T) controlledVocabularyRepositoryMap.get( uri );
 		}
