@@ -7,6 +7,8 @@ import static java.util.Optional.of;
 import java.util.Optional;
 import java.util.Set;
 
+import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
+
 class DescriptiveTermOfControlledVocabularyValidator implements Validator.V10
 {
 	private DescriptiveTermNode node;
@@ -20,7 +22,8 @@ class DescriptiveTermOfControlledVocabularyValidator implements Validator.V10
 	@Override
 	public Optional<ConstraintViolation> validate()
 	{
-		if ( node.getControlledVocabularyRepository() == null )
+		ControlledVocabularyRepository.V11 repository = node.getControlledVocabularyRepository();
+		if ( repository == null )
 		{
 			String message = "Descriptive term '%s' in '%s' is not validateable because no controlled vocabulary is declared";
 			message = String.format( message, node.getTextContent(), node.getLocationPath() );
@@ -28,12 +31,11 @@ class DescriptiveTermOfControlledVocabularyValidator implements Validator.V10
 		}
 		else
 		{
-			Set<String> elementSet = node.getControlledVocabularyRepository().findDescriptiveTerms();
+			Set<String> elementSet = repository.findDescriptiveTerms();
 			if ( !elementSet.contains( node.getTextContent() ) )
 			{
 				String message = "Descriptive term '%s' in '%s' is not element of the controlled vocabulary in '%s'";
-				message = String.format( message, node.getTextContent(), node.getLocationPath(),
-						"TODO node.getControlledVocabularyRepositoryUri()" );
+				message = String.format( message, node.getTextContent(), node.getLocationPath(), repository.getUri() );
 				return of( new ConstraintViolation( message, node.getLocationInfo() ) );
 			}
 			else

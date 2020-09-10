@@ -2,7 +2,9 @@ package eu.cessda.cmv.core.controlledvocabulary;
 
 import static java.util.Collections.emptySet;
 
+import java.net.URI;
 import java.util.Set;
+import java.util.UUID;
 
 public class EmptyControlledVocabularyRepository implements ControlledVocabularyRepository.V11
 {
@@ -16,5 +18,11 @@ public class EmptyControlledVocabularyRepository implements ControlledVocabulary
 	public Set<String> findDescriptiveTerms()
 	{
 		return emptySet();
+	}
+
+	@Override
+	public URI getUri()
+	{
+		return URI.create( "urn:uuid:" + UUID.randomUUID().toString() );
 	}
 }

@@ -4,6 +4,7 @@ import static eu.cessda.cmv.core.ValidationGateName.BASICPLUS;
 import static java.lang.Long.valueOf;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 
@@ -59,7 +60,7 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
 		assertThat( constraintViolations.get( 0 ).getMessage(),
-				containsString( "is not element of the controlled vocabulary" ) );
+				equalTo( "Descriptive term 'Family.HouseholdFamily' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit' is not element of the controlled vocabulary in 'https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0'" ) );
 	}
 
 	@Test

@@ -10,12 +10,12 @@ import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 
 class CodeValueNode extends Node
 {
-	private ControlledVocabularyRepository.V10 controlledVocabularyRepository;
+	private ControlledVocabularyRepository.V11 controlledVocabularyRepository;
 
 	CodeValueNode( String locationPath,
 			String textContent,
 			Optional<LocationInfo> locationInfo,
-			ControlledVocabularyRepository.V10 controlledVocabularyRepository )
+			ControlledVocabularyRepository.V11 controlledVocabularyRepository )
 	{
 		super( locationPath, textContent, locationInfo );
 
@@ -24,7 +24,7 @@ class CodeValueNode extends Node
 
 	}
 
-	public ControlledVocabularyRepository.V10 getControlledVocabularyRepository()
+	public ControlledVocabularyRepository.V11 getControlledVocabularyRepository()
 	{
 		return controlledVocabularyRepository;
 	}

@@ -59,4 +59,10 @@ public class ControlledVocabularyRepositoryProxy implements ControlledVocabulary
 	{
 		return repository.findDescriptiveTerms();
 	}
+
+	@Override
+	public URI getUri()
+	{
+		return repository.getUri();
+	}
 }

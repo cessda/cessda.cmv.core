@@ -16,6 +16,7 @@ import com.jayway.jsonpath.JsonPath;
 
 public class CessdaControlledVocabularyRepository implements ControlledVocabularyRepository.V11
 {
+	private URI uri;
 	private Set<String> codeValues;
 	private Set<String> descriptiveTerms;
 
@@ -28,6 +29,7 @@ public class CessdaControlledVocabularyRepository implements ControlledVocabular
 	{
 		requireNonNull( resource );
 
+		uri = resource.getUri();
 		Object document = Configuration.defaultConfiguration().jsonProvider()
 				.parse( new TextResource( resource ).toString() );
 		List<String> list = JsonPath.read( document, "$.conceptAsMap.*.notation" );
@@ -46,5 +48,11 @@ public class CessdaControlledVocabularyRepository implements ControlledVocabular
 	public Set<String> findDescriptiveTerms()
 	{
 		return descriptiveTerms;
+	}
+
+	@Override
+	public URI getUri()
+	{
+		return uri;
 	}
 }

@@ -7,6 +7,8 @@ import static java.util.Optional.of;
 import java.util.Optional;
 import java.util.Set;
 
+import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
+
 class CodeValueOfControlledVocabularyValidator implements Validator.V10
 {
 	private CodeValueNode node;
@@ -20,14 +22,12 @@ class CodeValueOfControlledVocabularyValidator implements Validator.V10
 	@Override
 	public Optional<ConstraintViolation> validate()
 	{
-		Set<String> elementSet = node.getControlledVocabularyRepository().findCodeValues();
+		ControlledVocabularyRepository.V11 repository = node.getControlledVocabularyRepository();
+		Set<String> elementSet = repository.findCodeValues();
 		if ( !elementSet.contains( node.getTextContent() ) )
 		{
 			String message = "CodeValue '%s' in '%s' is not element of the controlled vocabulary in '%s'";
-			message = String.format( message,
-					node.getTextContent(),
-					node.getLocationPath(),
-					"TODO node.getControlledVocabularyRepositoryUri()" );
+			message = String.format( message, node.getTextContent(), node.getLocationPath(), repository.getUri() );
 			return of( new ConstraintViolation( message, node.getLocationInfo() ) );
 		}
 		else
