@@ -34,7 +34,7 @@ class CodeValueOfControlledVocabularyValidator implements Validator.V10
 			Set<String> elementSet = repository.findCodeValues();
 			if ( !elementSet.contains( node.getTextContent() ) )
 			{
-				String message = "CodeValue '%s' in '%s' is not element of the controlled vocabulary in '%s'";
+				String message = "Code value '%s' in '%s' is not element of the controlled vocabulary in '%s'";
 				message = String.format( message, node.getTextContent(), node.getLocationPath(), repository.getUri() );
 				return of( new ConstraintViolation( message, node.getLocationInfo() ) );
 			}
