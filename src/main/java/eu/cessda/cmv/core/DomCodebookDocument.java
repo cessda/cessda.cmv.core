@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.gesis.commons.xml.ddi.DdiInputStream;
@@ -37,30 +38,26 @@ class DomCodebookDocument implements Document.V11
 	@Override
 	public List<Node> getNodes( String locationPath )
 	{
+		Objects.requireNonNull( locationPath );
 		List<Node> nodes = new ArrayList<>();
 		for ( org.w3c.dom.Node domNode : document.selectNodes( locationPath ) )
 		{
-			Node node = null;
-			if ( locationPath.contentEquals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" ) )
-			{
-				String vocabUri = getVocabURI( domNode );
-				if ( vocabUri != null )
-				{
-					node = new CodeValueNode( locationPath,
-							mapNodeToText( domNode ),
-							document.getLocationInfo( domNode ),
-							findControlledVocabularyRepository( vocabUri ) );
-				}
-			}
-			if ( locationPath.contentEquals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit" ) )
+			Node node;
+			if ( locationPath.equals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit" ) )
 			{
 				node = new DescriptiveTermNode( locationPath,
 						mapNodeToText( domNode ),
 						document.getLocationInfo( domNode ),
 						findControlledVocabularyRepository( getVocabURI( domNode ) ) );
 			}
-
-			if ( node == null )
+			else if ( locationPath.equals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" ) )
+			{
+				node = new CodeValueNode( locationPath,
+						mapNodeToText( domNode ),
+						document.getLocationInfo( domNode ),
+						findControlledVocabularyRepository( getVocabURI( domNode ) ) );
+			}
+			else
 			{
 				node = new Node( locationPath, domNode.getTextContent(), document.getLocationInfo( domNode ) );
 			}

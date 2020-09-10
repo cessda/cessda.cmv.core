@@ -1,7 +1,5 @@
 package eu.cessda.cmv.core;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.Optional;
 
 import org.gesis.commons.xml.LocationInfo;
@@ -18,13 +16,10 @@ class CodeValueNode extends Node
 			ControlledVocabularyRepository.V11 controlledVocabularyRepository )
 	{
 		super( locationPath, textContent, locationInfo );
-
-		requireNonNull( controlledVocabularyRepository );
 		this.controlledVocabularyRepository = controlledVocabularyRepository;
-
 	}
 
-	public ControlledVocabularyRepository.V11 getControlledVocabularyRepository()
+	ControlledVocabularyRepository.V11 getControlledVocabularyRepository()
 	{
 		return controlledVocabularyRepository;
 	}

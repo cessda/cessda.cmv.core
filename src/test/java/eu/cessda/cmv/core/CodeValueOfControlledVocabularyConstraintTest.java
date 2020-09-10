@@ -3,6 +3,7 @@ package eu.cessda.cmv.core;
 import static java.lang.Long.valueOf;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 
@@ -44,6 +45,23 @@ class CodeValueOfControlledVocabularyConstraintTest
 		assertThat( constraintViolations, hasSize( 1 ) );
 		assertThat( constraintViolations.get( 0 ).getMessage(),
 				containsString( "is not element of the controlled vocabulary in" ) );
+	}
+
+	@Test
+	void validate_invalid_2() throws Exception
+	{
+		// given
+		Document document = factory.newDocument( testEnv.findTestResourceByName( "9-document-invalid-2.xml" ) );
+		Profile.V10 profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ) );
+
+		// when
+		ValidationGate.V10 validationGate = new StandardValidationGate();
+		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
+
+		// then
+		assertThat( constraintViolations, hasSize( 1 ) );
+		assertThat( constraintViolations.get( 0 ).getMessage(), equalTo(
+				"Code value 'Family.HouseholdFamily' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' is not validateable because no controlled vocabulary is declared" ) );
 	}
 
 	@Test

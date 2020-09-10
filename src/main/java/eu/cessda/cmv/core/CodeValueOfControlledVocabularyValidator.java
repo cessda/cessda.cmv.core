@@ -23,16 +23,25 @@ class CodeValueOfControlledVocabularyValidator implements Validator.V10
 	public Optional<ConstraintViolation> validate()
 	{
 		ControlledVocabularyRepository.V11 repository = node.getControlledVocabularyRepository();
-		Set<String> elementSet = repository.findCodeValues();
-		if ( !elementSet.contains( node.getTextContent() ) )
+		if ( repository == null )
 		{
-			String message = "CodeValue '%s' in '%s' is not element of the controlled vocabulary in '%s'";
-			message = String.format( message, node.getTextContent(), node.getLocationPath(), repository.getUri() );
+			String message = "Code value '%s' in '%s' is not validateable because no controlled vocabulary is declared";
+			message = String.format( message, node.getTextContent(), node.getLocationPath() );
 			return of( new ConstraintViolation( message, node.getLocationInfo() ) );
 		}
 		else
 		{
-			return empty();
+			Set<String> elementSet = repository.findCodeValues();
+			if ( !elementSet.contains( node.getTextContent() ) )
+			{
+				String message = "CodeValue '%s' in '%s' is not element of the controlled vocabulary in '%s'";
+				message = String.format( message, node.getTextContent(), node.getLocationPath(), repository.getUri() );
+				return of( new ConstraintViolation( message, node.getLocationInfo() ) );
+			}
+			else
+			{
+				return empty();
+			}
 		}
 	}
 }

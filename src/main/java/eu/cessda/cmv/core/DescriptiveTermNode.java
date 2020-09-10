@@ -19,7 +19,7 @@ class DescriptiveTermNode extends Node
 		this.controlledVocabularyRepository = controlledVocabularyRepository;
 	}
 
-	public ControlledVocabularyRepository.V11 getControlledVocabularyRepository()
+	ControlledVocabularyRepository.V11 getControlledVocabularyRepository()
 	{
 		return controlledVocabularyRepository;
 	}
