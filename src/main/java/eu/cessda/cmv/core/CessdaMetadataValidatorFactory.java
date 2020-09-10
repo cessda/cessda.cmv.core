@@ -132,6 +132,7 @@ public class CessdaMetadataValidatorFactory
 		return new DdiInputStream( inputStream );
 	}
 
+	@SuppressWarnings( "deprecation" )
 	public ValidationGate.V10 newValidationGate( ValidationGateName name )
 	{
 		requireNonNull( name );

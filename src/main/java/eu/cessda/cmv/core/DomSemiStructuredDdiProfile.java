@@ -132,6 +132,7 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 		}
 	}
 
+	@SuppressWarnings( "squid:S1075" )
 	private boolean hasRecommendedNodeConstraintExtension( org.w3c.dom.Node usedNode )
 	{
 		Optional<DomDocument.V13> extension = findExtension( usedNode );
@@ -143,6 +144,7 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 		return false;
 	}
 
+	@SuppressWarnings( "squid:S1075" )
 	private void parseCodeValueOfControlledVocabularyConstraint( org.w3c.dom.Node usedNode )
 	{
 		findExtension( usedNode ).ifPresent( extension ->
@@ -155,6 +157,7 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 		} );
 	}
 
+	@SuppressWarnings( "squid:S1075" )
 	private void parseDescriptiveTermOfControlledVocabularyConstraint( org.w3c.dom.Node usedNode )
 	{
 		findExtension( usedNode ).ifPresent( extension ->
@@ -167,6 +170,7 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 		} );
 	}
 
+	@SuppressWarnings( "squid:S1075" )
 	private void parseControlledVocabularyRepositoryConstraint( org.w3c.dom.Node usedNode )
 	{
 		findExtension( usedNode ).ifPresent( extension ->
@@ -197,6 +201,7 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 		}
 	}
 
+	@SuppressWarnings( "squid:S1075" )
 	private void parseMandatoryNodeIfParentPresentConstraint( org.w3c.dom.Node usedNode )
 	{
 		findExtension( usedNode ).ifPresent( extension ->

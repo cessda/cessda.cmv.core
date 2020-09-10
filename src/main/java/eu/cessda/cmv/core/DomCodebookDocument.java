@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.gesis.commons.xml.ddi.DdiInputStream;
@@ -38,7 +37,8 @@ class DomCodebookDocument implements Document.V11
 	@Override
 	public List<Node> getNodes( String locationPath )
 	{
-		Objects.requireNonNull( locationPath );
+		requireNonNull( locationPath );
+
 		List<Node> nodes = new ArrayList<>();
 		for ( org.w3c.dom.Node domNode : document.selectNodes( locationPath ) )
 		{
