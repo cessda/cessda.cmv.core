@@ -11,9 +11,9 @@ import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 
 class DescriptiveTermOfControlledVocabularyValidator implements Validator.V10
 {
-	private DescriptiveTermNode node;
+	private ControlledVocabularyNode node;
 
-	DescriptiveTermOfControlledVocabularyValidator( DescriptiveTermNode node )
+	DescriptiveTermOfControlledVocabularyValidator( ControlledVocabularyNode node )
 	{
 		requireNonNull( node );
 		this.node = node;

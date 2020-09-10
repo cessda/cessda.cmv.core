@@ -43,16 +43,10 @@ class DomCodebookDocument implements Document.V11
 		for ( org.w3c.dom.Node domNode : document.selectNodes( locationPath ) )
 		{
 			Node node;
-			if ( locationPath.equals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit" ) )
+			if ( locationPath.equals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit" )
+					|| locationPath.equals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" ) )
 			{
-				node = new DescriptiveTermNode( locationPath,
-						mapNodeToText( domNode ),
-						document.getLocationInfo( domNode ),
-						findControlledVocabularyRepository( getVocabURI( domNode ) ) );
-			}
-			else if ( locationPath.equals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" ) )
-			{
-				node = new CodeValueNode( locationPath,
+				node = new ControlledVocabularyNode( locationPath,
 						mapNodeToText( domNode ),
 						document.getLocationInfo( domNode ),
 						findControlledVocabularyRepository( getVocabURI( domNode ) ) );

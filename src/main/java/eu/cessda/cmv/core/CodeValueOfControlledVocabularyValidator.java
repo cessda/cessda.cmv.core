@@ -11,9 +11,9 @@ import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 
 class CodeValueOfControlledVocabularyValidator implements Validator.V10
 {
-	private CodeValueNode node;
+	private ControlledVocabularyNode node;
 
-	CodeValueOfControlledVocabularyValidator( CodeValueNode node )
+	CodeValueOfControlledVocabularyValidator( ControlledVocabularyNode node )
 	{
 		requireNonNull( node );
 		this.node = node;

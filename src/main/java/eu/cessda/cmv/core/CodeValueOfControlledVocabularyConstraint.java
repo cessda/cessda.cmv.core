@@ -21,7 +21,7 @@ class CodeValueOfControlledVocabularyConstraint implements Constraint.V20
 	{
 		requireNonNull( document );
 		return (List<T>) ((Document.V10) document).getNodes( locationPath ).stream()
-				.map( CodeValueNode.class::cast )
+				.map( ControlledVocabularyNode.class::cast )
 				.map( CodeValueOfControlledVocabularyValidator::new )
 				.collect( Collectors.toList() );
 	}
