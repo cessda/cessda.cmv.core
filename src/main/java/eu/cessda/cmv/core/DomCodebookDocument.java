@@ -28,7 +28,7 @@ class DomCodebookDocument implements Document.V11
 
 		document = XercesXalanDocument.newBuilder()
 				.ofInputStream( inputStream )
-				// TODO .locationInfoAware()
+				.locationInfoAware()
 				.namespaceAware()
 				.build();
 		controlledVocabularyRepositoryMap = new HashMap<>();
