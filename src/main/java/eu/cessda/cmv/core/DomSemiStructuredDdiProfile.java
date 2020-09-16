@@ -46,6 +46,7 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 			parseOptionalNodeConstraint( usedNode );
 			parseMaximumElementOccuranceConstraint( usedNode );
 			parseMandatoryNodeIfParentPresentConstraint( usedNode );
+			parseFixedValueNodeConstraint( usedNode );
 
 			parseCodeValueOfControlledVocabularyConstraint( usedNode );
 			parseDescriptiveTermOfControlledVocabularyConstraint( usedNode );
@@ -109,6 +110,25 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 		{
 			constraints.add( new MandatoryNodeConstraint( getLocationPath( usedNode ) ) );
 			jaxbProfile.getConstraints().add( new MandatoryNodeConstraintV0( getLocationPath( usedNode ) ) );
+		}
+	}
+
+	private void parseFixedValueNodeConstraint( org.w3c.dom.Node usedNode )
+	{
+		org.w3c.dom.Node fixedValueNode = usedNode.getAttributes().getNamedItem( "fixedValue" );
+		if ( fixedValueNode != null && fixedValueNode.getNodeValue().equalsIgnoreCase( "true" ) )
+		{
+			org.w3c.dom.Node defaultValueNode = usedNode.getAttributes().getNamedItem( "defaultValue" );
+			// TODO Find similar or generalized constraint like
+			// MandatoryNodeIfParentPresentConstraint
+			// defaultValue attribute is mandatory if fixedValue attribute is present
+			if ( defaultValueNode != null )
+			{
+				String fixedValue = defaultValueNode.getTextContent().trim();
+				Constraint constraint = new FixedValueNodeConstraint( getLocationPath( usedNode ), fixedValue );
+				constraints.add( constraint );
+				// TODO jaxbProfile.getConstraints().add( ... ) );
+			}
 		}
 	}
 

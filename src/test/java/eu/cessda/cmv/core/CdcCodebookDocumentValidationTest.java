@@ -76,21 +76,21 @@ class CdcCodebookDocumentValidationTest
 		testParameter.documentName = "/demo-documents/ddi-v25/gesis-5100.xml";
 		testParameter.expectedViolationsAtBasicValidationGate = (3 + 0);
 		testParameter.expectedViolationsAtStandardValidationGate = 3 + (13 + 3);
-		testParameter.expectedViolationsAtStrictValidationGate = 3 + 16 + (8 + 7);
+		testParameter.expectedViolationsAtStrictValidationGate = 3 + 16 + (9 + 7);
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/gesis-5300.xml";
 		testParameter.expectedViolationsAtBasicValidationGate = 3 + 0;
 		testParameter.expectedViolationsAtStandardValidationGate = 3 + (13 + 3);
-		testParameter.expectedViolationsAtStrictValidationGate = 3 + 16 + (10 + 6);
+		testParameter.expectedViolationsAtStrictValidationGate = 3 + 16 + (11 + 6);
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/gesis-2800.xml";
 		testParameter.expectedViolationsAtBasicValidationGate = 3 + 0;
 		testParameter.expectedViolationsAtStandardValidationGate = 3 + (13 + 3);
-		testParameter.expectedViolationsAtStrictValidationGate = 3 + 16 + (10 + 4);
+		testParameter.expectedViolationsAtStrictValidationGate = 3 + 16 + (11 + 4);
 		testParameters.add( testParameter );
 
 		return testParameters.stream();
