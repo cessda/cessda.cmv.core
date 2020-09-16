@@ -24,7 +24,27 @@ class DomSemiStructuredDdiProfileTest
 	}
 
 	@Test
-	void construct()
+	void construct_cdc122()
+	{
+		// given
+		URL url = getClass().getResource( "/demo-documents/ddi-v25/cdc_122_profile.xml" );
+
+		// when
+		Profile.V10 profile = factory.newProfile( url );
+
+		// then
+		assertThat( countConstraints( profile, CompilableXPathConstraint.class ), is( 61 ) );
+		assertThat( countConstraints( profile, PredicatelessXPathConstraint.class ), is( 61 ) );
+		assertThat( countConstraints( profile, RecommendedNodeConstraint.class ), is( 24 ) );
+		assertThat( countConstraints( profile, MandatoryNodeConstraint.class ), is( 10 ) );
+		assertThat( countConstraints( profile, FixedValueNodeConstraint.class ), is( 5 ) );
+		assertThat( countConstraints( profile, OptionalNodeConstraint.class ), is( 27 ) );
+		assertThat( countConstraints( profile, MandatoryNodeIfParentPresentConstraint.class ), is( 15 ) );
+		assertThat( profile.getConstraints(), hasSize( 61 + 61 + 24 + 10 + 5 + 27 + 15 ) );
+	}
+
+	@Test
+	void construct_cdc25()
 	{
 		// given
 		URL url = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );

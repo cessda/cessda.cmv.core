@@ -3,7 +3,7 @@
 ____________________________________________________________________________________
 Copyright: 2020 CESSDA Metadata Office
 Author: Darren Bell - UK Data Archive
-Created: 2019-10-02
+Created: 2020-05-01
 Version: v1.0
 Change summary from v0.9: Appoved by CESSDA MO for first public release.
 Last modified 2020-09-16 Darren Bell
@@ -14,17 +14,18 @@ ________________________________________________________________________________
     xsi:schemaLocation="ddi:ddiprofile:3_2 https://ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/ddiprofile.xsd"
     versionDate="2020-09-16">
     <r:Agency>CESSDA</r:Agency>
-    <r:ID>CDC_DDI25_PROFILE</r:ID>
+    <r:ID>CDC_DDI122_PROFILE</r:ID>
     <r:Version>1.0</r:Version>
     <r:VersionResponsibility>Darren Bell - UKDA</r:VersionResponsibility>
     <pr:DDIProfileName>
-        <r:String>CESSDA DATA CATALOGUE (CDC) DDI2.5 PROFILE</r:String>
+        <r:String>CESSDA DATA CATALOGUE (CDC) DDI 1.2.2 PROFILE</r:String>
     </pr:DDIProfileName>
     <pr:XPathVersion>1.0</pr:XPathVersion>
-    <pr:DDINamespace>2.5</pr:DDINamespace>
+    <pr:DDINamespace>1.22</pr:DDINamespace>
+    <!--NOTE THAT DDIPROFILE.XSD DOES NOT PERMIT FORMAT OF "1.2.2" IN THIS ELEMENT-->
     <pr:XMLPrefixMap>
         <pr:XMLPrefix/>
-        <pr:XMLNamespace>ddi:codebook:2_5</pr:XMLNamespace>
+        <pr:XMLNamespace>http://www.icpsr.umich.edu/DDI</pr:XMLNamespace>
     </pr:XMLPrefixMap>
     <pr:XMLPrefixMap>
         <pr:XMLPrefix>xsi</pr:XMLPrefix>
@@ -33,7 +34,7 @@ ________________________________________________________________________________
     <!--****************************************************************************************-->
     <!--ROOT ELEMENT-->
     <!--****************************************************************************************-->
-    <pr:Used xpath="/codeBook/@xml:lang" isRequired="false">
+    <pr:Used xpath="/codeBook/@xml-lang" isRequired="false">
         <r:Description>
             <r:Content>Required: Recommended</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
@@ -48,13 +49,13 @@ ________________________________________________________________________________
         </pr:Instructions>
     </pr:Used>
     <pr:Used xpath="/codeBook/@xsi:schemaLocation"
-        defaultValue="ddi:codebook:2_5 http://www.ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd"
+        defaultValue="http://www.icpsr.umich.edu/DDI http://www.icpsr.umich.edu/DDI/Version1-2-2.xsd"
         fixedValue="true" isRequired="true">
         <r:Description>
             <r:Content>Required: Mandatory</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
-            <r:Content>Usage: System-required information - always "ddi:codebook:2_5
-                codebook.xsd"</r:Content>
+            <r:Content>Usage: System-required information - always "http://www.icpsr.umich.edu/DDI
+                http://www.icpsr.umich.edu/DDI/Version1-2-2.xsd"</r:Content>
         </r:Description>
     </pr:Used>
     <!--****************************************************************************************-->
@@ -76,23 +77,23 @@ ________________________________________________________________________________
 			]]></r:Content>
         </pr:Instructions>
     </pr:Used>
-    <pr:Used xpath="/codeBook/docDscr/citation/titlStmt/titl/@xml:lang" isRequired="false">
+    <pr:Used xpath="/codeBook/docDscr/citation/titlStmt/titl/@xml-lang" isRequired="false">
         <r:Description>
             <r:Content>Required: Mandatory if 'titl' element is present</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
-            <r:Content>Usage: ISO 639-1 codes are strongly encouraged to be used</r:Content>
+            <r:Content>Usage: Language of the study title. ISO 639-1 codes are strongly encouraged to be used.</r:Content>
         </r:Description>
         <pr:Instructions>
             <r:Content>
                 <![CDATA[
-                <Constraints>
-                    <MandatoryNodeIfParentPresentConstraint/>
-                </Constraints>
-                ]]>
+        <Constraints>
+          <MandatoryNodeIfParentPresentConstraint/>
+        </Constraints>
+      ]]>
             </r:Content>
         </pr:Instructions>
     </pr:Used>
-    <pr:Used xpath="/codeBook/docDscr/citation/holdings/@xml:lang" isRequired="false">
+    <pr:Used xpath="/codeBook/docDscr/citation/holdings/@xml-lang" isRequired="false">
         <r:Description>
             <r:Content>Required: Recommended</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
@@ -126,7 +127,7 @@ ________________________________________________________________________________
             <r:Content>CDC UI Label: Study title</r:Content>
         </r:Description>
     </pr:Used>
-    <pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/titl/@xml:lang" isRequired="true">
+    <pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/titl/@xml-lang" isRequired="true">
         <r:Description>
             <r:Content>Required: Mandatory</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
@@ -151,7 +152,7 @@ ________________________________________________________________________________
 			]]></r:Content>
         </pr:Instructions>
     </pr:Used>
-    <pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/parTitl/@xml:lang" isRequired="false">
+    <pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/parTitl/@xml-lang" isRequired="false">
         <r:Description>
             <r:Content>Required: Mandatory if 'parTitl' element is present</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
@@ -160,10 +161,10 @@ ________________________________________________________________________________
         <pr:Instructions>
             <r:Content>
                 <![CDATA[
-                <Constraints>
-                    <MandatoryNodeIfParentPresentConstraint/>
-                </Constraints>
-                ]]>
+        <Constraints>
+          <MandatoryNodeIfParentPresentConstraint/>
+        </Constraints>
+      ]]>
             </r:Content>
         </pr:Instructions>
     </pr:Used>
@@ -179,12 +180,12 @@ ________________________________________________________________________________
                 it is not mandatory. See </r:Content>
         </r:Description>
     </pr:Used>
-    <pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/IDNo/@xml:lang" isRequired="false">
+    <pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/IDNo/@xml-lang" isRequired="false">
         <r:Description>
             <r:Content>Required: Recommended</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
             <r:Content>Usage: Language of the persistent identifier of the study. ISO 639-1 codes
-                codes are strongly encouraged to be used . @xml:lang is mandatory if the 'IDNo' element is being used to display
+                are strongly encouraged to be used. @xml:lang is mandatory if the 'IDNo' element is being used to display
                 a PID but it is not mandatory when IDNo is used to display the Study
                 Number.</r:Content>
         </r:Description>
@@ -198,7 +199,7 @@ ________________________________________________________________________________
     </pr:Used>
     <pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/IDNo/@agency" isRequired="true">
         <r:Description>
-            <r:Content>Required: Mandatory</r:Content>
+            <r:Content>Required: Optional</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
             <r:Content>Usage: Agency responsible for the identifier of the study. Value should be
                 one of https://vocabularies.cessda.eu/#!detail/CessdaPersistentIdentifierTypes i.e.
@@ -224,19 +225,20 @@ ________________________________________________________________________________
 			]]></r:Content>
         </pr:Instructions>
     </pr:Used>
-    <pr:Used xpath="/codeBook/stdyDscr/citation/rspStmt/AuthEnty/@xml:lang" isRequired="false">
+    <pr:Used xpath="/codeBook/stdyDscr/citation/rspStmt/AuthEnty/@xml-lang" isRequired="false">
         <r:Description>
             <r:Content>Required: Mandatory if 'AuthEnty' element is present</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
-            <r:Content>Usage: Language of Person or Organisation name. ISO 639-1 codes codes are strongly encouraged to be used.</r:Content>
+            <r:Content>Usage: Language of Person or Organisation name. ISO 639-1 codes are strongly encouraged to be
+                used.</r:Content>
         </r:Description>
         <pr:Instructions>
             <r:Content>
                 <![CDATA[
-                <Constraints>
-                    <MandatoryNodeIfParentPresentConstraint/>
-                </Constraints>
-                ]]>
+        <Constraints>
+          <MandatoryNodeIfParentPresentConstraint/>
+        </Constraints>
+      ]]>
             </r:Content>
         </pr:Instructions>
     </pr:Used>
@@ -269,11 +271,12 @@ ________________________________________________________________________________
             <r:Content>CDC UI Label: Publisher</r:Content>
         </r:Description>
     </pr:Used>
-    <pr:Used xpath="/codeBook/stdyDscr/citation/distStmt/distrbtr/@xml:lang" isRequired="true">
+    <pr:Used xpath="/codeBook/stdyDscr/citation/distStmt/distrbtr/@xml-lang" isRequired="true">
         <r:Description>
             <r:Content>Required: Mandatory</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
-            <r:Content>Usage: Language of the organisation name. ISO codes are strongly encouraged to be used.</r:Content>
+            <r:Content>Usage: Language of the organisation name. ISO 639-1 codes are strongly encouraged to be
+                used.</r:Content>
         </r:Description>
     </pr:Used>
     <pr:Used xpath="/codeBook/stdyDscr/citation/distStmt/distrbtr/@abbr" isRequired="false">
@@ -322,10 +325,10 @@ ________________________________________________________________________________
         <pr:Instructions>
             <r:Content>
                 <![CDATA[
-                <Constraints>
-                    <MandatoryNodeIfParentPresentConstraint/>
-                </Constraints>
-                ]]>
+        <Constraints>
+          <MandatoryNodeIfParentPresentConstraint/>
+        </Constraints>
+      ]]>
             </r:Content>
         </pr:Instructions>
     </pr:Used>
@@ -348,7 +351,7 @@ ________________________________________________________________________________
 			]]></r:Content>
         </pr:Instructions>
     </pr:Used>
-    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/subject/keyword/@xml:lang" isRequired="false">
+    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/subject/keyword/@xml-lang" isRequired="false">
         <r:Description>
             <r:Content>Required: Mandatory if 'keyword' element is present</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
@@ -357,10 +360,10 @@ ________________________________________________________________________________
         <pr:Instructions>
             <r:Content>
                 <![CDATA[
-                <Constraints>
-                    <MandatoryNodeIfParentPresentConstraint/>
-                </Constraints>
-                ]]>
+        <Constraints>
+          <MandatoryNodeIfParentPresentConstraint/>
+        </Constraints>
+      ]]>
             </r:Content>
         </pr:Instructions>
     </pr:Used>
@@ -375,10 +378,10 @@ ________________________________________________________________________________
         <pr:Instructions>
             <r:Content>
                 <![CDATA[
-                <Constraints>
-                    <MandatoryNodeIfParentPresentConstraint/>
-                </Constraints>
-                ]]>
+        <Constraints>
+          <MandatoryNodeIfParentPresentConstraint/>
+        </Constraints>
+      ]]>
             </r:Content>
         </pr:Instructions>
     </pr:Used>
@@ -416,7 +419,7 @@ ________________________________________________________________________________
 			]]></r:Content>
         </pr:Instructions>
     </pr:Used>
-    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/subject/topcClas/@xml:lang" isRequired="false">
+    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/subject/topcClas/@xml-lang" isRequired="false">
         <r:Description>
             <r:Content>Required: Mandatory if 'topcClas' element is present</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
@@ -426,10 +429,10 @@ ________________________________________________________________________________
         <pr:Instructions>
             <r:Content>
                 <![CDATA[
-                <Constraints>
-                    <MandatoryNodeIfParentPresentConstraint/>
-                </Constraints>
-                ]]>
+        <Constraints>
+          <MandatoryNodeIfParentPresentConstraint/>
+        </Constraints>
+      ]]>
             </r:Content>
         </pr:Instructions>
     </pr:Used>
@@ -476,7 +479,7 @@ ________________________________________________________________________________
             <r:Content>CDC UI Label: Abstract</r:Content>
         </r:Description>
     </pr:Used>
-    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/abstract/@xml:lang" isRequired="true">
+    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/abstract/@xml-lang" isRequired="true">
         <r:Description>
             <r:Content>Required: Mandatory</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
@@ -515,16 +518,16 @@ ________________________________________________________________________________
         <pr:Instructions>
             <r:Content>
                 <![CDATA[
-                <Constraints>
-                    <MandatoryNodeIfParentPresentConstraint/>
-                </Constraints>
-                ]]>
+        <Constraints>
+          <MandatoryNodeIfParentPresentConstraint/>
+        </Constraints>
+      ]]>
             </r:Content>
         </pr:Instructions>
     </pr:Used>
     <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/collDate/@date" isRequired="false">
         <r:Description>
-            <r:Content>Required: Mandatory if 'collDate' element is present</r:Content>
+            <r:Content>Required: Mandatory if 'collDate' element is present.</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
             <r:Content>Usage: Ideally YYYY-MM-DDThh:mm:ssZ format , but can accept YYYY-MM-DD,
                 YYYY-MM or YYYY as date attribute. If there are multiple end dates, use the
@@ -533,10 +536,10 @@ ________________________________________________________________________________
         <pr:Instructions>
             <r:Content>
                 <![CDATA[
-                <Constraints>
-                    <MandatoryNodeIfParentPresentConstraint/>
-                </Constraints>
-                ]]>
+        <Constraints>
+          <MandatoryNodeIfParentPresentConstraint/>
+        </Constraints>
+      ]]>
             </r:Content>
         </pr:Instructions>
     </pr:Used>
@@ -559,7 +562,7 @@ ________________________________________________________________________________
 			]]></r:Content>
         </pr:Instructions>
     </pr:Used>
-    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/nation/@xml:lang" isRequired="false">
+    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/nation/@xml-lang" isRequired="false">
         <r:Description>
             <r:Content>Required: Mandatory if 'nation' element is present</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
@@ -569,10 +572,10 @@ ________________________________________________________________________________
         <pr:Instructions>
             <r:Content>
                 <![CDATA[
-                <Constraints>
-                    <MandatoryNodeIfParentPresentConstraint/>
-                </Constraints>
-                ]]>
+        <Constraints>
+          <MandatoryNodeIfParentPresentConstraint/>
+        </Constraints>
+      ]]>
             </r:Content>
         </pr:Instructions>
     </pr:Used>
@@ -580,7 +583,8 @@ ________________________________________________________________________________
         <r:Description>
             <r:Content>Required: Recommended</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
-            <r:Content>Usage: ISO 3166-1 2-letter code must be used if this attribute is present</r:Content>
+            <r:Content>Usage: ISO 3166-1 2-letter code must be used if this attribute is
+                present</r:Content>
         </r:Description>
         <pr:Instructions>
             <r:Content><![CDATA[
@@ -609,7 +613,7 @@ ________________________________________________________________________________
 			]]></r:Content>
         </pr:Instructions>
     </pr:Used>
-    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/@xml:lang" isRequired="false">
+    <pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/@xml-lang" isRequired="false">
         <r:Description>
             <r:Content>Required: Mandatory if 'anlyUnit' element is present</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
@@ -619,10 +623,10 @@ ________________________________________________________________________________
         <pr:Instructions>
             <r:Content>
                 <![CDATA[
-                <Constraints>
-                    <MandatoryNodeIfParentPresentConstraint/>
-                </Constraints>
-                ]]>
+        <Constraints>
+          <MandatoryNodeIfParentPresentConstraint/>
+        </Constraints>
+      ]]>
             </r:Content>
         </pr:Instructions>
     </pr:Used>
@@ -693,7 +697,7 @@ ________________________________________________________________________________
 			]]></r:Content>
         </pr:Instructions>
     </pr:Used>
-    <pr:Used xpath="/codeBook/stdyDscr/method/dataColl/timeMeth/@xml:lang" isRequired="false">
+    <pr:Used xpath="/codeBook/stdyDscr/method/dataColl/timeMeth/@xml-lang" isRequired="false">
         <r:Description>
             <r:Content>Required: Mandatory if 'timeMeth' element is present</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
@@ -703,10 +707,10 @@ ________________________________________________________________________________
         <pr:Instructions>
             <r:Content>
                 <![CDATA[
-                <Constraints>
-                    <MandatoryNodeIfParentPresentConstraint/>
-                </Constraints>
-                ]]>
+        <Constraints>
+          <MandatoryNodeIfParentPresentConstraint/>
+        </Constraints>
+      ]]>
             </r:Content>
         </pr:Instructions>
     </pr:Used>
@@ -717,7 +721,7 @@ ________________________________________________________________________________
             <r:Content>ElementRepeatable: No</r:Content>
             <r:Content>Usage: Time Method Controlled Vocabulary "Code value" that is the same across
                 languages. e.g if the 'timeMeth' element is 'Pitkittäisaineisto' for Finnish, the
-                'concept' element is 'Longitudinal' See example at
+                'concept' element is 'Longitudinal' See example at 
                 https://vocabularies.cessda.eu/urn/urn:ddi:int.ddi.cv:TimeMethod</r:Content>
         </r:Description>
         <pr:Instructions>
@@ -778,7 +782,7 @@ ________________________________________________________________________________
 			]]></r:Content>
         </pr:Instructions>
     </pr:Used>
-    <pr:Used xpath="/codeBook/stdyDscr/method/dataColl/sampProc/@xml:lang" isRequired="false">
+    <pr:Used xpath="/codeBook/stdyDscr/method/dataColl/sampProc/@xml-lang" isRequired="false">
         <r:Description>
             <r:Content>Required: Mandatory if 'sampProc' element is present</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
@@ -788,10 +792,10 @@ ________________________________________________________________________________
         <pr:Instructions>
             <r:Content>
                 <![CDATA[
-                <Constraints>
-                    <MandatoryNodeIfParentPresentConstraint/>
-                </Constraints>
-                ]]>
+        <Constraints>
+          <MandatoryNodeIfParentPresentConstraint/>
+        </Constraints>
+      ]]>
             </r:Content>
         </pr:Instructions>
     </pr:Used>
@@ -864,7 +868,7 @@ ________________________________________________________________________________
 			]]></r:Content>
         </pr:Instructions>
     </pr:Used>
-    <pr:Used xpath="/codeBook/stdyDscr/method/dataColl/collMode/@xml:lang" isRequired="false">
+    <pr:Used xpath="/codeBook/stdyDscr/method/dataColl/collMode/@xml-lang" isRequired="false">
         <r:Description>
             <r:Content>Required: Mandatory if 'collMode' element is present</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
@@ -874,10 +878,10 @@ ________________________________________________________________________________
         <pr:Instructions>
             <r:Content>
                 <![CDATA[
-                <Constraints>
-                    <MandatoryNodeIfParentPresentConstraint/>
-                </Constraints>
-                ]]>
+        <Constraints>
+          <MandatoryNodeIfParentPresentConstraint/>
+        </Constraints>
+      ]]>
             </r:Content>
         </pr:Instructions>
     </pr:Used>
@@ -888,7 +892,7 @@ ________________________________________________________________________________
             <r:Content>ElementRepeatable: No</r:Content>
             <r:Content>Usage: Mode of Collection Controlled Vocabulary "Code value" that is the same
                 across languages. e.g if the 'collMode' element is 'Haastattelu' for Finnish, the
-                'concept' element is 'Interview' See example at 
+                'concept' element is 'Interview' See
                 https://vocabularies.cessda.eu/urn/urn:ddi:int.ddi.cv:ModeOfCollection </r:Content>
         </r:Description>
         <pr:Instructions>
@@ -953,7 +957,7 @@ ________________________________________________________________________________
 			]]></r:Content>
         </pr:Instructions>
     </pr:Used>
-    <pr:Used xpath="/codeBook/stdyDscr/dataAccs/useStmt/restrctn/@xml:lang" isRequired="false">
+    <pr:Used xpath="/codeBook/stdyDscr/dataAccs/useStmt/restrctn/@xml-lang" isRequired="false">
         <r:Description>
             <r:Content>Required: Mandatory if 'restrctn' is present</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
@@ -963,10 +967,10 @@ ________________________________________________________________________________
         <pr:Instructions>
             <r:Content>
                 <![CDATA[
-                <Constraints>
-                    <MandatoryNodeIfParentPresentConstraint/>
-                </Constraints>
-                ]]>
+        <Constraints>
+          <MandatoryNodeIfParentPresentConstraint/>
+        </Constraints>
+      ]]>
             </r:Content>
         </pr:Instructions>
     </pr:Used>
@@ -988,7 +992,7 @@ ________________________________________________________________________________
 			]]></r:Content>
         </pr:Instructions>
     </pr:Used>
-    <pr:Used xpath="/codeBook/fileDscr/fileTxt/fileName/@xml:lang" isRequired="false">
+    <pr:Used xpath="/codeBook/fileDscr/fileTxt/fileName/@xml-lang" isRequired="false">
         <r:Description>
             <r:Content>Required: Recommended</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
