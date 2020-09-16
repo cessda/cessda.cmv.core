@@ -106,8 +106,8 @@ class CdcCodebookDocumentValidationTest
 		// when
 		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
-		// printReport( param.documentName, validationGate.getClass().getSimpleName(),
-		// constraintViolations );
+		printReport( param.documentName, validationGate.getClass().getSimpleName(),
+				constraintViolations );
 
 		// then
 		assertThat( constraintViolations, hasSize( param.expectedViolationsAtBasicValidationGate ) );
