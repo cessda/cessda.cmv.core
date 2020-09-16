@@ -7,9 +7,9 @@
    <PredicatelessXPathConstraint>
       <LocationPath>/codeBook/@xml:lang</LocationPath>
    </PredicatelessXPathConstraint>
-   <MandatoryNodeConstraint>
+   <RecommendedNodeConstraint>
       <LocationPath>/codeBook/@xml:lang</LocationPath>
-   </MandatoryNodeConstraint>
+   </RecommendedNodeConstraint>
    <CompilableXPathConstraint>
       <LocationPath>/codeBook/@xsi:schemaLocation</LocationPath>
    </CompilableXPathConstraint>
@@ -25,27 +25,27 @@
    <PredicatelessXPathConstraint>
       <LocationPath>/codeBook/docDscr/citation/titlStmt/titl</LocationPath>
    </PredicatelessXPathConstraint>
-   <MandatoryNodeConstraint>
+   <OptionalNodeConstraint>
       <LocationPath>/codeBook/docDscr/citation/titlStmt/titl</LocationPath>
-   </MandatoryNodeConstraint>
+   </OptionalNodeConstraint>
    <CompilableXPathConstraint>
       <LocationPath>/codeBook/docDscr/citation/titlStmt/titl/@xml:lang</LocationPath>
    </CompilableXPathConstraint>
    <PredicatelessXPathConstraint>
       <LocationPath>/codeBook/docDscr/citation/titlStmt/titl/@xml:lang</LocationPath>
    </PredicatelessXPathConstraint>
-   <MandatoryNodeConstraint>
+   <OptionalNodeConstraint>
       <LocationPath>/codeBook/docDscr/citation/titlStmt/titl/@xml:lang</LocationPath>
-   </MandatoryNodeConstraint>
+   </OptionalNodeConstraint>
    <CompilableXPathConstraint>
       <LocationPath>/codeBook/docDscr/citation/holdings/@xml:lang</LocationPath>
    </CompilableXPathConstraint>
    <PredicatelessXPathConstraint>
       <LocationPath>/codeBook/docDscr/citation/holdings/@xml:lang</LocationPath>
    </PredicatelessXPathConstraint>
-   <MandatoryNodeConstraint>
+   <RecommendedNodeConstraint>
       <LocationPath>/codeBook/docDscr/citation/holdings/@xml:lang</LocationPath>
-   </MandatoryNodeConstraint>
+   </RecommendedNodeConstraint>
    <CompilableXPathConstraint>
       <LocationPath>/codeBook/docDscr/citation/holdings/@URI</LocationPath>
    </CompilableXPathConstraint>
@@ -115,9 +115,9 @@
    <PredicatelessXPathConstraint>
       <LocationPath>/codeBook/stdyDscr/citation/titlStmt/IDNo/@agency</LocationPath>
    </PredicatelessXPathConstraint>
-   <OptionalNodeConstraint>
+   <MandatoryNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/citation/titlStmt/IDNo/@agency</LocationPath>
-   </OptionalNodeConstraint>
+   </MandatoryNodeConstraint>
    <CompilableXPathConstraint>
       <LocationPath>/codeBook/stdyDscr/citation/rspStmt/AuthEnty</LocationPath>
    </CompilableXPathConstraint>
@@ -288,15 +288,6 @@
    </PredicatelessXPathConstraint>
    <OptionalNodeConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate</LocationPath>
-   </OptionalNodeConstraint>
-   <CompilableXPathConstraint>
-      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate/@xml:lang</LocationPath>
-   </CompilableXPathConstraint>
-   <PredicatelessXPathConstraint>
-      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate/@xml:lang</LocationPath>
-   </PredicatelessXPathConstraint>
-   <OptionalNodeConstraint>
-      <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate/@xml:lang</LocationPath>
    </OptionalNodeConstraint>
    <CompilableXPathConstraint>
       <LocationPath>/codeBook/stdyDscr/stdyInfo/sumDscr/collDate/@event</LocationPath>
@@ -547,16 +538,16 @@
    <PredicatelessXPathConstraint>
       <LocationPath>/codeBook/fileDscr/fileTxt/fileName</LocationPath>
    </PredicatelessXPathConstraint>
-   <MandatoryNodeConstraint>
+   <RecommendedNodeConstraint>
       <LocationPath>/codeBook/fileDscr/fileTxt/fileName</LocationPath>
-   </MandatoryNodeConstraint>
+   </RecommendedNodeConstraint>
    <CompilableXPathConstraint>
       <LocationPath>/codeBook/fileDscr/fileTxt/fileName/@xml:lang</LocationPath>
    </CompilableXPathConstraint>
    <PredicatelessXPathConstraint>
       <LocationPath>/codeBook/fileDscr/fileTxt/fileName/@xml:lang</LocationPath>
    </PredicatelessXPathConstraint>
-   <MandatoryNodeConstraint>
+   <RecommendedNodeConstraint>
       <LocationPath>/codeBook/fileDscr/fileTxt/fileName/@xml:lang</LocationPath>
-   </MandatoryNodeConstraint>
+   </RecommendedNodeConstraint>
 </Profile>
