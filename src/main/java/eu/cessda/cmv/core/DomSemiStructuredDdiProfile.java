@@ -127,9 +127,6 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 				String fixedValue = defaultValueNode.getTextContent().trim();
 				Constraint constraint = new FixedValueNodeConstraint( getLocationPath( usedNode ), fixedValue );
 				constraints.add( constraint );
-				constraint = new MandatoryNodeIfParentPresentConstraint( getLocationPath( usedNode ) );
-				constraints.add( constraint );
-
 				// TODO jaxbProfile.getConstraints().add( ... ) );
 			}
 		}

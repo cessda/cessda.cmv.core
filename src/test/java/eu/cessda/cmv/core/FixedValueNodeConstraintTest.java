@@ -84,13 +84,8 @@ class FixedValueNodeConstraintTest
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
-		assertThat( constraintViolations, hasSize( 2 ) );
-		// TODO hasSize( 1 ) expected
-		// constraint violation message '... is optional' is not expected
-		// implies a stronger defined of OptionalNodeConstraint
+		assertThat( constraintViolations, hasSize( 1 ) );
 		assertThat( constraintViolations.get( 0 ).getMessage(),
 				equalTo( "'/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocab' is optional" ) );
-		assertThat( constraintViolations.get( 1 ).getMessage(),
-				equalTo( "'./@vocab' is mandatory in /codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept (lineNumber: 15)" ) );
 	}
 }
