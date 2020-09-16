@@ -6,11 +6,13 @@ import static org.hamcrest.Matchers.hasSize;
 
 import java.net.URL;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class DomProfileTest
 {
 	@Test
+	@Disabled( "see also DomSemiStructuredDdiProfileTest::toJaxbProfileV0" )
 	void test()
 	{
 		URL url = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile_cmv.xml" );
