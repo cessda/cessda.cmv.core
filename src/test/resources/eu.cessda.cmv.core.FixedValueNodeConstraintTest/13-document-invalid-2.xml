@@ -9,8 +9,13 @@
 		<stdyInfo>
 			<sumDscr>
 				<anlyUnit>
-					<!-- invalid because vocab attribute is not present 
-						 this means that FixedValueNodeConstraint implies MandatoryNodeIfParentPresentConstraint
+					<!-- invalid because vocab attribute is optional node as isRequired is set to false in the profile
+					     and OptionalNodeConstraint is assigned to same validation gate as FixedValueNodeConstraint
+					     
+					     Please note that this document is NOT invalid due to FixedValueNodeConstraint!
+					     FixedValueNodeConstraint and Optional|Recommended|MandatoryNodeConstraint are independent from each other 
+					     
+					     see FixedValueNodeConstraintTest::validate_invalid_missing
 					-->
 					<concept/>
 				</anlyUnit>
