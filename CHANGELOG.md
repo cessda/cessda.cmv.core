@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 *- Fixed (for any bug fixes)*  
 *- Security (in case of vulnerabilities)*
 
+## [0.3.1-SNAPSHOT] - Unreleased
+
 ## [0.3.0] - 2020-09-17
 
 ### Added
