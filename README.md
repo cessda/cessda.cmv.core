@@ -11,6 +11,21 @@
 
 This repository holds all core domain logic about CESSDA Metadata Validator project. 
 
+## Usage
+
+```java
+void validateUsingFiles()
+{
+	CessdaMetadataValidatorFactory factory = new CessdaMetadataValidatorFactory();
+	ValidationService.V10 validationService = factory.newValidationService();
+	Resource document = newResource( new File( "path/to/ddi-document.xml" ) );
+	Resource profile = newResource( new File( "path/to/ddi-profile.xml" ) );
+	ValidationReportV0 validationReport = validationService.validate( document, profile, BASIC );
+	boolean isValid = validationReport.getConstraintViolations().isEmpty();
+	validationReport.getConstraintViolations().forEach( cv -> System.out.println( cv.getMessage() ) );
+}
+```
+
 ## Dependency Information
 
 Add CESSDA Maven Repository to your `pom.xml`:
