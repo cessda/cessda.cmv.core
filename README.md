@@ -9,6 +9,8 @@
 [![Vulnerabilities](https://sonarqube.cessda.eu/api/project_badges/measure?project=eu.cessda.cmv%3Acmv-core&metric=vulnerabilities)](https://sonarqube.cessda.eu/dashboard?id=eu.cessda.cmv%3Acmv-core)
 [![Bugs](https://sonarqube.cessda.eu/api/project_badges/measure?project=eu.cessda.cmv%3Acmv-core&metric=bugs)](https://sonarqube.cessda.eu/dashboard?id=eu.cessda.cmv%3Acmv-core)
 
+This repository holds all core domain logic about CESSDA Metadata Validator project. 
+
 ## Dependency Information
 
 Add CESSDA Maven Repository to your `pom.xml`:
@@ -38,4 +40,15 @@ Add the dependency to your `pom.xml`:
 	<artifactId>cmv-core</artifactId>
 	<version>0.3.0-SNAPSHOT</version>
 </dependency>
+```
+
+### Getting started as developer
+
+```shell
+# Pull repository and change directory
+git clone git@bitbucket.org:cessda/cessda.cmv.core.git
+cd cessda.cmv.core
+
+# Execute tests
+mvn clean test
 ```

@@ -36,3 +36,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Finalized OptionalNodeConstraint
 - Added Code of Conduct, Changelog ([#54](https://bitbucket.org/cessda/cessda.cmv.core/issues/54))
 - Added badges to REAMDME ([#53](https://bitbucket.org/cessda/cessda.cmv.core/issues/53))
+
+
+[0.2.0]: https://bitbucket.org/cessda/cessda.cmv.core/src/v0.2.0
