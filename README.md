@@ -9,20 +9,6 @@
 [![Vulnerabilities](https://sonarqube.cessda.eu/api/project_badges/measure?project=eu.cessda.cmv%3Acmv-core&metric=vulnerabilities)](https://sonarqube.cessda.eu/dashboard?id=eu.cessda.cmv%3Acmv-core)
 [![Bugs](https://sonarqube.cessda.eu/api/project_badges/measure?project=eu.cessda.cmv%3Acmv-core&metric=bugs)](https://sonarqube.cessda.eu/dashboard?id=eu.cessda.cmv%3Acmv-core)
 
-## Contents
-
-* PM
-	* [Release Planning](site/docs/release-planning.md)
-* OOA
-	* [System context map](site/uml/system-context-map.jpg)
-	* [Components overview](site/uml/architecture-layers.jpg)
-	* [Target conflicts](site/uml/ooa-target-conflict.jpg)
-* OOD
-	* [Component cessda.cmv.core](site/uml/component-eu.cessda.cmv.core.jpg)
-* OOI
-	* [Definition XPathUsedConstraint](site/uml/definition-XpathUsedConstraint.jpg)
-
-
 ## Dependency Information
 
 Add CESSDA Maven Repository to your `pom.xml`:
