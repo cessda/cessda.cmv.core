@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Included CDC profiles v1.0 
+- Upgrade to [org.gesis.commons:commons-xml:5.6.0](https://git.gesis.org/java-commons/commons-xml/tree/v5.6.0)
 - Change constraint assignments to validation gates (#70)
 
 ### Fixed
