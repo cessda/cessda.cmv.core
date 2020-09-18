@@ -51,7 +51,7 @@ pipeline {
         stage("Get Sonar Quality Gate") {
             steps {
                 timeout(time: 1, unit: 'HOURS') {
-                    waitForQualityGate abortPipeline: true
+                    waitForQualityGate abortPipeline: false
                 }
             }
             when { branch 'master' }
