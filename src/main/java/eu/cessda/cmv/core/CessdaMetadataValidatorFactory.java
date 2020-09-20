@@ -9,15 +9,16 @@ import static java.util.Objects.requireNonNull;
 import static org.gesis.commons.resource.Resource.newResource;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 
 import org.gesis.commons.resource.Resource;
+import org.gesis.commons.resource.io.DdiInputStream;
 import org.gesis.commons.xml.DomDocument;
 import org.gesis.commons.xml.XercesXalanDocument;
-import org.gesis.commons.xml.ddi.DdiInputStream;
 
 public class CessdaMetadataValidatorFactory
 {
@@ -129,7 +130,14 @@ public class CessdaMetadataValidatorFactory
 
 	public DdiInputStream newDdiInputStream( InputStream inputStream )
 	{
-		return new DdiInputStream( inputStream );
+		try
+		{
+			return new DdiInputStream( inputStream );
+		}
+		catch (IOException e)
+		{
+			throw new IllegalArgumentException( e );
+		}
 	}
 
 	@SuppressWarnings( "deprecation" )

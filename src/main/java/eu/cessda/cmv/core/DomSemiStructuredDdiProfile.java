@@ -8,9 +8,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import org.gesis.commons.resource.io.DdiInputStream;
 import org.gesis.commons.xml.DomDocument;
 import org.gesis.commons.xml.XercesXalanDocument;
-import org.gesis.commons.xml.ddi.DdiInputStream;
 
 import eu.cessda.cmv.core.mediatype.profile.v0.CompilableXPathConstraintV0;
 import eu.cessda.cmv.core.mediatype.profile.v0.MandatoryNodeConstraintV0;

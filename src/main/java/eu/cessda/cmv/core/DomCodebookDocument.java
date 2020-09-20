@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.gesis.commons.resource.io.DdiInputStream;
 import org.gesis.commons.xml.XercesXalanDocument;
-import org.gesis.commons.xml.ddi.DdiInputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
