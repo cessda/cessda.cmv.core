@@ -48,6 +48,7 @@ class DemoDocumentsTest
 				.stream()
 				.map( fileName -> getClass().getResource( "/demo-documents/ddi-v25/" + fileName ) )
 				.map( Resource::newResource )
+				.map( Resource.class::cast )
 				.map( resource -> XercesXalanDocument.newBuilder().ofInputStream( resource.readInputStream() ).build() )
 				.map( document -> document.selectNodes( "//@vocabURI" ) )
 				.flatMap( List::stream )
@@ -55,6 +56,7 @@ class DemoDocumentsTest
 				.distinct()
 				.map( new StringToUrlMapper() )
 				.map( Resource::newResource )
+				.map( Resource.class::cast )
 				.map( TextResource::new )
 				.forEach( resource ->
 				{

@@ -22,7 +22,7 @@ public class CessdaControlledVocabularyRepository implements ControlledVocabular
 
 	public CessdaControlledVocabularyRepository( URI uri )
 	{
-		this( newResource( requireNonNull( uri ) ) );
+		this( (Resource) newResource( requireNonNull( uri ) ) );
 	}
 
 	public CessdaControlledVocabularyRepository( Resource resource )

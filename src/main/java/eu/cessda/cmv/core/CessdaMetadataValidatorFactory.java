@@ -125,7 +125,7 @@ public class CessdaMetadataValidatorFactory
 	public DdiInputStream newDdiInputStream( URL url )
 	{
 		requireNonNull( url );
-		return newDdiInputStream( newResource( url ) );
+		return newDdiInputStream( (Resource) newResource( url ) );
 	}
 
 	public DdiInputStream newDdiInputStream( InputStream inputStream )
