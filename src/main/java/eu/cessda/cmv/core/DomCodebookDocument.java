@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.gesis.commons.resource.io.DdiInputStream;
+import org.gesis.commons.xml.HttpRedirectEntityResolver;
+import org.gesis.commons.xml.SaxXercesAgainstSchemaValidator;
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,11 +17,11 @@ import org.slf4j.LoggerFactory;
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 import eu.cessda.cmv.core.controlledvocabulary.EmptyControlledVocabularyRepository;
 
-class DomCodebookDocument implements Document.V11
+class DomCodebookDocument implements Document.V12
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger( DomCodebookDocument.class );
 
-	private org.gesis.commons.xml.DomDocument.V12 document;
+	private org.gesis.commons.xml.DomDocument.V13 document;
 	private Map<String, ControlledVocabularyRepository> controlledVocabularyRepositoryMap;
 
 	public DomCodebookDocument( DdiInputStream inputStream )
@@ -142,5 +144,12 @@ class DomCodebookDocument implements Document.V11
 			LOGGER.warn( "ControlledVocabularyRepository for '{}' not found", uri );
 			return (T) new EmptyControlledVocabularyRepository();
 		}
+	}
+
+	@Override
+	public void validate()
+	{
+		SaxXercesAgainstSchemaValidator validator = new SaxXercesAgainstSchemaValidator();
+		validator.validate( document.toInputStream(), new HttpRedirectEntityResolver() );
 	}
 }

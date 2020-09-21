@@ -17,4 +17,9 @@ public interface Document
 
 		public <T extends ControlledVocabularyRepository> T findControlledVocabularyRepository( String uri );
 	}
+
+	public interface V12 extends Document.V11
+	{
+		public void validate();
+	}
 }
