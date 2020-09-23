@@ -12,7 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 *- Fixed (for any bug fixes)*  
 *- Security (in case of vulnerabilities)*
 
-## [0.3.1-SNAPSHOT] - Unreleased
+## [0.3.1] - 2020-09-23
+
+### Fixed
+- org.gesis.commons.xml.ddi.DdiInputStream corrupts UTF-16LE encoded xml documents
 
 ## [0.3.0] - 2020-09-17
 
@@ -41,5 +44,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added badges to REAMDME ([#53](https://bitbucket.org/cessda/cessda.cmv.core/issues/53))
 
 
+[0.3.1]: https://bitbucket.org/cessda/cessda.cmv.core/src/v0.3.1
 [0.3.0]: https://bitbucket.org/cessda/cessda.cmv.core/src/v0.3.0
 [0.2.0]: https://bitbucket.org/cessda/cessda.cmv.core/src/v0.2.0
