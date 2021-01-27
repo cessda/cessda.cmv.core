@@ -3,6 +3,7 @@ package eu.cessda.cmv.core.controlledvocabulary;
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -12,13 +13,11 @@ import java.io.File;
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-@Disabled( "CVS API V1 is not available anymore" )
-class CessdaControlledVocabularyRepositoryTest
+class CessdaControlledVocabularyRepositoryV2Test
 {
-	private TestEnv.V13 testEnv = DefaultTestEnv.newInstance( CessdaControlledVocabularyRepositoryTest.class );
+	private TestEnv.V13 testEnv = DefaultTestEnv.newInstance( CessdaControlledVocabularyRepositoryV2Test.class );
 
 	@Test
 	void findCodeValues_AnalysisUnit_10()
@@ -37,8 +36,9 @@ class CessdaControlledVocabularyRepositoryTest
 				"Object",
 				"Other" );
 
-		Resource resource = newResource( "https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/1.0" );
-		CessdaControlledVocabularyRepository repository = new CessdaControlledVocabularyRepository( resource );
+		String url = "https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/1.0?languageVersion=en-1.0";
+		Resource resource = newResource( url );
+		CessdaControlledVocabularyRepositoryV2 repository = new CessdaControlledVocabularyRepositoryV2( resource );
 		assertThat( repository.findCodeValues(), hasSize( 13 ) );
 		assertThat( repository.findCodeValues(), expectedCodeValues );
 	}
@@ -46,7 +46,7 @@ class CessdaControlledVocabularyRepositoryTest
 	@Test
 	void findCodeValues_AnalysisUnit_20()
 	{
-		org.hamcrest.Matcher<Iterable<? extends String>> expectedCodeValues = contains( "Group",
+		org.hamcrest.Matcher<Iterable<? extends String>> expectedCodeValues = containsInAnyOrder( "Group",
 				"MediaUnit.Video",
 				"PoliticalAdministrativeArea",
 				"MediaUnit.Text",
@@ -65,13 +65,14 @@ class CessdaControlledVocabularyRepositoryTest
 				"Other",
 				"EventOrProcessOrActivity" );
 
-		File file = testEnv.findTestResourceByName( "response-20200512.json" );
-		CessdaControlledVocabularyRepository repository = new CessdaControlledVocabularyRepository( file.toURI() );
+		File file = testEnv.findTestResourceByName( "response-20210127.json" );
+		CessdaControlledVocabularyRepositoryV2 repository = new CessdaControlledVocabularyRepositoryV2( file.toURI() );
 		assertThat( repository.findCodeValues(), hasSize( 18 ) );
 		assertThat( repository.findCodeValues(), expectedCodeValues );
 
-		Resource resource = newResource( "https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0" );
-		repository = new CessdaControlledVocabularyRepository( resource );
+		String url = "https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0";
+		Resource resource = newResource( url );
+		repository = new CessdaControlledVocabularyRepositoryV2( resource );
 		assertThat( repository.findCodeValues(), hasSize( 18 ) );
 		assertThat( repository.findCodeValues(), expectedCodeValues );
 	}
@@ -79,7 +80,8 @@ class CessdaControlledVocabularyRepositoryTest
 	@Test
 	void findDescriptiveTerms_AnalysisUnit_fi_202()
 	{
-		org.hamcrest.Matcher<Iterable<? extends String>> expectedCodeValues = contains( "Perhe: perhekotitalous",
+		org.hamcrest.Matcher<Iterable<? extends String>> expectedCodeValues = containsInAnyOrder(
+				"Perhe: perhekotitalous",
 				"Eloton objekti/esine",
 				"Muu havainto/aineistoyksikkötyyppi",
 				"Henkilö",
@@ -98,8 +100,9 @@ class CessdaControlledVocabularyRepositoryTest
 				"Mediatyyppi: still-kuva",
 				"Poliittis-hallinnollinen alue" );
 
-		Resource resource = newResource( "https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/fi/2.0.2" );
-		CessdaControlledVocabularyRepository repository = new CessdaControlledVocabularyRepository( resource );
+		String url = "https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=fi-2.0.2";
+		Resource resource = newResource( url );
+		CessdaControlledVocabularyRepositoryV2 repository = new CessdaControlledVocabularyRepositoryV2( resource );
 		assertThat( repository.findDescriptiveTerms(), hasSize( 18 ) );
 		assertThat( repository.findDescriptiveTerms(), expectedCodeValues );
 	}
@@ -121,8 +124,9 @@ class CessdaControlledVocabularyRepositoryTest
 				"Familie",
 				"Gruppe" );
 
-		Resource resource = newResource( "https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/de/1.0.1" );
-		CessdaControlledVocabularyRepository repository = new CessdaControlledVocabularyRepository( resource );
+		String url = "https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/1.0?languageVersion=de-1.0.1";
+		Resource resource = newResource( url );
+		CessdaControlledVocabularyRepositoryV2 repository = new CessdaControlledVocabularyRepositoryV2( resource );
 		assertThat( repository.findDescriptiveTerms(), hasSize( 13 ) );
 		assertThat( repository.findDescriptiveTerms(), expectedCodeValues );
 	}
@@ -130,9 +134,10 @@ class CessdaControlledVocabularyRepositoryTest
 	@Test
 	void construct_ResourceNotFound()
 	{
-		Resource resource = newResource( "https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/0.0" );
+		String url = "https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/0.0?languageVersion=en-0.0";
+		Resource resource = newResource( url );
 		Exception exception = assertThrows( Exception.class,
-				() -> new CessdaControlledVocabularyRepository( resource ) );
+				() -> new CessdaControlledVocabularyRepositoryV2( resource ) );
 		assertThat( exception.getMessage(), containsString( "Resource not found" ) );
 	}
 }

@@ -14,10 +14,10 @@
                 <!-- valid, 
                      because 'Family: Household family' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit'
                      is a descriptiveTerm of the controlled vocabulary 
-                     in 'https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0'
+                     in 'https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0'
                 -->
                 <anlyUnit xml:lang="en">Family: Household family
-                    <concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0">Family.HouseholdFamily</concept>
+                    <concept vocabURI="https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0">Family.HouseholdFamily</concept>
                 </anlyUnit>
                 
                 <!-- invalid, 
