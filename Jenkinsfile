@@ -9,60 +9,63 @@ pipeline {
 	}
 
 	agent {
-        docker {
-            image 'maven:3-jdk-8'
-        }
-    }
+		label 'jnlp-himem'
+	}
 
 	stages {
-		// Building on master
-		stage('Build Project') {
-			steps {
-				withMaven {
-					sh "$MVN_CMD clean install -U"
+		stage('Pull SDK Docker Image') {
+			agent {
+				docker {
+					image 'maven:3-jdk-8'
+					reuseNode true
 				}
 			}
-			when { branch 'master' }
-		}
-        // Not running on master - test only (for PRs and integration branches)
-		stage('Test Project') {
-			steps {
-                withMaven {
-                    sh '$MVN_CMD clean test'
+			stages {
+				// Building on master
+				stage('Build Project') {
+					steps {
+						withMaven {
+							sh '$MVN_CMD clean install -U'
+						}
+					}
+					when { branch 'master' }
+				}
+				// Not running on master - test only (for PRs and integration branches)
+				stage('Test Project') {
+					steps {
+						withMaven {
+							sh '$MVN_CMD clean test'
+						}
+					}
+					when { not { branch 'master' } }
+				}
+				stage('Record Issues') {
+					steps {
+						recordIssues(tools: [java()])
+					}
+				}
+				stage('Run Sonar Scan') {
+					steps {
+						withSonarQubeEnv('cessda-sonar') {
+							withMaven {
+								sh '$MVN_CMD sonar:sonar'
+							}
+						}
+						timeout(time: 1, unit: 'HOURS') {
+							waitForQualityGate abortPipeline: false
+						}
+					}
+					when { branch 'master' }
+				}
+				stage('Deploy Project') {
+					steps {
+						withMaven {
+							sh '$MVN_CMD jar:jar javadoc:jar source:jar deploy:deploy'
+						}
+					}
+					when { branch 'master' }
 				}
 			}
-            when { not { branch 'master' } }
-		}
-		stage('Record Issues') {
-			steps {
-				recordIssues(tools: [java()])
-			}
-		}
-		stage('Run Sonar Scan') {
-            steps {
-                withSonarQubeEnv('cessda-sonar') {
-                    withMaven {
-                        sh "$MVN_CMD sonar:sonar"
-                    }
-                }
-            }
-            when { branch 'master' }
-        }
-        stage("Get Sonar Quality Gate") {
-            steps {
-                timeout(time: 1, unit: 'HOURS') {
-                    waitForQualityGate abortPipeline: false
-                }
-            }
-            when { branch 'master' }
-        }
-		stage('Deploy Project') {
-			steps {
-				withMaven {
-					sh "$MVN_CMD jar:jar javadoc:jar source:jar deploy:deploy"
-				}
-			}
-			when { branch 'master' }
 		}
 	}
 }
