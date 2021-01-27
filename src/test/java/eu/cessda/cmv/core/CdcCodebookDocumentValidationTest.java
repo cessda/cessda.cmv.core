@@ -46,51 +46,51 @@ class CdcCodebookDocumentValidationTest
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/ukds-7481.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = (3 + 0);
-		testParameter.expectedViolationsAtStandardValidationGate = 3 + (14 + 0);
-		testParameter.expectedViolationsAtStrictValidationGate = 3 + 14 + 8;
+		testParameter.expectedViolationsAtBasicValidationGate = (1 + 0);
+		testParameter.expectedViolationsAtStandardValidationGate = 1 + (13 + 0);
+		testParameter.expectedViolationsAtStrictValidationGate = 1 + 13 + 8;
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/ukds-2000.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = 419;
-		testParameter.expectedViolationsAtStandardValidationGate = 419 + 14;
-		testParameter.expectedViolationsAtStrictValidationGate = 419 + 14 + 19;
+		testParameter.expectedViolationsAtBasicValidationGate = 416;
+		testParameter.expectedViolationsAtStandardValidationGate = 416 + 15;
+		testParameter.expectedViolationsAtStrictValidationGate = 416 + 14 + 19;
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/fsd-3271.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = (1 + 0);
-		testParameter.expectedViolationsAtStandardValidationGate = 1 + (6 + 2);
-		testParameter.expectedViolationsAtStrictValidationGate = 1 + 8 + (8 + 6);
+		testParameter.expectedViolationsAtBasicValidationGate = (2 + 0);
+		testParameter.expectedViolationsAtStandardValidationGate = 2 + (7 + 2);
+		testParameter.expectedViolationsAtStrictValidationGate = 2 + 9 + (8 + 6);
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/fsd-3307.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = (1 + 0);
-		testParameter.expectedViolationsAtStandardValidationGate = 1 + (6 + 4);
-		testParameter.expectedViolationsAtStrictValidationGate = 1 + 10 + 15;
+		testParameter.expectedViolationsAtBasicValidationGate = (2 + 0);
+		testParameter.expectedViolationsAtStandardValidationGate = 2 + (7 + 4);
+		testParameter.expectedViolationsAtStrictValidationGate = 2 + 11 + 15;
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/gesis-5100.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = (3 + 0);
-		testParameter.expectedViolationsAtStandardValidationGate = 3 + (13 + 3);
-		testParameter.expectedViolationsAtStrictValidationGate = 3 + 16 + (9 + 7);
+		testParameter.expectedViolationsAtBasicValidationGate = (4 + 0);
+		testParameter.expectedViolationsAtStandardValidationGate = 4 + (14 + 3);
+		testParameter.expectedViolationsAtStrictValidationGate = 4 + 17 + (9 + 7);
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/gesis-5300.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = 3 + 0;
-		testParameter.expectedViolationsAtStandardValidationGate = 3 + (13 + 3);
-		testParameter.expectedViolationsAtStrictValidationGate = 3 + 16 + (11 + 6);
+		testParameter.expectedViolationsAtBasicValidationGate = 4 + 0;
+		testParameter.expectedViolationsAtStandardValidationGate = 4 + (14 + 3);
+		testParameter.expectedViolationsAtStrictValidationGate = 4 + 17 + (11 + 6);
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/gesis-2800.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = 3 + 0;
-		testParameter.expectedViolationsAtStandardValidationGate = 3 + (13 + 3);
-		testParameter.expectedViolationsAtStrictValidationGate = 3 + 16 + (11 + 4);
+		testParameter.expectedViolationsAtBasicValidationGate = 4 + 0;
+		testParameter.expectedViolationsAtStandardValidationGate = 4 + (14 + 3);
+		testParameter.expectedViolationsAtStrictValidationGate = 4 + 17 + (11 + 4);
 		testParameters.add( testParameter );
 
 		return testParameters.stream();
