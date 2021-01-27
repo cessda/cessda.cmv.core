@@ -2,6 +2,7 @@ package eu.cessda.cmv.core.controlledvocabulary;
 
 import static java.util.Objects.requireNonNull;
 import static org.gesis.commons.resource.Resource.newResource;
+import static org.springframework.http.HttpMethod.GET;
 
 import java.net.URI;
 import java.util.Collections;
@@ -15,7 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -44,18 +44,16 @@ public class CessdaControlledVocabularyRepositoryV2 implements ControlledVocabul
 		Object document = null;
 		if ( resource.getUri().getScheme().startsWith( "http" ) )
 		{
-			RestTemplate restTemplate = new RestTemplate();
-			HttpHeaders headers = new HttpHeaders();
-			headers.setAccept( Collections.singletonList( MediaType.APPLICATION_JSON ) );
-			HttpEntity<String> entity = new HttpEntity<>( "accept", headers );
-			ResponseEntity<String> responseEntity = restTemplate.exchange( uri, HttpMethod.GET, entity, String.class );
-			if ( responseEntity.getStatusCode().is2xxSuccessful() )
+			try
 			{
-
-				document = Configuration.defaultConfiguration().jsonProvider()
-						.parse( responseEntity.getBody() );
+				RestTemplate restTemplate = new RestTemplate();
+				HttpHeaders headers = new HttpHeaders();
+				headers.setAccept( Collections.singletonList( MediaType.APPLICATION_JSON ) );
+				HttpEntity<String> entity = new HttpEntity<>( "accept", headers );
+				ResponseEntity<String> responseEntity = restTemplate.exchange( uri, GET, entity, String.class );
+				document = Configuration.defaultConfiguration().jsonProvider().parse( responseEntity.getBody() );
 			}
-			else
+			catch (Exception e)
 			{
 				throw new IllegalArgumentException( "Resource not found" );
 			}
@@ -65,23 +63,10 @@ public class CessdaControlledVocabularyRepositoryV2 implements ControlledVocabul
 			document = Configuration.defaultConfiguration().jsonProvider()
 					.parse( new TextResource( resource ).toString() );
 		}
-		List<String> list = query( document, "$.versions.*.concepts.*.notation" );
+		List<String> list = JsonPath.read( document, "$.versions.*.concepts.*.notation" );
 		codeValues = list.stream().collect( Collectors.toSet() );
-		list = query( document, "$.versions.*.concepts.*.title" );
+		list = JsonPath.read( document, "$.versions.*.concepts.*.title" );
 		descriptiveTerms = list.stream().collect( Collectors.toSet() );
-	}
-
-	private List<String> query( Object document, String query )
-	{
-		try
-		{
-			return JsonPath.read( document, query );
-		}
-		catch (Exception e)
-		{
-			LOGGER.error( e.getMessage(), e );
-			return Collections.emptyList();
-		}
 	}
 
 	@Override

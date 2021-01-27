@@ -13,7 +13,6 @@ import java.io.File;
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class CessdaControlledVocabularyRepositoryV2Test
@@ -133,7 +132,6 @@ class CessdaControlledVocabularyRepositoryV2Test
 	}
 
 	@Test
-	@Disabled( "https://bitbucket.org/cessda/cessda.cmv.core/issues/71" )
 	void construct_ResourceNotFound()
 	{
 		String url = "https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/0.0?languageVersion=en-0.0";

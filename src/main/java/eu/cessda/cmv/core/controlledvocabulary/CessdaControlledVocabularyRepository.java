@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static org.gesis.commons.resource.Resource.newResource;
 
 import java.net.URI;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -37,23 +36,10 @@ public class CessdaControlledVocabularyRepository implements ControlledVocabular
 		uri = resource.getUri();
 		Object document = Configuration.defaultConfiguration().jsonProvider()
 				.parse( new TextResource( resource ).toString() );
-		List<String> list = query( document, "$.conceptAsMap.*.notation" );
+		List<String> list = JsonPath.read( document, "$.conceptAsMap.*.notation" );
 		codeValues = list.stream().collect( Collectors.toSet() );
-		list = query( document, "$.conceptAsMap.*.title" );
+		list = JsonPath.read( document, "$.conceptAsMap.*.title" );
 		descriptiveTerms = list.stream().collect( Collectors.toSet() );
-	}
-
-	private List<String> query( Object document, String query )
-	{
-		try
-		{
-			return JsonPath.read( document, query );
-		}
-		catch (Exception e)
-		{
-			LOGGER.error( e.getMessage(), e );
-			return Collections.emptyList();
-		}
 	}
 
 	@Override

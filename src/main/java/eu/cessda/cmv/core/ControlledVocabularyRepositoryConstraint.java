@@ -26,7 +26,7 @@ class ControlledVocabularyRepositoryConstraint implements Constraint.V20
 	public <T extends Validator> List<T> newValidators( Document document )
 	{
 		Document.V11 d = (Document.V11) document;
-		ControlledVocabularyRepositoryProxy proxy = new ControlledVocabularyRepositoryProxy( type, uri );
+		ControlledVocabularyRepositoryProxy proxy = new ControlledVocabularyRepositoryProxy( type, uri, true );
 		d.register( uri, proxy );
 		long count = d.getNodes( locationPath ).stream()
 				.filter( node -> node.getTextContent().contentEquals( uri ) )
