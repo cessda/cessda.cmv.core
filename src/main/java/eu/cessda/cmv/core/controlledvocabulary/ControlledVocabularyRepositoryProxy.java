@@ -2,12 +2,16 @@ package eu.cessda.cmv.core.controlledvocabulary;
 
 import static java.util.Objects.requireNonNull;
 
-import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ControlledVocabularyRepositoryProxy implements ControlledVocabularyRepository.V11
 {
+	private static final Logger LOGGER = LoggerFactory.getLogger( ControlledVocabularyRepositoryProxy.class );
+
 	private String canonicalName;
 	private String uri;
 	private ControlledVocabularyRepository.V11 repository;
@@ -38,25 +42,30 @@ public class ControlledVocabularyRepositoryProxy implements ControlledVocabulary
 					.getDeclaredConstructor( URI.class )
 					.newInstance( new URI( uri ) );
 		}
-		catch (InvocationTargetException e)
-		{
-			throw new IllegalArgumentException( e.getTargetException() );
-		}
 		catch (Exception e)
 		{
-			throw new IllegalArgumentException( e.getMessage() );
+			repository = new EmptyControlledVocabularyRepository();
+			LOGGER.error( e.getMessage(), e );
 		}
 	}
 
 	@Override
 	public Set<String> findCodeValues()
 	{
+		if ( repository == null )
+		{
+			unproxy();
+		}
 		return repository.findCodeValues();
 	}
 
 	@Override
 	public Set<String> findDescriptiveTerms()
 	{
+		if ( repository == null )
+		{
+			unproxy();
+		}
 		return repository.findDescriptiveTerms();
 	}
 

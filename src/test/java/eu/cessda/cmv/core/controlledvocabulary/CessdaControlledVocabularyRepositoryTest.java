@@ -12,8 +12,10 @@ import java.io.File;
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+@Disabled( "CVS API V1 is not available anymore" )
 class CessdaControlledVocabularyRepositoryTest
 {
 	private TestEnv.V13 testEnv = DefaultTestEnv.newInstance( CessdaControlledVocabularyRepositoryTest.class );
