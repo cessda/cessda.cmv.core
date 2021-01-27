@@ -7,7 +7,6 @@ import static org.springframework.http.HttpMethod.GET;
 import java.net.URI;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.gesis.commons.resource.Resource;
@@ -21,12 +20,8 @@ import org.springframework.web.client.RestTemplate;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 
-public class CessdaControlledVocabularyRepositoryV2 implements ControlledVocabularyRepository.V11
+public class CessdaControlledVocabularyRepositoryV2 extends AbstractControlledVocabularyRepository
 {
-	private URI uri;
-	private Set<String> codeValues;
-	private Set<String> descriptiveTerms;
-
 	public CessdaControlledVocabularyRepositoryV2( URI uri )
 	{
 		this( (Resource) newResource( requireNonNull( uri ) ) );
@@ -35,8 +30,7 @@ public class CessdaControlledVocabularyRepositoryV2 implements ControlledVocabul
 	public CessdaControlledVocabularyRepositoryV2( Resource resource )
 	{
 		requireNonNull( resource );
-
-		uri = resource.getUri();
+		setUri( resource.getUri() );
 		Object document = null;
 		if ( resource.getUri().getScheme().startsWith( "http" ) )
 		{
@@ -46,7 +40,7 @@ public class CessdaControlledVocabularyRepositoryV2 implements ControlledVocabul
 				HttpHeaders headers = new HttpHeaders();
 				headers.setAccept( Collections.singletonList( MediaType.APPLICATION_JSON ) );
 				HttpEntity<String> entity = new HttpEntity<>( "accept", headers );
-				ResponseEntity<String> responseEntity = restTemplate.exchange( uri, GET, entity, String.class );
+				ResponseEntity<String> responseEntity = restTemplate.exchange( getUri(), GET, entity, String.class );
 				document = Configuration.defaultConfiguration().jsonProvider().parse( responseEntity.getBody() );
 			}
 			catch (Exception e)
@@ -60,26 +54,8 @@ public class CessdaControlledVocabularyRepositoryV2 implements ControlledVocabul
 					.parse( new TextResource( resource ).toString() );
 		}
 		List<String> list = JsonPath.read( document, "$.versions.*.concepts.*.notation" );
-		codeValues = list.stream().collect( Collectors.toSet() );
+		setCodeValues( list.stream().collect( Collectors.toSet() ) );
 		list = JsonPath.read( document, "$.versions.*.concepts.*.title" );
-		descriptiveTerms = list.stream().collect( Collectors.toSet() );
-	}
-
-	@Override
-	public Set<String> findCodeValues()
-	{
-		return codeValues;
-	}
-
-	@Override
-	public Set<String> findDescriptiveTerms()
-	{
-		return descriptiveTerms;
-	}
-
-	@Override
-	public URI getUri()
-	{
-		return uri;
+		setDescriptiveTerms( list.stream().collect( Collectors.toSet() ) );
 	}
 }
