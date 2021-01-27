@@ -5,6 +5,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -41,6 +42,7 @@ class CessdaControlledVocabularyRepositoryV2Test
 		CessdaControlledVocabularyRepositoryV2 repository = new CessdaControlledVocabularyRepositoryV2( resource );
 		assertThat( repository.findCodeValues(), hasSize( 13 ) );
 		assertThat( repository.findCodeValues(), expectedCodeValues );
+		assertThat( repository.getUri(), equalTo( resource.getUri() ) );
 	}
 
 	@Test

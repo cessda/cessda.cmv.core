@@ -10,16 +10,12 @@ import java.util.stream.Collectors;
 
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.TextResource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 
 public class CessdaControlledVocabularyRepository implements ControlledVocabularyRepository.V11
 {
-	private static final Logger LOGGER = LoggerFactory.getLogger( CessdaControlledVocabularyRepository.class );
-
 	private URI uri;
 	private Set<String> codeValues;
 	private Set<String> descriptiveTerms;
