@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.containsString;
 
 import java.util.Optional;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepositoryProxy;
@@ -17,8 +18,8 @@ class ControlledVocabularyRepositoryValidatorTest
 	void validate_valid()
 	{
 		// given
-		String canonicalName = "eu.cessda.cmv.core.controlledvocabulary.CessdaControlledVocabularyRepository";
-		String uri = "https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0";
+		String canonicalName = "eu.cessda.cmv.core.controlledvocabulary.CessdaControlledVocabularyRepositoryV2";
+		String uri = "https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0";
 		ControlledVocabularyRepositoryProxy proxy = new ControlledVocabularyRepositoryProxy( canonicalName, uri );
 
 		// when
@@ -30,11 +31,12 @@ class ControlledVocabularyRepositoryValidatorTest
 	}
 
 	@Test
+	@Disabled( "https://bitbucket.org/cessda/cessda.cmv.core/issues/71" )
 	void validate_invalid()
 	{
 		// given
 		String canonicalName = "eu.cessda.cmv.core.controlledvocabulary.CessdaControlledVocabularyRepository";
-		String uri = "https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/10.0";
+		String uri = "https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/10.0?languageVersion=en-10.0";
 		ControlledVocabularyRepositoryProxy proxy = new ControlledVocabularyRepositoryProxy( canonicalName, uri );
 
 		// when

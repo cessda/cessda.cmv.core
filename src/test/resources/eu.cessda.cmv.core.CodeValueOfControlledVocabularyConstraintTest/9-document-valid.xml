@@ -11,9 +11,9 @@
 		<stdyInfo>
 			<sumDscr>
 				<anlyUnit>
-					<concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0">Individual</concept>
-					<concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0">HousingUnit</concept>
-					<concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/1.0">TextUnit</concept>
+					<concept vocabURI="https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0">Individual</concept>
+					<concept vocabURI="https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0">HousingUnit</concept>
+					<concept vocabURI="https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/1.0?languageVersion=en-1.0">TextUnit</concept>
 				</anlyUnit>
 			</sumDscr>
 		</stdyInfo>

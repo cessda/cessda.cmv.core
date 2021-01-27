@@ -12,20 +12,20 @@
         <stdyInfo>
             <sumDscr>
                 <anlyUnit xml:lang="en">Media unit: Sound
-                    <concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0">MediaUnit.Sound</concept>
+                    <concept vocabURI="https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0">MediaUnit.Sound</concept>
                 </anlyUnit>
                 <anlyUnit xml:lang="en">Family: Household family
-                    <concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/2.0">Family.HouseholdFamily</concept>
+                    <concept vocabURI="https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0">Family.HouseholdFamily</concept>
                 </anlyUnit>
                 <anlyUnit xml:lang="en">Housing Unit
-                    <concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/1.0">HousingUnit</concept> 
+                    <concept vocabURI="https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/1.0?languageVersion=en-1.0">HousingUnit</concept>
                 </anlyUnit><!-- note that correct value in 1.0 is "Housing Unit" (code HousingUnit) and in 2.0 it is "Housing unit" (code HousingUnit) -->
                 
                 <anlyUnit xml:lang="fi">Perhe: perhekotitalous
-                    <concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/fi/2.0.2">Family.HouseholdFamily</concept>
+                    <concept vocabURI="https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=fi-2.0.2">Family.HouseholdFamily</concept>
                 </anlyUnit>
                 <anlyUnit xml:lang="de">Familie: Familienhaushalt
-                    <concept vocabURI="https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/de/1.0.1">Family.HouseholdFamily</concept>
+                    <concept vocabURI="https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/1.0?languageVersion=de-1.0.1">Family.HouseholdFamily</concept>
                 </anlyUnit>
             </sumDscr>
         </stdyInfo>

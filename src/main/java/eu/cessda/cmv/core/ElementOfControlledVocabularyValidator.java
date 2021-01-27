@@ -36,9 +36,6 @@ abstract class ElementOfControlledVocabularyValidator implements Validator.V10
 		}
 		else
 		{
-			System.out.println( elementName );
-			System.out.println( elementName.getElementSetProvider() );
-
 			Set<String> elementSet = elementName.getElementSetProvider().apply( repository );
 			if ( !elementSet.contains( node.getTextContent() ) )
 			{
