@@ -19,6 +19,8 @@
  */
 package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -31,6 +33,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.gesis.commons.resource.Resource;
+import org.gesis.commons.resource.TextResource;
 import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
 import org.gesis.commons.xml.jaxb.JaxbDocument;
 import org.gesis.commons.xml.jaxb.NamespacePrefixMapper;
@@ -78,6 +82,21 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 	public ValidationRequestV0()
 	{
 		super( SCHEMALOCATION, new DefaultNamespacePrefixMapper( NAMESPACE_DEFAULT_URI ) );
+	}
+
+	public ValidationRequestV0( Resource profile, Resource document )
+	{
+		this();
+		setProfile( newDocument( requireNonNull( profile ) ) );
+		setDocument( newDocument( requireNonNull( document ) ) );
+	}
+
+	private DocumentV0 newDocument( Resource resource )
+	{
+		DocumentV0 documentV0 = new DocumentV0();
+		documentV0.setUri( resource.getUri() );
+		documentV0.setContent( new TextResource( resource ).toString() );
+		return documentV0;
 	}
 
 	public DocumentV0 getDocument()
