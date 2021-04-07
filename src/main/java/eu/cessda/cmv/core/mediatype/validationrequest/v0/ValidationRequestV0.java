@@ -25,6 +25,8 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.NoSuchFileException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -89,7 +91,7 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 		super( SCHEMALOCATION, new DefaultNamespacePrefixMapper( NAMESPACE_DEFAULT_URI ) );
 	}
 
-	public ValidationRequestV0( Resource profile, Resource document, ValidationGateName validationGateName )
+	public ValidationRequestV0( Resource document, Resource profile, ValidationGateName validationGateName )
 	{
 		this();
 		setDocument( newDocument( document ) );
@@ -134,6 +136,32 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 	public void setValidationGateName( ValidationGateName validationGateName )
 	{
 		this.validationGateName = validationGateName;
+	}
+
+	public List<String> validate()
+	{
+		List<String> messages = new ArrayList<>();
+		if ( document == null )
+		{
+			messages.add( "Document is missing" );
+		}
+		else
+		{
+			messages.addAll( document.validate() );
+		}
+		if ( profile == null )
+		{
+			messages.add( "Profile is missing" );
+		}
+		else
+		{
+			messages.addAll( profile.validate() );
+		}
+		if ( validationGateName == null )
+		{
+			messages.add( "Validation gate name is missing" );
+		}
+		return messages;
 	}
 
 	public static ValidationRequestV0 read( InputStream inputStream )

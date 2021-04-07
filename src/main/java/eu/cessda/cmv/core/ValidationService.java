@@ -37,4 +37,9 @@ public interface ValidationService
 				Resource profile,
 				ValidationGateName validationGateName );
 	}
+
+	public interface V11 extends V10
+	{
+		public <T extends ValidationReport> T validate( ValidationRequest validationRequest );
+	}
 }

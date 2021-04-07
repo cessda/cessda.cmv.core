@@ -19,7 +19,12 @@
  */
 package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
+import static org.gesis.commons.resource.Resource.newResource;
+
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -27,6 +32,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.eclipse.persistence.oxm.annotations.XmlCDATA;
+import org.gesis.commons.resource.TextResource;
 
 @XmlType( name = ValidationRequestV0.DOCUMENT_TYPE )
 @XmlAccessorType( XmlAccessType.FIELD )
@@ -56,5 +62,37 @@ public class DocumentV0
 	public void setContent( String content )
 	{
 		this.content = content;
+	}
+
+	public List<String> validate()
+	{
+		List<String> messages = new ArrayList<>();
+		requireNotBothNull().ifPresent( messages::add );
+		requireConsistency().ifPresent( messages::add );
+		return messages;
+	}
+
+	private Optional<String> requireNotBothNull()
+	{
+		if ( uri == null && content == null )
+		{
+			return Optional.of( "Uri and content are both missing" );
+		}
+		else
+		{
+			return Optional.empty();
+		}
+	}
+
+	private Optional<String> requireConsistency()
+	{
+		if ( (uri != null && content != null) && !content.equals( new TextResource( newResource( uri ) ).toString() ) )
+		{
+			return Optional.of( "Content differs from uri's content" );
+		}
+		else
+		{
+			return Optional.empty();
+		}
 	}
 }
