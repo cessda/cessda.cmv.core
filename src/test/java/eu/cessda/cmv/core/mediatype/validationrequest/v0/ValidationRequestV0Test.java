@@ -19,6 +19,7 @@
  */
 package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
+import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
@@ -38,12 +39,16 @@ class ValidationRequestV0Test
 	{
 		File file = new File( "target/validation-request.xml" );
 		String baseUrl = "https://bitbucket.org/cessda/cessda.cmv.core/raw/1a01a5e7ede385699e169a56ab9e700de716778a/src/main/resources/demo-documents/ddi-v25";
-		Resource.V10 profile = Resource.newResource( baseUrl + "/cdc25_profile.xml" );
-		Resource.V10 document = Resource.newResource( baseUrl + "/gesis-5300.xml" );
+		Resource profile = new TextResource( newResource( baseUrl + "/cdc25_profile.xml" ) );
+		Resource document = new TextResource( newResource( baseUrl + "/gesis-5300.xml" ) );
 		ValidationGateName validationGateName = ValidationGateName.BASIC;
 
 		// given
-		ValidationRequestV0 validationRequest = new ValidationRequestV0( document, profile, validationGateName );
+		ValidationRequestV0 validationRequest = new ValidationRequestV0();
+		validationRequest.setDocument( document.getUri() );
+		validationRequest.setProfile( profile.toString() );
+		validationRequest.setValidationGateName( validationGateName );
+
 		assertThat( validationRequest.validate(), hasSize( 0 ) );
 		validationRequest.saveAs( file );
 
@@ -51,8 +56,8 @@ class ValidationRequestV0Test
 		validationRequest = ValidationRequestV0.open( file );
 
 		// then
-		assertThat( validationRequest.getDocument().getContent(), equalTo( new TextResource( document ).toString() ) );
-		assertThat( validationRequest.getProfile().getContent(), equalTo( new TextResource( profile ).toString() ) );
+		assertThat( new TextResource( validationRequest.getDocument().toResource() ).toString(), equalTo( document.toString() ) );
+		assertThat( new TextResource( validationRequest.getProfile().toResource() ).toString(), equalTo( profile.toString() ) );
 		assertThat( validationRequest.getValidationGateName(), equalTo( validationGateName ) );
 	}
 }

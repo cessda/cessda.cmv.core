@@ -17,24 +17,38 @@
  * limitations under the License.
  * #L%
  */
-package eu.cessda.cmv.core;
+package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
-import java.net.URI;
+import java.io.ByteArrayInputStream;
 
 import org.gesis.commons.resource.Resource;
 
-public interface ValidationService
+public class ContentDocumentV0 extends DocumentV0
 {
-	public interface V10 extends ValidationService
-	{
-		public <T extends ValidationReport> T validate(
-				URI documentUri,
-				URI profileUri,
-				ValidationGateName validationGateName );
+	private String content;
 
-		public <T extends ValidationReport> T validate(
-				Resource document,
-				Resource profile,
-				ValidationGateName validationGateName );
+	public ContentDocumentV0()
+	{
+	}
+
+	public ContentDocumentV0( String content )
+	{
+		this.content = content;
+	}
+
+	public String getContent()
+	{
+		return content;
+	}
+
+	public void setContent( String content )
+	{
+		this.content = content;
+	}
+
+	@Override
+	public Resource toResource()
+	{
+		return Resource.newResource( new ByteArrayInputStream( content.getBytes() ) );
 	}
 }
