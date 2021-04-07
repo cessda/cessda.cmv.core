@@ -39,6 +39,7 @@ import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
 import org.gesis.commons.xml.jaxb.JaxbDocument;
 import org.gesis.commons.xml.jaxb.NamespacePrefixMapper;
 
+import eu.cessda.cmv.core.ValidationGateName;
 import eu.cessda.cmv.core.ValidationRequest;
 
 @XmlRootElement( name = ValidationRequestV0.VALIDATIONREQUEST_ELEMENT )
@@ -64,7 +65,8 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 	static final String DOCUMENT_ELEMENT = "Document";
 	static final String DOCUMENT_TYPE = DOCUMENT_ELEMENT + "Type";
 	static final String PROFILE_ELEMENT = "Profile";
-	static final String PROFILE_TYPE = PROFILE_ELEMENT + "Type";
+	static final String VALIDATIONGATENAME_ELEMENT = "ValidationGateName";
+	static final String VALIDATIONGATENAME_TYPE = VALIDATIONGATENAME_ELEMENT + "Type";
 
 	private static final JAXBContext JAXBCONTEXT = newJaxbContext( ValidationRequestV0.class );
 
@@ -73,6 +75,9 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 
 	@XmlElement( name = PROFILE_ELEMENT )
 	private DocumentV0 profile;
+
+	@XmlElement( name = VALIDATIONGATENAME_ELEMENT )
+	private ValidationGateName validationGateName;
 
 	protected ValidationRequestV0( String schemaLocation, NamespacePrefixMapper namespacePrefixMapper )
 	{
@@ -84,15 +89,17 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 		super( SCHEMALOCATION, new DefaultNamespacePrefixMapper( NAMESPACE_DEFAULT_URI ) );
 	}
 
-	public ValidationRequestV0( Resource profile, Resource document )
+	public ValidationRequestV0( Resource profile, Resource document, ValidationGateName validationGateName )
 	{
 		this();
-		setProfile( newDocument( requireNonNull( profile ) ) );
-		setDocument( newDocument( requireNonNull( document ) ) );
+		setDocument( newDocument( document ) );
+		setProfile( newDocument( profile ) );
+		setValidationGateName( validationGateName );
 	}
 
 	private DocumentV0 newDocument( Resource resource )
 	{
+		requireNonNull( resource );
 		DocumentV0 documentV0 = new DocumentV0();
 		documentV0.setUri( resource.getUri() );
 		documentV0.setContent( new TextResource( resource ).toString() );
@@ -117,6 +124,16 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 	public void setProfile( DocumentV0 profile )
 	{
 		this.profile = profile;
+	}
+
+	public ValidationGateName getValidationGateName()
+	{
+		return validationGateName;
+	}
+
+	public void setValidationGateName( ValidationGateName validationGateName )
+	{
+		this.validationGateName = validationGateName;
 	}
 
 	public static ValidationRequestV0 read( InputStream inputStream )

@@ -28,6 +28,8 @@ import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.TextResource;
 import org.junit.jupiter.api.Test;
 
+import eu.cessda.cmv.core.ValidationGateName;
+
 class ValidationRequestV0Test
 {
 	@Test
@@ -37,9 +39,10 @@ class ValidationRequestV0Test
 		String baseUrl = "https://bitbucket.org/cessda/cessda.cmv.core/raw/1a01a5e7ede385699e169a56ab9e700de716778a/src/main/resources/demo-documents/ddi-v25";
 		Resource.V10 profile = Resource.newResource( baseUrl + "/cdc25_profile.xml" );
 		Resource.V10 document = Resource.newResource( baseUrl + "/gesis-5300.xml" );
+		ValidationGateName validationGateName = ValidationGateName.BASIC;
 
 		// given
-		ValidationRequestV0 validationRequest = new ValidationRequestV0( profile, document );
+		ValidationRequestV0 validationRequest = new ValidationRequestV0( profile, document, validationGateName );
 		validationRequest.saveAs( file );
 
 		// when
@@ -48,5 +51,6 @@ class ValidationRequestV0Test
 		// then
 		assertThat( validationRequest.getDocument().getContent(), equalTo( new TextResource( document ).toString() ) );
 		assertThat( validationRequest.getProfile().getContent(), equalTo( new TextResource( profile ).toString() ) );
+		assertThat( validationRequest.getValidationGateName(), equalTo( validationGateName ) );
 	}
 }

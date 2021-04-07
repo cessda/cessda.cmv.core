@@ -36,7 +36,6 @@ public class DocumentV0
 	private URI uri;
 
 	@XmlCDATA
-	@XmlElement
 	private String content;
 
 	public URI getUri()
