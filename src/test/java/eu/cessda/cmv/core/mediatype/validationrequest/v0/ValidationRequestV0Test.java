@@ -28,16 +28,25 @@ import java.io.File;
 
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.TextResource;
+import org.gesis.commons.test.DefaultTestEnv;
+import org.gesis.commons.test.TestEnv;
 import org.junit.jupiter.api.Test;
 
 import eu.cessda.cmv.core.ValidationGateName;
 
 class ValidationRequestV0Test
 {
+	private TestEnv.V14 testEnv;
+
+	ValidationRequestV0Test()
+	{
+		testEnv = DefaultTestEnv.newInstance( ValidationRequestV0Test.class );
+	}
+
 	@Test
 	void writeAndRead() throws Exception
 	{
-		File file = new File( "target/validation-request.xml" );
+		File file = new File( testEnv.newDirectory(), "validation-request.xml" );
 		String baseUrl = "https://bitbucket.org/cessda/cessda.cmv.core/raw/1a01a5e7ede385699e169a56ab9e700de716778a/src/main/resources/demo-documents/ddi-v25";
 		Resource profile = new TextResource( newResource( baseUrl + "/cdc25_profile.xml" ) );
 		Resource document = new TextResource( newResource( baseUrl + "/gesis-5300.xml" ) );
@@ -48,7 +57,6 @@ class ValidationRequestV0Test
 		validationRequest.setDocument( document.getUri() );
 		validationRequest.setProfile( profile.toString() );
 		validationRequest.setValidationGateName( validationGateName );
-
 		assertThat( validationRequest.validate(), hasSize( 0 ) );
 		validationRequest.saveAs( file );
 

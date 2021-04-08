@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 import org.eclipse.persistence.oxm.annotations.XmlCDATA;
 
-class DocumentAdapter extends XmlAdapter<DocumentAdapter.AdaptedDocument, AbstractDocument>
+class DocumentV0Adapter extends XmlAdapter<DocumentV0Adapter.AdaptedDocument, DocumentV0>
 {
 	@Override
-	public AdaptedDocument marshal( AbstractDocument document )
+	public AdaptedDocument marshal( DocumentV0 document )
 			throws Exception
 	{
 		if ( null == document )
@@ -37,19 +37,19 @@ class DocumentAdapter extends XmlAdapter<DocumentAdapter.AdaptedDocument, Abstra
 			return null;
 		}
 		AdaptedDocument adaptedDocument = new AdaptedDocument();
-		if ( document instanceof DocumentV1 )
+		if ( document instanceof UriDocumentV0 )
 		{
-			adaptedDocument.uri = ((DocumentV1) document).getUri();
+			adaptedDocument.uri = ((UriDocumentV0) document).getUri();
 		}
 		else
 		{
-			adaptedDocument.content = ((DocumentV2) document).getContent();
+			adaptedDocument.content = ((ContentDocumentV0) document).getContent();
 		}
 		return adaptedDocument;
 	}
 
 	@Override
-	public AbstractDocument unmarshal( AdaptedDocument adaptedContactMethod )
+	public DocumentV0 unmarshal( AdaptedDocument adaptedContactMethod )
 			throws Exception
 	{
 		if ( null == adaptedContactMethod )
@@ -58,11 +58,11 @@ class DocumentAdapter extends XmlAdapter<DocumentAdapter.AdaptedDocument, Abstra
 		}
 		if ( null != adaptedContactMethod.uri )
 		{
-			return new DocumentV1( adaptedContactMethod.uri );
+			return new UriDocumentV0( adaptedContactMethod.uri );
 		}
 		else
 		{
-			return new DocumentV2( adaptedContactMethod.content );
+			return new ContentDocumentV0( adaptedContactMethod.content );
 		}
 	}
 
