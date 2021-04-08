@@ -19,20 +19,38 @@
  */
 package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.gesis.commons.resource.Resource.newResource;
 
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.io.ByteArrayInputStream;
 
 import org.gesis.commons.resource.Resource;
 
-@XmlJavaTypeAdapter( DocumentV0Adapter.class )
-public abstract class DocumentV0
+public class DocumentV2 extends AbstractDocument
 {
-	public abstract Resource toResource();
+	private String content;
 
-	public List<String> validate()
+	public DocumentV2()
 	{
-		return new ArrayList<>();
+	}
+
+	public DocumentV2( String content )
+	{
+		this.content = content;
+	}
+
+	public String getContent()
+	{
+		return content;
+	}
+
+	public void setContent( String content )
+	{
+		this.content = content;
+	}
+
+	@Override
+	public Resource toResource()
+	{
+		return newResource( new ByteArrayInputStream( content.getBytes() ) );
 	}
 }

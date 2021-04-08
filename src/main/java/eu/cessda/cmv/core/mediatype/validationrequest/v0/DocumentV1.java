@@ -19,36 +19,38 @@
  */
 package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
-import java.io.ByteArrayInputStream;
+import static org.gesis.commons.resource.Resource.newResource;
+
+import java.net.URI;
 
 import org.gesis.commons.resource.Resource;
 
-public class ContentDocumentV0 extends DocumentV0
+public class DocumentV1 extends AbstractDocument
 {
-	private String content;
+	private URI uri;
 
-	public ContentDocumentV0()
+	public DocumentV1()
 	{
 	}
 
-	public ContentDocumentV0( String content )
+	public DocumentV1( URI uri )
 	{
-		this.content = content;
+		this.uri = uri;
 	}
 
-	public String getContent()
+	public URI getUri()
 	{
-		return content;
+		return uri;
 	}
 
-	public void setContent( String content )
+	public void setUri( URI uri )
 	{
-		this.content = content;
+		this.uri = uri;
 	}
 
 	@Override
 	public Resource toResource()
 	{
-		return Resource.newResource( new ByteArrayInputStream( content.getBytes() ) );
+		return newResource( uri );
 	}
 }

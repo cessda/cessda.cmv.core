@@ -70,10 +70,10 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 	private static final JAXBContext JAXBCONTEXT = newJaxbContext( ValidationRequestV0.class );
 
 	@XmlElement( name = DOCUMENT_ELEMENT )
-	private DocumentV0 document;
+	private AbstractDocument document;
 
 	@XmlElement( name = PROFILE_ELEMENT )
-	private DocumentV0 profile;
+	private AbstractDocument profile;
 
 	@XmlElement( name = VALIDATIONGATENAME_ELEMENT )
 	private ValidationGateName validationGateName;
@@ -88,34 +88,34 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 		super( SCHEMALOCATION, new DefaultNamespacePrefixMapper( NAMESPACE_DEFAULT_URI ) );
 	}
 
-	public DocumentV0 getDocument()
+	public AbstractDocument getDocument()
 	{
 		return document;
 	}
 
 	public void setDocument( String content )
 	{
-		this.document = new ContentDocumentV0( content );
+		this.document = new DocumentV2( content );
 	}
 
 	public void setDocument( URI uri )
 	{
-		this.document = new UriDocumentV0( uri );
+		this.document = new DocumentV1( uri );
 	}
 
-	public DocumentV0 getProfile()
+	public AbstractDocument getProfile()
 	{
 		return profile;
 	}
 
 	public void setProfile( String content )
 	{
-		this.profile = new ContentDocumentV0( content );
+		this.profile = new DocumentV2( content );
 	}
 
 	public void setProfile( URI uri )
 	{
-		this.profile = new UriDocumentV0( uri );
+		this.profile = new DocumentV1( uri );
 	}
 
 	public ValidationGateName getValidationGateName()
