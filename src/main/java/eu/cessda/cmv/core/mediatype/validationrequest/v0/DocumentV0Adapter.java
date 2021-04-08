@@ -68,9 +68,10 @@ class DocumentV0Adapter extends XmlAdapter<DocumentV0Adapter.AdaptedDocument, Do
 
 	public static class AdaptedDocument
 	{
-		@XmlElement
+		@XmlElement( required = true )
 		public URI uri;
 
+		@XmlElement( required = true )
 		@XmlCDATA
 		public String content;
 	}

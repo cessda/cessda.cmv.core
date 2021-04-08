@@ -23,10 +23,16 @@ import static org.gesis.commons.resource.Resource.newResource;
 
 import java.net.URI;
 
+import javax.xml.bind.annotation.XmlElement;
+
 import org.gesis.commons.resource.Resource;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 public class UriDocumentV0 extends DocumentV0
 {
+	@Schema( description = "Resolvable uri of remotely available resource", required = true )
+	@XmlElement( required = true )
 	private URI uri;
 
 	UriDocumentV0()

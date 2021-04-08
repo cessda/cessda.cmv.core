@@ -23,10 +23,18 @@ import static org.gesis.commons.resource.Resource.newResource;
 
 import java.io.ByteArrayInputStream;
 
+import javax.xml.bind.annotation.XmlElement;
+
+import org.eclipse.persistence.oxm.annotations.XmlCDATA;
 import org.gesis.commons.resource.Resource;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 public class ContentDocumentV0 extends DocumentV0
 {
+	@Schema( description = "DDI document surrounded by CDATA", required = true )
+	@XmlElement( required = true )
+	@XmlCDATA
 	private String content;
 
 	ContentDocumentV0()

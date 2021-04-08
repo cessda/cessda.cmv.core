@@ -69,13 +69,13 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 
 	private static final JAXBContext JAXBCONTEXT = newJaxbContext( ValidationRequestV0.class );
 
-	@XmlElement( name = DOCUMENT_ELEMENT )
+	@XmlElement( name = DOCUMENT_ELEMENT, required = true )
 	private DocumentV0 document;
 
-	@XmlElement( name = PROFILE_ELEMENT )
+	@XmlElement( name = PROFILE_ELEMENT, required = true )
 	private DocumentV0 profile;
 
-	@XmlElement( name = VALIDATIONGATENAME_ELEMENT )
+	@XmlElement( name = VALIDATIONGATENAME_ELEMENT, required = true )
 	private ValidationGateName validationGateName;
 
 	protected ValidationRequestV0( String schemaLocation, NamespacePrefixMapper namespacePrefixMapper )
