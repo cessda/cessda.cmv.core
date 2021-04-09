@@ -20,9 +20,9 @@
 package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
 import static org.gesis.commons.resource.Resource.newResource;
+import static org.gesis.commons.test.hamcrest.FileMatchers.hasEqualContent;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
 
 import java.io.File;
 
@@ -32,38 +32,68 @@ import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
 import org.junit.jupiter.api.Test;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
+
 import eu.cessda.cmv.core.ValidationGateName;
 
 class ValidationRequestV0Test
 {
 	private TestEnv.V14 testEnv;
+	private Resource profile;
+	private Resource document;
+	private ValidationGateName validationGateName;
 
 	ValidationRequestV0Test()
 	{
+		String baseUrl = "https://bitbucket.org/cessda/cessda.cmv.core/raw/1a01a5e7ede385699e169a56ab9e700de716778a/src/main/resources/demo-documents/ddi-v25";
+		profile = new TextResource( newResource( baseUrl + "/cdc25_profile.xml" ) );
+		document = new TextResource( newResource( baseUrl + "/gesis-5300.xml" ) );
+		validationGateName = ValidationGateName.BASIC;
 		testEnv = DefaultTestEnv.newInstance( ValidationRequestV0Test.class );
 	}
 
-	@Test
-	void writeAndRead() throws Exception
+	private ValidationRequestV0 newValidationRequest()
 	{
-		File file = new File( testEnv.newDirectory(), "validation-request.xml" );
-		String baseUrl = "https://bitbucket.org/cessda/cessda.cmv.core/raw/1a01a5e7ede385699e169a56ab9e700de716778a/src/main/resources/demo-documents/ddi-v25";
-		Resource profile = new TextResource( newResource( baseUrl + "/cdc25_profile.xml" ) );
-		Resource document = new TextResource( newResource( baseUrl + "/gesis-5300.xml" ) );
-		ValidationGateName validationGateName = ValidationGateName.BASIC;
-
-		// given
 		ValidationRequestV0 validationRequest = new ValidationRequestV0();
 		validationRequest.setDocument( document.getUri() );
 		validationRequest.setProfile( profile.toString() );
 		validationRequest.setValidationGateName( validationGateName );
-		assertThat( validationRequest.validate(), hasSize( 0 ) );
+		return validationRequest;
+	}
+
+	@Test
+	void writeAndReadXml() throws Exception
+	{
+		File file = new File( testEnv.newDirectory(), "validation-request.xml" );
+
+		ValidationRequestV0 validationRequest = newValidationRequest();
+		// System.out.println( validationRequest.toString() );
 		validationRequest.saveAs( file );
+		assertThat( file, hasEqualContent( testEnv.findTestResourceByName( "validation-request-UpperCamelCase.xml" ) ) );
 
-		// when
 		validationRequest = ValidationRequestV0.open( file );
+		assertThat( new TextResource( validationRequest.getDocument().toResource() ).toString(), equalTo( document.toString() ) );
+		assertThat( new TextResource( validationRequest.getProfile().toResource() ).toString(), equalTo( profile.toString() ) );
+		assertThat( validationRequest.getValidationGateName(), equalTo( validationGateName ) );
+	}
 
-		// then
+	@Test
+	void writeAndReadJson() throws Exception
+	{
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.registerModule( new JaxbAnnotationModule() );
+		objectMapper.enable( SerializationFeature.INDENT_OUTPUT );
+		File file = new File( testEnv.newDirectory(), "validation-request.json" );
+
+		ValidationRequestV0 validationRequest = newValidationRequest();
+		String json = objectMapper.writeValueAsString( validationRequest );
+		// System.out.println( json );
+		testEnv.writeContent( json, file );
+		assertThat( file, hasEqualContent( testEnv.findTestResourceByName( "validation-request-lowerCamelCase.json" ) ) );
+
+		validationRequest = objectMapper.readValue( json, ValidationRequestV0.class );
 		assertThat( new TextResource( validationRequest.getDocument().toResource() ).toString(), equalTo( document.toString() ) );
 		assertThat( new TextResource( validationRequest.getProfile().toResource() ).toString(), equalTo( profile.toString() ) );
 		assertThat( validationRequest.getValidationGateName(), equalTo( validationGateName ) );

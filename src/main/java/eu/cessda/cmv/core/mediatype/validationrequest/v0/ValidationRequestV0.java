@@ -58,24 +58,20 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 	static final String NAMESPACE_DEFAULT_URI = "cmv:validation-request:v" + MAJOR;
 	static final String SCHEMALOCATION_URI = SCHEMALOCATION_HOST + "/" + SCHEMALOCATION_FILENAME;
 	static final String SCHEMALOCATION = NAMESPACE_DEFAULT_URI + " " + SCHEMALOCATION_URI;
-
 	static final String VALIDATIONREQUEST_ELEMENT = "ValidationRequest";
-	static final String VALIDATIONREQUEST_TYPE = VALIDATIONREQUEST_ELEMENT + "Type";
-	static final String DOCUMENT_ELEMENT = "Document";
-	static final String DOCUMENT_TYPE = DOCUMENT_ELEMENT + "Type";
-	static final String PROFILE_ELEMENT = "Profile";
-	static final String VALIDATIONGATENAME_ELEMENT = "ValidationGateName";
-	static final String VALIDATIONGATENAME_TYPE = VALIDATIONGATENAME_ELEMENT + "Type";
+	static final String VALIDATIONREQUEST_TYPE = VALIDATIONREQUEST_ELEMENT + "ValidationRequestType";
+	static final String DOCUMENT_TYPE = "DocumentType";
+	static final String VALIDATIONGATENAME_TYPE = "ValidationGateNameType";
 
 	private static final JAXBContext JAXBCONTEXT = newJaxbContext( ValidationRequestV0.class );
 
-	@XmlElement( name = DOCUMENT_ELEMENT, required = true )
+	@XmlElement( required = true )
 	private DocumentV0 document;
 
-	@XmlElement( name = PROFILE_ELEMENT, required = true )
+	@XmlElement( required = true )
 	private DocumentV0 profile;
 
-	@XmlElement( name = VALIDATIONGATENAME_ELEMENT, required = true )
+	@XmlElement( required = true )
 	private ValidationGateName validationGateName;
 
 	protected ValidationRequestV0( String schemaLocation, NamespacePrefixMapper namespacePrefixMapper )
