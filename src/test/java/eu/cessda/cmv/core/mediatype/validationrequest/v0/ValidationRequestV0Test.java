@@ -21,20 +21,24 @@ package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
 import static com.fasterxml.jackson.databind.PropertyNamingStrategies.LOWER_CAMEL_CASE;
 import static com.fasterxml.jackson.databind.PropertyNamingStrategies.UPPER_CAMEL_CASE;
+import static eu.cessda.cmv.core.mediatype.validationrequest.v0.ValidationRequestV0.SCHEMALOCATION_FILENAME;
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.gesis.commons.test.hamcrest.FileMatchers.hasEqualContent;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.TextResource;
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
@@ -99,6 +103,7 @@ class ValidationRequestV0Test
 		{
 			objectMapper.setPropertyNamingStrategy( propertyNamingStrategy );
 			objectMapper.registerModule( new JaxbAnnotationModule() );
+			objectMapper.setSerializationInclusion( Include.NON_NULL );
 			objectMapper.enable( SerializationFeature.INDENT_OUTPUT );
 
 			ValidationRequestV0 validationRequest = newValidationRequest();
@@ -116,5 +121,16 @@ class ValidationRequestV0Test
 			e.printStackTrace();
 			Assertions.fail( e.getMessage() );
 		}
+	}
+
+	@Test
+	@Disabled( "Schema generation not correct because of DocumentV0Adapter usage" )
+	void generateSchema() throws IOException
+	{
+		File actualFile = new File( testEnv.newDirectory(), SCHEMALOCATION_FILENAME );
+		ValidationRequestV0.generateSchema( actualFile );
+
+		File expectedFile = testEnv.findTestResourceByName( SCHEMALOCATION_FILENAME );
+		assertThat( actualFile, hasEqualContent( expectedFile ) );
 	}
 }

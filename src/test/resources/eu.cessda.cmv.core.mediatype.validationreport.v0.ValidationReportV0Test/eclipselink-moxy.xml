@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationReport xsi:schemaLocation="cmv:validation-report:v0 https://bitbucket.org/cessda/cessda.cmv.core/src/raw/stable/schema/validation-report-v0.1.xsd" xmlns="cmv:validation-report:v0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <DocumentUri>file:/home/alex/git/cessda.cmv.core/target/classes/demo-documents/ddi-v25/ukds-7481.xml</DocumentUri>
+   <ConstraintViolation>
+      <Message>'/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocab' is recommended</Message>
+   </ConstraintViolation>
+   <ConstraintViolation>
+      <Message>'/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocabURI' is recommended</Message>
+   </ConstraintViolation>
+   <ConstraintViolation>
+      <Message>'./@event' is mandatory in /codeBook/stdyDscr/stdyInfo/sumDscr/collDate (lineNumber: 74)</Message>
+      <LocationInfo>
+         <LineNumber>74</LineNumber>
+         <ColumnNumber>33</ColumnNumber>
+      </LocationInfo>
+   </ConstraintViolation>
+   <ConstraintViolation>
+      <Message>'/codeBook/stdyDscr/stdyInfo/sumDscr/nation/@abbr' is recommended</Message>
+   </ConstraintViolation>
+   <ConstraintViolation>
+      <Message>'/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' is recommended</Message>
+   </ConstraintViolation>
+   <ConstraintViolation>
+      <Message>'/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocab' is recommended</Message>
+   </ConstraintViolation>
+   <ConstraintViolation>
+      <Message>'/codeBook/stdyDscr/method/dataColl/timeMeth/concept' is recommended</Message>
+   </ConstraintViolation>
+   <ConstraintViolation>
+      <Message>'/codeBook/stdyDscr/method/dataColl/timeMeth/concept/@vocab' is recommended</Message>
+   </ConstraintViolation>
+   <ConstraintViolation>
+      <Message>'/codeBook/stdyDscr/method/dataColl/sampProc/concept' is recommended</Message>
+   </ConstraintViolation>
+   <ConstraintViolation>
+      <Message>'/codeBook/stdyDscr/method/dataColl/sampProc/concept/@vocab' is recommended</Message>
+   </ConstraintViolation>
+   <ConstraintViolation>
+      <Message>'/codeBook/stdyDscr/method/dataColl/collMode/concept' is recommended</Message>
+   </ConstraintViolation>
+   <ConstraintViolation>
+      <Message>'/codeBook/stdyDscr/method/dataColl/collMode/concept/@vocab' is recommended</Message>
+   </ConstraintViolation>
+   <ConstraintViolation>
+      <Message>'/codeBook/fileDscr/fileTxt/fileName' is recommended</Message>
+   </ConstraintViolation>
+   <ConstraintViolation>
+      <Message>'/codeBook/fileDscr/fileTxt/fileName/@xml:lang' is recommended</Message>
+   </ConstraintViolation>
+</ValidationReport>
