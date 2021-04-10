@@ -58,9 +58,9 @@ class MandatoryNodeIfParentPresentConstraintTest
 	void validate_missing()
 	{
 		// given
-		File file = testEnv.findTestResourceByName( "22-document-invalid-1.xml" );
+		File file = testEnv.findTestResourceByName( "ddi-v25/22-document-invalid-1.xml" );
 		Document document = factory.newDocument( file );
-		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "22-profile.xml" ) );
+		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/22-profile.xml" ) );
 
 		// when
 		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
@@ -75,9 +75,9 @@ class MandatoryNodeIfParentPresentConstraintTest
 	void validate_blank()
 	{
 		// given
-		File file = testEnv.findTestResourceByName( "22-document-invalid-2.xml" );
+		File file = testEnv.findTestResourceByName( "ddi-v25/22-document-invalid-2.xml" );
 		Document document = factory.newDocument( file );
-		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "22-profile.xml" ) );
+		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/22-profile.xml" ) );
 
 		// when
 		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
@@ -92,9 +92,9 @@ class MandatoryNodeIfParentPresentConstraintTest
 	void validate_valid()
 	{
 		// given
-		File file = testEnv.findTestResourceByName( "22-document-valid-1.xml" );
+		File file = testEnv.findTestResourceByName( "ddi-v25/22-document-valid-1.xml" );
 		Document document = factory.newDocument( file );
-		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "22-profile.xml" ) );
+		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/22-profile.xml" ) );
 
 		// when
 		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
@@ -108,9 +108,9 @@ class MandatoryNodeIfParentPresentConstraintTest
 	void validate_valid_parentNotPresent()
 	{
 		// given
-		File file = testEnv.findTestResourceByName( "22-document-valid-2.xml" );
+		File file = testEnv.findTestResourceByName( "ddi-v25/22-document-valid-2.xml" );
 		Document document = factory.newDocument( file );
-		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "22-profile.xml" ) );
+		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/22-profile.xml" ) );
 
 		// when
 		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );

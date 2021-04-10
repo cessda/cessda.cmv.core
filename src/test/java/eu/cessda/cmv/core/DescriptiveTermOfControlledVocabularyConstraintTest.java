@@ -43,7 +43,7 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 	{
 		testEnv = DefaultTestEnv.newInstance( DescriptiveTermOfControlledVocabularyConstraintTest.class );
 		factory = new CessdaMetadataValidatorFactory();
-		profile = factory.newProfile( testEnv.findTestResourceByName( "27-profile.xml" ) );
+		profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/27-profile.xml" ) );
 		assertThat( profile.getConstraints().stream()
 				.filter( ControlledVocabularyRepositoryConstraint.class::isInstance )
 				.count(), is( valueOf( 4 ) ) );
@@ -56,7 +56,7 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 	void validate_valid()
 	{
 		// given
-		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "27-document-valid-1.xml" ) );
+		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "ddi-v25/27-document-valid-1.xml" ) );
 
 		// when
 		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );
@@ -70,7 +70,7 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 	void validate_invalid_not_element()
 	{
 		// given
-		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "27-document-invalid-1.xml" ) );
+		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "ddi-v25/27-document-invalid-1.xml" ) );
 
 		// when
 		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );
@@ -86,7 +86,7 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 	void validate_invalid_missing_url()
 	{
 		// given
-		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "27-document-invalid-2.xml" ) );
+		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "ddi-v25/27-document-invalid-2.xml" ) );
 
 		// when
 		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );

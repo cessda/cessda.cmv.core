@@ -71,8 +71,8 @@ class RecommendedNodeConstraintTest
 	void validate_invalid_missing()
 	{
 		// given
-		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "11-profile.xml" ) );
-		Document document = factory.newDocument( testEnv.findTestResourceByName( "11-document-invalid-missing.xml" ) );
+		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/11-profile.xml" ) );
+		Document document = factory.newDocument( testEnv.findTestResourceByName( "ddi-v25/11-document-invalid-missing.xml" ) );
 
 		// when
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
@@ -86,8 +86,8 @@ class RecommendedNodeConstraintTest
 	void validate_invalid_blank()
 	{
 		// given
-		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "11-profile.xml" ) );
-		Document document = factory.newDocument( testEnv.findTestResourceByName( "11-document-invalid-blank.xml" ) );
+		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/11-profile.xml" ) );
+		Document document = factory.newDocument( testEnv.findTestResourceByName( "ddi-v25/11-document-invalid-blank.xml" ) );
 
 		// when
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );

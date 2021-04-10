@@ -53,9 +53,9 @@ class MandatoryNodeConstraintTest
 	void validate_missing()
 	{
 		// given
-		File file = testEnv.findTestResourceByName( "10-document-invalid-missing.xml-invalid" );
+		File file = testEnv.findTestResourceByName( "ddi-v25/10-document-invalid-missing.xml-invalid" );
 		Document document = factory.newDocument( file );
-		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "10-profile.xml" ) );
+		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/10-profile.xml" ) );
 
 		// when
 		ValidationGate.V10 validationGate = new StrictValidationGate();
@@ -70,9 +70,9 @@ class MandatoryNodeConstraintTest
 	void validate_blank()
 	{
 		// given
-		File file = testEnv.findTestResourceByName( "10-document-invalid-blank.xml" );
+		File file = testEnv.findTestResourceByName( "ddi-v25/10-document-invalid-blank.xml" );
 		Document document = factory.newDocument( file );
-		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "10-profile.xml" ) );
+		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/10-profile.xml" ) );
 
 		// when
 		ValidationGate.V10 validationGate = new StrictValidationGate();
@@ -87,9 +87,9 @@ class MandatoryNodeConstraintTest
 	void validate_valid()
 	{
 		// given
-		File file = testEnv.findTestResourceByName( "10-document-valid.xml" );
+		File file = testEnv.findTestResourceByName( "ddi-v25/10-document-valid.xml" );
 		Document document = factory.newDocument( file );
-		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ) );
+		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/10-profile.xml" ) );
 
 		// when
 		ValidationGate.V10 validationGate = new StrictValidationGate();
