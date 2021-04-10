@@ -48,6 +48,7 @@ import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
 import eu.cessda.cmv.core.CessdaMetadataValidatorFactory;
 import eu.cessda.cmv.core.ValidationService;
 
+//@Disabled( "Only on CESSDA CI test cases fail, see https://jenkins.cessda.eu/job/cessda.cmv.core/job/master/181/console" )
 class ValidationReportV0Test
 {
 	private TestEnv.V11 testEnv;
@@ -83,6 +84,12 @@ class ValidationReportV0Test
 		validationReport = ValidationReportV0.open( file );
 		assertThat( validationReport.getConstraintViolations().size(), equalTo( constraintViolations.size() ) );
 		assertThat( file, hasEqualContent( testEnv.findTestResourceByName( file.getName() ) ) );
+
+		System.out.println( "Print out files to see possible diffs" );
+		System.out.println();
+		System.out.println( testEnv.readContent( testEnv.findTestResourceByName( file.getName() ) ) );
+		System.out.println();
+		System.out.println( testEnv.readContent( file ) );
 	}
 
 	@Test
