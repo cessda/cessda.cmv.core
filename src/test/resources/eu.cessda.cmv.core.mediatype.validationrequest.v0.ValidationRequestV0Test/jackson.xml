@@ -1,0 +1,1020 @@
+<ValidationRequest>
+  <Document>
+    <Uri>https://bitbucket.org/cessda/cessda.cmv.core/raw/1a01a5e7ede385699e169a56ab9e700de716778a/src/main/resources/demo-documents/ddi-v25/gesis-5300.xml</Uri>
+  </Document>
+  <Profile>
+    <Content>&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;!--____________________________________________________________________________________
+© Copyright 2020, CESSDA ERIC
+Licence: This document is issued under a CC BY licence (https://creativecommons.org/licenses/by/4.0/)
+Author: Darren Bell - UK Data Archive
+Created: 2019-10-02
+Version: v1.0.3
+Change summary from v1.0.2: See https://bitbucket.org/cessda/cessda.metadata.profiles/src/master/CHANGELOG.md
+Last modified 2021-01-15 Darren Bell
+____________________________________________________________________________________
+-->
+&lt;pr:DDIProfile xmlns:r="ddi:reusable:3_2" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:pr="ddi:ddiprofile:3_2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="ddi:ddiprofile:3_2 https://ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/ddiprofile.xsd"
+    versionDate="2021-01-15">
+    &lt;r:Agency>CESSDA&lt;/r:Agency>
+    &lt;r:ID>CDC_DDI25_PROFILE&lt;/r:ID>
+    &lt;r:Version>1.0.3&lt;/r:Version>
+    &lt;r:VersionResponsibility>Darren Bell - UKDA&lt;/r:VersionResponsibility>
+    &lt;pr:DDIProfileName>
+        &lt;r:String>CESSDA DATA CATALOGUE (CDC) DDI2.5 PROFILE&lt;/r:String>
+    &lt;/pr:DDIProfileName>
+    &lt;pr:XPathVersion>1.0&lt;/pr:XPathVersion>
+    &lt;pr:DDINamespace>2.5&lt;/pr:DDINamespace>
+    &lt;pr:XMLPrefixMap>
+        &lt;pr:XMLPrefix/>
+        &lt;pr:XMLNamespace>ddi:codebook:2_5&lt;/pr:XMLNamespace>
+    &lt;/pr:XMLPrefixMap>
+    &lt;pr:XMLPrefixMap>
+        &lt;pr:XMLPrefix>xsi&lt;/pr:XMLPrefix>
+        &lt;pr:XMLNamespace>http://www.w3.org/2001/XMLSchema-instance&lt;/pr:XMLNamespace>
+    &lt;/pr:XMLPrefixMap>
+    &lt;!--****************************************************************************************-->
+    &lt;!--ROOT ELEMENT-->
+    &lt;!--****************************************************************************************-->
+    &lt;pr:Used xpath="/codeBook/@xml:lang" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: ISO 639-1 codes are strongly encouraged to be used&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/@xsi:schemaLocation"
+        defaultValue="ddi:codebook:2_5 http://www.ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd"
+        fixedValue="true" isRequired="true">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: System-required information - always "ddi:codebook:2_5
+                codebook.xsd"&lt;/r:Content>
+        &lt;/r:Description>
+    &lt;/pr:Used>
+    &lt;!--****************************************************************************************-->
+    &lt;!--TITLE AND IDENTIFIERS-->
+    &lt;!--****************************************************************************************-->
+    &lt;pr:Used xpath="/codeBook/docDscr/citation/titlStmt/titl" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Optional&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: No&lt;/r:Content>
+            &lt;r:Content>Usage: Title of the CDC XML document - note that the Study Title goes in
+                /codeBook/stdyDscr/citation/titlStmt/titl&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;OptionalNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/docDscr/citation/titlStmt/titl/@xml:lang" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory if 'titl' element is present&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: ISO 639-1 codes are strongly encouraged to be used&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>
+                &lt;![CDATA[
+                &lt;Constraints>
+                    &lt;MandatoryNodeIfParentPresentConstraint/>
+                &lt;/Constraints>
+                ]]&gt;
+            &lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+     &lt;pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/titl" isRequired="true">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: No&lt;/r:Content>
+            &lt;r:Content>Usage: Title of the Study. If additional titles are required in other
+                languages, use the parTitl element&lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Study title&lt;/r:Content>
+        &lt;/r:Description>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/titl/@xml:lang" isRequired="true">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Language of the study title. ISO 639-1 codes are strongly encouraged
+                to be used.&lt;/r:Content>
+        &lt;/r:Description>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/parTitl" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Optional&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: Yes&lt;/r:Content>
+            &lt;r:Content>Usage: Title of the Study in additional languages other than the 'titl'
+                element. It is preferable to include this element to hold an English version of the
+                title if the 'titl' element is not in English.&lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Study title&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;OptionalNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/parTitl/@xml:lang" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory if 'parTitl' element is present&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Language of the translated study title. ISO 639-1 codes are strongly
+                encouraged to be used.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>
+                &lt;![CDATA[
+                &lt;Constraints>
+                    &lt;MandatoryNodeIfParentPresentConstraint/>
+                &lt;/Constraints>
+                ]]&gt;
+            &lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/IDNo" isRequired="true">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: Yes&lt;/r:Content>
+            &lt;r:Content>Usage: The content of this element serves two purposes. First it is used for
+                the study/archival number given by the SP and secondly it is used for the PID. These
+                two cases have different specifications. IDNo in the sense of study number is
+                mandatory. An additional IDNo element may be provided for the purposes of a PID but
+                it is not mandatory.&lt;/r:Content>
+        &lt;/r:Description>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/IDNo/@xml:lang" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage:  Language is recommended when the @agency attribute contains an organisation name, for example, in the context of 'IDNo'
+                being used to display the internal study number&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/IDNo/@agency" isRequired="true">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Agency responsible for the identifier of the study. If you are using
+                IDNo for a Persistent Identifer, value should be one of
+                https://vocabularies.cessda.eu/#!detail/CessdaPersistentIdentifierTypes i.e. ARK or
+                DOI or Handle or URN &lt;/r:Content>
+        &lt;/r:Description>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/citation/holdings/@xml:lang" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Language of the study description page at the SP website (there can be
+                multiple 'holding' elements for study description pages in different languages. ISO
+                639-1 codes are strongly encouraged to be used.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/citation/holdings/@URI" isRequired="true">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: This is the document the metadata refers to, i.e. the URL of the study
+                description page at the SP website.&lt;/r:Content>
+        &lt;/r:Description>
+    &lt;/pr:Used>
+    &lt;!--****************************************************************************************-->
+    &lt;!--PRINCIPAL INVESTIGATOR / CREATOR-->
+    &lt;!--****************************************************************************************-->
+    &lt;pr:Used xpath="/codeBook/stdyDscr/citation/rspStmt/AuthEnty" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: Yes&lt;/r:Content>
+            &lt;r:Content>Usage: Principal investigator Person OR Institution&lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Creator&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/citation/rspStmt/AuthEnty/@xml:lang" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Language of the Organisation name, which may be the contents of
+                the AuthEnty element or the @affiliation attribute of AuthEnty specifies a person. 
+                ISO 639-1 codes codes are strongly encouraged to be used.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/citation/rspStmt/AuthEnty/@affiliation" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Optional&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: If AuthEnty is a person, the organisational affiliation of that
+                person&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;OptionalNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;!--****************************************************************************************-->
+    &lt;!--PUBLISHER-->
+    &lt;!--****************************************************************************************-->
+    &lt;pr:Used xpath="/codeBook/stdyDscr/citation/distStmt/distrbtr" isRequired="true">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: Yes&lt;/r:Content>
+            &lt;r:Content>Usage: The element should contain the name of the organisation who has
+                published the metadata for the harvested study description. This is usually the
+                SP.&lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Publisher&lt;/r:Content>
+        &lt;/r:Description>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/citation/distStmt/distrbtr/@xml:lang" isRequired="true">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Language of the organisation name. ISO codes are strongly encouraged
+                to be used.&lt;/r:Content>
+        &lt;/r:Description>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/citation/distStmt/distrbtr/@abbr" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Optional&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Abbreviated form of the Publisher name e.g. 'UKDA' for 'UK Data
+                Archive'&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;OptionalNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;!--****************************************************************************************-->
+    &lt;!--YEAR OF PUBLICATION-->
+    &lt;!--****************************************************************************************-->
+    &lt;pr:Used xpath="/codeBook/stdyDscr/citation/distStmt/distDate" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Optional&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: Yes&lt;/r:Content>
+            &lt;r:Content>Usage: The year or freetext date of when the study description was published.
+                This element may be empty.&lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Year of publication&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;OptionalNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/citation/distStmt/distDate/@date" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory if 'distDate' element is present&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Ideally 'YYYY-MM-DDThh:mm:ssZ' format, but can accept 'YYYY-MM-DD',
+                'YYYY-MM' or 'YYYY' as date format.&lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Year of publication&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>
+                &lt;![CDATA[
+                &lt;Constraints>
+                    &lt;MandatoryNodeIfParentPresentConstraint/>
+                &lt;/Constraints>
+                ]]&gt;
+            &lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;!--****************************************************************************************-->
+    &lt;!--SUBJECTS AND KEYWORDS-->
+    &lt;!--****************************************************************************************-->
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/subject/keyword" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: Yes&lt;/r:Content>
+            &lt;r:Content>Usage: Keyword for the study in the local language.&lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Keyword&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/subject/keyword/@xml:lang" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory if 'keyword' element is present&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Language of the keyword. ISO 639-1 codes are strongly encouraged to be
+                used.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>
+                &lt;![CDATA[
+                &lt;Constraints>
+                    &lt;MandatoryNodeIfParentPresentConstraint/>
+                &lt;/Constraints>
+                ]]&gt;
+            &lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/subject/keyword/@vocab" defaultValue="ELSST"
+        fixedValue="false" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory if 'keyword' element is present&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Source of keywords - ELSST is recommended but other vocabularies can
+                be referenced.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>
+                &lt;![CDATA[
+                &lt;Constraints>
+                    &lt;MandatoryNodeIfParentPresentConstraint/>
+                &lt;/Constraints>
+                ]]&gt;
+            &lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/subject/keyword/@vocabURI" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Optional&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Optional but note that if @vocab=”ELSST”, then use “https://elsst.cessda.eu/id” here.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;OptionalNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/subject/topcClas" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: Yes&lt;/r:Content>
+            &lt;r:Content>Usage: Subject classifcation term for the study in the local language. Use
+                descriptive terms from https://vocabularies.cessda.eu/#!detail/TopicClassification
+                if possible but other vocabularies are permitted.&lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Topic&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/subject/topcClas/@xml:lang" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory if 'topcClas' element is present&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Language of the subject classification term. ISO 639-1 codes are
+                strongly encouraged to be used.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>
+                &lt;![CDATA[
+                &lt;Constraints>
+                    &lt;MandatoryNodeIfParentPresentConstraint/>
+                &lt;/Constraints>
+                ]]&gt;
+            &lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocab"
+        defaultValue="CESSDA Topic Classification" fixedValue="false" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: name of the vocabulary. If possible, use "CESSDA Topic Classification"
+                (regardless of language) but other vocabularies are permitted.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocabURI" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: The Canonical URL of the CV version that is being used e.g.
+                https://vocabularies.cessda.eu/v1/vocabulary-details/TopicClassification/en/4.0&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;!--****************************************************************************************-->
+    &lt;!--ABSTRACT-->
+    &lt;!--****************************************************************************************-->
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/abstract" isRequired="true">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: Yes&lt;/r:Content>
+            &lt;r:Content>Usage: The abstract for the study&lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Abstract&lt;/r:Content>
+        &lt;/r:Description>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/abstract/@xml:lang" isRequired="true">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content&gt;
+            &lt;r:Content>Usage: Language of the abstract. ISO 639-1 codes are strongly encouraged to
+                be used.&lt;/r:Content>
+        &lt;/r:Description>
+    &lt;/pr:Used>
+    &lt;!--****************************************************************************************-->
+    &lt;!--DATA COLLECTION DATE(S)-->
+    &lt;!--****************************************************************************************-->
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/collDate" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Optional&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: Yes&lt;/r:Content>
+            &lt;r:Content>Usage: This is the free text expression of the collection period. This
+                element may be empty.&lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Data collection period&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;OptionalNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/collDate/@event" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory if parent is present&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Either 'start', 'end' or 'single' to indicate the type of @date
+                Attribute&lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Data collection period: start date OR Data collection period:
+                End date&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>
+                &lt;![CDATA[
+                &lt;Constraints>
+                    &lt;MandatoryNodeIfParentPresentConstraint/>
+                &lt;/Constraints>
+                ]]&gt;
+            &lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/collDate/@date" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended strongly if 'collDate' element is present.&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Ideally YYYY-MM-DDThh:mm:ssZ format, but can accept YYYY-MM-DD,
+                YYYY-MM or YYYY as date attribute. If there are multiple end dates, use the
+                last.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;!--****************************************************************************************-->
+    &lt;!--COUNTRY COVERAGE-->
+    &lt;!--****************************************************************************************-->
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/nation" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: Yes&lt;/r:Content>
+            &lt;r:Content>Usage: Countries relevant to the study area&lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Country&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/nation/@xml:lang" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory if 'nation' element is present&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Language of the country label. ISO 639-1 codes are strongly encouraged
+                to be used.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>
+                &lt;![CDATA[
+                &lt;Constraints>
+                    &lt;MandatoryNodeIfParentPresentConstraint/>
+                &lt;/Constraints>
+                ]]&gt;
+            &lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/nation/@abbr" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: ISO 3166-1 2-letter code must be used if this attribute is
+                present&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;!--****************************************************************************************-->
+    &lt;!--ANALYSIS UNIT-->
+    &lt;!--****************************************************************************************-->
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: Yes&lt;/r:Content>
+            &lt;r:Content>Usage: Contains the Analysis Unit CV item in the local language.&lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Analysis unit&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/@xml:lang" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory if 'anlyUnit' element is present&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Language of the Analysis Unit CV item. ISO 639-1 codes are strongly
+                encouraged to be used.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>
+                &lt;![CDATA[
+                &lt;Constraints>
+                    &lt;MandatoryNodeIfParentPresentConstraint/>
+                &lt;/Constraints>
+                ]]&gt;
+            &lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: No&lt;/r:Content>
+            &lt;r:Content>Analysis Unit Controlled Vocabulary "Code value" that is the same across
+                languages. e.g if the "anlyUnit" element is 'Kotitalous' for Finnish, the "concept"
+                element is 'Household'. See example at
+                https://vocabularies.cessda.eu/urn/urn:ddi:int.ddi.cv:AnalysisUnit.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocab"
+        defaultValue="DDI Analysis Unit" fixedValue="true" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Use the string "DDI Analysis Unit" regardless of language.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocabURI"
+        isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Optional&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: The Canonical URL of the CV version that is being used e.g.
+                https://vocabularies.cessda.eu/v1/vocabulary-details/AnalysisUnit/en/1.0&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;OptionalNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;!--****************************************************************************************-->
+    &lt;!--TIME DIMENSION-->
+    &lt;!--****************************************************************************************-->
+    &lt;pr:Used xpath="/codeBook/stdyDscr/method/dataColl/timeMeth" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: Yes&lt;/r:Content>
+            &lt;r:Content>Usage: Contains the Time Method CV item in the local language&lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Time dimension&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/method/dataColl/timeMeth/@xml:lang" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory if 'timeMeth' element is present&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Language of the Time Method CV item. ISO 639-1 codes are strongly
+                encouraged to be used.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>
+                &lt;![CDATA[
+                &lt;Constraints>
+                    &lt;MandatoryNodeIfParentPresentConstraint/>
+                &lt;/Constraints>
+                ]]&gt;
+            &lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/method/dataColl/timeMeth/concept" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: No&lt;/r:Content>
+            &lt;r:Content>Usage: Time Method Controlled Vocabulary "Code value" that is the same across
+                languages. e.g if the 'timeMeth' element is 'Pitkittäisaineisto' for Finnish, the
+                'concept' element is 'Longitudinal'. See example at
+                https://vocabularies.cessda.eu/urn/urn:ddi:int.ddi.cv:TimeMethod&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/method/dataColl/timeMeth/concept/@vocab"
+        defaultValue="DDI Time Method" fixedValue="true" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Use the string "DDI Time Method" regardless of language.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/method/dataColl/timeMeth/concept/@vocabURI"
+        isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Optional&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: The Canonical URL of the CV version that is being used e.g.
+                https://vocabularies.cessda.eu/v1/vocabulary-details/TimeMethod/en/1.2&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;OptionalNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;!--****************************************************************************************-->
+    &lt;!--SAMPLING METHOD / PROCEDURE-->
+    &lt;!--****************************************************************************************-->
+    &lt;pr:Used xpath="/codeBook/stdyDscr/method/dataColl/sampProc" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Optional&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: Yes&lt;/r:Content>
+            &lt;r:Content>Usage: Contains the Sampling Procedure CV item in the local language and/or a
+                freetext description in the local language&lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Sampling procedure&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;OptionalNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/method/dataColl/sampProc/@xml:lang" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory if 'sampProc' element is present&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Language of the Sampling Procedure CV item or freetext description.
+                ISO 639-1 codes are strongly encouraged to be used.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>
+                &lt;![CDATA[
+                &lt;Constraints>
+                    &lt;MandatoryNodeIfParentPresentConstraint/>
+                &lt;/Constraints>
+                ]]&gt;
+            &lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/method/dataColl/sampProc/concept" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: No&lt;/r:Content>
+            &lt;r:Content>Usage: Sampling Procedure Controlled Vocabulary "Code value" that is the same
+                across languages. e.g if the 'sampProc' element is 'Todennäköisyysotanta' for
+                Finnish, the 'concept' element is 'Probability'. See example at
+                https://vocabularies.cessda.eu/urn/urn:ddi:int.ddi.cv:SamplingProcedure &lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/method/dataColl/sampProc/concept/@vocab"
+        defaultValue="DDI Sampling Procedure" fixedValue="true" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Use the string "DDI Sampling Procedure" regardless of
+                language.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/method/dataColl/sampProc/concept/@vocabURI"
+        isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Optional&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: The Canonical URL of the CV version that is being used e.g.
+                https://vocabularies.cessda.eu/v1/vocabulary-details/SamplingProcedure/en/1.1&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;OptionalNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;!--****************************************************************************************-->
+    &lt;!--DATA COLLECTION METHOD-->
+    &lt;!--****************************************************************************************-->
+    &lt;pr:Used xpath="/codeBook/stdyDscr/method/dataColl/collMode" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: Yes&lt;/r:Content>
+            &lt;r:Content>Usage: Contains the Mode of Collection CV item in the local
+                language.&lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Data collection method&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/method/dataColl/collMode/@xml:lang" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory if 'collMode' element is present&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Language of the Mode of Collection CV item. ISO 639-1 codes are
+                strongly encouraged to be used.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>
+                &lt;![CDATA[
+                &lt;Constraints>
+                    &lt;MandatoryNodeIfParentPresentConstraint/>
+                &lt;/Constraints>
+                ]]&gt;
+            &lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/method/dataColl/collMode/concept" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: No&lt;/r:Content>
+            &lt;r:Content>Usage: Mode of Collection Controlled Vocabulary "Code value" that is the same
+                across languages. e.g if the 'collMode' element is 'Haastattelu' for Finnish, the
+                'concept' element is 'Interview'. See example at
+                https://vocabularies.cessda.eu/urn/urn:ddi:int.ddi.cv:ModeOfCollection &lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/method/dataColl/collMode/concept/@vocab"
+        defaultValue="DDI Mode of Collection" fixedValue="true" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content&gt;ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Use the string "DDI Mode of Collection" regardless of
+                language.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/method/dataColl/collMode/concept/@vocabURI"
+        isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Optional&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: The Canonical URL of the CV version that is being used e.g.
+                https://vocabularies.cessda.eu/v1/vocabulary-details/ModeOfCollection/en/3.0&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;OptionalNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;!--****************************************************************************************-->
+    &lt;!--ACCESS STATEMENT-->
+    &lt;!--****************************************************************************************-->
+    &lt;pr:Used xpath="/codeBook/stdyDscr/dataAccs/useStmt/restrctn" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: Yes&lt;/r:Content>
+            &lt;r:Content>Usage: Refers to any information relating to the access and use conditions of
+                data that the SP wants to send. SPs need to concatenate the information for
+                'restrctn' the way they want it to appear in the CDC, if they use data from
+                different elements e.g.specPerm, restrctn, avlStatus etc. &lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Terms of data access&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/stdyDscr/dataAccs/useStmt/restrctn/@xml:lang" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Mandatory if 'restrctn' is present&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Language of the Access statement. ISO 639-1 codes are strongly
+                encouraged to be used.&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>
+                &lt;![CDATA[
+                &lt;Constraints>
+                    &lt;MandatoryNodeIfParentPresentConstraint/>
+                &lt;/Constraints>
+                ]]&gt;
+            &lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;!--****************************************************************************************-->
+    &lt;!--FILE DESCRIPTIONS-->
+    &lt;!--****************************************************************************************-->
+    &lt;pr:Used xpath="/codeBook/fileDscr/fileTxt/fileName" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Content element&lt;/r:Content>
+            &lt;r:Content>ElementRepeatable: Yes&lt;/r:Content>
+            &lt;r:Content>Usage: Language-specific name of file &lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+    &lt;pr:Used xpath="/codeBook/fileDscr/fileTxt/fileName/@xml:lang" isRequired="false">
+        &lt;r:Description>
+            &lt;r:Content>Required: Recommended&lt;/r:Content>
+            &lt;r:Content>ElementType: Attribute&lt;/r:Content>
+            &lt;r:Content>Usage: Language(s) of data files. The only information necessary for CDC is
+                the language of the files, as this is needed for the filter. The values or content
+                of 'fileName' are not extracted. ISO 639-1 codes are strongly encouraged to be used. &lt;/r:Content>
+            &lt;r:Content>CDC UI Label: Language of data file(s).&lt;/r:Content>
+        &lt;/r:Description>
+        &lt;pr:Instructions>
+            &lt;r:Content>&lt;![CDATA[
+			&lt;Constraints>
+				&lt;RecommendedNodeConstraint/>
+			&lt;/Constraints>
+			]]&gt;&lt;/r:Content>
+        &lt;/pr:Instructions>
+    &lt;/pr:Used>
+&lt;/pr:DDIProfile></Content>
+  </Profile>
+  <ValidationGateName>BASIC</ValidationGateName>
+</ValidationRequest>

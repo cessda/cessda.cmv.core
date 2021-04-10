@@ -19,6 +19,8 @@
  */
 package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
+import static com.fasterxml.jackson.databind.PropertyNamingStrategies.LOWER_CAMEL_CASE;
+import static com.fasterxml.jackson.databind.PropertyNamingStrategies.UPPER_CAMEL_CASE;
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.gesis.commons.test.hamcrest.FileMatchers.hasEqualContent;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -30,10 +32,14 @@ import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.TextResource;
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
 
 import eu.cessda.cmv.core.ValidationGateName;
@@ -64,14 +70,14 @@ class ValidationRequestV0Test
 	}
 
 	@Test
-	void writeAndReadXml() throws Exception
+	void writeAndReadWithEclipselinkMoxy() throws Exception
 	{
-		File file = new File( testEnv.newDirectory(), "validation-request.xml" );
+		File file = new File( testEnv.newDirectory(), "eclipselink-moxy.xml" );
 
 		ValidationRequestV0 validationRequest = newValidationRequest();
 		// System.out.println( validationRequest.toString() );
 		validationRequest.saveAs( file );
-		assertThat( file, hasEqualContent( testEnv.findTestResourceByName( "validation-request-UpperCamelCase.xml" ) ) );
+		assertThat( file, hasEqualContent( testEnv.findTestResourceByName( file.getName() ) ) );
 
 		validationRequest = ValidationRequestV0.open( file );
 		assertThat( new TextResource( validationRequest.getDocument().toResource() ).toString(), equalTo( document.toString() ) );
@@ -80,22 +86,35 @@ class ValidationRequestV0Test
 	}
 
 	@Test
-	void writeAndReadJson() throws Exception
+	void writeAndReadWithJackson()
 	{
-		ObjectMapper objectMapper = new ObjectMapper();
-		objectMapper.registerModule( new JaxbAnnotationModule() );
-		objectMapper.enable( SerializationFeature.INDENT_OUTPUT );
-		File file = new File( testEnv.newDirectory(), "validation-request.json" );
+		File workingDirectory = testEnv.newDirectory();
+		writeAndReadWithJackson( new File( workingDirectory, "jackson.json" ), LOWER_CAMEL_CASE, new ObjectMapper() );
+		writeAndReadWithJackson( new File( workingDirectory, "jackson.xml" ), UPPER_CAMEL_CASE, new XmlMapper() );
+	}
 
-		ValidationRequestV0 validationRequest = newValidationRequest();
-		String json = objectMapper.writeValueAsString( validationRequest );
-		// System.out.println( json );
-		testEnv.writeContent( json, file );
-		assertThat( file, hasEqualContent( testEnv.findTestResourceByName( "validation-request-lowerCamelCase.json" ) ) );
+	private void writeAndReadWithJackson( File file, PropertyNamingStrategy propertyNamingStrategy, ObjectMapper objectMapper )
+	{
+		try
+		{
+			objectMapper.setPropertyNamingStrategy( propertyNamingStrategy );
+			objectMapper.registerModule( new JaxbAnnotationModule() );
+			objectMapper.enable( SerializationFeature.INDENT_OUTPUT );
 
-		validationRequest = objectMapper.readValue( json, ValidationRequestV0.class );
-		assertThat( new TextResource( validationRequest.getDocument().toResource() ).toString(), equalTo( document.toString() ) );
-		assertThat( new TextResource( validationRequest.getProfile().toResource() ).toString(), equalTo( profile.toString() ) );
-		assertThat( validationRequest.getValidationGateName(), equalTo( validationGateName ) );
+			ValidationRequestV0 validationRequest = newValidationRequest();
+			String content = objectMapper.writeValueAsString( validationRequest );
+			testEnv.writeContent( content, file );
+			assertThat( file, hasEqualContent( testEnv.findTestResourceByName( file.getName() ) ) );
+
+			validationRequest = objectMapper.readValue( content, ValidationRequestV0.class );
+			assertThat( new TextResource( validationRequest.getDocument().toResource() ).toString(), equalTo( document.toString() ) );
+			assertThat( new TextResource( validationRequest.getProfile().toResource() ).toString(), equalTo( profile.toString() ) );
+			assertThat( validationRequest.getValidationGateName(), equalTo( validationGateName ) );
+		}
+		catch (JsonProcessingException e)
+		{
+			e.printStackTrace();
+			Assertions.fail( e.getMessage() );
+		}
 	}
 }
