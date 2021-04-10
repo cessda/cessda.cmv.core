@@ -37,6 +37,8 @@ import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -48,9 +50,11 @@ import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
 import eu.cessda.cmv.core.CessdaMetadataValidatorFactory;
 import eu.cessda.cmv.core.ValidationService;
 
-//@Disabled( "Only on CESSDA CI test cases fail, see https://jenkins.cessda.eu/job/cessda.cmv.core/job/master/181/console" )
+// @Disabled( "Only on CESSDA CI, test cases fail, see https://jenkins.cessda.eu/job/cessda.cmv.core/job/master/182/console" )
 class ValidationReportV0Test
 {
+	private static final Logger LOGGER = LoggerFactory.getLogger( ValidationReportV0Test.class );
+
 	private TestEnv.V11 testEnv;
 
 	ValidationReportV0Test()
@@ -85,11 +89,14 @@ class ValidationReportV0Test
 		assertThat( validationReport.getConstraintViolations().size(), equalTo( constraintViolations.size() ) );
 		assertThat( file, hasEqualContent( testEnv.findTestResourceByName( file.getName() ) ) );
 
-		System.out.println( "Print out files to see possible diffs" );
-		System.out.println();
-		System.out.println( testEnv.readContent( testEnv.findTestResourceByName( file.getName() ) ) );
-		System.out.println();
-		System.out.println( testEnv.readContent( file ) );
+		LOGGER.warn( "Print out files to see possible diffs" );
+		LOGGER.warn( "" );
+		LOGGER.warn( "" );
+		LOGGER.warn( testEnv.findTestResourceByName( file.getName() ).getAbsolutePath() );
+		LOGGER.warn( testEnv.readContent( testEnv.findTestResourceByName( file.getName() ) ) );
+		LOGGER.warn( "" );
+		LOGGER.warn( file.getAbsolutePath() );
+		LOGGER.warn( testEnv.readContent( file ) );
 	}
 
 	@Test
