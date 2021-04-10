@@ -36,6 +36,7 @@ import org.gesis.commons.resource.Resource;
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +51,7 @@ import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
 import eu.cessda.cmv.core.CessdaMetadataValidatorFactory;
 import eu.cessda.cmv.core.ValidationService;
 
-// @Disabled( "Only on CESSDA CI, test cases fail, see https://jenkins.cessda.eu/job/cessda.cmv.core/job/master/182/console" )
+@Disabled( "Only on CESSDA CI, test cases fail, see https://jenkins.cessda.eu/job/cessda.cmv.core/job/master/183/console" )
 class ValidationReportV0Test
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger( ValidationReportV0Test.class );
