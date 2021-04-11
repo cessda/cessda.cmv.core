@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 *- Fixed (for any bug fixes)*  
 *- Security (in case of vulnerabilities)*
 
+## [0.4.0-SNAPSHOT] - 2021-04-12
+
+### Added
+- Provide ValidationRequest representation (#73)
+
+### Changed
+- Adapt to CVS API V2 (#70)
+- By CESSDA requested repairs (#68, #69)
+- Blank xml tags are shown as constraint violations (e.g. collDate, distDate) (#66)
+
 ## [0.3.1] - 2020-09-23
 
 ### Fixed
@@ -44,6 +54,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added badges to REAMDME ([#53](https://bitbucket.org/cessda/cessda.cmv.core/issues/53))
 
 
+[0.4.0]: https://bitbucket.org/cessda/cessda.cmv.core/src/v0.4.0
 [0.3.1]: https://bitbucket.org/cessda/cessda.cmv.core/src/v0.3.1
 [0.3.0]: https://bitbucket.org/cessda/cessda.cmv.core/src/v0.3.0
 [0.2.0]: https://bitbucket.org/cessda/cessda.cmv.core/src/v0.2.0
