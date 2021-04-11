@@ -46,7 +46,7 @@ class DomSemiStructuredDdiProfileTest
 
 	@ParameterizedTest
 	@ValueSource(
-	        strings = { "/demo-documents/ddi-v25/cdc25_profile.xml", "/demo-documents/ddi-v25/cdc_122_profile.xml" } )
+			strings = { "/demo-documents/ddi-v25/cdc25_profile.xml", "/demo-documents/ddi-v25/cdc_122_profile.xml" } )
 	void constructMultilingualProfiles( String classpathLocation )
 	{
 		// given
@@ -58,18 +58,18 @@ class DomSemiStructuredDdiProfileTest
 		// then
 		assertThat( countConstraints( profile, CompilableXPathConstraint.class ), is( 61 ) );
 		assertThat( countConstraints( profile, PredicatelessXPathConstraint.class ), is( 61 ) );
-		assertThat( countConstraints( profile, RecommendedNodeConstraint.class ), is( 26 ) );
+		assertThat( countConstraints( profile, RecommendedNodeConstraint.class ), is( 27 ) );
 		assertThat( countConstraints( profile, MandatoryNodeConstraint.class ), is( 10 ) );
 		assertThat( countConstraints( profile, FixedValueNodeConstraint.class ), is( 5 ) );
-		assertThat( countConstraints( profile, OptionalNodeConstraint.class ), is( 25 ) );
-		assertThat( countConstraints( profile, MandatoryNodeIfParentPresentConstraint.class ), is( 13 ) );
-		assertThat( profile.getConstraints(), hasSize( 61 + 61 + 26 + 10 + 5 + 25 + 13 ) );
+		assertThat( countConstraints( profile, OptionalNodeConstraint.class ), is( 24 ) );
+		assertThat( countConstraints( profile, MandatoryNodeIfParentPresentConstraint.class ), is( 12 ) );
+		assertThat( profile.getConstraints(), hasSize( 61 + 61 + 27 + 10 + 5 + 24 + 12 ) );
 	}
 
 	@ParameterizedTest
 	@ValueSource(
-	        strings = { "/demo-documents/ddi-v25/cdc25_profile_mono.xml",
-	                "/demo-documents/ddi-v25/cdc_122_profile_mono.xml" } )
+			strings = { "/demo-documents/ddi-v25/cdc25_profile_mono.xml",
+					"/demo-documents/ddi-v25/cdc_122_profile_mono.xml" } )
 	void constructMonolingualProfiles( String classpathLocation )
 	{
 		// given
@@ -81,12 +81,12 @@ class DomSemiStructuredDdiProfileTest
 		// then
 		assertThat( countConstraints( profile, CompilableXPathConstraint.class ), is( 44 ) );
 		assertThat( countConstraints( profile, PredicatelessXPathConstraint.class ), is( 44 ) );
-		assertThat( countConstraints( profile, RecommendedNodeConstraint.class ), is( 21 ) );
+		assertThat( countConstraints( profile, RecommendedNodeConstraint.class ), is( 22 ) );
 		assertThat( countConstraints( profile, MandatoryNodeConstraint.class ), is( 8 ) );
 		assertThat( countConstraints( profile, FixedValueNodeConstraint.class ), is( 5 ) );
-		assertThat( countConstraints( profile, OptionalNodeConstraint.class ), is( 15 ) );
-		assertThat( countConstraints( profile, MandatoryNodeIfParentPresentConstraint.class ), is( 3 ) );
-		assertThat( profile.getConstraints(), hasSize( 44 + 44 + 21 + 8 + 5 + 15 + 3 ) );
+		assertThat( countConstraints( profile, OptionalNodeConstraint.class ), is( 14 ) );
+		assertThat( countConstraints( profile, MandatoryNodeIfParentPresentConstraint.class ), is( 2 ) );
+		assertThat( profile.getConstraints(), hasSize( 44 + 44 + 22 + 8 + 5 + 14 + 2 ) );
 	}
 
 	private int countConstraints( Profile.V10 profile, Class<? extends Constraint> clazz )
@@ -103,7 +103,8 @@ class DomSemiStructuredDdiProfileTest
 		File targetFile = new File( "target", "cdc25_profile_cmv.xml" );
 
 		// when
-		DomSemiStructuredDdiProfile profile = new DomSemiStructuredDdiProfile( factory.newDdiInputStream( newResource( sourceUrl ).readInputStream() ) );
+		DomSemiStructuredDdiProfile profile = new DomSemiStructuredDdiProfile(
+				factory.newDdiInputStream( newResource( sourceUrl ).readInputStream() ) );
 		ProfileV0 jaxbProfile = profile.toJaxbProfileV0();
 		jaxbProfile.saveAs( targetFile );
 		assertThat( targetFile, anExistingFile() );

@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Adapt to CVS API V2 (#70)
 - By CESSDA requested repairs (#68, #69)
 - Blank xml tags are shown as constraint violations (e.g. collDate, distDate) (#66)
+- Update CDC profiles to version 1.0.4 (#75)
 
 ## [0.3.1] - 2020-09-23
 
