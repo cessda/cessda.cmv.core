@@ -27,6 +27,8 @@ import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -65,12 +67,17 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 
 	private static final JAXBContext JAXBCONTEXT = newJaxbContext( ValidationRequestV0.class );
 
+	@Valid
+	@NotNull
 	@XmlElement( required = true )
 	private DocumentV0 document;
 
+	@Valid
+	@NotNull
 	@XmlElement( required = true )
 	private DocumentV0 profile;
 
+	@NotNull
 	@XmlElement( required = true )
 	private ValidationGateName validationGateName;
 

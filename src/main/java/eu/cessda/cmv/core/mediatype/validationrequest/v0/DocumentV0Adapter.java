@@ -21,6 +21,7 @@ package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
 import java.net.URI;
 
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
@@ -68,9 +69,11 @@ class DocumentV0Adapter extends XmlAdapter<DocumentV0Adapter.AdaptedDocument, Do
 
 	public static class AdaptedDocument
 	{
+		@NotNull
 		@XmlElement( required = true )
 		public URI uri;
 
+		@NotNull
 		@XmlElement( required = true )
 		@XmlCDATA
 		public String content;
