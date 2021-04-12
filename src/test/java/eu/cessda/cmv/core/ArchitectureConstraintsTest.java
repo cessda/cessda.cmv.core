@@ -21,6 +21,7 @@ package eu.cessda.cmv.core;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
+import org.gesis.commons.resource.ResourceLabelProvider;
 import org.gesis.commons.test.architecture.TestClassesRuleTest;
 import org.junit.jupiter.api.Test;
 
@@ -53,6 +54,7 @@ class ArchitectureConstraintsTest extends TestClassesRuleTest
 				.areNotInterfaces()
 				.and().areNotEnums()
 				.and().areNotAssignableFrom( ConstraintViolation.class )
+				.and().areAssignableFrom( ResourceLabelProvider.class )
 				.and().haveSimpleNameNotContaining( "CessdaMetadataValidatorFactory" )
 				.and().haveSimpleNameNotEndingWith( "Test" )
 				.and().haveSimpleNameNotEndingWith( "TestParameter" )
