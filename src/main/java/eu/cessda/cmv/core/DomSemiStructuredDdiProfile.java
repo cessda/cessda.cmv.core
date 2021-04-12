@@ -63,6 +63,7 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 
 			parseMandatoryNodeConstraint( usedNode );
 			parseOptionalNodeConstraint( usedNode );
+			parseNotBlankNodeConstraint( usedNode );
 			parseMaximumElementOccuranceConstraint( usedNode );
 			parseMandatoryNodeIfParentPresentConstraint( usedNode );
 			parseFixedValueNodeConstraint( usedNode );
@@ -249,6 +250,20 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 			if ( !extension.selectNodes( locationPath ).isEmpty() )
 			{
 				Constraint constraint = new MandatoryNodeIfParentPresentConstraint( getLocationPath( usedNode ) );
+				constraints.add( constraint );
+			}
+		} );
+	}
+
+	@SuppressWarnings( "squid:S1075" )
+	private void parseNotBlankNodeConstraint( org.w3c.dom.Node usedNode )
+	{
+		findExtension( usedNode ).ifPresent( extension ->
+		{
+			String locationPath = "/Constraints/NotBlankNodeConstraint";
+			if ( !extension.selectNodes( locationPath ).isEmpty() )
+			{
+				Constraint constraint = new NotBlankNodeConstraint( getLocationPath( usedNode ) );
 				constraints.add( constraint );
 			}
 		} );

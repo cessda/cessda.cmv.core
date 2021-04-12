@@ -19,18 +19,21 @@
  */
 package eu.cessda.cmv.core;
 
-class BasicValidationGate extends AbstractValidationGate
+import java.util.List;
+import java.util.stream.Collectors;
+
+class NotBlankNodeConstraint extends NodeConstraint
 {
-	/**
-	 * @deprecated Use
-	 *             {@link eu.cessda.cmv.core.CessdaMetadataValidatorFactory#newValidationGate(ValidationGateName)}
-	 *             instead
-	 */
-	@Deprecated
-	public BasicValidationGate()
+	public NotBlankNodeConstraint( String locationPath )
 	{
-		addConstraintType( NotBlankNodeConstraint.class.getCanonicalName() );
-		addConstraintType( MandatoryNodeConstraint.class.getCanonicalName() );
-		addConstraintType( MandatoryNodeIfParentPresentConstraint.class.getCanonicalName() );
+		super( locationPath );
+	}
+
+	@Override
+	@SuppressWarnings( "unchecked" )
+	public <T extends Validator> List<T> newValidators( Document document )
+	{
+		List<Node> nodes = ((Document.V10) document).getNodes( getLocationPath() );
+		return (List<T>) nodes.stream().map( NotBlankNodeValidator::new ).collect( Collectors.toList() );
 	}
 }

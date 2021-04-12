@@ -27,6 +27,7 @@ import eu.cessda.cmv.core.mediatype.profile.v0.CompilableXPathConstraintV0;
 import eu.cessda.cmv.core.mediatype.profile.v0.ConstraintV0;
 import eu.cessda.cmv.core.mediatype.profile.v0.MandatoryNodeConstraintV0;
 import eu.cessda.cmv.core.mediatype.profile.v0.MaximumElementOccuranceConstraintV0;
+import eu.cessda.cmv.core.mediatype.profile.v0.NotBlankNodeConstraintV0;
 import eu.cessda.cmv.core.mediatype.profile.v0.OptionalNodeConstraintV0;
 import eu.cessda.cmv.core.mediatype.profile.v0.PredicatelessXPathConstraintV0;
 import eu.cessda.cmv.core.mediatype.profile.v0.ProfileV0;
@@ -67,6 +68,11 @@ class DomProfile implements Profile.V10
 			{
 				parse( (MaximumElementOccuranceConstraintV0) constraint );
 			}
+			else if ( constraint instanceof NotBlankNodeConstraintV0 )
+			{
+				parse( (NotBlankNodeConstraintV0) constraint );
+			}
+
 		}
 	}
 
@@ -88,6 +94,12 @@ class DomProfile implements Profile.V10
 	private void parse( OptionalNodeConstraintV0 jaxbConstraint )
 	{
 		OptionalNodeConstraint constraint = new OptionalNodeConstraint( jaxbConstraint.getLocationPath() );
+		constraints.add( constraint );
+	}
+
+	private void parse( NotBlankNodeConstraintV0 jaxbConstraint )
+	{
+		NotBlankNodeConstraint constraint = new NotBlankNodeConstraint( jaxbConstraint.getLocationPath() );
 		constraints.add( constraint );
 	}
 

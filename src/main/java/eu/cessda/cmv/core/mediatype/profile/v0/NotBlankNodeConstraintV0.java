@@ -17,20 +17,20 @@
  * limitations under the License.
  * #L%
  */
-package eu.cessda.cmv.core;
+package eu.cessda.cmv.core.mediatype.profile.v0;
 
-class BasicValidationGate extends AbstractValidationGate
+public class NotBlankNodeConstraintV0 extends NodeConstraint
 {
-	/**
-	 * @deprecated Use
-	 *             {@link eu.cessda.cmv.core.CessdaMetadataValidatorFactory#newValidationGate(ValidationGateName)}
-	 *             instead
-	 */
-	@Deprecated
-	public BasicValidationGate()
+	public static final String JAXB_ELEMENT = "NotBlankNodeConstraint";
+	public static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
+
+	public NotBlankNodeConstraintV0()
 	{
-		addConstraintType( NotBlankNodeConstraint.class.getCanonicalName() );
-		addConstraintType( MandatoryNodeConstraint.class.getCanonicalName() );
-		addConstraintType( MandatoryNodeIfParentPresentConstraint.class.getCanonicalName() );
+		super( null );
+	}
+
+	public NotBlankNodeConstraintV0( String locationPath )
+	{
+		super( locationPath );
 	}
 }
