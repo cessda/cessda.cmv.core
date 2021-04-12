@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 *- Security (in case of vulnerabilities)*
 
 ## [0.4.0] - 2021-04-12
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4680640.svg)](https://doi.org/10.5281/zenodo.4680640)
 
 ### Added
 - Provide ValidationRequest representation (#73)
