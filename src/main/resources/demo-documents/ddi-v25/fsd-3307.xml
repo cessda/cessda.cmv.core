@@ -30,29 +30,24 @@
         <AuthEnty xml:lang="en">Office of Ombudsman for Children</AuthEnty>
       </rspStmt>
       <prodStmt>
-        <copyright xml:lang="fi">Tietoarkiston ja aineiston luovuttajan tekemän sopimuksen
-                    mukaisesti.</copyright>
-        <copyright xml:lang="en">In accordance with the agreement between FSD and the
-                    depositor.</copyright>
+        <copyright xml:lang="fi">Tietoarkiston ja aineiston luovuttajan tekemän sopimuksen mukaisesti.</copyright>
+        <copyright xml:lang="en">In accordance with the agreement between FSD and the depositor.</copyright>
         <prodDate xml:lang="fi">2020-03-02</prodDate>
         <prodDate xml:lang="en">2020-07-01</prodDate>
       </prodStmt>
       <distStmt>
         <distrbtr URI="https://www.fsd.tuni.fi/" abbr="FSD" xml:lang="fi">Yhteiskuntatieteellinen tietoarkisto</distrbtr>
-        <distrbtr URI="https://www.fsd.tuni.fi/" abbr="FSD" xml:lang="en">Finnish Social
-                    Science Data Archive</distrbtr>
+        <distrbtr URI="https://www.fsd.tuni.fi/" abbr="FSD" xml:lang="en">Finnish Social Science Data Archive</distrbtr>
         <distDate date="2020-03-02" xml:lang="fi"/>
         <distDate date="2020-07-01" xml:lang="en"/>
       </distStmt>
       <serStmt ID="yks" URI="https://services.fsd.uta.fi/catalogue/series/8?lang=fi" xml:lang="fi">
         <serName xml:lang="fi">Aineistot, jotka eivät kuulu sarjaan</serName>
-        <serInfo xml:lang="fi">Yksittäiset aineistot, jotka eivät kuulu mihinkään
-                    sarjaan.</serInfo>
+        <serInfo xml:lang="fi">Yksittäiset aineistot, jotka eivät kuulu mihinkään sarjaan.</serInfo>
       </serStmt>
       <serStmt URI="https://services.fsd.uta.fi/catalogue/series/8?lang=en" xml:lang="en">
         <serName xml:lang="en">Individual datasets</serName>
-        <serInfo xml:lang="en">Individual datasets that do not belong to any
-                    series.</serInfo>
+        <serInfo xml:lang="en">Individual datasets that do not belong to any series.</serInfo>
       </serStmt>
       <verStmt>
         <version date="2020-02-18" xml:lang="fi"/>
@@ -90,51 +85,8 @@
         <topcClas ID="Children" vocab="CESSDA Topic Classification" xml:lang="en">Children</topcClas>
         <topcClas ID="Leisure_tourism_and_sport" vocab="CESSDA Topic Classification" xml:lang="en">Leisure, tourism and sport</topcClas>
       </subject>
-      <abstract xml:lang="fi">Aineistossa selvitettiin 6-vuotiaiden lasten tapoja liikkua ja
-                viettää vapaa-aikaa. Aineistoa varten haastateltiin 6-vuotiaita ja heidän
-                vanhempiaan. Ensin lapsen vanhemmalta kysyttiin taustatietoja. Vanhemmat kertoivat
-                mitä lapset harrastavat, onko toiminta ohjattua ja kuinka paljon lapsi liikkuu. Jos
-                lapsi ei harrastanut minkäänlaista liikuntaa, vanhempaa pyydettiin arvioimaan syitä
-                harrastamattomuudelle. Liikuntaa harrastavien lasten vanhemmilta kysyttiin
-                erilaisten väittämien sopivuutta harrastukseen, kuten onko harrastus edullista,
-                lapsen mielestä kivaa, tai saako lapsi sitä kautta kavereita. Kaikilta vanhemmilta
-                kysyttiin myös, kuinka toivottavana he pitävät sitä, että lapsen liikuntaharrastus
-                olisi edellä mainittujen piirteiden kaltaista. Lopuksi vanhempia pyydettiin
-                arvioimaan, kuinka paljon lapsen liikkuminen ja urheileminen maksaa kuukaudessa.
-                Lapsia haastateltiin oman vanhempansa jälkeen. Lapset kertoivat, millä tavalla he
-                liikkuvat, ja mikä heidän mielestään liikkumisessa on kivaa. Lapset myös kertoivat,
-                millä tavalla he haluaisivat liikkua. Lapsia pyydettiin luettelemaan hyviä
-                liikuntapaikkoja. Lapsilta kysyttiin myös, onko kilpaileminen heidän mielestään
-                mukavaa vai ei. Seuraavaksi lapsilta kysyttiin, mikä viikonloppuisin on kivaa ja
-                mikä tylsää, ja millaista heidän harrastamassaan ohjatussa toiminnassa on. Lopuksi
-                lapsilta kysyttiin kavereista ja siitä, milloin kavereiden kanssa on kivaa ja
-                milloin ei. Taustamuuttujia aineistossa ovat lapsen äidinkieli ja sukupuoli,
-                asuinpaikka, vanhempien koulutustaso, taloudellinen toimeentulo sekä lasten ja
-                huoltajien lukumäärä perheessä.</abstract>
-      <abstract xml:lang="en">The study charted how 6-year-old Finnish children exercised and
-                spent their leisure time. Both the children and their parents were interviewed for
-                the study. First, the parents were asked about their children's hobbies,
-                participation in instructed activities during leisure time and the amount of
-                exercise they got. Reasons behind the child not exercising (e.g. they did not like
-                exercise, had no time or had a fear of not succeeding) were also charted. The
-                parents whose children did exercise were asked whether various statements
-                corresponded to their children's exercise activities and hobbies, for example,
-                whether the child found it fun and found friends through the hobby and whether the
-                instruction was of good quality educationally. Views were also charted on what the
-                parents thought the children's hobbies should be like by presenting the same
-                statements as in the previous question. Finally, the parents were asked to evaluate
-                how much they paid for their children's exercise activities and hobbies per month.
-                After the parents had completed their survey, the children were interviewed. They
-                were asked how they exercised, what was fun about exercising and how they would want
-                to exercise. The children's opinions on good exercise places were also charted, as
-                well as whether they thought competing with others was fun. The children's leisure
-                time was examined with questions concerning what they liked or did not like to do on
-                the weekends. They were also asked whether the exercise activities and hobbies their
-                parents had mentioned were fun for them, whether they had friends and whether they
-                wanted to have more friends. The background variables included the child's mother
-                tongue, age and area of residence, as well as the parents' level of education,
-                financial circumstances and the number of children and parents/guardians in the
-                family.</abstract>
+      <abstract xml:lang="fi">Aineistossa selvitettiin 6-vuotiaiden lasten tapoja liikkua ja viettää vapaa-aikaa. Aineistoa varten haastateltiin 6-vuotiaita ja heidän vanhempiaan. Ensin lapsen vanhemmalta kysyttiin taustatietoja. Vanhemmat kertoivat mitä lapset harrastavat, onko toiminta ohjattua ja kuinka paljon lapsi liikkuu. Jos lapsi ei harrastanut minkäänlaista liikuntaa, vanhempaa pyydettiin arvioimaan syitä harrastamattomuudelle. Liikuntaa harrastavien lasten vanhemmilta kysyttiin erilaisten väittämien sopivuutta harrastukseen, kuten onko harrastus edullista, lapsen mielestä kivaa, tai saako lapsi sitä kautta kavereita. Kaikilta vanhemmilta kysyttiin myös, kuinka toivottavana he pitävät sitä, että lapsen liikuntaharrastus olisi edellä mainittujen piirteiden kaltaista. Lopuksi vanhempia pyydettiin arvioimaan, kuinka paljon lapsen liikkuminen ja urheileminen maksaa kuukaudessa. Lapsia haastateltiin oman vanhempansa jälkeen. Lapset kertoivat, millä tavalla he liikkuvat, ja mikä heidän mielestään liikkumisessa on kivaa. Lapset myös kertoivat, millä tavalla he haluaisivat liikkua. Lapsia pyydettiin luettelemaan hyviä liikuntapaikkoja. Lapsilta kysyttiin myös, onko kilpaileminen heidän mielestään mukavaa vai ei. Seuraavaksi lapsilta kysyttiin, mikä viikonloppuisin on kivaa ja mikä tylsää, ja millaista heidän harrastamassaan ohjatussa toiminnassa on. Lopuksi lapsilta kysyttiin kavereista ja siitä, milloin kavereiden kanssa on kivaa ja milloin ei. Taustamuuttujia aineistossa ovat lapsen äidinkieli ja sukupuoli, asuinpaikka, vanhempien koulutustaso, taloudellinen toimeentulo sekä lasten ja huoltajien lukumäärä perheessä.</abstract>
+      <abstract xml:lang="en">The study charted how 6-year-old Finnish children exercised and spent their leisure time. Both the children and their parents were interviewed for the study. First, the parents were asked about their children's hobbies, participation in instructed activities during leisure time and the amount of exercise they got. Reasons behind the child not exercising (e.g. they did not like exercise, had no time or had a fear of not succeeding) were also charted. The parents whose children did exercise were asked whether various statements corresponded to their children's exercise activities and hobbies, for example, whether the child found it fun and found friends through the hobby and whether the instruction was of good quality educationally. Views were also charted on what the parents thought the children's hobbies should be like by presenting the same statements as in the previous question. Finally, the parents were asked to evaluate how much they paid for their children's exercise activities and hobbies per month. After the parents had completed their survey, the children were interviewed. They were asked how they exercised, what was fun about exercising and how they would want to exercise. The children's opinions on good exercise places were also charted, as well as whether they thought competing with others was fun. The children's leisure time was examined with questions concerning what they liked or did not like to do on the weekends. They were also asked whether the exercise activities and hobbies their parents had mentioned were fun for them, whether they had friends and whether they wanted to have more friends. The background variables included the child's mother tongue, age and area of residence, as well as the parents' level of education, financial circumstances and the number of children and parents/guardians in the family.</abstract>
       <sumDscr>
         <collDate date="2018-02-09" event="start" xml:lang="fi"/>
         <collDate date="2018-05-07" event="end" xml:lang="fi"/>
@@ -148,10 +100,8 @@
         </anlyUnit>
         <anlyUnit xml:lang="en">Individual<concept>Individual</concept>
         </anlyUnit>
-        <universe clusion="I" xml:lang="fi">Suomessa asuvat 6-vuotiaat lapset sekä heidän
-                    huoltajansa</universe>
-        <universe clusion="I" xml:lang="en">Children aged six and their parents/guardians
-                    living in Finland</universe>
+        <universe clusion="I" xml:lang="fi">Suomessa asuvat 6-vuotiaat lapset sekä heidän huoltajansa</universe>
+        <universe clusion="I" xml:lang="en">Children aged six and their parents/guardians living in Finland</universe>
         <dataKind xml:lang="fi">Kvantitatiivinen</dataKind>
         <dataKind xml:lang="en">Quantitative</dataKind>
       </sumDscr>
@@ -175,26 +125,17 @@
     <dataAccs>
       <useStmt>
         <restrctn xml:lang="fi">Aineisto on (A) vapaasti käytettävissä</restrctn>
-        <restrctn xml:lang="en">The dataset is (A) openly available for all users without
-                    registration.</restrctn>
-        <citReq xml:lang="fi">Aineistoon ja sen tekijöihin tulee viitata asianmukaisesti
-                    kaikissa julkaisuissa ja esityksissä, joissa aineistoa käytetään. Tietoarkiston
-                    antaman malliviittaustiedon voi merkitä lähdeluetteloon sellaisenaan tai sitä
-                    voi muokata julkaisun käytäntöjen mukaisesti.</citReq>
-        <citReq xml:lang="en">The data and its creators shall be cited in all publications
-                    and presentations for which the data have been used. The bibliographic citation
-                    may be in the form suggested by the archive or in the form required by the
-                    publication.</citReq>
-        <deposReq xml:lang="fi">Tietoarkistoon on lähetettävä viitetiedot kaikista
-                    julkaisuista, joissa käyttäjä hyödyntää aineistoa.</deposReq>
-        <deposReq xml:lang="en">The user shall notify the archive of all publications where
-                    she or he has used the data.</deposReq>
+        <restrctn xml:lang="en">The dataset is (A) openly available for all users without registration.</restrctn>
+        <citReq xml:lang="fi">Aineistoon ja sen tekijöihin tulee viitata asianmukaisesti kaikissa julkaisuissa ja esityksissä, joissa aineistoa käytetään. Tietoarkiston antaman malliviittaustiedon voi merkitä lähdeluetteloon sellaisenaan tai sitä voi muokata julkaisun käytäntöjen mukaisesti.</citReq>
+        <citReq xml:lang="en">The data and its creators shall be cited in all publications and presentations for which the data have been used. The bibliographic citation may be in the form suggested by the archive or in the form required by the publication.</citReq>
+        <deposReq xml:lang="fi">Tietoarkistoon on lähetettävä viitetiedot kaikista julkaisuista, joissa käyttäjä hyödyntää aineistoa.</deposReq>
+        <deposReq xml:lang="en">The user shall notify the archive of all publications where she or he has used the data.</deposReq>
       </useStmt>
     </dataAccs>
     <othrStdyMat>
-      <relPubl xml:lang="en"> Tuukkanen, Terhi (toim.) Lapsibarometri 2018. Lasten
-                kokemustiedon keräämisen metodologisia kysymyksiä. Lapsiasiavaltuutetun toimiston
-                julkaisuja 2018:4. <citation>
+      <relPubl xml:lang="en">
+        Tuukkanen, Terhi (toim.) Lapsibarometri 2018. Lasten kokemustiedon keräämisen metodologisia kysymyksiä. Lapsiasiavaltuutetun toimiston julkaisuja 2018:4.
+        <citation>
           <titlStmt>
             <titl xml:lang="en"/>
           </titlStmt>
@@ -204,9 +145,9 @@
           <holdings xml:lang="en"/>
         </citation>
       </relPubl>
-      <relPubl xml:lang="fi"> Tuukkanen, Terhi (toim.) Lapsibarometri 2018. Lasten
-                kokemustiedon keräämisen metodologisia kysymyksiä. Lapsiasiavaltuutetun toimiston
-                julkaisuja 2018:4. <citation>
+      <relPubl xml:lang="fi">
+        Tuukkanen, Terhi (toim.) Lapsibarometri 2018. Lasten kokemustiedon keräämisen metodologisia kysymyksiä. Lapsiasiavaltuutetun toimiston julkaisuja 2018:4.
+        <citation>
           <titlStmt>
             <titl xml:lang="fi"/>
           </titlStmt>
@@ -268,17 +209,11 @@
       </catgry>
     </var>
     <var name="BV2">
-      <labl xml:lang="fi">[bv2] Sopiiko teille, että tutkimushaastattelijamme tulee
-                haastattelemaan teitä ja lastanne lapsen vapaa-aikaan liittyen?</labl>
-      <labl xml:lang="en">[bv2] Is it ok that a survey researcher will interview you and your
-                child concerning the child's leisure time?</labl>
+      <labl xml:lang="fi">[bv2] Sopiiko teille, että tutkimushaastattelijamme tulee haastattelemaan teitä ja lastanne lapsen vapaa-aikaan liittyen?</labl>
+      <labl xml:lang="en">[bv2] Is it ok that a survey researcher will interview you and your child concerning the child's leisure time?</labl>
       <qstn ID="FSD3307-BV2-qstn_0">
-        <qstnLit xml:lang="fi">Sopiiko teille, että tutkimushaastattelijamme tulee
-                    haastattelemaan teitä ja lastanne lapsen vapaa-aikaan liittyen? Sinä saat
-                    vanhempana olla mukana lapsen haastattelussa.</qstnLit>
-        <qstnLit xml:lang="en">Is
-                    it ok that a survey researcher will interview you and your child concerning the
-                    child's leisure time?</qstnLit>
+        <qstnLit xml:lang="fi">Sopiiko teille, että tutkimushaastattelijamme tulee haastattelemaan teitä ja lastanne lapsen vapaa-aikaan liittyen? Sinä saat vanhempana olla mukana lapsen haastattelussa.</qstnLit>
+        <qstnLit xml:lang="en">Is it ok that a survey researcher will interview you and your child concerning the child's leisure time?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-BV2-cat_0" missing="N">
         <labl xml:lang="fi">Kyllä</labl>
@@ -294,8 +229,7 @@
       <labl xml:lang="en">[bv3] Mother tongue (from population register)</labl>
       <qstn ID="FSD3307-BV3-qstn_0">
         <qstnLit xml:lang="fi">Äidinkieli</qstnLit>
-        <qstnLit xml:lang="en">Mother tongue
-                    (from population register)</qstnLit>
+        <qstnLit xml:lang="en">Mother tongue (from population register)</qstnLit>
       </qstn>
       <catgry ID="FSD3307-BV3-cat_0" missing="N">
         <labl xml:lang="fi">Suomi</labl>
@@ -327,15 +261,11 @@
       </catgry>
     </var>
     <var name="T2">
-      <labl xml:lang="fi">[T2] Mikä seuraavista kuvaa parhaiten
-                asuinpaikkaasi/-paikkaanne?</labl>
-      <labl xml:lang="en">[t2] Which of the following best describes your residential
-                area?</labl>
+      <labl xml:lang="fi">[T2] Mikä seuraavista kuvaa parhaiten asuinpaikkaasi/-paikkaanne?</labl>
+      <labl xml:lang="en">[t2] Which of the following best describes your residential area?</labl>
       <qstn ID="FSD3307-T2-qstn_0">
-        <qstnLit xml:lang="fi">Mikä seuraavista kuvaa parhaiten
-                    asuinpaikkaasi/-paikkaanne?</qstnLit>
-        <qstnLit xml:lang="en">Which of the
-                    following best describes your residential area?</qstnLit>
+        <qstnLit xml:lang="fi">Mikä seuraavista kuvaa parhaiten asuinpaikkaasi/-paikkaanne?</qstnLit>
+        <qstnLit xml:lang="en">Which of the following best describes your residential area?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-T2-cat_0" missing="N">
         <labl xml:lang="fi">Ison kaupungin keskusta</labl>
@@ -400,12 +330,10 @@
     </var>
     <var name="T4">
       <labl xml:lang="fi">[T4] Montako huoltajaa taloudessanne on?</labl>
-      <labl xml:lang="en">[t4] How many parents or guardians are there in your
-                household?</labl>
+      <labl xml:lang="en">[t4] How many parents or guardians are there in your household?</labl>
       <qstn ID="FSD3307-T4-qstn_0">
         <qstnLit xml:lang="fi">Montako huoltajaa taloudessanne on?</qstnLit>
-        <qstnLit xml:lang="en">How many parents or guardians are there in your
-                    household?</qstnLit>
+        <qstnLit xml:lang="en">How many parents or guardians are there in your household?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-T4-cat_0" missing="N">
         <labl xml:lang="fi">Yksi</labl>
@@ -457,15 +385,11 @@
       </catgry>
     </var>
     <var name="T6">
-      <labl xml:lang="fi">[T6] Mikä on lapsen äidin tai muun naispuoleisen huoltajan
-                koulutustaso? (valitse ylin)</labl>
-      <labl xml:lang="en">[t6] Highest level of education attained by mother or other female
-                guardian</labl>
+      <labl xml:lang="fi">[T6] Mikä on lapsen äidin tai muun naispuoleisen huoltajan koulutustaso? (valitse ylin)</labl>
+      <labl xml:lang="en">[t6] Highest level of education attained by mother or other female guardian</labl>
       <qstn ID="FSD3307-T6-qstn_0">
-        <qstnLit xml:lang="fi">Mikä on lapsen äidin tai muun naispuoleisen huoltajan
-                    koulutustaso? (valitse ylin)</qstnLit>
-        <qstnLit xml:lang="en">Highest level of
-                    education attained by mother or other female guardian</qstnLit>
+        <qstnLit xml:lang="fi">Mikä on lapsen äidin tai muun naispuoleisen huoltajan koulutustaso? (valitse ylin)</qstnLit>
+        <qstnLit xml:lang="en">Highest level of education attained by mother or other female guardian</qstnLit>
       </qstn>
       <catgry ID="FSD3307-T6-cat_0" missing="N">
         <labl xml:lang="fi">Peruskoulu / keskikoulu / kansakoulu</labl>
@@ -497,15 +421,11 @@
       </catgry>
     </var>
     <var name="T7">
-      <labl xml:lang="fi">[T7] Mikä on lapsen isän tai muun miespuoleisen huoltajan
-                koulutustaso? (valitse ylin)</labl>
-      <labl xml:lang="en">[t7] Highest level of education attained by father or other male
-                guardian</labl>
+      <labl xml:lang="fi">[T7] Mikä on lapsen isän tai muun miespuoleisen huoltajan koulutustaso? (valitse ylin)</labl>
+      <labl xml:lang="en">[t7] Highest level of education attained by father or other male guardian</labl>
       <qstn ID="FSD3307-T7-qstn_0">
-        <qstnLit xml:lang="fi">Mikä on lapsen isän tai muun miespuoleisen huoltajan
-                    koulutustaso? (valitse ylin)</qstnLit>
-        <qstnLit xml:lang="en">Highest level of
-                    education attained by father or other male guardian</qstnLit>
+        <qstnLit xml:lang="fi">Mikä on lapsen isän tai muun miespuoleisen huoltajan koulutustaso? (valitse ylin)</qstnLit>
+        <qstnLit xml:lang="en">Highest level of education attained by father or other male guardian</qstnLit>
       </qstn>
       <catgry ID="FSD3307-T7-cat_0" missing="N">
         <labl xml:lang="fi">Peruskoulu / keskikoulu / kansakoulu</labl>
@@ -537,17 +457,11 @@
       </catgry>
     </var>
     <var name="T8">
-      <labl xml:lang="fi">[T8] Mikä seuraavista kuvaa parhaiten taloutesi taloudellista
-                tilannetta ja käytettävissänne olevaa rahamäärää tällä hetkellä?</labl>
-      <labl xml:lang="en">[t8] Which of the following best describes your household's current
-                financial circumstances and the amount of money at your disposal?</labl>
+      <labl xml:lang="fi">[T8] Mikä seuraavista kuvaa parhaiten taloutesi taloudellista tilannetta ja käytettävissänne olevaa rahamäärää tällä hetkellä?</labl>
+      <labl xml:lang="en">[t8] Which of the following best describes your household's current financial circumstances and the amount of money at your disposal?</labl>
       <qstn ID="FSD3307-T8-qstn_0">
-        <qstnLit xml:lang="fi">Mikä seuraavista kuvaa parhaiten taloutesi taloudellista
-                    tilannetta ja käytettävissänne olevaa rahamäärää tällä
-                    hetkellä?</qstnLit>
-        <qstnLit xml:lang="en">Which of the following best describes
-                    your household's current financial circumstances and the amount of money at your
-                    disposal?</qstnLit>
+        <qstnLit xml:lang="fi">Mikä seuraavista kuvaa parhaiten taloutesi taloudellista tilannetta ja käytettävissänne olevaa rahamäärää tällä hetkellä?</qstnLit>
+        <qstnLit xml:lang="en">Which of the following best describes your household's current financial circumstances and the amount of money at your disposal?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-T8-cat_0" missing="N">
         <labl xml:lang="fi">Tulen/tulemme erinomaisesti toimeen</labl>
@@ -575,15 +489,11 @@
       </catgry>
     </var>
     <var name="T9">
-      <labl xml:lang="fi">[T9] Entä mikä on oma suhteesi haastateltavaan 6-vuotiaaseen
-                lapseen?</labl>
-      <labl xml:lang="en">[t9] What is your relationship with the 6-year-old child to be
-                interviewed?</labl>
+      <labl xml:lang="fi">[T9] Entä mikä on oma suhteesi haastateltavaan 6-vuotiaaseen lapseen?</labl>
+      <labl xml:lang="en">[t9] What is your relationship with the 6-year-old child to be interviewed?</labl>
       <qstn ID="FSD3307-T9-qstn_0">
-        <qstnLit xml:lang="fi">Entä mikä on oma suhteesi haastateltavaan 6-vuotiaaseen
-                    lapseen?</qstnLit>
-        <qstnLit xml:lang="en">What is your relationship with the
-                    6-year-old child to be interviewed?</qstnLit>
+        <qstnLit xml:lang="fi">Entä mikä on oma suhteesi haastateltavaan 6-vuotiaaseen lapseen?</qstnLit>
+        <qstnLit xml:lang="en">What is your relationship with the 6-year-old child to be interviewed?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-T9-cat_0" missing="N">
         <labl xml:lang="fi">Äiti</labl>
@@ -608,14 +518,10 @@
     </var>
     <var name="K1">
       <labl xml:lang="fi">[K1] Onko lapsellasi jokin harrastus, aivan mikä tahansa?</labl>
-      <labl xml:lang="en">[k1] Does your child have a hobby (not only guided activities but
-                something the child considers a hobby even if he/she did it at home)?</labl>
+      <labl xml:lang="en">[k1] Does your child have a hobby (not only guided activities but something the child considers a hobby even if he/she did it at home)?</labl>
       <qstn ID="FSD3307-K1-qstn_0">
-        <qstnLit xml:lang="fi">Onko lapsellasi jokin harrastus, aivan mikä
-                    tahansa?</qstnLit>
-        <qstnLit xml:lang="en">Does your child have a hobby (not only
-                    guided activities but something the child considers a hobby even if he/she did
-                    it at home)?</qstnLit>
+        <qstnLit xml:lang="fi">Onko lapsellasi jokin harrastus, aivan mikä tahansa?</qstnLit>
+        <qstnLit xml:lang="en">Does your child have a hobby (not only guided activities but something the child considers a hobby even if he/she did it at home)?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K1-cat_0" missing="N">
         <labl xml:lang="fi">Kyllä</labl>
@@ -631,15 +537,11 @@
       </catgry>
     </var>
     <var name="K2">
-      <labl xml:lang="fi">[K2] Entä osallistuuko lapsesi säännöllisesti ohjattuun toimintaan
-                vapaa-ajalla?</labl>
-      <labl xml:lang="en">[k2] And does your child participate regularly in guided leisure
-                time activities?</labl>
+      <labl xml:lang="fi">[K2] Entä osallistuuko lapsesi säännöllisesti ohjattuun toimintaan vapaa-ajalla?</labl>
+      <labl xml:lang="en">[k2] And does your child participate regularly in guided leisure time activities?</labl>
       <qstn ID="FSD3307-K2-qstn_0">
-        <qstnLit xml:lang="fi">Entä osallistuuko lapsesi säännöllisesti ohjattuun toimintaan
-                    vapaa-ajalla?</qstnLit>
-        <qstnLit xml:lang="en">And does your child participate
-                    regularly in guided leisure time activities?</qstnLit>
+        <qstnLit xml:lang="fi">Entä osallistuuko lapsesi säännöllisesti ohjattuun toimintaan vapaa-ajalla?</qstnLit>
+        <qstnLit xml:lang="en">And does your child participate regularly in guided leisure time activities?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K2-cat_0" missing="N">
         <labl xml:lang="fi">Kyllä</labl>
@@ -655,39 +557,27 @@
       </catgry>
     </var>
     <var name="K3">
-      <labl xml:lang="fi">[K3] Millaiseen ohjattuun toimintaan lapsesi osallistuu?
-                (Avokysymys)</labl>
-      <labl xml:lang="en">[k3] What kinds of guided activities does your child participate in?
-                (Open-ended)</labl>
+      <labl xml:lang="fi">[K3] Millaiseen ohjattuun toimintaan lapsesi osallistuu? (Avokysymys)</labl>
+      <labl xml:lang="en">[k3] What kinds of guided activities does your child participate in? (Open-ended)</labl>
       <qstn ID="FSD3307-K3-qstn_0">
-        <qstnLit xml:lang="fi">Millaiseen ohjattuun toimintaan lapsesi
-                    osallistuu?</qstnLit>
-        <qstnLit xml:lang="en">What kinds of guided activities does
-                    your child participate in? (Open-ended)</qstnLit>
+        <qstnLit xml:lang="fi">Millaiseen ohjattuun toimintaan lapsesi osallistuu?</qstnLit>
+        <qstnLit xml:lang="en">What kinds of guided activities does your child participate in? (Open-ended)</qstnLit>
       </qstn>
     </var>
     <var name="K4">
-      <labl xml:lang="fi">[K4] Kuinka usein viikossa lapsesi osallistuu ohjattuun toimintaan?
-                (krt/vko)</labl>
-      <labl xml:lang="en">[k4] How many times per week does your child participate in guided
-                activities?</labl>
+      <labl xml:lang="fi">[K4] Kuinka usein viikossa lapsesi osallistuu ohjattuun toimintaan? (krt/vko)</labl>
+      <labl xml:lang="en">[k4] How many times per week does your child participate in guided activities?</labl>
       <qstn ID="FSD3307-K4-qstn_0">
-        <qstnLit xml:lang="fi">Kuinka usein viikossa lapsesi osallistuu ohjattuun
-                    toimintaan? (krt/vko)</qstnLit>
-        <qstnLit xml:lang="en">How many times per week
-                    does your child participate in guided activities?</qstnLit>
+        <qstnLit xml:lang="fi">Kuinka usein viikossa lapsesi osallistuu ohjattuun toimintaan? (krt/vko)</qstnLit>
+        <qstnLit xml:lang="en">How many times per week does your child participate in guided activities?</qstnLit>
       </qstn>
     </var>
     <var name="K5">
-      <labl xml:lang="fi">[K5] Osallistuuko lapsesi muualla kuin esikoulussa johonkin
-                sellaiseen toimintaan, jossa kilpaillaan tai esiinnytään?</labl>
-      <labl xml:lang="en">[k5] Aside from activities at his/her pre-school, does your child
-                participate in activities that require competing or performing?</labl>
+      <labl xml:lang="fi">[K5] Osallistuuko lapsesi muualla kuin esikoulussa johonkin sellaiseen toimintaan, jossa kilpaillaan tai esiinnytään?</labl>
+      <labl xml:lang="en">[k5] Aside from activities at his/her pre-school, does your child participate in activities that require competing or performing?</labl>
       <qstn ID="FSD3307-K5-qstn_0">
-        <qstnLit xml:lang="fi">Osallistuuko lapsesi muualla kuin esikoulussa johonkin
-                    sellaiseen toimintaan, jossa kilpaillaan tai esiinnytään?</qstnLit>
-        <qstnLit xml:lang="en">Aside from activities at his/her pre-school, does your child
-                    participate in activities that require competing or performing?</qstnLit>
+        <qstnLit xml:lang="fi">Osallistuuko lapsesi muualla kuin esikoulussa johonkin sellaiseen toimintaan, jossa kilpaillaan tai esiinnytään?</qstnLit>
+        <qstnLit xml:lang="en">Aside from activities at his/her pre-school, does your child participate in activities that require competing or performing?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K5-cat_0" missing="N">
         <labl xml:lang="fi">Kyllä</labl>
@@ -703,15 +593,11 @@
       </catgry>
     </var>
     <var name="K6">
-      <labl xml:lang="fi">[K6] Harrastaako lapsesi nykyisin jotain, aivan mitä tahansa
-                liikuntaa?</labl>
-      <labl xml:lang="en">[k6] Does your child currently engage in any kind of sport or other
-                physical activity?</labl>
+      <labl xml:lang="fi">[K6] Harrastaako lapsesi nykyisin jotain, aivan mitä tahansa liikuntaa?</labl>
+      <labl xml:lang="en">[k6] Does your child currently engage in any kind of sport or other physical activity?</labl>
       <qstn ID="FSD3307-K6-qstn_0">
-        <qstnLit xml:lang="fi">Harrastaako lapsesi nykyisin jotain, aivan mitä tahansa
-                    liikuntaa?</qstnLit>
-        <qstnLit xml:lang="en">Does your child currently engage in
-                    any kind of sport or other physical activity?</qstnLit>
+        <qstnLit xml:lang="fi">Harrastaako lapsesi nykyisin jotain, aivan mitä tahansa liikuntaa?</qstnLit>
+        <qstnLit xml:lang="en">Does your child currently engage in any kind of sport or other physical activity?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K6-cat_0" missing="N">
         <labl xml:lang="fi">Kyllä</labl>
@@ -727,14 +613,11 @@
       </catgry>
     </var>
     <var name="K6B">
-      <labl xml:lang="fi">[K6b] Onko lapsesi harrastama liikunta ohjaajan tai valmentajan
-                ohjaamaa?</labl>
+      <labl xml:lang="fi">[K6b] Onko lapsesi harrastama liikunta ohjaajan tai valmentajan ohjaamaa?</labl>
       <labl xml:lang="en">[k6b] Is the physical activity led by a coach/instructor?</labl>
       <qstn ID="FSD3307-K6B-qstn_0">
-        <qstnLit xml:lang="fi">Onko jokin lapsesi harrastama liikunta ohjaajan tai
-                    valmentajan ohjaamaa?</qstnLit>
-        <qstnLit xml:lang="en">Is the physical activity
-                    led by a coach/instructor?</qstnLit>
+        <qstnLit xml:lang="fi">Onko jokin lapsesi harrastama liikunta ohjaajan tai valmentajan ohjaamaa?</qstnLit>
+        <qstnLit xml:lang="en">Is the physical activity led by a coach/instructor?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K6B-cat_0" missing="N">
         <labl xml:lang="fi">Kyllä</labl>
@@ -754,15 +637,11 @@
       </catgry>
     </var>
     <var name="K7">
-      <labl xml:lang="fi">[K7] Mieti tavallista viikkoa. Merkitse, kuinka monena päivänä
-                lapsesi liikkuu vähintään 60 minuuttia päivässä?</labl>
-      <labl xml:lang="en">[k7] On average, on how many days per week does your child engage in
-                physical activity for more than 60 minutes?</labl>
+      <labl xml:lang="fi">[K7] Mieti tavallista viikkoa. Merkitse, kuinka monena päivänä lapsesi liikkuu vähintään 60 minuuttia päivässä?</labl>
+      <labl xml:lang="en">[k7] On average, on how many days per week does your child engage in physical activity for more than 60 minutes?</labl>
       <qstn ID="FSD3307-K7-qstn_0">
-        <qstnLit xml:lang="fi">Mieti tavallista viikkoa. Merkitse, kuinka monena päivänä
-                    lapsesi liikkuu vähintään 60 minuuttia päivässä?</qstnLit>
-        <qstnLit xml:lang="en">On average, on how many days per week does your child engage in physical
-                    activity for more than 60 minutes?</qstnLit>
+        <qstnLit xml:lang="fi">Mieti tavallista viikkoa. Merkitse, kuinka monena päivänä lapsesi liikkuu vähintään 60 minuuttia päivässä?</qstnLit>
+        <qstnLit xml:lang="en">On average, on how many days per week does your child engage in physical activity for more than 60 minutes?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K7-cat_0" missing="N">
         <labl xml:lang="fi">0 päivänä</labl>
@@ -802,16 +681,11 @@
       </catgry>
     </var>
     <var name="K8">
-      <labl xml:lang="fi">[K8] Kuinka paljon tavallisen viikon aikana lapsesi liikkuminen
-                sisältää rasittavaa liikuntaa yhteensä?</labl>
-      <labl xml:lang="en">[k8] On average, how many hours per week does your child engage in
-                strenuous physical activity?</labl>
+      <labl xml:lang="fi">[K8] Kuinka paljon tavallisen viikon aikana lapsesi liikkuminen sisältää rasittavaa liikuntaa yhteensä?</labl>
+      <labl xml:lang="en">[k8] On average, how many hours per week does your child engage in strenuous physical activity?</labl>
       <qstn ID="FSD3307-K8-qstn_0">
-        <qstnLit xml:lang="fi">Kuinka paljon tavallisen viikon aikana lapsesi liikkuminen
-                    sisältää rasittavaa liikuntaa yhteensä?</qstnLit>
-        <qstnLit xml:lang="en">On
-                    average, how many hours per week does your child engage in strenuous physical
-                    activity?</qstnLit>
+        <qstnLit xml:lang="fi">Kuinka paljon tavallisen viikon aikana lapsesi liikkuminen sisältää rasittavaa liikuntaa yhteensä?</qstnLit>
+        <qstnLit xml:lang="en">On average, how many hours per week does your child engage in strenuous physical activity?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K8-cat_0" missing="N">
         <labl xml:lang="fi">Ei lainkaan</labl>
@@ -843,17 +717,11 @@
       </catgry>
     </var>
     <var name="K9A">
-      <labl xml:lang="fi">[K9a] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko
-                arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat
-                hänelle ja perheellenne ovat? Lapsesi ei pidä liikunnasta</labl>
-      <labl xml:lang="en">[k9a] You indicated that your child does not engage in any physical
-                activity. How significant to him/her and your family the following reasons are for
-                not exercising? The child does not like physical activity / sports</labl>
+      <labl xml:lang="fi">[K9a] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat hänelle ja perheellenne ovat? Lapsesi ei pidä liikunnasta</labl>
+      <labl xml:lang="en">[k9a] You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? The child does not like physical activity / sports</labl>
       <qstn ID="FSD3307-K9A-qstn_0">
         <qstnLit xml:lang="fi">Lapsesi ei pidä liikunnasta</qstnLit>
-        <qstnLit xml:lang="en">You indicated that your child does not engage in any physical activity. How
-                    significant to him/her and your family the following reasons are for not
-                    exercising? The child does not like physical activity / sports</qstnLit>
+        <qstnLit xml:lang="en">You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? The child does not like physical activity / sports</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K9A-cat_0" missing="N">
         <labl xml:lang="fi">Ei lainkaan merkittävä</labl>
@@ -877,19 +745,11 @@
       </catgry>
     </var>
     <var name="K9B">
-      <labl xml:lang="fi">[K9b] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko
-                arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat
-                hänelle ja perheellenne ovat? Lapsellasi ei ole aikaa liikkua</labl>
-      <labl xml:lang="en">[k9b] You indicated that your child does not engage in any physical
-                activity. How significant to him/her and your family the following reasons are for
-                not exercising? The child does not have time to engage in physical activity /
-                sports</labl>
+      <labl xml:lang="fi">[K9b] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat hänelle ja perheellenne ovat? Lapsellasi ei ole aikaa liikkua</labl>
+      <labl xml:lang="en">[k9b] You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? The child does not have time to engage in physical activity / sports</labl>
       <qstn ID="FSD3307-K9B-qstn_0">
         <qstnLit xml:lang="fi">Lapsellasi ei ole aikaa liikkua</qstnLit>
-        <qstnLit xml:lang="en">You indicated that your child does not engage in any physical
-                    activity. How significant to him/her and your family the following reasons are
-                    for not exercising? The child does not have time to engage in physical activity
-                    / sports</qstnLit>
+        <qstnLit xml:lang="en">You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? The child does not have time to engage in physical activity / sports</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K9B-cat_0" missing="N">
         <labl xml:lang="fi">Ei lainkaan merkittävä</labl>
@@ -913,21 +773,11 @@
       </catgry>
     </var>
     <var name="K9C">
-      <labl xml:lang="fi">[K9c] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko
-                arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat
-                hänelle ja perheellenne ovat? Liikunta, jota lapsesi haluaisi harrastaa, on liian
-                kallista</labl>
-      <labl xml:lang="en">[k9c] You indicated that your child does not engage in any physical
-                activity. How significant to him/her and your family the following reasons are for
-                not exercising? The activity that the child would want to engage in is too
-                expensive</labl>
+      <labl xml:lang="fi">[K9c] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat hänelle ja perheellenne ovat? Liikunta, jota lapsesi haluaisi harrastaa, on liian kallista</labl>
+      <labl xml:lang="en">[k9c] You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? The activity that the child would want to engage in is too expensive</labl>
       <qstn ID="FSD3307-K9C-qstn_0">
-        <qstnLit xml:lang="fi">Liikunta, jota lapsesi haluaisi harrastaa, on liian
-                    kallista</qstnLit>
-        <qstnLit xml:lang="en">You indicated that your child does not
-                    engage in any physical activity. How significant to him/her and your family the
-                    following reasons are for not exercising? The activity that the child would want
-                    to engage in is too expensive</qstnLit>
+        <qstnLit xml:lang="fi">Liikunta, jota lapsesi haluaisi harrastaa, on liian kallista</qstnLit>
+        <qstnLit xml:lang="en">You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? The activity that the child would want to engage in is too expensive</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K9C-cat_0" missing="N">
         <labl xml:lang="fi">Ei lainkaan merkittävä</labl>
@@ -951,21 +801,11 @@
       </catgry>
     </var>
     <var name="K9D">
-      <labl xml:lang="fi">[K9d] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko
-                arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat
-                hänelle ja perheellenne ovat? Lapsellasi on vamma tai sairaus, joka vaikeuttaa
-                osallistumista</labl>
-      <labl xml:lang="en">[k9d] You indicated that your child does not engage in any physical
-                activity. How significant to him/her and your family the following reasons are for
-                not exercising? The child has a disability or illness that makes it difficult to
-                participate</labl>
+      <labl xml:lang="fi">[K9d] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat hänelle ja perheellenne ovat? Lapsellasi on vamma tai sairaus, joka vaikeuttaa osallistumista</labl>
+      <labl xml:lang="en">[k9d] You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? The child has a disability or illness that makes it difficult to participate</labl>
       <qstn ID="FSD3307-K9D-qstn_0">
-        <qstnLit xml:lang="fi">Lapsellasi on vamma tai sairaus, joka vaikeuttaa
-                    osallistumista</qstnLit>
-        <qstnLit xml:lang="en">You indicated that your child
-                    does not engage in any physical activity. How significant to him/her and your
-                    family the following reasons are for not exercising? The child has a disability
-                    or illness that makes it difficult to participate</qstnLit>
+        <qstnLit xml:lang="fi">Lapsellasi on vamma tai sairaus, joka vaikeuttaa osallistumista</qstnLit>
+        <qstnLit xml:lang="en">You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? The child has a disability or illness that makes it difficult to participate</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K9D-cat_0" missing="N">
         <labl xml:lang="fi">Ei lainkaan merkittävä</labl>
@@ -989,17 +829,11 @@
       </catgry>
     </var>
     <var name="K9E">
-      <labl xml:lang="fi">[K9e] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko
-                arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat
-                hänelle ja perheellenne ovat? Liikunta on liian kilpailuhenkistä</labl>
-      <labl xml:lang="en">[k9e] You indicated that your child does not engage in any physical
-                activity. How significant to him/her and your family the following reasons are for
-                not exercising? Physical activities / sports are too competitive</labl>
+      <labl xml:lang="fi">[K9e] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat hänelle ja perheellenne ovat? Liikunta on liian kilpailuhenkistä</labl>
+      <labl xml:lang="en">[k9e] You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? Physical activities / sports are too competitive</labl>
       <qstn ID="FSD3307-K9E-qstn_0">
         <qstnLit xml:lang="fi">Liikunta on liian kilpailuhenkistä</qstnLit>
-        <qstnLit xml:lang="en">You indicated that your child does not engage in any physical
-                    activity. How significant to him/her and your family the following reasons are
-                    for not exercising? Physical activities / sports are too competitive</qstnLit>
+        <qstnLit xml:lang="en">You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? Physical activities / sports are too competitive</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K9E-cat_0" missing="N">
         <labl xml:lang="fi">Ei lainkaan merkittävä</labl>
@@ -1023,21 +857,11 @@
       </catgry>
     </var>
     <var name="K9F">
-      <labl xml:lang="fi">[K9f] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko
-                arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat
-                hänelle ja perheellenne ovat? Lapsella (tai perheellänne) on huonoja kokemuksia
-                liikunnasta</labl>
-      <labl xml:lang="en">[k9f] You indicated that your child does not engage in any physical
-                activity. How significant to him/her and your family the following reasons are for
-                not exercising? The child (or your family) has negative experiences of physical
-                activity</labl>
+      <labl xml:lang="fi">[K9f] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat hänelle ja perheellenne ovat? Lapsella (tai perheellänne) on huonoja kokemuksia liikunnasta</labl>
+      <labl xml:lang="en">[k9f] You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? The child (or your family) has negative experiences of physical activity</labl>
       <qstn ID="FSD3307-K9F-qstn_0">
-        <qstnLit xml:lang="fi">Lapsella (tai perheellänne) on huonoja kokemuksia
-                    liikunnasta</qstnLit>
-        <qstnLit xml:lang="en">You indicated that your child does
-                    not engage in any physical activity. How significant to him/her and your family
-                    the following reasons are for not exercising? The child (or your family) has
-                    negative experiences of physical activity</qstnLit>
+        <qstnLit xml:lang="fi">Lapsella (tai perheellänne) on huonoja kokemuksia liikunnasta</qstnLit>
+        <qstnLit xml:lang="en">You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? The child (or your family) has negative experiences of physical activity</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K9F-cat_0" missing="N">
         <labl xml:lang="fi">Ei lainkaan merkittävä</labl>
@@ -1061,21 +885,11 @@
       </catgry>
     </var>
     <var name="K9G">
-      <labl xml:lang="fi">[K9g] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko
-                arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat
-                hänelle ja perheellenne ovat? Tarjolla ei ole sopivaa ohjattua liikuntatoimintaa tai
-                liikuntapaikkaa</labl>
-      <labl xml:lang="en">[k9g] You indicated that your child does not engage in any physical
-                activity. How significant to him/her and your family the following reasons are for
-                not exercising? Lack of suitable sports facilities or guided sports
-                activities</labl>
+      <labl xml:lang="fi">[K9g] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat hänelle ja perheellenne ovat? Tarjolla ei ole sopivaa ohjattua liikuntatoimintaa tai liikuntapaikkaa</labl>
+      <labl xml:lang="en">[k9g] You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? Lack of suitable sports facilities or guided sports activities</labl>
       <qstn ID="FSD3307-K9G-qstn_0">
-        <qstnLit xml:lang="fi">Tarjolla ei ole sopivaa ohjattua liikuntatoimintaa tai
-                    liikuntapaikkaa</qstnLit>
-        <qstnLit xml:lang="en">You indicated that your child
-                    does not engage in any physical activity. How significant to him/her and your
-                    family the following reasons are for not exercising? Lack of suitable sports
-                    facilities or guided sports activities</qstnLit>
+        <qstnLit xml:lang="fi">Tarjolla ei ole sopivaa ohjattua liikuntatoimintaa tai liikuntapaikkaa</qstnLit>
+        <qstnLit xml:lang="en">You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? Lack of suitable sports facilities or guided sports activities</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K9G-cat_0" missing="N">
         <labl xml:lang="fi">Ei lainkaan merkittävä</labl>
@@ -1099,18 +913,11 @@
       </catgry>
     </var>
     <var name="K9H">
-      <labl xml:lang="fi">[K9h] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko
-                arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat
-                hänelle ja perheellenne ovat? Harrastuskaverin puute</labl>
-      <labl xml:lang="en">[k9h] You indicated that your child does not engage in any physical
-                activity. How significant to him/her and your family the following reasons are for
-                not exercising? Lack of friend to do sports with</labl>
+      <labl xml:lang="fi">[K9h] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat hänelle ja perheellenne ovat? Harrastuskaverin puute</labl>
+      <labl xml:lang="en">[k9h] You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? Lack of friend to do sports with</labl>
       <qstn ID="FSD3307-K9H-qstn_0">
         <qstnLit xml:lang="fi">Harrastuskaverin puute</qstnLit>
-        <qstnLit xml:lang="en">You
-                    indicated that your child does not engage in any physical activity. How
-                    significant to him/her and your family the following reasons are for not
-                    exercising? Lack of friend to do sports with</qstnLit>
+        <qstnLit xml:lang="en">You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? Lack of friend to do sports with</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K9H-cat_0" missing="N">
         <labl xml:lang="fi">Ei lainkaan merkittävä</labl>
@@ -1134,17 +941,11 @@
       </catgry>
     </var>
     <var name="K9I">
-      <labl xml:lang="fi">[K9i] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko
-                arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat
-                hänelle ja perheellenne ovat? Lapsen pelko siitä, että ei pärjää</labl>
-      <labl xml:lang="en">[k9i] You indicated that your child does not engage in any physical
-                activity. How significant to him/her and your family the following reasons are for
-                not exercising? The child is afraid of not succeeding</labl>
+      <labl xml:lang="fi">[K9i] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat hänelle ja perheellenne ovat? Lapsen pelko siitä, että ei pärjää</labl>
+      <labl xml:lang="en">[k9i] You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? The child is afraid of not succeeding</labl>
       <qstn ID="FSD3307-K9I-qstn_0">
         <qstnLit xml:lang="fi">Lapsen pelko siitä, että ei pärjää</qstnLit>
-        <qstnLit xml:lang="en">You indicated that your child does not engage in any physical
-                    activity. How significant to him/her and your family the following reasons are
-                    for not exercising? The child is afraid of not succeeding</qstnLit>
+        <qstnLit xml:lang="en">You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? The child is afraid of not succeeding</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K9I-cat_0" missing="N">
         <labl xml:lang="fi">Ei lainkaan merkittävä</labl>
@@ -1168,20 +969,11 @@
       </catgry>
     </var>
     <var name="K9J">
-      <labl xml:lang="fi">[K9j] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko
-                arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat
-                hänelle ja perheellenne ovat? Lapsen pelko siitä, että ei tule hyväksytyksi
-                porukassa</labl>
-      <labl xml:lang="en">[k9j] You indicated that your child does not engage in any physical
-                activity. How significant to him/her and your family the following reasons are for
-                not exercising? The child is afraid of not being accepted in the group</labl>
+      <labl xml:lang="fi">[K9j] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat hänelle ja perheellenne ovat? Lapsen pelko siitä, että ei tule hyväksytyksi porukassa</labl>
+      <labl xml:lang="en">[k9j] You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? The child is afraid of not being accepted in the group</labl>
       <qstn ID="FSD3307-K9J-qstn_0">
-        <qstnLit xml:lang="fi">Lapsen pelko siitä, että ei tule hyväksytyksi
-                    porukassa</qstnLit>
-        <qstnLit xml:lang="en">You indicated that your child does not
-                    engage in any physical activity. How significant to him/her and your family the
-                    following reasons are for not exercising? The child is afraid of not being
-                    accepted in the group</qstnLit>
+        <qstnLit xml:lang="fi">Lapsen pelko siitä, että ei tule hyväksytyksi porukassa</qstnLit>
+        <qstnLit xml:lang="en">You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? The child is afraid of not being accepted in the group</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K9J-cat_0" missing="N">
         <labl xml:lang="fi">Ei lainkaan merkittävä</labl>
@@ -1205,18 +997,11 @@
       </catgry>
     </var>
     <var name="K9K">
-      <labl xml:lang="fi">[K9k] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko
-                arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat
-                hänelle ja perheellenne ovat? Muu syy, mikä?</labl>
-      <labl xml:lang="en">[k9k] You indicated that your child does not engage in any physical
-                activity. How significant to him/her and your family the following reasons are for
-                not exercising? Other reason</labl>
+      <labl xml:lang="fi">[K9k] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat hänelle ja perheellenne ovat? Muu syy, mikä?</labl>
+      <labl xml:lang="en">[k9k] You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? Other reason</labl>
       <qstn ID="FSD3307-K9K-qstn_0">
         <qstnLit xml:lang="fi">Muu syy, mikä?</qstnLit>
-        <qstnLit xml:lang="en">You indicated
-                    that your child does not engage in any physical activity. How significant to
-                    him/her and your family the following reasons are for not exercising? Other
-                    reason</qstnLit>
+        <qstnLit xml:lang="en">You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? Other reason</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K9K-cat_0" missing="N">
         <labl xml:lang="fi">Ei lainkaan merkittävä</labl>
@@ -1240,30 +1025,19 @@
       </catgry>
     </var>
     <var name="K9K_1">
-      <labl xml:lang="fi">[K9k_1] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko
-                arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat
-                hänelle ja perheellenne ovat? Mikä muu syy? (Avokysymys)</labl>
-      <labl xml:lang="en">[k9k_1] You indicated that your child does not engage in any
-                physical activity. How significant to him/her and your family the following reasons
-                are for not exercising? Other reason, please specify (open-ended)</labl>
+      <labl xml:lang="fi">[K9k_1] Sanoit, ettei lapsesi harrasta mitään liikuntaa. Osaisitko arvioida, kuinka merkittäviä syitä olla harrastamatta liikuntaa seuraavat asiat hänelle ja perheellenne ovat? Mikä muu syy? (Avokysymys)</labl>
+      <labl xml:lang="en">[k9k_1] You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? Other reason, please specify (open-ended)</labl>
       <qstn ID="FSD3307-K9K_1-qstn_0">
         <qstnLit xml:lang="fi">Mikä muu syy?</qstnLit>
-        <qstnLit xml:lang="en">You indicated
-                    that your child does not engage in any physical activity. How significant to
-                    him/her and your family the following reasons are for not exercising? Other
-                    reason, please specify (open-ended)</qstnLit>
+        <qstnLit xml:lang="en">You indicated that your child does not engage in any physical activity. How significant to him/her and your family the following reasons are for not exercising? Other reason, please specify (open-ended)</qstnLit>
       </qstn>
     </var>
     <var name="K10A">
-      <labl xml:lang="fi">[K10a] Miten hyvin seuraavat kuvaukset sopivat lapsesi
-                tämänhetkiseen liikuntaharrastukseen? Se on edullista</labl>
-      <labl xml:lang="en">[k10a] How well do the following describe your child's current hobby
-                that involves sports / physical activity? It does not cost too much</labl>
+      <labl xml:lang="fi">[K10a] Miten hyvin seuraavat kuvaukset sopivat lapsesi tämänhetkiseen liikuntaharrastukseen? Se on edullista</labl>
+      <labl xml:lang="en">[k10a] How well do the following describe your child's current hobby that involves sports / physical activity? It does not cost too much</labl>
       <qstn ID="FSD3307-K10A-qstn_0">
         <qstnLit xml:lang="fi">Se on edullista</qstnLit>
-        <qstnLit xml:lang="en">How well do
-                    the following describe your child's current hobby that involves sports /
-                    physical activity? It does not cost too much</qstnLit>
+        <qstnLit xml:lang="en">How well do the following describe your child's current hobby that involves sports / physical activity? It does not cost too much</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K10A-cat_0" missing="N">
         <labl xml:lang="fi">Ei kuvaa ollenkaan</labl>
@@ -1291,14 +1065,11 @@
       </catgry>
     </var>
     <var name="K10B">
-      <labl xml:lang="fi">[K10b] Miten hyvin seuraavat kuvaukset sopivat lapsesi
-                tämänhetkiseen liikuntaharrastukseen? Se on lapsen mielestä kivaa</labl>
-      <labl xml:lang="en">[k10b] How well do the following describe your child's current hobby
-                that involves sports / physical activity? The child enjoys it</labl>
+      <labl xml:lang="fi">[K10b] Miten hyvin seuraavat kuvaukset sopivat lapsesi tämänhetkiseen liikuntaharrastukseen? Se on lapsen mielestä kivaa</labl>
+      <labl xml:lang="en">[k10b] How well do the following describe your child's current hobby that involves sports / physical activity? The child enjoys it</labl>
       <qstn ID="FSD3307-K10B-qstn_0">
         <qstnLit xml:lang="fi">Se on lapsen mielestä kivaa</qstnLit>
-        <qstnLit xml:lang="en">How well do the following describe your child's current hobby that involves
-                    sports / physical activity? The child enjoys it</qstnLit>
+        <qstnLit xml:lang="en">How well do the following describe your child's current hobby that involves sports / physical activity? The child enjoys it</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K10B-cat_0" missing="N">
         <labl xml:lang="fi">Ei kuvaa ollenkaan</labl>
@@ -1322,16 +1093,11 @@
       </catgry>
     </var>
     <var name="K10C">
-      <labl xml:lang="fi">[K10c] Miten hyvin seuraavat kuvaukset sopivat lapsesi
-                tämänhetkiseen liikuntaharrastukseen? Se on tarpeeksi lähellä</labl>
-      <labl xml:lang="en">[k10c] How well do the following describe your child's current hobby
-                that involves sports / physical activity? It is sufficiently close to our
-                home</labl>
+      <labl xml:lang="fi">[K10c] Miten hyvin seuraavat kuvaukset sopivat lapsesi tämänhetkiseen liikuntaharrastukseen? Se on tarpeeksi lähellä</labl>
+      <labl xml:lang="en">[k10c] How well do the following describe your child's current hobby that involves sports / physical activity? It is sufficiently close to our home</labl>
       <qstn ID="FSD3307-K10C-qstn_0">
         <qstnLit xml:lang="fi">Se on tarpeeksi lähellä</qstnLit>
-        <qstnLit xml:lang="en">How
-                    well do the following describe your child's current hobby that involves sports /
-                    physical activity? It is sufficiently close to our home</qstnLit>
+        <qstnLit xml:lang="en">How well do the following describe your child's current hobby that involves sports / physical activity? It is sufficiently close to our home</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K10C-cat_0" missing="N">
         <labl xml:lang="fi">Ei kuvaa ollenkaan</labl>
@@ -1359,19 +1125,11 @@
       </catgry>
     </var>
     <var name="K10D">
-      <labl xml:lang="fi">[K10d] Miten hyvin seuraavat kuvaukset sopivat lapsesi
-                tämänhetkiseen liikuntaharrastukseen? Ohjaus/valmennus on laadukasta urheilijaksi
-                tulemisen kannalta</labl>
-      <labl xml:lang="en">[k10d] How well do the following describe your child's current hobby
-                that involves sports / physical activity? The quality of instruction/coaching is
-                sufficiently high should the child want to become an athlete</labl>
+      <labl xml:lang="fi">[K10d] Miten hyvin seuraavat kuvaukset sopivat lapsesi tämänhetkiseen liikuntaharrastukseen? Ohjaus/valmennus on laadukasta urheilijaksi tulemisen kannalta</labl>
+      <labl xml:lang="en">[k10d] How well do the following describe your child's current hobby that involves sports / physical activity? The quality of instruction/coaching is sufficiently high should the child want to become an athlete</labl>
       <qstn ID="FSD3307-K10D-qstn_0">
-        <qstnLit xml:lang="fi">Ohjaus/valmennus on laadukasta urheilijaksi tulemisen
-                    kannalta</qstnLit>
-        <qstnLit xml:lang="en">How well do the following describe your
-                    child's current hobby that involves sports / physical activity? The quality of
-                    instruction/coaching is sufficiently high should the child want to become an
-                    athlete</qstnLit>
+        <qstnLit xml:lang="fi">Ohjaus/valmennus on laadukasta urheilijaksi tulemisen kannalta</qstnLit>
+        <qstnLit xml:lang="en">How well do the following describe your child's current hobby that involves sports / physical activity? The quality of instruction/coaching is sufficiently high should the child want to become an athlete</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K10D-cat_0" missing="N">
         <labl xml:lang="fi">Ei kuvaa ollenkaan</labl>
@@ -1399,18 +1157,11 @@
       </catgry>
     </var>
     <var name="K10E">
-      <labl xml:lang="fi">[K10e] Miten hyvin seuraavat kuvaukset sopivat lapsesi
-                tämänhetkiseen liikuntaharrastukseen? Ohjaus/valmennus on laadukasta
-                kasvatuksellisesti</labl>
-      <labl xml:lang="en">[k10e] How well do the following describe your child's current hobby
-                that involves sports / physical activity? The quality of instruction/coaching is
-                high in an educational sense</labl>
+      <labl xml:lang="fi">[K10e] Miten hyvin seuraavat kuvaukset sopivat lapsesi tämänhetkiseen liikuntaharrastukseen? Ohjaus/valmennus on laadukasta kasvatuksellisesti</labl>
+      <labl xml:lang="en">[k10e] How well do the following describe your child's current hobby that involves sports / physical activity? The quality of instruction/coaching is high in an educational sense</labl>
       <qstn ID="FSD3307-K10E-qstn_0">
-        <qstnLit xml:lang="fi">Ohjaus/valmennus on laadukasta
-                    kasvatuksellisesti</qstnLit>
-        <qstnLit xml:lang="en">How well do the following
-                    describe your child's current hobby that involves sports / physical activity?
-                    The quality of instruction/coaching is high in an educational sense</qstnLit>
+        <qstnLit xml:lang="fi">Ohjaus/valmennus on laadukasta kasvatuksellisesti</qstnLit>
+        <qstnLit xml:lang="en">How well do the following describe your child's current hobby that involves sports / physical activity? The quality of instruction/coaching is high in an educational sense</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K10E-cat_0" missing="N">
         <labl xml:lang="fi">Ei kuvaa ollenkaan</labl>
@@ -1434,17 +1185,11 @@
       </catgry>
     </var>
     <var name="K10F">
-      <labl xml:lang="fi">[K10f] Miten hyvin seuraavat kuvaukset sopivat lapsesi
-                tämänhetkiseen liikuntaharrastukseen? Siinä opitaan liikkumaan</labl>
-      <labl xml:lang="en">[k10f] How well do the following describe your child's current hobby
-                that involves sports / physical activity? It teaches the child physical skills / to
-                be physically active</labl>
+      <labl xml:lang="fi">[K10f] Miten hyvin seuraavat kuvaukset sopivat lapsesi tämänhetkiseen liikuntaharrastukseen? Siinä opitaan liikkumaan</labl>
+      <labl xml:lang="en">[k10f] How well do the following describe your child's current hobby that involves sports / physical activity? It teaches the child physical skills / to be physically active</labl>
       <qstn ID="FSD3307-K10F-qstn_0">
         <qstnLit xml:lang="fi">Siinä opitaan liikkumaan</qstnLit>
-        <qstnLit xml:lang="en">How
-                    well do the following describe your child's current hobby that involves sports /
-                    physical activity? It teaches the child physical skills / to be physically
-                    active</qstnLit>
+        <qstnLit xml:lang="en">How well do the following describe your child's current hobby that involves sports / physical activity? It teaches the child physical skills / to be physically active</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K10F-cat_0" missing="N">
         <labl xml:lang="fi">Ei kuvaa ollenkaan</labl>
@@ -1468,16 +1213,11 @@
       </catgry>
     </var>
     <var name="K10G">
-      <labl xml:lang="fi">[K10g] Miten hyvin seuraavat kuvaukset sopivat lapsesi
-                tämänhetkiseen liikuntaharrastukseen? Siinä tähdätään huippu-urheilijaksi</labl>
-      <labl xml:lang="en">[k10g] How well do the following describe your child's current hobby
-                that involves sports / physical activity? it aims to develop the child into a
-                professional athlete</labl>
+      <labl xml:lang="fi">[K10g] Miten hyvin seuraavat kuvaukset sopivat lapsesi tämänhetkiseen liikuntaharrastukseen? Siinä tähdätään huippu-urheilijaksi</labl>
+      <labl xml:lang="en">[k10g] How well do the following describe your child's current hobby that involves sports / physical activity? it aims to develop the child into a professional athlete</labl>
       <qstn ID="FSD3307-K10G-qstn_0">
         <qstnLit xml:lang="fi">Siinä tähdätään huippu-urheilijaksi</qstnLit>
-        <qstnLit xml:lang="en">How well do the following describe your child's current hobby that
-                    involves sports / physical activity? it aims to develop the child into a
-                    professional athlete</qstnLit>
+        <qstnLit xml:lang="en">How well do the following describe your child's current hobby that involves sports / physical activity? it aims to develop the child into a professional athlete</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K10G-cat_0" missing="N">
         <labl xml:lang="fi">Ei kuvaa ollenkaan</labl>
@@ -1505,14 +1245,11 @@
       </catgry>
     </var>
     <var name="K10H">
-      <labl xml:lang="fi">[K10h] Miten hyvin seuraavat kuvaukset sopivat lapsesi
-                tämänhetkiseen liikuntaharrastukseen? Se on mielekäs ajanviettotapa</labl>
-      <labl xml:lang="en">[k10h] How well do the following describe your child's current hobby
-                that involves sports / physical activity? It is a nice way to spend time</labl>
+      <labl xml:lang="fi">[K10h] Miten hyvin seuraavat kuvaukset sopivat lapsesi tämänhetkiseen liikuntaharrastukseen? Se on mielekäs ajanviettotapa</labl>
+      <labl xml:lang="en">[k10h] How well do the following describe your child's current hobby that involves sports / physical activity? It is a nice way to spend time</labl>
       <qstn ID="FSD3307-K10H-qstn_0">
         <qstnLit xml:lang="fi">Se on mielekäs ajanviettotapa</qstnLit>
-        <qstnLit xml:lang="en">How well do the following describe your child's current hobby that involves
-                    sports / physical activity? It is a nice way to spend time</qstnLit>
+        <qstnLit xml:lang="en">How well do the following describe your child's current hobby that involves sports / physical activity? It is a nice way to spend time</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K10H-cat_0" missing="N">
         <labl xml:lang="fi">Ei kuvaa ollenkaan</labl>
@@ -1536,15 +1273,11 @@
       </catgry>
     </var>
     <var name="K10I">
-      <labl xml:lang="fi">[K10i] Miten hyvin seuraavat kuvaukset sopivat lapsesi
-                tämänhetkiseen liikuntaharrastukseen? Lapseni ei tarvitse olla yksin</labl>
-      <labl xml:lang="en">[k10i] How well do the following describe your child's current hobby
-                that involves sports / physical activity? The child does not have to be alone</labl>
+      <labl xml:lang="fi">[K10i] Miten hyvin seuraavat kuvaukset sopivat lapsesi tämänhetkiseen liikuntaharrastukseen? Lapseni ei tarvitse olla yksin</labl>
+      <labl xml:lang="en">[k10i] How well do the following describe your child's current hobby that involves sports / physical activity? The child does not have to be alone</labl>
       <qstn ID="FSD3307-K10I-qstn_0">
         <qstnLit xml:lang="fi">Lapseni ei tarvitse olla yksin</qstnLit>
-        <qstnLit xml:lang="en">How well do the following describe your child's current hobby that
-                    involves sports / physical activity? The child does not have to be
-                    alone</qstnLit>
+        <qstnLit xml:lang="en">How well do the following describe your child's current hobby that involves sports / physical activity? The child does not have to be alone</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K10I-cat_0" missing="N">
         <labl xml:lang="fi">Ei kuvaa ollenkaan</labl>
@@ -1572,17 +1305,11 @@
       </catgry>
     </var>
     <var name="K10J">
-      <labl xml:lang="fi">[K10j] Miten hyvin seuraavat kuvaukset sopivat lapsesi
-                tämänhetkiseen liikuntaharrastukseen? Harrastuksen kautta lapseni saa
-                kavereita</labl>
-      <labl xml:lang="en">[k10j] How well do the following describe your child's current hobby
-                that involves sports / physical activity? The child gets friends through the
-                hobby</labl>
+      <labl xml:lang="fi">[K10j] Miten hyvin seuraavat kuvaukset sopivat lapsesi tämänhetkiseen liikuntaharrastukseen? Harrastuksen kautta lapseni saa kavereita</labl>
+      <labl xml:lang="en">[k10j] How well do the following describe your child's current hobby that involves sports / physical activity? The child gets friends through the hobby</labl>
       <qstn ID="FSD3307-K10J-qstn_0">
         <qstnLit xml:lang="fi">Harrastuksen kautta lapseni saa kavereita</qstnLit>
-        <qstnLit xml:lang="en">How well do the following describe your child's current hobby that
-                    involves sports / physical activity? The child gets friends through the
-                    hobby</qstnLit>
+        <qstnLit xml:lang="en">How well do the following describe your child's current hobby that involves sports / physical activity? The child gets friends through the hobby</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K10J-cat_0" missing="N">
         <labl xml:lang="fi">Ei kuvaa ollenkaan</labl>
@@ -1610,16 +1337,11 @@
       </catgry>
     </var>
     <var name="K11A">
-      <labl xml:lang="fi">[K11a] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla?
-                Kuinka toivottavana pidät sitä, että... Se on edullista</labl>
-      <labl xml:lang="en">[k11a] And what should your child's physical activity / hobby
-                preferably be like? How desirable do you consider that... it does not cost too
-                much</labl>
+      <labl xml:lang="fi">[K11a] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla? Kuinka toivottavana pidät sitä, että... Se on edullista</labl>
+      <labl xml:lang="en">[k11a] And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... it does not cost too much</labl>
       <qstn ID="FSD3307-K11A-qstn_0">
         <qstnLit xml:lang="fi">Se on edullista</qstnLit>
-        <qstnLit xml:lang="en">And what
-                    should your child's physical activity / hobby preferably be like? How desirable
-                    do you consider that... it does not cost too much</qstnLit>
+        <qstnLit xml:lang="en">And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... it does not cost too much</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K11A-cat_0" missing="N">
         <labl xml:lang="fi">Ei toivottavaa</labl>
@@ -1643,14 +1365,11 @@
       </catgry>
     </var>
     <var name="K11B">
-      <labl xml:lang="fi">[K11b] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla?
-                Kuinka toivottavana pidät sitä, että... Se on lapsen mielestä kivaa</labl>
-      <labl xml:lang="en">[k11b] And what should your child's physical activity / hobby
-                preferably be like? How desirable do you consider that... the child enjoys it</labl>
+      <labl xml:lang="fi">[K11b] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla? Kuinka toivottavana pidät sitä, että... Se on lapsen mielestä kivaa</labl>
+      <labl xml:lang="en">[k11b] And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... the child enjoys it</labl>
       <qstn ID="FSD3307-K11B-qstn_0">
         <qstnLit xml:lang="fi">Se on lapsen mielestä kivaa</qstnLit>
-        <qstnLit xml:lang="en">And what should your child's physical activity / hobby preferably be like? How
-                    desirable do you consider that... the child enjoys it</qstnLit>
+        <qstnLit xml:lang="en">And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... the child enjoys it</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K11B-cat_0" missing="N">
         <labl xml:lang="fi">Ei toivottavaa</labl>
@@ -1666,17 +1385,11 @@
       </catgry>
     </var>
     <var name="K11C">
-      <labl xml:lang="fi">[K11c] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla?
-                Kuinka toivottavana pidät sitä, että... Se on tarpeeksi lähellä</labl>
-      <labl xml:lang="en">[k11c] And what should your child's physical activity / hobby
-                preferably be like? How desirable do you consider that... it is sufficiently close
-                to your home</labl>
+      <labl xml:lang="fi">[K11c] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla? Kuinka toivottavana pidät sitä, että... Se on tarpeeksi lähellä</labl>
+      <labl xml:lang="en">[k11c] And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... it is sufficiently close to your home</labl>
       <qstn ID="FSD3307-K11C-qstn_0">
         <qstnLit xml:lang="fi">Se on tarpeeksi lähellä</qstnLit>
-        <qstnLit xml:lang="en">And
-                    what should your child's physical activity / hobby preferably be like? How
-                    desirable do you consider that... it is sufficiently close to your
-                    home</qstnLit>
+        <qstnLit xml:lang="en">And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... it is sufficiently close to your home</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K11C-cat_0" missing="N">
         <labl xml:lang="fi">Ei toivottavaa</labl>
@@ -1700,20 +1413,11 @@
       </catgry>
     </var>
     <var name="K11D">
-      <labl xml:lang="fi">[K11d] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla?
-                Kuinka toivottavana pidät sitä, että... Ohjaus/valmennus on laadukasta urheilijaksi
-                tulemisen kannalta</labl>
-      <labl xml:lang="en">[k11d] And what should your child's physical activity / hobby
-                preferably be like? How desirable do you consider that... the quality of
-                instruction/coaching is sufficiently high should the child want to become an
-                athlete</labl>
+      <labl xml:lang="fi">[K11d] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla? Kuinka toivottavana pidät sitä, että... Ohjaus/valmennus on laadukasta urheilijaksi tulemisen kannalta</labl>
+      <labl xml:lang="en">[k11d] And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... the quality of instruction/coaching is sufficiently high should the child want to become an athlete</labl>
       <qstn ID="FSD3307-K11D-qstn_0">
-        <qstnLit xml:lang="fi">Ohjaus/valmennus on laadukasta urheilijaksi tulemisen
-                    kannalta</qstnLit>
-        <qstnLit xml:lang="en">And what should your child's physical
-                    activity / hobby preferably be like? How desirable do you consider that... the
-                    quality of instruction/coaching is sufficiently high should the child want to
-                    become an athlete</qstnLit>
+        <qstnLit xml:lang="fi">Ohjaus/valmennus on laadukasta urheilijaksi tulemisen kannalta</qstnLit>
+        <qstnLit xml:lang="en">And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... the quality of instruction/coaching is sufficiently high should the child want to become an athlete</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K11D-cat_0" missing="N">
         <labl xml:lang="fi">Ei toivottavaa</labl>
@@ -1737,19 +1441,11 @@
       </catgry>
     </var>
     <var name="K11E">
-      <labl xml:lang="fi">[K11e] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla?
-                Kuinka toivottavana pidät sitä, että... Ohjaus/valmennus on laadukasta
-                kasvatuksellisesti</labl>
-      <labl xml:lang="en">[k11e] And what should your child's physical activity / hobby
-                preferably be like? How desirable do you consider that... the quality of
-                instruction/coaching is high in an educational sense</labl>
+      <labl xml:lang="fi">[K11e] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla? Kuinka toivottavana pidät sitä, että... Ohjaus/valmennus on laadukasta kasvatuksellisesti</labl>
+      <labl xml:lang="en">[k11e] And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... the quality of instruction/coaching is high in an educational sense</labl>
       <qstn ID="FSD3307-K11E-qstn_0">
-        <qstnLit xml:lang="fi">Ohjaus/valmennus on laadukasta
-                    kasvatuksellisesti</qstnLit>
-        <qstnLit xml:lang="en">And what should your child's
-                    physical activity / hobby preferably be like? How desirable do you consider
-                    that... the quality of instruction/coaching is high in an educational
-                    sense</qstnLit>
+        <qstnLit xml:lang="fi">Ohjaus/valmennus on laadukasta kasvatuksellisesti</qstnLit>
+        <qstnLit xml:lang="en">And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... the quality of instruction/coaching is high in an educational sense</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K11E-cat_0" missing="N">
         <labl xml:lang="fi">Ei toivottavaa</labl>
@@ -1777,17 +1473,11 @@
       </catgry>
     </var>
     <var name="K11F">
-      <labl xml:lang="fi">[K11f] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla?
-                Kuinka toivottavana pidät sitä, että... Siinä opitaan liikkumaan</labl>
-      <labl xml:lang="en">[k11f] And what should your child's physical activity / hobby
-                preferably be like? How desirable do you consider that... it teaches the child
-                physical skills / to be physically active</labl>
+      <labl xml:lang="fi">[K11f] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla? Kuinka toivottavana pidät sitä, että... Siinä opitaan liikkumaan</labl>
+      <labl xml:lang="en">[k11f] And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... it teaches the child physical skills / to be physically active</labl>
       <qstn ID="FSD3307-K11F-qstn_0">
         <qstnLit xml:lang="fi">Siinä opitaan liikkumaan</qstnLit>
-        <qstnLit xml:lang="en">And
-                    what should your child's physical activity / hobby preferably be like? How
-                    desirable do you consider that... it teaches the child physical skills / to be
-                    physically active</qstnLit>
+        <qstnLit xml:lang="en">And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... it teaches the child physical skills / to be physically active</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K11F-cat_0" missing="N">
         <labl xml:lang="fi">Ei toivottavaa</labl>
@@ -1811,16 +1501,11 @@
       </catgry>
     </var>
     <var name="K11G">
-      <labl xml:lang="fi">[K11g] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla?
-                Kuinka toivottavana pidät sitä, että... Siinä tähdätään huippu-urheilijaksi</labl>
-      <labl xml:lang="en">[k11g] And what should your child's physical activity / hobby
-                preferably be like? How desirable do you consider that... it aims to develop the
-                child into a professional athlete</labl>
+      <labl xml:lang="fi">[K11g] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla? Kuinka toivottavana pidät sitä, että... Siinä tähdätään huippu-urheilijaksi</labl>
+      <labl xml:lang="en">[k11g] And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... it aims to develop the child into a professional athlete</labl>
       <qstn ID="FSD3307-K11G-qstn_0">
         <qstnLit xml:lang="fi">Siinä tähdätään huippu-urheilijaksi</qstnLit>
-        <qstnLit xml:lang="en">And what should your child's physical activity / hobby preferably
-                    be like? How desirable do you consider that... it aims to develop the child into
-                    a professional athlete</qstnLit>
+        <qstnLit xml:lang="en">And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... it aims to develop the child into a professional athlete</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K11G-cat_0" missing="N">
         <labl xml:lang="fi">Ei toivottavaa</labl>
@@ -1844,15 +1529,11 @@
       </catgry>
     </var>
     <var name="K11H">
-      <labl xml:lang="fi">[K11h] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla?
-                Kuinka toivottavana pidät sitä, että... Se on mielekäs ajanviettotapa</labl>
-      <labl xml:lang="en">[k11h] And what should your child's physical activity / hobby
-                preferably be like? How desirable do you consider that... it is a nice way to spend
-                the time</labl>
+      <labl xml:lang="fi">[K11h] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla? Kuinka toivottavana pidät sitä, että... Se on mielekäs ajanviettotapa</labl>
+      <labl xml:lang="en">[k11h] And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... it is a nice way to spend the time</labl>
       <qstn ID="FSD3307-K11H-qstn_0">
         <qstnLit xml:lang="fi">Se on mielekäs ajanviettotapa</qstnLit>
-        <qstnLit xml:lang="en">And what should your child's physical activity / hobby preferably be like? How
-                    desirable do you consider that... it is a nice way to spend the time</qstnLit>
+        <qstnLit xml:lang="en">And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... it is a nice way to spend the time</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K11H-cat_0" missing="N">
         <labl xml:lang="fi">Ei toivottavaa</labl>
@@ -1868,16 +1549,11 @@
       </catgry>
     </var>
     <var name="K11I">
-      <labl xml:lang="fi">[K11i] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla?
-                Kuinka toivottavana pidät sitä, että... Lapseni ei tarvitse olla yksin</labl>
-      <labl xml:lang="en">[k11i] And what should your child's physical activity / hobby
-                preferably be like? How desirable do you consider that... the child does not have to
-                be alone</labl>
+      <labl xml:lang="fi">[K11i] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla? Kuinka toivottavana pidät sitä, että... Lapseni ei tarvitse olla yksin</labl>
+      <labl xml:lang="en">[k11i] And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... the child does not have to be alone</labl>
       <qstn ID="FSD3307-K11I-qstn_0">
         <qstnLit xml:lang="fi">Lapseni ei tarvitse olla yksin</qstnLit>
-        <qstnLit xml:lang="en">And what should your child's physical activity / hobby preferably
-                    be like? How desirable do you consider that... the child does not have to be
-                    alone</qstnLit>
+        <qstnLit xml:lang="en">And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... the child does not have to be alone</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K11I-cat_0" missing="N">
         <labl xml:lang="fi">Ei toivottavaa</labl>
@@ -1905,17 +1581,11 @@
       </catgry>
     </var>
     <var name="K11J">
-      <labl xml:lang="fi">[K11j] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla?
-                Kuinka toivottavana pidät sitä, että... Harrastuksen kautta lapseni saa
-                kavereita</labl>
-      <labl xml:lang="en">[k11j] And what should your child's physical activity / hobby
-                preferably be like? How desirable do you consider that... the child gets friends
-                through the hobby</labl>
+      <labl xml:lang="fi">[K11j] Entä millaista lapsesi liikuntaharrastuksen pitäisi olla? Kuinka toivottavana pidät sitä, että... Harrastuksen kautta lapseni saa kavereita</labl>
+      <labl xml:lang="en">[k11j] And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... the child gets friends through the hobby</labl>
       <qstn ID="FSD3307-K11J-qstn_0">
         <qstnLit xml:lang="fi">Harrastuksen kautta lapseni saa kavereita</qstnLit>
-        <qstnLit xml:lang="en">And what should your child's physical activity / hobby preferably
-                    be like? How desirable do you consider that... the child gets friends through
-                    the hobby</qstnLit>
+        <qstnLit xml:lang="en">And what should your child's physical activity / hobby preferably be like? How desirable do you consider that... the child gets friends through the hobby</qstnLit>
       </qstn>
       <catgry ID="FSD3307-K11J-cat_0" missing="N">
         <labl xml:lang="fi">Ei toivottavaa</labl>
@@ -1939,22 +1609,11 @@
       </catgry>
     </var>
     <var name="K12">
-      <labl xml:lang="fi">[K12] Kuinka paljon lapsesi liikkuminen tai urheileminen arviosi
-                mukaan maksaa kuukaudessa (euroa)? Mukaan arvioon lasketaan niin välittömät kulut
-                (välineet, jäsenmaksut...) kuin välilliset kulut (matkat,
-                virkistystoiminta...).</labl>
-      <labl xml:lang="en">[k12] How many euros per month do you spend on average on your
-                child's physical activity/hobby? Include direct costs (e.g. equipment, membership
-                and license fees) as well as indirect costs (e.g. trips)</labl>
+      <labl xml:lang="fi">[K12] Kuinka paljon lapsesi liikkuminen tai urheileminen arviosi mukaan maksaa kuukaudessa (euroa)? Mukaan arvioon lasketaan niin välittömät kulut (välineet, jäsenmaksut...) kuin välilliset kulut (matkat, virkistystoiminta...).</labl>
+      <labl xml:lang="en">[k12] How many euros per month do you spend on average on your child's physical activity/hobby? Include direct costs (e.g. equipment, membership and license fees) as well as indirect costs (e.g. trips)</labl>
       <qstn ID="FSD3307-K12-qstn_0">
-        <qstnLit xml:lang="fi">Kuinka paljon lapsesi liikkuminen tai urheileminen arviosi
-                    mukaan maksaa kuukaudessa (euroa)? HUOM! Mukaan arvioon lasketaan niin
-                    välittömät kulut (kuten välineet, jäsen- ja lisenssimaksut...) kuin välilliset
-                    kulut (matkat, virkistystoiminta...).</qstnLit>
-        <qstnLit xml:lang="en">How many
-                    euros per month do you spend on average on your child's physical activity/hobby?
-                    Include direct costs (e.g. equipment, membership and license fees) as well as
-                    indirect costs (e.g. trips)</qstnLit>
+        <qstnLit xml:lang="fi">Kuinka paljon lapsesi liikkuminen tai urheileminen arviosi mukaan maksaa kuukaudessa (euroa)? HUOM! Mukaan arvioon lasketaan niin välittömät kulut (kuten välineet, jäsen- ja lisenssimaksut...) kuin välilliset kulut (matkat, virkistystoiminta...).</qstnLit>
+        <qstnLit xml:lang="en">How many euros per month do you spend on average on your child's physical activity/hobby? Include direct costs (e.g. equipment, membership and license fees) as well as indirect costs (e.g. trips)</qstnLit>
       </qstn>
     </var>
     <var name="LK0">
@@ -1975,42 +1634,34 @@
     </var>
     <var name="LK1">
       <labl xml:lang="fi">[LK1] Kertoisitko miten sinä liikut? (Avokysymys)</labl>
-      <labl xml:lang="en">[lk1] Can you tell me what kind of sports / physical activity you
-                do? (Open-ended)</labl>
+      <labl xml:lang="en">[lk1] Can you tell me what kind of sports / physical activity you do? (Open-ended)</labl>
       <qstn ID="FSD3307-LK1-qstn_0">
         <qstnLit xml:lang="fi">Kertoisitko miten sinä liikut?</qstnLit>
-        <qstnLit xml:lang="en">Can you tell me what kind of sports / physical activity you do?
-                    (Open-ended)</qstnLit>
+        <qstnLit xml:lang="en">Can you tell me what kind of sports / physical activity you do? (Open-ended)</qstnLit>
       </qstn>
     </var>
     <var name="LK2">
       <labl xml:lang="fi">[LK2] Mikä liikkumisessa on kivaa? (Avokysymys)</labl>
-      <labl xml:lang="en">[lk2] What do you think is fun about sports / physical activity?
-                (Open-ended)</labl>
+      <labl xml:lang="en">[lk2] What do you think is fun about sports / physical activity? (Open-ended)</labl>
       <qstn ID="FSD3307-LK2-qstn_0">
         <qstnLit xml:lang="fi">Mikä liikkumisessa on kivaa?</qstnLit>
-        <qstnLit xml:lang="en">What do you think is fun about sports / physical activity?
-                    (Open-ended)</qstnLit>
+        <qstnLit xml:lang="en">What do you think is fun about sports / physical activity? (Open-ended)</qstnLit>
       </qstn>
     </var>
     <var name="LK3">
       <labl xml:lang="fi">[LK3] Miten haluaisit liikkua? (Avokysymys)</labl>
-      <labl xml:lang="en">[lk3] What kind of sports / physical activity would you like to do?
-                (Open-ended)</labl>
+      <labl xml:lang="en">[lk3] What kind of sports / physical activity would you like to do? (Open-ended)</labl>
       <qstn ID="FSD3307-LK3-qstn_0">
         <qstnLit xml:lang="fi">Miten haluaisit liikkua?</qstnLit>
-        <qstnLit xml:lang="en">What
-                    kind of sports / physical activity would you like to do? (Open-ended)</qstnLit>
+        <qstnLit xml:lang="en">What kind of sports / physical activity would you like to do? (Open-ended)</qstnLit>
       </qstn>
     </var>
     <var name="LK4">
       <labl xml:lang="fi">[LK4] Onko kotisi lähellä hyviä liikuntapaikkoja?</labl>
-      <labl xml:lang="en">[lk4] Are there good locations for sports / physical activity near
-                your home?</labl>
+      <labl xml:lang="en">[lk4] Are there good locations for sports / physical activity near your home?</labl>
       <qstn ID="FSD3307-LK4-qstn_0">
         <qstnLit xml:lang="fi">Onko kotisi lähellä hyviä liikuntapaikkoja?</qstnLit>
-        <qstnLit xml:lang="en">Are there good locations for sports / physical activity near your
-                    home?</qstnLit>
+        <qstnLit xml:lang="en">Are there good locations for sports / physical activity near your home?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-LK4-cat_0" missing="N">
         <labl xml:lang="fi">Kyllä</labl>
@@ -2031,24 +1682,18 @@
     </var>
     <var name="LK5">
       <labl xml:lang="fi">[LK5] Millainen on hyvä liikuntapaikka? (Avokysymys)</labl>
-      <labl xml:lang="en">[lk5] What do you consider a good locations for sports / physical
-                activity? (Open-ended)</labl>
+      <labl xml:lang="en">[lk5] What do you consider a good locations for sports / physical activity? (Open-ended)</labl>
       <qstn ID="FSD3307-LK5-qstn_0">
         <qstnLit xml:lang="fi">Millainen on hyvä liikuntapaikka?</qstnLit>
-        <qstnLit xml:lang="en">What do you consider a good locations for sports / physical
-                    activity? (Open-ended)</qstnLit>
+        <qstnLit xml:lang="en">What do you consider a good locations for sports / physical activity? (Open-ended)</qstnLit>
       </qstn>
     </var>
     <var name="LK6">
-      <labl xml:lang="fi">[LK6] Jos sinun pitäisi kilpailla jossakin asiassa, niin miltä se
-                tuntuisi?</labl>
-      <labl xml:lang="en">[lk6] If you had to compete in something, how would that
-                feel?</labl>
+      <labl xml:lang="fi">[LK6] Jos sinun pitäisi kilpailla jossakin asiassa, niin miltä se tuntuisi?</labl>
+      <labl xml:lang="en">[lk6] If you had to compete in something, how would that feel?</labl>
       <qstn ID="FSD3307-LK6-qstn_0">
-        <qstnLit xml:lang="fi">Jos sinun pitäisi kilpailla jossakin asiassa, niin miltä se
-                    tuntuisi?</qstnLit>
-        <qstnLit xml:lang="en">If you had to compete in something,
-                    how would that feel?</qstnLit>
+        <qstnLit xml:lang="fi">Jos sinun pitäisi kilpailla jossakin asiassa, niin miltä se tuntuisi?</qstnLit>
+        <qstnLit xml:lang="en">If you had to compete in something, how would that feel?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-LK6-cat_0" missing="N">
         <labl xml:lang="fi">Se olisi kivaa</labl>
@@ -2084,15 +1729,11 @@
       </qstn>
     </var>
     <var name="LK9">
-      <labl xml:lang="fi">[LK9] Vanhempasi kertoi, että käyt xx:ssa (ohjattu harrastus
-                K2:sta). Millaista siellä on?</labl>
-      <labl xml:lang="en">[lk9] Your parents told me that you go to xx (guided hobby activity
-                from K2). What is it like?</labl>
+      <labl xml:lang="fi">[LK9] Vanhempasi kertoi, että käyt xx:ssa (ohjattu harrastus K2:sta). Millaista siellä on?</labl>
+      <labl xml:lang="en">[lk9] Your parents told me that you go to xx (guided hobby activity from K2). What is it like?</labl>
       <qstn ID="FSD3307-LK9-qstn_0">
-        <qstnLit xml:lang="fi">Vanhempasi kertoi, että käyt xx:ssa (lue ohjattu harrastus
-                    K2:sta vanhemman vastausten perusteella). Millaista siellä on?</qstnLit>
-        <qstnLit xml:lang="en">Your parents told me that you go to xx (guided hobby activity from
-                    K2). What is it like?</qstnLit>
+        <qstnLit xml:lang="fi">Vanhempasi kertoi, että käyt xx:ssa (lue ohjattu harrastus K2:sta vanhemman vastausten perusteella). Millaista siellä on?</qstnLit>
+        <qstnLit xml:lang="en">Your parents told me that you go to xx (guided hobby activity from K2). What is it like?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-LK9-cat_0" missing="N">
         <labl xml:lang="fi">Kivaa</labl>
@@ -2113,8 +1754,7 @@
     </var>
     <var name="LK10">
       <labl xml:lang="fi">[LK10] Kertoisitko, mikä siellä on kivaa/tylsää? (Avokysymys)</labl>
-      <labl xml:lang="en">[lk10] Can you tell me what is fun/dull about it?
-                (Open-ended)</labl>
+      <labl xml:lang="en">[lk10] Can you tell me what is fun/dull about it? (Open-ended)</labl>
       <qstn ID="FSD3307-LK10-qstn_0">
         <qstnLit xml:lang="fi">Kertoisitko, mikä siellä on kivaa/tylsää?</qstnLit>
         <qstnLit xml:lang="en">Can you tell me what is fun/dull about it? (Open-ended)</qstnLit>
@@ -2133,8 +1773,7 @@
       <labl xml:lang="en">[lk12a] Have you got friends?</labl>
       <qstn ID="FSD3307-LK12A-qstn_0">
         <qstnLit xml:lang="fi">Onko sinulla kavereita?</qstnLit>
-        <qstnLit xml:lang="en">Have
-                    you got friends?</qstnLit>
+        <qstnLit xml:lang="en">Have you got friends?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-LK12A-cat_0" missing="N">
         <labl xml:lang="fi">Kyllä</labl>
@@ -2194,15 +1833,11 @@
       </qstn>
     </var>
     <var name="LK15">
-      <labl xml:lang="fi">[LK15] Tässä olivatkin kaikki kysymykset. Kiitos, että vastasit!
-                Haluatko vielä kertoa jotain?</labl>
-      <labl xml:lang="en">[lk15] These were all the questions. Thank you for answering! Would
-                you like to add anything?</labl>
+      <labl xml:lang="fi">[LK15] Tässä olivatkin kaikki kysymykset. Kiitos, että vastasit! Haluatko vielä kertoa jotain?</labl>
+      <labl xml:lang="en">[lk15] These were all the questions. Thank you for answering! Would you like to add anything?</labl>
       <qstn ID="FSD3307-LK15-qstn_0">
-        <qstnLit xml:lang="fi">Tässä olivatkin kaikki kysymykset. Kiitos, että vastasit!
-                    Haluatko vielä kertoa jotain?</qstnLit>
-        <qstnLit xml:lang="en">These were all the
-                    questions. Thank you for answering! Would you like to add anything?</qstnLit>
+        <qstnLit xml:lang="fi">Tässä olivatkin kaikki kysymykset. Kiitos, että vastasit! Haluatko vielä kertoa jotain?</qstnLit>
+        <qstnLit xml:lang="en">These were all the questions. Thank you for answering! Would you like to add anything?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-LK15-cat_0" missing="N">
         <labl xml:lang="fi">Kyllä</labl>
@@ -2218,28 +1853,19 @@
       </catgry>
     </var>
     <var name="LK15B">
-      <labl xml:lang="fi">[LK15b] Haluatko vielä kertoa jotain: Kyllä, lapsen lisäykset
-                (Avokysymys)</labl>
-      <labl xml:lang="en">[lk15b] Would you like to add anything: Yes, child's comments
-                (open-ended)</labl>
+      <labl xml:lang="fi">[LK15b] Haluatko vielä kertoa jotain: Kyllä, lapsen lisäykset (Avokysymys)</labl>
+      <labl xml:lang="en">[lk15b] Would you like to add anything: Yes, child's comments (open-ended)</labl>
       <qstn ID="FSD3307-LK15B-qstn_0">
-        <qstnLit xml:lang="fi">Haluatko vielä kertoa jotain: Kyllä, lapsen
-                    lisäykset</qstnLit>
-        <qstnLit xml:lang="en">Would you like to add anything: Yes,
-                    child's comments (open-ended)</qstnLit>
+        <qstnLit xml:lang="fi">Haluatko vielä kertoa jotain: Kyllä, lapsen lisäykset</qstnLit>
+        <qstnLit xml:lang="en">Would you like to add anything: Yes, child's comments (open-ended)</qstnLit>
       </qstn>
     </var>
     <var name="LK16">
-      <labl xml:lang="fi">[LK16] Tässä olivat kaikki kysymyksemme. Kiitos, että vastasitte!
-                Haluatko vielä kertoa jotain?</labl>
-      <labl xml:lang="en">[lk16] These were all the questions. Thank you for answering! Would
-                you like to add anything?</labl>
+      <labl xml:lang="fi">[LK16] Tässä olivat kaikki kysymyksemme. Kiitos, että vastasitte! Haluatko vielä kertoa jotain?</labl>
+      <labl xml:lang="en">[lk16] These were all the questions. Thank you for answering! Would you like to add anything?</labl>
       <qstn ID="FSD3307-LK16-qstn_0">
-        <qstnLit xml:lang="fi">Vanhemmalle: Tässä olivat kaikki kysymyksemme. Kiitos, että
-                    vastasitte! Haluatko vielä kertoa jotain?</qstnLit>
-        <qstnLit xml:lang="en">These
-                    were all the questions. Thank you for answering! Would you like to add
-                    anything?</qstnLit>
+        <qstnLit xml:lang="fi">Vanhemmalle: Tässä olivat kaikki kysymyksemme. Kiitos, että vastasitte! Haluatko vielä kertoa jotain?</qstnLit>
+        <qstnLit xml:lang="en">These were all the questions. Thank you for answering! Would you like to add anything?</qstnLit>
       </qstn>
       <catgry ID="FSD3307-LK16-cat_0" missing="N">
         <labl xml:lang="fi">Kyllä</labl>
@@ -2251,15 +1877,11 @@
       </catgry>
     </var>
     <var name="LK16B">
-      <labl xml:lang="fi">[LK16b] Haluatko vielä kertoa jotain: Kyllä, huoltajan lisäykset
-                (Avokysymys)</labl>
-      <labl xml:lang="en">[lk16b] Would you like to add anything: Yes, parent's comments
-                (open-ended)</labl>
+      <labl xml:lang="fi">[LK16b] Haluatko vielä kertoa jotain: Kyllä, huoltajan lisäykset (Avokysymys)</labl>
+      <labl xml:lang="en">[lk16b] Would you like to add anything: Yes, parent's comments (open-ended)</labl>
       <qstn ID="FSD3307-LK16B-qstn_0">
-        <qstnLit xml:lang="fi">Haluatko vielä kertoa jotain: Kyllä, huoltajan
-                    lisäykset</qstnLit>
-        <qstnLit xml:lang="en">Would you like to add anything: Yes,
-                    parent's comments (open-ended)</qstnLit>
+        <qstnLit xml:lang="fi">Haluatko vielä kertoa jotain: Kyllä, huoltajan lisäykset</qstnLit>
+        <qstnLit xml:lang="en">Would you like to add anything: Yes, parent's comments (open-ended)</qstnLit>
       </qstn>
     </var>
     <var name="BV13">

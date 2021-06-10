@@ -19,13 +19,23 @@
  */
 package eu.cessda.cmv.core;
 
+import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URL;
 
 import org.gesis.commons.xml.DomDocument;
+import org.gesis.commons.xml.XmlNotWellformedException;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class CessdaMetadataValidatorFactoryTest
 {
@@ -42,5 +52,30 @@ class CessdaMetadataValidatorFactoryTest
 		File file = new File( "src/main/resources/cmv-profile-ddi-v32.xml" );
 		DomDocument.V11 document = factory.newDomDocument( file );
 		assertThat( document.selectNode( "/pr:DDIProfile" ), notNullValue() );
+	}
+
+	@ParameterizedTest
+	@ValueSource(
+			strings = {
+					"https://bitbucket.org/cessda/cessda.cmv.core/raw/815a9aa0688300aea56b7ff31bdb99ec9714729d/src/main/resources/demo-documents/ddi-v25/fsd-3307.xml",
+					"https://bitbucket.org/cessda/cessda.cmv.core/raw/815a9aa0688300aea56b7ff31bdb99ec9714729d/src/main/resources/demo-documents/ddi-v25/fsd-3307-oaipmh.xml" } )
+	void newDocument( String uri )
+	{
+		Document.V11 document = factory.newDocument( URI.create( uri ) );
+		assertThat( document, notNullValue() );
+	}
+
+	@Test
+	void newDocumentWithNotWellformedDocument() throws IOException
+	{
+		// given
+		URL url = getClass().getResource( "/demo-documents/ddi-v25/ukds-7481-not-wellformed.xml-invalid" );
+		try ( InputStream inputStream = newResource( url ).readInputStream() )
+		{
+			// when
+			Executable executable = () -> factory.newDocument( inputStream );
+			// then
+			assertThrows( XmlNotWellformedException.class, executable );
+		}
 	}
 }
