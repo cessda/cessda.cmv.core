@@ -27,20 +27,38 @@ import static eu.cessda.cmv.core.ValidationGateName.STRICT;
 import static java.util.Objects.requireNonNull;
 import static org.gesis.commons.resource.Resource.newResource;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.Optional;
 
+import org.apache.tika.Tika;
+import org.apache.tika.detect.CompositeDetector;
 import org.gesis.commons.resource.Resource;
+import org.gesis.commons.resource.io.DdiDetector;
 import org.gesis.commons.resource.io.DdiInputStream;
+import org.gesis.commons.resource.io.OaipmhV20Detector;
 import org.gesis.commons.xml.DomDocument;
 import org.gesis.commons.xml.XercesXalanDocument;
+import org.gesis.commons.xml.XercesXalanElementExtractor;
+import org.gesis.commons.xml.XmlElementExtractor;
 
 public class CessdaMetadataValidatorFactory
 {
+	private XmlElementExtractor.V10 xmlElementExtractor;
+	private Tika documentMediaTypeDetector;
+
+	public CessdaMetadataValidatorFactory()
+	{
+		xmlElementExtractor = new XercesXalanElementExtractor();
+
+		documentMediaTypeDetector = new Tika( new CompositeDetector( new DdiDetector(), new OaipmhV20Detector() ) );
+	}
+
 	public DomDocument.V11 newDomDocument( File file )
 	{
 		requireNonNull( file );
@@ -79,7 +97,33 @@ public class CessdaMetadataValidatorFactory
 
 	public Document.V11 newDocument( Resource resource )
 	{
-		return new DomCodebookDocument( newDdiInputStream( resource ) );
+		return newDocument( resource.readInputStream() );
+	}
+
+	public Document.V11 newDocument( InputStream inputStream )
+	{
+		try ( InputStream bufferedInputStream = new BufferedInputStream( requireNonNull( inputStream ) ) )
+		{
+			String mediaType = documentMediaTypeDetector.detect( bufferedInputStream );
+			if ( DdiDetector.MEDIATYPE.equals( mediaType ) )
+			{
+				return new DomCodebookDocument( bufferedInputStream );
+			}
+			else if ( OaipmhV20Detector.MEDIATYPE.equals( mediaType ) )
+			{
+				String xpath = "/OAI-PMH/GetRecord/record/metadata/*[1]";
+				Optional<InputStream> extractedElementInputstream = xmlElementExtractor.extractAsInputStream( bufferedInputStream, xpath );
+				if ( extractedElementInputstream.isPresent() )
+				{
+					return newDocument( extractedElementInputstream.get() );
+				}
+			}
+		}
+		catch (IOException e)
+		{
+			throw new IllegalArgumentException( e );
+		}
+		throw new IllegalArgumentException( "Not accepted as CMV document" );
 	}
 
 	public Document.V11 newDocument( URI uri )
@@ -97,7 +141,8 @@ public class CessdaMetadataValidatorFactory
 
 	public Document.V11 newDocument( URL url )
 	{
-		return new DomCodebookDocument( newDdiInputStream( url ) );
+		Resource resource = newResource( url );
+		return newDocument( resource.readInputStream() );
 	}
 
 	public Profile.V10 newProfile( Resource resource )

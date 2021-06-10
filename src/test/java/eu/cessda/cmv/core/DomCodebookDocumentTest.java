@@ -23,9 +23,9 @@ import static org.gesis.commons.resource.Resource.newResource;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
-import org.gesis.commons.resource.io.DdiInputStream;
 import org.gesis.commons.xml.XmlNotWellformedException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
@@ -37,10 +37,10 @@ class DomCodebookDocumentTest
 	{
 		// given
 		URL url = getClass().getResource( "/demo-documents/ddi-v25/ukds-7481-not-wellformed.xml-invalid" );
-		try ( DdiInputStream documentInputStream = new DdiInputStream( newResource( url ).readInputStream() ) )
+		try ( InputStream inputStream = newResource( url ).readInputStream() )
 		{
 			// when
-			Executable executable = () -> new DomCodebookDocument( documentInputStream );
+			Executable executable = () -> new DomCodebookDocument( inputStream );
 			// then
 			assertThrows( XmlNotWellformedException.class, executable );
 		}

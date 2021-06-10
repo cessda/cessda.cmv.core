@@ -21,12 +21,12 @@ package eu.cessda.cmv.core;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.gesis.commons.resource.io.DdiInputStream;
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,7 +41,7 @@ class DomCodebookDocument implements Document.V11
 	private org.gesis.commons.xml.DomDocument.V12 document;
 	private Map<String, ControlledVocabularyRepository> controlledVocabularyRepositoryMap;
 
-	public DomCodebookDocument( DdiInputStream inputStream )
+	public DomCodebookDocument( InputStream inputStream )
 	{
 		requireNonNull( inputStream );
 
