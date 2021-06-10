@@ -92,6 +92,13 @@ class CdcCodebookDocumentValidationTest
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
+		testParameter.documentName = "/demo-documents/ddi-v25/fsd-3307-oaipmh.xml";
+		testParameter.expectedViolationsAtBasicValidationGate = (2 + 0);
+		testParameter.expectedViolationsAtStandardValidationGate = 2 + (7 + 4);
+		testParameter.expectedViolationsAtStrictValidationGate = 2 + 11 + 8;
+		testParameters.add( testParameter );
+
+		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/gesis-5100.xml";
 		testParameter.expectedViolationsAtBasicValidationGate = (4 + 0);
 		testParameter.expectedViolationsAtStandardValidationGate = 4 + (15 + 3);
