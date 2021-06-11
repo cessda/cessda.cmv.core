@@ -56,28 +56,23 @@ public class CessdaMetadataValidatorFactory
 	public CessdaMetadataValidatorFactory()
 	{
 		xmlElementExtractor = new XercesXalanElementExtractor();
-
 		documentMediaTypeDetector = new Tika( new CompositeDetector( new DdiDetector(), new OaipmhV20Detector() ) );
 	}
 
 	public DomDocument.V11 newDomDocument( File file )
 	{
-		requireNonNull( file );
-		return newDomDocument( file.toURI() );
+		return newDomDocument( newResource( file ).readInputStream() );
 	}
 
 	public DomDocument.V11 newDomDocument( URI uri )
 	{
-		requireNonNull( uri );
-		Resource resource = newResource( uri );
-		return newDomDocument( resource.readInputStream() );
+		return newDomDocument( newResource( uri ).readInputStream() );
 	}
 
 	public DomDocument.V11 newDomDocument( InputStream inputStream )
 	{
-		requireNonNull( inputStream );
 		return XercesXalanDocument.newBuilder()
-				.ofInputStream( inputStream )
+				.ofInputStream( requireNonNull( inputStream ) )
 				.namespaceAware()
 				.printPrettyWithIndentation( 2 )
 				.build();
@@ -85,20 +80,22 @@ public class CessdaMetadataValidatorFactory
 
 	public Document.V11 newDocument( File file )
 	{
-		try
-		{
-			requireNonNull( file );
-			return newDocument( file.toURI().toURL() );
-		}
-		catch (MalformedURLException e)
-		{
-			throw new IllegalArgumentException( e );
-		}
+		return newDocument( newResource( file ).readInputStream() );
+	}
+
+	public Document.V11 newDocument( URI uri )
+	{
+		return newDocument( newResource( uri ).readInputStream() );
+	}
+
+	public Document.V11 newDocument( URL url )
+	{
+		return newDocument( newResource( url ).readInputStream() );
 	}
 
 	public Document.V11 newDocument( Resource resource )
 	{
-		return newDocument( resource.readInputStream() );
+		return newDocument( requireNonNull( resource ).readInputStream() );
 	}
 
 	public Document.V11 newDocument( InputStream inputStream )
@@ -131,25 +128,6 @@ public class CessdaMetadataValidatorFactory
 		}
 	}
 
-	public Document.V11 newDocument( URI uri )
-	{
-		requireNonNull( uri );
-		try
-		{
-			return newDocument( uri.toURL() );
-		}
-		catch (MalformedURLException e)
-		{
-			throw new IllegalArgumentException( e );
-		}
-	}
-
-	public Document.V11 newDocument( URL url )
-	{
-		Resource resource = newResource( url );
-		return newDocument( resource.readInputStream() );
-	}
-
 	public Profile.V10 newProfile( Resource resource )
 	{
 		return new DomSemiStructuredDdiProfile( newDdiInputStream( resource ) );
@@ -157,10 +135,9 @@ public class CessdaMetadataValidatorFactory
 
 	public Profile.V10 newProfile( URI uri )
 	{
-		requireNonNull( uri );
 		try
 		{
-			return newProfile( uri.toURL() );
+			return newProfile( requireNonNull( uri ).toURL() );
 		}
 		catch (MalformedURLException e)
 		{
@@ -187,14 +164,12 @@ public class CessdaMetadataValidatorFactory
 
 	public DdiInputStream newDdiInputStream( Resource resource )
 	{
-		requireNonNull( resource );
-		return newDdiInputStream( resource.readInputStream() );
+		return newDdiInputStream( requireNonNull( resource ).readInputStream() );
 	}
 
 	public DdiInputStream newDdiInputStream( URL url )
 	{
-		requireNonNull( url );
-		return newDdiInputStream( (Resource) newResource( url ) );
+		return newDdiInputStream( newResource( url ).readInputStream() );
 	}
 
 	public DdiInputStream newDdiInputStream( InputStream inputStream )
