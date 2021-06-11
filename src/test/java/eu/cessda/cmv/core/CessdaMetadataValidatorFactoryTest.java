@@ -27,11 +27,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
 
+import org.gesis.commons.resource.Resource;
 import org.gesis.commons.xml.DomDocument;
-import org.gesis.commons.xml.XmlNotWellformedException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -61,21 +59,21 @@ class CessdaMetadataValidatorFactoryTest
 					"https://bitbucket.org/cessda/cessda.cmv.core/raw/815a9aa0688300aea56b7ff31bdb99ec9714729d/src/main/resources/demo-documents/ddi-v25/fsd-3307-oaipmh.xml" } )
 	void newDocument( String uri )
 	{
-		Document.V11 document = factory.newDocument( URI.create( uri ) );
-		assertThat( document, notNullValue() );
+		Resource resource = newResource( uri );
+		assertThat( factory.newDocument( resource ), notNullValue() );
 	}
 
 	@Test
 	void newDocumentWithNotWellformedDocument() throws IOException
 	{
 		// given
-		URL url = getClass().getResource( "/demo-documents/ddi-v25/ukds-7481-not-wellformed.xml-invalid" );
-		try ( InputStream inputStream = newResource( url ).readInputStream() )
+		Resource resource = newResource( getClass().getResource( "/demo-documents/ddi-v25/ukds-7481-not-wellformed.xml-invalid" ) );
+		try ( InputStream inputStream = resource.readInputStream() )
 		{
 			// when
 			Executable executable = () -> factory.newDocument( inputStream );
 			// then
-			assertThrows( XmlNotWellformedException.class, executable );
+			assertThrows( NotDocumentException.class, executable );
 		}
 	}
 }

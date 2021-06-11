@@ -46,6 +46,7 @@ import org.gesis.commons.xml.DomDocument;
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.gesis.commons.xml.XercesXalanElementExtractor;
 import org.gesis.commons.xml.XmlElementExtractor;
+import org.gesis.commons.xml.XmlNotWellformedException;
 
 public class CessdaMetadataValidatorFactory
 {
@@ -118,12 +119,16 @@ public class CessdaMetadataValidatorFactory
 					return newDocument( extractedElementInputstream.get() );
 				}
 			}
+			throw new NotDocumentException( String.format( "Detected media type: %s", mediaType ) );
 		}
-		catch (IOException e)
+		catch (XmlNotWellformedException e)
 		{
-			throw new IllegalArgumentException( e );
+			throw new NotDocumentException( String.format( "Not well-formed XML: %s", e.getMessage() ) );
 		}
-		throw new IllegalArgumentException( "Not accepted as CMV document" );
+		catch (Exception e)
+		{
+			throw new NotDocumentException( e );
+		}
 	}
 
 	public Document.V11 newDocument( URI uri )
