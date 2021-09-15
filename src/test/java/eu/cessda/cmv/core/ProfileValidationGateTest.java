@@ -29,11 +29,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-class ProfilevalidationGateTest
+class ProfileValidationGateTest
 {
 	private CessdaMetadataValidatorFactory factory;
 
-	ProfilevalidationGateTest()
+	ProfileValidationGateTest()
 	{
 		factory = new CessdaMetadataValidatorFactory();
 	}
