@@ -11,7 +11,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<doclint>none</doclint><!-- https://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html -->
-		<jackson.version>2.12.3</jackson.version>
+		<jackson.version>2.12.4</jackson.version>
 	</properties>
 
 	<dependencies>
