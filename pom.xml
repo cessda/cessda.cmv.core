@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>eu.cessda.cmv</groupId>
 	<artifactId>cmv-core</artifactId>
@@ -11,7 +11,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<doclint>none</doclint><!-- https://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html -->
-		<jackson.version>2.12.4</jackson.version>
 	</properties>
 
 	<dependencies>
@@ -38,7 +37,6 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>${jackson.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.jayway.jsonpath</groupId>
@@ -65,16 +63,26 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.module</groupId>
 			<artifactId>jackson-module-jaxb-annotations</artifactId>
-			<version>${jackson.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
-			<version>${jackson.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.fasterxml.jackson</groupId>
+				<artifactId>jackson-bom</artifactId>
+				<version>2.12.4</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
@@ -159,9 +167,9 @@
 				<artifactId>dependency-check-maven</artifactId>
 				<version>6.1.5</version>
 				<configuration>
-					<!-- Specifies if the build should be failed if a CVSS score above a 
-					     specified level is identified. The default is 11 which means since 
-					     the CVSS scores are 0-10, by default the build will never fail. 
+					<!-- Specifies if the build should be failed if a CVSS score above a
+					     specified level is identified. The default is 11 which means since
+					     the CVSS scores are 0-10, by default the build will never fail.
 					     Score 10 means the highest risk-->
 					<failBuildOnCVSS>10</failBuildOnCVSS>
 				</configuration>

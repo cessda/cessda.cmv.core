@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,25 +19,26 @@
  */
 package eu.cessda.cmv.core.controlledvocabulary;
 
-import static java.util.Objects.requireNonNull;
-import static org.gesis.commons.resource.Resource.newResource;
-import static org.springframework.http.HttpMethod.GET;
-
-import java.net.URI;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import com.jayway.jsonpath.Configuration;
+import com.jayway.jsonpath.InvalidJsonException;
+import com.jayway.jsonpath.JsonPath;
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.TextResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import com.jayway.jsonpath.Configuration;
-import com.jayway.jsonpath.JsonPath;
+import java.net.URI;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
+import static org.gesis.commons.resource.Resource.newResource;
+import static org.springframework.http.HttpMethod.GET;
 
 public class CessdaControlledVocabularyRepositoryV2 extends AbstractControlledVocabularyRepository
 {
@@ -50,7 +51,7 @@ public class CessdaControlledVocabularyRepositoryV2 extends AbstractControlledVo
 	{
 		requireNonNull( resource );
 		setUri( resource.getUri() );
-		Object document = null;
+		Object document;
 		if ( resource.getUri().getScheme().startsWith( "http" ) )
 		{
 			try
@@ -62,9 +63,9 @@ public class CessdaControlledVocabularyRepositoryV2 extends AbstractControlledVo
 				ResponseEntity<String> responseEntity = restTemplate.exchange( getUri(), GET, entity, String.class );
 				document = Configuration.defaultConfiguration().jsonProvider().parse( responseEntity.getBody() );
 			}
-			catch (Exception e)
+			catch ( RestClientException | InvalidJsonException e )
 			{
-				throw new IllegalArgumentException( "Resource not found" );
+				throw new IllegalArgumentException( "Resource not found", e );
 			}
 		}
 		else
@@ -73,8 +74,8 @@ public class CessdaControlledVocabularyRepositoryV2 extends AbstractControlledVo
 					.parse( new TextResource( resource ).toString() );
 		}
 		List<String> list = JsonPath.read( document, "$.versions.*.concepts.*.notation" );
-		setCodeValues( list.stream().collect( Collectors.toSet() ) );
+		setCodeValues( new HashSet<>( list ) );
 		list = JsonPath.read( document, "$.versions.*.concepts.*.title" );
-		setDescriptiveTerms( list.stream().collect( Collectors.toSet() ) );
+		setDescriptiveTerms( new HashSet<>( list ) );
 	}
 }
