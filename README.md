@@ -18,8 +18,8 @@ void validateUsingFiles()
 {
 	CessdaMetadataValidatorFactory factory = new CessdaMetadataValidatorFactory();
 	ValidationService.V10 validationService = factory.newValidationService();
-	Resource document = newResource( new File( "path/to/ddi-document.xml" ) );
-	Resource profile = newResource( new File( "path/to/ddi-profile.xml" ) );
+	Resource document = Resource.newResource( new File( "path/to/ddi-document.xml" ) );
+	Resource profile = Resource.newResource( new File( "path/to/ddi-profile.xml" ) );
 	ValidationReportV0 validationReport = validationService.validate( document, profile, BASIC );
 	boolean isValid = validationReport.getConstraintViolations().isEmpty();
 	validationReport.getConstraintViolations().forEach( cv -> System.out.println( cv.getMessage() ) );
