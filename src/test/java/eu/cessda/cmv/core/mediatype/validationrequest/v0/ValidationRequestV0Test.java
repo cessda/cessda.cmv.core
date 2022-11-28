@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,17 +19,14 @@
  */
 package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
-import static com.fasterxml.jackson.databind.PropertyNamingStrategies.LOWER_CAMEL_CASE;
-import static com.fasterxml.jackson.databind.PropertyNamingStrategies.UPPER_CAMEL_CASE;
-import static eu.cessda.cmv.core.mediatype.validationrequest.v0.ValidationRequestV0.SCHEMALOCATION_FILENAME;
-import static org.gesis.commons.resource.Resource.newResource;
-import static org.gesis.commons.test.hamcrest.FileMatchers.hasEqualContent;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-
-import java.io.File;
-import java.io.IOException;
-
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
+import eu.cessda.cmv.core.ValidationGateName;
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.TextResource;
 import org.gesis.commons.test.DefaultTestEnv;
@@ -38,22 +35,23 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
+import java.io.File;
+import java.io.IOException;
 
-import eu.cessda.cmv.core.ValidationGateName;
+import static com.fasterxml.jackson.databind.PropertyNamingStrategies.LOWER_CAMEL_CASE;
+import static com.fasterxml.jackson.databind.PropertyNamingStrategies.UPPER_CAMEL_CASE;
+import static eu.cessda.cmv.core.mediatype.validationrequest.v0.ValidationRequestV0.SCHEMALOCATION_FILENAME;
+import static org.gesis.commons.resource.Resource.newResource;
+import static org.gesis.commons.test.hamcrest.FileMatchers.hasEqualContent;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 class ValidationRequestV0Test
 {
-	private TestEnv.V14 testEnv;
-	private Resource profile;
-	private Resource document;
-	private ValidationGateName validationGateName;
+	private final TestEnv.V14 testEnv;
+	private final Resource profile;
+	private final Resource document;
+	private final ValidationGateName validationGateName;
 
 	ValidationRequestV0Test()
 	{

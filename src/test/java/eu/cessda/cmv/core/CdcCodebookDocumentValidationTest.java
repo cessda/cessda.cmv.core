@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,25 +19,23 @@
  */
 package eu.cessda.cmv.core;
 
-import static eu.cessda.cmv.core.ValidationGateName.BASIC;
-import static eu.cessda.cmv.core.ValidationGateName.STANDARD;
-import static eu.cessda.cmv.core.ValidationGateName.STRICT;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasSize;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
+import static eu.cessda.cmv.core.ValidationGateName.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
 
 class CdcCodebookDocumentValidationTest
 {
 	private static final String newTestParameters = "newTestParameters";
 
-	private Profile profile;
-	private CessdaMetadataValidatorFactory factory;
+	private final Profile profile;
+	private final CessdaMetadataValidatorFactory factory;
 
 	CdcCodebookDocumentValidationTest()
 	{
@@ -65,8 +63,8 @@ class CdcCodebookDocumentValidationTest
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/ukds-7481.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = (1 + 0);
-		testParameter.expectedViolationsAtStandardValidationGate = 1 + (13 + 0);
+		testParameter.expectedViolationsAtBasicValidationGate = ( 1 );
+		testParameter.expectedViolationsAtStandardValidationGate = 1 + ( 13 );
 		testParameter.expectedViolationsAtStrictValidationGate = 1 + 13 + 8;
 		testParameters.add( testParameter );
 
@@ -79,44 +77,44 @@ class CdcCodebookDocumentValidationTest
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/fsd-3271.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = (2 + 0);
-		testParameter.expectedViolationsAtStandardValidationGate = 2 + (7 + 2);
+		testParameter.expectedViolationsAtBasicValidationGate = ( 2 );
+		testParameter.expectedViolationsAtStandardValidationGate = 2 + ( 7 + 2 );
 		testParameter.expectedViolationsAtStrictValidationGate = 2 + 9 + 7;
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/fsd-3307.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = (2 + 0);
-		testParameter.expectedViolationsAtStandardValidationGate = 2 + (7 + 4);
+		testParameter.expectedViolationsAtBasicValidationGate = ( 2 );
+		testParameter.expectedViolationsAtStandardValidationGate = 2 + ( 7 + 4 );
 		testParameter.expectedViolationsAtStrictValidationGate = 2 + 11 + 8;
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/fsd-3307-oaipmh.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = (2 + 0);
-		testParameter.expectedViolationsAtStandardValidationGate = 2 + (7 + 4);
+		testParameter.expectedViolationsAtBasicValidationGate = ( 2 );
+		testParameter.expectedViolationsAtStandardValidationGate = 2 + ( 7 + 4 );
 		testParameter.expectedViolationsAtStrictValidationGate = 2 + 11 + 8;
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/gesis-5100.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = (4 + 0);
-		testParameter.expectedViolationsAtStandardValidationGate = 4 + (15 + 3);
+		testParameter.expectedViolationsAtBasicValidationGate = ( 4 );
+		testParameter.expectedViolationsAtStandardValidationGate = 4 + ( 15 + 3 );
 		testParameter.expectedViolationsAtStrictValidationGate = 4 + 17 + (9 + 3);
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/gesis-5300.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = 4 + 0;
-		testParameter.expectedViolationsAtStandardValidationGate = 4 + (15 + 3);
-		testParameter.expectedViolationsAtStrictValidationGate = 4 + 18 + (10 + 0);
+		testParameter.expectedViolationsAtBasicValidationGate = 4;
+		testParameter.expectedViolationsAtStandardValidationGate = 4 + ( 15 + 3 );
+		testParameter.expectedViolationsAtStrictValidationGate = 4 + 18 + ( 10 );
 		testParameters.add( testParameter );
 
 		testParameter = new TestParameter();
 		testParameter.documentName = "/demo-documents/ddi-v25/gesis-2800.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = 4 + 0;
-		testParameter.expectedViolationsAtStandardValidationGate = 4 + (15 + 3);
-		testParameter.expectedViolationsAtStrictValidationGate = 4 + 18 + (10 + 0);
+		testParameter.expectedViolationsAtBasicValidationGate = 4;
+		testParameter.expectedViolationsAtStandardValidationGate = 4 + ( 15 + 3 );
+		testParameter.expectedViolationsAtStrictValidationGate = 4 + 18 + ( 10 );
 		testParameters.add( testParameter );
 
 		return testParameters.stream();

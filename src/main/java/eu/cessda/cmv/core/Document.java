@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,21 +19,21 @@
  */
 package eu.cessda.cmv.core;
 
-import java.util.List;
-
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
+
+import java.util.List;
 
 public interface Document
 {
-	public interface V10 extends Document
+	interface V10 extends Document
 	{
-		public List<Node> getNodes( String locationPath );
+		List<Node> getNodes( String locationPath );
 	}
 
-	public interface V11 extends Document.V10
+	interface V11 extends Document.V10
 	{
-		public void register( String uri, ControlledVocabularyRepository controlledVocabularyRepository );
+		void register( String uri, ControlledVocabularyRepository controlledVocabularyRepository );
 
-		public <T extends ControlledVocabularyRepository> T findControlledVocabularyRepository( String uri );
+		<T extends ControlledVocabularyRepository> T findControlledVocabularyRepository( String uri );
 	}
 }

@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,23 +19,24 @@
  */
 package eu.cessda.cmv.core;
 
-import static java.util.Arrays.asList;
+import org.hamcrest.Matcher;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
+
 import static java.util.Optional.empty;
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isEmpty;
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isPresent;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.instanceOf;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
-
-import org.hamcrest.Matcher;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 
 class CompilableXPathConstraintTest
 {
@@ -86,18 +87,20 @@ class CompilableXPathConstraintTest
 		Constraint.V20 constraint = new CompilableXPathConstraint( testParameter.locationPath );
 
 		// when
-		List<Validator.V10> validators = constraint.newValidators( mockDocument( testParameter.locationPath ) );
+		List<Validator> validators = constraint.newValidators( mockDocument( testParameter.locationPath ) );
 
 		// then
 		assertThat( validators, hasSize( 1 ) );
-		assertThat( validators.get( 0 ).validate(), testParameter.expectedConstraintViolation );
+		Validator validator = validators.get( 0 );
+		assertThat( validator, instanceOf( Validator.V10.class ) );
+		assertThat( ( (Validator.V10) validator ).validate(), testParameter.expectedConstraintViolation );
 	}
 
 	private Document.V10 mockDocument( String locationPath )
 	{
 		Document.V10 document = mock( Document.V10.class );
 		Node node = new Node( "/DDIProfile/Used/@xpath", locationPath, empty() );
-		when( document.getNodes( locationPath ) ).thenReturn( asList( node ) );
+		when( document.getNodes( locationPath ) ).thenReturn( Collections.singletonList( node ) );
 		return document;
 	}
 }

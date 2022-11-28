@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,13 +19,6 @@
  */
 package eu.cessda.cmv.core;
 
-import static java.util.Arrays.asList;
-import static org.gesis.commons.resource.Resource.newResource;
-import static org.junit.Assert.assertTrue;
-
-import java.io.File;
-import java.util.List;
-
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.StringToUrlMapper;
 import org.gesis.commons.resource.TextResource;
@@ -33,6 +26,14 @@ import org.gesis.commons.xml.XercesXalanDocument;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Node;
+
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
+
+import static java.util.Arrays.asList;
+import static org.gesis.commons.resource.Resource.newResource;
+import static org.junit.Assert.assertTrue;
 
 class DemoDocumentsTest
 {
@@ -42,7 +43,7 @@ class DemoDocumentsTest
 	{
 		assertTrue( "SonarQube is cool!", true );
 
-		asList( "src/test/resources/eu.cessda.cmv.core.MandatoryNodeConstraintTest" ).stream()
+		Collections.singletonList( "src/test/resources/eu.cessda.cmv.core.MandatoryNodeConstraintTest" ).stream()
 				.map( path -> asList( new File( path ).listFiles() ) )
 				.flatMap( List::stream )
 				.filter( file -> file.getName().endsWith( ".xml" ) )
@@ -82,7 +83,7 @@ class DemoDocumentsTest
 					try
 					{
 						System.out.println( resource.getUri() );
-						System.out.println( resource.toString() );
+						System.out.println( resource );
 					}
 					catch (Exception e)
 					{
