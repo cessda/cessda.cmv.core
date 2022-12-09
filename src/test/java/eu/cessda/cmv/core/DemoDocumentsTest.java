@@ -28,44 +28,37 @@ import org.junit.jupiter.api.Test;
 import org.w3c.dom.Node;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
 import static org.gesis.commons.resource.Resource.newResource;
-import static org.junit.Assert.assertTrue;
 
 class DemoDocumentsTest
 {
 	@Test
 	@Disabled( "Code for dev work in progress" )
+	@SuppressWarnings( "java:S2699" )
 	void printPretty()
 	{
-		assertTrue( "SonarQube is cool!", true );
-
-		Collections.singletonList( "src/test/resources/eu.cessda.cmv.core.MandatoryNodeConstraintTest" ).stream()
+		Stream.of( "src/test/resources/eu.cessda.cmv.core.MandatoryNodeConstraintTest" )
 				.map( path -> asList( new File( path ).listFiles() ) )
 				.flatMap( List::stream )
 				.filter( file -> file.getName().endsWith( ".xml" ) )
-				.forEach( file ->
-				{
-					XercesXalanDocument.newBuilder()
-							.ofInputStream( newResource( file ).readInputStream() )
-							.printPrettyWithIndentation( 2 )
-							.build()
-							.omitWhitespaceOnlyTextNodes()
-							.saveAs( file );
-				} );
+				.forEach( file -> XercesXalanDocument.newBuilder()
+						.ofInputStream( newResource( file ).readInputStream() )
+						.printPrettyWithIndentation( 2 )
+						.build()
+						.omitWhitespaceOnlyTextNodes()
+						.saveAs( file ) );
 	}
 
 	@Test
 	@Disabled( "Code for dev work in progress" )
+	@SuppressWarnings( "java:S2699" )
 	void listAllCvUrls()
 	{
-		assertTrue( "SonarQube is cool!", true );
-
-		asList( "fsd-3271.xml", "ukds-2000.xml", "ukds-7481.xml", "gesis-2800.xml", "gesis-5100.xml", "gesis-5300.xml" )
-				.stream()
+		Stream.of( "fsd-3271.xml", "ukds-2000.xml", "ukds-7481.xml", "gesis-2800.xml", "gesis-5100.xml", "gesis-5300.xml" )
 				.map( fileName -> getClass().getResource( "/demo-documents/ddi-v25/" + fileName ) )
 				.map( Resource::newResource )
 				.map( Resource.class::cast )

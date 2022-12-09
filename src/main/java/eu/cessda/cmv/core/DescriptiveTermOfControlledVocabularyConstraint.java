@@ -32,7 +32,6 @@ class DescriptiveTermOfControlledVocabularyConstraint extends NodeConstraint
 	}
 
 	@Override
-	@SuppressWarnings( "unchecked" )
 	public List<Validator> newValidators( Document document )
 	{
 		requireNonNull( document );

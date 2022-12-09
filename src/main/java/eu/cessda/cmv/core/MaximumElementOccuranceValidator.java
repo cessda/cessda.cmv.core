@@ -67,6 +67,6 @@ class MaximumElementOccuranceValidator implements Validator.V10
 	{
 		String message = "'%s' exceeds maximal count of %s";
 		message = String.format( message, locationPath, maxOccurs );
-		return new ConstraintViolation( message, Optional.empty() );
+		return new ConstraintViolation( message, null );
 	}
 }

@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static eu.cessda.cmv.core.ValidationGateName.BASICPLUS;
-import static java.lang.Long.valueOf;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -43,10 +42,10 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 		profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/27-profile.xml" ) );
 		assertThat( profile.getConstraints().stream()
 				.filter( ControlledVocabularyRepositoryConstraint.class::isInstance )
-				.count(), is( valueOf( 4 ) ) );
+				.count(), is( 4L ) );
 		assertThat( profile.getConstraints().stream()
 				.filter( DescriptiveTermOfControlledVocabularyConstraint.class::isInstance )
-				.count(), is( valueOf( 1 ) ) );
+				.count(), is( 1L ) );
 	}
 
 	@Test

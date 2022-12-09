@@ -29,7 +29,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-import static java.lang.Long.valueOf;
 import static java.util.Collections.unmodifiableList;
 
 class DomSemiStructuredDdiProfile implements Profile.V10
@@ -227,10 +226,10 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 		{
 			constraints.add( new MaximumElementOccuranceConstraint(
 					getLocationPath( usedNode ),
-					valueOf( limitMaxOccursNode.getNodeValue() ) ) );
+					Long.parseLong( limitMaxOccursNode.getNodeValue() ) ) );
 			jaxbProfile.getConstraints().add( new MaximumElementOccuranceConstraintV0(
 					getLocationPath( usedNode ),
-					valueOf( limitMaxOccursNode.getNodeValue() ) ) );
+					Long.parseLong( limitMaxOccursNode.getNodeValue() ) ) );
 		}
 	}
 

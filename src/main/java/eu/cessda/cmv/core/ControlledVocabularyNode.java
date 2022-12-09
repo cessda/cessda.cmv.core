@@ -22,16 +22,14 @@ package eu.cessda.cmv.core;
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 import org.gesis.commons.xml.LocationInfo;
 
-import java.util.Optional;
-
 class ControlledVocabularyNode extends Node
 {
 	private final ControlledVocabularyRepository.V11 controlledVocabularyRepository;
 
 	ControlledVocabularyNode( String locationPath,
-			String textContent,
-			Optional<LocationInfo> locationInfo,
-			ControlledVocabularyRepository.V11 controlledVocabularyRepository )
+							  String textContent,
+							  LocationInfo locationInfo,
+							  ControlledVocabularyRepository.V11 controlledVocabularyRepository )
 	{
 		super( locationPath, textContent, locationInfo );
 		this.controlledVocabularyRepository = controlledVocabularyRepository;

@@ -29,12 +29,11 @@ public class ConstraintViolation
 {
 	private final String message;
 
-	private final Optional<LocationInfo> locationInfo;
+	private final LocationInfo locationInfo;
 
-	ConstraintViolation( String message, Optional<LocationInfo> locationInfo )
+	ConstraintViolation( String message, LocationInfo locationInfo )
 	{
 		requireNonNull( message );
-		requireNonNull( locationInfo );
 
 		this.message = message;
 		this.locationInfo = locationInfo;
@@ -42,9 +41,9 @@ public class ConstraintViolation
 
 	public String getMessage()
 	{
-		if ( locationInfo.isPresent() )
+		if ( locationInfo != null )
 		{
-			return message + " (lineNumber: " + locationInfo.get().getLineNumber() + ")";
+			return message + " (lineNumber: " + locationInfo.getLineNumber() + ")";
 		}
 		else
 		{
@@ -54,6 +53,6 @@ public class ConstraintViolation
 
 	public Optional<LocationInfo> getLocationInfo()
 	{
-		return locationInfo;
+		return Optional.ofNullable( locationInfo );
 	}
 }

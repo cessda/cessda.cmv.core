@@ -66,12 +66,13 @@ class DomCodebookDocument implements Document.V11
 			{
 				node = new ControlledVocabularyNode( locationPath,
 						mapNodeToText( domNode ),
-						document.getLocationInfo( domNode ),
+						document.getLocationInfo( domNode ).orElse( null ),
 						findControlledVocabularyRepository( getVocabURI( domNode ) ) );
 			}
 			else
 			{
-				node = new Node( locationPath, domNode.getTextContent(), document.getLocationInfo( domNode ) );
+				node = new Node( locationPath, domNode.getTextContent(), document.getLocationInfo( domNode )
+						.orElse( null ) );
 			}
 			countChildNodes( node, domNode );
 			nodes.add( node );

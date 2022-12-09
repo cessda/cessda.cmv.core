@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static java.util.Optional.empty;
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isEmpty;
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isPresent;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -99,7 +98,7 @@ class CompilableXPathConstraintTest
 	private Document.V10 mockDocument( String locationPath )
 	{
 		Document.V10 document = mock( Document.V10.class );
-		Node node = new Node( "/DDIProfile/Used/@xpath", locationPath, empty() );
+		Node node = new Node( "/DDIProfile/Used/@xpath", locationPath, null );
 		when( document.getNodes( locationPath ) ).thenReturn( Collections.singletonList( node ) );
 		return document;
 	}

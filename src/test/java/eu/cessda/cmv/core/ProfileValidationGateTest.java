@@ -21,7 +21,6 @@ package eu.cessda.cmv.core;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
@@ -39,7 +38,7 @@ class ProfileValidationGateTest
 	}
 
 	@Test
-	void validateCdcProfile() throws IOException
+	void validateCdcProfile()
 	{
 		// given
 		URL documentUrl = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );

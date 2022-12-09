@@ -47,7 +47,7 @@ class MaximumElementOccuranceContraintTest
 	}
 
 	@Test
-	void validate_invalid() throws Exception
+	void validate_invalid()
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "bad-case.xml" ) );

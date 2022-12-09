@@ -36,7 +36,6 @@ import java.net.URI;
 import java.net.URL;
 import java.util.Optional;
 
-import static eu.cessda.cmv.core.ValidationGateName.*;
 import static java.util.Objects.requireNonNull;
 import static org.gesis.commons.resource.Resource.newResource;
 
@@ -176,34 +175,10 @@ public class CessdaMetadataValidatorFactory
 		}
 	}
 
-	@SuppressWarnings( "deprecation" )
 	public ValidationGate.V10 newValidationGate( ValidationGateName name )
 	{
-		requireNonNull( name );
-		if ( name.equals( BASIC ) )
-		{
-			return new BasicValidationGate();
-		}
-		else if ( name.equals( BASICPLUS ) )
-		{
-			return new BasicPlusValidationGate();
-		}
-		else if ( name.equals( STANDARD ) )
-		{
-			return new StandardValidationGate();
-		}
-		else if ( name.equals( EXTENDED ) )
-		{
-			return new ExtendedValidationGate();
-		}
-		else if ( name.equals( STRICT ) )
-		{
-			return new StrictValidationGate();
-		}
-		else
-		{
-			throw new IllegalArgumentException( name + " not supported" );
-		}
+		requireNonNull( name, "name must not be null" );
+		return name.getValidationGate();
 	}
 
 	public ValidationService.V10 newValidationService()

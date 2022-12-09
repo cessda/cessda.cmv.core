@@ -28,7 +28,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static eu.cessda.cmv.core.ValidationGateName.EXTENDED;
-import static java.lang.Long.valueOf;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -57,7 +56,7 @@ class FixedValueNodeConstraintTest
 		profile = factory.newProfile( testEnv.findTestResourceByName( "13-profile.xml" ) );
 		assertThat( profile.getConstraints().stream()
 				.filter( FixedValueNodeConstraint.class::isInstance )
-				.count(), is( valueOf( 1 ) ) );
+				.count(), is( 1L ) );
 	}
 
 	@Test

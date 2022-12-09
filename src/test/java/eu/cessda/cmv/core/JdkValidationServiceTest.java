@@ -24,7 +24,6 @@ import org.gesis.commons.resource.Resource;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URI;
 
 import static eu.cessda.cmv.core.ValidationGateName.BASIC;
@@ -42,7 +41,7 @@ class JdkValidationServiceTest
 	}
 
 	@Test
-	void validateWithUrls() throws MalformedURLException
+	void validateWithUrls()
 	{
 		ValidationService.V10 validationService = factory.newValidationService();
 		URI documentUri = new File( "src/main/resources/demo-documents/ddi-v25/gesis-2800.xml" ).toURI();

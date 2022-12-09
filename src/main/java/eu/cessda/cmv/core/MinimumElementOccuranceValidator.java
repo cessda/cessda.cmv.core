@@ -72,6 +72,6 @@ class MinimumElementOccuranceValidator implements Validator.V10
 	{
 		String message = "'%s' deceeds minimal count of %s";
 		message = String.format( message, locationPath, minOccurs );
-		return new ConstraintViolation( message, Optional.empty() );
+		return new ConstraintViolation( message, null );
 	}
 }

@@ -45,11 +45,11 @@ class ControlledVocabularyRepositoryValidator implements Validator.V10
 		}
 		catch (Exception e)
 		{
-			return Optional.of( new ConstraintViolation( e.getMessage(), empty() ) );
+			return Optional.of( new ConstraintViolation( e.getMessage(), null ) );
 		}
 		if ( proxy.findCodeValues().isEmpty() )
 		{
-			return Optional.of( new ConstraintViolation( "No values", empty() ) );
+			return Optional.of( new ConstraintViolation( "No values", null ) );
 		}
 		return empty();
 	}

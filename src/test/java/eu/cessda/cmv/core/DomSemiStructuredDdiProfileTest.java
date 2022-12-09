@@ -90,7 +90,7 @@ class DomSemiStructuredDdiProfileTest
 
 	private int countConstraints( Profile.V10 profile, Class<? extends Constraint> clazz )
 	{
-		return (int) profile.getConstraints().stream().filter( constraint -> clazz.isInstance( constraint ) ).count();
+		return (int) profile.getConstraints().stream().filter( clazz::isInstance ).count();
 	}
 
 	@Test

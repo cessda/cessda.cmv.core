@@ -20,32 +20,28 @@
 package eu.cessda.cmv.core;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
 
 abstract class AbstractValidationGate implements ValidationGate.V10
 {
-	private final List<Class<? extends ValidationGate.V10>> constraintTypes;
+	private final List<Class<? extends Constraint.V20>> constraintTypes;
 
 	AbstractValidationGate()
 	{
 		constraintTypes = new ArrayList<>();
 	}
 
-	protected void addConstraintType( String canonicalName )
+	protected void addConstraintType( Class<? extends Constraint.V20> constraint )
 	{
-		requireNonNull( canonicalName );
-		try
-		{
-			constraintTypes.add( Class.forName( canonicalName ).asSubclass( V10.class ) );
-		}
-		catch ( ClassNotFoundException | ClassCastException e )
-		{
-			throw new IllegalArgumentException( e );
-		}
+		constraintTypes.add( constraint );
+	}
+
+	protected void addConstraintType( Collection<Class<? extends Constraint.V20>> constraints )
+	{
+		constraintTypes.addAll( constraints );
 	}
 
 	@Override
@@ -55,14 +51,17 @@ abstract class AbstractValidationGate implements ValidationGate.V10
 		requireNonNull( document );
 		requireNonNull( profile );
 
-		return (List<T>) ((Profile.V10) profile).getConstraints().stream()
-				.filter( constraint -> constraintTypes.contains( constraint.getClass() ) )
-				.map( Constraint.V20.class::cast )
-				.map( constraint -> constraint.newValidators( document ) )
-				.flatMap( List::stream )
-				.map( Validator.V10.class::cast )
-				.map( Validator.V10::validate )
-				.filter( Optional::isPresent ).map( Optional::get )
-				.collect( Collectors.toList() );
+		List<ConstraintViolation> constraintViolations = new ArrayList<>();
+		for ( Constraint constraint : ( (Profile.V10) profile ).getConstraints() )
+		{
+			if ( constraintTypes.contains( constraint.getClass() ) )
+			{
+				for ( Validator validator : ( (Constraint.V20) constraint ).newValidators( document ) )
+				{
+					( (Validator.V10) validator ).validate().ifPresent( constraintViolations::add );
+				}
+			}
+		}
+		return (List<T>) constraintViolations;
 	}
 }

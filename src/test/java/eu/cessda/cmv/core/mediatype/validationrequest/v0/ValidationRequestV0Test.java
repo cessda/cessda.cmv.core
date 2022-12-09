@@ -36,7 +36,6 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.io.IOException;
 
 import static com.fasterxml.jackson.databind.PropertyNamingStrategies.LOWER_CAMEL_CASE;
 import static com.fasterxml.jackson.databind.PropertyNamingStrategies.UPPER_CAMEL_CASE;
@@ -123,7 +122,7 @@ class ValidationRequestV0Test
 
 	@Test
 	@Disabled( "Schema generation not correct because of DocumentV0Adapter usage" )
-	void generateSchema() throws IOException
+	void generateSchema()
 	{
 		File actualFile = new File( testEnv.newDirectory(), SCHEMALOCATION_FILENAME );
 		ValidationRequestV0.generateSchema( actualFile );
