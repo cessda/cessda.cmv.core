@@ -22,7 +22,7 @@ package eu.cessda.cmv.core;
 import java.util.Collections;
 import java.util.List;
 
-class StandardValidationGate extends AbstractValidationGate
+final class StandardValidationGate extends AbstractValidationGate
 {
 	static final List<Class<? extends Constraint.V20>> CONSTRAINTS = Collections.singletonList( RecommendedNodeConstraint.class );
 

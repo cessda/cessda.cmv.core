@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-class ExtendedValidationGate extends AbstractValidationGate
+final class ExtendedValidationGate extends AbstractValidationGate
 {
 	static final List<Class<? extends Constraint.V20>> CONSTRAINTS = Collections.unmodifiableList(
 			Arrays.asList(

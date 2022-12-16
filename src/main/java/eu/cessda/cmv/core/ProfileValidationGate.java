@@ -19,11 +19,22 @@
  */
 package eu.cessda.cmv.core;
 
-class ProfileValidationGate extends BasicValidationGate
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+class ProfileValidationGate extends AbstractValidationGate
 {
+	static final List<Class<? extends Constraint.V20>> CONSTRAINTS = Collections.unmodifiableList(
+			Arrays.asList(
+					PredicatelessXPathConstraint.class,
+					CompilableXPathConstraint.class
+			)
+	);
+
 	public ProfileValidationGate()
 	{
-		addConstraintType( PredicatelessXPathConstraint.class );
-		addConstraintType( CompilableXPathConstraint.class );
+		addConstraintType( BasicValidationGate.CONSTRAINTS );
+		addConstraintType( CONSTRAINTS );
 	}
 }
