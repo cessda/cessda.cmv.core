@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,13 +19,6 @@
  */
 package eu.cessda.cmv.core;
 
-import static java.util.Arrays.asList;
-import static org.gesis.commons.resource.Resource.newResource;
-import static org.junit.Assert.assertTrue;
-
-import java.io.File;
-import java.util.List;
-
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.StringToUrlMapper;
 import org.gesis.commons.resource.TextResource;
@@ -34,37 +27,38 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Node;
 
+import java.io.File;
+import java.util.List;
+import java.util.stream.Stream;
+
+import static java.util.Arrays.asList;
+import static org.gesis.commons.resource.Resource.newResource;
+
 class DemoDocumentsTest
 {
 	@Test
 	@Disabled( "Code for dev work in progress" )
+	@SuppressWarnings( "java:S2699" )
 	void printPretty()
 	{
-		assertTrue( "SonarQube is cool!", true );
-
-		asList( "src/test/resources/eu.cessda.cmv.core.MandatoryNodeConstraintTest" ).stream()
+		Stream.of( "src/test/resources/eu.cessda.cmv.core.MandatoryNodeConstraintTest" )
 				.map( path -> asList( new File( path ).listFiles() ) )
 				.flatMap( List::stream )
 				.filter( file -> file.getName().endsWith( ".xml" ) )
-				.forEach( file ->
-				{
-					XercesXalanDocument.newBuilder()
-							.ofInputStream( newResource( file ).readInputStream() )
-							.printPrettyWithIndentation( 2 )
-							.build()
-							.omitWhitespaceOnlyTextNodes()
-							.saveAs( file );
-				} );
+				.forEach( file -> XercesXalanDocument.newBuilder()
+						.ofInputStream( newResource( file ).readInputStream() )
+						.printPrettyWithIndentation( 2 )
+						.build()
+						.omitWhitespaceOnlyTextNodes()
+						.saveAs( file ) );
 	}
 
 	@Test
 	@Disabled( "Code for dev work in progress" )
+	@SuppressWarnings( "java:S2699" )
 	void listAllCvUrls()
 	{
-		assertTrue( "SonarQube is cool!", true );
-
-		asList( "fsd-3271.xml", "ukds-2000.xml", "ukds-7481.xml", "gesis-2800.xml", "gesis-5100.xml", "gesis-5300.xml" )
-				.stream()
+		Stream.of( "fsd-3271.xml", "ukds-2000.xml", "ukds-7481.xml", "gesis-2800.xml", "gesis-5100.xml", "gesis-5300.xml" )
 				.map( fileName -> getClass().getResource( "/demo-documents/ddi-v25/" + fileName ) )
 				.map( Resource::newResource )
 				.map( Resource.class::cast )
@@ -82,7 +76,7 @@ class DemoDocumentsTest
 					try
 					{
 						System.out.println( resource.getUri() );
-						System.out.println( resource.toString() );
+						System.out.println( resource );
 					}
 					catch (Exception e)
 					{

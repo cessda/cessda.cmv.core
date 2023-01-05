@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,13 +19,13 @@
  */
 package eu.cessda.cmv.core;
 
-import static eu.cessda.cmv.core.ValidationGateName.BASIC;
-import static eu.cessda.cmv.core.ValidationGateName.BASICPLUS;
-import static eu.cessda.cmv.core.ValidationGateName.EXTENDED;
-import static eu.cessda.cmv.core.ValidationGateName.STANDARD;
-import static eu.cessda.cmv.core.ValidationGateName.STRICT;
-import static java.util.Objects.requireNonNull;
-import static org.gesis.commons.resource.Resource.newResource;
+import org.apache.tika.Tika;
+import org.apache.tika.detect.CompositeDetector;
+import org.gesis.commons.resource.Resource;
+import org.gesis.commons.resource.io.DdiDetector;
+import org.gesis.commons.resource.io.DdiInputStream;
+import org.gesis.commons.resource.io.OaipmhV20Detector;
+import org.gesis.commons.xml.*;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -36,22 +36,13 @@ import java.net.URI;
 import java.net.URL;
 import java.util.Optional;
 
-import org.apache.tika.Tika;
-import org.apache.tika.detect.CompositeDetector;
-import org.gesis.commons.resource.Resource;
-import org.gesis.commons.resource.io.DdiDetector;
-import org.gesis.commons.resource.io.DdiInputStream;
-import org.gesis.commons.resource.io.OaipmhV20Detector;
-import org.gesis.commons.xml.DomDocument;
-import org.gesis.commons.xml.XercesXalanDocument;
-import org.gesis.commons.xml.XercesXalanElementExtractor;
-import org.gesis.commons.xml.XmlElementExtractor;
-import org.gesis.commons.xml.XmlNotWellformedException;
+import static java.util.Objects.requireNonNull;
+import static org.gesis.commons.resource.Resource.newResource;
 
 public class CessdaMetadataValidatorFactory
 {
-	private XmlElementExtractor.V10 xmlElementExtractor;
-	private Tika documentMediaTypeDetector;
+	private final XmlElementExtractor.V10 xmlElementExtractor;
+	private final Tika documentMediaTypeDetector;
 
 	public CessdaMetadataValidatorFactory()
 	{
@@ -184,34 +175,10 @@ public class CessdaMetadataValidatorFactory
 		}
 	}
 
-	@SuppressWarnings( "deprecation" )
 	public ValidationGate.V10 newValidationGate( ValidationGateName name )
 	{
-		requireNonNull( name );
-		if ( name.equals( BASIC ) )
-		{
-			return new BasicValidationGate();
-		}
-		else if ( name.equals( BASICPLUS ) )
-		{
-			return new BasicPlusValidationGate();
-		}
-		else if ( name.equals( STANDARD ) )
-		{
-			return new StandardValidationGate();
-		}
-		else if ( name.equals( EXTENDED ) )
-		{
-			return new ExtendedValidationGate();
-		}
-		else if ( name.equals( STRICT ) )
-		{
-			return new StrictValidationGate();
-		}
-		else
-		{
-			throw new IllegalArgumentException( name + " not supported" );
-		}
+		requireNonNull( name, "name must not be null" );
+		return name.getValidationGate();
 	}
 
 	public ValidationService.V10 newValidationService()

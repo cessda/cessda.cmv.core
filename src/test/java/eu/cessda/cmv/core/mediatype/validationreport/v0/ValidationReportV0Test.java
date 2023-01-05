@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,6 +18,27 @@
  * #L%
  */
 package eu.cessda.cmv.core.mediatype.validationreport.v0;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
+import eu.cessda.cmv.core.CessdaMetadataValidatorFactory;
+import eu.cessda.cmv.core.ValidationService;
+import org.gesis.commons.resource.Resource;
+import org.gesis.commons.test.DefaultTestEnv;
+import org.gesis.commons.test.TestEnv;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.net.URISyntaxException;
+import java.util.List;
 
 import static com.fasterxml.jackson.databind.PropertyNamingStrategies.LOWER_CAMEL_CASE;
 import static com.fasterxml.jackson.databind.PropertyNamingStrategies.UPPER_CAMEL_CASE;
@@ -28,35 +49,12 @@ import static org.gesis.commons.test.hamcrest.FileMatchers.hasEqualContent;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-import java.io.File;
-import java.net.URISyntaxException;
-import java.util.List;
-
-import org.gesis.commons.resource.Resource;
-import org.gesis.commons.test.DefaultTestEnv;
-import org.gesis.commons.test.TestEnv;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
-
-import eu.cessda.cmv.core.CessdaMetadataValidatorFactory;
-import eu.cessda.cmv.core.ValidationService;
-
 @Disabled( "Only on CESSDA CI, test cases fail, see https://jenkins.cessda.eu/job/cessda.cmv.core/job/master/183/console" )
 class ValidationReportV0Test
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger( ValidationReportV0Test.class );
 
-	private TestEnv.V11 testEnv;
+	private final TestEnv.V11 testEnv;
 
 	ValidationReportV0Test()
 	{

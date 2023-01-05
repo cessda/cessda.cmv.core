@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,13 +19,12 @@
  */
 package eu.cessda.cmv.core;
 
-import static java.util.Arrays.asList;
-
+import java.util.Collections;
 import java.util.List;
 
 class MaximumElementOccuranceConstraint extends NodeConstraint
 {
-	private long maxOccurs;
+	private final long maxOccurs;
 
 	public MaximumElementOccuranceConstraint( String locationPath, long maxOccurs )
 	{
@@ -34,10 +33,9 @@ class MaximumElementOccuranceConstraint extends NodeConstraint
 	}
 
 	@Override
-	@SuppressWarnings( "unchecked" )
-	public <T extends Validator> List<T> newValidators( Document document )
+	public List<Validator> newValidators( Document document )
 	{
-		long actualCount = ((Document.V10) document).getNodes( getLocationPath() ).size();
-		return asList( (T) new MaximumElementOccuranceValidator( getLocationPath(), actualCount, maxOccurs ) );
+		long actualCount = ( (Document.V10) document ).getNodes( getLocationPath() ).size();
+		return Collections.singletonList( new MaximumElementOccuranceValidator( getLocationPath(), actualCount, maxOccurs ) );
 	}
 }

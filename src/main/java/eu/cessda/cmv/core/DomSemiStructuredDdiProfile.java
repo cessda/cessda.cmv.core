@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,31 +19,23 @@
  */
 package eu.cessda.cmv.core;
 
-import static java.lang.Long.valueOf;
-import static java.util.Collections.unmodifiableList;
+import eu.cessda.cmv.core.mediatype.profile.v0.*;
+import org.gesis.commons.resource.io.DdiInputStream;
+import org.gesis.commons.xml.DomDocument;
+import org.gesis.commons.xml.XercesXalanDocument;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-import org.gesis.commons.resource.io.DdiInputStream;
-import org.gesis.commons.xml.DomDocument;
-import org.gesis.commons.xml.XercesXalanDocument;
-
-import eu.cessda.cmv.core.mediatype.profile.v0.CompilableXPathConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.MandatoryNodeConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.MaximumElementOccuranceConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.OptionalNodeConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.PredicatelessXPathConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.ProfileV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.RecommendedNodeConstraintV0;
+import static java.util.Collections.unmodifiableList;
 
 class DomSemiStructuredDdiProfile implements Profile.V10
 {
-	private org.gesis.commons.xml.DomDocument.V11 document;
+	private final org.gesis.commons.xml.DomDocument.V11 document;
 	private List<Constraint> constraints;
-	private ProfileV0 jaxbProfile;
+	private final ProfileV0 jaxbProfile;
 
 	public DomSemiStructuredDdiProfile( DdiInputStream inputStream )
 	{
@@ -234,10 +226,10 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 		{
 			constraints.add( new MaximumElementOccuranceConstraint(
 					getLocationPath( usedNode ),
-					valueOf( limitMaxOccursNode.getNodeValue() ) ) );
+					Long.parseLong( limitMaxOccursNode.getNodeValue() ) ) );
 			jaxbProfile.getConstraints().add( new MaximumElementOccuranceConstraintV0(
 					getLocationPath( usedNode ),
-					valueOf( limitMaxOccursNode.getNodeValue() ) ) );
+					Long.parseLong( limitMaxOccursNode.getNodeValue() ) ) );
 		}
 	}
 
@@ -270,10 +262,9 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 	}
 
 	@Override
-	@SuppressWarnings( "unchecked" )
-	public <T extends Constraint> List<T> getConstraints()
+	public List<Constraint> getConstraints()
 	{
-		return unmodifiableList( (List<T>) constraints );
+		return unmodifiableList( constraints );
 	}
 
 	public ProfileV0 toJaxbProfileV0()

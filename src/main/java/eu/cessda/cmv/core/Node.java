@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,25 +19,23 @@
  */
 package eu.cessda.cmv.core;
 
-import static java.util.Objects.requireNonNull;
+import org.gesis.commons.xml.LocationInfo;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
-import org.gesis.commons.xml.LocationInfo;
+import static java.util.Objects.requireNonNull;
 
 class Node
 {
-	private String locationPath;
-	private String textContent;
-	private Optional<LocationInfo> locationInfo;
-	private Map<String, Integer> childCounter;
+	private final String locationPath;
+	private final String textContent;
+	private final LocationInfo locationInfo;
+	private final Map<String, Integer> childCounter;
 
-	Node( String locationPath, String textContent, Optional<LocationInfo> locationInfo )
+	Node( String locationPath, String textContent, LocationInfo locationInfo )
 	{
 		requireNonNull( locationPath );
-		requireNonNull( locationInfo );
 
 		this.locationPath = locationPath;
 		this.textContent = textContent;
@@ -55,7 +53,7 @@ class Node
 		return textContent;
 	}
 
-	public Optional<LocationInfo> getLocationInfo()
+	public LocationInfo getLocationInfo()
 	{
 		return locationInfo;
 	}
@@ -63,22 +61,12 @@ class Node
 	public void incrementChildCount( String relativeLocationPath )
 	{
 		requireNonNull( relativeLocationPath );
-		if ( !childCounter.containsKey( relativeLocationPath ) )
-		{
-			childCounter.put( relativeLocationPath, 0 );
-		}
-		childCounter.put( relativeLocationPath, childCounter.get( relativeLocationPath ) + 1 );
+		Integer currentChildCount = childCounter.getOrDefault( relativeLocationPath, 0 );
+		childCounter.put( relativeLocationPath, currentChildCount + 1 );
 	}
 
 	public int getChildCount( String relativeLocationPath )
 	{
-		if ( childCounter.containsKey( relativeLocationPath ) )
-		{
-			return childCounter.get( relativeLocationPath );
-		}
-		else
-		{
-			return 0;
-		}
+		return childCounter.getOrDefault( relativeLocationPath, 0 );
 	}
 }

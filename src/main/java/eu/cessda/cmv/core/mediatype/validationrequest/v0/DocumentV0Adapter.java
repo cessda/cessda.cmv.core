@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,19 +19,17 @@
  */
 package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
-import java.net.URI;
+import org.eclipse.persistence.oxm.annotations.XmlCDATA;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
-
-import org.eclipse.persistence.oxm.annotations.XmlCDATA;
+import java.net.URI;
 
 class DocumentV0Adapter extends XmlAdapter<DocumentV0Adapter.AdaptedDocument, DocumentV0>
 {
 	@Override
 	public AdaptedDocument marshal( DocumentV0 document )
-			throws Exception
 	{
 		if ( null == document )
 		{
@@ -51,7 +49,6 @@ class DocumentV0Adapter extends XmlAdapter<DocumentV0Adapter.AdaptedDocument, Do
 
 	@Override
 	public DocumentV0 unmarshal( AdaptedDocument adaptedContactMethod )
-			throws Exception
 	{
 		if ( null == adaptedContactMethod )
 		{

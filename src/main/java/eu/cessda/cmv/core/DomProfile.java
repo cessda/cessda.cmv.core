@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,23 +19,15 @@
  */
 package eu.cessda.cmv.core;
 
+import eu.cessda.cmv.core.mediatype.profile.v0.*;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import eu.cessda.cmv.core.mediatype.profile.v0.CompilableXPathConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.ConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.MandatoryNodeConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.MaximumElementOccuranceConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.NotBlankNodeConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.OptionalNodeConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.PredicatelessXPathConstraintV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.ProfileV0;
-import eu.cessda.cmv.core.mediatype.profile.v0.RecommendedNodeConstraintV0;
-
 class DomProfile implements Profile.V10
 {
-	private List<Constraint.V20> constraints;
+	private final List<Constraint> constraints;
 
 	public DomProfile( InputStream inputStream )
 	{
@@ -77,10 +69,9 @@ class DomProfile implements Profile.V10
 	}
 
 	@Override
-	@SuppressWarnings( "unchecked" )
-	public <T extends Constraint> List<T> getConstraints()
+	public List<Constraint> getConstraints()
 	{
-		return (List<T>) constraints;
+		return constraints;
 	}
 
 	private void parse( MaximumElementOccuranceConstraintV0 jaxbConstraint )

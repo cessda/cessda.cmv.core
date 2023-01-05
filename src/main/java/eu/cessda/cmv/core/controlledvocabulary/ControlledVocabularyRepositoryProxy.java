@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,23 +19,23 @@
  */
 package eu.cessda.cmv.core.controlledvocabulary;
 
-import static java.util.Objects.requireNonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.util.Set;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static java.util.Objects.requireNonNull;
 
 public class ControlledVocabularyRepositoryProxy implements ControlledVocabularyRepository.V11
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger( ControlledVocabularyRepositoryProxy.class );
 
-	private String uri;
-	private String canonicalName;
+	private final String uri;
+	private final String canonicalName;
 	private ControlledVocabularyRepository.V11 repository;
-	private boolean isTolerant;
+	private final boolean isTolerant;
 
 	public ControlledVocabularyRepositoryProxy( String canonicalName, String uri )
 	{

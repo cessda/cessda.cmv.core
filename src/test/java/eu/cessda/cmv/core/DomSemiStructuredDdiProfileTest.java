@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,25 +19,24 @@
  */
 package eu.cessda.cmv.core;
 
+import eu.cessda.cmv.core.mediatype.profile.v0.ProfileV0;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.io.File;
+import java.net.URL;
+
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.io.FileMatchers.anExistingFile;
 
-import java.io.File;
-import java.net.URL;
-
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import eu.cessda.cmv.core.mediatype.profile.v0.ProfileV0;
-
 class DomSemiStructuredDdiProfileTest
 {
-	private CessdaMetadataValidatorFactory factory;
+	private final CessdaMetadataValidatorFactory factory;
 
 	DomSemiStructuredDdiProfileTest()
 	{
@@ -91,7 +90,7 @@ class DomSemiStructuredDdiProfileTest
 
 	private int countConstraints( Profile.V10 profile, Class<? extends Constraint> clazz )
 	{
-		return (int) profile.getConstraints().stream().filter( constraint -> clazz.isInstance( constraint ) ).count();
+		return (int) profile.getConstraints().stream().filter( clazz::isInstance ).count();
 	}
 
 	@Test

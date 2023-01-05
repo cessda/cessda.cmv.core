@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,16 +19,16 @@
  */
 package eu.cessda.cmv.core;
 
+import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepositoryProxy;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepositoryProxy;
-
 class ControlledVocabularyRepositoryConstraint implements Constraint.V20
 {
-	private String locationPath;
-	private String type;
-	private String uri;
+	private final String locationPath;
+	private final String type;
+	private final String uri;
 
 	public ControlledVocabularyRepositoryConstraint(
 			String locationPath,
@@ -41,8 +41,7 @@ class ControlledVocabularyRepositoryConstraint implements Constraint.V20
 	}
 
 	@Override
-	@SuppressWarnings( "unchecked" )
-	public <T extends Validator> List<T> newValidators( Document document )
+	public List<Validator> newValidators( Document document )
 	{
 		Document.V11 d = (Document.V11) document;
 		ControlledVocabularyRepositoryProxy proxy = new ControlledVocabularyRepositoryProxy( type, uri, true );
@@ -55,6 +54,6 @@ class ControlledVocabularyRepositoryConstraint implements Constraint.V20
 		{
 			validators.add( new ControlledVocabularyRepositoryValidator( proxy ) );
 		}
-		return (List<T>) validators;
+		return validators;
 	}
 }

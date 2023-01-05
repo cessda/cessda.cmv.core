@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,22 +19,21 @@
  */
 package eu.cessda.cmv.core;
 
-import java.net.URI;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import eu.cessda.cmv.core.mediatype.validationreport.v0.ConstraintViolationV0;
+import eu.cessda.cmv.core.mediatype.validationreport.v0.ValidationReportV0;
 import org.gesis.commons.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import eu.cessda.cmv.core.mediatype.validationreport.v0.ConstraintViolationV0;
-import eu.cessda.cmv.core.mediatype.validationreport.v0.ValidationReportV0;
+import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 class ValidationServiceV0 implements ValidationService.V10
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger( ValidationServiceV0.class );
 
-	private CessdaMetadataValidatorFactory factory;
+	private final CessdaMetadataValidatorFactory factory;
 
 	ValidationServiceV0( CessdaMetadataValidatorFactory factory )
 	{
@@ -42,7 +41,6 @@ class ValidationServiceV0 implements ValidationService.V10
 	}
 
 	@Override
-	@SuppressWarnings( "unchecked" )
 	public ValidationReportV0 validate(
 			URI documentUri,
 			URI profileUri,
@@ -58,7 +56,6 @@ class ValidationServiceV0 implements ValidationService.V10
 	}
 
 	@Override
-	@SuppressWarnings( "unchecked" )
 	public ValidationReportV0 validate(
 			Resource documentResource,
 			Resource profileResource,

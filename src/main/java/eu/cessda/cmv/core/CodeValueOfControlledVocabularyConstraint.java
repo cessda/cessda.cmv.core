@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,14 +19,14 @@
  */
 package eu.cessda.cmv.core;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.Objects.requireNonNull;
+
 class CodeValueOfControlledVocabularyConstraint implements Constraint.V20
 {
-	private String locationPath;
+	private final String locationPath;
 
 	public CodeValueOfControlledVocabularyConstraint( String locationPath )
 	{
@@ -35,11 +35,10 @@ class CodeValueOfControlledVocabularyConstraint implements Constraint.V20
 	}
 
 	@Override
-	@SuppressWarnings( "unchecked" )
-	public <T extends Validator> List<T> newValidators( Document document )
+	public List<Validator> newValidators( Document document )
 	{
 		requireNonNull( document );
-		return (List<T>) ((Document.V10) document).getNodes( locationPath ).stream()
+		return ( (Document.V10) document ).getNodes( locationPath ).stream()
 				.map( ControlledVocabularyNode.class::cast )
 				.map( CodeValueOfControlledVocabularyValidator::new )
 				.collect( Collectors.toList() );

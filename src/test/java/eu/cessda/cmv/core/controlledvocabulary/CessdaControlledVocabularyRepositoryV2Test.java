@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CessdaControlledVocabularyRepositoryV2Test
 {
-	private TestEnv.V13 testEnv = DefaultTestEnv.newInstance( CessdaControlledVocabularyRepositoryV2Test.class );
+	private final TestEnv.V13 testEnv = DefaultTestEnv.newInstance( CessdaControlledVocabularyRepositoryV2Test.class );
 
 	@Test
 	void findCodeValues_AnalysisUnit_10()
