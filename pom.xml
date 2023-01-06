@@ -22,7 +22,7 @@
 		<dependency>
 			<groupId>org.gesis.commons</groupId>
 			<artifactId>commons-resource</artifactId>
-			<version>0.7.0</version>
+			<version>0.8.0</version>
 		</dependency>
 		<dependency>
 			<groupId>io.swagger.core.v3</groupId>
