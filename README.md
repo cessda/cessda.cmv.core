@@ -9,9 +9,17 @@
 [![Vulnerabilities](https://sonarqube.cessda.eu/api/project_badges/measure?project=eu.cessda.cmv%3Acmv-core&metric=vulnerabilities)](https://sonarqube.cessda.eu/dashboard?id=eu.cessda.cmv%3Acmv-core)
 [![Bugs](https://sonarqube.cessda.eu/api/project_badges/measure?project=eu.cessda.cmv%3Acmv-core&metric=bugs)](https://sonarqube.cessda.eu/dashboard?id=eu.cessda.cmv%3Acmv-core)
 
-This repository holds all core domain logic about CESSDA Metadata Validator project. 
+This repository holds all core domain logic about CESSDA Metadata Validator project.
+
+## Prerequisites
+
+The following SDKs must be installed before the project can be used.
+
+* Java Development Kit (JDK) 8 (or later)
 
 ## Usage
+
+This is a short snippet showing how to use the validator.
 
 ```java
 void validateUsingFiles()
@@ -26,9 +34,12 @@ void validateUsingFiles()
 }
 ```
 
+For more detailed information, consult the JavaDoc.
+
 ## Dependency Information
 
 Add CESSDA Maven Repository to your `pom.xml`:
+
 ```xml
 <repositories>
 	<repository>
@@ -39,6 +50,7 @@ Add CESSDA Maven Repository to your `pom.xml`:
 ```
 
 For snapshots add:
+
 ```xml
 <repositories>
 	<repository>
@@ -48,7 +60,8 @@ For snapshots add:
 </repositories>
 ```
 
-Add the dependency to your `pom.xml`:  
+Add the dependency to your `pom.xml`:
+
 ```xml
 <dependency>
 	<groupId>eu.cessda.cmv</groupId>
@@ -61,9 +74,9 @@ Add the dependency to your `pom.xml`:
 
 ```shell
 # Pull repository and change directory
-git clone git@bitbucket.org:cessda/cessda.cmv.core.git
+git clone https://github.com/cessda/cessda.cmv.core.git
 cd cessda.cmv.core
 
 # Execute tests
-mvn clean test
+./mvnw clean test
 ```
