@@ -28,7 +28,7 @@ pipeline {
 							sh '$MVN_CMD clean install -U'
 						}
 					}
-					when { branch 'master' }
+					when { branch 'main' }
 				}
 				// Not running on master - test only (for PRs and integration branches)
 				stage('Test Project') {
@@ -37,7 +37,7 @@ pipeline {
 							sh '$MVN_CMD clean test'
 						}
 					}
-					when { not { branch 'master' } }
+					when { not { branch 'main' } }
 				}
 				stage('Record Issues') {
 					steps {
@@ -55,7 +55,7 @@ pipeline {
 							waitForQualityGate abortPipeline: true
 						}
 					}
-					when { branch 'master' }
+					when { branch 'main' }
 				}
 				stage('Deploy Project') {
 					steps {
@@ -63,7 +63,7 @@ pipeline {
 							sh '$MVN_CMD jar:jar javadoc:jar source:jar deploy:deploy'
 						}
 					}
-					when { branch 'master' }
+					when { branch 'main' }
 				}
 			}
 		}
