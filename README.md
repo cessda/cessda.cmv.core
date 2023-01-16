@@ -26,11 +26,13 @@ void validateUsingFiles()
 {
 CessdaMetadataValidatorFactory factory = new CessdaMetadataValidatorFactory();
 ValidationService.V10 validationService = factory.newValidationService();
-Resource document = Resource.newResource( new File( "path/to/ddi-document.xml" ) );
-Resource profile = Resource.newResource( new File( "path/to/ddi-profile.xml" ) );
-ValidationReportV0 validationReport = validationService.validate( document, profile, BASIC );
+Resource document = Resource.newResource(new File("path/to/ddi-document.xml"));
+Resource profile = Resource.newResource( new File("path/to/ddi-profile.xml"));
+ValidationReportV0 validationReport =
+ validationService.validate( document, profile, BASIC );
 boolean isValid = validationReport.getConstraintViolations().isEmpty();
-validationReport.getConstraintViolations().forEach( cv -> System.out.println( cv.getMessage() ) );
+validationReport.getConstraintViolations().forEach( cv ->
+ System.out.println( cv.getMessage() ) );
 }
 ```
 

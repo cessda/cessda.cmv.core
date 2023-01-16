@@ -5,12 +5,12 @@ All notable changes to the CESSDA Metadata Validator Core component will be docu
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-*For each release, use the following sub-sections:*  
-*- Added (for new features)*  
-*- Changed (for changes in existing functionality)*  
-*- Deprecated (for soon-to-be removed features)*  
-*- Removed (for now removed features)*  
-*- Fixed (for any bug fixes)*  
+*For each release, use the following sub-sections:*
+*- Added (for new features)*
+*- Changed (for changes in existing functionality)*
+*- Deprecated (for soon-to-be removed features)*
+*- Removed (for now removed features)*
+*- Fixed (for any bug fixes)*
 *- Security (in case of vulnerabilities)*
 
 ## [1.0.0]
@@ -22,11 +22,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - General code refactor ([#86](https://github.com/cessda/cessda.cmv.core/issues/86))
-- Update the readme to include the GitHub source URL ([#97](https://github.com/cessda/cessda.cmv.core/issues/97))
+- Update the readme to include the GitHub source URL
+  ([#97](https://github.com/cessda/cessda.cmv.core/issues/97))
 
 ### Fixed
 
-- Fix tests failing on Windows due to differences in platform string conventions ([#85](https://github.com/cessda/cessda.cmv.core/issues/85))
+- Fix tests failing on Windows due to differences in platform string conventions
+  ([#85](https://github.com/cessda/cessda.cmv.core/issues/85))
 
 ## [0.4.2] - 2021-10-05
 
@@ -36,7 +38,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- CessdaControlledVocabularyRepositoryV2 - now returns cause of the IllegalArgumentException if an error occurs ([#82](https://github.com/cessda/cessda.cmv.core/issues/82))
+- CessdaControlledVocabularyRepositoryV2 - now returns cause of the
+  IllegalArgumentException if an error occurs
+  ([#82](https://github.com/cessda/cessda.cmv.core/issues/82))
 
 ## [0.4.1] - 2021-04-15
 
@@ -95,9 +99,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added Code of Conduct, Changelog ([#54](https://github.com/cessda/cessda.cmv.core/issues/54))
 - Added badges to REAMDME ([#53](https://github.com/cessda/cessda.cmv.core/issues/53))
 
-1.0.0: <https://github.com/cessda/cessda.cmv.core/releases/tag/v1.0.0>  
-0.4.1: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.4.1>  
-0.4.0: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.4.0>  
-0.3.1: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.3.1>  
-0.3.0: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.3.0>  
+1.0.0: <https://github.com/cessda/cessda.cmv.core/releases/tag/v1.0.0>
+0.4.1: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.4.1>
+0.4.0: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.4.0>
+0.3.1: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.3.1>
+0.3.0: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.3.0>
 0.2.0: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.2.0>
