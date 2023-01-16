@@ -1,4 +1,5 @@
 # Changelog
+
 All notable changes to the CESSDA Metadata Validator Core component will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
@@ -12,6 +13,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 *- Fixed (for any bug fixes)*  
 *- Security (in case of vulnerabilities)*
 
+## [1.0.0]
+
+### Added
+
+- Add the Maven wrapper to the repository
+
+### Changed
+
+- General code refactor ([#86](https://github.com/cessda/cessda.cmv.core/issues/86))
+- Update the readme to include the GitHub source URL ([#97](https://github.com/cessda/cessda.cmv.core/issues/97))
+
+### Fixed
+
+- Fix tests failing on Windows due to differences in platform string conventions ([#85](https://github.com/cessda/cessda.cmv.core/issues/85))
+
 ## [0.4.2] - 2021-10-05
 
 ### Changed
@@ -20,7 +36,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- CessdaControlledVocabularyRepositoryV2 - now returns cause of the IllegalArgumentException if an error occurs (#82)
+- CessdaControlledVocabularyRepositoryV2 - now returns cause of the IllegalArgumentException if an error occurs ([#82](https://github.com/cessda/cessda.cmv.core/issues/82))
 
 ## [0.4.1] - 2021-04-15
 
@@ -33,48 +49,55 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4680640.svg)](https://doi.org/10.5281/zenodo.4680640)
 
 ### Added
-- Provide ValidationRequest representation (#73)
+
+- Provide ValidationRequest representation ([#73](https://github.com/cessda/cessda.cmv.core/issues/73))
 
 ### Changed
-- Adapt to CVS API V2 (#70)
-- By CESSDA requested repairs (#68, #69)
-- Blank xml tags are shown as constraint violations (e.g. collDate, distDate) (#66)
-- Update CDC profiles to version 1.0.4 (#75)
+
+- Adapt to CVS API V2 ([#70](https://github.com/cessda/cessda.cmv.core/issues/70))
+- By CESSDA requested repairs ([#68](https://github.com/cessda/cessda.cmv.core/issues/), [#69](https://github.com/cessda/cessda.cmv.core/issues/))
+- Blank xml tags are shown as constraint violations (e.g. `collDate`, `distDate`) ([#66](https://github.com/cessda/cessda.cmv.core/issues/))
+- Update CDC profiles to version 1.0.4 ([#75](https://github.com/cessda/cessda.cmv.core/issues/))
 
 ## [0.3.1] - 2020-09-23
 
 ### Fixed
-- org.gesis.commons.xml.ddi.DdiInputStream corrupts UTF-16LE encoded xml documents
+
+- `org.gesis.commons.xml.ddi.DdiInputStream` corrupts UTF-16LE encoded xml documents
 
 ## [0.3.0] - 2020-09-17
 
 ### Added
-- Finalized FixedValueNodeConstraint (#13)
-- Finalized DescriptiveTermOfControlledVocabularyConstraint (#27)
+
+- Finalized FixedValueNodeConstraint ([#13](https://github.com/cessda/cessda.cmv.core/issues/))
+- Finalized DescriptiveTermOfControlledVocabularyConstraint ([#27](https://github.com/cessda/cessda.cmv.core/issues/))
 
 ### Changed
-- Included CDC profiles v1.0 
-- Upgrade to [org.gesis.commons:commons-xml:5.6.0](https://git.gesis.org/java-commons/commons-xml/tree/v5.6.0)
-- Change constraint assignments to validation gates (#70)
+
+- Included CDC profiles v1.0
+- Upgrade to [`org.gesis.commons:commons-xml:5.6.0`](https://git.gesis.org/java-commons/commons-xml/tree/v5.6.0)
+- Change constraint assignments to validation gates ([#70](https://github.com/cessda/cessda.cmv.core/issues/70))
 
 ### Fixed
-- Evaluate XPaths with default namespace (#62)
+
+- Evaluate XPaths with default namespace ([#62](https://github.com/cessda/cessda.cmv.core/issues/62))
 
 ## [0.2.0] - 07-07-2020
 
 ### Added
+
 - Finalized MinimumElementOccuranceValidator
 - Finalized CodeValueOfControlledVocabularyConstraint
 - Finalized MandatoryNodeIfParentPresent
 - Finalized RecommendedNodeConstraint
 - Finalized MandatoryNodeConstraint
 - Finalized OptionalNodeConstraint
-- Added Code of Conduct, Changelog ([#54](https://bitbucket.org/cessda/cessda.cmv.core/issues/54))
-- Added badges to REAMDME ([#53](https://bitbucket.org/cessda/cessda.cmv.core/issues/53))
+- Added Code of Conduct, Changelog ([#54](https://github.com/cessda/cessda.cmv.core/issues/54))
+- Added badges to REAMDME ([#53](https://github.com/cessda/cessda.cmv.core/issues/53))
 
-
-[0.4.1]: https://bitbucket.org/cessda/cessda.cmv.core/src/v0.4.1
-[0.4.0]: https://bitbucket.org/cessda/cessda.cmv.core/src/v0.4.0
-[0.3.1]: https://bitbucket.org/cessda/cessda.cmv.core/src/v0.3.1
-[0.3.0]: https://bitbucket.org/cessda/cessda.cmv.core/src/v0.3.0
-[0.2.0]: https://bitbucket.org/cessda/cessda.cmv.core/src/v0.2.0
+1.0.0: <https://github.com/cessda/cessda.cmv.core/releases/tag/v1.0.0>  
+0.4.1: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.4.1>  
+0.4.0: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.4.0>  
+0.3.1: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.3.1>  
+0.3.0: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.3.0>  
+0.2.0: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.2.0>
