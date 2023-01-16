@@ -36,6 +36,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.net.URL;
 
 import static com.fasterxml.jackson.databind.PropertyNamingStrategies.LOWER_CAMEL_CASE;
 import static com.fasterxml.jackson.databind.PropertyNamingStrategies.UPPER_CAMEL_CASE;
@@ -54,9 +55,16 @@ class ValidationRequestV0Test
 
 	ValidationRequestV0Test()
 	{
-		String baseUrl = "https://bitbucket.org/cessda/cessda.cmv.core/raw/1a01a5e7ede385699e169a56ab9e700de716778a/src/main/resources/demo-documents/ddi-v25";
-		profile = new TextResource( newResource( baseUrl + "/cdc25_profile.xml" ) );
-		document = new TextResource( newResource( baseUrl + "/gesis-5300.xml" ) );
+		String baseUrl = "/demo-documents/ddi-v25";
+
+		URL profileResource = this.getClass().getResource( baseUrl + "/cdc25_profile.xml" );
+		URL documentResource = this.getClass().getResource( baseUrl + "/gesis-5300.xml" );
+
+		assert profileResource != null;
+		assert documentResource != null;
+
+		profile = new TextResource( newResource( profileResource ) );
+		document = new TextResource( newResource( documentResource ) );
 		validationGateName = ValidationGateName.BASIC;
 		testEnv = DefaultTestEnv.newInstance( ValidationRequestV0Test.class );
 	}
