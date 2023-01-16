@@ -26,9 +26,9 @@ import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -45,21 +45,21 @@ class CessdaMetadataValidatorFactoryTest
 	}
 
 	@Test
-	void newDomDocument()
+	void newDomDocument() throws IOException
 	{
-		File file = new File( "src/main/resources/cmv-profile-ddi-v32.xml" );
-		DomDocument.V11 document = factory.newDomDocument( file );
+		URL resourceUrl = this.getClass().getResource( "/cmv-profile-ddi-v32.xml" );
+		assert resourceUrl != null;
+		DomDocument.V11 document = factory.newDomDocument( resourceUrl.openStream() );
 		assertThat( document.selectNode( "/pr:DDIProfile" ), notNullValue() );
 	}
 
 	@ParameterizedTest
-	@ValueSource(
-			strings = {
-					"https://bitbucket.org/cessda/cessda.cmv.core/raw/815a9aa0688300aea56b7ff31bdb99ec9714729d/src/main/resources/demo-documents/ddi-v25/fsd-3307.xml",
-					"https://bitbucket.org/cessda/cessda.cmv.core/raw/815a9aa0688300aea56b7ff31bdb99ec9714729d/src/main/resources/demo-documents/ddi-v25/fsd-3307-oaipmh.xml" } )
+	@ValueSource( strings = { "/demo-documents/ddi-v25/fsd-3307.xml", "/demo-documents/ddi-v25/fsd-3307-oaipmh.xml" } )
 	void newDocument( String uri )
 	{
-		Resource resource = newResource( uri );
+		URL resourceUrl = this.getClass().getResource( uri );
+		assert resourceUrl != null;
+		Resource resource = newResource( resourceUrl );
 		assertThat( factory.newDocument( resource ), notNullValue() );
 	}
 
@@ -67,7 +67,9 @@ class CessdaMetadataValidatorFactoryTest
 	void newDocumentWithNotWellformedDocument() throws IOException
 	{
 		// given
-		Resource resource = newResource( getClass().getResource( "/demo-documents/ddi-v25/ukds-7481-not-wellformed.xml-invalid" ) );
+		URL resourceUrl = getClass().getResource( "/demo-documents/ddi-v25/ukds-7481-not-wellformed.xml-invalid" );
+		assert resourceUrl != null;
+		Resource resource = newResource( resourceUrl );
 		try ( InputStream inputStream = resource.readInputStream() )
 		{
 			// when
