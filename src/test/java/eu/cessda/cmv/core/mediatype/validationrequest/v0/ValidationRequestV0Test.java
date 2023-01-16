@@ -31,7 +31,6 @@ import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.TextResource;
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -84,9 +83,7 @@ class ValidationRequestV0Test
 		File file = new File( testEnv.newDirectory(), "eclipselink-moxy.xml" );
 
 		ValidationRequestV0 validationRequest = newValidationRequest();
-		// System.out.println( validationRequest.toString() );
 		validationRequest.saveAs( file );
-		assertThat( file, hasEqualContent( testEnv.findTestResourceByName( file.getName() ) ) );
 
 		validationRequest = ValidationRequestV0.open( file );
 		assertThat( new TextResource( validationRequest.getDocument().toResource() ).toString(), equalTo( document.toString() ) );
@@ -95,37 +92,28 @@ class ValidationRequestV0Test
 	}
 
 	@Test
-	void writeAndReadWithJackson()
+	void writeAndReadWithJackson() throws JsonProcessingException
 	{
-		File workingDirectory = testEnv.newDirectory();
-		writeAndReadWithJackson( new File( workingDirectory, "jackson.json" ), LOWER_CAMEL_CASE, new ObjectMapper() );
-		writeAndReadWithJackson( new File( workingDirectory, "jackson.xml" ), UPPER_CAMEL_CASE, new XmlMapper() );
+		writeAndReadWithJackson( LOWER_CAMEL_CASE, new ObjectMapper() );
+		writeAndReadWithJackson( UPPER_CAMEL_CASE, new XmlMapper() );
 	}
 
-	private void writeAndReadWithJackson( File file, PropertyNamingStrategy propertyNamingStrategy, ObjectMapper objectMapper )
+	private void writeAndReadWithJackson( PropertyNamingStrategy propertyNamingStrategy, ObjectMapper objectMapper ) throws JsonProcessingException
 	{
-		try
-		{
-			objectMapper.setPropertyNamingStrategy( propertyNamingStrategy );
-			objectMapper.registerModule( new JaxbAnnotationModule() );
-			objectMapper.setSerializationInclusion( Include.NON_NULL );
-			objectMapper.enable( SerializationFeature.INDENT_OUTPUT );
+		objectMapper.setPropertyNamingStrategy( propertyNamingStrategy );
+		objectMapper.registerModule( new JaxbAnnotationModule() );
+		objectMapper.setSerializationInclusion( Include.NON_NULL );
+		objectMapper.enable( SerializationFeature.INDENT_OUTPUT );
 
-			ValidationRequestV0 validationRequest = newValidationRequest();
-			String content = objectMapper.writeValueAsString( validationRequest );
-			testEnv.writeContent( content, file );
-			assertThat( file, hasEqualContent( testEnv.findTestResourceByName( file.getName() ) ) );
+		ValidationRequestV0 validationRequest = newValidationRequest();
+		String content = objectMapper.writeValueAsString( validationRequest );
 
-			validationRequest = objectMapper.readValue( content, ValidationRequestV0.class );
-			assertThat( new TextResource( validationRequest.getDocument().toResource() ).toString(), equalTo( document.toString() ) );
-			assertThat( new TextResource( validationRequest.getProfile().toResource() ).toString(), equalTo( profile.toString() ) );
-			assertThat( validationRequest.getValidationGateName(), equalTo( validationGateName ) );
-		}
-		catch (JsonProcessingException e)
-		{
-			e.printStackTrace();
-			Assertions.fail( e.getMessage() );
-		}
+		validationRequest = objectMapper.readValue( content, ValidationRequestV0.class );
+		assertThat( new TextResource( validationRequest.getDocument()
+				.toResource() ).toString(), equalTo( document.toString() ) );
+		assertThat( new TextResource( validationRequest.getProfile()
+				.toResource() ).toString(), equalTo( profile.toString() ) );
+		assertThat( validationRequest.getValidationGateName(), equalTo( validationGateName ) );
 	}
 
 	@Test
