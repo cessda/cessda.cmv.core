@@ -237,15 +237,15 @@
 		<url>https://www.cessda.eu/</url>
 	</organization>
 	<scm>
-		<url>https://bitbucket.org/cessda/cessda.cmv.core/</url>
+		<url>https://github.com/cessda/cessda.cmv.core/</url>
 	</scm>
 	<ciManagement>
 		<system>Jenkins</system>
 		<url>https://jenkins.cessda.eu/</url>
 	</ciManagement>
 	<issueManagement>
-		<url>https://bitbucket.org/cessda/cessda.cvm.core/issues</url>
-		<system>Bitbucket</system>
+		<url>https://github.com/cessda/cessda.cmv.core/issues</url>
+		<system>Github</system>
 	</issueManagement>
 
 	<repositories>
