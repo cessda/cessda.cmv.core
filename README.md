@@ -66,7 +66,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
 	<groupId>eu.cessda.cmv</groupId>
 	<artifactId>cmv-core</artifactId>
-	<version>0.4.1</version>
+	<version>1.0.0</version>
 </dependency>
 ```
 
