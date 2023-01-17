@@ -24,13 +24,13 @@ This is a short snippet showing how to use the validator.
 ```java
 void validateUsingFiles()
 {
-CessdaMetadataValidatorFactory factory = new CessdaMetadataValidatorFactory();
-ValidationService.V10 validationService = factory.newValidationService();
-Resource document = Resource.newResource( new File( "path/to/ddi-document.xml" ) );
-Resource profile = Resource.newResource( new File( "path/to/ddi-profile.xml" ) );
-ValidationReportV0 validationReport = validationService.validate( document, profile, BASIC );
-boolean isValid = validationReport.getConstraintViolations().isEmpty();
-validationReport.getConstraintViolations().forEach( cv -> System.out.println( cv.getMessage() ) );
+	CessdaMetadataValidatorFactory factory = new CessdaMetadataValidatorFactory();
+	ValidationService.V10 validationService = factory.newValidationService();
+	Resource document = Resource.newResource( new File( "path/to/ddi-document.xml" ) );
+	Resource profile = Resource.newResource( new File( "path/to/ddi-profile.xml" ) );
+	ValidationReportV0 validationReport = validationService.validate( document, profile, BASIC );
+	boolean isValid = validationReport.getConstraintViolations().isEmpty();
+	validationReport.getConstraintViolations().forEach( cv -> System.out.println( cv.getMessage() ) );
 }
 ```
 
@@ -42,10 +42,10 @@ Add CESSDA Maven Repository to your `pom.xml`:
 
 ```xml
 <repositories>
-<repository>
- <id>cessda-nexus</id>
-  <url>https://nexus.cessda.eu/repository/maven-releases</url>
- </repository>
+	<repository>
+		<id>cessda-nexus</id>
+		<url>https://nexus.cessda.eu/repository/maven-releases</url>
+	</repository>
 </repositories>
 ```
 
@@ -53,10 +53,10 @@ For snapshots add:
 
 ```xml
 <repositories>
- <repository>
-  <id>cessda-nexus-snapshots</id>
-   <url>https://nexus.cessda.eu/repository/maven-snapshots</url>
- </repository>
+	<repository>
+		<id>cessda-nexus-snapshots</id>
+		<url>https://nexus.cessda.eu/repository/maven-snapshots</url>
+	</repository>
 </repositories>
 ```
 
@@ -64,9 +64,9 @@ Add the dependency to your `pom.xml`:
 
 ```xml
 <dependency>
- <groupId>eu.cessda.cmv</groupId>
-  <artifactId>cmv-core</artifactId>
-   <version>1.0.0</version>
+	<groupId>eu.cessda.cmv</groupId>
+	<artifactId>cmv-core</artifactId>
+	<version>1.0.0</version>
 </dependency>
 ```
 
