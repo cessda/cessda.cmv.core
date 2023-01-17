@@ -15,13 +15,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.0.0]
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.545261.svg)](https://doi.org/10.5281/zenodo.545261)
+
 ### Added
 
 - Add the Maven wrapper to the repository
 
 ### Changed
 
-- General code refactor ([#86](https://github.com/cessda/cessda.cmv.core/issues/86))
+- Replace references to Bitbucket
+  ([#107](https://github.com/cessda/cessda.cmv.core/issues/107))
+- Improve SQAaaS score
+  ([#106](https://github.com/cessda/cessda.cmv.core/issues/106))
+- General code refactor
+  ([#86](https://github.com/cessda/cessda.cmv.core/issues/86))
 - Update the readme to include the GitHub source URL
   ([#97](https://github.com/cessda/cessda.cmv.core/issues/97))
 
@@ -54,37 +61,50 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Provide ValidationRequest representation ([#73](https://github.com/cessda/cessda.cmv.core/issues/73))
+- Provide ValidationRequest representation
+  ([#73](https://github.com/cessda/cessda.cmv.core/issues/73))
 
 ### Changed
 
-- Adapt to CVS API V2 ([#70](https://github.com/cessda/cessda.cmv.core/issues/70))
-- By CESSDA requested repairs ([#68](https://github.com/cessda/cessda.cmv.core/issues/), [#69](https://github.com/cessda/cessda.cmv.core/issues/))
-- Blank xml tags are shown as constraint violations (e.g. `collDate`, `distDate`) ([#66](https://github.com/cessda/cessda.cmv.core/issues/))
-- Update CDC profiles to version 1.0.4 ([#75](https://github.com/cessda/cessda.cmv.core/issues/))
+- Adapt to CVS API V2
+  ([#70](https://github.com/cessda/cessda.cmv.core/issues/70))
+- By CESSDA requested repairs
+  ([#68](https://github.com/cessda/cessda.cmv.core/issues/),
+  [#69](https://github.com/cessda/cessda.cmv.core/issues/))
+- Blank xml tags are shown as constraint violations
+  (e.g. `collDate`, `distDate`)
+  ([#66](https://github.com/cessda/cessda.cmv.core/issues/))
+- Update CDC profiles to version 1.0.4
+  ([#75](https://github.com/cessda/cessda.cmv.core/issues/))
 
 ## [0.3.1] - 2020-09-23
 
 ### Fixed
 
-- `org.gesis.commons.xml.ddi.DdiInputStream` corrupts UTF-16LE encoded xml documents
+- `org.gesis.commons.xml.ddi.DdiInputStream`
+  corrupts UTF-16LE encoded xml documents
 
 ## [0.3.0] - 2020-09-17
 
 ### Added
 
-- Finalized FixedValueNodeConstraint ([#13](https://github.com/cessda/cessda.cmv.core/issues/))
-- Finalized DescriptiveTermOfControlledVocabularyConstraint ([#27](https://github.com/cessda/cessda.cmv.core/issues/))
+- Finalized FixedValueNodeConstraint
+  ([#13](https://github.com/cessda/cessda.cmv.core/issues/))
+- Finalized DescriptiveTermOfControlledVocabularyConstraint
+  ([#27](https://github.com/cessda/cessda.cmv.core/issues/))
 
 ### Changed
 
 - Included CDC profiles v1.0
-- Upgrade to [`org.gesis.commons:commons-xml:5.6.0`](https://git.gesis.org/java-commons/commons-xml/tree/v5.6.0)
-- Change constraint assignments to validation gates ([#70](https://github.com/cessda/cessda.cmv.core/issues/70))
+- Upgrade to
+  [`org.gesis.commons:commons-xml:5.6.0`](https://git.gesis.org/java-commons/commons-xml/tree/v5.6.0)
+- Change constraint assignments to validation gates
+  ([#70](https://github.com/cessda/cessda.cmv.core/issues/70))
 
 ### Fixed
 
-- Evaluate XPaths with default namespace ([#62](https://github.com/cessda/cessda.cmv.core/issues/62))
+- Evaluate XPaths with default namespace
+  ([#62](https://github.com/cessda/cessda.cmv.core/issues/62))
 
 ## [0.2.0] - 07-07-2020
 
@@ -96,8 +116,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Finalized RecommendedNodeConstraint
 - Finalized MandatoryNodeConstraint
 - Finalized OptionalNodeConstraint
-- Added Code of Conduct, Changelog ([#54](https://github.com/cessda/cessda.cmv.core/issues/54))
-- Added badges to REAMDME ([#53](https://github.com/cessda/cessda.cmv.core/issues/53))
+- Added Code of Conduct, Changelog
+  ([#54](https://github.com/cessda/cessda.cmv.core/issues/54))
+- Added badges to REAMDME
+  ([#53](https://github.com/cessda/cessda.cmv.core/issues/53))
 
 1.0.0: <https://github.com/cessda/cessda.cmv.core/releases/tag/v1.0.0>
 0.4.1: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.4.1>
