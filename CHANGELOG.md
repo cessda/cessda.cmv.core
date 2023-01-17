@@ -95,9 +95,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added Code of Conduct, Changelog ([#54](https://github.com/cessda/cessda.cmv.core/issues/54))
 - Added badges to REAMDME ([#53](https://github.com/cessda/cessda.cmv.core/issues/53))
 
-1.0.0: <https://github.com/cessda/cessda.cmv.core/releases/tag/v1.0.0>  
-0.4.1: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.4.1>  
-0.4.0: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.4.0>  
-0.3.1: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.3.1>  
-0.3.0: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.3.0>  
-0.2.0: <https://github.com/cessda/cessda.cmv.core/releases/tag/v0.2.0>
+[1.0.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/v1.0.0
+[0.4.2]: https://github.com/cessda/cessda.cmv.core/releases/tag/v0.4.2
+[0.4.1]: https://github.com/cessda/cessda.cmv.core/releases/tag/v0.4.1
+[0.4.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/v0.4.0
+[0.3.1]: https://github.com/cessda/cessda.cmv.core/releases/tag/v0.3.1
+[0.3.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/v0.3.0
+[0.2.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/v0.2.0
