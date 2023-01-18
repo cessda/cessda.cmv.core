@@ -14,13 +14,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - *Fixed (for any bug fixes)*
 - *Security (in case of vulnerabilities)*
 
-## [1.0.0]
+## [1.0.0] - 2023-01-24
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.545261.svg)](https://doi.org/10.5281/zenodo.545261)
 
 ### Added
 
 - Add the Maven wrapper to the repository
+	([#98](https://github.com/cessda/cessda.cmv.core/issues/98))
 
 ### Changed
 
