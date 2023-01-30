@@ -214,6 +214,14 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+				</configuration>
+			</plugin>
 		</plugins>
 		<resources>
 			<resource>
@@ -237,7 +245,7 @@
 		<url>https://www.cessda.eu/</url>
 	</organization>
 	<scm>
-		<url>https://github.com/cessda/cessda.cmv.core</url>
+		<developerConnection>scm:git:https://github.com/cessda/cessda.cmv.core.git</developerConnection>
 	</scm>
 	<ciManagement>
 		<system>Jenkins</system>
