@@ -101,19 +101,19 @@ public class CessdaMetadataValidatorFactory
 			else if ( OaipmhV20Detector.MEDIATYPE.equals( mediaType ) )
 			{
 				String xpath = "/OAI-PMH/GetRecord/record/metadata/*[1]";
-				Optional<InputStream> extractedElementInputstream = xmlElementExtractor.extractAsInputStream( bufferedInputStream, xpath );
-				if ( extractedElementInputstream.isPresent() )
+				Optional<InputStream> extractedElementInputStream = xmlElementExtractor.extractAsInputStream( bufferedInputStream, xpath );
+				if ( extractedElementInputStream.isPresent() )
 				{
-					return newDocument( extractedElementInputstream.get() );
+					return newDocument( extractedElementInputStream.get() );
 				}
 			}
 			throw new NotDocumentException( String.format( "Detected media type: %s", mediaType ) );
 		}
-		catch (XmlNotWellformedException e)
+		catch ( XmlNotWellformedException e )
 		{
 			throw new NotDocumentException( String.format( "Not well-formed XML: %s", e.getMessage() ) );
 		}
-		catch (Exception e)
+		catch ( IOException e )
 		{
 			throw new NotDocumentException( e );
 		}

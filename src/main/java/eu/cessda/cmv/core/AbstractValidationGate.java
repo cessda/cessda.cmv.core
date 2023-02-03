@@ -34,9 +34,9 @@ abstract class AbstractValidationGate implements ValidationGate.V10
 		constraintTypes = new ArrayList<>();
 	}
 
-	protected void addConstraintType( Class<? extends Constraint.V20> constraint )
+	AbstractValidationGate( Collection<Class<? extends Constraint.V20>> constraints )
 	{
-		constraintTypes.add( constraint );
+		this.constraintTypes = new ArrayList<>( constraints );
 	}
 
 	protected void addConstraintType( Collection<Class<? extends Constraint.V20>> constraints )
@@ -64,4 +64,5 @@ abstract class AbstractValidationGate implements ValidationGate.V10
 		}
 		return (List<T>) constraintViolations;
 	}
+
 }

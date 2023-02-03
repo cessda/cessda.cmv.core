@@ -19,6 +19,7 @@
  */
 package eu.cessda.cmv.core;
 
+import eu.cessda.cmv.core.mediatype.validationreport.v0.ValidationReportV0;
 import org.gesis.commons.resource.Resource;
 
 import java.net.URI;
@@ -36,5 +37,15 @@ public interface ValidationService
 				Resource document,
 				Resource profile,
 				ValidationGateName validationGateName );
+
+		ValidationReportV0 validate(
+				URI documentUri,
+				URI profileUri,
+				ValidationGate.V10 validationGate );
+
+		ValidationReportV0 validate(
+				Resource documentResource,
+				Resource profileResource,
+				ValidationGate.V10 validationGate );
 	}
 }

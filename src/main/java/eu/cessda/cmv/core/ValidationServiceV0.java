@@ -70,14 +70,27 @@ class ValidationServiceV0 implements ValidationService.V10
 				validationGateName );
 	}
 
-	private ValidationReportV0 validate(
+	private static ValidationReportV0 validate( Document document, Profile profile, URI documentUri, URI profileUri, ValidationGate.V10 validationGate )
+	{
+		ValidationReportV0 validationReport = validate( document, documentUri, profile, validationGate );
+		LOGGER.info( "Validation executed: CUSTOM, {}, {}", documentUri, profileUri );
+		return validationReport;
+	}
+
+	private static ValidationReportV0 validate(
 			Document document,
 			URI documentUri,
 			Profile profile,
 			URI profileUri,
 			ValidationGateName validationGateName )
 	{
-		ValidationGate.V10 validationGate = factory.newValidationGate( validationGateName );
+		ValidationReportV0 validationReport = validate( document, documentUri, profile, validationGateName.getValidationGate() );
+		LOGGER.info( "Validation executed: {}, {}, {}", validationGateName, documentUri, profileUri );
+		return validationReport;
+	}
+
+	private static ValidationReportV0 validate( Document document, URI documentUri, Profile profile, ValidationGate.V10 validationGate )
+	{
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		ValidationReportV0 validationReport = new ValidationReportV0();
@@ -85,7 +98,37 @@ class ValidationServiceV0 implements ValidationService.V10
 		validationReport.setConstraintViolations( constraintViolations.stream()
 				.map( ConstraintViolationV0::new )
 				.collect( Collectors.toList() ) );
-		LOGGER.info( "Validation executed: {}, {}, {}", validationGateName, documentUri, profileUri );
+
 		return validationReport;
+	}
+
+	@Override
+	public ValidationReportV0 validate(
+			URI documentUri,
+			URI profileUri,
+			ValidationGate.V10 validationGate )
+	{
+		Document document = factory.newDocument( documentUri );
+		Profile profile = factory.newProfile( profileUri );
+		return ValidationServiceV0.validate( document,
+				profile,
+				documentUri,
+				profileUri,
+				validationGate );
+	}
+
+	@Override
+	public ValidationReportV0 validate(
+			Resource documentResource,
+			Resource profileResource,
+			ValidationGate.V10 validationGate )
+	{
+		Document document = factory.newDocument( documentResource );
+		Profile profile = factory.newProfile( profileResource );
+		return ValidationServiceV0.validate( document,
+				profile,
+				documentResource.getUri(),
+				profileResource.getUri(),
+				validationGate );
 	}
 }

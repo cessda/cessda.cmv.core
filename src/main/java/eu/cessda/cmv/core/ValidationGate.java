@@ -19,6 +19,8 @@
  */
 package eu.cessda.cmv.core;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public interface ValidationGate
@@ -26,5 +28,47 @@ public interface ValidationGate
 	interface V10 extends ValidationGate
 	{
 		<T extends ConstraintViolation> List<T> validate( Document document, Profile profile );
+
+		/**
+		 * Creates a validation gate for the given constraints. The constraints are passed as the short name
+		 * of the class (i.e. FixedValueNodeConstraint)
+		 *
+		 * @param constraints the constraints to be added
+		 * @return the validation gate
+		 * @throws InvalidGateException if any of the given constraints are invalid
+		 */
+		static ValidationGate.V10 newValidationGate( Collection<String> constraints ) throws InvalidGateException
+		{
+			ArrayList<InvalidConstraintException> exceptions = new ArrayList<>();
+
+			// Attempt to map the names of constraints to class objects
+			List<Class<? extends Constraint.V20>> list = new ArrayList<>();
+			for ( String c : constraints )
+			{
+				try
+				{
+					// Construct the fully qualified class name for the constraints
+					Class<?> potentialConstraint = Class.forName( "eu.cessda.cmv.core." + c );
+					list.add( potentialConstraint.asSubclass( Constraint.V20.class ) );
+				}
+				catch ( ClassNotFoundException | ClassCastException e )
+				{
+					exceptions.add( new InvalidConstraintException( c, e ) );
+				}
+			}
+
+
+			if ( exceptions.isEmpty() )
+			{
+				// All constraints successfully added
+				return new AbstractValidationGate( list )
+				{
+				};
+			}
+			else
+			{
+				throw new InvalidGateException( exceptions );
+			}
+		}
 	}
 }
