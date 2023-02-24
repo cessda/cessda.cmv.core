@@ -4,10 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CustomConstraintTest
@@ -61,5 +63,15 @@ class CustomConstraintTest
 						.collect( Collectors.toList() ),
 				hasItems( instanceOf( ClassNotFoundException.class ), instanceOf( ClassCastException.class ) )
 		);
+	}
+
+	@Test
+	void checkThatAllConstraintsAreValid()
+	{
+		// Get all valid constraints
+		Set<String> constrains = CessdaMetadataValidatorFactory.getConstraints();
+
+		// This should not throw as the set of constraints should all be valid
+		assertDoesNotThrow( () -> CessdaMetadataValidatorFactory.newValidationGate( constrains ) );
 	}
 }
