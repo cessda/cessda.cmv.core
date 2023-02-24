@@ -74,6 +74,11 @@ public class CessdaMetadataValidatorFactory
 		return newDomDocument( newResource( uri ).readInputStream() );
 	}
 
+	public DomDocument.V11 newDomDocument( URL url ) throws IOException
+	{
+		return newDomDocument( url.openStream() );
+	}
+
 	public DomDocument.V11 newDomDocument( InputStream inputStream )
 	{
 		return XercesXalanDocument.newBuilder()
