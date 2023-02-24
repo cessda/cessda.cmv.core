@@ -26,7 +26,7 @@ class CustomConstraintTest
 				this.getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" )
 		);
 
-		ValidationGate.V10 validationGate = ValidationGate.V10.newValidationGate( Arrays.asList(
+		ValidationGate.V10 validationGate = CessdaMetadataValidatorFactory.newValidationGate( Arrays.asList(
 				FixedValueNodeConstraint.class.getSimpleName(),
 				MandatoryNodeConstraint.class.getSimpleName()
 		) );
@@ -47,7 +47,7 @@ class CustomConstraintTest
 	{
 		// InvalidGate is not a class, Validator is a class but isn't a constraint
 		InvalidGateException invalidGateException = assertThrows( InvalidGateException.class, () ->
-				ValidationGate.V10.newValidationGate( Arrays.asList( "InvalidGate", "Validator" ) )
+				CessdaMetadataValidatorFactory.newValidationGate( Arrays.asList( "InvalidGate", "Validator" ) )
 		);
 
 		// Assert that both types of error were thrown
@@ -56,7 +56,8 @@ class CustomConstraintTest
 				everyItem( instanceOf( InvalidConstraintException.class ) )
 		);
 		assertThat(
-				Arrays.stream( invalidGateException.getSuppressed() ).map( Throwable::getCause )
+				Arrays.stream( invalidGateException.getSuppressed() )
+						.map( Throwable::getCause )
 						.collect( Collectors.toList() ),
 				hasItems( instanceOf( ClassNotFoundException.class ), instanceOf( ClassCastException.class ) )
 		);
