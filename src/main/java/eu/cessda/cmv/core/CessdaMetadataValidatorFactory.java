@@ -34,13 +34,27 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.util.Optional;
+import java.util.*;
 
 import static java.util.Objects.requireNonNull;
 import static org.gesis.commons.resource.Resource.newResource;
 
 public class CessdaMetadataValidatorFactory
 {
+	private static final Set<String> CONSTRAINTS = Collections.unmodifiableSet( new HashSet<>( Arrays.asList(
+			"CompilableXPathConstraint",
+			"ControlledVocabularyRepositoryConstraint",
+			"FixedValueNodeConstraint",
+			"MandatoryNodeConstraint",
+			"MandatoryNodeIfParentPresentConstraint",
+			"MaximumElementOccuranceConstraint",
+			"NodeInProfileConstraint",
+			"NotBlankNodeConstraint",
+			"OptionalNodeConstraint",
+			"PredicatelessXPathConstraint",
+			"RecommendedNodeConstraint"
+	) ) );
+
 	private final XmlElementExtractor.V10 xmlElementExtractor;
 	private final Tika documentMediaTypeDetector;
 
@@ -58,6 +72,11 @@ public class CessdaMetadataValidatorFactory
 	public DomDocument.V11 newDomDocument( URI uri )
 	{
 		return newDomDocument( newResource( uri ).readInputStream() );
+	}
+
+	public DomDocument.V11 newDomDocument( URL url ) throws IOException
+	{
+		return newDomDocument( url.openStream() );
 	}
 
 	public DomDocument.V11 newDomDocument( InputStream inputStream )
@@ -89,34 +108,13 @@ public class CessdaMetadataValidatorFactory
 		return newDocument( requireNonNull( resource ).readInputStream() );
 	}
 
-	public Document.V11 newDocument( InputStream inputStream )
+	/**
+	 * Returns a validation gate with the given name.
+	 */
+	public static ValidationGate.V10 getValidationGate( ValidationGateName name )
 	{
-		try ( InputStream bufferedInputStream = new BufferedInputStream( requireNonNull( inputStream ) ) )
-		{
-			String mediaType = documentMediaTypeDetector.detect( bufferedInputStream );
-			if ( DdiDetector.MEDIATYPE.equals( mediaType ) )
-			{
-				return new DomCodebookDocument( bufferedInputStream );
-			}
-			else if ( OaipmhV20Detector.MEDIATYPE.equals( mediaType ) )
-			{
-				String xpath = "/OAI-PMH/GetRecord/record/metadata/*[1]";
-				Optional<InputStream> extractedElementInputstream = xmlElementExtractor.extractAsInputStream( bufferedInputStream, xpath );
-				if ( extractedElementInputstream.isPresent() )
-				{
-					return newDocument( extractedElementInputstream.get() );
-				}
-			}
-			throw new NotDocumentException( String.format( "Detected media type: %s", mediaType ) );
-		}
-		catch (XmlNotWellformedException e)
-		{
-			throw new NotDocumentException( String.format( "Not well-formed XML: %s", e.getMessage() ) );
-		}
-		catch (Exception e)
-		{
-			throw new NotDocumentException( e );
-		}
+		requireNonNull( name, "name must not be null" );
+		return name.getValidationGate();
 	}
 
 	public Profile.V10 newProfile( Resource resource )
@@ -163,22 +161,111 @@ public class CessdaMetadataValidatorFactory
 		return newDdiInputStream( newResource( url ).readInputStream() );
 	}
 
+	/**
+	 * Returns a validation gate for the given constraints. The constraints are passed as the short name
+	 * of the class (i.e. FixedValueNodeConstraint).
+	 *
+	 * @param constraints the constraints to be added
+	 * @return the validation gate
+	 * @throws InvalidGateException if any of the given constraints are invalid
+	 */
+	public static ValidationGate.V10 newValidationGate( Collection<String> constraints ) throws InvalidGateException
+	{
+		ArrayList<InvalidConstraintException> exceptions = new ArrayList<>();
+
+		// Attempt to map the names of constraints to class objects
+		List<Class<? extends Constraint.V20>> list = new ArrayList<>();
+		for ( String c : constraints )
+		{
+			try
+			{
+				// Construct the fully qualified class name for the constraints
+				Class<?> potentialConstraint = Class.forName( "eu.cessda.cmv.core." + c );
+				list.add( potentialConstraint.asSubclass( Constraint.V20.class ) );
+			}
+			catch ( ClassNotFoundException | ClassCastException e )
+			{
+				exceptions.add( new InvalidConstraintException( c, e ) );
+			}
+		}
+
+
+		if ( exceptions.isEmpty() )
+		{
+			// All constraints successfully added
+			return new AbstractValidationGate( list )
+			{
+			};
+		}
+		else
+		{
+			throw new InvalidGateException( exceptions );
+		}
+	}
+
+	/**
+	 * Return a set of all known constraints.
+	 * <p>
+	 * This should be used with {@link CessdaMetadataValidatorFactory#newValidationGate(Collection)}
+	 * to ensure that a validation gate is not constructed with invalid constraints.
+	 */
+	public static Set<String> getConstraints()
+	{
+		return CONSTRAINTS;
+	}
+
+	@SuppressWarnings( "java:S1133" ) // false positive - XPath detected as a URI
+	public Document.V11 newDocument( InputStream inputStream )
+	{
+		try ( InputStream bufferedInputStream = new BufferedInputStream( requireNonNull( inputStream ) ) )
+		{
+			String mediaType = documentMediaTypeDetector.detect( bufferedInputStream );
+			if ( DdiDetector.MEDIATYPE.equals( mediaType ) )
+			{
+				return new DomCodebookDocument( bufferedInputStream );
+			}
+			else if ( OaipmhV20Detector.MEDIATYPE.equals( mediaType ) )
+			{
+				String xpath = "/OAI-PMH/GetRecord/record/metadata/*[1]";
+				Optional<InputStream> extractedElementInputStream = xmlElementExtractor.extractAsInputStream( bufferedInputStream, xpath );
+				if ( extractedElementInputStream.isPresent() )
+				{
+					return newDocument( extractedElementInputStream.get() );
+				}
+			}
+			throw new NotDocumentException( String.format( "Detected media type: %s", mediaType ) );
+		}
+		catch ( XmlNotWellformedException e )
+		{
+			throw new NotDocumentException( String.format( "Not well-formed XML: %s", e.getMessage() ) );
+		}
+		catch ( IOException e )
+		{
+			throw new NotDocumentException( e );
+		}
+	}
+
 	public DdiInputStream newDdiInputStream( InputStream inputStream )
 	{
 		try
 		{
 			return new DdiInputStream( inputStream );
 		}
-		catch (IOException e)
+		catch ( IOException e )
 		{
 			throw new IllegalArgumentException( e );
 		}
 	}
 
+	/**
+	 * Returns a validation gate with the given name.
+	 *
+	 * @deprecated use the static method instead
+	 */
+	@Deprecated
 	public ValidationGate.V10 newValidationGate( ValidationGateName name )
 	{
-		requireNonNull( name, "name must not be null" );
-		return name.getValidationGate();
+		return getValidationGate( name );
 	}
 
 	public ValidationService.V10 newValidationService()

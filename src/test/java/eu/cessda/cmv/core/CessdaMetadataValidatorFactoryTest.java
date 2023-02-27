@@ -49,7 +49,7 @@ class CessdaMetadataValidatorFactoryTest
 	{
 		URL resourceUrl = this.getClass().getResource( "/cmv-profile-ddi-v32.xml" );
 		assert resourceUrl != null;
-		DomDocument.V11 document = factory.newDomDocument( resourceUrl.openStream() );
+		DomDocument.V11 document = factory.newDomDocument( resourceUrl );
 		assertThat( document.selectNode( "/pr:DDIProfile" ), notNullValue() );
 	}
 
