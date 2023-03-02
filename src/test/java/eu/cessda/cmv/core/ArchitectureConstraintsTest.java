@@ -26,14 +26,17 @@ import org.gesis.commons.test.architecture.TestClassesRuleTest;
 import org.junit.jupiter.api.Test;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods;
 
 class ArchitectureConstraintsTest extends TestClassesRuleTest
 {
 	private final JavaClasses importedClasses;
 	private final String[] packageNames;
+	private final ClassFileImporter classFileImporter;
 
 	ArchitectureConstraintsTest()
 	{
+		classFileImporter = new ClassFileImporter();
 		packageNames = new String[]{ this.getClass().getPackage().getName() };
 		importedClasses = new ClassFileImporter().importPackages( packageNames );
 	}
@@ -42,7 +45,14 @@ class ArchitectureConstraintsTest extends TestClassesRuleTest
 	@SuppressWarnings( "java:S5786" )
 	public void testClassesShouldEndWithTestSuffix()
 	{
-		testClassesShouldEndWithTestSuffix( packageNames );
+		methods().that()
+				.areAnnotatedWith( org.junit.Test.class ).or()
+				.areAnnotatedWith( org.junit.jupiter.api.Test.class ).or()
+				.areAnnotatedWith( org.junit.jupiter.params.ParameterizedTest.class )
+				.should()
+				.beDeclaredInClassesThat()
+				.haveSimpleNameEndingWith( "Test" )
+				.check( classFileImporter.importPackages( packageNames ) );
 	}
 
 	@Test
