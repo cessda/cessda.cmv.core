@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,23 +19,17 @@
  */
 package eu.cessda.cmv.core.mediatype.profile.v0;
 
+import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
+import org.gesis.commons.xml.jaxb.JaxbDocument;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.annotation.*;
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElements;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-
-import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
-import org.gesis.commons.xml.jaxb.JaxbDocument;
 
 @XmlRootElement( name = ProfileV0.JAXB_ELEMENT )
 @XmlType( name = ProfileV0.JAXB_TYPE )
@@ -46,7 +40,7 @@ public class ProfileV0 extends JaxbDocument
 	static final String MINOR = "1";
 	static final String VERSION = MAJOR + "." + MINOR;
 	public static final String MEDIATYPE = "application/vnd.eu.cessda.cmv.core.mediatype.profile.v" + VERSION + "+xml";
-	static final String SCHEMALOCATION_HOST = "https://bitbucket.org/cessda/cessda.cmv.core/src/raw/stable/schema";
+	static final String SCHEMALOCATION_HOST = "https://raw.githubusercontent.com/cessda/cessda.cmv.core/stable/schema";
 	public static final String SCHEMALOCATION_FILENAME = "profile-v" + VERSION + ".xsd";
 
 	static final String NAMESPACE_DEFAULT_PREFIX = "";

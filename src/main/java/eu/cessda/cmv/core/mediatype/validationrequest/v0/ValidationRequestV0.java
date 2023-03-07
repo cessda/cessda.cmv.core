@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,29 +19,22 @@
  */
 package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
+import eu.cessda.cmv.core.ValidationGateName;
+import eu.cessda.cmv.core.ValidationRequest;
+import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
+import org.gesis.commons.xml.jaxb.JaxbDocument;
+import org.gesis.commons.xml.jaxb.NamespacePrefixMapper;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.annotation.*;
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.nio.file.NoSuchFileException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-
-import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
-import org.gesis.commons.xml.jaxb.JaxbDocument;
-import org.gesis.commons.xml.jaxb.NamespacePrefixMapper;
-
-import eu.cessda.cmv.core.ValidationGateName;
-import eu.cessda.cmv.core.ValidationRequest;
+import java.util.*;
 
 @XmlRootElement( name = ValidationRequestV0.VALIDATIONREQUEST_ELEMENT )
 @XmlType( name = ValidationRequestV0.VALIDATIONREQUEST_TYPE )
@@ -49,11 +42,11 @@ import eu.cessda.cmv.core.ValidationRequest;
 public class ValidationRequestV0 extends JaxbDocument implements ValidationRequest
 {
 	static final String MAJOR = "0";
-	static final String MINOR = "1";
+	static final String MINOR = "2";
 	static final String VERSION = MAJOR + "." + MINOR;
 	public static final String MEDIATYPE = "application/vnd.eu.cessda.cmv.core.mediatype.validation-request.v" + VERSION
 			+ "+xml";
-	static final String SCHEMALOCATION_HOST = "https://bitbucket.org/cessda/cessda.cmv.core/src/raw/stable/schema";
+	static final String SCHEMALOCATION_HOST = "https://raw.githubusercontent.com/cessda/cessda.cmv.core/stable/schema";
 	public static final String SCHEMALOCATION_FILENAME = "validation-request-v" + VERSION + ".xsd";
 
 	static final String NAMESPACE_DEFAULT_PREFIX = "";
@@ -78,8 +71,13 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 	private DocumentV0 profile;
 
 	@NotNull
-	@XmlElement( required = true )
+	@XmlElement
 	private ValidationGateName validationGateName;
+
+	@NotNull
+	@XmlElement( name = "Constraint" )
+	@XmlElementWrapper( name = "Constraints" )
+	private List<String> constraints;
 
 	protected ValidationRequestV0( String schemaLocation, NamespacePrefixMapper namespacePrefixMapper )
 	{
@@ -88,7 +86,7 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 
 	public ValidationRequestV0()
 	{
-		super( SCHEMALOCATION, new DefaultNamespacePrefixMapper( NAMESPACE_DEFAULT_URI ) );
+		this( SCHEMALOCATION, new DefaultNamespacePrefixMapper( NAMESPACE_DEFAULT_URI ) );
 	}
 
 	public DocumentV0 getDocument()
@@ -131,6 +129,23 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 		this.validationGateName = validationGateName;
 	}
 
+	public List<String> getConstraints()
+	{
+		if ( constraints == null )
+		{
+			return Collections.emptyList();
+		}
+		else
+		{
+			return Collections.unmodifiableList( constraints );
+		}
+	}
+
+	public void setConstraints( Collection<String> constraints )
+	{
+		this.constraints = new ArrayList<>( constraints );
+	}
+
 	public List<String> validate()
 	{
 		List<String> messages = new ArrayList<>();
@@ -150,9 +165,9 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 		{
 			messages.addAll( profile.validate() );
 		}
-		if ( validationGateName == null )
+		if ( validationGateName == null && constraints.isEmpty() )
 		{
-			messages.add( "Validation gate name is missing" );
+			messages.add( "Validation gate or constraints is missing" );
 		}
 		return messages;
 	}
@@ -187,6 +202,23 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 	public void saveAs( File file )
 	{
 		saveAs( file, JAXBCONTEXT );
+	}
+
+	@Override
+	public boolean equals( Object o )
+	{
+		if ( this == o ) return true;
+		if ( o == null || getClass() != o.getClass() ) return false;
+		if ( !super.equals( o ) ) return false;
+		ValidationRequestV0 that = (ValidationRequestV0) o;
+		return Objects.equals( document, that.document ) && Objects.equals( profile, that.profile ) &&
+				validationGateName == that.validationGateName && constraints.equals( that.constraints );
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash( super.hashCode(), document, profile, validationGateName, constraints );
 	}
 
 	@Override

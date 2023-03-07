@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,17 +19,16 @@
  */
 package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
-import static org.gesis.commons.resource.Resource.newResource;
-
-import java.io.ByteArrayInputStream;
-
-import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlElement;
-
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.eclipse.persistence.oxm.annotations.XmlCDATA;
 import org.gesis.commons.resource.Resource;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlElement;
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
+
+import static org.gesis.commons.resource.Resource.newResource;
 
 public class ContentDocumentV0 extends DocumentV0
 {
@@ -61,6 +60,6 @@ public class ContentDocumentV0 extends DocumentV0
 	@Override
 	public Resource toResource()
 	{
-		return newResource( new ByteArrayInputStream( content.getBytes() ) );
+		return newResource( new ByteArrayInputStream( content.getBytes( StandardCharsets.UTF_8 ) ) );
 	}
 }
