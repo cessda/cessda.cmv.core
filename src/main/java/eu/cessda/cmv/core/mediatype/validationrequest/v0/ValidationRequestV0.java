@@ -19,6 +19,7 @@
  */
 package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import eu.cessda.cmv.core.ValidationGateName;
 import eu.cessda.cmv.core.ValidationRequest;
 import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
@@ -73,6 +74,7 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 	@XmlElement
 	private ValidationGateName validationGateName;
 
+	@JsonProperty( "constraints" )
 	@XmlElement( name = "Constraint" )
 	@XmlElementWrapper( name = "Constraints" )
 	private List<String> constraints;

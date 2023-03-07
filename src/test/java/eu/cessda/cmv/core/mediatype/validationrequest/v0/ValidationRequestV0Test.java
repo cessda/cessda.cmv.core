@@ -129,13 +129,12 @@ class ValidationRequestV0Test
 
 	Stream<Arguments> writeAndReadWithJackson()
 	{
-		return Stream.of( newValidationRequest() )
-				.flatMap( validationRequestProvider ->
-						Stream.of(
-								Arguments.of( validationRequestProvider, LOWER_CAMEL_CASE, new ObjectMapper() ),
-								Arguments.of( validationRequestProvider, UPPER_CAMEL_CASE, new XmlMapper() )
-						)
-				);
+		return Stream.of( newValidationRequest() ).flatMap( validationRequestProvider ->
+				Stream.of(
+						Arguments.of( validationRequestProvider, LOWER_CAMEL_CASE, new ObjectMapper() ),
+						Arguments.of( validationRequestProvider, UPPER_CAMEL_CASE, new XmlMapper() )
+				)
+		);
 	}
 
 	@ParameterizedTest
