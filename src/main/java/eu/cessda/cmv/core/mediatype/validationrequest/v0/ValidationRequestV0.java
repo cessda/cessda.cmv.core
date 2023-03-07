@@ -70,11 +70,9 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 	@XmlElement( required = true )
 	private DocumentV0 profile;
 
-	@NotNull
 	@XmlElement
 	private ValidationGateName validationGateName;
 
-	@NotNull
 	@XmlElement( name = "Constraint" )
 	@XmlElementWrapper( name = "Constraints" )
 	private List<String> constraints;
