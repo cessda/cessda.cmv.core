@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
+import eu.cessda.cmv.core.CessdaMetadataValidatorFactory;
 import eu.cessda.cmv.core.ValidationGateName;
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.TextResource;
@@ -33,9 +34,16 @@ import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Set;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 import static com.fasterxml.jackson.databind.PropertyNamingStrategies.LOWER_CAMEL_CASE;
 import static com.fasterxml.jackson.databind.PropertyNamingStrategies.UPPER_CAMEL_CASE;
@@ -43,14 +51,18 @@ import static eu.cessda.cmv.core.mediatype.validationrequest.v0.ValidationReques
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.gesis.commons.test.hamcrest.FileMatchers.hasEqualContent;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.equalTo;
 
+@TestInstance( TestInstance.Lifecycle.PER_CLASS )
 class ValidationRequestV0Test
 {
 	private final TestEnv.V14 testEnv;
 	private final Resource profile;
 	private final Resource document;
 	private final ValidationGateName validationGateName;
+	private final Set<String> constraints;
+	;
 
 	ValidationRequestV0Test()
 	{
@@ -65,55 +77,82 @@ class ValidationRequestV0Test
 		profile = new TextResource( newResource( profileResource ) );
 		document = new TextResource( newResource( documentResource ) );
 		validationGateName = ValidationGateName.BASIC;
+		constraints = CessdaMetadataValidatorFactory.getConstraints();
 		testEnv = DefaultTestEnv.newInstance( ValidationRequestV0Test.class );
 	}
 
-	private ValidationRequestV0 newValidationRequest()
+	private ValidationRequestProvider[] newValidationRequest()
 	{
-		ValidationRequestV0 validationRequest = new ValidationRequestV0();
-		validationRequest.setDocument( document.getUri() );
-		validationRequest.setProfile( profile.toString() );
-		validationRequest.setValidationGateName( validationGateName );
-		return validationRequest;
+		ValidationRequestV0 validationRequestWithConstraints = new ValidationRequestV0();
+		validationRequestWithConstraints.setDocument( document.getUri() );
+		validationRequestWithConstraints.setProfile( profile.toString() );
+		validationRequestWithConstraints.setConstraints( constraints );
+
+		ValidationRequestV0 validationRequestWithGateName = new ValidationRequestV0();
+		validationRequestWithGateName.setDocument( document.getUri() );
+		validationRequestWithGateName.setProfile( profile.toString() );
+		validationRequestWithGateName.setValidationGateName( validationGateName );
+
+		return new ValidationRequestProvider[]{
+				new ValidationRequestProvider( validationRequestWithConstraints, request ->
+				{
+					assertThat( new TextResource( request.getDocument()
+							.toResource() ).toString(), equalTo( document.toString() ) );
+					assertThat( new TextResource( request.getProfile()
+							.toResource() ).toString(), equalTo( profile.toString() ) );
+					assertThat( request.getConstraints(), contains( constraints.toArray() ) );
+				} ),
+				new ValidationRequestProvider( validationRequestWithGateName, request ->
+				{
+					assertThat( new TextResource( request.getDocument()
+							.toResource() ).toString(), equalTo( document.toString() ) );
+					assertThat( new TextResource( request.getProfile()
+							.toResource() ).toString(), equalTo( profile.toString() ) );
+					assertThat( request.getValidationGateName(), equalTo( validationGateName ) );
+				} )
+		};
 	}
 
-	@Test
-	void writeAndReadWithEclipselinkMoxy() throws Exception
+	@ParameterizedTest
+	@MethodSource( "newValidationRequest" )
+	@SuppressWarnings( "java:S2699" )
+		// Assertions are provided as part of the validationRequestProvider parameter
+	void writeAndReadWithEclipselinkMoxy( ValidationRequestProvider validationRequestProvider ) throws Exception
 	{
 		File file = new File( testEnv.newDirectory(), "eclipselink-moxy.xml" );
 
-		ValidationRequestV0 validationRequest = newValidationRequest();
-		validationRequest.saveAs( file );
+		validationRequestProvider.request.saveAs( file );
 
-		validationRequest = ValidationRequestV0.open( file );
-		assertThat( new TextResource( validationRequest.getDocument().toResource() ).toString(), equalTo( document.toString() ) );
-		assertThat( new TextResource( validationRequest.getProfile().toResource() ).toString(), equalTo( profile.toString() ) );
-		assertThat( validationRequest.getValidationGateName(), equalTo( validationGateName ) );
+		ValidationRequestV0 validationRequest = ValidationRequestV0.open( file );
+		validationRequestProvider.validator.accept( validationRequest );
 	}
 
-	@Test
-	void writeAndReadWithJackson() throws JsonProcessingException
+	Stream<Arguments> writeAndReadWithJackson()
 	{
-		writeAndReadWithJackson( LOWER_CAMEL_CASE, new ObjectMapper() );
-		writeAndReadWithJackson( UPPER_CAMEL_CASE, new XmlMapper() );
+		return Stream.of( newValidationRequest() )
+				.flatMap( validationRequestProvider ->
+						Stream.of(
+								Arguments.of( validationRequestProvider, LOWER_CAMEL_CASE, new ObjectMapper() ),
+								Arguments.of( validationRequestProvider, UPPER_CAMEL_CASE, new XmlMapper() )
+						)
+				);
 	}
 
-	private void writeAndReadWithJackson( PropertyNamingStrategy propertyNamingStrategy, ObjectMapper objectMapper ) throws JsonProcessingException
+	@ParameterizedTest
+	@MethodSource
+	@SuppressWarnings( "java:S2699" )
+		// Assertions are provided as part of the validationRequestProvider parameter
+	void writeAndReadWithJackson( ValidationRequestProvider validationRequestProvider, PropertyNamingStrategy propertyNamingStrategy, ObjectMapper objectMapper ) throws JsonProcessingException
 	{
 		objectMapper.setPropertyNamingStrategy( propertyNamingStrategy );
 		objectMapper.registerModule( new JaxbAnnotationModule() );
 		objectMapper.setSerializationInclusion( Include.NON_NULL );
 		objectMapper.enable( SerializationFeature.INDENT_OUTPUT );
 
-		ValidationRequestV0 validationRequest = newValidationRequest();
-		String content = objectMapper.writeValueAsString( validationRequest );
+		String content = objectMapper.writeValueAsString( validationRequestProvider.request );
 
-		validationRequest = objectMapper.readValue( content, ValidationRequestV0.class );
-		assertThat( new TextResource( validationRequest.getDocument()
-				.toResource() ).toString(), equalTo( document.toString() ) );
-		assertThat( new TextResource( validationRequest.getProfile()
-				.toResource() ).toString(), equalTo( profile.toString() ) );
-		assertThat( validationRequest.getValidationGateName(), equalTo( validationGateName ) );
+		ValidationRequestV0 validationRequest = objectMapper.readValue( content, ValidationRequestV0.class );
+		validationRequestProvider.validator.accept( validationRequest );
 	}
 
 	@Test
@@ -125,5 +164,17 @@ class ValidationRequestV0Test
 
 		File expectedFile = testEnv.findTestResourceByName( SCHEMALOCATION_FILENAME );
 		assertThat( actualFile, hasEqualContent( expectedFile ) );
+	}
+
+	private static class ValidationRequestProvider
+	{
+		private final ValidationRequestV0 request;
+		private final Consumer<ValidationRequestV0> validator;
+
+		ValidationRequestProvider( ValidationRequestV0 request, Consumer<ValidationRequestV0> validator )
+		{
+			this.request = request;
+			this.validator = validator;
+		}
 	}
 }

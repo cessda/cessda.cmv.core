@@ -74,7 +74,7 @@ class ProfileValidationGateTest
 	@Test
 	void validateWithPredicatelessXPathConstraint()
 	{
-		// https://bitbucket.org/cessda/cessda.cmv.core/issues/39
+		// https://github.com/cessda/cessda.cmv.core/issues/39
 
 		// given
 		URL documentUrl = getClass().getResource( "/profiles/xpaths-with-predicate.xml" );

@@ -32,7 +32,7 @@ class OptionalNodeConstraint extends NodeConstraint
 	@Override
 	public List<Validator> newValidators( Document document )
 	{
-		// https://bitbucket.org/cessda/cessda.cmv.core/issues/66
+		// https://github.com/cessda/cessda.cmv.core/issues/66
 
 		List<Node> nodes = ( (Document.V10) document ).getNodes( getLocationPath() );
 		List<Validator> validators = new ArrayList<>();

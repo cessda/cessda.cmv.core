@@ -63,6 +63,12 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 			parseCodeValueOfControlledVocabularyConstraint( usedNode );
 			parseDescriptiveTermOfControlledVocabularyConstraint( usedNode );
 		}
+
+		if ( constraints.isEmpty() )
+		{
+			throw new IllegalArgumentException( "Profile defines no constraints" );
+		}
+
 		constraints = forceConstraintReordering( constraints );
 	}
 
