@@ -165,7 +165,7 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 		{
 			messages.addAll( profile.validate() );
 		}
-		if ( validationGateName == null && constraints.isEmpty() )
+		if ( validationGateName == null && ( constraints == null || constraints.isEmpty() ) )
 		{
 			messages.add( "Validation gate or constraints is missing" );
 		}
