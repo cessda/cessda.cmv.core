@@ -22,6 +22,8 @@ package eu.cessda.cmv.core;
 import org.gesis.commons.resource.ResourceLabelProvider;
 import org.junit.jupiter.api.Test;
 
+import java.net.URL;
+
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -31,7 +33,8 @@ class ProfileResourceLabelProviderTest
 	@Test
 	void testName()
 	{
-		String url = "https://bitbucket.org/cessda/cessda.metadata.profiles/raw/4390b0437dbdeac8902b65627a1d443875c797a1/CDC%202.5%20PROFILE/cdc25_profile.xml";
+		URL url = this.getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
+		assert url != null;
 		ResourceLabelProvider labelProvider = new ProfileResourceLabelProvider();
 		assertThat( labelProvider.getLabel( newResource( url ) ), equalTo( "CESSDA DATA CATALOGUE (CDC) DDI2.5 PROFILE 1.0.4" ) );
 	}
