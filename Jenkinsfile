@@ -39,33 +39,33 @@ pipeline {
 					}
 					when { not { branch 'main' } }
 				}
-				stage('Record Issues') {
-					steps {
-						recordIssues(tools: [java()])
+			}
+		}
+		stage('Record Issues') {
+			steps {
+				recordIssues(tools: [java()])
+			}
+		}
+		stage('Run Sonar Scan') {
+			steps {
+				withSonarQubeEnv('cessda-sonar') {
+					withMaven {
+						sh './mvnw sonar:sonar'
 					}
 				}
-				stage('Run Sonar Scan') {
-					steps {
-						withSonarQubeEnv('cessda-sonar') {
-							withMaven {
-								sh './mvnw sonar:sonar'
-							}
-						}
-						timeout(time: 1, unit: 'HOURS') {
-							waitForQualityGate abortPipeline: true
-						}
-					}
-					when { branch 'main' }
-				}
-				stage('Deploy Project') {
-					steps {
-						withMaven {
-							sh './mvnw jar:jar javadoc:jar source:jar deploy:deploy'
-						}
-					}
-					when { branch 'main' }
+				timeout(time: 1, unit: 'HOURS') {
+					waitForQualityGate abortPipeline: true
 				}
 			}
+			when { branch 'main' }
+		}
+		stage('Deploy Project') {
+			steps {
+				withMaven {
+					sh './mvnw jar:jar javadoc:jar source:jar deploy:deploy'
+				}
+			}
+			when { branch 'main' }
 		}
 	}
 }
