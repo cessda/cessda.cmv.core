@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.1.0] - 2023-05-23
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7961900.svg)](https://doi.org/10.5281/zenodo.7961900)
+
 ### Added
 
 - Add an API to allow users to define custom validation
