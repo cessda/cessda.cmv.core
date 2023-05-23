@@ -60,6 +60,12 @@ pipeline {
 			when { branch 'main' }
 		}
 		stage('Deploy Project') {
+			agent {
+				docker {
+					image 'openjdk:8'
+					reuseNode true
+				}
+			}
 			steps {
 				withMaven {
 					sh './mvnw jar:jar javadoc:jar source:jar deploy:deploy'
