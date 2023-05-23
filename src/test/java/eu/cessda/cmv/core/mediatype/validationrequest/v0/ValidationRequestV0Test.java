@@ -51,8 +51,7 @@ import static eu.cessda.cmv.core.mediatype.validationrequest.v0.ValidationReques
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.gesis.commons.test.hamcrest.FileMatchers.hasEqualContent;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 
 @TestInstance( TestInstance.Lifecycle.PER_CLASS )
 class ValidationRequestV0Test
@@ -152,6 +151,26 @@ class ValidationRequestV0Test
 
 		ValidationRequestV0 validationRequest = objectMapper.readValue( content, ValidationRequestV0.class );
 		validationRequestProvider.validator.accept( validationRequest );
+	}
+
+	@Test
+	void shouldValidateRequests()
+	{
+		// Generate an invalid request
+		ValidationRequestV0 invalidRequest = new ValidationRequestV0();
+
+		// Assert that all elements are missing
+		assertThat( invalidRequest.validate(), containsInAnyOrder(
+			"Document is missing",
+			"Profile is missing",
+			"Validation gate or constraints is missing"
+		) );
+
+		ValidationRequestProvider[] validRequest = newValidationRequest();
+		for ( ValidationRequestProvider validationRequest : validRequest )
+		{
+			assertThat( validationRequest.request.validate(), is( empty() ) );
+		}
 	}
 
 	@Test
