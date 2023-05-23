@@ -33,6 +33,7 @@ import java.net.URI;
 import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @XmlRootElement( name = ValidationReportV0.VALIDATIONREPORT_ELEMENT )
 @XmlType( name = ValidationReportV0.VALIDATIONREPORT_TYPE )
@@ -136,5 +137,21 @@ public class ValidationReportV0 extends JaxbDocument
 	public String toString()
 	{
 		return toString( JAXBCONTEXT );
+	}
+
+	@Override
+	public boolean equals( Object o )
+	{
+		if ( this == o ) return true;
+		if ( o == null || getClass() != o.getClass() ) return false;
+		ValidationReportV0 that = (ValidationReportV0) o;
+		return Objects.equals( documentUri, that.documentUri ) &&
+			Objects.equals( constraintViolations, that.constraintViolations );
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash( super.hashCode(), documentUri, constraintViolations );
 	}
 }
