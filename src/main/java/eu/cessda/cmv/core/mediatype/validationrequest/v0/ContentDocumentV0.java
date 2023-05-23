@@ -27,6 +27,7 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 import static org.gesis.commons.resource.Resource.newResource;
 
@@ -61,5 +62,20 @@ public class ContentDocumentV0 extends DocumentV0
 	public Resource toResource()
 	{
 		return newResource( new ByteArrayInputStream( content.getBytes( StandardCharsets.UTF_8 ) ) );
+	}
+
+	@Override
+	public boolean equals( Object o )
+	{
+		if ( this == o ) return true;
+		if ( o == null || getClass() != o.getClass() ) return false;
+		ContentDocumentV0 that = (ContentDocumentV0) o;
+		return Objects.equals( content, that.content );
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash( content );
 	}
 }

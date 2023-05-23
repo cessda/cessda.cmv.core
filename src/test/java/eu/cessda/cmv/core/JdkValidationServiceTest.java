@@ -29,16 +29,12 @@ import java.net.URI;
 import static eu.cessda.cmv.core.ValidationGateName.BASIC;
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 
 class JdkValidationServiceTest
 {
-	private final CessdaMetadataValidatorFactory factory;
-
-	JdkValidationServiceTest()
-	{
-		factory = new CessdaMetadataValidatorFactory();
-	}
+	private final CessdaMetadataValidatorFactory factory = new CessdaMetadataValidatorFactory();
 
 	@Test
 	void validateWithUrls()
@@ -46,8 +42,16 @@ class JdkValidationServiceTest
 		ValidationService.V10 validationService = factory.newValidationService();
 		URI documentUri = new File( "src/main/resources/demo-documents/ddi-v25/gesis-2800.xml" ).toURI();
 		URI profileUri = new File( "src/main/resources/demo-documents/ddi-v25/cdc25_profile.xml" ).toURI();
-		ValidationReportV0 validationReport = validationService.validate( documentUri, profileUri, BASIC );
-		assertThat( validationReport.getConstraintViolations(), hasSize( 4 ) );
+
+		ValidationReportV0 validationReportFromGateName = validationService.validate( documentUri, profileUri, BASIC );
+		ValidationReportV0 validationReportFromGate = validationService.validate( documentUri, profileUri, BASIC.getValidationGate() );
+
+		// Assert that 4 constraint violations were found
+		assertThat( validationReportFromGateName.getConstraintViolations(), hasSize( 4 ) );
+		assertThat( validationReportFromGate.getConstraintViolations(), hasSize( 4 ) );
+
+		// Assert that both reports are equal
+		assertThat( validationReportFromGateName, equalTo( validationReportFromGate ) );
 	}
 
 	@Test
@@ -56,7 +60,15 @@ class JdkValidationServiceTest
 		ValidationService.V10 validationService = factory.newValidationService();
 		Resource document = newResource( new File( "src/main/resources/demo-documents/ddi-v25/gesis-2800.xml" ) );
 		Resource profile = newResource( new File( "src/main/resources/demo-documents/ddi-v25/cdc25_profile.xml" ) );
-		ValidationReportV0 validationReport = validationService.validate( document, profile, BASIC );
-		assertThat( validationReport.getConstraintViolations(), hasSize( 4 ) );
+
+		ValidationReportV0 validationReportFromGateName = validationService.validate( document, profile, BASIC );
+		ValidationReportV0 validationReportFromGate = validationService.validate( document, profile, BASIC.getValidationGate() );
+
+		// Assert that 4 constraint violations were found
+		assertThat( validationReportFromGateName.getConstraintViolations(), hasSize( 4 ) );
+		assertThat( validationReportFromGate.getConstraintViolations(), hasSize( 4 ) );
+
+		// Assert that both reports are equal
+		assertThat( validationReportFromGateName, equalTo( validationReportFromGate ) );
 	}
 }
