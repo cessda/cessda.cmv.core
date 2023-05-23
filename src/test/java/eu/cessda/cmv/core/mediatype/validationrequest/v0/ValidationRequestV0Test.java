@@ -174,6 +174,39 @@ class ValidationRequestV0Test
 	}
 
 	@Test
+	void testEquality()
+	{
+		// Generate two identical empty requests
+		ValidationRequestV0 firstEmptyRequest = new ValidationRequestV0();
+		ValidationRequestV0 secondEmptyRequest = new ValidationRequestV0();
+
+		// Should be equal
+		assertThat( firstEmptyRequest, equalTo( secondEmptyRequest ) );
+
+		// Generate two identical populated requests
+		ValidationRequestV0 firstPopulatedRequest = new ValidationRequestV0();
+		firstPopulatedRequest.setDocument( document.getUri() );
+		firstPopulatedRequest.setProfile( profile.toString() );
+		firstPopulatedRequest.setConstraints( constraints );
+
+		ValidationRequestV0 secondPopulatedRequest = new ValidationRequestV0();
+		secondPopulatedRequest.setDocument( document.getUri() );
+		secondPopulatedRequest.setProfile( profile.toString() );
+		secondPopulatedRequest.setConstraints( constraints );
+
+		// Should be equal
+		assertThat( firstPopulatedRequest, equalTo( firstPopulatedRequest ) );
+		assertThat( firstPopulatedRequest, equalTo( secondPopulatedRequest ) );
+
+		// A comparison between a populated request and an empty request should never be equal
+		assertThat( firstPopulatedRequest, not( equalTo( secondEmptyRequest ) ) );
+
+		// A comparison between dissimilar types should not be equal
+		assertThat( firstPopulatedRequest, not( equalTo( null ) ) );
+		assertThat( firstPopulatedRequest, not( equalTo( new Object() ) ) );
+	}
+
+	@Test
 	@Disabled( "Schema generation not correct because of DocumentV0Adapter usage" )
 	void generateSchema()
 	{

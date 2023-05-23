@@ -209,10 +209,9 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 	{
 		if ( this == o ) return true;
 		if ( o == null || getClass() != o.getClass() ) return false;
-		if ( !super.equals( o ) ) return false;
 		ValidationRequestV0 that = (ValidationRequestV0) o;
 		return Objects.equals( document, that.document ) && Objects.equals( profile, that.profile ) &&
-				validationGateName == that.validationGateName && constraints.equals( that.constraints );
+			validationGateName == that.validationGateName && Objects.equals( constraints, that.constraints );
 	}
 
 	@Override
