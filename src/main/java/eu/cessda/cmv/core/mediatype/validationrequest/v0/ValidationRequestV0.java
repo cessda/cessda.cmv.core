@@ -217,7 +217,7 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 	@Override
 	public int hashCode()
 	{
-		return Objects.hash( super.hashCode(), document, profile, validationGateName, constraints );
+		return Objects.hash( document, profile, validationGateName, constraints );
 	}
 
 	@Override

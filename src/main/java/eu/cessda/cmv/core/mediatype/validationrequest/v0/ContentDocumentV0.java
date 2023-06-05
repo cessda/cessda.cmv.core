@@ -31,7 +31,7 @@ import java.util.Objects;
 
 import static org.gesis.commons.resource.Resource.newResource;
 
-public class ContentDocumentV0 extends DocumentV0
+public class ContentDocumentV0 implements DocumentV0
 {
 	@NotNull
 	@Schema( description = "DDI document", required = true )

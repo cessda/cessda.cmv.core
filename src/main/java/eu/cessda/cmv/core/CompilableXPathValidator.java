@@ -50,12 +50,17 @@ class CompilableXPathValidator implements Validator.V10
 	@Override
 	public Optional<ConstraintViolation> validate()
 	{
+
 		try
 		{
-			factory.newXPath().compile( node.getTextContent() );
+			// XPathFactory instances are not thread safe
+			synchronized ( factory )
+			{
+				factory.newXPath().compile( node.getTextContent() );
+			}
 			return empty();
 		}
-		catch (XPathExpressionException e)
+		catch ( XPathExpressionException e )
 		{
 			reason = e.getMessage().replace( "javax.xml.transform.TransformerException: ", "" );
 			return of( newConstraintViolation() );

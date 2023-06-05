@@ -25,6 +25,6 @@ public interface ValidationGate
 {
 	interface V10 extends ValidationGate
 	{
-		<T extends ConstraintViolation> List<T> validate( Document document, Profile profile );
+		List<ConstraintViolation> validate( Document document, Profile profile );
 	}
 }

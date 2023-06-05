@@ -34,6 +34,6 @@ public interface Document
 	{
 		void register( String uri, ControlledVocabularyRepository controlledVocabularyRepository );
 
-		<T extends ControlledVocabularyRepository> T findControlledVocabularyRepository( String uri );
+		ControlledVocabularyRepository findControlledVocabularyRepository( String uri );
 	}
 }

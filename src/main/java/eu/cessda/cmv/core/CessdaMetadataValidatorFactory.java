@@ -259,11 +259,8 @@ public class CessdaMetadataValidatorFactory
 
 	/**
 	 * Returns a validation gate with the given name.
-	 *
-	 * @deprecated use the static method instead
 	 */
-	@Deprecated
-	public ValidationGate.V10 newValidationGate( ValidationGateName name )
+	ValidationGate.V10 newValidationGate( ValidationGateName name )
 	{
 		return getValidationGate( name );
 	}

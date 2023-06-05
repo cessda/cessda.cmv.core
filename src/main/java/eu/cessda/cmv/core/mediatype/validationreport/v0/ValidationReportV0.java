@@ -152,6 +152,6 @@ public class ValidationReportV0 extends JaxbDocument
 	@Override
 	public int hashCode()
 	{
-		return Objects.hash( super.hashCode(), documentUri, constraintViolations );
+		return Objects.hash( documentUri, constraintViolations );
 	}
 }

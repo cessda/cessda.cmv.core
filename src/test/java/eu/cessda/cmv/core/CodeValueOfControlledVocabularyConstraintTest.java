@@ -77,7 +77,7 @@ class CodeValueOfControlledVocabularyConstraintTest
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
 		assertThat( constraintViolations.get( 0 ).getMessage(),
-				equalTo( "Code value 'Family.HouseholdFamily' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' is not validateable because no controlled vocabulary is declared (lineNumber: 28)" ) );
+				equalTo( "Code value 'Family.HouseholdFamily' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' cannot be validated because no controlled vocabulary is declared (lineNumber: 28)" ) );
 	}
 
 	@Test

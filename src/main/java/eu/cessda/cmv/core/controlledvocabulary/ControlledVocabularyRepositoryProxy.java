@@ -75,7 +75,7 @@ public class ControlledVocabularyRepositoryProxy implements ControlledVocabulary
 	{
 		if ( isTolerant )
 		{
-			repository = new EmptyControlledVocabularyRepository();
+			repository = EmptyControlledVocabularyRepository.instance();
 			LOGGER.warn( "Tolerant proxy ignores {}", e.getMessage() );
 		}
 		else

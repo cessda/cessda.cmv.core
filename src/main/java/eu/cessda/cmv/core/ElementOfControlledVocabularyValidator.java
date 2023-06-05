@@ -49,7 +49,7 @@ abstract class ElementOfControlledVocabularyValidator implements Validator.V10
 		ControlledVocabularyRepository.V11 repository = node.getControlledVocabularyRepository();
 		if ( repository == null )
 		{
-			String message = format( "%s '%s' in '%s' is not validateable because no controlled vocabulary is declared",
+			String message = format( "%s '%s' in '%s' cannot be validated because no controlled vocabulary is declared",
 					elementName.getText(), node.getTextContent(), node.getLocationPath() );
 			return of( new ConstraintViolation( message, node.getLocationInfo() ) );
 		}

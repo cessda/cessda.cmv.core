@@ -45,8 +45,7 @@ abstract class AbstractValidationGate implements ValidationGate.V10
 	}
 
 	@Override
-	@SuppressWarnings( "unchecked" )
-	public <T extends ConstraintViolation> List<T> validate( Document document, Profile profile )
+	public List<ConstraintViolation> validate( Document document, Profile profile )
 	{
 		requireNonNull( document );
 		requireNonNull( profile );
@@ -62,7 +61,7 @@ abstract class AbstractValidationGate implements ValidationGate.V10
 				}
 			}
 		}
-		return (List<T>) constraintViolations;
+		return constraintViolations;
 	}
 
 }

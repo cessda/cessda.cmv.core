@@ -37,14 +37,13 @@ import java.util.HashSet;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
-import static org.gesis.commons.resource.Resource.newResource;
 import static org.springframework.http.HttpMethod.GET;
 
 public class CessdaControlledVocabularyRepositoryV2 extends AbstractControlledVocabularyRepository
 {
 	public CessdaControlledVocabularyRepositoryV2( URI uri )
 	{
-		this( (Resource) newResource( requireNonNull( uri ) ) );
+		this( Resource.<Resource>newResource( requireNonNull( uri ) ) );
 	}
 
 	public CessdaControlledVocabularyRepositoryV2( Resource resource )

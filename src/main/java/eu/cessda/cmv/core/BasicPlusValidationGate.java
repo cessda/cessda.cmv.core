@@ -33,13 +33,7 @@ final class BasicPlusValidationGate extends AbstractValidationGate
 			)
 	);
 
-	/**
-	 * @deprecated Use
-	 * {@link eu.cessda.cmv.core.CessdaMetadataValidatorFactory#newValidationGate(ValidationGateName)}
-	 * instead
-	 */
-	@Deprecated
-	public BasicPlusValidationGate()
+	BasicPlusValidationGate()
 	{
 		addConstraintType( BasicValidationGate.CONSTRAINTS );
 		addConstraintType( CONSTRAINTS );

@@ -91,6 +91,6 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
 		assertThat( constraintViolations.get( 0 ).getMessage(),
-				containsString( "is not validateable because no controlled vocabulary is declared" ) );
+				containsString( "cannot be validated because no controlled vocabulary is declared" ) );
 	}
 }

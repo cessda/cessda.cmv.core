@@ -24,8 +24,8 @@ import org.gesis.commons.resource.io.DdiInputStream;
 import org.gesis.commons.xml.DomDocument;
 import org.gesis.commons.xml.XercesXalanDocument;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,7 +74,9 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 
 	private List<Constraint> forceConstraintReordering( List<Constraint> constraints )
 	{
-		LinkedList<Constraint> list = new LinkedList<>();
+		// Use a deque, this is efficient for insertions at the start and the end
+		ArrayDeque<Constraint> list = new ArrayDeque<>(constraints.size());
+
 		for ( Constraint c : constraints )
 		{
 			if ( c instanceof ControlledVocabularyRepositoryConstraint )
@@ -83,10 +85,12 @@ class DomSemiStructuredDdiProfile implements Profile.V10
 			}
 			else
 			{
-				list.add( c );
+				list.addLast( c );
 			}
 		}
-		return list;
+
+		// Copy the contents of the deque to an ArrayList
+		return new ArrayList<>(list);
 	}
 
 	private String getLocationPath( org.w3c.dom.Node usedNode )

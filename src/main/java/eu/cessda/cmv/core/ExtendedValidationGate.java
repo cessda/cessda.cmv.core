@@ -32,13 +32,7 @@ final class ExtendedValidationGate extends AbstractValidationGate
 			)
 	);
 
-	/**
-	 * @deprecated Use
-	 * {@link eu.cessda.cmv.core.CessdaMetadataValidatorFactory#newValidationGate(ValidationGateName)}
-	 * instead
-	 */
-	@Deprecated
-	public ExtendedValidationGate()
+	ExtendedValidationGate()
 	{
 		addConstraintType( BasicValidationGate.CONSTRAINTS );
 		addConstraintType( BasicPlusValidationGate.CONSTRAINTS );

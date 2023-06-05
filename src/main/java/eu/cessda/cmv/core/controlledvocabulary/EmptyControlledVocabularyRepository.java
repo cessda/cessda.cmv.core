@@ -20,6 +20,7 @@
 package eu.cessda.cmv.core.controlledvocabulary;
 
 import java.net.URI;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -27,6 +28,23 @@ import static java.util.Collections.emptySet;
 
 public class EmptyControlledVocabularyRepository implements ControlledVocabularyRepository.V11
 {
+	// Use the nil UUID for all instances
+	private static final UUID UUID = new UUID( 0, 0 );
+	private static final int HASHCODE = Objects.hash( UUID );
+	private static final URI uri = URI.create( "urn:uuid:" + UUID );
+
+	// The common instance for all EmptyControlledVocabularyRepository objects
+	private static final EmptyControlledVocabularyRepository INSTANCE = new EmptyControlledVocabularyRepository();
+
+	/**
+	 * Return an instance of EmptyControlledVocabularyRepository.
+	 */
+	public static EmptyControlledVocabularyRepository instance() {
+		return INSTANCE;
+	}
+
+	private EmptyControlledVocabularyRepository() {}
+
 	@Override
 	public Set<String> findCodeValues()
 	{
@@ -42,6 +60,6 @@ public class EmptyControlledVocabularyRepository implements ControlledVocabulary
 	@Override
 	public URI getUri()
 	{
-		return URI.create( "urn:uuid:" + UUID.randomUUID() );
+		return uri;
 	}
 }

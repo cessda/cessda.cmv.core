@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,23 +19,20 @@
  */
 package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import org.gesis.commons.resource.Resource;
+
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
-import org.gesis.commons.resource.Resource;
-
-import io.swagger.v3.oas.annotations.media.Schema;
-
-@SuppressWarnings( "java:S1610" )
 @Schema( subTypes = { UriDocumentV0.class, ContentDocumentV0.class } )
 @XmlJavaTypeAdapter( DocumentV0Adapter.class )
-public abstract class DocumentV0
+public interface DocumentV0
 {
-	public abstract Resource toResource();
+	Resource toResource();
 
-	public List<String> validate()
+	default List<String> validate()
 	{
 		return new ArrayList<>();
 	}

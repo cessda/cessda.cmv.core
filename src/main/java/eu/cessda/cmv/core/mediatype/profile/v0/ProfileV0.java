@@ -30,6 +30,7 @@ import java.io.OutputStream;
 import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @XmlRootElement( name = ProfileV0.JAXB_ELEMENT )
 @XmlType( name = ProfileV0.JAXB_TYPE )
@@ -140,5 +141,21 @@ public class ProfileV0 extends JaxbDocument
 	public String toString()
 	{
 		return toString( JAXBCONTEXT );
+	}
+
+	@Override
+	public boolean equals( Object o )
+	{
+		if ( this == o ) return true;
+		if ( o == null || getClass() != o.getClass() ) return false;
+		ProfileV0 profileV0 = (ProfileV0) o;
+		return Objects.equals( name, profileV0.name ) &&
+			Objects.equals( constraints, profileV0.constraints );
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash( name, constraints );
 	}
 }

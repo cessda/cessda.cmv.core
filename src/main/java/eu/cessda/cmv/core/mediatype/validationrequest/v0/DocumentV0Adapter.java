@@ -40,9 +40,13 @@ class DocumentV0Adapter extends XmlAdapter<DocumentV0Adapter.AdaptedDocument, Do
 		{
 			adaptedDocument.uri = ((UriDocumentV0) document).getUri();
 		}
-		else
+		else if ( document instanceof ContentDocumentV0 )
 		{
 			adaptedDocument.content = ((ContentDocumentV0) document).getContent();
+		}
+		else
+		{
+			throw new UnsupportedOperationException(document.getClass().getSimpleName() + " cannot be marshalled");
 		}
 		return adaptedDocument;
 	}

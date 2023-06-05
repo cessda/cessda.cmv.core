@@ -26,13 +26,7 @@ final class StandardValidationGate extends AbstractValidationGate
 {
 	static final List<Class<? extends Constraint.V20>> CONSTRAINTS = Collections.singletonList( RecommendedNodeConstraint.class );
 
-	/**
-	 * @deprecated Use
-	 * {@link eu.cessda.cmv.core.CessdaMetadataValidatorFactory#newValidationGate(ValidationGateName)}
-	 * instead
-	 */
-	@Deprecated
-	public StandardValidationGate()
+	StandardValidationGate()
 	{
 		addConstraintType( BasicValidationGate.CONSTRAINTS );
 		addConstraintType( BasicPlusValidationGate.CONSTRAINTS );

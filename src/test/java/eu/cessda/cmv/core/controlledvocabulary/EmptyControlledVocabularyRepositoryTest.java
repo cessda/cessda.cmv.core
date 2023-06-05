@@ -25,8 +25,7 @@ import java.net.URI;
 import java.util.UUID;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class EmptyControlledVocabularyRepositoryTest
@@ -35,7 +34,7 @@ class EmptyControlledVocabularyRepositoryTest
 	@Test
 	void shouldReturnEmptyCodeValues()
 	{
-		EmptyControlledVocabularyRepository repository = new EmptyControlledVocabularyRepository();
+		EmptyControlledVocabularyRepository repository = EmptyControlledVocabularyRepository.instance();
 
 		// Code values should be empty
 		assertThat( repository.findCodeValues(), is( empty() ) );
@@ -44,7 +43,7 @@ class EmptyControlledVocabularyRepositoryTest
 	@Test
 	void shouldReturnEmptyDescriptiveTerms()
 	{
-		EmptyControlledVocabularyRepository repository = new EmptyControlledVocabularyRepository();
+		EmptyControlledVocabularyRepository repository = EmptyControlledVocabularyRepository.instance();
 
 		// Code values should be empty
 		assertThat( repository.findDescriptiveTerms(), is( empty() ) );
@@ -53,7 +52,7 @@ class EmptyControlledVocabularyRepositoryTest
 	@Test
 	void shouldReturnAValidRandomUUID()
 	{
-		EmptyControlledVocabularyRepository repository = new EmptyControlledVocabularyRepository();
+		EmptyControlledVocabularyRepository repository = EmptyControlledVocabularyRepository.instance();
 
 		// Retrive the UUID
 		URI uri = repository.getUri();
@@ -61,5 +60,16 @@ class EmptyControlledVocabularyRepositoryTest
 
 		// Check if the UUID is valid
 		assertDoesNotThrow( () -> UUID.fromString( uuidString ) );
+	}
+
+	@Test
+	void shouldAlwaysBeEqual()
+	{
+		EmptyControlledVocabularyRepository firstRepository = EmptyControlledVocabularyRepository.instance();
+		EmptyControlledVocabularyRepository secondRepository = EmptyControlledVocabularyRepository.instance();
+
+		// The objects should be considered equal, and the hash codes should match
+		assertThat( firstRepository, equalTo( secondRepository ) );
+		assertThat( firstRepository.hashCode(), equalTo( secondRepository.hashCode() ) );
 	}
 }
