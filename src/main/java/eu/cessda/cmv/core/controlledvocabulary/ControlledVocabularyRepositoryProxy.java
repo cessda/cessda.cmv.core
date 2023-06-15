@@ -32,17 +32,52 @@ public class ControlledVocabularyRepositoryProxy implements ControlledVocabulary
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger( ControlledVocabularyRepositoryProxy.class );
 
-	private final String uri;
+	private final URI uri;
 	private final String canonicalName;
 	private ControlledVocabularyRepository.V11 repository;
 	private final boolean isTolerant;
 
+	/**
+	 * Creates a ControlledVocabularyRepositoryProxy that proxies the given {@link ControlledVocabularyRepository.V11}.
+	 * The {@link ControlledVocabularyRepository.V11} must have a constructor that takes a {@link URI} parameter.
+	 * <p>
+	 * The proxy will not be tolerant of instantiation errors which will result in {@link IllegalStateException}
+	 * being thrown on the invocation of findCodeValues() or findDescriptiveTerms().
+	 *
+	 * @param canonicalName the canonical name of the class to proxy.
+	 * @param uri the URI of the controlled vocabulary.
+	 * @throws IllegalArgumentException if the URI violates RFC 2396.
+	 */
 	public ControlledVocabularyRepositoryProxy( String canonicalName, String uri )
 	{
 		this( canonicalName, uri, false );
 	}
 
+	/**
+	 * Creates a ControlledVocabularyRepositoryProxy that proxies the given {@link ControlledVocabularyRepository.V11}.
+	 * The {@link ControlledVocabularyRepository.V11} must have a constructor that takes a {@link URI} parameter.
+	 *
+	 * @param canonicalName the canonical name of the class to proxy.
+	 * @param uri the URI of the controlled vocabulary.
+	 * @param isTolerant whether the proxy should fall back to an {@link EmptyControlledVocabularyRepository}
+	 *                   if the desired {@link ControlledVocabularyRepository.V11} cannot be instanced.
+	 * @throws IllegalArgumentException if the URI violates RFC 2396.
+	 */
 	public ControlledVocabularyRepositoryProxy( String canonicalName, String uri, boolean isTolerant )
+	{
+		this( canonicalName, URI.create(uri), isTolerant );
+	}
+
+	/**
+	 * Creates a ControlledVocabularyRepositoryProxy that proxies the given {@link ControlledVocabularyRepository.V11}.
+	 * The {@link ControlledVocabularyRepository.V11} must have a constructor that takes a {@link URI} parameter.
+	 *
+	 * @param canonicalName the canonical name of the class to proxy.
+	 * @param uri the URI of the controlled vocabulary.
+	 * @param isTolerant whether the proxy should fall back to an {@link EmptyControlledVocabularyRepository}
+	 *                   if the desired {@link ControlledVocabularyRepository.V11} cannot be instanced.
+	 */
+	public ControlledVocabularyRepositoryProxy( String canonicalName, URI uri, boolean isTolerant )
 	{
 		requireNonNull( canonicalName );
 		requireNonNull( uri );
@@ -52,26 +87,32 @@ public class ControlledVocabularyRepositoryProxy implements ControlledVocabulary
 		this.isTolerant = isTolerant;
 	}
 
-	public void unproxy()
+	/**
+	 * Instance the ControlledVocabularyRepository.
+	 *
+	 * @throws IllegalStateException if an exception occurs when instancing.
+	 */
+	@SuppressWarnings( "OverlyBroadCatchBlock" )
+	private void unproxy()
 	{
 		try
 		{
 			Class<?> clazz = Class.forName( canonicalName );
-			repository = (eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository.V11) clazz
-					.getDeclaredConstructor( URI.class )
-					.newInstance( new URI( uri ) );
+			repository = (V11) clazz
+				.getDeclaredConstructor( URI.class )
+				.newInstance( uri );
 		}
-		catch (InvocationTargetException e)
+		catch ( InvocationTargetException e )
 		{
-			handleException( e.getTargetException().getMessage(), e.getTargetException() );
+			handleException( e.getTargetException() );
 		}
-		catch (Exception e)
+		catch ( ReflectiveOperationException e )
 		{
-			handleException( e.getMessage(), e );
+			handleException( e );
 		}
 	}
 
-	private void handleException( String message, Throwable e )
+	private void handleException( Throwable e )
 	{
 		if ( isTolerant )
 		{
@@ -80,7 +121,7 @@ public class ControlledVocabularyRepositoryProxy implements ControlledVocabulary
 		}
 		else
 		{
-			throw new IllegalArgumentException( message );
+			throw new IllegalStateException( e );
 		}
 	}
 
@@ -107,6 +148,6 @@ public class ControlledVocabularyRepositoryProxy implements ControlledVocabulary
 	@Override
 	public URI getUri()
 	{
-		return repository.getUri();
+		return uri;
 	}
 }

@@ -29,6 +29,7 @@ import org.gesis.commons.xml.*;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -64,14 +65,17 @@ public class CessdaMetadataValidatorFactory
 		documentMediaTypeDetector = new Tika( new CompositeDetector( new DdiDetector(), new OaipmhV20Detector() ) );
 	}
 
-	public DomDocument.V11 newDomDocument( File file )
+	public DomDocument.V11 newDomDocument( File file ) throws IOException
 	{
-		return newDomDocument( newResource( file ).readInputStream() );
+		try (FileInputStream inputStream = new FileInputStream(file) )
+		{
+			return newDomDocument(inputStream);
+		}
 	}
 
-	public DomDocument.V11 newDomDocument( URI uri )
+	public DomDocument.V11 newDomDocument( URI uri ) throws IOException
 	{
-		return newDomDocument( newResource( uri ).readInputStream() );
+		return newDomDocument( uri.toURL().openStream() );
 	}
 
 	public DomDocument.V11 newDomDocument( URL url ) throws IOException
@@ -81,8 +85,9 @@ public class CessdaMetadataValidatorFactory
 
 	public DomDocument.V11 newDomDocument( InputStream inputStream )
 	{
+		Objects.requireNonNull( inputStream );
 		return XercesXalanDocument.newBuilder()
-				.ofInputStream( requireNonNull( inputStream ) )
+				.ofInputStream( inputStream )
 				.namespaceAware()
 				.printPrettyWithIndentation( 2 )
 				.build();

@@ -22,9 +22,9 @@ package eu.cessda.cmv.core;
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepositoryProxy;
 
 import java.util.Optional;
+import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
-import static java.util.Optional.empty;
 
 class ControlledVocabularyRepositoryValidator implements Validator.V10
 {
@@ -39,18 +39,25 @@ class ControlledVocabularyRepositoryValidator implements Validator.V10
 	@Override
 	public Optional<ConstraintViolation> validate()
 	{
+		Set<String> codeValues;
+
 		try
 		{
-			proxy.unproxy();
+			codeValues = proxy.findCodeValues();
 		}
-		catch (Exception e)
+		catch (IllegalStateException e)
 		{
 			return Optional.of( new ConstraintViolation( e.getMessage(), null ) );
 		}
-		if ( proxy.findCodeValues().isEmpty() )
+
+		if ( codeValues.isEmpty() )
 		{
+			// No code values found, fail the constraint
 			return Optional.of( new ConstraintViolation( "No values", null ) );
 		}
-		return empty();
+		else
+		{
+			return Optional.empty();
+		}
 	}
 }

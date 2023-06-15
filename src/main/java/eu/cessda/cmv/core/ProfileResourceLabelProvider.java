@@ -42,10 +42,9 @@ public class ProfileResourceLabelProvider extends ResourceLabelProvider
 					.ofInputStream( resource.readInputStream() )
 					.namespaceUnaware()
 					.build();
-			String label = document.selectNode( "/DDIProfile/DDIProfileName/String" ).getTextContent() +
+			return document.selectNode( "/DDIProfile/DDIProfileName/String" ).getTextContent() +
 					" " +
 					document.selectNode( "/DDIProfile/Version" ).getTextContent();
-			return label;
 		}
 		catch (Exception e)
 		{

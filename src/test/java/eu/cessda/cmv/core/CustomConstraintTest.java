@@ -62,7 +62,6 @@ class CustomConstraintTest
 		assertThat( messages, hasItem( containsString( "fixed value" ) ) );
 	}
 
-	@SuppressWarnings( "unchecked" )
 	@Test
 	void shouldThrowIfAnInvalidConstraintIsRequested()
 	{
