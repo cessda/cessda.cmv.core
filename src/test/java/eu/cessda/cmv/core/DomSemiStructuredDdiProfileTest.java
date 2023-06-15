@@ -27,6 +27,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Objects;
 
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -103,7 +104,7 @@ class DomSemiStructuredDdiProfileTest
 
 		// when
 		DomSemiStructuredDdiProfile profile = new DomSemiStructuredDdiProfile(
-				factory.newDdiInputStream( newResource( sourceUrl ).readInputStream() ) );
+				factory.newDdiInputStream( newResource( Objects.requireNonNull( sourceUrl ) ).readInputStream() ) );
 		ProfileV0 jaxbProfile = profile.toJaxbProfileV0();
 		jaxbProfile.saveAs( targetFile );
 		assertThat( targetFile, anExistingFile() );

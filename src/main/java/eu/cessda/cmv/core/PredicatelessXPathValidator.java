@@ -24,7 +24,6 @@ import org.gesis.commons.xml.xpath.XPathTokenizer;
 import java.util.Optional;
 
 import static java.util.Optional.empty;
-import static java.util.Optional.ofNullable;
 
 class PredicatelessXPathValidator implements Validator.V10
 {
@@ -41,7 +40,7 @@ class PredicatelessXPathValidator implements Validator.V10
 		XPathTokenizer tokenizer = new XPathTokenizer( node.getTextContent() );
 		if ( tokenizer.containsPredicates() )
 		{
-			return ofNullable( newConstraintViolation() );
+			return Optional.of( newConstraintViolation() );
 		}
 		else
 		{

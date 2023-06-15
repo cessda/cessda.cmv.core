@@ -29,6 +29,7 @@ import org.w3c.dom.Node;
 
 import java.io.File;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
@@ -42,7 +43,7 @@ class DemoDocumentsTest
 	void printPretty()
 	{
 		Stream.of( "src/test/resources/eu.cessda.cmv.core.MandatoryNodeConstraintTest" )
-				.map( path -> asList( new File( path ).listFiles() ) )
+				.map( path -> asList( Objects.requireNonNull( new File( path ).listFiles() ) ) )
 				.flatMap( List::stream )
 				.filter( file -> file.getName().endsWith( ".xml" ) )
 				.forEach( file -> XercesXalanDocument.newBuilder()
@@ -60,6 +61,7 @@ class DemoDocumentsTest
 	{
 		Stream.of( "fsd-3271.xml", "ukds-2000.xml", "ukds-7481.xml", "gesis-2800.xml", "gesis-5100.xml", "gesis-5300.xml" )
 				.map( fileName -> getClass().getResource( "/demo-documents/ddi-v25/" + fileName ) )
+				.filter( Objects::nonNull )
 				.map( Resource::newResource )
 				.map( Resource.class::cast )
 				.map( resource -> XercesXalanDocument.newBuilder().ofInputStream( resource.readInputStream() ).build() )
@@ -73,15 +75,8 @@ class DemoDocumentsTest
 				.map( TextResource::new )
 				.forEach( resource ->
 				{
-					try
-					{
-						System.out.println( resource.getUri() );
-						System.out.println( resource );
-					}
-					catch (Exception e)
-					{
-						System.out.println( e.getMessage() );
-					}
+					System.out.println( resource.getUri() );
+					System.out.println( resource );
 				} );
 	}
 }

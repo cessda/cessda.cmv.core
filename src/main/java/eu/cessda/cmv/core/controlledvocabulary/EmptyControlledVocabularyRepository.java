@@ -20,7 +20,6 @@
 package eu.cessda.cmv.core.controlledvocabulary;
 
 import java.net.URI;
-import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -30,7 +29,6 @@ public class EmptyControlledVocabularyRepository implements ControlledVocabulary
 {
 	// Use the nil UUID for all instances
 	private static final UUID UUID = new UUID( 0, 0 );
-	private static final int HASHCODE = Objects.hash( UUID );
 	private static final URI uri = URI.create( "urn:uuid:" + UUID );
 
 	// The common instance for all EmptyControlledVocabularyRepository objects

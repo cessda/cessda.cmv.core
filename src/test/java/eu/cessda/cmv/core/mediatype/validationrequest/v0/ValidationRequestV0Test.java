@@ -61,7 +61,6 @@ class ValidationRequestV0Test
 	private final Resource document;
 	private final ValidationGateName validationGateName;
 	private final Set<String> constraints;
-	;
 
 	ValidationRequestV0Test()
 	{
