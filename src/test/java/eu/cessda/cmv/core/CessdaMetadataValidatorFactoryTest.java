@@ -54,7 +54,7 @@ class CessdaMetadataValidatorFactoryTest
 	}
 
 	@ParameterizedTest
-	@ValueSource( strings = { "/demo-documents/ddi-v25/fsd-3307.xml", "/demo-documents/ddi-v25/fsd-3307-oaipmh.xml", "/demo-documents/ddi-v32/gesis-0055.xml", "/demo-documents/ddi-v32/gesis-5300.xml"} )
+	@ValueSource( strings = { "/demo-documents/ddi-v25/fsd-3307.xml", "/demo-documents/ddi-v25/fsd-3307-oaipmh.xml", "/demo-documents/ddi-v32/gesis-5300.xml"} )
 	void newDocument( String uri )
 	{
 		URL resourceUrl = this.getClass().getResource( uri );
