@@ -31,7 +31,7 @@ class Node
 	private final String locationPath;
 	private final String textContent;
 	private final LocationInfo locationInfo;
-	private final Map<String, Integer> childCounter;
+	private final Map<String, Integer> childCounter = new HashMap<>();
 
 	Node( String locationPath, String textContent, LocationInfo locationInfo )
 	{
@@ -40,7 +40,6 @@ class Node
 		this.locationPath = locationPath;
 		this.textContent = textContent;
 		this.locationInfo = locationInfo;
-		this.childCounter = new HashMap<>();
 	}
 
 	public String getLocationPath()

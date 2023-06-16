@@ -43,6 +43,7 @@ public class CessdaControlledVocabularyRepositoryV2 extends AbstractControlledVo
 	 * Construct a new ControlledVocabulary using the given URI.
 	 *
 	 * @param uri the URI of the controlled vocabulary.
+	 * @throws IllegalArgumentException if an IO error occurs.
 	 */
 	public CessdaControlledVocabularyRepositoryV2( URI uri )
 	{
@@ -63,6 +64,7 @@ public class CessdaControlledVocabularyRepositoryV2 extends AbstractControlledVo
 	 * Construct a new ControlledVocabulary using the given {@link Resource}.
 	 *
 	 * @param resource the resource of the controlled vocabulary.
+	 * @throws IllegalArgumentException if an IO error occurs.
 	 */
 	public CessdaControlledVocabularyRepositoryV2( Resource resource )
 	{
