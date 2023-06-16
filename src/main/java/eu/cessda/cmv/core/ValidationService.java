@@ -28,12 +28,12 @@ public interface ValidationService
 {
 	interface V10 extends ValidationService
 	{
-		<T extends ValidationReport> T validate(
+		ValidationReportV0 validate(
 				URI documentUri,
 				URI profileUri,
 				ValidationGateName validationGateName );
 
-		<T extends ValidationReport> T validate(
+		ValidationReportV0 validate(
 				Resource document,
 				Resource profile,
 				ValidationGateName validationGateName );
