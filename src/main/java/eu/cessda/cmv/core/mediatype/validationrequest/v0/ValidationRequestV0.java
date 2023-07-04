@@ -24,7 +24,6 @@ import eu.cessda.cmv.core.ValidationGateName;
 import eu.cessda.cmv.core.ValidationRequest;
 import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
 import org.gesis.commons.xml.jaxb.JaxbDocument;
-import org.gesis.commons.xml.jaxb.NamespacePrefixMapper;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -79,14 +78,9 @@ public class ValidationRequestV0 extends JaxbDocument implements ValidationReque
 	@XmlElementWrapper( name = "Constraints" )
 	private List<String> constraints;
 
-	protected ValidationRequestV0( String schemaLocation, NamespacePrefixMapper namespacePrefixMapper )
-	{
-		super( schemaLocation, namespacePrefixMapper );
-	}
-
 	public ValidationRequestV0()
 	{
-		this( SCHEMALOCATION, new DefaultNamespacePrefixMapper( NAMESPACE_DEFAULT_URI ) );
+		super( SCHEMALOCATION, new DefaultNamespacePrefixMapper( NAMESPACE_DEFAULT_URI ) );
 	}
 
 	public DocumentV0 getDocument()
