@@ -17,23 +17,21 @@
  * limitations under the License.
  * #L%
  */
-package eu.cessda.cmv.core;
+package eu.cessda.cmv.core.mediatype.profile;
 
-import java.util.Collections;
-import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
 
-class OptionalNodeConstraint extends NodeConstraint
+@XmlType( name = Constraint.JAXB_TYPE )
+@XmlAccessorType( XmlAccessType.FIELD )
+public abstract class Constraint
 {
-	public OptionalNodeConstraint( String locationPath )
-	{
-		super( locationPath );
-	}
+	public static final String JAXB_ELEMENT = "Constraint";
+	public static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
 
-	@Override
-	public List<Validator> newValidators( Document document )
+	protected Constraint()
 	{
-		// https://github.com/cessda/cessda.cmv.core/issues/66
-		List<Node> nodes = document.getNodes( getLocationPath() );
-		return Collections.singletonList( new OptionalNodeValidator( getLocationPath(), nodes.size() ) );
+		// Sonar expects explicit constructor
 	}
 }

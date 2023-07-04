@@ -19,7 +19,6 @@
  */
 package eu.cessda.cmv.core;
 
-import eu.cessda.cmv.core.mediatype.profile.v0.*;
 import org.gesis.commons.resource.io.DdiInputStream;
 import org.gesis.commons.xml.DomDocument;
 import org.gesis.commons.xml.XercesXalanDocument;
@@ -35,22 +34,22 @@ class DomSemiStructuredDdiProfile implements Profile
 {
 	private final org.gesis.commons.xml.DomDocument.V11 document;
 	private List<Constraint> constraints;
-	private final ProfileV0 jaxbProfile;
+	private final eu.cessda.cmv.core.mediatype.profile.Profile jaxbProfile;
 
 	public DomSemiStructuredDdiProfile( DdiInputStream inputStream )
 	{
 		document = XercesXalanDocument.newBuilder().ofInputStream( inputStream ).build();
 
-		jaxbProfile = new ProfileV0();
+		jaxbProfile = new eu.cessda.cmv.core.mediatype.profile.Profile();
 		parseProfileName();
 
 		constraints = new ArrayList<>();
 		for ( org.w3c.dom.Node usedNode : document.selectNodes( "/DDIProfile/Used" ) )
 		{
 			constraints.add( new CompilableXPathConstraint( getLocationPath( usedNode ) ) );
-			jaxbProfile.getConstraints().add( new CompilableXPathConstraintV0( getLocationPath( usedNode ) ) );
+			jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.CompilableXPathConstraint( getLocationPath( usedNode ) ) );
 			constraints.add( new PredicatelessXPathConstraint( getLocationPath( usedNode ) ) );
-			jaxbProfile.getConstraints().add( new PredicatelessXPathConstraintV0( getLocationPath( usedNode ) ) );
+			jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.PredicatelessXPathConstraint( getLocationPath( usedNode ) ) );
 			parseControlledVocabularyRepositoryConstraint( usedNode );
 
 			parseMandatoryNodeConstraint( usedNode );
@@ -131,7 +130,7 @@ class DomSemiStructuredDdiProfile implements Profile
 		if ( isRequiredNode != null && isRequiredNode.getNodeValue().equalsIgnoreCase( "true" ) )
 		{
 			constraints.add( new MandatoryNodeConstraint( getLocationPath( usedNode ) ) );
-			jaxbProfile.getConstraints().add( new MandatoryNodeConstraintV0( getLocationPath( usedNode ) ) );
+			jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.MandatoryNodeConstraint( getLocationPath( usedNode ) ) );
 		}
 	}
 
@@ -164,12 +163,12 @@ class DomSemiStructuredDdiProfile implements Profile
 					|| hasRecommendedNodeConstraintExtension( usedNode ) )
 			{
 				constraints.add( new RecommendedNodeConstraint( getLocationPath( usedNode ) ) );
-				jaxbProfile.getConstraints().add( new RecommendedNodeConstraintV0( getLocationPath( usedNode ) ) );
+				jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.RecommendedNodeConstraint( getLocationPath( usedNode ) ) );
 			}
 			else
 			{
 				constraints.add( new OptionalNodeConstraint( getLocationPath( usedNode ) ) );
-				jaxbProfile.getConstraints().add( new OptionalNodeConstraintV0( getLocationPath( usedNode ) ) );
+				jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.OptionalNodeConstraint( getLocationPath( usedNode ) ) );
 			}
 		}
 	}
@@ -234,10 +233,10 @@ class DomSemiStructuredDdiProfile implements Profile
 		org.w3c.dom.Node limitMaxOccursNode = usedNode.getAttributes().getNamedItem( "limitMaxOccurs" );
 		if ( limitMaxOccursNode != null )
 		{
-			constraints.add( new MaximumElementOccuranceConstraint(
+			constraints.add( new MaximumElementOccurrenceConstraint(
 					getLocationPath( usedNode ),
 					Long.parseLong( limitMaxOccursNode.getNodeValue() ) ) );
-			jaxbProfile.getConstraints().add( new MaximumElementOccuranceConstraintV0(
+			jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.MaximumElementOccuranceConstraint(
 					getLocationPath( usedNode ),
 					Long.parseLong( limitMaxOccursNode.getNodeValue() ) ) );
 		}
@@ -277,7 +276,7 @@ class DomSemiStructuredDdiProfile implements Profile
 		return unmodifiableList( constraints );
 	}
 
-	public ProfileV0 toJaxbProfileV0()
+	public eu.cessda.cmv.core.mediatype.profile.Profile toJaxbProfileV0()
 	{
 		return jaxbProfile;
 	}

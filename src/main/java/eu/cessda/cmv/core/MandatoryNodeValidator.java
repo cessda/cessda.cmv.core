@@ -19,7 +19,7 @@
  */
 package eu.cessda.cmv.core;
 
-class MandatoryNodeValidator extends MinimumElementOccuranceValidator
+class MandatoryNodeValidator extends MinimumElementOccurrenceValidator
 {
 	public MandatoryNodeValidator( String locationPath, long actualCount )
 	{

@@ -19,8 +19,8 @@
  */
 package eu.cessda.cmv.core;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
 
@@ -38,8 +38,12 @@ class FixedValueNodeConstraint extends NodeConstraint
 	public List<Validator> newValidators( Document document )
 	{
 		List<Node> nodes = document.getNodes( getLocationPath() );
-		return nodes.stream()
-				.map( node -> new FixedValueNodeValidator( node, fixedValue ) )
-				.collect( Collectors.toList() );
+		List<Validator> validators = new ArrayList<>();
+		for ( Node node : nodes )
+		{
+			FixedValueNodeValidator fixedValueNodeValidator = new FixedValueNodeValidator( node, fixedValue );
+			validators.add( fixedValueNodeValidator );
+		}
+		return validators;
 	}
 }

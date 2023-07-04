@@ -21,8 +21,8 @@ package eu.cessda.cmv.core;
 
 import org.gesis.commons.xml.xpath.XPathTokenizer;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.gesis.commons.xml.xpath.XPathTokenizer.PARENT;
 
@@ -36,14 +36,21 @@ class MandatoryNodeIfParentPresentConstraint extends NodeConstraint
 	@Override
 	public List<Validator> newValidators( Document document )
 	{
+		List<Validator> validators = new ArrayList<>();
+
 		List<Node> nodes = document.getNodes( getLocationPath() );
-		List<Validator> validators = nodes.stream().map( NotBlankNodeValidator::new ).collect( Collectors.toList() );
-		XPathTokenizer tokenizer = new XPathTokenizer( getLocationPath() );
-		nodes = document.getNodes( tokenizer.getLocationPath( PARENT ) );
 		for ( Node node : nodes )
+		{
+			validators.add( new NotBlankNodeValidator( node ) );
+		}
+
+		XPathTokenizer tokenizer = new XPathTokenizer( getLocationPath() );
+		List<Node> parentNodes = document.getNodes( tokenizer.getLocationPath( PARENT ) );
+		for ( Node node : parentNodes )
 		{
 			validators.add( new MandatoryNodeIfParentPresentValidator( tokenizer, node ) );
 		}
+
 		return validators;
 	}
 }

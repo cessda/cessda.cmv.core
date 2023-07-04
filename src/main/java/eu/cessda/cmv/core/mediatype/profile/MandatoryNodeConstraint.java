@@ -17,23 +17,20 @@
  * limitations under the License.
  * #L%
  */
-package eu.cessda.cmv.core;
+package eu.cessda.cmv.core.mediatype.profile;
 
-import java.util.Collections;
-import java.util.List;
-
-class OptionalNodeConstraint extends NodeConstraint
+public class MandatoryNodeConstraint extends NodeConstraint
 {
-	public OptionalNodeConstraint( String locationPath )
+	public static final String JAXB_ELEMENT = "MandatoryNodeConstraint";
+	public static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
+
+	public MandatoryNodeConstraint()
 	{
-		super( locationPath );
+		super( null );
 	}
 
-	@Override
-	public List<Validator> newValidators( Document document )
+	public MandatoryNodeConstraint( String locationPath )
 	{
-		// https://github.com/cessda/cessda.cmv.core/issues/66
-		List<Node> nodes = document.getNodes( getLocationPath() );
-		return Collections.singletonList( new OptionalNodeValidator( getLocationPath(), nodes.size() ) );
+		super( locationPath );
 	}
 }

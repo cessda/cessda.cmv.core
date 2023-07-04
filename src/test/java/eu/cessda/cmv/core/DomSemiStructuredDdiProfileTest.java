@@ -19,7 +19,7 @@
  */
 package eu.cessda.cmv.core;
 
-import eu.cessda.cmv.core.mediatype.profile.v0.ProfileV0;
+import eu.cessda.cmv.core.mediatype.profile.Profile;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -53,7 +53,7 @@ class DomSemiStructuredDdiProfileTest
 		URL url = getClass().getResource( classpathLocation );
 
 		// when
-		Profile profile = factory.newProfile( url );
+		eu.cessda.cmv.core.Profile profile = factory.newProfile( url );
 
 		// then
 		assertThat( countConstraints( profile, CompilableXPathConstraint.class ), is( 61 ) );
@@ -76,7 +76,7 @@ class DomSemiStructuredDdiProfileTest
 		URL url = getClass().getResource( classpathLocation );
 
 		// when
-		Profile profile = factory.newProfile( url );
+		eu.cessda.cmv.core.Profile profile = factory.newProfile( url );
 
 		// then
 		assertThat( countConstraints( profile, CompilableXPathConstraint.class ), is( 44 ) );
@@ -89,7 +89,7 @@ class DomSemiStructuredDdiProfileTest
 		assertThat( profile.getConstraints(), hasSize( 44 + 44 + 22 + 8 + 5 + 14 + 2 ) );
 	}
 
-	private int countConstraints( Profile profile, Class<? extends Constraint> clazz )
+	private int countConstraints( eu.cessda.cmv.core.Profile profile, Class<? extends Constraint> clazz )
 	{
 		return (int) profile.getConstraints().stream().filter( clazz::isInstance ).count();
 	}
@@ -105,7 +105,7 @@ class DomSemiStructuredDdiProfileTest
 		// when
 		DomSemiStructuredDdiProfile profile = new DomSemiStructuredDdiProfile(
 				factory.newDdiInputStream( newResource( Objects.requireNonNull( sourceUrl ) ).readInputStream() ) );
-		ProfileV0 jaxbProfile = profile.toJaxbProfileV0();
+		Profile jaxbProfile = profile.toJaxbProfileV0();
 		jaxbProfile.saveAs( targetFile );
 		assertThat( targetFile, anExistingFile() );
 		assertThat( jaxbProfile.getConstraints(), hasSize( 183 ) ); // why not 203 ?

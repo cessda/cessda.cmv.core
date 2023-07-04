@@ -19,52 +19,54 @@
  */
 package eu.cessda.cmv.core;
 
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
 import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
 
-class CompilableXPathValidator implements Validator
+class MaximumElementOccurrenceValidator implements Validator
 {
-	private final XPathFactory factory;
-	private String reason;
-	private final Node node;
+	private final String locationPath;
+	private final long actualOccurs;
+	private final long maxOccurs;
 
-	CompilableXPathValidator( Node node, XPathFactory factory )
+	MaximumElementOccurrenceValidator( String locationPath, long actualCount, long maxOccurs )
 	{
-		requireNonNull( node );
-		requireNonNull( factory );
+		requireNonNull( locationPath );
+		requireNonNegativeLong( actualCount, "actualCount" );
+		requireNonNegativeLong( maxOccurs, "maxOccurs" );
 
-		this.node = node;
-		this.factory = factory;
+		this.locationPath = locationPath;
+		this.actualOccurs = actualCount;
+		this.maxOccurs = maxOccurs;
 	}
 
 	@Override
 	public Optional<ConstraintViolation> validate()
 	{
-
-		try
+		if ( actualOccurs > maxOccurs )
 		{
-			// XPathFactory instances are not thread safe
-			synchronized ( factory )
-			{
-				factory.newXPath().compile( node.getTextContent() );
-			}
+			return of( newConstraintViolation() );
+		}
+		else
+		{
 			return empty();
 		}
-		catch ( XPathExpressionException e )
+	}
+
+	private static void requireNonNegativeLong( long value, String parameter )
+	{
+		if ( value < 0 )
 		{
-			reason = e.getMessage().replace( "javax.xml.transform.TransformerException: ", "" );
-			return of( newConstraintViolation() );
+			throw new IllegalArgumentException( parameter + " is negative" );
 		}
 	}
 
 	private ConstraintViolation newConstraintViolation()
 	{
-		String message = String.format( "'%s' is not a compilable XPath: %s", node.getTextContent(), reason );
-		return new ConstraintViolation( message, node.getLocationInfo() );
+		String message = "'%s' occurs more than maximal count of %s";
+		message = String.format( message, locationPath, maxOccurs );
+		return new ConstraintViolation( message, null );
 	}
 }

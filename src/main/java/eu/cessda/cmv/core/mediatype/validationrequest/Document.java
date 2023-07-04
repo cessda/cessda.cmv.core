@@ -17,27 +17,23 @@
  * limitations under the License.
  * #L%
  */
-package eu.cessda.cmv.core;
+package eu.cessda.cmv.core.mediatype.validationrequest;
 
-import java.util.Arrays;
-import java.util.Collections;
+import io.swagger.v3.oas.annotations.media.Schema;
+import org.gesis.commons.resource.Resource;
+
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.util.ArrayList;
 import java.util.List;
 
-final class StrictValidationGate extends AbstractValidationGate
+@Schema( subTypes = { UriDocument.class, ContentDocument.class } )
+@XmlJavaTypeAdapter( DocumentV0Adapter.class )
+public interface Document
 {
-	static final List<Class<? extends Constraint>> CONSTRAINTS = Collections.unmodifiableList(
-			Arrays.asList(
-					MaximumElementOccurrenceConstraint.class,
-					NodeInProfileConstraint.class
-			)
-	);
+	Resource toResource();
 
-	StrictValidationGate()
+	default List<String> validate()
 	{
-		addConstraintType( BasicValidationGate.CONSTRAINTS );
-		addConstraintType( BasicPlusValidationGate.CONSTRAINTS );
-		addConstraintType( StandardValidationGate.CONSTRAINTS );
-		addConstraintType( ExtendedValidationGate.CONSTRAINTS );
-		addConstraintType( CONSTRAINTS );
+		return new ArrayList<>();
 	}
 }

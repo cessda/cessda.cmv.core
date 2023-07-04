@@ -19,10 +19,8 @@
  */
 package eu.cessda.cmv.core;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.util.Objects.requireNonNull;
 
 class DescriptiveTermOfControlledVocabularyConstraint extends NodeConstraint
 {
@@ -34,10 +32,19 @@ class DescriptiveTermOfControlledVocabularyConstraint extends NodeConstraint
 	@Override
 	public List<Validator> newValidators( Document document )
 	{
-		requireNonNull( document );
-		return document.getNodes( getLocationPath() ).stream()
-				.map( ControlledVocabularyNode.class::cast )
-				.map( DescriptiveTermOfControlledVocabularyValidator::new )
-				.collect( Collectors.toList() );
+		List<Validator> validators = new ArrayList<>();
+		for ( Node node : document.getNodes( getLocationPath() ) )
+		{
+			if (node instanceof ControlledVocabularyNode)
+			{
+				DescriptiveTermOfControlledVocabularyValidator validator = new DescriptiveTermOfControlledVocabularyValidator( (ControlledVocabularyNode) node );
+				validators.add( validator );
+			}
+			else
+			{
+				throw new IllegalArgumentException(getLocationPath() + " in document does not represent a controlled vocabulary");
+			}
+		}
+		return validators;
 	}
 }

@@ -19,8 +19,8 @@
  */
 package eu.cessda.cmv.core;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 class NotBlankNodeConstraint extends NodeConstraint
 {
@@ -33,6 +33,12 @@ class NotBlankNodeConstraint extends NodeConstraint
 	public List<Validator> newValidators( Document document )
 	{
 		List<Node> nodes = document.getNodes( getLocationPath() );
-		return nodes.stream().map( NotBlankNodeValidator::new ).collect( Collectors.toList() );
+		List<Validator> validators = new ArrayList<>(nodes.size());
+		for ( Node node : nodes )
+		{
+			NotBlankNodeValidator notBlankNodeValidator = new NotBlankNodeValidator( node );
+			validators.add( notBlankNodeValidator );
+		}
+		return validators;
 	}
 }

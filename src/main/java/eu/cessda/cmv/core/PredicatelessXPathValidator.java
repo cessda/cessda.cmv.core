@@ -27,6 +27,7 @@ import static java.util.Optional.empty;
 
 class PredicatelessXPathValidator implements Validator
 {
+
 	private final Node node;
 
 	PredicatelessXPathValidator( Node node )
@@ -50,8 +51,7 @@ class PredicatelessXPathValidator implements Validator
 
 	private ConstraintViolation newConstraintViolation()
 	{
-		String message = "'%s' contains a predicate";
-		message = String.format( message, node.getTextContent() );
+		String message = String.format( "'%s' contains a predicate", node.getTextContent() );
 		return new ConstraintViolation( message, node.getLocationInfo() );
 	}
 }

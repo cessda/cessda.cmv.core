@@ -38,13 +38,19 @@ class CodeValueOfControlledVocabularyConstraint implements Constraint
 	public List<Validator> newValidators( Document document )
 	{
 		requireNonNull( document );
-		List<Validator> list = new ArrayList<>();
+		List<Validator> validators = new ArrayList<>();
 		for ( Node node : document.getNodes( locationPath ) )
 		{
-			ControlledVocabularyNode controlledVocabularyNode = (ControlledVocabularyNode) node;
-			CodeValueOfControlledVocabularyValidator codeValueOfControlledVocabularyValidator = new CodeValueOfControlledVocabularyValidator( controlledVocabularyNode );
-			list.add( codeValueOfControlledVocabularyValidator );
+			if (node instanceof ControlledVocabularyNode)
+			{
+				CodeValueOfControlledVocabularyValidator codeValueOfControlledVocabularyValidator = new CodeValueOfControlledVocabularyValidator( (ControlledVocabularyNode) node );
+				validators.add( codeValueOfControlledVocabularyValidator );
+			}
+			else
+			{
+				throw new IllegalArgumentException(locationPath + " in document does not represent a controlled vocabulary");
+			}
 		}
-		return list;
+		return validators;
 	}
 }

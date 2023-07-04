@@ -19,8 +19,9 @@
  */
 package eu.cessda.cmv.core;
 
-class RecommendedNodeValidator extends MinimumElementOccuranceValidator
+class RecommendedNodeValidator extends MinimumElementOccurrenceValidator
 {
+
 	public RecommendedNodeValidator( String locationPath, long actualCount )
 	{
 		super( locationPath, actualCount, 1 );
@@ -29,8 +30,7 @@ class RecommendedNodeValidator extends MinimumElementOccuranceValidator
 	@Override
 	protected ConstraintViolation newConstraintViolation()
 	{
-		String message = "'%s' is recommended";
-		message = String.format( message, getLocationPath() );
+		String message = String.format( "'%s' is recommended", getLocationPath() );
 		return new ConstraintViolation( message, null );
 	}
 }

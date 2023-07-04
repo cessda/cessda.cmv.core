@@ -19,8 +19,8 @@
  */
 package eu.cessda.cmv.core;
 
-import eu.cessda.cmv.core.mediatype.validationreport.v0.ConstraintViolationV0;
-import eu.cessda.cmv.core.mediatype.validationreport.v0.ValidationReportV0;
+import eu.cessda.cmv.core.mediatype.validationreport.ConstraintViolation;
+import eu.cessda.cmv.core.mediatype.validationreport.ValidationReport;
 import org.gesis.commons.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,7 +41,7 @@ class ValidationServiceV0 implements ValidationService
 	}
 
 	@Override
-	public ValidationReportV0 validate(
+	public ValidationReport validate(
 			URI documentUri,
 			URI profileUri,
 			ValidationGateName validationGateName )
@@ -56,7 +56,7 @@ class ValidationServiceV0 implements ValidationService
 	}
 
 	@Override
-	public ValidationReportV0 validate(
+	public ValidationReport validate(
 			Resource documentResource,
 			Resource profileResource,
 			ValidationGateName validationGateName )
@@ -70,40 +70,40 @@ class ValidationServiceV0 implements ValidationService
 				validationGateName );
 	}
 
-	private static ValidationReportV0 validate( Document document, Profile profile, URI documentUri, URI profileUri, ValidationGate validationGate )
+	private static ValidationReport validate( Document document, Profile profile, URI documentUri, URI profileUri, ValidationGate validationGate )
 	{
-		ValidationReportV0 validationReport = validate( document, documentUri, profile, validationGate );
+		ValidationReport validationReport = validate( document, documentUri, profile, validationGate );
 		LOGGER.info( "Validation executed: CUSTOM, {}, {}", documentUri, profileUri );
 		return validationReport;
 	}
 
-	private static ValidationReportV0 validate(
+	private static ValidationReport validate(
 			Document document,
 			URI documentUri,
 			Profile profile,
 			URI profileUri,
 			ValidationGateName validationGateName )
 	{
-		ValidationReportV0 validationReport = validate( document, documentUri, profile, validationGateName.getValidationGate() );
+		ValidationReport validationReport = validate( document, documentUri, profile, validationGateName.getValidationGate() );
 		LOGGER.info( "Validation executed: {}, {}, {}", validationGateName, documentUri, profileUri );
 		return validationReport;
 	}
 
-	private static ValidationReportV0 validate( Document document, URI documentUri, Profile profile, ValidationGate validationGate )
+	private static ValidationReport validate( Document document, URI documentUri, Profile profile, ValidationGate validationGate )
 	{
-		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
+		List<eu.cessda.cmv.core.ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
-		ValidationReportV0 validationReport = new ValidationReportV0();
+		ValidationReport validationReport = new ValidationReport();
 		validationReport.setDocumentUri( documentUri );
 		validationReport.setConstraintViolations( constraintViolations.stream()
-				.map( ConstraintViolationV0::new )
+				.map( ConstraintViolation::new )
 				.collect( Collectors.toList() ) );
 
 		return validationReport;
 	}
 
 	@Override
-	public ValidationReportV0 validate(
+	public ValidationReport validate(
 			URI documentUri,
 			URI profileUri,
 			ValidationGate validationGate )
@@ -118,7 +118,7 @@ class ValidationServiceV0 implements ValidationService
 	}
 
 	@Override
-	public ValidationReportV0 validate(
+	public ValidationReport validate(
 			Resource documentResource,
 			Resource profileResource,
 			ValidationGate validationGate )

@@ -21,7 +21,6 @@ package eu.cessda.cmv.core;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 class RecommendedNodeConstraint extends NodeConstraint
 {
@@ -34,9 +33,13 @@ class RecommendedNodeConstraint extends NodeConstraint
 	public List<Validator> newValidators( Document document )
 	{
 		List<Node> nodes = document.getNodes( getLocationPath() );
-		List<Validator> validators = new ArrayList<>();
+		List<Validator> validators = new ArrayList<>(nodes.size() + 1);
 		validators.add( new RecommendedNodeValidator( getLocationPath(), nodes.size() ) );
-		validators.addAll( nodes.stream().map( NotBlankNodeValidator::new ).collect( Collectors.toList() ) );
+		for ( Node node : nodes )
+		{
+			NotBlankNodeValidator notBlankNodeValidator = new NotBlankNodeValidator( node );
+			validators.add( notBlankNodeValidator );
+		}
 		return validators;
 	}
 }

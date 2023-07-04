@@ -26,6 +26,7 @@ import static java.util.Optional.ofNullable;
 
 class NotBlankNodeValidator implements Validator
 {
+
 	private final Node node;
 
 	public NotBlankNodeValidator( Node node )
@@ -49,8 +50,7 @@ class NotBlankNodeValidator implements Validator
 
 	protected ConstraintViolation newConstraintViolation()
 	{
-		String message = "'%s' is blank";
-		message = String.format( message, node.getLocationPath() );
+		String message = String.format( "'%s' is blank", node.getLocationPath() );
 		return new ConstraintViolation( message, node.getLocationInfo() );
 	}
 }

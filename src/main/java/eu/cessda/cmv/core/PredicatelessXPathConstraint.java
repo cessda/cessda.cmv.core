@@ -19,8 +19,8 @@
  */
 package eu.cessda.cmv.core;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 class PredicatelessXPathConstraint extends NodeConstraint
 {
@@ -32,8 +32,13 @@ class PredicatelessXPathConstraint extends NodeConstraint
 	@Override
 	public List<Validator> newValidators( Document document )
 	{
-		return document.getNodes( getLocationPath() ).stream()
-				.map( PredicatelessXPathValidator::new )
-				.collect( Collectors.toList() );
+		List<Node> nodes = document.getNodes( getLocationPath() );
+		List<Validator> validators = new ArrayList<>(nodes.size());
+		for ( Node node : nodes )
+		{
+			PredicatelessXPathValidator predicatelessXPathValidator = new PredicatelessXPathValidator( node );
+			validators.add( predicatelessXPathValidator );
+		}
+		return validators;
 	}
 }

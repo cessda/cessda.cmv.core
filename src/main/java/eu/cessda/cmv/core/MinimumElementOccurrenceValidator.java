@@ -19,29 +19,33 @@
  */
 package eu.cessda.cmv.core;
 
-import org.gesis.commons.xml.xpath.XPathTokenizer;
-
 import java.util.Optional;
 
+import static java.util.Objects.requireNonNull;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
-import static org.gesis.commons.xml.xpath.XPathTokenizer.PARENT;
 
-class MandatoryNodeIfParentPresentValidator implements Validator
+class MinimumElementOccurrenceValidator implements Validator
 {
-	private final XPathTokenizer tokenizer;
-	private final Node parentNode;
+	private final String locationPath;
+	private final long actualOccurs;
+	private final long minOccurs;
 
-	public MandatoryNodeIfParentPresentValidator( XPathTokenizer tokenizer, Node parentNode )
+	MinimumElementOccurrenceValidator( String locationPath, long actualCount, long minOccurs )
 	{
-		this.tokenizer = tokenizer;
-		this.parentNode = parentNode;
+		requireNonNull( locationPath );
+		requireNonNegativeLong( actualCount, "actualCount" );
+		requireNonNegativeLong( minOccurs, "minOccurs" );
+
+		this.locationPath = locationPath;
+		this.actualOccurs = actualCount;
+		this.minOccurs = minOccurs;
 	}
 
 	@Override
 	public Optional<ConstraintViolation> validate()
 	{
-		if ( parentNode.getChildCount( tokenizer.getLocationPathRelativeTo( PARENT ) ) == 0 )
+		if ( actualOccurs < minOccurs )
 		{
 			return of( newConstraintViolation() );
 		}
@@ -51,11 +55,22 @@ class MandatoryNodeIfParentPresentValidator implements Validator
 		}
 	}
 
+	private static void requireNonNegativeLong( long value, String parameter )
+	{
+		if ( value < 0 )
+		{
+			throw new IllegalArgumentException( parameter + " is negative" );
+		}
+	}
+
+	protected String getLocationPath()
+	{
+		return locationPath;
+	}
+
 	protected ConstraintViolation newConstraintViolation()
 	{
-		String message = String.format( "'%s' is mandatory in %s",
-			tokenizer.getLocationPathRelativeTo( PARENT ),
-			tokenizer.getLocationPath( PARENT ) );
-		return new ConstraintViolation( message, parentNode.getLocationInfo() );
+		String message = String.format( "'%s' occurs less than minimal count of %s", locationPath, minOccurs );
+		return new ConstraintViolation( message, null );
 	}
 }

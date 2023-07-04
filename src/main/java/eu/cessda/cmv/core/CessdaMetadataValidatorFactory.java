@@ -44,7 +44,7 @@ public class CessdaMetadataValidatorFactory
 			"FixedValueNodeConstraint",
 			"MandatoryNodeConstraint",
 			"MandatoryNodeIfParentPresentConstraint",
-			"MaximumElementOccuranceConstraint",
+			"MaximumElementOccurrenceConstraint",
 			"NodeInProfileConstraint",
 			"NotBlankNodeConstraint",
 			"OptionalNodeConstraint",

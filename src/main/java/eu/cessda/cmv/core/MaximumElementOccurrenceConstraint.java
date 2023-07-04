@@ -19,25 +19,23 @@
  */
 package eu.cessda.cmv.core;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-final class StrictValidationGate extends AbstractValidationGate
+class MaximumElementOccurrenceConstraint extends NodeConstraint
 {
-	static final List<Class<? extends Constraint>> CONSTRAINTS = Collections.unmodifiableList(
-			Arrays.asList(
-					MaximumElementOccurrenceConstraint.class,
-					NodeInProfileConstraint.class
-			)
-	);
+	private final long maxOccurs;
 
-	StrictValidationGate()
+	public MaximumElementOccurrenceConstraint( String locationPath, long maxOccurs )
 	{
-		addConstraintType( BasicValidationGate.CONSTRAINTS );
-		addConstraintType( BasicPlusValidationGate.CONSTRAINTS );
-		addConstraintType( StandardValidationGate.CONSTRAINTS );
-		addConstraintType( ExtendedValidationGate.CONSTRAINTS );
-		addConstraintType( CONSTRAINTS );
+		super( locationPath );
+		this.maxOccurs = maxOccurs;
+	}
+
+	@Override
+	public List<Validator> newValidators( Document document )
+	{
+		long actualCount = document.getNodes( getLocationPath() ).size();
+		return Collections.singletonList( new MaximumElementOccurrenceValidator( getLocationPath(), actualCount, maxOccurs ) );
 	}
 }
