@@ -25,7 +25,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-class DomProfile implements Profile.V10
+class DomProfile implements Profile
 {
 	private final List<Constraint> constraints;
 

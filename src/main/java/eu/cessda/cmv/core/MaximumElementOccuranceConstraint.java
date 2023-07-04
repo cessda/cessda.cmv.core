@@ -35,7 +35,7 @@ class MaximumElementOccuranceConstraint extends NodeConstraint
 	@Override
 	public List<Validator> newValidators( Document document )
 	{
-		long actualCount = ( (Document.V10) document ).getNodes( getLocationPath() ).size();
+		long actualCount = document.getNodes( getLocationPath() ).size();
 		return Collections.singletonList( new MaximumElementOccuranceValidator( getLocationPath(), actualCount, maxOccurs ) );
 	}
 }

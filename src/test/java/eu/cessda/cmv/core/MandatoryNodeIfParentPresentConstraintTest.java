@@ -63,7 +63,7 @@ class MandatoryNodeIfParentPresentConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/22-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
+		ValidationGate validationGate = factory.newValidationGate( BASIC );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -80,7 +80,7 @@ class MandatoryNodeIfParentPresentConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/22-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
+		ValidationGate validationGate = factory.newValidationGate( BASIC );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -97,7 +97,7 @@ class MandatoryNodeIfParentPresentConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/22-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
+		ValidationGate validationGate = factory.newValidationGate( BASIC );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -113,7 +113,7 @@ class MandatoryNodeIfParentPresentConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/22-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
+		ValidationGate validationGate = factory.newValidationGate( BASIC );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then

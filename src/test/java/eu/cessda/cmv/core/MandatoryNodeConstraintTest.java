@@ -58,7 +58,7 @@ class MandatoryNodeConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/10-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = new StrictValidationGate();
+		ValidationGate validationGate = new StrictValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -75,7 +75,7 @@ class MandatoryNodeConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/10-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = new StrictValidationGate();
+		ValidationGate validationGate = new StrictValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -92,7 +92,7 @@ class MandatoryNodeConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/10-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = new StrictValidationGate();
+		ValidationGate validationGate = new StrictValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then

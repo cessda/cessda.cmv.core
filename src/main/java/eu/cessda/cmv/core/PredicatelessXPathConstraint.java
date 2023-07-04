@@ -32,7 +32,7 @@ class PredicatelessXPathConstraint extends NodeConstraint
 	@Override
 	public List<Validator> newValidators( Document document )
 	{
-		return ( (Document.V10) document ).getNodes( getLocationPath() ).stream()
+		return document.getNodes( getLocationPath() ).stream()
 				.map( PredicatelessXPathValidator::new )
 				.collect( Collectors.toList() );
 	}

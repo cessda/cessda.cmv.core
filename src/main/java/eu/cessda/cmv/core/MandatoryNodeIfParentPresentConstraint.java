@@ -36,10 +36,10 @@ class MandatoryNodeIfParentPresentConstraint extends NodeConstraint
 	@Override
 	public List<Validator> newValidators( Document document )
 	{
-		List<Node> nodes = ( (Document.V11) document ).getNodes( getLocationPath() );
+		List<Node> nodes = document.getNodes( getLocationPath() );
 		List<Validator> validators = nodes.stream().map( NotBlankNodeValidator::new ).collect( Collectors.toList() );
 		XPathTokenizer tokenizer = new XPathTokenizer( getLocationPath() );
-		nodes = ( (Document.V11) document ).getNodes( tokenizer.getLocationPath( PARENT ) );
+		nodes = document.getNodes( tokenizer.getLocationPath( PARENT ) );
 		for ( Node node : nodes )
 		{
 			validators.add( new MandatoryNodeIfParentPresentValidator( tokenizer, node ) );

@@ -41,7 +41,7 @@ class ControlledVocabularyRepositoryValidatorTest
 		ControlledVocabularyRepositoryProxy proxy = new ControlledVocabularyRepositoryProxy( canonicalName, uri );
 
 		// when
-		Validator.V10 validator = new ControlledVocabularyRepositoryValidator( proxy );
+		Validator validator = new ControlledVocabularyRepositoryValidator( proxy );
 		Optional<ConstraintViolation> constraintViolation = validator.validate();
 
 		// then
@@ -57,7 +57,7 @@ class ControlledVocabularyRepositoryValidatorTest
 		ControlledVocabularyRepositoryProxy proxy = new ControlledVocabularyRepositoryProxy( canonicalName, uri );
 
 		// when
-		Validator.V10 validator = new ControlledVocabularyRepositoryValidator( proxy );
+		Validator validator = new ControlledVocabularyRepositoryValidator( proxy );
 		Optional<ConstraintViolation> constraintViolation = validator.validate();
 
 		// then

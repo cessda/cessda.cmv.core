@@ -24,7 +24,7 @@ import java.util.List;
 
 final class StandardValidationGate extends AbstractValidationGate
 {
-	static final List<Class<? extends Constraint.V20>> CONSTRAINTS = Collections.singletonList( RecommendedNodeConstraint.class );
+	static final List<Class<? extends Constraint>> CONSTRAINTS = Collections.singletonList( RecommendedNodeConstraint.class );
 
 	StandardValidationGate()
 	{

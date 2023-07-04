@@ -28,14 +28,14 @@ public enum ValidationGateName
 	EXTENDED( new ExtendedValidationGate() ),
 	STRICT( new StrictValidationGate() );
 
-	private final ValidationGate.V10 validationGate;
+	private final ValidationGate validationGate;
 
-	ValidationGateName( ValidationGate.V10 validationGate )
+	ValidationGateName( ValidationGate validationGate )
 	{
 		this.validationGate = validationGate;
 	}
 
-	public ValidationGate.V10 getValidationGate()
+	public ValidationGate getValidationGate()
 	{
 		return validationGate;
 	}

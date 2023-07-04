@@ -32,7 +32,7 @@ import java.util.Map;
 
 import static java.util.Objects.requireNonNull;
 
-class DomCodebookDocument implements Document.V11
+class DomCodebookDocument implements Document
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger( DomCodebookDocument.class );
 

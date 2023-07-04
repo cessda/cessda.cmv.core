@@ -23,13 +23,5 @@ import java.util.List;
 
 public interface Constraint
 {
-	interface V10 extends Constraint
-	{
-		<T extends ConstraintViolation> List<T> validate();
-	}
-
-	interface V20 extends Constraint
-	{
-		List<Validator> newValidators( Document document );
-	}
+	List<Validator> newValidators( Document document );
 }

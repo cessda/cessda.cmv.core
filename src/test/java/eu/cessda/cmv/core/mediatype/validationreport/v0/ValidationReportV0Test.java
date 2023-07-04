@@ -39,6 +39,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Objects;
 
 import static com.fasterxml.jackson.databind.PropertyNamingStrategies.LOWER_CAMEL_CASE;
 import static com.fasterxml.jackson.databind.PropertyNamingStrategies.UPPER_CAMEL_CASE;
@@ -65,9 +66,9 @@ class ValidationReportV0Test
 	{
 		try
 		{
-			Resource document = newResource( getClass().getResource( "/demo-documents/ddi-v25/ukds-7481.xml" ).toURI() );
-			Resource profile = newResource( getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ).toURI() );
-			ValidationService.V10 validationService = new CessdaMetadataValidatorFactory().newValidationService();
+			Resource document = newResource( Objects.requireNonNull( getClass().getResource( "/demo-documents/ddi-v25/ukds-7481.xml" ) ).toURI() );
+			Resource profile = newResource( Objects.requireNonNull( getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ) ).toURI() );
+			ValidationService validationService = new CessdaMetadataValidatorFactory().newValidationService();
 			return validationService.validate( document, profile, STANDARD );
 		}
 		catch (URISyntaxException e)

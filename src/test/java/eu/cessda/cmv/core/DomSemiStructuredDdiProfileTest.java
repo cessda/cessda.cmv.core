@@ -53,7 +53,7 @@ class DomSemiStructuredDdiProfileTest
 		URL url = getClass().getResource( classpathLocation );
 
 		// when
-		Profile.V10 profile = factory.newProfile( url );
+		Profile profile = factory.newProfile( url );
 
 		// then
 		assertThat( countConstraints( profile, CompilableXPathConstraint.class ), is( 61 ) );
@@ -76,7 +76,7 @@ class DomSemiStructuredDdiProfileTest
 		URL url = getClass().getResource( classpathLocation );
 
 		// when
-		Profile.V10 profile = factory.newProfile( url );
+		Profile profile = factory.newProfile( url );
 
 		// then
 		assertThat( countConstraints( profile, CompilableXPathConstraint.class ), is( 44 ) );
@@ -89,7 +89,7 @@ class DomSemiStructuredDdiProfileTest
 		assertThat( profile.getConstraints(), hasSize( 44 + 44 + 22 + 8 + 5 + 14 + 2 ) );
 	}
 
-	private int countConstraints( Profile.V10 profile, Class<? extends Constraint> clazz )
+	private int countConstraints( Profile profile, Class<? extends Constraint> clazz )
 	{
 		return (int) profile.getConstraints().stream().filter( clazz::isInstance ).count();
 	}

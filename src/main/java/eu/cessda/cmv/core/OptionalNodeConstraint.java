@@ -34,7 +34,7 @@ class OptionalNodeConstraint extends NodeConstraint
 	{
 		// https://github.com/cessda/cessda.cmv.core/issues/66
 
-		List<Node> nodes = ( (Document.V10) document ).getNodes( getLocationPath() );
+		List<Node> nodes = document.getNodes( getLocationPath() );
 		List<Validator> validators = new ArrayList<>();
 		validators.add( new OptionalNodeValidator( getLocationPath(), nodes.size() ) );
 		return validators;

@@ -25,7 +25,7 @@ import static java.util.Objects.requireNonNull;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
 
-class FixedValueNodeValidator implements Validator.V10
+class FixedValueNodeValidator implements Validator
 {
 	private final Node node;
 	private final String fixedValue;

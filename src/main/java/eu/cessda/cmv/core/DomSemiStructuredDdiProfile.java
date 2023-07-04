@@ -31,7 +31,7 @@ import java.util.Optional;
 
 import static java.util.Collections.unmodifiableList;
 
-class DomSemiStructuredDdiProfile implements Profile.V10
+class DomSemiStructuredDdiProfile implements Profile
 {
 	private final org.gesis.commons.xml.DomDocument.V11 document;
 	private List<Constraint> constraints;

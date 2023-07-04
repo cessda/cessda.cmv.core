@@ -34,7 +34,7 @@ import static org.hamcrest.Matchers.*;
 class FixedValueNodeConstraintTest
 {
 	private final TestEnv.V13 testEnv;
-	private final Profile.V10 profile;
+	private final Profile profile;
 	private final CessdaMetadataValidatorFactory factory;
 
 	FixedValueNodeConstraintTest()
@@ -63,10 +63,10 @@ class FixedValueNodeConstraintTest
 	void validate_valid()
 	{
 		// given
-		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "13-document-valid-1.xml" ) );
+		Document document = factory.newDocument( testEnv.findTestResourceByName( "13-document-valid-1.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( EXTENDED );
+		ValidationGate validationGate = factory.newValidationGate( EXTENDED );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -77,10 +77,10 @@ class FixedValueNodeConstraintTest
 	void validate_invalid_inequalFixedValue()
 	{
 		// given
-		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "13-document-invalid-1.xml" ) );
+		Document document = factory.newDocument( testEnv.findTestResourceByName( "13-document-invalid-1.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( EXTENDED );
+		ValidationGate validationGate = factory.newValidationGate( EXTENDED );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -93,10 +93,10 @@ class FixedValueNodeConstraintTest
 	void validate_invalid_missing()
 	{
 		// given
-		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "13-document-invalid-2.xml" ) );
+		Document document = factory.newDocument( testEnv.findTestResourceByName( "13-document-invalid-2.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( EXTENDED );
+		ValidationGate validationGate = factory.newValidationGate( EXTENDED );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then

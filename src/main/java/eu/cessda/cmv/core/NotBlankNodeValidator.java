@@ -24,7 +24,7 @@ import java.util.Optional;
 import static java.util.Optional.empty;
 import static java.util.Optional.ofNullable;
 
-class NotBlankNodeValidator implements Validator.V10
+class NotBlankNodeValidator implements Validator
 {
 	private final Node node;
 

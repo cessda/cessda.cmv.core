@@ -26,26 +26,23 @@ import java.net.URI;
 
 public interface ValidationService
 {
-	interface V10 extends ValidationService
-	{
-		ValidationReportV0 validate(
-				URI documentUri,
-				URI profileUri,
-				ValidationGateName validationGateName );
+	ValidationReportV0 validate(
+			URI documentUri,
+			URI profileUri,
+			ValidationGateName validationGateName );
 
-		ValidationReportV0 validate(
-				Resource document,
-				Resource profile,
-				ValidationGateName validationGateName );
+	ValidationReportV0 validate(
+			Resource document,
+			Resource profile,
+			ValidationGateName validationGateName );
 
-		ValidationReportV0 validate(
-				URI documentUri,
-				URI profileUri,
-				ValidationGate.V10 validationGate );
+	ValidationReportV0 validate(
+			URI documentUri,
+			URI profileUri,
+			ValidationGate validationGate );
 
-		ValidationReportV0 validate(
-				Resource documentResource,
-				Resource profileResource,
-				ValidationGate.V10 validationGate );
-	}
+	ValidationReportV0 validate(
+			Resource documentResource,
+			Resource profileResource,
+			ValidationGate validationGate );
 }

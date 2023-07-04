@@ -24,7 +24,7 @@ import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
-class CodeValueOfControlledVocabularyConstraint implements Constraint.V20
+class CodeValueOfControlledVocabularyConstraint implements Constraint
 {
 	private final String locationPath;
 
@@ -39,7 +39,7 @@ class CodeValueOfControlledVocabularyConstraint implements Constraint.V20
 	{
 		requireNonNull( document );
 		List<Validator> list = new ArrayList<>();
-		for ( Node node : ( (Document.V10) document ).getNodes( locationPath ) )
+		for ( Node node : document.getNodes( locationPath ) )
 		{
 			ControlledVocabularyNode controlledVocabularyNode = (ControlledVocabularyNode) node;
 			CodeValueOfControlledVocabularyValidator codeValueOfControlledVocabularyValidator = new CodeValueOfControlledVocabularyValidator( controlledVocabularyNode );

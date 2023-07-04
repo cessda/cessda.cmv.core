@@ -27,7 +27,7 @@ import static java.util.Optional.empty;
 import static java.util.Optional.of;
 import static org.gesis.commons.xml.xpath.XPathTokenizer.PARENT;
 
-class MandatoryNodeIfParentPresentValidator implements Validator.V10
+class MandatoryNodeIfParentPresentValidator implements Validator
 {
 	private final XPathTokenizer tokenizer;
 	private final Node parentNode;

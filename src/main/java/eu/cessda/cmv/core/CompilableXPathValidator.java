@@ -27,16 +27,11 @@ import static java.util.Objects.requireNonNull;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
 
-class CompilableXPathValidator implements Validator.V10
+class CompilableXPathValidator implements Validator
 {
 	private final XPathFactory factory;
 	private String reason;
 	private final Node node;
-
-	CompilableXPathValidator( Node node )
-	{
-		this( node, XPathFactory.newInstance() );
-	}
 
 	CompilableXPathValidator( Node node, XPathFactory factory )
 	{

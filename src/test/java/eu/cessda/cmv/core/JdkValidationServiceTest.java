@@ -39,7 +39,7 @@ class JdkValidationServiceTest
 	@Test
 	void validateWithUrls()
 	{
-		ValidationService.V10 validationService = factory.newValidationService();
+		ValidationService validationService = factory.newValidationService();
 		URI documentUri = new File( "src/main/resources/demo-documents/ddi-v25/gesis-2800.xml" ).toURI();
 		URI profileUri = new File( "src/main/resources/demo-documents/ddi-v25/cdc25_profile.xml" ).toURI();
 
@@ -57,7 +57,7 @@ class JdkValidationServiceTest
 	@Test
 	void validateWithResources()
 	{
-		ValidationService.V10 validationService = factory.newValidationService();
+		ValidationService validationService = factory.newValidationService();
 		Resource document = newResource( new File( "src/main/resources/demo-documents/ddi-v25/gesis-2800.xml" ) );
 		Resource profile = newResource( new File( "src/main/resources/demo-documents/ddi-v25/cdc25_profile.xml" ) );
 

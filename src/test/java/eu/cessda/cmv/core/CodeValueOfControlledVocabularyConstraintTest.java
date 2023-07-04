@@ -32,7 +32,7 @@ import static org.hamcrest.Matchers.*;
 class CodeValueOfControlledVocabularyConstraintTest
 {
 	private final TestEnv.V13 testEnv;
-	private final Profile.V10 profile;
+	private final Profile profile;
 	private final CessdaMetadataValidatorFactory factory;
 
 	CodeValueOfControlledVocabularyConstraintTest()
@@ -55,7 +55,7 @@ class CodeValueOfControlledVocabularyConstraintTest
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "9-document-invalid-1.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );
+		ValidationGate validationGate = factory.newValidationGate( BASICPLUS );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -71,7 +71,7 @@ class CodeValueOfControlledVocabularyConstraintTest
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "9-document-invalid-2.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );
+		ValidationGate validationGate = factory.newValidationGate( BASICPLUS );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -87,7 +87,7 @@ class CodeValueOfControlledVocabularyConstraintTest
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "9-document-valid.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );
+		ValidationGate validationGate = factory.newValidationGate( BASICPLUS );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then

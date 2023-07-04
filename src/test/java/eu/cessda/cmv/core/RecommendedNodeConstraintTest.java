@@ -36,7 +36,7 @@ class RecommendedNodeConstraintTest
 {
 	private final TestEnv.V14 testEnv;
 	private final CessdaMetadataValidatorFactory factory;
-	private final ValidationGate.V10 validationGate;
+	private final ValidationGate validationGate;
 
 	RecommendedNodeConstraintTest()
 	{

@@ -25,7 +25,7 @@ import static java.util.Objects.requireNonNull;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
 
-class MaximumElementOccuranceValidator implements Validator.V10
+class MaximumElementOccuranceValidator implements Validator
 {
 	private final String locationPath;
 	private final long actualOccurs;

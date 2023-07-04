@@ -34,7 +34,7 @@ class CompilableXPathConstraint extends NodeConstraint
 	public List<Validator> newValidators( Document document )
 	{
 		XPathFactory factory = XPathFactory.newInstance();
-		return ( (Document.V10) document ).getNodes( getLocationPath() ).stream()
+		return document.getNodes( getLocationPath() ).stream()
 				.map( node -> new CompilableXPathValidator( node, factory ) )
 				.collect( Collectors.toList() );
 	}

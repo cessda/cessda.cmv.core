@@ -37,7 +37,7 @@ class FixedValueNodeConstraint extends NodeConstraint
 	@Override
 	public List<Validator> newValidators( Document document )
 	{
-		List<Node> nodes = ( (Document.V10) document ).getNodes( getLocationPath() );
+		List<Node> nodes = document.getNodes( getLocationPath() );
 		return nodes.stream()
 				.map( node -> new FixedValueNodeValidator( node, fixedValue ) )
 				.collect( Collectors.toList() );

@@ -33,7 +33,7 @@ class MandatoryNodeConstraint extends NodeConstraint
 	@Override
 	public List<Validator> newValidators( Document document )
 	{
-		List<Node> nodes = ( (Document.V10) document ).getNodes( getLocationPath() );
+		List<Node> nodes = document.getNodes( getLocationPath() );
 		List<Validator> validators = new ArrayList<>();
 		validators.add( new MandatoryNodeValidator( getLocationPath(), nodes.size() ) );
 		validators.addAll( nodes.stream().map( NotBlankNodeValidator::new ).collect( Collectors.toList() ) );

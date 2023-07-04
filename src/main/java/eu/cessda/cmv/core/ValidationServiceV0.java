@@ -29,7 +29,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class ValidationServiceV0 implements ValidationService.V10
+class ValidationServiceV0 implements ValidationService
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger( ValidationServiceV0.class );
 
@@ -70,7 +70,7 @@ class ValidationServiceV0 implements ValidationService.V10
 				validationGateName );
 	}
 
-	private static ValidationReportV0 validate( Document document, Profile profile, URI documentUri, URI profileUri, ValidationGate.V10 validationGate )
+	private static ValidationReportV0 validate( Document document, Profile profile, URI documentUri, URI profileUri, ValidationGate validationGate )
 	{
 		ValidationReportV0 validationReport = validate( document, documentUri, profile, validationGate );
 		LOGGER.info( "Validation executed: CUSTOM, {}, {}", documentUri, profileUri );
@@ -89,7 +89,7 @@ class ValidationServiceV0 implements ValidationService.V10
 		return validationReport;
 	}
 
-	private static ValidationReportV0 validate( Document document, URI documentUri, Profile profile, ValidationGate.V10 validationGate )
+	private static ValidationReportV0 validate( Document document, URI documentUri, Profile profile, ValidationGate validationGate )
 	{
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
@@ -106,7 +106,7 @@ class ValidationServiceV0 implements ValidationService.V10
 	public ValidationReportV0 validate(
 			URI documentUri,
 			URI profileUri,
-			ValidationGate.V10 validationGate )
+			ValidationGate validationGate )
 	{
 		Document document = factory.newDocument( documentUri );
 		Profile profile = factory.newProfile( profileUri );
@@ -121,7 +121,7 @@ class ValidationServiceV0 implements ValidationService.V10
 	public ValidationReportV0 validate(
 			Resource documentResource,
 			Resource profileResource,
-			ValidationGate.V10 validationGate )
+			ValidationGate validationGate )
 	{
 		Document document = factory.newDocument( documentResource );
 		Profile profile = factory.newProfile( profileResource );

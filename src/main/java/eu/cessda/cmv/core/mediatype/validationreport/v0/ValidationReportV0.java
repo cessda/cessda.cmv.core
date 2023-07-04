@@ -19,7 +19,6 @@
  */
 package eu.cessda.cmv.core.mediatype.validationreport.v0;
 
-import eu.cessda.cmv.core.ValidationReport;
 import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
 import org.gesis.commons.xml.jaxb.JaxbDocument;
 import org.gesis.commons.xml.jaxb.NamespacePrefixMapper;
@@ -39,7 +38,6 @@ import java.util.Objects;
 @XmlType( name = ValidationReportV0.VALIDATIONREPORT_TYPE )
 @XmlAccessorType( XmlAccessType.FIELD )
 public class ValidationReportV0 extends JaxbDocument
-		implements ValidationReport
 {
 	static final String MAJOR = "0";
 	static final String MINOR = "1";

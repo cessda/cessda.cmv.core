@@ -45,7 +45,7 @@ class ProfileValidationGateTest
 		URL profileUrl = getClass().getResource( "/cmv-profile-ddi-v32.xml" );
 
 		// when
-		ValidationGate.V10 validationGate = new ProfileValidationGate();
+		ValidationGate validationGate = new ProfileValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate(
 				factory.newDocument( documentUrl ),
 				factory.newProfile( profileUrl ) );
@@ -62,7 +62,7 @@ class ProfileValidationGateTest
 		URL profileUrl = getClass().getResource( "/cmv-profile-ddi-v32.xml" );
 
 		// when
-		ValidationGate.V10 validationGate = new ProfileValidationGate();
+		ValidationGate validationGate = new ProfileValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate(
 				factory.newDocument( documentFile ),
 				factory.newProfile( profileUrl ) );
@@ -81,7 +81,7 @@ class ProfileValidationGateTest
 		URL profileUrl = getClass().getResource( "/cmv-profile-ddi-v32.xml" );
 
 		// when
-		ValidationGate.V10 validationGate = new ProfileValidationGate();
+		ValidationGate validationGate = new ProfileValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate(
 				factory.newDocument( documentUrl ),
 				factory.newProfile( profileUrl ) );
@@ -99,7 +99,7 @@ class ProfileValidationGateTest
 		URL profileUrl = getClass().getResource( "/cmv-profile-ddi-v32.xml" );
 
 		// when
-		ValidationGate.V10 validationGate = new ProfileValidationGate();
+		ValidationGate validationGate = new ProfileValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate(
 				factory.newDocument( documentUrl ),
 				factory.newProfile( profileUrl ) );

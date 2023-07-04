@@ -24,7 +24,7 @@ import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepositoryPro
 import java.util.ArrayList;
 import java.util.List;
 
-class ControlledVocabularyRepositoryConstraint implements Constraint.V20
+class ControlledVocabularyRepositoryConstraint implements Constraint
 {
 	private final String locationPath;
 	private final String type;
@@ -43,11 +43,10 @@ class ControlledVocabularyRepositoryConstraint implements Constraint.V20
 	@Override
 	public List<Validator> newValidators( Document document )
 	{
-		Document.V11 d = (Document.V11) document;
 		ControlledVocabularyRepositoryProxy proxy = new ControlledVocabularyRepositoryProxy( type, uri, true );
-		d.register( uri, proxy );
+		document.register( uri, proxy );
 		int count = 0;
-		for ( Node node : d.getNodes( locationPath ) )
+		for ( Node node : document.getNodes( locationPath ) )
 		{
 			if ( node.getTextContent().contentEquals( uri ) )
 			{

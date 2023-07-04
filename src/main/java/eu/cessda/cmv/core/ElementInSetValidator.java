@@ -25,7 +25,7 @@ import java.util.Set;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
 
-class ElementInSetValidator implements Validator.V10
+class ElementInSetValidator implements Validator
 {
 	private final Node node;
 	private final Set<String> elementSet;

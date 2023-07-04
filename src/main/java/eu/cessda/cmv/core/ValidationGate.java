@@ -23,8 +23,5 @@ import java.util.List;
 
 public interface ValidationGate
 {
-	interface V10 extends ValidationGate
-	{
-		List<ConstraintViolation> validate( Document document, Profile profile );
-	}
+	List<ConstraintViolation> validate( Document document, Profile profile );
 }

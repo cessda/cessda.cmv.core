@@ -32,7 +32,7 @@ class NotBlankNodeConstraint extends NodeConstraint
 	@Override
 	public List<Validator> newValidators( Document document )
 	{
-		List<Node> nodes = ( (Document.V10) document ).getNodes( getLocationPath() );
+		List<Node> nodes = document.getNodes( getLocationPath() );
 		return nodes.stream().map( NotBlankNodeValidator::new ).collect( Collectors.toList() );
 	}
 }

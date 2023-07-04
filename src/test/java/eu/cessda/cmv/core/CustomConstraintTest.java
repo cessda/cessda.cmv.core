@@ -39,7 +39,7 @@ class CustomConstraintTest
 	void shouldCreateValidationGateWithSpecifiedConstraints() throws InvalidGateException
 	{
 		// given
-		Document.V11 document = factory.newDocument(
+		Document document = factory.newDocument(
 				this.getClass()
 						.getResource( "/eu.cessda.cmv.core.FixedValueNodeConstraintTest/13-document-invalid-1.xml" )
 		);
@@ -47,7 +47,7 @@ class CustomConstraintTest
 				this.getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" )
 		);
 
-		ValidationGate.V10 validationGate = CessdaMetadataValidatorFactory.newValidationGate( Arrays.asList(
+		ValidationGate validationGate = CessdaMetadataValidatorFactory.newValidationGate( Arrays.asList(
 				FixedValueNodeConstraint.class.getSimpleName(),
 				MandatoryNodeConstraint.class.getSimpleName()
 		) );

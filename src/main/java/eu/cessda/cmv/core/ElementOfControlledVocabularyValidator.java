@@ -29,7 +29,7 @@ import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
 import static java.util.Optional.of;
 
-abstract class ElementOfControlledVocabularyValidator implements Validator.V10
+abstract class ElementOfControlledVocabularyValidator implements Validator
 {
 	private final ControlledVocabularyNode node;
 	private final ElementName elementName;

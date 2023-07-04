@@ -21,7 +21,6 @@ package eu.cessda.cmv.core.mediatype.validationrequest.v0;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import eu.cessda.cmv.core.ValidationGateName;
-import eu.cessda.cmv.core.ValidationRequest;
 import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
 import org.gesis.commons.xml.jaxb.JaxbDocument;
 
@@ -39,7 +38,7 @@ import java.util.*;
 @XmlRootElement( name = ValidationRequestV0.VALIDATIONREQUEST_ELEMENT )
 @XmlType( name = ValidationRequestV0.VALIDATIONREQUEST_TYPE )
 @XmlAccessorType( XmlAccessType.FIELD )
-public class ValidationRequestV0 extends JaxbDocument implements ValidationRequest
+public class ValidationRequestV0 extends JaxbDocument
 {
 	static final String MAJOR = "0";
 	static final String MINOR = "2";

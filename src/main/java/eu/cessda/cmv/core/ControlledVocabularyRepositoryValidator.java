@@ -26,7 +26,7 @@ import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 
-class ControlledVocabularyRepositoryValidator implements Validator.V10
+class ControlledVocabularyRepositoryValidator implements Validator
 {
 	private final ControlledVocabularyRepositoryProxy proxy;
 

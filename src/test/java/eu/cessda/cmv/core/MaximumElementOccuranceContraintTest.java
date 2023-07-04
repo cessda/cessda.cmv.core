@@ -54,7 +54,7 @@ class MaximumElementOccuranceContraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( STRICT );
+		ValidationGate validationGate = factory.newValidationGate( STRICT );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -70,7 +70,7 @@ class MaximumElementOccuranceContraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "profile.xml" ).toURI().toURL() );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( STRICT );
+		ValidationGate validationGate = factory.newValidationGate( STRICT );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then

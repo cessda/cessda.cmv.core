@@ -27,11 +27,7 @@ import org.gesis.commons.resource.io.DdiInputStream;
 import org.gesis.commons.resource.io.OaipmhV20Detector;
 import org.gesis.commons.xml.*;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
@@ -93,22 +89,22 @@ public class CessdaMetadataValidatorFactory
 				.build();
 	}
 
-	public Document.V11 newDocument( File file )
+	public Document newDocument( File file )
 	{
 		return newDocument( newResource( file ).readInputStream() );
 	}
 
-	public Document.V11 newDocument( URI uri )
+	public Document newDocument( URI uri )
 	{
 		return newDocument( newResource( uri ).readInputStream() );
 	}
 
-	public Document.V11 newDocument( URL url )
+	public Document newDocument( URL url )
 	{
 		return newDocument( newResource( url ).readInputStream() );
 	}
 
-	public Document.V11 newDocument( Resource resource )
+	public Document newDocument( Resource resource )
 	{
 		return newDocument( requireNonNull( resource ).readInputStream() );
 	}
@@ -116,18 +112,18 @@ public class CessdaMetadataValidatorFactory
 	/**
 	 * Returns a validation gate with the given name.
 	 */
-	public static ValidationGate.V10 getValidationGate( ValidationGateName name )
+	public static ValidationGate getValidationGate( ValidationGateName name )
 	{
 		requireNonNull( name, "name must not be null" );
 		return name.getValidationGate();
 	}
 
-	public Profile.V10 newProfile( Resource resource )
+	public Profile newProfile( Resource resource )
 	{
 		return new DomSemiStructuredDdiProfile( newDdiInputStream( resource ) );
 	}
 
-	public Profile.V10 newProfile( URI uri )
+	public Profile newProfile( URI uri )
 	{
 		try
 		{
@@ -139,12 +135,12 @@ public class CessdaMetadataValidatorFactory
 		}
 	}
 
-	public Profile.V10 newProfile( URL url )
+	public Profile newProfile( URL url )
 	{
 		return new DomSemiStructuredDdiProfile( newDdiInputStream( url ) );
 	}
 
-	public Profile.V10 newProfile( File file )
+	public Profile newProfile( File file )
 	{
 		try
 		{
@@ -174,19 +170,19 @@ public class CessdaMetadataValidatorFactory
 	 * @return the validation gate
 	 * @throws InvalidGateException if any of the given constraints are invalid
 	 */
-	public static ValidationGate.V10 newValidationGate( Collection<String> constraints ) throws InvalidGateException
+	public static ValidationGate newValidationGate( Collection<String> constraints ) throws InvalidGateException
 	{
 		ArrayList<InvalidConstraintException> exceptions = new ArrayList<>();
 
 		// Attempt to map the names of constraints to class objects
-		List<Class<? extends Constraint.V20>> list = new ArrayList<>();
+		List<Class<? extends Constraint>> list = new ArrayList<>();
 		for ( String c : constraints )
 		{
 			try
 			{
 				// Construct the fully qualified class name for the constraints
 				Class<?> potentialConstraint = Class.forName( "eu.cessda.cmv.core." + c );
-				list.add( potentialConstraint.asSubclass( Constraint.V20.class ) );
+				list.add( potentialConstraint.asSubclass( Constraint.class ) );
 			}
 			catch ( ClassNotFoundException | ClassCastException e )
 			{
@@ -220,7 +216,7 @@ public class CessdaMetadataValidatorFactory
 	}
 
 	@SuppressWarnings( "java:S1133" ) // false positive - XPath detected as a URI
-	public Document.V11 newDocument( InputStream inputStream )
+	public Document newDocument( InputStream inputStream )
 	{
 		try ( InputStream bufferedInputStream = new BufferedInputStream( requireNonNull( inputStream ) ) )
 		{
@@ -265,12 +261,12 @@ public class CessdaMetadataValidatorFactory
 	/**
 	 * Returns a validation gate with the given name.
 	 */
-	ValidationGate.V10 newValidationGate( ValidationGateName name )
+	ValidationGate newValidationGate( ValidationGateName name )
 	{
 		return getValidationGate( name );
 	}
 
-	public ValidationService.V10 newValidationService()
+	public ValidationService newValidationService()
 	{
 		return new ValidationServiceV0( this );
 	}

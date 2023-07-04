@@ -128,7 +128,7 @@ class CdcCodebookDocumentValidationTest
 		Document document = factory.newDocument( getClass().getResource( param.documentName ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
+		ValidationGate validationGate = factory.newValidationGate( BASIC );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 		// printReport( param.documentName, validationGate.getClass().getSimpleName(),
 		// constraintViolations );
@@ -145,7 +145,7 @@ class CdcCodebookDocumentValidationTest
 		Document document = factory.newDocument( getClass().getResource( param.documentName ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( STANDARD );
+		ValidationGate validationGate = factory.newValidationGate( STANDARD );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 		// printReport( param.documentName, validationGate.getClass().getSimpleName(),
 		// constraintViolations );
@@ -162,7 +162,7 @@ class CdcCodebookDocumentValidationTest
 		Document document = factory.newDocument( getClass().getResource( param.documentName ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( STRICT );
+		ValidationGate validationGate = factory.newValidationGate( STRICT );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 		// printReport( param.documentName, validationGate.getClass().getSimpleName(),
 		// constraintViolations );

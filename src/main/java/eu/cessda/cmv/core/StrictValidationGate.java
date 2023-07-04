@@ -25,7 +25,7 @@ import java.util.List;
 
 final class StrictValidationGate extends AbstractValidationGate
 {
-	static final List<Class<? extends Constraint.V20>> CONSTRAINTS = Collections.unmodifiableList(
+	static final List<Class<? extends Constraint>> CONSTRAINTS = Collections.unmodifiableList(
 			Arrays.asList(
 					MaximumElementOccuranceConstraint.class,
 					NodeInProfileConstraint.class

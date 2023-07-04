@@ -25,7 +25,7 @@ import java.util.Optional;
 
 import static java.util.Optional.empty;
 
-class PredicatelessXPathValidator implements Validator.V10
+class PredicatelessXPathValidator implements Validator
 {
 	private final Node node;
 

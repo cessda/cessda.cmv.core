@@ -21,7 +21,7 @@ package eu.cessda.cmv.core;
 
 import static java.util.Objects.requireNonNull;
 
-abstract class NodeConstraint implements Constraint.V20
+abstract class NodeConstraint implements Constraint
 {
 	private final String locationPath;
 

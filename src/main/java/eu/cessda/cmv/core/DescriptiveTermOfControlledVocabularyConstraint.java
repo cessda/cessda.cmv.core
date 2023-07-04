@@ -35,7 +35,7 @@ class DescriptiveTermOfControlledVocabularyConstraint extends NodeConstraint
 	public List<Validator> newValidators( Document document )
 	{
 		requireNonNull( document );
-		return ( (Document.V10) document ).getNodes( getLocationPath() ).stream()
+		return document.getNodes( getLocationPath() ).stream()
 				.map( ControlledVocabularyNode.class::cast )
 				.map( DescriptiveTermOfControlledVocabularyValidator::new )
 				.collect( Collectors.toList() );
