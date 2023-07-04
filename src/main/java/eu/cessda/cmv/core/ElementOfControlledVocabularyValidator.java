@@ -46,7 +46,7 @@ abstract class ElementOfControlledVocabularyValidator implements Validator
 	@Override
 	public Optional<ConstraintViolation> validate()
 	{
-		ControlledVocabularyRepository.V11 repository = node.getControlledVocabularyRepository();
+		ControlledVocabularyRepository repository = node.getControlledVocabularyRepository();
 		if ( repository == null )
 		{
 			String message = format( "%s '%s' in '%s' cannot be validated because no controlled vocabulary is declared",
@@ -71,13 +71,13 @@ abstract class ElementOfControlledVocabularyValidator implements Validator
 
 	enum ElementName
 	{
-		CODE_VALUE( "Code value", ControlledVocabularyRepository.V11::findCodeValues ),
-		DESCRIPTIVE_TERM( "Descriptive term", ControlledVocabularyRepository.V11::findDescriptiveTerms );
+		CODE_VALUE( "Code value", ControlledVocabularyRepository::findCodeValues ),
+		DESCRIPTIVE_TERM( "Descriptive term", ControlledVocabularyRepository::findDescriptiveTerms );
 
 		private final String text;
-		private final Function<ControlledVocabularyRepository.V11, Set<String>> elementSetProvider;
+		private final Function<ControlledVocabularyRepository, Set<String>> elementSetProvider;
 
-		ElementName( String text, Function<ControlledVocabularyRepository.V11, Set<String>> elementSetProvider )
+		ElementName( String text, Function<ControlledVocabularyRepository, Set<String>> elementSetProvider )
 		{
 			this.text = text;
 			this.elementSetProvider = elementSetProvider;
@@ -88,7 +88,7 @@ abstract class ElementOfControlledVocabularyValidator implements Validator
 			return text;
 		}
 
-		Function<ControlledVocabularyRepository.V11, Set<String>> getElementSetProvider()
+		Function<ControlledVocabularyRepository, Set<String>> getElementSetProvider()
 		{
 			return elementSetProvider;
 		}

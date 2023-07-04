@@ -34,7 +34,7 @@ class EmptyControlledVocabularyRepositoryTest
 	@Test
 	void shouldReturnEmptyCodeValues()
 	{
-		EmptyControlledVocabularyRepository repository = EmptyControlledVocabularyRepository.instance();
+		EmptyControlledVocabularyRepository repository = EmptyControlledVocabularyRepository.INSTANCE;
 
 		// Code values should be empty
 		assertThat( repository.findCodeValues(), is( empty() ) );
@@ -43,7 +43,7 @@ class EmptyControlledVocabularyRepositoryTest
 	@Test
 	void shouldReturnEmptyDescriptiveTerms()
 	{
-		EmptyControlledVocabularyRepository repository = EmptyControlledVocabularyRepository.instance();
+		EmptyControlledVocabularyRepository repository = EmptyControlledVocabularyRepository.INSTANCE;
 
 		// Code values should be empty
 		assertThat( repository.findDescriptiveTerms(), is( empty() ) );
@@ -52,7 +52,7 @@ class EmptyControlledVocabularyRepositoryTest
 	@Test
 	void shouldReturnAValidRandomUUID()
 	{
-		EmptyControlledVocabularyRepository repository = EmptyControlledVocabularyRepository.instance();
+		EmptyControlledVocabularyRepository repository = EmptyControlledVocabularyRepository.INSTANCE;
 
 		// Retrive the UUID
 		URI uri = repository.getUri();
@@ -65,8 +65,8 @@ class EmptyControlledVocabularyRepositoryTest
 	@Test
 	void shouldAlwaysBeEqual()
 	{
-		EmptyControlledVocabularyRepository firstRepository = EmptyControlledVocabularyRepository.instance();
-		EmptyControlledVocabularyRepository secondRepository = EmptyControlledVocabularyRepository.instance();
+		EmptyControlledVocabularyRepository firstRepository = EmptyControlledVocabularyRepository.INSTANCE;
+		EmptyControlledVocabularyRepository secondRepository = EmptyControlledVocabularyRepository.INSTANCE;
 
 		// The objects should be considered equal, and the hash codes should match
 		assertThat( firstRepository, equalTo( secondRepository ) );

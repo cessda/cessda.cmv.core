@@ -24,18 +24,18 @@ import org.gesis.commons.xml.LocationInfo;
 
 class ControlledVocabularyNode extends Node
 {
-	private final ControlledVocabularyRepository.V11 controlledVocabularyRepository;
+	private final ControlledVocabularyRepository controlledVocabularyRepository;
 
 	ControlledVocabularyNode( String locationPath,
 							  String textContent,
 							  LocationInfo locationInfo,
-							  ControlledVocabularyRepository.V11 controlledVocabularyRepository )
+							  ControlledVocabularyRepository controlledVocabularyRepository )
 	{
 		super( locationPath, textContent, locationInfo );
 		this.controlledVocabularyRepository = controlledVocabularyRepository;
 	}
 
-	ControlledVocabularyRepository.V11 getControlledVocabularyRepository()
+	ControlledVocabularyRepository getControlledVocabularyRepository()
 	{
 		return controlledVocabularyRepository;
 	}

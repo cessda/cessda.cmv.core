@@ -25,21 +25,16 @@ import java.util.UUID;
 
 import static java.util.Collections.emptySet;
 
-public class EmptyControlledVocabularyRepository implements ControlledVocabularyRepository.V11
+public class EmptyControlledVocabularyRepository implements ControlledVocabularyRepository
 {
 	// Use the nil UUID for all instances
 	private static final UUID UUID = new UUID( 0, 0 );
 	private static final URI uri = URI.create( "urn:uuid:" + UUID );
 
-	// The common instance for all EmptyControlledVocabularyRepository objects
-	private static final EmptyControlledVocabularyRepository INSTANCE = new EmptyControlledVocabularyRepository();
-
 	/**
-	 * Return an instance of EmptyControlledVocabularyRepository.
+	 * The common instance for all EmptyControlledVocabularyRepository objects.
 	 */
-	public static EmptyControlledVocabularyRepository instance() {
-		return INSTANCE;
-	}
+	public static final EmptyControlledVocabularyRepository INSTANCE = new EmptyControlledVocabularyRepository();
 
 	private EmptyControlledVocabularyRepository() {}
 

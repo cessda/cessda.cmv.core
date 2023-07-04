@@ -25,10 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.Objects.requireNonNull;
 
@@ -37,7 +34,7 @@ class DomCodebookDocument implements Document
 	private static final Logger LOGGER = LoggerFactory.getLogger( DomCodebookDocument.class );
 
 	private final org.gesis.commons.xml.DomDocument.V12 document;
-	private final Map<String, ControlledVocabularyRepository.V11> controlledVocabularyRepositoryMap;
+	private final Map<String, ControlledVocabularyRepository> controlledVocabularyRepositoryMap;
 
 	public DomCodebookDocument( InputStream inputStream )
 	{
@@ -133,18 +130,12 @@ class DomCodebookDocument implements Document
 	@Override
 	public void register( String uri, ControlledVocabularyRepository controlledVocabularyRepository )
 	{
-		if (controlledVocabularyRepository instanceof ControlledVocabularyRepository.V11)
-		{
-			controlledVocabularyRepositoryMap.put( uri, (ControlledVocabularyRepository.V11) controlledVocabularyRepository );
-		}
-		else
-		{
-			throw new IllegalArgumentException("controlledVocabularyRepository must be an instance of ControlledVocabularyRepository.V11");
-		}
+		Objects.requireNonNull( controlledVocabularyRepository, "controlledVocabularyRepository must not be null" );
+		controlledVocabularyRepositoryMap.put( uri, controlledVocabularyRepository );
 	}
 
 	@Override
-	public ControlledVocabularyRepository.V11 findControlledVocabularyRepository( String uri )
+	public ControlledVocabularyRepository findControlledVocabularyRepository( String uri )
 	{
 		if ( controlledVocabularyRepositoryMap.containsKey( uri ) )
 		{

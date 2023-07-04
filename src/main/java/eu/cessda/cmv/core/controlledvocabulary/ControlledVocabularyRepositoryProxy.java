@@ -28,18 +28,18 @@ import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 
-public class ControlledVocabularyRepositoryProxy implements ControlledVocabularyRepository.V11
+public class ControlledVocabularyRepositoryProxy implements ControlledVocabularyRepository
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger( ControlledVocabularyRepositoryProxy.class );
 
 	private final URI uri;
 	private final String canonicalName;
-	private ControlledVocabularyRepository.V11 repository;
+	private ControlledVocabularyRepository repository;
 	private final boolean isTolerant;
 
 	/**
-	 * Creates a ControlledVocabularyRepositoryProxy that proxies the given {@link ControlledVocabularyRepository.V11}.
-	 * The {@link ControlledVocabularyRepository.V11} must have a constructor that takes a {@link URI} parameter.
+	 * Creates a ControlledVocabularyRepositoryProxy that proxies the given {@link ControlledVocabularyRepository}.
+	 * The {@link ControlledVocabularyRepository} must have a constructor that takes a {@link URI} parameter.
 	 * <p>
 	 * The proxy will not be tolerant of instantiation errors which will result in {@link IllegalStateException}
 	 * being thrown on the invocation of findCodeValues() or findDescriptiveTerms().
@@ -54,13 +54,13 @@ public class ControlledVocabularyRepositoryProxy implements ControlledVocabulary
 	}
 
 	/**
-	 * Creates a ControlledVocabularyRepositoryProxy that proxies the given {@link ControlledVocabularyRepository.V11}.
-	 * The {@link ControlledVocabularyRepository.V11} must have a constructor that takes a {@link URI} parameter.
+	 * Creates a ControlledVocabularyRepositoryProxy that proxies the given {@link ControlledVocabularyRepository}.
+	 * The {@link ControlledVocabularyRepository} must have a constructor that takes a {@link URI} parameter.
 	 *
 	 * @param canonicalName the canonical name of the class to proxy.
 	 * @param uri the URI of the controlled vocabulary.
 	 * @param isTolerant whether the proxy should fall back to an {@link EmptyControlledVocabularyRepository}
-	 *                   if the desired {@link ControlledVocabularyRepository.V11} cannot be instanced.
+	 *                   if the desired {@link ControlledVocabularyRepository} cannot be instanced.
 	 * @throws IllegalArgumentException if the URI violates RFC 2396.
 	 */
 	public ControlledVocabularyRepositoryProxy( String canonicalName, String uri, boolean isTolerant )
@@ -69,13 +69,13 @@ public class ControlledVocabularyRepositoryProxy implements ControlledVocabulary
 	}
 
 	/**
-	 * Creates a ControlledVocabularyRepositoryProxy that proxies the given {@link ControlledVocabularyRepository.V11}.
-	 * The {@link ControlledVocabularyRepository.V11} must have a constructor that takes a {@link URI} parameter.
+	 * Creates a ControlledVocabularyRepositoryProxy that proxies the given {@link ControlledVocabularyRepository}.
+	 * The {@link ControlledVocabularyRepository} must have a constructor that takes a {@link URI} parameter.
 	 *
 	 * @param canonicalName the canonical name of the class to proxy.
 	 * @param uri the URI of the controlled vocabulary.
 	 * @param isTolerant whether the proxy should fall back to an {@link EmptyControlledVocabularyRepository}
-	 *                   if the desired {@link ControlledVocabularyRepository.V11} cannot be instanced.
+	 *                   if the desired {@link ControlledVocabularyRepository} cannot be instanced.
 	 */
 	public ControlledVocabularyRepositoryProxy( String canonicalName, URI uri, boolean isTolerant )
 	{
@@ -98,7 +98,7 @@ public class ControlledVocabularyRepositoryProxy implements ControlledVocabulary
 		try
 		{
 			Class<?> clazz = Class.forName( canonicalName );
-			repository = (V11) clazz
+			repository = (ControlledVocabularyRepository) clazz
 				.getDeclaredConstructor( URI.class )
 				.newInstance( uri );
 		}
@@ -116,7 +116,7 @@ public class ControlledVocabularyRepositoryProxy implements ControlledVocabulary
 	{
 		if ( isTolerant )
 		{
-			repository = EmptyControlledVocabularyRepository.instance();
+			repository = EmptyControlledVocabularyRepository.INSTANCE;
 			LOGGER.warn( "Tolerant proxy ignores {}", e.getMessage() );
 		}
 		else

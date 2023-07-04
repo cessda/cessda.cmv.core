@@ -24,15 +24,9 @@ import java.util.Set;
 
 public interface ControlledVocabularyRepository
 {
-	interface V10 extends ControlledVocabularyRepository
-	{
-		Set<String> findCodeValues();
-	}
+	Set<String> findCodeValues();
 
-	interface V11 extends V10
-	{
-		Set<String> findDescriptiveTerms();
+	Set<String> findDescriptiveTerms();
 
-		URI getUri();
-	}
+	URI getUri();
 }
