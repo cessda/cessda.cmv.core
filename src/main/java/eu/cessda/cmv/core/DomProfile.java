@@ -54,15 +54,14 @@ class DomProfile implements Profile
 			{
 				parse( (eu.cessda.cmv.core.mediatype.profile.OptionalNodeConstraint) constraint );
 			}
-			else if ( constraint instanceof eu.cessda.cmv.core.mediatype.profile.MaximumElementOccuranceConstraint )
+			else if ( constraint instanceof eu.cessda.cmv.core.mediatype.profile.MaximumElementOccurrenceConstraint )
 			{
-				parse( (eu.cessda.cmv.core.mediatype.profile.MaximumElementOccuranceConstraint) constraint );
+				parse( (eu.cessda.cmv.core.mediatype.profile.MaximumElementOccurrenceConstraint) constraint );
 			}
 			else if ( constraint instanceof eu.cessda.cmv.core.mediatype.profile.NotBlankNodeConstraint )
 			{
 				parse( (eu.cessda.cmv.core.mediatype.profile.NotBlankNodeConstraint) constraint );
 			}
-
 		}
 	}
 
@@ -72,7 +71,7 @@ class DomProfile implements Profile
 		return constraints;
 	}
 
-	private void parse( eu.cessda.cmv.core.mediatype.profile.MaximumElementOccuranceConstraint jaxbConstraint )
+	private void parse( eu.cessda.cmv.core.mediatype.profile.MaximumElementOccurrenceConstraint jaxbConstraint )
 	{
 		MaximumElementOccurrenceConstraint constraint = new MaximumElementOccurrenceConstraint(
 				jaxbConstraint.getLocationPath(),

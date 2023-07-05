@@ -29,8 +29,7 @@ class MandatoryNodeValidator extends MinimumElementOccurrenceValidator
 	@Override
 	protected ConstraintViolation newConstraintViolation()
 	{
-		String message = "'%s' is mandatory";
-		message = String.format( message, getLocationPath() );
+		String message = String.format( "'%s' is mandatory", getLocationPath() );
 		return new ConstraintViolation( message, null );
 	}
 }

@@ -55,7 +55,7 @@ class DomSemiStructuredDdiProfile implements Profile
 			parseMandatoryNodeConstraint( usedNode );
 			parseOptionalNodeConstraint( usedNode );
 			parseNotBlankNodeConstraint( usedNode );
-			parseMaximumElementOccuranceConstraint( usedNode );
+			parseMaximumElementOccurrenceConstraint( usedNode );
 			parseMandatoryNodeIfParentPresentConstraint( usedNode );
 			parseFixedValueNodeConstraint( usedNode );
 
@@ -68,31 +68,25 @@ class DomSemiStructuredDdiProfile implements Profile
 			throw new IllegalArgumentException( "Profile defines no constraints" );
 		}
 
-		constraints = forceConstraintReordering( constraints );
-	}
-
-	private List<Constraint> forceConstraintReordering( List<Constraint> constraints )
-	{
-		// Use a deque, this is efficient for insertions at the start and the end
-		ArrayDeque<Constraint> list = new ArrayDeque<>(constraints.size());
+		// Reorder the constraints so that ControlledVocabularyRepositoryConstraints are first
+		ArrayDeque<Constraint> orderedConstraints = new ArrayDeque<>( constraints.size() );
 
 		for ( Constraint c : constraints )
 		{
 			if ( c instanceof ControlledVocabularyRepositoryConstraint )
 			{
-				list.addFirst( c );
+				orderedConstraints.addFirst( c );
 			}
 			else
 			{
-				list.addLast( c );
+				orderedConstraints.addLast( c );
 			}
 		}
 
-		// Copy the contents of the deque to an ArrayList
-		return new ArrayList<>(list);
+		this.constraints = new ArrayList<>(orderedConstraints);
 	}
 
-	private String getLocationPath( org.w3c.dom.Node usedNode )
+	private static String getLocationPath( org.w3c.dom.Node usedNode )
 	{
 		return usedNode.getAttributes().getNamedItem( "xpath" ).getTextContent();
 	}
@@ -156,7 +150,7 @@ class DomSemiStructuredDdiProfile implements Profile
 	private void parseOptionalNodeConstraint( org.w3c.dom.Node usedNode )
 	{
 		org.w3c.dom.Node isRequiredNode = usedNode.getAttributes().getNamedItem( "isRequired" );
-		if ( isRequiredNode == null || isRequiredNode.getNodeValue().equalsIgnoreCase( "false" ) )
+		if ( isRequiredNode == null || !Boolean.parseBoolean( isRequiredNode.getNodeValue() ) )
 		{
 			if ( document.selectNode( usedNode, "Description[Content='Required: Recommended']" ) != null
 					|| document.selectNode( usedNode, "Description[Content='Recommended']" ) != null
@@ -191,7 +185,8 @@ class DomSemiStructuredDdiProfile implements Profile
 		findExtension( usedNode ).ifPresent( extension ->
 		{
 			String locationPath = "/Constraints/CodeValueOfControlledVocabularyConstraint";
-			for ( org.w3c.dom.Node constraintNode : extension.selectNodes( locationPath ) )
+			int nodeCount = extension.selectNodes( locationPath ).size();
+			for ( int i = 0; i < nodeCount; i++ )
 			{
 				constraints.add( new CodeValueOfControlledVocabularyConstraint( getLocationPath( usedNode ) ) );
 			}
@@ -204,7 +199,8 @@ class DomSemiStructuredDdiProfile implements Profile
 		findExtension( usedNode ).ifPresent( extension ->
 		{
 			String locationPath = "/Constraints/DescriptiveTermOfControlledVocabularyConstraint";
-			for ( org.w3c.dom.Node constraintNode : extension.selectNodes( locationPath ) )
+			int nodeCount = extension.selectNodes( locationPath ).size();
+			for ( int i = 0; i < nodeCount; i++ )
 			{
 				constraints.add( new DescriptiveTermOfControlledVocabularyConstraint( getLocationPath( usedNode ) ) );
 			}
@@ -228,7 +224,7 @@ class DomSemiStructuredDdiProfile implements Profile
 		} );
 	}
 
-	private void parseMaximumElementOccuranceConstraint( org.w3c.dom.Node usedNode )
+	private void parseMaximumElementOccurrenceConstraint( org.w3c.dom.Node usedNode )
 	{
 		org.w3c.dom.Node limitMaxOccursNode = usedNode.getAttributes().getNamedItem( "limitMaxOccurs" );
 		if ( limitMaxOccursNode != null )
@@ -236,7 +232,7 @@ class DomSemiStructuredDdiProfile implements Profile
 			constraints.add( new MaximumElementOccurrenceConstraint(
 					getLocationPath( usedNode ),
 					Long.parseLong( limitMaxOccursNode.getNodeValue() ) ) );
-			jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.MaximumElementOccuranceConstraint(
+			jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.MaximumElementOccurrenceConstraint(
 					getLocationPath( usedNode ),
 					Long.parseLong( limitMaxOccursNode.getNodeValue() ) ) );
 		}

@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
-@XmlType( name = MaximumElementOccuranceConstraint.JAXB_TYPE )
+@XmlType( name = MaximumElementOccurrenceConstraint.JAXB_TYPE )
 @XmlAccessorType( XmlAccessType.FIELD )
-public class MaximumElementOccuranceConstraint extends NodeConstraint
+public class MaximumElementOccurrenceConstraint extends NodeConstraint
 {
 	public static final String JAXB_ELEMENT = "MaximumElementOccuranceConstraint";
 	public static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
@@ -35,12 +35,12 @@ public class MaximumElementOccuranceConstraint extends NodeConstraint
 	@XmlElement
 	private long maxOccurs;
 
-	public MaximumElementOccuranceConstraint()
+	public MaximumElementOccurrenceConstraint()
 	{
 		super( null );
 	}
 
-	public MaximumElementOccuranceConstraint( String locationPath, long maxOccurs )
+	public MaximumElementOccurrenceConstraint( String locationPath, long maxOccurs )
 	{
 		super( locationPath );
 		this.maxOccurs = maxOccurs;
@@ -61,7 +61,7 @@ public class MaximumElementOccuranceConstraint extends NodeConstraint
 	{
 		if ( this == o ) return true;
 		if ( !super.equals( o ) ) return false;
-		MaximumElementOccuranceConstraint that = (MaximumElementOccuranceConstraint) o;
+		MaximumElementOccurrenceConstraint that = (MaximumElementOccurrenceConstraint) o;
 		return maxOccurs == that.maxOccurs;
 	}
 

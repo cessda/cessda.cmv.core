@@ -59,8 +59,8 @@ public class Profile extends JaxbDocument
 
 	@XmlElements( {
 			@XmlElement(
-					name = MaximumElementOccuranceConstraint.JAXB_ELEMENT,
-					type = MaximumElementOccuranceConstraint.class ),
+					name = MaximumElementOccurrenceConstraint.JAXB_ELEMENT,
+					type = MaximumElementOccurrenceConstraint.class ),
 			@XmlElement(
 					name = MandatoryNodeConstraint.JAXB_ELEMENT,
 					type = MandatoryNodeConstraint.class ),

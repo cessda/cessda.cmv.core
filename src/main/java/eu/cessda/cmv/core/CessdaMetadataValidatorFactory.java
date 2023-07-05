@@ -238,7 +238,7 @@ public class CessdaMetadataValidatorFactory
 		}
 		catch ( XmlNotWellformedException e )
 		{
-			throw new NotDocumentException( String.format( "Not well-formed XML: %s", e.getMessage() ) );
+			throw new NotDocumentException( String.format( "Not well-formed XML: %s", e ), e );
 		}
 		catch ( IOException e )
 		{

@@ -25,7 +25,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
@@ -34,7 +37,7 @@ class DomCodebookDocument implements Document
 	private static final Logger LOGGER = LoggerFactory.getLogger( DomCodebookDocument.class );
 
 	private final org.gesis.commons.xml.DomDocument.V12 document;
-	private final Map<String, ControlledVocabularyRepository> controlledVocabularyRepositoryMap;
+	private final HashMap<String, ControlledVocabularyRepository> controlledVocabularyRepositoryMap = new HashMap<>();
 
 	public DomCodebookDocument( InputStream inputStream )
 	{
@@ -45,7 +48,6 @@ class DomCodebookDocument implements Document
 				.locationInfoAware()
 				.namespaceAware()
 				.build();
-		controlledVocabularyRepositoryMap = new HashMap<>();
 	}
 
 	@Override
