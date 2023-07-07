@@ -19,13 +19,20 @@
  */
 package eu.cessda.cmv.core;
 
-import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepositoryProxy;
+import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
+import eu.cessda.cmv.core.controlledvocabulary.EmptyControlledVocabularyRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.List;
 
 class ControlledVocabularyRepositoryConstraint implements Constraint
 {
+	private static final Logger LOGGER = LoggerFactory.getLogger( ControlledVocabularyRepositoryConstraint.class );
+
 	private final String locationPath;
 	private final String type;
 	private final String uri;
@@ -43,8 +50,22 @@ class ControlledVocabularyRepositoryConstraint implements Constraint
 	@Override
 	public List<Validator> newValidators( Document document )
 	{
-		ControlledVocabularyRepositoryProxy proxy = new ControlledVocabularyRepositoryProxy( type, uri, true );
-		document.register( uri, proxy );
+		ControlledVocabularyRepository repository;
+		try
+		{
+			Class<?> clazz = Class.forName( type );
+			repository = (ControlledVocabularyRepository) clazz
+				.getDeclaredConstructor( URI.class )
+				.newInstance( new URI(uri) );
+		}
+		catch ( ReflectiveOperationException | URISyntaxException e )
+		{
+			LOGGER.warn( "Instancing {} failed, falling back to empty controlled vocabulary repository", type, e );
+			repository = EmptyControlledVocabularyRepository.INSTANCE;
+		}
+
+		document.register( uri, repository );
+
 		int count = 0;
 		for ( Node node : document.getNodes( locationPath ) )
 		{
@@ -53,11 +74,12 @@ class ControlledVocabularyRepositoryConstraint implements Constraint
 				count++;
 			}
 		}
-		List<Validator> validators = new ArrayList<>();
 		if ( count > 0 )
 		{
-			validators.add( new ControlledVocabularyRepositoryValidator( proxy ) );
+			return Collections.singletonList( new ControlledVocabularyRepositoryValidator( repository ) );
 		}
-		return validators;
+		{
+			return Collections.emptyList();
+		}
 	}
 }

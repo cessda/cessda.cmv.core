@@ -19,7 +19,7 @@
  */
 package eu.cessda.cmv.core;
 
-import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepositoryProxy;
+import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 
 import java.util.Optional;
 import java.util.Set;
@@ -28,12 +28,12 @@ import static java.util.Objects.requireNonNull;
 
 class ControlledVocabularyRepositoryValidator implements Validator
 {
-	private final ControlledVocabularyRepositoryProxy proxy;
+	private final ControlledVocabularyRepository repository;
 
-	public ControlledVocabularyRepositoryValidator( ControlledVocabularyRepositoryProxy proxy )
+	public ControlledVocabularyRepositoryValidator( ControlledVocabularyRepository repository )
 	{
-		requireNonNull( proxy );
-		this.proxy = proxy;
+		requireNonNull( repository );
+		this.repository = repository;
 	}
 
 	@Override
@@ -43,7 +43,7 @@ class ControlledVocabularyRepositoryValidator implements Validator
 
 		try
 		{
-			codeValues = proxy.findCodeValues();
+			codeValues = repository.findCodeValues();
 		}
 		catch (IllegalStateException e)
 		{

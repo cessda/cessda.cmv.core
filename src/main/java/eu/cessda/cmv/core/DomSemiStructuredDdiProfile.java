@@ -22,6 +22,7 @@ package eu.cessda.cmv.core;
 import org.gesis.commons.resource.io.DdiInputStream;
 import org.gesis.commons.xml.DomDocument;
 import org.gesis.commons.xml.XercesXalanDocument;
+import org.w3c.dom.Attr;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -150,20 +151,23 @@ class DomSemiStructuredDdiProfile implements Profile
 	private void parseOptionalNodeConstraint( org.w3c.dom.Node usedNode )
 	{
 		org.w3c.dom.Node isRequiredNode = usedNode.getAttributes().getNamedItem( "isRequired" );
-		if ( isRequiredNode == null || !Boolean.parseBoolean( isRequiredNode.getNodeValue() ) )
+
+		if ( isRequiredNode != null && "true".equalsIgnoreCase( ((Attr) isRequiredNode).getValue() ) )
 		{
-			if ( document.selectNode( usedNode, "Description[Content='Required: Recommended']" ) != null
-					|| document.selectNode( usedNode, "Description[Content='Recommended']" ) != null
-					|| hasRecommendedNodeConstraintExtension( usedNode ) )
-			{
-				constraints.add( new RecommendedNodeConstraint( getLocationPath( usedNode ) ) );
-				jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.RecommendedNodeConstraint( getLocationPath( usedNode ) ) );
-			}
-			else
-			{
-				constraints.add( new OptionalNodeConstraint( getLocationPath( usedNode ) ) );
-				jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.OptionalNodeConstraint( getLocationPath( usedNode ) ) );
-			}
+			return;
+		}
+
+		if ( document.selectNode( usedNode, "Description[Content='Required: Recommended']" ) != null
+				|| document.selectNode( usedNode, "Description[Content='Recommended']" ) != null
+				|| hasRecommendedNodeConstraintExtension( usedNode ) )
+		{
+			constraints.add( new RecommendedNodeConstraint( getLocationPath( usedNode ) ) );
+			jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.RecommendedNodeConstraint( getLocationPath( usedNode ) ) );
+		}
+		else
+		{
+			constraints.add( new OptionalNodeConstraint( getLocationPath( usedNode ) ) );
+			jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.OptionalNodeConstraint( getLocationPath( usedNode ) ) );
 		}
 	}
 
