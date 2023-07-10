@@ -29,12 +29,13 @@ import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
+import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 import static org.gesis.commons.resource.Resource.newResource;
 
 public class ContentDocument implements Document
 {
 	@NotNull
-	@Schema( description = "DDI document", required = true )
+	@Schema( description = "DDI document", requiredMode = REQUIRED )
 	@XmlElement( required = true )
 	@XmlCDATA
 	private String content;

@@ -27,12 +27,13 @@ import javax.xml.bind.annotation.XmlElement;
 import java.net.URI;
 import java.util.Objects;
 
+import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 import static org.gesis.commons.resource.Resource.newResource;
 
 public class UriDocument implements Document
 {
 	@NotNull
-	@Schema( description = "Resolvable uri of remotely available resource", required = true )
+	@Schema( description = "Resolvable uri of remotely available resource", requiredMode = REQUIRED )
 	@XmlElement( required = true )
 	private URI uri;
 
