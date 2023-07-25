@@ -21,6 +21,7 @@ package eu.cessda.cmv.core;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
@@ -38,7 +39,7 @@ class ProfileValidationGateTest
 	}
 
 	@Test
-	void validateCdcProfile()
+	void validateCdcProfile() throws IOException, NotDocumentException
 	{
 		// given
 		URL documentUrl = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
@@ -55,7 +56,7 @@ class ProfileValidationGateTest
 	}
 
 	@Test
-	void validateCmvProfile()
+	void validateCmvProfile() throws IOException, NotDocumentException
 	{
 		// given
 		URL documentFile = getClass().getResource( "/cmv-profile-ddi-v32.xml" );
@@ -72,7 +73,7 @@ class ProfileValidationGateTest
 	}
 
 	@Test
-	void validateWithPredicatelessXPathConstraint()
+	void validateWithPredicatelessXPathConstraint() throws IOException, NotDocumentException
 	{
 		// https://github.com/cessda/cessda.cmv.core/issues/39
 
@@ -92,7 +93,7 @@ class ProfileValidationGateTest
 	}
 
 	@Test
-	void validateWithCompilableXPathConstraint()
+	void validateWithCompilableXPathConstraint() throws IOException, NotDocumentException
 	{
 		// given
 		URL documentUrl = getClass().getResource( "/profiles/not-compilable-xpaths.xml" );

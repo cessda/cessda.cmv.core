@@ -25,6 +25,7 @@ import org.gesis.commons.xml.SaxXercesAgainstSchemaValidator;
 import org.gesis.commons.xml.ddi.Ddi251ClasspathEntityResolver;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 import static eu.cessda.cmv.core.ValidationGateName.EXTENDED;
@@ -37,7 +38,7 @@ class FixedValueNodeConstraintTest
 	private final Profile profile;
 	private final CessdaMetadataValidatorFactory factory;
 
-	FixedValueNodeConstraintTest()
+	FixedValueNodeConstraintTest() throws IOException
 	{
 		testEnv = DefaultTestEnv.newInstance( FixedValueNodeConstraintTest.class );
 		SaxXercesAgainstSchemaValidator xmlValidator = new SaxXercesAgainstSchemaValidator();
@@ -60,7 +61,7 @@ class FixedValueNodeConstraintTest
 	}
 
 	@Test
-	void validate_valid()
+	void validate_valid() throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "13-document-valid-1.xml" ) );
@@ -74,7 +75,7 @@ class FixedValueNodeConstraintTest
 	}
 
 	@Test
-	void validate_invalid_inequalFixedValue()
+	void validate_invalid_inequalFixedValue() throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "13-document-invalid-1.xml" ) );
@@ -90,7 +91,7 @@ class FixedValueNodeConstraintTest
 	}
 
 	@Test
-	void validate_invalid_missing()
+	void validate_invalid_missing() throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "13-document-invalid-2.xml" ) );

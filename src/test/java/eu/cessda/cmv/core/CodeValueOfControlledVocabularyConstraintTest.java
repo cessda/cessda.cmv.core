@@ -23,6 +23,7 @@ import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 import static eu.cessda.cmv.core.ValidationGateName.BASICPLUS;
@@ -35,7 +36,7 @@ class CodeValueOfControlledVocabularyConstraintTest
 	private final Profile profile;
 	private final CessdaMetadataValidatorFactory factory;
 
-	CodeValueOfControlledVocabularyConstraintTest()
+	CodeValueOfControlledVocabularyConstraintTest() throws IOException
 	{
 		testEnv = DefaultTestEnv.newInstance( CodeValueOfControlledVocabularyConstraintTest.class );
 		factory = new CessdaMetadataValidatorFactory();
@@ -49,7 +50,7 @@ class CodeValueOfControlledVocabularyConstraintTest
 	}
 
 	@Test
-	void validate_invalid_not_element()
+	void validate_invalid_not_element() throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "9-document-invalid-1.xml" ) );
@@ -65,7 +66,7 @@ class CodeValueOfControlledVocabularyConstraintTest
 	}
 
 	@Test
-	void validate_invalid_missing_url()
+	void validate_invalid_missing_url() throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "9-document-invalid-2.xml" ) );
@@ -81,7 +82,7 @@ class CodeValueOfControlledVocabularyConstraintTest
 	}
 
 	@Test
-	void validate_valid()
+	void validate_valid() throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "9-document-valid.xml" ) );

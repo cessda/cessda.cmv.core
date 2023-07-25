@@ -74,10 +74,12 @@ class ControlledVocabularyRepositoryConstraint implements Constraint
 				count++;
 			}
 		}
+
 		if ( count > 0 )
 		{
 			return Collections.singletonList( new ControlledVocabularyRepositoryValidator( repository ) );
 		}
+		else
 		{
 			return Collections.emptyList();
 		}

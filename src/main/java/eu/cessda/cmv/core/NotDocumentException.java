@@ -21,18 +21,13 @@ package eu.cessda.cmv.core;
 
 import static java.lang.String.format;
 
-public class NotDocumentException extends RuntimeException
+public class NotDocumentException extends Exception
 {
-	private static final long serialVersionUID = -5790512449378918621L;
+	private static final long serialVersionUID = -2148512119063297931L;
 
 	public NotDocumentException( String message )
 	{
 		super( format( "Not CMV document: %s", message ) );
-	}
-
-	public NotDocumentException( String message, Throwable cause )
-	{
-		super( format( "Not CMV document: %s", message ), cause );
 	}
 
 	public NotDocumentException( Throwable throwable )

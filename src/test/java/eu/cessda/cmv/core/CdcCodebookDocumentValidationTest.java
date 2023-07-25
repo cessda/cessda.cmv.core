@@ -22,6 +22,7 @@ package eu.cessda.cmv.core;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -37,7 +38,7 @@ class CdcCodebookDocumentValidationTest
 	private final Profile profile;
 	private final CessdaMetadataValidatorFactory factory;
 
-	CdcCodebookDocumentValidationTest()
+	CdcCodebookDocumentValidationTest() throws IOException
 	{
 		factory = new CessdaMetadataValidatorFactory();
 		profile = factory.newProfile( getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ) );
@@ -133,7 +134,7 @@ class CdcCodebookDocumentValidationTest
 
 	@ParameterizedTest
 	@MethodSource( newTestParameters )
-	void validateWithBasicValidationGate( TestParameter param )
+	void validateWithBasicValidationGate( TestParameter param ) throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( getClass().getResource( param.documentName ) );
@@ -150,7 +151,7 @@ class CdcCodebookDocumentValidationTest
 
 	@ParameterizedTest
 	@MethodSource( newTestParameters )
-	void validateWithStandardValidationGate( TestParameter param )
+	void validateWithStandardValidationGate( TestParameter param ) throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( getClass().getResource( param.documentName ) );
@@ -167,7 +168,7 @@ class CdcCodebookDocumentValidationTest
 
 	@ParameterizedTest
 	@MethodSource( newTestParameters )
-	void validateWithStrictValidationGate( TestParameter param )
+	void validateWithStrictValidationGate( TestParameter param ) throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( getClass().getResource( param.documentName ) );

@@ -24,6 +24,7 @@ import org.gesis.commons.resource.Resource;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 
 import static eu.cessda.cmv.core.ValidationGateName.BASIC;
@@ -37,7 +38,7 @@ class JdkValidationServiceTest
 	private final CessdaMetadataValidatorFactory factory = new CessdaMetadataValidatorFactory();
 
 	@Test
-	void validateWithUrls()
+	void validateWithUrls() throws IOException, NotDocumentException
 	{
 		ValidationService validationService = factory.newValidationService();
 		URI documentUri = new File( "src/main/resources/demo-documents/ddi-v25/gesis-2800.xml" ).toURI();
@@ -55,7 +56,7 @@ class JdkValidationServiceTest
 	}
 
 	@Test
-	void validateWithResources()
+	void validateWithResources() throws IOException, NotDocumentException
 	{
 		ValidationService validationService = factory.newValidationService();
 		Resource document = newResource( new File( "src/main/resources/demo-documents/ddi-v25/gesis-2800.xml" ) );

@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
 import eu.cessda.cmv.core.CessdaMetadataValidatorFactory;
+import eu.cessda.cmv.core.NotDocumentException;
 import eu.cessda.cmv.core.ValidationService;
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.test.DefaultTestEnv;
@@ -37,6 +38,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
@@ -62,7 +64,7 @@ class ValidationReportTest
 		testEnv = DefaultTestEnv.newInstance( ValidationReportTest.class );
 	}
 
-	private ValidationReport newValidationReportV0()
+	private ValidationReport newValidationReport() throws IOException, NotDocumentException
 	{
 		try
 		{
@@ -80,7 +82,7 @@ class ValidationReportTest
 	@Test
 	void writeAndReadWithEclipselinkMoxy() throws Exception
 	{
-		ValidationReport validationReport = newValidationReportV0();
+		ValidationReport validationReport = newValidationReport();
 		List<ConstraintViolation> constraintViolations = validationReport.getConstraintViolations();
 
 		File file = new File( testEnv.newDirectory(), "eclipselink-moxy.xml" );
@@ -100,14 +102,14 @@ class ValidationReportTest
 	}
 
 	@Test
-	void writeAndReadWithJackson()
+	void writeAndReadWithJackson() throws IOException, NotDocumentException
 	{
 		File workingDirectory = testEnv.newDirectory();
 		writeAndReadWithJackson( new File( workingDirectory, "jackson.json" ), LOWER_CAMEL_CASE, new ObjectMapper() );
 		writeAndReadWithJackson( new File( workingDirectory, "jackson.xml" ), UPPER_CAMEL_CASE, new XmlMapper() );
 	}
 
-	private void writeAndReadWithJackson( File file, PropertyNamingStrategy propertyNamingStrategy, ObjectMapper objectMapper )
+	private void writeAndReadWithJackson( File file, PropertyNamingStrategy propertyNamingStrategy, ObjectMapper objectMapper ) throws IOException, NotDocumentException
 	{
 		try
 		{
@@ -116,7 +118,7 @@ class ValidationReportTest
 			objectMapper.enable( SerializationFeature.INDENT_OUTPUT );
 			// objectMapper.setSerializationInclusion( Include.NON_NULL );
 
-			ValidationReport validationReport = newValidationReportV0();
+			ValidationReport validationReport = newValidationReport();
 			List<ConstraintViolation> constraintViolations = validationReport.getConstraintViolations();
 			String content = objectMapper.writeValueAsString( validationReport );
 			testEnv.writeContent( content, file );

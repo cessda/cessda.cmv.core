@@ -21,6 +21,7 @@ package eu.cessda.cmv.core;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -36,7 +37,7 @@ class CustomConstraintTest
 	private final CessdaMetadataValidatorFactory factory = new CessdaMetadataValidatorFactory();
 
 	@Test
-	void shouldCreateValidationGateWithSpecifiedConstraints() throws InvalidGateException
+	void shouldCreateValidationGateWithSpecifiedConstraints() throws InvalidGateException, IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument(

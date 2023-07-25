@@ -55,7 +55,7 @@ class CessdaMetadataValidatorFactoryTest
 
 	@ParameterizedTest
 	@ValueSource( strings = { "/demo-documents/ddi-v25/fsd-3307.xml", "/demo-documents/ddi-v25/fsd-3307-oaipmh.xml", "/demo-documents/ddi-v32/gesis-5300.xml"} )
-	void newDocument( String uri )
+	void newDocument( String uri ) throws IOException, NotDocumentException
 	{
 		URL resourceUrl = this.getClass().getResource( uri );
 		assert resourceUrl != null;

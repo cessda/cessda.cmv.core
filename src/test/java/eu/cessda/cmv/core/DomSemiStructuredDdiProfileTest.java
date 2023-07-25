@@ -20,12 +20,15 @@
 package eu.cessda.cmv.core;
 
 import eu.cessda.cmv.core.mediatype.profile.Profile;
+import org.gesis.commons.resource.io.DdiInputStream;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Objects;
 
@@ -47,7 +50,7 @@ class DomSemiStructuredDdiProfileTest
 	@ParameterizedTest
 	@ValueSource(
 			strings = { "/demo-documents/ddi-v25/cdc25_profile.xml", "/demo-documents/ddi-v25/cdc_122_profile.xml" } )
-	void constructMultilingualProfiles( String classpathLocation )
+	void constructMultilingualProfiles( String classpathLocation ) throws IOException
 	{
 		// given
 		URL url = getClass().getResource( classpathLocation );
@@ -70,7 +73,7 @@ class DomSemiStructuredDdiProfileTest
 	@ValueSource(
 			strings = { "/demo-documents/ddi-v25/cdc25_profile_mono.xml",
 					"/demo-documents/ddi-v25/cdc_122_profile_mono.xml" } )
-	void constructMonolingualProfiles( String classpathLocation )
+	void constructMonolingualProfiles( String classpathLocation ) throws IOException
 	{
 		// given
 		URL url = getClass().getResource( classpathLocation );
@@ -96,15 +99,16 @@ class DomSemiStructuredDdiProfileTest
 
 	@Test
 	@Disabled( "Own profile format is not up-to-date" ) // TODO
-	void toJaxbProfileV0()
+	void toJaxbProfileV0() throws IOException
 	{
 		// given
 		URL sourceUrl = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
 		File targetFile = new File( "target", "cdc25_profile_cmv.xml" );
 
 		// when
+		InputStream inputStream = newResource( Objects.requireNonNull( sourceUrl ) ).readInputStream();
 		DomSemiStructuredDdiProfile profile = new DomSemiStructuredDdiProfile(
-				factory.newDdiInputStream( newResource( Objects.requireNonNull( sourceUrl ) ).readInputStream() ) );
+			new DdiInputStream( inputStream ) );
 		Profile jaxbProfile = profile.toJaxbProfileV0();
 		jaxbProfile.saveAs( targetFile );
 		assertThat( targetFile, anExistingFile() );

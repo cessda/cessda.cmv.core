@@ -25,17 +25,18 @@ import org.gesis.commons.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class ValidationServiceV0 implements ValidationService
+class ValidationServiceImpl implements ValidationService
 {
-	private static final Logger LOGGER = LoggerFactory.getLogger( ValidationServiceV0.class );
+	private static final Logger LOGGER = LoggerFactory.getLogger( ValidationServiceImpl.class );
 
 	private final CessdaMetadataValidatorFactory factory;
 
-	ValidationServiceV0( CessdaMetadataValidatorFactory factory )
+	ValidationServiceImpl( CessdaMetadataValidatorFactory factory )
 	{
 		this.factory = factory;
 	}
@@ -44,7 +45,7 @@ class ValidationServiceV0 implements ValidationService
 	public ValidationReport validate(
 			URI documentUri,
 			URI profileUri,
-			ValidationGateName validationGateName )
+			ValidationGateName validationGateName ) throws IOException, NotDocumentException
 	{
 		Document document = factory.newDocument( documentUri );
 		Profile profile = factory.newProfile( profileUri );
@@ -59,7 +60,7 @@ class ValidationServiceV0 implements ValidationService
 	public ValidationReport validate(
 			Resource documentResource,
 			Resource profileResource,
-			ValidationGateName validationGateName )
+			ValidationGateName validationGateName ) throws IOException, NotDocumentException
 	{
 		Document document = factory.newDocument( documentResource );
 		Profile profile = factory.newProfile( profileResource );
@@ -106,11 +107,11 @@ class ValidationServiceV0 implements ValidationService
 	public ValidationReport validate(
 			URI documentUri,
 			URI profileUri,
-			ValidationGate validationGate )
+			ValidationGate validationGate ) throws IOException, NotDocumentException
 	{
 		Document document = factory.newDocument( documentUri );
 		Profile profile = factory.newProfile( profileUri );
-		return ValidationServiceV0.validate( document,
+		return ValidationServiceImpl.validate( document,
 				profile,
 				documentUri,
 				profileUri,
@@ -121,11 +122,11 @@ class ValidationServiceV0 implements ValidationService
 	public ValidationReport validate(
 			Resource documentResource,
 			Resource profileResource,
-			ValidationGate validationGate )
+			ValidationGate validationGate ) throws IOException, NotDocumentException
 	{
 		Document document = factory.newDocument( documentResource );
 		Profile profile = factory.newProfile( profileResource );
-		return ValidationServiceV0.validate( document,
+		return ValidationServiceImpl.validate( document,
 				profile,
 				documentResource.getUri(),
 				profileResource.getUri(),

@@ -25,6 +25,7 @@ import org.gesis.commons.xml.SaxXercesAgainstSchemaValidator;
 import org.gesis.commons.xml.ddi.Ddi251ClasspathEntityResolver;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 import static eu.cessda.cmv.core.ValidationGateName.STRICT;
@@ -47,7 +48,7 @@ class MaximumElementOccurrenceConstraintTest
 	}
 
 	@Test
-	void validate_invalid()
+	void validate_invalid() throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "bad-case.xml" ) );
@@ -63,7 +64,7 @@ class MaximumElementOccurrenceConstraintTest
 	}
 
 	@Test
-	void validate_valid() throws Exception
+	void validate_valid() throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "good-case.xml" ) );
