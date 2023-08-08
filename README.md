@@ -1,6 +1,9 @@
 # CESSDA Metadata Validator Core
 
-[![SQA badge](https://api.eu.badgr.io/public/assertions/SSQHSCmuQg2tZF2qNstYtA/image)](https://api.eu.badgr.io/public/assertions/-zO9RwXITZSJlhLKlgj_dA)
+[![SQAaaS badge](https://github.com/EOSC-synergy/SQAaaS/raw/master/badges/badges_150x116/badge_software_silver.png)](https://api.eu.badgr.io/public/assertions/XjKOzihPQAuRUX0aZC7VTw "SQAaaS silver badge achieved")
+
+[![SQAaaS badge shields.io](https://img.shields.io/badge/sqaaas%20software-silver-lightgrey)](https://api.eu.badgr.io/public/assertions/XjKOzihPQAuRUX0aZC7VTw "SQAaaS silver badge achieved")
+
 
 [![Build Status](https://jenkins.cessda.eu/buildStatus/icon?job=cessda.cmv.core%2Fmaster)](https://jenkins.cessda.eu/job/cessda.cmv.core/job/master/)
 [![Quality Gate Status](https://sonarqube.cessda.eu/api/project_badges/measure?project=eu.cessda.cmv%3Acmv-core&metric=alert_status)](https://sonarqube.cessda.eu/dashboard?id=eu.cessda.cmv%3Acmv-core)
