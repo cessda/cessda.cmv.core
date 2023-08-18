@@ -17,7 +17,9 @@
  * limitations under the License.
  * #L%
  */
-package eu.cessda.cmv.core.controlledvocabulary;
+package eu.cessda.cmv.core;
+
+import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 
 import java.net.URI;
 import java.util.Set;
@@ -25,7 +27,7 @@ import java.util.UUID;
 
 import static java.util.Collections.emptySet;
 
-public class EmptyControlledVocabularyRepository implements ControlledVocabularyRepository
+class EmptyControlledVocabularyRepository implements ControlledVocabularyRepository
 {
 	// Use the nil UUID for all instances
 	private static final UUID UUID = new UUID( 0, 0 );
@@ -34,7 +36,7 @@ public class EmptyControlledVocabularyRepository implements ControlledVocabulary
 	/**
 	 * The common instance for all EmptyControlledVocabularyRepository objects.
 	 */
-	public static final EmptyControlledVocabularyRepository INSTANCE = new EmptyControlledVocabularyRepository();
+	static final EmptyControlledVocabularyRepository INSTANCE = new EmptyControlledVocabularyRepository();
 
 	private EmptyControlledVocabularyRepository() {}
 

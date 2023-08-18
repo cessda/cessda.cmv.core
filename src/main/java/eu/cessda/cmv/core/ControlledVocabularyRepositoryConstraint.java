@@ -20,7 +20,6 @@
 package eu.cessda.cmv.core;
 
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
-import eu.cessda.cmv.core.controlledvocabulary.EmptyControlledVocabularyRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

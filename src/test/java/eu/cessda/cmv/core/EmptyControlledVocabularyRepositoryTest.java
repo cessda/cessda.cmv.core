@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package eu.cessda.cmv.core.controlledvocabulary;
+package eu.cessda.cmv.core;
 
 import org.junit.jupiter.api.Test;
 
