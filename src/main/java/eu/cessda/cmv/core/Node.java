@@ -26,7 +26,7 @@ import java.util.Map;
 
 import static java.util.Objects.requireNonNull;
 
-class Node
+public class Node
 {
 	private final String locationPath;
 	private final String textContent;
@@ -57,7 +57,7 @@ class Node
 		return locationInfo;
 	}
 
-	public void incrementChildCount( String relativeLocationPath )
+	void incrementChildCount( String relativeLocationPath )
 	{
 		requireNonNull( relativeLocationPath );
 		childCounter.compute( relativeLocationPath, (path, counter) ->
@@ -74,7 +74,7 @@ class Node
 		} );
 	}
 
-	public int getChildCount( String relativeLocationPath )
+	int getChildCount( String relativeLocationPath )
 	{
 		return childCounter.getOrDefault( relativeLocationPath, 0 );
 	}

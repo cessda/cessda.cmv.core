@@ -129,8 +129,7 @@ class ValidationReportTest
 		}
 		catch (JsonProcessingException e)
 		{
-			e.printStackTrace();
-			Assertions.fail( e.getMessage() );
+			Assertions.fail( e );
 		}
 	}
 
