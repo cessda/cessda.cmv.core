@@ -19,7 +19,6 @@
  */
 package eu.cessda.cmv.core;
 
-@SuppressWarnings( "deprecation" )
 public enum ValidationGateName
 {
 	BASIC( new BasicValidationGate() ),
