@@ -30,16 +30,7 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods;
 
 class ArchitectureConstraintsTest extends TestClassesRuleTest
 {
-	private final JavaClasses importedClasses;
-	private final String[] packageNames;
-	private final ClassFileImporter classFileImporter;
-
-	ArchitectureConstraintsTest()
-	{
-		classFileImporter = new ClassFileImporter();
-		packageNames = new String[]{ this.getClass().getPackage().getName() };
-		importedClasses = new ClassFileImporter().importPackages( packageNames );
-	}
+	private static final JavaClasses importedClasses = new ClassFileImporter().importPackages( ArchitectureConstraintsTest.class.getPackage().getName() );
 
 	@Test
 	@SuppressWarnings( "java:S5786" )
@@ -52,7 +43,7 @@ class ArchitectureConstraintsTest extends TestClassesRuleTest
 				.should()
 				.beDeclaredInClassesThat()
 				.haveSimpleNameEndingWith( "Test" )
-				.check( classFileImporter.importPackages( packageNames ) );
+				.check( importedClasses );
 	}
 
 	@Test

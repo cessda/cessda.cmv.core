@@ -23,6 +23,7 @@ import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 import static eu.cessda.cmv.core.ValidationGateName.BASICPLUS;
@@ -32,10 +33,10 @@ import static org.hamcrest.Matchers.*;
 class CodeValueOfControlledVocabularyConstraintTest
 {
 	private final TestEnv.V13 testEnv;
-	private final Profile.V10 profile;
+	private final Profile profile;
 	private final CessdaMetadataValidatorFactory factory;
 
-	CodeValueOfControlledVocabularyConstraintTest()
+	CodeValueOfControlledVocabularyConstraintTest() throws IOException
 	{
 		testEnv = DefaultTestEnv.newInstance( CodeValueOfControlledVocabularyConstraintTest.class );
 		factory = new CessdaMetadataValidatorFactory();
@@ -49,13 +50,13 @@ class CodeValueOfControlledVocabularyConstraintTest
 	}
 
 	@Test
-	void validate_invalid_not_element()
+	void validate_invalid_not_element() throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "9-document-invalid-1.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );
+		ValidationGate validationGate = factory.newValidationGate( BASICPLUS );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -65,29 +66,29 @@ class CodeValueOfControlledVocabularyConstraintTest
 	}
 
 	@Test
-	void validate_invalid_missing_url()
+	void validate_invalid_missing_url() throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "9-document-invalid-2.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );
+		ValidationGate validationGate = factory.newValidationGate( BASICPLUS );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
 		assertThat( constraintViolations.get( 0 ).getMessage(),
-				equalTo( "Code value 'Family.HouseholdFamily' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' is not validateable because no controlled vocabulary is declared (lineNumber: 28)" ) );
+				equalTo( "Code value 'Family.HouseholdFamily' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' cannot be validated because no controlled vocabulary is declared (lineNumber: 28)" ) );
 	}
 
 	@Test
-	void validate_valid()
+	void validate_valid() throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( testEnv.findTestResourceByName( "9-document-valid.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASICPLUS );
+		ValidationGate validationGate = factory.newValidationGate( BASICPLUS );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then

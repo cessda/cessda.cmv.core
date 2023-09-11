@@ -19,12 +19,12 @@
  */
 package eu.cessda.cmv.core;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
 
-class CodeValueOfControlledVocabularyConstraint implements Constraint.V20
+class CodeValueOfControlledVocabularyConstraint implements Constraint
 {
 	private final String locationPath;
 
@@ -38,9 +38,19 @@ class CodeValueOfControlledVocabularyConstraint implements Constraint.V20
 	public List<Validator> newValidators( Document document )
 	{
 		requireNonNull( document );
-		return ( (Document.V10) document ).getNodes( locationPath ).stream()
-				.map( ControlledVocabularyNode.class::cast )
-				.map( CodeValueOfControlledVocabularyValidator::new )
-				.collect( Collectors.toList() );
+		List<Validator> validators = new ArrayList<>();
+		for ( Node node : document.getNodes( locationPath ) )
+		{
+			if (node instanceof ControlledVocabularyNode)
+			{
+				CodeValueOfControlledVocabularyValidator codeValueOfControlledVocabularyValidator = new CodeValueOfControlledVocabularyValidator( (ControlledVocabularyNode) node );
+				validators.add( codeValueOfControlledVocabularyValidator );
+			}
+			else
+			{
+				throw new IllegalArgumentException(locationPath + " in document does not represent a controlled vocabulary");
+			}
+		}
+		return validators;
 	}
 }

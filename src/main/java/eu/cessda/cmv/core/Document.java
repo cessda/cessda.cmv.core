@@ -25,15 +25,9 @@ import java.util.List;
 
 public interface Document
 {
-	interface V10 extends Document
-	{
-		List<Node> getNodes( String locationPath );
-	}
+	List<Node> getNodes( String locationPath );
 
-	interface V11 extends Document.V10
-	{
-		void register( String uri, ControlledVocabularyRepository controlledVocabularyRepository );
+	void register( String uri, ControlledVocabularyRepository controlledVocabularyRepository );
 
-		<T extends ControlledVocabularyRepository> T findControlledVocabularyRepository( String uri );
-	}
+	ControlledVocabularyRepository findControlledVocabularyRepository( String uri );
 }

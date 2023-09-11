@@ -27,138 +27,172 @@ import org.gesis.commons.resource.io.DdiInputStream;
 import org.gesis.commons.resource.io.OaipmhV20Detector;
 import org.gesis.commons.xml.*;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.util.*;
 
 import static java.util.Objects.requireNonNull;
-import static org.gesis.commons.resource.Resource.newResource;
 
 public class CessdaMetadataValidatorFactory
 {
 	private static final Set<String> CONSTRAINTS = Collections.unmodifiableSet( new HashSet<>( Arrays.asList(
-			"CompilableXPathConstraint",
-			"ControlledVocabularyRepositoryConstraint",
-			"FixedValueNodeConstraint",
-			"MandatoryNodeConstraint",
-			"MandatoryNodeIfParentPresentConstraint",
-			"MaximumElementOccuranceConstraint",
-			"NodeInProfileConstraint",
-			"NotBlankNodeConstraint",
-			"OptionalNodeConstraint",
-			"PredicatelessXPathConstraint",
-			"RecommendedNodeConstraint"
+		"CompilableXPathConstraint",
+		"ControlledVocabularyRepositoryConstraint",
+		"FixedValueNodeConstraint",
+		"MandatoryNodeConstraint",
+		"MandatoryNodeIfParentPresentConstraint",
+		"MaximumElementOccurrenceConstraint",
+		"NodeInProfileConstraint",
+		"NotBlankNodeConstraint",
+		"OptionalNodeConstraint",
+		"PredicatelessXPathConstraint",
+		"RecommendedNodeConstraint"
 	) ) );
 
-	private final XmlElementExtractor.V10 xmlElementExtractor;
-	private final Tika documentMediaTypeDetector;
+	private final XmlElementExtractor.V10 xmlElementExtractor = new XercesXalanElementExtractor();
+	private final Tika documentMediaTypeDetector = new Tika( new CompositeDetector( new DdiDetector(), new OaipmhV20Detector() ) );
 
-	public CessdaMetadataValidatorFactory()
+	public DomDocument.V11 newDomDocument( File file ) throws IOException
 	{
-		xmlElementExtractor = new XercesXalanElementExtractor();
-		documentMediaTypeDetector = new Tika( new CompositeDetector( new DdiDetector(), new OaipmhV20Detector() ) );
+		try ( FileInputStream inputStream = new FileInputStream( file ) )
+		{
+			return newDomDocument( inputStream );
+		}
 	}
 
-	public DomDocument.V11 newDomDocument( File file )
+	public DomDocument.V11 newDomDocument( URI uri ) throws IOException
 	{
-		return newDomDocument( newResource( file ).readInputStream() );
-	}
-
-	public DomDocument.V11 newDomDocument( URI uri )
-	{
-		return newDomDocument( newResource( uri ).readInputStream() );
+		return newDomDocument( uri.toURL() );
 	}
 
 	public DomDocument.V11 newDomDocument( URL url ) throws IOException
 	{
-		return newDomDocument( url.openStream() );
+		try ( InputStream inputStream = url.openStream() )
+		{
+			return newDomDocument( inputStream );
+		}
 	}
 
 	public DomDocument.V11 newDomDocument( InputStream inputStream )
 	{
+		Objects.requireNonNull( inputStream, "inputStream is not null" );
 		return XercesXalanDocument.newBuilder()
-				.ofInputStream( requireNonNull( inputStream ) )
-				.namespaceAware()
-				.printPrettyWithIndentation( 2 )
-				.build();
+			.ofInputStream( inputStream )
+			.namespaceAware()
+			.printPrettyWithIndentation( 2 )
+			.build();
 	}
 
-	public Document.V11 newDocument( File file )
+	/**
+	 * Parse the XML at the given file into a {@link Document}. The XML document must be either a DDI document
+	 * or an OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
+	 *
+	 * @param file the file where the XML to be parsed is located.
+	 * @throws NotDocumentException if the XML is not well-formed, or is not detected as a DDI document.
+	 * @throws IOException          if an IO error occurs.
+	 */
+	public Document newDocument( File file ) throws IOException, NotDocumentException
 	{
-		return newDocument( newResource( file ).readInputStream() );
+		Objects.requireNonNull( file, "file is not null" );
+		try ( FileInputStream inputStream = new FileInputStream( file ) )
+		{
+			return newDocument( inputStream );
+		}
 	}
 
-	public Document.V11 newDocument( URI uri )
+	/**
+	 * Parse the XML located at the given URI into a {@link Document}. The XML document must be either a DDI document
+	 * or an OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
+	 *
+	 * @param uri the URI where the XML to be parsed is located.
+	 * @throws NotDocumentException  if the XML is not well-formed, or is not detected as a DDI document.
+	 * @throws MalformedURLException if the given URI cannot be constructed to a URL
+	 * @throws IOException           if an IO error occurs.
+	 * @implNote this calls {@link #newDocument(URL)} using {@link URI#toURL()} to transform the URI to a URL.
+	 */
+	public Document newDocument( URI uri ) throws IOException, NotDocumentException
 	{
-		return newDocument( newResource( uri ).readInputStream() );
+		Objects.requireNonNull( uri, "uri is not null" );
+		return newDocument( uri.toURL() );
 	}
 
-	public Document.V11 newDocument( URL url )
+	/**
+	 * Parse the XML located at the given URL into a {@link Document}. The XML document must be either a DDI document
+	 * or an OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
+	 *
+	 * @param url the URL where the XML to be parsed is located.
+	 * @throws NotDocumentException if the XML is not well-formed, or is not detected as a DDI document.
+	 * @throws IOException          if an IO error occurs.
+	 */
+	public Document newDocument( URL url ) throws IOException, NotDocumentException
 	{
-		return newDocument( newResource( url ).readInputStream() );
+		Objects.requireNonNull( url, "url is not null" );
+		try ( InputStream inputStream = url.openStream() )
+		{
+			return newDocument( inputStream );
+		}
 	}
 
-	public Document.V11 newDocument( Resource resource )
+	/**
+	 * Parse the given resource into a {@link Document}. The XML document must be either a DDI document or an
+	 * OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
+	 *
+	 * @param resource the resource containing the XML to be parsed.
+	 * @throws NotDocumentException if the XML is not well-formed, or is not detected as a DDI document.
+	 * @throws IOException          if an IO error occurs.
+	 */
+	public Document newDocument( Resource resource ) throws IOException, NotDocumentException
 	{
-		return newDocument( requireNonNull( resource ).readInputStream() );
+		Objects.requireNonNull( resource, "resource is not null" );
+		try ( InputStream inputStream = resource.readInputStream() )
+		{
+			return newDocument( inputStream );
+		}
 	}
 
 	/**
 	 * Returns a validation gate with the given name.
 	 */
-	public static ValidationGate.V10 getValidationGate( ValidationGateName name )
+	public static ValidationGate getValidationGate( ValidationGateName name )
 	{
 		requireNonNull( name, "name must not be null" );
 		return name.getValidationGate();
 	}
 
-	public Profile.V10 newProfile( Resource resource )
+	public Profile newProfile( Resource resource ) throws IOException
 	{
-		return new DomSemiStructuredDdiProfile( newDdiInputStream( resource ) );
-	}
-
-	public Profile.V10 newProfile( URI uri )
-	{
-		try
+		Objects.requireNonNull( resource, "resource must not be null" );
+		try ( DdiInputStream ddiInputStream = new DdiInputStream( resource ) )
 		{
-			return newProfile( requireNonNull( uri ).toURL() );
-		}
-		catch (MalformedURLException e)
-		{
-			throw new IllegalArgumentException( e );
+			return new DomSemiStructuredDdiProfile( ddiInputStream );
 		}
 	}
 
-	public Profile.V10 newProfile( URL url )
+	public Profile newProfile( URI uri ) throws IOException
 	{
-		return new DomSemiStructuredDdiProfile( newDdiInputStream( url ) );
+		Objects.requireNonNull( uri, "uri must not be null" );
+		return newProfile( uri.toURL() );
 	}
 
-	public Profile.V10 newProfile( File file )
+	public Profile newProfile( URL url ) throws IOException
 	{
-		try
+		Objects.requireNonNull( url, "url must not be null" );
+		InputStream urlInputStream = url.openStream();
+		try ( DdiInputStream ddiInputStream = new DdiInputStream( urlInputStream ) )
 		{
-			return newProfile( file.toURI().toURL() );
+			return new DomSemiStructuredDdiProfile( ddiInputStream );
 		}
-		catch (MalformedURLException e)
+	}
+
+	public Profile newProfile( File file ) throws IOException
+	{
+		FileInputStream fileInputStream = new FileInputStream( file );
+		try ( DdiInputStream ddiInputStream = new DdiInputStream( fileInputStream ) )
 		{
-			throw new IllegalArgumentException( e );
+			return new DomSemiStructuredDdiProfile( ddiInputStream );
 		}
-	}
-
-	public DdiInputStream newDdiInputStream( Resource resource )
-	{
-		return newDdiInputStream( requireNonNull( resource ).readInputStream() );
-	}
-
-	public DdiInputStream newDdiInputStream( URL url )
-	{
-		return newDdiInputStream( newResource( url ).readInputStream() );
 	}
 
 	/**
@@ -169,19 +203,19 @@ public class CessdaMetadataValidatorFactory
 	 * @return the validation gate
 	 * @throws InvalidGateException if any of the given constraints are invalid
 	 */
-	public static ValidationGate.V10 newValidationGate( Collection<String> constraints ) throws InvalidGateException
+	public static ValidationGate newValidationGate( Collection<String> constraints ) throws InvalidGateException
 	{
 		ArrayList<InvalidConstraintException> exceptions = new ArrayList<>();
 
 		// Attempt to map the names of constraints to class objects
-		List<Class<? extends Constraint.V20>> list = new ArrayList<>();
+		List<Class<? extends Constraint>> list = new ArrayList<>();
 		for ( String c : constraints )
 		{
 			try
 			{
 				// Construct the fully qualified class name for the constraints
 				Class<?> potentialConstraint = Class.forName( "eu.cessda.cmv.core." + c );
-				list.add( potentialConstraint.asSubclass( Constraint.V20.class ) );
+				list.add( potentialConstraint.asSubclass( Constraint.class ) );
 			}
 			catch ( ClassNotFoundException | ClassCastException e )
 			{
@@ -214,20 +248,36 @@ public class CessdaMetadataValidatorFactory
 		return CONSTRAINTS;
 	}
 
-	@SuppressWarnings( "java:S1133" ) // false positive - XPath detected as a URI
-	public Document.V11 newDocument( InputStream inputStream )
+	/**
+	 * Parse the given XML into a {@link Document}. The XML document must be either a DDI document or an
+	 * OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
+	 *
+	 * @param inputStream the input stream containing the XML to be parsed.
+	 * @throws NotDocumentException if the XML is not well-formed, or is not detected as a DDI document.
+	 * @throws IOException          if an IO error occurs.
+	 */
+	public Document newDocument( InputStream inputStream ) throws IOException, NotDocumentException
 	{
-		try ( InputStream bufferedInputStream = new BufferedInputStream( requireNonNull( inputStream ) ) )
+		Objects.requireNonNull( inputStream, "inputStream is null" );
+
+		// Encapsulate the input stream into a BufferedInputStream if mark() is not supported
+		if ( !inputStream.markSupported() )
 		{
-			String mediaType = documentMediaTypeDetector.detect( bufferedInputStream );
+			inputStream = new BufferedInputStream( inputStream );
+		}
+
+		try
+		{
+			String mediaType = documentMediaTypeDetector.detect( inputStream );
 			if ( DdiDetector.MEDIATYPE.equals( mediaType ) )
 			{
-				return new DomCodebookDocument( bufferedInputStream );
+				// Parse as DDI
+				return new DomCodebookDocument( inputStream );
 			}
 			else if ( OaipmhV20Detector.MEDIATYPE.equals( mediaType ) )
 			{
-				String xpath = "/OAI-PMH/GetRecord/record/metadata/*[1]";
-				Optional<InputStream> extractedElementInputStream = xmlElementExtractor.extractAsInputStream( bufferedInputStream, xpath );
+				// Try to extract <metadata> and recurse
+				Optional<InputStream> extractedElementInputStream = xmlElementExtractor.extractAsInputStream( inputStream, "/OAI-PMH/GetRecord/record/metadata/*[1]" );
 				if ( extractedElementInputStream.isPresent() )
 				{
 					return newDocument( extractedElementInputStream.get() );
@@ -237,39 +287,20 @@ public class CessdaMetadataValidatorFactory
 		}
 		catch ( XmlNotWellformedException e )
 		{
-			throw new NotDocumentException( String.format( "Not well-formed XML: %s", e.getMessage() ) );
-		}
-		catch ( IOException e )
-		{
 			throw new NotDocumentException( e );
-		}
-	}
-
-	public DdiInputStream newDdiInputStream( InputStream inputStream )
-	{
-		try
-		{
-			return new DdiInputStream( inputStream );
-		}
-		catch ( IOException e )
-		{
-			throw new IllegalArgumentException( e );
 		}
 	}
 
 	/**
 	 * Returns a validation gate with the given name.
-	 *
-	 * @deprecated use the static method instead
 	 */
-	@Deprecated
-	public ValidationGate.V10 newValidationGate( ValidationGateName name )
+	ValidationGate newValidationGate( ValidationGateName name )
 	{
 		return getValidationGate( name );
 	}
 
-	public ValidationService.V10 newValidationService()
+	public ValidationService newValidationService()
 	{
-		return new ValidationServiceV0( this );
+		return new ValidationServiceImpl( this );
 	}
 }

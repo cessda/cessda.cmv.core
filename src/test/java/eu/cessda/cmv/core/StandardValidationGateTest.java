@@ -38,15 +38,15 @@ class StandardValidationGateTest
 	void validate()
 	{
 		// given
-		Document.V10 document = mock( Document.V10.class );
+		Document document = mock( Document.class );
 		when( document.getNodes( anyString() ) ).thenReturn( emptyList() );
-		Profile.V10 profile = mock( Profile.V10.class );
+		Profile profile = mock( Profile.class );
 		when( profile.getConstraints() ).thenReturn( asList(
 				new MandatoryNodeConstraint( "/path/to/mandatory/node" ),
 				new RecommendedNodeConstraint( "/path/to/recommended/node" ) ) );
 
 		// when
-		ValidationGate.V10 validationGate = new StandardValidationGate();
+		ValidationGate validationGate = new StandardValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then

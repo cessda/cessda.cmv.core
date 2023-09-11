@@ -33,7 +33,6 @@ import static org.gesis.commons.test.hamcrest.OptionalMatchers.isEmpty;
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isPresent;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.instanceOf;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -83,7 +82,7 @@ class CompilableXPathConstraintTest
 	void newValidators( TestParameter testParameter )
 	{
 		// given
-		Constraint.V20 constraint = new CompilableXPathConstraint( testParameter.locationPath );
+		Constraint constraint = new CompilableXPathConstraint( testParameter.locationPath );
 
 		// when
 		List<Validator> validators = constraint.newValidators( mockDocument( testParameter.locationPath ) );
@@ -91,13 +90,12 @@ class CompilableXPathConstraintTest
 		// then
 		assertThat( validators, hasSize( 1 ) );
 		Validator validator = validators.get( 0 );
-		assertThat( validator, instanceOf( Validator.V10.class ) );
-		assertThat( ( (Validator.V10) validator ).validate(), testParameter.expectedConstraintViolation );
+		assertThat( validator.validate(), testParameter.expectedConstraintViolation );
 	}
 
-	private Document.V10 mockDocument( String locationPath )
+	private Document mockDocument( String locationPath )
 	{
-		Document.V10 document = mock( Document.V10.class );
+		Document document = mock( Document.class );
 		Node node = new Node( "/DDIProfile/Used/@xpath", locationPath, null );
 		when( document.getNodes( locationPath ) ).thenReturn( Collections.singletonList( node ) );
 		return document;

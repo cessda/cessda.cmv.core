@@ -34,7 +34,7 @@ class NotBlankNodeValidatorTest
 	{
 		// given: empty text content
 		Node node = new Node( "/path/to/node", "", null );
-		Validator.V10 validator = new NotBlankNodeValidator( node );
+		Validator validator = new NotBlankNodeValidator( node );
 
 		// when
 		Optional<ConstraintViolation> constraintViolation = validator.validate();
@@ -48,7 +48,7 @@ class NotBlankNodeValidatorTest
 	{
 		// given: blank text content
 		Node node = new Node( "/path/to/node", "   ", null );
-		Validator.V10 validator = new NotBlankNodeValidator( node );
+		Validator validator = new NotBlankNodeValidator( node );
 
 		// when
 		Optional<ConstraintViolation> constraintViolation = validator.validate();
@@ -62,7 +62,7 @@ class NotBlankNodeValidatorTest
 	{
 		// given: not blank text content
 		Node node = new Node( "/path/to/node", "not blank", null );
-		Validator.V10 validator = new NotBlankNodeValidator( node );
+		Validator validator = new NotBlankNodeValidator( node );
 
 		// when
 		Optional<ConstraintViolation> constraintViolation = validator.validate();

@@ -25,6 +25,7 @@ import org.gesis.commons.xml.SaxXercesAgainstSchemaValidator;
 import org.gesis.commons.xml.ddi.Ddi251ClasspathEntityResolver;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 import static eu.cessda.cmv.core.ValidationGateName.EXTENDED;
@@ -34,10 +35,10 @@ import static org.hamcrest.Matchers.*;
 class FixedValueNodeConstraintTest
 {
 	private final TestEnv.V13 testEnv;
-	private final Profile.V10 profile;
+	private final Profile profile;
 	private final CessdaMetadataValidatorFactory factory;
 
-	FixedValueNodeConstraintTest()
+	FixedValueNodeConstraintTest() throws IOException
 	{
 		testEnv = DefaultTestEnv.newInstance( FixedValueNodeConstraintTest.class );
 		SaxXercesAgainstSchemaValidator xmlValidator = new SaxXercesAgainstSchemaValidator();
@@ -60,13 +61,13 @@ class FixedValueNodeConstraintTest
 	}
 
 	@Test
-	void validate_valid()
+	void validate_valid() throws IOException, NotDocumentException
 	{
 		// given
-		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "13-document-valid-1.xml" ) );
+		Document document = factory.newDocument( testEnv.findTestResourceByName( "13-document-valid-1.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( EXTENDED );
+		ValidationGate validationGate = factory.newValidationGate( EXTENDED );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -74,13 +75,13 @@ class FixedValueNodeConstraintTest
 	}
 
 	@Test
-	void validate_invalid_inequalFixedValue()
+	void validate_invalid_inequalFixedValue() throws IOException, NotDocumentException
 	{
 		// given
-		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "13-document-invalid-1.xml" ) );
+		Document document = factory.newDocument( testEnv.findTestResourceByName( "13-document-invalid-1.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( EXTENDED );
+		ValidationGate validationGate = factory.newValidationGate( EXTENDED );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -90,13 +91,13 @@ class FixedValueNodeConstraintTest
 	}
 
 	@Test
-	void validate_invalid_missing()
+	void validate_invalid_missing() throws IOException, NotDocumentException
 	{
 		// given
-		Document.V11 document = factory.newDocument( testEnv.findTestResourceByName( "13-document-invalid-2.xml" ) );
+		Document document = factory.newDocument( testEnv.findTestResourceByName( "13-document-invalid-2.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( EXTENDED );
+		ValidationGate validationGate = factory.newValidationGate( EXTENDED );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then

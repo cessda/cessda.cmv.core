@@ -25,20 +25,14 @@ import java.util.List;
 
 final class StrictValidationGate extends AbstractValidationGate
 {
-	static final List<Class<? extends Constraint.V20>> CONSTRAINTS = Collections.unmodifiableList(
+	static final List<Class<? extends Constraint>> CONSTRAINTS = Collections.unmodifiableList(
 			Arrays.asList(
-					MaximumElementOccuranceConstraint.class,
+					MaximumElementOccurrenceConstraint.class,
 					NodeInProfileConstraint.class
 			)
 	);
 
-	/**
-	 * @deprecated Use
-	 * {@link eu.cessda.cmv.core.CessdaMetadataValidatorFactory#newValidationGate(ValidationGateName)}
-	 * instead
-	 */
-	@Deprecated
-	public StrictValidationGate()
+	StrictValidationGate()
 	{
 		addConstraintType( BasicValidationGate.CONSTRAINTS );
 		addConstraintType( BasicPlusValidationGate.CONSTRAINTS );

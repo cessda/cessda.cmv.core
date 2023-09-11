@@ -19,13 +19,19 @@
  */
 package eu.cessda.cmv.core;
 
-import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepositoryProxy;
+import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.List;
 
-class ControlledVocabularyRepositoryConstraint implements Constraint.V20
+class ControlledVocabularyRepositoryConstraint implements Constraint
 {
+	private static final Logger LOGGER = LoggerFactory.getLogger( ControlledVocabularyRepositoryConstraint.class );
+
 	private final String locationPath;
 	private final String type;
 	private final String uri;
@@ -43,17 +49,38 @@ class ControlledVocabularyRepositoryConstraint implements Constraint.V20
 	@Override
 	public List<Validator> newValidators( Document document )
 	{
-		Document.V11 d = (Document.V11) document;
-		ControlledVocabularyRepositoryProxy proxy = new ControlledVocabularyRepositoryProxy( type, uri, true );
-		d.register( uri, proxy );
-		long count = d.getNodes( locationPath ).stream()
-				.filter( node -> node.getTextContent().contentEquals( uri ) )
-				.count();
-		List<Validator> validators = new ArrayList<>();
+		ControlledVocabularyRepository repository;
+		try
+		{
+			Class<?> clazz = Class.forName( type );
+			repository = (ControlledVocabularyRepository) clazz
+				.getDeclaredConstructor( URI.class )
+				.newInstance( new URI(uri) );
+		}
+		catch ( ReflectiveOperationException | URISyntaxException e )
+		{
+			LOGGER.warn( "Instancing {} failed, falling back to empty controlled vocabulary repository", type, e );
+			repository = EmptyControlledVocabularyRepository.INSTANCE;
+		}
+
+		document.register( uri, repository );
+
+		int count = 0;
+		for ( Node node : document.getNodes( locationPath ) )
+		{
+			if ( node.getTextContent().contentEquals( uri ) )
+			{
+				count++;
+			}
+		}
+
 		if ( count > 0 )
 		{
-			validators.add( new ControlledVocabularyRepositoryValidator( proxy ) );
+			return Collections.singletonList( new ControlledVocabularyRepositoryValidator( repository ) );
 		}
-		return validators;
+		else
+		{
+			return Collections.emptyList();
+		}
 	}
 }

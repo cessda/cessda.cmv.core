@@ -22,6 +22,7 @@ package eu.cessda.cmv.core;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -37,7 +38,7 @@ class CdcCodebookDocumentValidationTest
 	private final Profile profile;
 	private final CessdaMetadataValidatorFactory factory;
 
-	CdcCodebookDocumentValidationTest()
+	CdcCodebookDocumentValidationTest() throws IOException
 	{
 		factory = new CessdaMetadataValidatorFactory();
 		profile = factory.newProfile( getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ) );
@@ -45,10 +46,22 @@ class CdcCodebookDocumentValidationTest
 
 	private static class TestParameter
 	{
-		String documentName;
-		int expectedViolationsAtBasicValidationGate;
-		int expectedViolationsAtStandardValidationGate;
-		int expectedViolationsAtStrictValidationGate;
+		public TestParameter(
+			String documentName,
+			int expectedViolationsAtBasicValidationGate,
+			int expectedViolationsAtStandardValidationGate,
+			int expectedViolationsAtStrictValidationGate )
+		{
+			this.documentName = documentName;
+			this.expectedViolationsAtBasicValidationGate = expectedViolationsAtBasicValidationGate;
+			this.expectedViolationsAtStandardValidationGate = expectedViolationsAtStandardValidationGate;
+			this.expectedViolationsAtStrictValidationGate = expectedViolationsAtStrictValidationGate;
+		}
+
+		final String documentName;
+		final int expectedViolationsAtBasicValidationGate;
+		final int expectedViolationsAtStandardValidationGate;
+		final int expectedViolationsAtStrictValidationGate;
 
 		public String toString()
 		{
@@ -58,77 +71,76 @@ class CdcCodebookDocumentValidationTest
 
 	static Stream<TestParameter> newTestParameters()
 	{
-		TestParameter testParameter;
 		List<TestParameter> testParameters = new ArrayList<>();
 
-		testParameter = new TestParameter();
-		testParameter.documentName = "/demo-documents/ddi-v25/ukds-7481.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = ( 1 );
-		testParameter.expectedViolationsAtStandardValidationGate = 1 + ( 13 );
-		testParameter.expectedViolationsAtStrictValidationGate = 1 + 13 + 8;
-		testParameters.add( testParameter );
+		testParameters.add( new TestParameter(
+			"/demo-documents/ddi-v25/ukds-7481.xml",
+			1,
+			1 + ( 13 ),
+			1 + 13 + 8
+		));
 
-		testParameter = new TestParameter();
-		testParameter.documentName = "/demo-documents/ddi-v25/ukds-2000.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = 216;
-		testParameter.expectedViolationsAtStandardValidationGate = 216 + 16;
-		testParameter.expectedViolationsAtStrictValidationGate = 216 + 16 + 17;
-		testParameters.add( testParameter );
+		testParameters.add( new TestParameter(
+			"/demo-documents/ddi-v25/ukds-2000.xml",
+			216,
+			216 + 16,
+			216 + 16 + 17
+		));
 
-		testParameter = new TestParameter();
-		testParameter.documentName = "/demo-documents/ddi-v25/fsd-3271.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = ( 2 );
-		testParameter.expectedViolationsAtStandardValidationGate = 2 + ( 7 + 2 );
-		testParameter.expectedViolationsAtStrictValidationGate = 2 + 9 + 7;
-		testParameters.add( testParameter );
+		testParameters.add( new TestParameter(
+			"/demo-documents/ddi-v25/fsd-3271.xml",
+			2 ,
+			2 + ( 7 + 2 ),
+			2 + 9 + 7
+		));
 
-		testParameter = new TestParameter();
-		testParameter.documentName = "/demo-documents/ddi-v25/fsd-3307.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = ( 2 );
-		testParameter.expectedViolationsAtStandardValidationGate = 2 + ( 7 + 4 );
-		testParameter.expectedViolationsAtStrictValidationGate = 2 + 11 + 8;
-		testParameters.add( testParameter );
+		testParameters.add( new TestParameter(
+			"/demo-documents/ddi-v25/fsd-3307.xml",
+			2,
+			2 + ( 7 + 4 ),
+			2 + 11 + 8
+		));
 
-		testParameter = new TestParameter();
-		testParameter.documentName = "/demo-documents/ddi-v25/fsd-3307-oaipmh.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = ( 2 );
-		testParameter.expectedViolationsAtStandardValidationGate = 2 + ( 7 + 4 );
-		testParameter.expectedViolationsAtStrictValidationGate = 2 + 11 + 8;
-		testParameters.add( testParameter );
+		testParameters.add( new TestParameter(
+			"/demo-documents/ddi-v25/fsd-3307-oaipmh.xml",
+			2,
+			2 + ( 7 + 4 ),
+			2 + 11 + 8
+		));
 
-		testParameter = new TestParameter();
-		testParameter.documentName = "/demo-documents/ddi-v25/gesis-5100.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = ( 4 );
-		testParameter.expectedViolationsAtStandardValidationGate = 4 + ( 15 + 3 );
-		testParameter.expectedViolationsAtStrictValidationGate = 4 + 17 + (9 + 3);
-		testParameters.add( testParameter );
+		testParameters.add( new TestParameter(
+			"/demo-documents/ddi-v25/gesis-5100.xml",
+			4,
+			4 + ( 15 + 3 ),
+			4 + 17 + (9 + 3)
+		));
 
-		testParameter = new TestParameter();
-		testParameter.documentName = "/demo-documents/ddi-v25/gesis-5300.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = 4;
-		testParameter.expectedViolationsAtStandardValidationGate = 4 + ( 15 + 3 );
-		testParameter.expectedViolationsAtStrictValidationGate = 4 + 18 + ( 10 );
-		testParameters.add( testParameter );
+		testParameters.add( new TestParameter(
+			"/demo-documents/ddi-v25/gesis-5300.xml",
+			4,
+			4 + ( 15 + 3 ),
+			4 + 18 + ( 10 )
+		));
 
-		testParameter = new TestParameter();
-		testParameter.documentName = "/demo-documents/ddi-v25/gesis-2800.xml";
-		testParameter.expectedViolationsAtBasicValidationGate = 4;
-		testParameter.expectedViolationsAtStandardValidationGate = 4 + ( 15 + 3 );
-		testParameter.expectedViolationsAtStrictValidationGate = 4 + 18 + ( 10 );
-		testParameters.add( testParameter );
+		testParameters.add( new TestParameter(
+			"/demo-documents/ddi-v25/gesis-2800.xml",
+			4,
+			4 + ( 15 + 3 ),
+			4 + 18 + ( 10 )
+		));
 
 		return testParameters.stream();
 	}
 
 	@ParameterizedTest
 	@MethodSource( newTestParameters )
-	void validateWithBasicValidationGate( TestParameter param )
+	void validateWithBasicValidationGate( TestParameter param ) throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( getClass().getResource( param.documentName ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
+		ValidationGate validationGate = factory.newValidationGate( BASIC );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 		// printReport( param.documentName, validationGate.getClass().getSimpleName(),
 		// constraintViolations );
@@ -139,13 +151,13 @@ class CdcCodebookDocumentValidationTest
 
 	@ParameterizedTest
 	@MethodSource( newTestParameters )
-	void validateWithStandardValidationGate( TestParameter param )
+	void validateWithStandardValidationGate( TestParameter param ) throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( getClass().getResource( param.documentName ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( STANDARD );
+		ValidationGate validationGate = factory.newValidationGate( STANDARD );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 		// printReport( param.documentName, validationGate.getClass().getSimpleName(),
 		// constraintViolations );
@@ -156,13 +168,13 @@ class CdcCodebookDocumentValidationTest
 
 	@ParameterizedTest
 	@MethodSource( newTestParameters )
-	void validateWithStrictValidationGate( TestParameter param )
+	void validateWithStrictValidationGate( TestParameter param ) throws IOException, NotDocumentException
 	{
 		// given
 		Document document = factory.newDocument( getClass().getResource( param.documentName ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( STRICT );
+		ValidationGate validationGate = factory.newValidationGate( STRICT );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 		// printReport( param.documentName, validationGate.getClass().getSimpleName(),
 		// constraintViolations );

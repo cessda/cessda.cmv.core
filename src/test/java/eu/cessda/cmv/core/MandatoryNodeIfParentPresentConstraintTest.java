@@ -26,6 +26,7 @@ import org.gesis.commons.xml.ddi.Ddi251ClasspathEntityResolver;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import static eu.cessda.cmv.core.ValidationGateName.BASIC;
@@ -55,7 +56,7 @@ class MandatoryNodeIfParentPresentConstraintTest
 	}
 
 	@Test
-	void validate_missing()
+	void validate_missing() throws IOException, NotDocumentException
 	{
 		// given
 		File file = testEnv.findTestResourceByName( "ddi-v25/22-document-invalid-1.xml" );
@@ -63,7 +64,7 @@ class MandatoryNodeIfParentPresentConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/22-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
+		ValidationGate validationGate = factory.newValidationGate( BASIC );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -72,7 +73,7 @@ class MandatoryNodeIfParentPresentConstraintTest
 	}
 
 	@Test
-	void validate_blank()
+	void validate_blank() throws IOException, NotDocumentException
 	{
 		// given
 		File file = testEnv.findTestResourceByName( "ddi-v25/22-document-invalid-2.xml" );
@@ -80,7 +81,7 @@ class MandatoryNodeIfParentPresentConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/22-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
+		ValidationGate validationGate = factory.newValidationGate( BASIC );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -89,7 +90,7 @@ class MandatoryNodeIfParentPresentConstraintTest
 	}
 
 	@Test
-	void validate_valid()
+	void validate_valid() throws IOException, NotDocumentException
 	{
 		// given
 		File file = testEnv.findTestResourceByName( "ddi-v25/22-document-valid-1.xml" );
@@ -97,7 +98,7 @@ class MandatoryNodeIfParentPresentConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/22-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
+		ValidationGate validationGate = factory.newValidationGate( BASIC );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -105,7 +106,7 @@ class MandatoryNodeIfParentPresentConstraintTest
 	}
 
 	@Test
-	void validate_valid_parentNotPresent()
+	void validate_valid_parentNotPresent() throws IOException, NotDocumentException
 	{
 		// given
 		File file = testEnv.findTestResourceByName( "ddi-v25/22-document-valid-2.xml" );
@@ -113,7 +114,7 @@ class MandatoryNodeIfParentPresentConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/22-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = factory.newValidationGate( BASIC );
+		ValidationGate validationGate = factory.newValidationGate( BASIC );
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then

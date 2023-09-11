@@ -23,8 +23,5 @@ import java.util.List;
 
 public interface Profile
 {
-	interface V10 extends Profile
-	{
-		List<Constraint> getConstraints();
-	}
+	List<Constraint> getConstraints();
 }

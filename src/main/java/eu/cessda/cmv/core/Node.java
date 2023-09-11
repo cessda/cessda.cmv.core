@@ -31,7 +31,7 @@ class Node
 	private final String locationPath;
 	private final String textContent;
 	private final LocationInfo locationInfo;
-	private final Map<String, Integer> childCounter;
+	private final Map<String, Integer> childCounter = new HashMap<>();
 
 	Node( String locationPath, String textContent, LocationInfo locationInfo )
 	{
@@ -40,7 +40,6 @@ class Node
 		this.locationPath = locationPath;
 		this.textContent = textContent;
 		this.locationInfo = locationInfo;
-		childCounter = new HashMap<>();
 	}
 
 	public String getLocationPath()
@@ -61,8 +60,18 @@ class Node
 	public void incrementChildCount( String relativeLocationPath )
 	{
 		requireNonNull( relativeLocationPath );
-		Integer currentChildCount = childCounter.getOrDefault( relativeLocationPath, 0 );
-		childCounter.put( relativeLocationPath, currentChildCount + 1 );
+		childCounter.compute( relativeLocationPath, (path, counter) ->
+		{
+			if ( counter == null )
+			{
+				// Initialise the mapping with 1
+				return 1;
+			}
+			else
+			{
+				return counter + 1;
+			}
+		} );
 	}
 
 	public int getChildCount( String relativeLocationPath )

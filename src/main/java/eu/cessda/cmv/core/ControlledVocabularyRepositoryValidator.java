@@ -19,38 +19,45 @@
  */
 package eu.cessda.cmv.core;
 
-import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepositoryProxy;
+import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 
 import java.util.Optional;
+import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
-import static java.util.Optional.empty;
 
-class ControlledVocabularyRepositoryValidator implements Validator.V10
+class ControlledVocabularyRepositoryValidator implements Validator
 {
-	private final ControlledVocabularyRepositoryProxy proxy;
+	private final ControlledVocabularyRepository repository;
 
-	public ControlledVocabularyRepositoryValidator( ControlledVocabularyRepositoryProxy proxy )
+	public ControlledVocabularyRepositoryValidator( ControlledVocabularyRepository repository )
 	{
-		requireNonNull( proxy );
-		this.proxy = proxy;
+		requireNonNull( repository );
+		this.repository = repository;
 	}
 
 	@Override
 	public Optional<ConstraintViolation> validate()
 	{
+		Set<String> codeValues;
+
 		try
 		{
-			proxy.unproxy();
+			codeValues = repository.findCodeValues();
 		}
-		catch (Exception e)
+		catch (IllegalStateException e)
 		{
 			return Optional.of( new ConstraintViolation( e.getMessage(), null ) );
 		}
-		if ( proxy.findCodeValues().isEmpty() )
+
+		if ( codeValues.isEmpty() )
 		{
+			// No code values found, fail the constraint
 			return Optional.of( new ConstraintViolation( "No values", null ) );
 		}
-		return empty();
+		else
+		{
+			return Optional.empty();
+		}
 	}
 }

@@ -25,6 +25,7 @@ import org.gesis.commons.xml.SaxXercesAgainstSchemaValidator;
 import org.gesis.commons.xml.ddi.Ddi251ClasspathEntityResolver;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 import static eu.cessda.cmv.core.ValidationGateName.STANDARD;
@@ -36,7 +37,7 @@ class RecommendedNodeConstraintTest
 {
 	private final TestEnv.V14 testEnv;
 	private final CessdaMetadataValidatorFactory factory;
-	private final ValidationGate.V10 validationGate;
+	private final ValidationGate validationGate;
 
 	RecommendedNodeConstraintTest()
 	{
@@ -54,7 +55,7 @@ class RecommendedNodeConstraintTest
 	}
 
 	@Test
-	void validate_valid()
+	void validate_valid() throws IOException, NotDocumentException
 	{
 		// given
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/11-profile.xml" ) );
@@ -68,7 +69,7 @@ class RecommendedNodeConstraintTest
 	}
 
 	@Test
-	void validate_invalid_missing()
+	void validate_invalid_missing() throws IOException, NotDocumentException
 	{
 		// given
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/11-profile.xml" ) );
@@ -83,7 +84,7 @@ class RecommendedNodeConstraintTest
 	}
 
 	@Test
-	void validate_invalid_blank()
+	void validate_invalid_blank() throws IOException, NotDocumentException
 	{
 		// given
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/11-profile.xml" ) );

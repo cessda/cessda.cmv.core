@@ -20,7 +20,6 @@
 package eu.cessda.cmv.core;
 
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
-import eu.cessda.cmv.core.controlledvocabulary.EmptyControlledVocabularyRepository;
 import org.gesis.commons.xml.XercesXalanDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,16 +28,16 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
-class DomCodebookDocument implements Document.V11
+class DomCodebookDocument implements Document
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger( DomCodebookDocument.class );
 
 	private final org.gesis.commons.xml.DomDocument.V12 document;
-	private final Map<String, ControlledVocabularyRepository> controlledVocabularyRepositoryMap;
+	private final HashMap<String, ControlledVocabularyRepository> controlledVocabularyRepositoryMap = new HashMap<>();
 
 	public DomCodebookDocument( InputStream inputStream )
 	{
@@ -49,7 +48,6 @@ class DomCodebookDocument implements Document.V11
 				.locationInfoAware()
 				.namespaceAware()
 				.build();
-		controlledVocabularyRepositoryMap = new HashMap<>();
 	}
 
 	@Override
@@ -65,9 +63,9 @@ class DomCodebookDocument implements Document.V11
 					|| locationPath.equals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" ) )
 			{
 				node = new ControlledVocabularyNode( locationPath,
-						mapNodeToText( domNode ),
-						document.getLocationInfo( domNode ).orElse( null ),
-						findControlledVocabularyRepository( getVocabURI( domNode ) ) );
+					mapNodeToText( domNode ),
+					document.getLocationInfo( domNode ).orElse( null ),
+					findControlledVocabularyRepository( getVocabURI( domNode ) ) );
 			}
 			else
 			{
@@ -117,7 +115,6 @@ class DomCodebookDocument implements Document.V11
 		org.w3c.dom.Node result = null;
 		if ( node.getNodeName().equals( "concept" ) )
 		{
-			// result = document.selectNode( node, "@vocabURI" );
 			if ( node.getAttributes() != null )
 			{
 				result = node.getAttributes().getNamedItem( "vocabURI" );
@@ -128,38 +125,28 @@ class DomCodebookDocument implements Document.V11
 		{
 			result = document.selectNode( node, "concept/@vocabURI" );
 		}
-		if ( result == null )
-		{
-			return null;
-		}
-		else
-		{
-			return result.getTextContent();
-		}
+
+		return result != null ? result.getTextContent() : null;
 	}
 
 	@Override
 	public void register( String uri, ControlledVocabularyRepository controlledVocabularyRepository )
 	{
+		Objects.requireNonNull( controlledVocabularyRepository, "controlledVocabularyRepository must not be null" );
 		controlledVocabularyRepositoryMap.put( uri, controlledVocabularyRepository );
 	}
 
 	@Override
-	@SuppressWarnings( "unchecked" )
-	public <T extends ControlledVocabularyRepository> T findControlledVocabularyRepository( String uri )
+	public ControlledVocabularyRepository findControlledVocabularyRepository( String uri )
 	{
-		if ( uri == null )
+		if ( controlledVocabularyRepositoryMap.containsKey( uri ) )
 		{
-			return null;
-		}
-		else if ( controlledVocabularyRepositoryMap.containsKey( uri ) )
-		{
-			return (T) controlledVocabularyRepositoryMap.get( uri );
+			return controlledVocabularyRepositoryMap.get( uri );
 		}
 		else
 		{
 			LOGGER.warn( "ControlledVocabularyRepository for '{}' not found", uri );
-			return (T) new EmptyControlledVocabularyRepository();
+			return null;
 		}
 	}
 }

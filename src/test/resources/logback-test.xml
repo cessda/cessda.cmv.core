@@ -4,7 +4,7 @@
       <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
     </encoder>
   </appender>
-  <logger name="eu.cessda.cmv.core.mediatype.validationreport.v0.ValidationReportV0Test" level="WARN"/>
+  <logger name="eu.cessda.cmv.core.mediatype.validationreport.ValidationReportTest" level="WARN"/>
   <root level="WARN">
     <appender-ref ref="STDOUT" />
   </root>

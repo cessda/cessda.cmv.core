@@ -27,16 +27,11 @@ import static java.util.Objects.requireNonNull;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
 
-class CompilableXPathValidator implements Validator.V10
+class CompilableXPathValidator implements Validator
 {
 	private final XPathFactory factory;
 	private String reason;
 	private final Node node;
-
-	CompilableXPathValidator( Node node )
-	{
-		this( node, XPathFactory.newInstance() );
-	}
 
 	CompilableXPathValidator( Node node, XPathFactory factory )
 	{
@@ -50,12 +45,17 @@ class CompilableXPathValidator implements Validator.V10
 	@Override
 	public Optional<ConstraintViolation> validate()
 	{
+
 		try
 		{
-			factory.newXPath().compile( node.getTextContent() );
+			// XPathFactory instances are not thread safe
+			synchronized ( factory )
+			{
+				factory.newXPath().compile( node.getTextContent() );
+			}
 			return empty();
 		}
-		catch (XPathExpressionException e)
+		catch ( XPathExpressionException e )
 		{
 			reason = e.getMessage().replace( "javax.xml.transform.TransformerException: ", "" );
 			return of( newConstraintViolation() );
@@ -64,8 +64,7 @@ class CompilableXPathValidator implements Validator.V10
 
 	private ConstraintViolation newConstraintViolation()
 	{
-		String message = "'%s' is not a compilable XPath: %s";
-		message = String.format( message, node.getTextContent(), reason );
+		String message = String.format( "'%s' is not a compilable XPath: %s", node.getTextContent(), reason );
 		return new ConstraintViolation( message, node.getLocationInfo() );
 	}
 }

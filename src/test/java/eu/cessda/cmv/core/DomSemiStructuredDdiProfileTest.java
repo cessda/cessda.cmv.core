@@ -19,14 +19,18 @@
  */
 package eu.cessda.cmv.core;
 
-import eu.cessda.cmv.core.mediatype.profile.v0.ProfileV0;
+import eu.cessda.cmv.core.mediatype.profile.Profile;
+import org.gesis.commons.resource.io.DdiInputStream;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.util.Objects;
 
 import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -46,13 +50,13 @@ class DomSemiStructuredDdiProfileTest
 	@ParameterizedTest
 	@ValueSource(
 			strings = { "/demo-documents/ddi-v25/cdc25_profile.xml", "/demo-documents/ddi-v25/cdc_122_profile.xml" } )
-	void constructMultilingualProfiles( String classpathLocation )
+	void constructMultilingualProfiles( String classpathLocation ) throws IOException
 	{
 		// given
 		URL url = getClass().getResource( classpathLocation );
 
 		// when
-		Profile.V10 profile = factory.newProfile( url );
+		eu.cessda.cmv.core.Profile profile = factory.newProfile( url );
 
 		// then
 		assertThat( countConstraints( profile, CompilableXPathConstraint.class ), is( 61 ) );
@@ -69,13 +73,13 @@ class DomSemiStructuredDdiProfileTest
 	@ValueSource(
 			strings = { "/demo-documents/ddi-v25/cdc25_profile_mono.xml",
 					"/demo-documents/ddi-v25/cdc_122_profile_mono.xml" } )
-	void constructMonolingualProfiles( String classpathLocation )
+	void constructMonolingualProfiles( String classpathLocation ) throws IOException
 	{
 		// given
 		URL url = getClass().getResource( classpathLocation );
 
 		// when
-		Profile.V10 profile = factory.newProfile( url );
+		eu.cessda.cmv.core.Profile profile = factory.newProfile( url );
 
 		// then
 		assertThat( countConstraints( profile, CompilableXPathConstraint.class ), is( 44 ) );
@@ -88,23 +92,24 @@ class DomSemiStructuredDdiProfileTest
 		assertThat( profile.getConstraints(), hasSize( 44 + 44 + 22 + 8 + 5 + 14 + 2 ) );
 	}
 
-	private int countConstraints( Profile.V10 profile, Class<? extends Constraint> clazz )
+	private int countConstraints( eu.cessda.cmv.core.Profile profile, Class<? extends Constraint> clazz )
 	{
 		return (int) profile.getConstraints().stream().filter( clazz::isInstance ).count();
 	}
 
 	@Test
 	@Disabled( "Own profile format is not up-to-date" ) // TODO
-	void toJaxbProfileV0()
+	void toJaxbProfileV0() throws IOException
 	{
 		// given
 		URL sourceUrl = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
 		File targetFile = new File( "target", "cdc25_profile_cmv.xml" );
 
 		// when
+		InputStream inputStream = newResource( Objects.requireNonNull( sourceUrl ) ).readInputStream();
 		DomSemiStructuredDdiProfile profile = new DomSemiStructuredDdiProfile(
-				factory.newDdiInputStream( newResource( sourceUrl ).readInputStream() ) );
-		ProfileV0 jaxbProfile = profile.toJaxbProfileV0();
+			new DdiInputStream( inputStream ) );
+		Profile jaxbProfile = profile.toJaxbProfileV0();
 		jaxbProfile.saveAs( targetFile );
 		assertThat( targetFile, anExistingFile() );
 		assertThat( jaxbProfile.getConstraints(), hasSize( 183 ) ); // why not 203 ?

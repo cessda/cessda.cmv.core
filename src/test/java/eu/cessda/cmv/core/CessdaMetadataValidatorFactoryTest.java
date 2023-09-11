@@ -54,8 +54,8 @@ class CessdaMetadataValidatorFactoryTest
 	}
 
 	@ParameterizedTest
-	@ValueSource( strings = { "/demo-documents/ddi-v25/fsd-3307.xml", "/demo-documents/ddi-v25/fsd-3307-oaipmh.xml" } )
-	void newDocument( String uri )
+	@ValueSource( strings = { "/demo-documents/ddi-v25/fsd-3307.xml", "/demo-documents/ddi-v25/fsd-3307-oaipmh.xml", "/demo-documents/ddi-v32/gesis-5300.xml"} )
+	void newDocument( String uri ) throws IOException, NotDocumentException
 	{
 		URL resourceUrl = this.getClass().getResource( uri );
 		assert resourceUrl != null;
@@ -64,7 +64,7 @@ class CessdaMetadataValidatorFactoryTest
 	}
 
 	@Test
-	void newDocumentWithNotWellformedDocument() throws IOException
+	void newDocumentWithNotWellFormedDocument() throws IOException
 	{
 		// given
 		URL resourceUrl = getClass().getResource( "/demo-documents/ddi-v25/ukds-7481-not-wellformed.xml-invalid" );

@@ -19,8 +19,9 @@
  */
 package eu.cessda.cmv.core;
 
-class OptionalNodeValidator extends MinimumElementOccuranceValidator
+class OptionalNodeValidator extends MinimumElementOccurrenceValidator
 {
+
 	public OptionalNodeValidator( String locationPath, long actualCount )
 	{
 		super( locationPath, actualCount, 1 );
@@ -29,8 +30,7 @@ class OptionalNodeValidator extends MinimumElementOccuranceValidator
 	@Override
 	protected ConstraintViolation newConstraintViolation()
 	{
-		String message = "'%s' is optional";
-		message = String.format( message, getLocationPath() );
+		String message = String.format( "'%s' is optional", getLocationPath() );
 		return new ConstraintViolation( message, null );
 	}
 }

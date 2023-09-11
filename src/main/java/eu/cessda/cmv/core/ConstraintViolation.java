@@ -28,7 +28,6 @@ import static java.util.Objects.requireNonNull;
 public class ConstraintViolation
 {
 	private final String message;
-
 	private final LocationInfo locationInfo;
 
 	ConstraintViolation( String message, LocationInfo locationInfo )

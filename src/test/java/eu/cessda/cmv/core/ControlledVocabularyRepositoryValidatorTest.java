@@ -20,15 +20,15 @@
 package eu.cessda.cmv.core;
 
 import eu.cessda.cmv.core.controlledvocabulary.CessdaControlledVocabularyRepositoryV2;
-import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepositoryProxy;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.net.URI;
 import java.util.Optional;
 
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isEmpty;
-import static org.gesis.commons.test.hamcrest.OptionalMatchers.isPresent;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
 
 class ControlledVocabularyRepositoryValidatorTest
 {
@@ -36,12 +36,11 @@ class ControlledVocabularyRepositoryValidatorTest
 	void validate_valid()
 	{
 		// given
-		String canonicalName = CessdaControlledVocabularyRepositoryV2.class.getCanonicalName();
-		String uri = "https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0";
-		ControlledVocabularyRepositoryProxy proxy = new ControlledVocabularyRepositoryProxy( canonicalName, uri );
+		URI uri = URI.create( "https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0" );
+		CessdaControlledVocabularyRepositoryV2 proxy = new CessdaControlledVocabularyRepositoryV2( uri );
 
 		// when
-		Validator.V10 validator = new ControlledVocabularyRepositoryValidator( proxy );
+		Validator validator = new ControlledVocabularyRepositoryValidator( proxy );
 		Optional<ConstraintViolation> constraintViolation = validator.validate();
 
 		// then
@@ -52,16 +51,10 @@ class ControlledVocabularyRepositoryValidatorTest
 	void validate_invalid()
 	{
 		// given
-		String canonicalName = CessdaControlledVocabularyRepositoryV2.class.getCanonicalName();
-		String uri = "https://localhost/v2/vocabularies/AnalysisUnit/10.0?languageVersion=en-10.0";
-		ControlledVocabularyRepositoryProxy proxy = new ControlledVocabularyRepositoryProxy( canonicalName, uri );
-
-		// when
-		Validator.V10 validator = new ControlledVocabularyRepositoryValidator( proxy );
-		Optional<ConstraintViolation> constraintViolation = validator.validate();
+		URI uri = URI.create( "https://localhost/v2/vocabularies/AnalysisUnit/10.0?languageVersion=en-10.0" );
+		IllegalArgumentException exception = Assertions.assertThrows( IllegalArgumentException.class, () -> new CessdaControlledVocabularyRepositoryV2( uri ) );
 
 		// then
-		assertThat( constraintViolation, isPresent() );
-		assertThat( constraintViolation.get().getMessage(), containsString( "Resource not found" ) );
+		assertThat( exception.getMessage(), equalTo( "Resource not found" ) );
 	}
 }

@@ -21,48 +21,48 @@ package eu.cessda.cmv.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
-abstract class AbstractValidationGate implements ValidationGate.V10
+abstract class AbstractValidationGate implements ValidationGate
 {
-	private final List<Class<? extends Constraint.V20>> constraintTypes;
+	private final HashSet<Class<? extends Constraint>> constraintTypes;
 
 	AbstractValidationGate()
 	{
-		constraintTypes = new ArrayList<>();
+		constraintTypes = new HashSet<>();
 	}
 
-	AbstractValidationGate( Collection<Class<? extends Constraint.V20>> constraints )
+	AbstractValidationGate( Collection<Class<? extends Constraint>> constraints )
 	{
-		this.constraintTypes = new ArrayList<>( constraints );
+		this.constraintTypes = new HashSet<>( constraints );
 	}
 
-	protected void addConstraintType( Collection<Class<? extends Constraint.V20>> constraints )
+	protected void addConstraintType( Collection<Class<? extends Constraint>> constraints )
 	{
 		constraintTypes.addAll( constraints );
 	}
 
 	@Override
-	@SuppressWarnings( "unchecked" )
-	public <T extends ConstraintViolation> List<T> validate( Document document, Profile profile )
+	public List<ConstraintViolation> validate( Document document, Profile profile )
 	{
 		requireNonNull( document );
 		requireNonNull( profile );
 
 		List<ConstraintViolation> constraintViolations = new ArrayList<>();
-		for ( Constraint constraint : ( (Profile.V10) profile ).getConstraints() )
+		for ( Constraint constraint : profile.getConstraints() )
 		{
 			if ( constraintTypes.contains( constraint.getClass() ) )
 			{
-				for ( Validator validator : ( (Constraint.V20) constraint ).newValidators( document ) )
+				for ( Validator validator : constraint.newValidators( document ) )
 				{
-					( (Validator.V10) validator ).validate().ifPresent( constraintViolations::add );
+					validator.validate().ifPresent( constraintViolations::add );
 				}
 			}
 		}
-		return (List<T>) constraintViolations;
+		return constraintViolations;
 	}
 
 }

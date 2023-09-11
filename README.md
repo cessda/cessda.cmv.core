@@ -102,7 +102,7 @@ You can find the list of changes made in each release in the
 
 ## License
 
-See the [LICENSE](LICENSE.txt) file.
+See the [LICENSE](LICENSE) file.
 
 ## Citing
 

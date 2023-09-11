@@ -20,8 +20,8 @@
 package eu.cessda.cmv.core;
 
 import javax.xml.xpath.XPathFactory;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 class CompilableXPathConstraint extends NodeConstraint
 {
@@ -34,8 +34,13 @@ class CompilableXPathConstraint extends NodeConstraint
 	public List<Validator> newValidators( Document document )
 	{
 		XPathFactory factory = XPathFactory.newInstance();
-		return ( (Document.V10) document ).getNodes( getLocationPath() ).stream()
-				.map( node -> new CompilableXPathValidator( node, factory ) )
-				.collect( Collectors.toList() );
+		List<Node> nodes = document.getNodes( getLocationPath() );
+		List<Validator> validators = new ArrayList<>(nodes.size());
+		for ( Node node : nodes )
+		{
+			CompilableXPathValidator compilableXPathValidator = new CompilableXPathValidator( node, factory );
+			validators.add( compilableXPathValidator );
+		}
+		return validators;
 	}
 }

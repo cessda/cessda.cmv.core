@@ -21,6 +21,7 @@ package eu.cessda.cmv.core;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -36,10 +37,10 @@ class CustomConstraintTest
 	private final CessdaMetadataValidatorFactory factory = new CessdaMetadataValidatorFactory();
 
 	@Test
-	void shouldCreateValidationGateWithSpecifiedConstraints() throws InvalidGateException
+	void shouldCreateValidationGateWithSpecifiedConstraints() throws InvalidGateException, IOException, NotDocumentException
 	{
 		// given
-		Document.V11 document = factory.newDocument(
+		Document document = factory.newDocument(
 				this.getClass()
 						.getResource( "/eu.cessda.cmv.core.FixedValueNodeConstraintTest/13-document-invalid-1.xml" )
 		);
@@ -47,7 +48,7 @@ class CustomConstraintTest
 				this.getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" )
 		);
 
-		ValidationGate.V10 validationGate = CessdaMetadataValidatorFactory.newValidationGate( Arrays.asList(
+		ValidationGate validationGate = CessdaMetadataValidatorFactory.newValidationGate( Arrays.asList(
 				FixedValueNodeConstraint.class.getSimpleName(),
 				MandatoryNodeConstraint.class.getSimpleName()
 		) );
@@ -62,7 +63,6 @@ class CustomConstraintTest
 		assertThat( messages, hasItem( containsString( "fixed value" ) ) );
 	}
 
-	@SuppressWarnings( "unchecked" )
 	@Test
 	void shouldThrowIfAnInvalidConstraintIsRequested()
 	{

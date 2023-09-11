@@ -25,7 +25,7 @@ import java.util.List;
 
 class ProfileValidationGate extends AbstractValidationGate
 {
-	static final List<Class<? extends Constraint.V20>> CONSTRAINTS = Collections.unmodifiableList(
+	static final List<Class<? extends Constraint>> CONSTRAINTS = Collections.unmodifiableList(
 			Arrays.asList(
 					PredicatelessXPathConstraint.class,
 					CompilableXPathConstraint.class

@@ -19,7 +19,7 @@
  */
 package eu.cessda.cmv.core;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 class NodeInProfileConstraint extends NodeConstraint
@@ -33,6 +33,6 @@ class NodeInProfileConstraint extends NodeConstraint
 	public List<Validator> newValidators( Document document )
 	{
 		// TODO Implement NodeInProfileValidator #59
-		return new ArrayList<>();
+		return Collections.emptyList();
 	}
 }

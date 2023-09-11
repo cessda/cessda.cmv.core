@@ -27,7 +27,7 @@ import static java.util.Optional.empty;
 import static java.util.Optional.of;
 import static org.gesis.commons.xml.xpath.XPathTokenizer.PARENT;
 
-class MandatoryNodeIfParentPresentValidator implements Validator.V10
+class MandatoryNodeIfParentPresentValidator implements Validator
 {
 	private final XPathTokenizer tokenizer;
 	private final Node parentNode;
@@ -53,10 +53,9 @@ class MandatoryNodeIfParentPresentValidator implements Validator.V10
 
 	protected ConstraintViolation newConstraintViolation()
 	{
-		String message = "'%s' is mandatory in %s";
-		message = String.format( message,
-				tokenizer.getLocationPathRelativeTo( PARENT ),
-				tokenizer.getLocationPath( PARENT ) );
+		String message = String.format( "'%s' is mandatory in %s",
+			tokenizer.getLocationPathRelativeTo( PARENT ),
+			tokenizer.getLocationPath( PARENT ) );
 		return new ConstraintViolation( message, parentNode.getLocationInfo() );
 	}
 }

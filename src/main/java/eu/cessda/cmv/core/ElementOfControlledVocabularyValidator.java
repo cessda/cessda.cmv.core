@@ -29,7 +29,7 @@ import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
 import static java.util.Optional.of;
 
-abstract class ElementOfControlledVocabularyValidator implements Validator.V10
+abstract class ElementOfControlledVocabularyValidator implements Validator
 {
 	private final ControlledVocabularyNode node;
 	private final ElementName elementName;
@@ -46,10 +46,10 @@ abstract class ElementOfControlledVocabularyValidator implements Validator.V10
 	@Override
 	public Optional<ConstraintViolation> validate()
 	{
-		ControlledVocabularyRepository.V11 repository = node.getControlledVocabularyRepository();
+		ControlledVocabularyRepository repository = node.getControlledVocabularyRepository();
 		if ( repository == null )
 		{
-			String message = format( "%s '%s' in '%s' is not validateable because no controlled vocabulary is declared",
+			String message = format( "%s '%s' in '%s' cannot be validated because no controlled vocabulary is declared",
 					elementName.getText(), node.getTextContent(), node.getLocationPath() );
 			return of( new ConstraintViolation( message, node.getLocationInfo() ) );
 		}
@@ -71,13 +71,13 @@ abstract class ElementOfControlledVocabularyValidator implements Validator.V10
 
 	enum ElementName
 	{
-		CODE_VALUE( "Code value", ControlledVocabularyRepository.V11::findCodeValues ),
-		DESCRIPTIVE_TERM( "Descriptive term", ControlledVocabularyRepository.V11::findDescriptiveTerms );
+		CODE_VALUE( "Code value", ControlledVocabularyRepository::findCodeValues ),
+		DESCRIPTIVE_TERM( "Descriptive term", ControlledVocabularyRepository::findDescriptiveTerms );
 
 		private final String text;
-		private final Function<ControlledVocabularyRepository.V11, Set<String>> elementSetProvider;
+		private final Function<ControlledVocabularyRepository, Set<String>> elementSetProvider;
 
-		ElementName( String text, Function<ControlledVocabularyRepository.V11, Set<String>> elementSetProvider )
+		ElementName( String text, Function<ControlledVocabularyRepository, Set<String>> elementSetProvider )
 		{
 			this.text = text;
 			this.elementSetProvider = elementSetProvider;
@@ -88,7 +88,7 @@ abstract class ElementOfControlledVocabularyValidator implements Validator.V10
 			return text;
 		}
 
-		Function<ControlledVocabularyRepository.V11, Set<String>> getElementSetProvider()
+		Function<ControlledVocabularyRepository, Set<String>> getElementSetProvider()
 		{
 			return elementSetProvider;
 		}

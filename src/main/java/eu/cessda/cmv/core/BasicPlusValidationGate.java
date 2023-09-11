@@ -25,7 +25,7 @@ import java.util.List;
 
 final class BasicPlusValidationGate extends AbstractValidationGate
 {
-	static final List<Class<? extends Constraint.V20>> CONSTRAINTS = Collections.unmodifiableList(
+	static final List<Class<? extends Constraint>> CONSTRAINTS = Collections.unmodifiableList(
 			Arrays.asList(
 					CodeValueOfControlledVocabularyConstraint.class,
 					ControlledVocabularyRepositoryConstraint.class,
@@ -33,13 +33,7 @@ final class BasicPlusValidationGate extends AbstractValidationGate
 			)
 	);
 
-	/**
-	 * @deprecated Use
-	 * {@link eu.cessda.cmv.core.CessdaMetadataValidatorFactory#newValidationGate(ValidationGateName)}
-	 * instead
-	 */
-	@Deprecated
-	public BasicPlusValidationGate()
+	BasicPlusValidationGate()
 	{
 		addConstraintType( BasicValidationGate.CONSTRAINTS );
 		addConstraintType( CONSTRAINTS );

@@ -26,6 +26,7 @@ import org.gesis.commons.xml.ddi.Ddi251ClasspathEntityResolver;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -50,7 +51,7 @@ class MandatoryNodeConstraintTest
 	}
 
 	@Test
-	void validate_missing()
+	void validate_missing() throws IOException, NotDocumentException
 	{
 		// given
 		File file = testEnv.findTestResourceByName( "ddi-v25/10-document-invalid-missing.xml-invalid" );
@@ -58,7 +59,7 @@ class MandatoryNodeConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/10-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = new StrictValidationGate();
+		ValidationGate validationGate = new StrictValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -67,7 +68,7 @@ class MandatoryNodeConstraintTest
 	}
 
 	@Test
-	void validate_blank()
+	void validate_blank() throws IOException, NotDocumentException
 	{
 		// given
 		File file = testEnv.findTestResourceByName( "ddi-v25/10-document-invalid-blank.xml" );
@@ -75,7 +76,7 @@ class MandatoryNodeConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/10-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = new StrictValidationGate();
+		ValidationGate validationGate = new StrictValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
@@ -84,7 +85,7 @@ class MandatoryNodeConstraintTest
 	}
 
 	@Test
-	void validate_valid()
+	void validate_valid() throws IOException, NotDocumentException
 	{
 		// given
 		File file = testEnv.findTestResourceByName( "ddi-v25/10-document-valid.xml" );
@@ -92,7 +93,7 @@ class MandatoryNodeConstraintTest
 		Profile profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/10-profile.xml" ) );
 
 		// when
-		ValidationGate.V10 validationGate = new StrictValidationGate();
+		ValidationGate validationGate = new StrictValidationGate();
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then

@@ -23,8 +23,5 @@ import java.util.Optional;
 
 public interface Validator
 {
-	interface V10 extends Validator
-	{
-		Optional<ConstraintViolation> validate();
-	}
+	Optional<ConstraintViolation> validate();
 }
