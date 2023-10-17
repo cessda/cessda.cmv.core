@@ -14,6 +14,37 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - *Fixed (for any bug fixes)*
 - *Security (in case of vulnerabilities)*
 
+## [2.0.0] - 2023-10-17
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10013270.svg)](https://doi.org/10.5281/zenodo.10013270)
+
+### Added
+
+- Added semantic `equals()` and `hashcode()` methods to MediaType objects 
+
+### Changed
+
+- `InMemoryAnalysisUnit10ControlledVocabularyRepository` and `EmptyControlledVocabularyRepository` have been refactored to be singletons
+- `CessdaControlledVocabularyRepositoryV2` now uses Java URL HTTP methods, removing a dependency on Spring's HTTP client
+- Many instances of unsafe typecasting have been removed
+- The spelling of `MinimumElementOccurrenceValidator` has been corrected
+
+### Removed
+
+- Deprecated public constructors for the various validation gates are now package-private. Accessing the gates from the enum is the only way for API consumers to retrieve them.
+- Empty interfaces have been removed, as an interface with no methods isn't particularly useful. The removed interfaces are listed below.
+  - `Constraint.V10`
+  - `Document.V10`
+  - `ValidationReport`
+  - `ValidationRequest`
+- `Interface.Version` interfaces have been renamed to `Interface`. Default methods are the recommended method for extending interfaces. The renamed interfaces are listed below.
+  - `Constraint.V20` → `Constraint`
+  - `ControlledVocabularyRepository.V11` → `ControlledVocabularyRepository`
+  - `Document.V11` → `Document`
+  - `Validator.V10` → `Validator`
+  - `Profile.V10` → `Profile`
+- Removed redundant class `ControlledVocabularyRepositoryProxy`
+
 ## [1.1.0] - 2023-05-23
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7961900.svg)](https://doi.org/10.5281/zenodo.7961900)
@@ -132,8 +163,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added badges to REAMDME
   ([#53](https://github.com/cessda/cessda.cmv.core/issues/53))
 
+[2.0.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/2.0.0
 [1.1.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/1.1.0
-
 [1.0.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/v1.0.0
 [0.4.2]: https://github.com/cessda/cessda.cmv.core/releases/tag/v0.4.2
 [0.4.1]: https://github.com/cessda/cessda.cmv.core/releases/tag/v0.4.1
