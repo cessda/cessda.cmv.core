@@ -28,7 +28,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
@@ -80,8 +79,6 @@ class DomCodebookDocument implements Document
 
 	private String mapNodeToText( org.w3c.dom.Node domNode )
 	{
-		requireNonNull( domNode );
-
 		if ( domNode.getChildNodes().getLength() == 0 )
 		{
 			return domNode.getTextContent().trim();
@@ -94,9 +91,6 @@ class DomCodebookDocument implements Document
 
 	private void countChildNodes( Node node, org.w3c.dom.Node domNode )
 	{
-		requireNonNull( node );
-		requireNonNull( domNode );
-
 		if ( domNode.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE )
 		{
 			for ( int i = 0; i < domNode.getAttributes().getLength(); i++ )
@@ -132,20 +126,24 @@ class DomCodebookDocument implements Document
 	@Override
 	public void register( String uri, ControlledVocabularyRepository controlledVocabularyRepository )
 	{
-		Objects.requireNonNull( controlledVocabularyRepository, "controlledVocabularyRepository must not be null" );
+		requireNonNull( uri, "uri must not be null" );
+		requireNonNull( controlledVocabularyRepository, "controlledVocabularyRepository must not be null" );
 		controlledVocabularyRepositoryMap.put( uri, controlledVocabularyRepository );
 	}
 
 	@Override
 	public ControlledVocabularyRepository findControlledVocabularyRepository( String uri )
 	{
+		requireNonNull( uri, "uri must not be null" );
 		if ( controlledVocabularyRepositoryMap.containsKey( uri ) )
 		{
 			return controlledVocabularyRepositoryMap.get( uri );
 		}
 		else
 		{
-			LOGGER.warn( "ControlledVocabularyRepository for '{}' not found", uri );
+			// Log that the repository was not found, and cache this result so that logs are only output once
+			LOGGER.debug( "ControlledVocabularyRepository for '{}' not found", uri );
+			controlledVocabularyRepositoryMap.put( uri, null );
 			return null;
 		}
 	}

@@ -22,7 +22,6 @@ package eu.cessda.cmv.core;
 import org.gesis.commons.xml.LocationInfo;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import static java.util.Objects.requireNonNull;
 
@@ -31,7 +30,7 @@ class Node
 	private final String locationPath;
 	private final String textContent;
 	private final LocationInfo locationInfo;
-	private final Map<String, Integer> childCounter = new HashMap<>();
+	private final HashMap<String, Integer> childCounter = new HashMap<>();
 
 	Node( String locationPath, String textContent, LocationInfo locationInfo )
 	{

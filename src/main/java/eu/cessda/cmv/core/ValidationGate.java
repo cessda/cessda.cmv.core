@@ -23,5 +23,13 @@ import java.util.List;
 
 public interface ValidationGate
 {
+	/**
+	 * Validate a document against a profile. This method will return a list of constraint
+	 * violations if the document violates the constraints in the profile.
+	 *
+	 * @param document the document to validate.
+	 * @param profile the profile to validate the document against
+	 * @return a list of constraint violations.
+	 */
 	List<ConstraintViolation> validate( Document document, Profile profile );
 }

@@ -25,9 +25,30 @@ import java.util.List;
 
 public interface Document
 {
+	/**
+	 * Get a list of DOM nodes found at the given XPath.
+	 *
+	 * @param locationPath the XPath to the nodes to look up.
+	 */
 	List<Node> getNodes( String locationPath );
 
+	/**
+	 * Register a URI to a {@link ControlledVocabularyRepository} instance. The {@link ControlledVocabularyRepository}
+	 * can be looked up using {@link #findControlledVocabularyRepository(String)} with a registered URI.
+	 *
+	 * @param uri the URI of the controlled vocabulary repository.
+	 * @param controlledVocabularyRepository the repository.
+	 */
 	void register( String uri, ControlledVocabularyRepository controlledVocabularyRepository );
 
+	/**
+	 * Find a registered {@link ControlledVocabularyRepository} instance.
+	 * <p>
+	 * {@link ControlledVocabularyRepository} instances are registered using
+	 * {@link #register(String, ControlledVocabularyRepository)}.
+	 *
+	 * @param uri the URI of the controlled vocabulary.
+	 * @return the controlled vocabulary, or {@code null} if the uri was not registered.
+	 */
 	ControlledVocabularyRepository findControlledVocabularyRepository( String uri );
 }
