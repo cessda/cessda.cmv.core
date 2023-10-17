@@ -61,10 +61,17 @@ class DomCodebookDocument implements Document
 			if ( locationPath.equals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit" )
 					|| locationPath.equals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" ) )
 			{
+				String vocabURI = getVocabURI( domNode );
+
+				ControlledVocabularyRepository repository = null;
+				if (vocabURI != null) {
+					repository = findControlledVocabularyRepository( vocabURI );
+				}
+
 				node = new ControlledVocabularyNode( locationPath,
 					mapNodeToText( domNode ),
 					document.getLocationInfo( domNode ).orElse( null ),
-					findControlledVocabularyRepository( getVocabURI( domNode ) ) );
+					repository );
 			}
 			else
 			{
