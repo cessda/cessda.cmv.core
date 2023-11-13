@@ -42,8 +42,7 @@ public class ValidationReport extends JaxbDocument
 	static final String MAJOR = "0";
 	static final String MINOR = "1";
 	static final String VERSION = MAJOR + "." + MINOR;
-	public static final String MEDIATYPE = "application/vnd.eu.cessda.cmv.core.mediatype.validation-report.v" + VERSION
-			+ "+xml";
+	public static final String MEDIATYPE = "application/vnd.eu.cessda.cmv.core.mediatype.validation-report.v" + VERSION + "+xml";
 	static final String SCHEMALOCATION_HOST = "https://raw.githubusercontent.com/cessda/cessda.cmv.core/stable/schema";
 	public static final String SCHEMALOCATION_FILENAME = "validation-report-v" + VERSION + ".xsd";
 
@@ -77,6 +76,13 @@ public class ValidationReport extends JaxbDocument
 	{
 		super( SCHEMALOCATION, new DefaultNamespacePrefixMapper( NAMESPACE_DEFAULT_URI ) );
 		constraintViolations = new ArrayList<>();
+	}
+
+	public ValidationReport( URI documentUri, List<ConstraintViolation> constraintViolations )
+	{
+		this();
+		this.documentUri = documentUri;
+		this.constraintViolations = constraintViolations;
 	}
 
 	public List<ConstraintViolation> getConstraintViolations()
@@ -134,7 +140,7 @@ public class ValidationReport extends JaxbDocument
 	@Override
 	public String toString()
 	{
-		return toString( JAXBCONTEXT );
+		return "documentUri: " + documentUri + ", constraintViolations: " + constraintViolations;
 	}
 
 	@Override

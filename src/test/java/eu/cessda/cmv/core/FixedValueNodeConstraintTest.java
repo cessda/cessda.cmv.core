@@ -86,8 +86,8 @@ class FixedValueNodeConstraintTest
 
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
-		assertThat( constraintViolations.get( 0 ).getMessage(),
-				equalTo( "'DDI Analyseeinheit' is not equal to fixed value 'DDI Analysis Unit' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocab' (lineNumber: 13)" ) );
+		assertThat( constraintViolations.get( 0 ).toString(),
+				equalTo( "'DDI Analyseeinheit' is not equal to fixed value 'DDI Analysis Unit' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocab' (lineNumber: 13, columnNumber: 44)" ) );
 	}
 
 	@Test

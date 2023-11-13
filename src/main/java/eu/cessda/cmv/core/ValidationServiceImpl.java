@@ -27,8 +27,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 class ValidationServiceImpl implements ValidationService
 {
@@ -94,13 +94,16 @@ class ValidationServiceImpl implements ValidationService
 	{
 		List<eu.cessda.cmv.core.ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
-		ValidationReport validationReport = new ValidationReport();
-		validationReport.setDocumentUri( documentUri );
-		validationReport.setConstraintViolations( constraintViolations.stream()
-				.map( ConstraintViolation::new )
-				.collect( Collectors.toList() ) );
+		// Transform all constraint violations into the media-type form
+		List<ConstraintViolation> mediaTypeConstraintViolations = new ArrayList<>( constraintViolations.size() );
+		for ( eu.cessda.cmv.core.ConstraintViolation constraintViolation : constraintViolations )
+		{
+			ConstraintViolation mediaTypeViolation = new ConstraintViolation( constraintViolation );
+			mediaTypeConstraintViolations.add( mediaTypeViolation );
+		}
 
-		return validationReport;
+		// Create the validation report
+		return new ValidationReport( documentUri, mediaTypeConstraintViolations );
 	}
 
 	@Override

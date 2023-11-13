@@ -61,8 +61,8 @@ class CodeValueOfControlledVocabularyConstraintTest
 
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
-		assertThat( constraintViolations.get( 0 ).getMessage(),
-				equalTo( "Code value 'Person' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' is not element of the controlled vocabulary in 'https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0' (lineNumber: 16)" ) );
+		assertThat( constraintViolations.get( 0 ).toString(),
+				equalTo( "Code value 'Person' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' is not element of the controlled vocabulary in 'https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0' (lineNumber: 16, columnNumber: 113)" ) );
 	}
 
 	@Test
@@ -77,8 +77,8 @@ class CodeValueOfControlledVocabularyConstraintTest
 
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
-		assertThat( constraintViolations.get( 0 ).getMessage(),
-				equalTo( "Code value 'Family.HouseholdFamily' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' cannot be validated because no controlled vocabulary is declared (lineNumber: 28)" ) );
+		assertThat( constraintViolations.get( 0 ).toString(),
+				equalTo( "Code value 'Family.HouseholdFamily' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' cannot be validated because no controlled vocabulary is declared (lineNumber: 28, columnNumber: 30)" ) );
 	}
 
 	@Test

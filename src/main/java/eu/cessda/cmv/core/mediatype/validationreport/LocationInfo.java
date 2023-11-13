@@ -66,6 +66,12 @@ public class LocationInfo
 	}
 
 	@Override
+	public String toString()
+	{
+		return "lineNumber: " + lineNumber + ", columnNumber: " + columnNumber;
+	}
+
+	@Override
 	public boolean equals( Object o )
 	{
 		if ( this == o ) return true;
