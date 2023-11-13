@@ -19,7 +19,6 @@
  */
 package eu.cessda.cmv.core.mediatype.validationreport;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -31,7 +30,6 @@ import eu.cessda.cmv.core.ValidationService;
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -111,27 +109,19 @@ class ValidationReportTest
 
 	private void writeAndReadWithJackson( File file, PropertyNamingStrategy propertyNamingStrategy, ObjectMapper objectMapper ) throws IOException, NotDocumentException
 	{
-		try
-		{
-			objectMapper.setPropertyNamingStrategy( propertyNamingStrategy );
-			objectMapper.registerModule( new JaxbAnnotationModule() );
-			objectMapper.enable( SerializationFeature.INDENT_OUTPUT );
-			// objectMapper.setSerializationInclusion( Include.NON_NULL );
+		objectMapper.setPropertyNamingStrategy( propertyNamingStrategy );
+		objectMapper.registerModule( new JaxbAnnotationModule() );
+		objectMapper.enable( SerializationFeature.INDENT_OUTPUT );
+		// objectMapper.setSerializationInclusion( Include.NON_NULL );
 
-			ValidationReport validationReport = newValidationReport();
-			List<ConstraintViolation> constraintViolations = validationReport.getConstraintViolations();
-			String content = objectMapper.writeValueAsString( validationReport );
-			testEnv.writeContent( content, file );
-			assertThat( file, hasEqualContent( testEnv.findTestResourceByName( file.getName() ) ) );
+		ValidationReport validationReport = newValidationReport();
+		List<ConstraintViolation> constraintViolations = validationReport.getConstraintViolations();
+		String content = objectMapper.writeValueAsString( validationReport );
+		testEnv.writeContent( content, file );
+		assertThat( file, hasEqualContent( testEnv.findTestResourceByName( file.getName() ) ) );
 
-			validationReport = objectMapper.readValue( content, ValidationReport.class );
-			assertThat( validationReport.getConstraintViolations().size(), equalTo( constraintViolations.size() ) );
-		}
-		catch (JsonProcessingException e)
-		{
-			e.printStackTrace();
-			Assertions.fail( e.getMessage() );
-		}
+		validationReport = objectMapper.readValue( content, ValidationReport.class );
+		assertThat( validationReport.getConstraintViolations().size(), equalTo( constraintViolations.size() ) );
 	}
 
 	@Test

@@ -67,6 +67,18 @@ public class ConstraintViolation
 		this.locationInfo = locationInfo;
 	}
 
+	public String toString()
+	{
+		if ( locationInfo != null )
+		{
+			return message + " (lineNumber: " + locationInfo.getLineNumber() + ", columnNumber: " + locationInfo.getColumnNumber() + ")";
+		}
+		else
+		{
+			return message;
+		}
+	}
+
 	@Override
 	public boolean equals( Object o )
 	{

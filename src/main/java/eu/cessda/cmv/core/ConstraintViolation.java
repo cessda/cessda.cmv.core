@@ -40,18 +40,24 @@ public class ConstraintViolation
 
 	public String getMessage()
 	{
-		if ( locationInfo != null )
-		{
-			return message + " (lineNumber: " + locationInfo.getLineNumber() + ")";
-		}
-		else
-		{
-			return message;
-		}
+		return message;
 	}
 
 	public Optional<LocationInfo> getLocationInfo()
 	{
 		return Optional.ofNullable( locationInfo );
+	}
+
+	@Override
+	public String toString()
+	{
+		if ( locationInfo != null )
+		{
+			return message + " (lineNumber: " + locationInfo.getLineNumber() + ", columnNumber: " + locationInfo.getColumnNumber() + ")";
+		}
+		else
+		{
+			return message;
+		}
 	}
 }
