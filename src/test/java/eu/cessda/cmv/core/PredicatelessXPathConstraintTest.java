@@ -90,7 +90,7 @@ class PredicatelessXPathConstraintTest
 	private Document mockDocument( String locationPath )
 	{
 		Document document = mock( Document.class );
-		Node node = new Node( "/DDIProfile/Used/@xpath", locationPath, null );
+		Node node = new NodeImpl( "/DDIProfile/Used/@xpath", locationPath, null );
 		when( document.getNodes( locationPath ) ).thenReturn( Collections.singletonList( node ) );
 		return document;
 	}
