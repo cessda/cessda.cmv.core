@@ -71,7 +71,12 @@ pipeline {
 					sh './mvnw jar:jar javadoc:jar source:jar deploy:deploy'
 				}
 			}
-			when { branch 'main' }
+			when {
+				anyOf {
+					branch 'main'
+					buildingTag()
+				}
+			}
 		}
 	}
 }
