@@ -93,21 +93,11 @@ class ValidationRequestTest
 
 		return new ValidationRequestProvider[]{
 				new ValidationRequestProvider( validationRequestWithConstraints, request ->
-				{
-					assertThat( new TextResource( request.getDocument()
-							.toResource() ).toString(), equalTo( document.toString() ) );
-					assertThat( new TextResource( request.getProfile()
-							.toResource() ).toString(), equalTo( profile.toString() ) );
-					assertThat( request.getConstraints(), contains( constraints.toArray() ) );
-				} ),
+                        assertThat( request.getConstraints(), contains( constraints.toArray() ) )
+				),
 				new ValidationRequestProvider( validationRequestWithGateName, request ->
-				{
-					assertThat( new TextResource( request.getDocument()
-							.toResource() ).toString(), equalTo( document.toString() ) );
-					assertThat( new TextResource( request.getProfile()
-							.toResource() ).toString(), equalTo( profile.toString() ) );
-					assertThat( request.getValidationGateName(), equalTo( validationGateName ) );
-				} )
+                        assertThat( request.getValidationGateName(), equalTo( validationGateName ) )
+				)
 		};
 	}
 

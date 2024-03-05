@@ -19,19 +19,29 @@
  */
 package eu.cessda.cmv.core;
 
+import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 import org.apache.tika.Tika;
 import org.apache.tika.detect.CompositeDetector;
-import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.io.DdiDetector;
 import org.gesis.commons.resource.io.DdiInputStream;
 import org.gesis.commons.resource.io.OaipmhV20Detector;
-import org.gesis.commons.xml.*;
+import org.gesis.commons.xml.SimpleNamespaceContext;
+import org.gesis.commons.xml.XMLDocument;
+import org.gesis.commons.xml.XmlNotWellformedException;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
+import javax.xml.XMLConstants;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.*;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static java.util.Objects.requireNonNull;
 
@@ -51,39 +61,8 @@ public class CessdaMetadataValidatorFactory
 		"RecommendedNodeConstraint"
 	) ) );
 
-	private final XmlElementExtractor.V10 xmlElementExtractor = new XercesXalanElementExtractor();
-	private final Tika documentMediaTypeDetector = new Tika( new CompositeDetector( new DdiDetector(), new OaipmhV20Detector() ) );
-
-	public DomDocument.V11 newDomDocument( File file ) throws IOException
-	{
-		try ( FileInputStream inputStream = new FileInputStream( file ) )
-		{
-			return newDomDocument( inputStream );
-		}
-	}
-
-	public DomDocument.V11 newDomDocument( URI uri ) throws IOException
-	{
-		return newDomDocument( uri.toURL() );
-	}
-
-	public DomDocument.V11 newDomDocument( URL url ) throws IOException
-	{
-		try ( InputStream inputStream = url.openStream() )
-		{
-			return newDomDocument( inputStream );
-		}
-	}
-
-	public DomDocument.V11 newDomDocument( InputStream inputStream )
-	{
-		Objects.requireNonNull( inputStream, "inputStream is not null" );
-		return XercesXalanDocument.newBuilder()
-			.ofInputStream( inputStream )
-			.namespaceAware()
-			.printPrettyWithIndentation( 2 )
-			.build();
-	}
+    private final Tika documentMediaTypeDetector = new Tika( new CompositeDetector( new DdiDetector(), new OaipmhV20Detector() ) );
+	private final ConcurrentHashMap<URI, ControlledVocabularyRepository> cvrMap = new ConcurrentHashMap<>();
 
 	/**
 	 * Parse the XML at the given file into a {@link Document}. The XML document must be either a DDI document
@@ -136,23 +115,6 @@ public class CessdaMetadataValidatorFactory
 	}
 
 	/**
-	 * Parse the given resource into a {@link Document}. The XML document must be either a DDI document or an
-	 * OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
-	 *
-	 * @param resource the resource containing the XML to be parsed.
-	 * @throws NotDocumentException if the XML is not well-formed, or is not detected as a DDI document.
-	 * @throws IOException          if an IO error occurs.
-	 */
-	public Document newDocument( Resource resource ) throws IOException, NotDocumentException
-	{
-		Objects.requireNonNull( resource, "resource is not null" );
-		try ( InputStream inputStream = resource.readInputStream() )
-		{
-			return newDocument( inputStream );
-		}
-	}
-
-	/**
 	 * Returns a validation gate with the given name.
 	 */
 	public static ValidationGate getValidationGate( ValidationGateName name )
@@ -161,37 +123,44 @@ public class CessdaMetadataValidatorFactory
 		return name.getValidationGate();
 	}
 
-	public Profile newProfile( Resource resource ) throws IOException
-	{
-		Objects.requireNonNull( resource, "resource must not be null" );
-		try ( DdiInputStream ddiInputStream = new DdiInputStream( resource ) )
-		{
-			return new DomSemiStructuredDdiProfile( ddiInputStream );
-		}
-	}
-
-	public Profile newProfile( URI uri ) throws IOException
+	public Profile newProfile( URI uri ) throws IOException, NotDocumentException
 	{
 		Objects.requireNonNull( uri, "uri must not be null" );
-		return newProfile( uri.toURL() );
+		XMLDocument.Builder documentBuilder = XMLDocument.newBuilder().source( uri );
+		return newProfile( documentBuilder );
 	}
 
-	public Profile newProfile( URL url ) throws IOException
+	public Profile newProfile( URL url ) throws IOException, NotDocumentException
 	{
 		Objects.requireNonNull( url, "url must not be null" );
-		InputStream urlInputStream = url.openStream();
-		try ( DdiInputStream ddiInputStream = new DdiInputStream( urlInputStream ) )
-		{
-			return new DomSemiStructuredDdiProfile( ddiInputStream );
-		}
+		XMLDocument.Builder documentBuilder = XMLDocument.newBuilder().source( url );
+		return newProfile( documentBuilder );
 	}
 
-	public Profile newProfile( File file ) throws IOException
+	public Profile newProfile( File file ) throws IOException, NotDocumentException
 	{
-		FileInputStream fileInputStream = new FileInputStream( file );
-		try ( DdiInputStream ddiInputStream = new DdiInputStream( fileInputStream ) )
+		Objects.requireNonNull( file, "file must not be null" );
+		XMLDocument.Builder documentBuilder = XMLDocument.newBuilder().source( file );
+		return newProfile( documentBuilder );
+	}
+
+	public Profile newProfile( InputStream inputStream ) throws IOException, NotDocumentException
+	{
+		Objects.requireNonNull( inputStream, "inputStream must not be null" );
+		XMLDocument.Builder documentBuilder = XMLDocument.newBuilder().source( new DdiInputStream( inputStream ) );
+		return newProfile( documentBuilder );
+	}
+
+	private Profile newProfile( XMLDocument.Builder documentBuilder ) throws NotDocumentException
+	{
+		try
 		{
-			return new DomSemiStructuredDdiProfile( ddiInputStream );
+			XMLDocument document = documentBuilder.build();
+			return new DomSemiStructuredDdiProfile( document );
+		}
+		catch ( SAXException | IOException e )
+		{
+			throw new NotDocumentException( e );
 		}
 	}
 
@@ -272,20 +241,38 @@ public class CessdaMetadataValidatorFactory
 			if ( DdiDetector.MEDIATYPE.equals( mediaType ) )
 			{
 				// Parse as DDI
-				return new DomCodebookDocument( inputStream );
+				return new DomCodebookDocument( XMLDocument.newBuilder().locationInfoAware(true).namespaceAware().source( inputStream ).build(), cvrMap );
 			}
 			else if ( OaipmhV20Detector.MEDIATYPE.equals( mediaType ) )
 			{
 				// Try to extract <metadata> and recurse
-				Optional<InputStream> extractedElementInputStream = xmlElementExtractor.extractAsInputStream( inputStream, "/OAI-PMH/GetRecord/record/metadata/*[1]" );
-				if ( extractedElementInputStream.isPresent() )
+				DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+				documentBuilderFactory.setAttribute( XMLConstants.ACCESS_EXTERNAL_DTD, "" );
+				documentBuilderFactory.setAttribute( XMLConstants.ACCESS_EXTERNAL_SCHEMA, "" );
+				documentBuilderFactory.setNamespaceAware( true );
+				DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+				org.w3c.dom.Document sourceDocument = documentBuilder.parse( inputStream );
+
+				SimpleNamespaceContext nsContext = new SimpleNamespaceContext();
+				nsContext.bindNamespaceUri( "oai", "http://www.openarchives.org/OAI/2.0/" );
+				XPath xpath = XPathFactory.newInstance().newXPath();
+				xpath.setNamespaceContext( nsContext );
+				XPathExpression metadataXPath = xpath.compile("/oai:OAI-PMH/oai:GetRecord/oai:record/oai:metadata/*" );
+				NodeList metadataElements = (NodeList) metadataXPath.evaluate( sourceDocument, XPathConstants.NODESET );
+
+				if (metadataElements.getLength() != 0)
 				{
-					return newDocument( extractedElementInputStream.get() );
+                    org.w3c.dom.Document targetDocument = documentBuilder.newDocument();
+					targetDocument.appendChild( targetDocument.adoptNode( metadataElements.item( 0 ) ) );
+					targetDocument.getDocumentElement().setAttribute( "xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance" );
+					return new DomCodebookDocument( XMLDocument.newBuilder().locationInfoAware(true).namespaceAware().source( targetDocument ).build(), cvrMap );
 				}
 			}
-			throw new NotDocumentException( String.format( "Detected media type: %s", mediaType ) );
+
+			// Media-type detection failed, or no metadata was present
+			throw new NotDocumentException( mediaType );
 		}
-		catch ( XmlNotWellformedException e )
+		catch ( XmlNotWellformedException | XPathExpressionException | ParserConfigurationException | SAXException e )
 		{
 			throw new NotDocumentException( e );
 		}

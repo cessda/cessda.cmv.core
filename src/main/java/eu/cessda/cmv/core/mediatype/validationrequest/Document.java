@@ -20,9 +20,10 @@
 package eu.cessda.cmv.core.mediatype.validationrequest;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.gesis.commons.resource.Resource;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ import java.util.List;
 @XmlJavaTypeAdapter( DocumentV0Adapter.class )
 public interface Document
 {
-	Resource toResource();
+	InputStream toInputStream() throws IOException;
 
 	default List<String> validate()
 	{

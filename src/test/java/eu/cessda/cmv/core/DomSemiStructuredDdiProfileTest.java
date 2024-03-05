@@ -20,19 +20,17 @@
 package eu.cessda.cmv.core;
 
 import eu.cessda.cmv.core.mediatype.profile.Profile;
-import org.gesis.commons.resource.io.DdiInputStream;
+import org.gesis.commons.xml.XMLDocument;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.xml.sax.SAXException;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.util.Objects;
 
-import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -50,7 +48,7 @@ class DomSemiStructuredDdiProfileTest
 	@ParameterizedTest
 	@ValueSource(
 			strings = { "/demo-documents/ddi-v25/cdc25_profile.xml", "/demo-documents/ddi-v25/cdc_122_profile.xml" } )
-	void constructMultilingualProfiles( String classpathLocation ) throws IOException
+	void constructMultilingualProfiles( String classpathLocation ) throws IOException, NotDocumentException
 	{
 		// given
 		URL url = getClass().getResource( classpathLocation );
@@ -73,7 +71,7 @@ class DomSemiStructuredDdiProfileTest
 	@ValueSource(
 			strings = { "/demo-documents/ddi-v25/cdc25_profile_mono.xml",
 					"/demo-documents/ddi-v25/cdc_122_profile_mono.xml" } )
-	void constructMonolingualProfiles( String classpathLocation ) throws IOException
+	void constructMonolingualProfiles( String classpathLocation ) throws IOException, NotDocumentException
 	{
 		// given
 		URL url = getClass().getResource( classpathLocation );
@@ -99,16 +97,16 @@ class DomSemiStructuredDdiProfileTest
 
 	@Test
 	@Disabled( "Own profile format is not up-to-date" ) // TODO
-	void toJaxbProfileV0() throws IOException
+	void toJaxbProfileV0() throws IOException, NotDocumentException, SAXException
 	{
 		// given
 		URL sourceUrl = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
 		File targetFile = new File( "target", "cdc25_profile_cmv.xml" );
 
+		assert sourceUrl != null;
+
 		// when
-		InputStream inputStream = newResource( Objects.requireNonNull( sourceUrl ) ).readInputStream();
-		DomSemiStructuredDdiProfile profile = new DomSemiStructuredDdiProfile(
-			new DdiInputStream( inputStream ) );
+        DomSemiStructuredDdiProfile profile = new DomSemiStructuredDdiProfile( XMLDocument.newBuilder().source( sourceUrl ).build() );
 		Profile jaxbProfile = profile.toJaxbProfileV0();
 		jaxbProfile.saveAs( targetFile );
 		assertThat( targetFile, anExistingFile() );

@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,13 +63,19 @@ class ValidationServiceImpl implements ValidationService
 			Resource profileResource,
 			ValidationGateName validationGateName ) throws IOException, NotDocumentException
 	{
-		Document document = factory.newDocument( documentResource );
-		Profile profile = factory.newProfile( profileResource );
-		return validate( document,
+		try (
+			InputStream documentStream = documentResource.readInputStream();
+			InputStream profileStream = profileResource.readInputStream()
+		)
+		{
+			Document document = factory.newDocument( documentStream );
+			Profile profile = factory.newProfile( profileStream );
+			return validate( document,
 				documentResource.getUri(),
 				profile,
 				profileResource.getUri(),
 				validationGateName );
+		}
 	}
 
 	private static ValidationReport validate( Document document, Profile profile, URI documentUri, URI profileUri, ValidationGate validationGate )
@@ -127,12 +134,18 @@ class ValidationServiceImpl implements ValidationService
 			Resource profileResource,
 			ValidationGate validationGate ) throws IOException, NotDocumentException
 	{
-		Document document = factory.newDocument( documentResource );
-		Profile profile = factory.newProfile( profileResource );
-		return ValidationServiceImpl.validate( document,
+		try (
+			InputStream documentStream = documentResource.readInputStream();
+			InputStream profileStream = profileResource.readInputStream()
+		)
+		{
+			Document document = factory.newDocument( documentStream );
+			Profile profile = factory.newProfile( profileStream );
+			return ValidationServiceImpl.validate( document,
 				profile,
 				documentResource.getUri(),
 				profileResource.getUri(),
 				validationGate );
+		}
 	}
 }

@@ -22,38 +22,21 @@ package eu.cessda.cmv.core;
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.StringToUrlMapper;
 import org.gesis.commons.resource.TextResource;
-import org.gesis.commons.xml.XercesXalanDocument;
+import org.gesis.commons.xml.XMLDocument;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.opentest4j.AssertionFailedError;
 import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
 
-import java.io.File;
+import javax.xml.xpath.XPathExpressionException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import static java.util.Arrays.asList;
-import static org.gesis.commons.resource.Resource.newResource;
-
 class DemoDocumentsTest
 {
-	@Test
-	@Disabled( "Code for dev work in progress" )
-	@SuppressWarnings( "java:S2699" )
-	void printPretty()
-	{
-		Stream.of( "src/test/resources/eu.cessda.cmv.core.MandatoryNodeConstraintTest" )
-				.map( path -> asList( Objects.requireNonNull( new File( path ).listFiles() ) ) )
-				.flatMap( List::stream )
-				.filter( file -> file.getName().endsWith( ".xml" ) )
-				.forEach( file -> XercesXalanDocument.newBuilder()
-						.ofInputStream( newResource( file ).readInputStream() )
-						.printPrettyWithIndentation( 2 )
-						.build()
-						.omitWhitespaceOnlyTextNodes()
-						.saveAs( file ) );
-	}
-
 	@Test
 	@Disabled( "Code for dev work in progress" )
 	@SuppressWarnings( "java:S2699" )
@@ -62,10 +45,28 @@ class DemoDocumentsTest
 		Stream.of( "fsd-3271.xml", "ukds-2000.xml", "ukds-7481.xml", "gesis-2800.xml", "gesis-5100.xml", "gesis-5300.xml" )
 				.map( fileName -> getClass().getResource( "/demo-documents/ddi-v25/" + fileName ) )
 				.filter( Objects::nonNull )
-				.map( Resource::newResource )
-				.map( Resource.class::cast )
-				.map( resource -> XercesXalanDocument.newBuilder().ofInputStream( resource.readInputStream() ).build() )
-				.map( document -> document.selectNodes( "//@vocabURI" ) )
+				.map( resource ->
+                {
+                    try
+                    {
+                        return XMLDocument.newBuilder().source( resource ).build();
+                    }
+                    catch ( IOException | SAXException e )
+                    {
+						throw new AssertionFailedError(null, e);
+                    }
+                } )
+				.map( document ->
+                {
+                    try
+                    {
+                        return document.selectNodes( "//@vocabURI" );
+                    }
+                    catch ( XPathExpressionException e )
+                    {
+						throw new AssertionError(e);
+                    }
+                } )
 				.flatMap( List::stream )
 				.map( Node::getTextContent )
 				.distinct()

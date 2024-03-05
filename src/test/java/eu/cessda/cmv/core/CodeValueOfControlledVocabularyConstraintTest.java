@@ -36,17 +36,22 @@ class CodeValueOfControlledVocabularyConstraintTest
 	private final Profile profile;
 	private final CessdaMetadataValidatorFactory factory;
 
-	CodeValueOfControlledVocabularyConstraintTest() throws IOException
+	CodeValueOfControlledVocabularyConstraintTest() throws IOException, NotDocumentException
 	{
 		testEnv = DefaultTestEnv.newInstance( CodeValueOfControlledVocabularyConstraintTest.class );
 		factory = new CessdaMetadataValidatorFactory();
 		profile = factory.newProfile( testEnv.findTestResourceByName( "9-profile.xml" ) );
+	}
+
+	@Test
+	void validate_profile()
+	{
 		assertThat( profile.getConstraints().stream()
-				.filter( ControlledVocabularyRepositoryConstraint.class::isInstance )
-				.count(), is( 2L ) );
+			.filter( ControlledVocabularyRepositoryConstraint.class::isInstance )
+			.count(), is( 2L ) );
 		assertThat( profile.getConstraints().stream()
-				.filter( CodeValueOfControlledVocabularyConstraint.class::isInstance )
-				.count(), is( 1L ) );
+			.filter( CodeValueOfControlledVocabularyConstraint.class::isInstance )
+			.count(), is( 1L ) );
 	}
 
 	@Test

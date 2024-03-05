@@ -19,31 +19,27 @@
  */
 package eu.cessda.cmv.core;
 
-import org.gesis.commons.xml.XmlNotWellformedException;
+import org.gesis.commons.xml.XMLDocument;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+import org.xml.sax.SAXException;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.util.Objects;
 
-import static org.gesis.commons.resource.Resource.newResource;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DomCodebookDocumentTest
 {
 	@Test
-	void constructWithNotWellformedDocument() throws IOException
-	{
+	void constructWithNotWellformedDocument()
+    {
 		// given
 		URL url = getClass().getResource( "/demo-documents/ddi-v25/ukds-7481-not-wellformed.xml-invalid" );
-		try ( InputStream inputStream = newResource( Objects.requireNonNull( url ) ).readInputStream() )
-		{
-			// when
-			Executable executable = () -> new DomCodebookDocument( inputStream );
-			// then
-			assertThrows( XmlNotWellformedException.class, executable );
-		}
+		assert url != null;
+
+		// when
+		Executable executable = () -> new DomCodebookDocument( XMLDocument.newBuilder().source( url ).build() );
+		// then
+		assertThrows( SAXException.class, executable );
 	}
 }

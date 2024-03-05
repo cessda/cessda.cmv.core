@@ -21,8 +21,6 @@ package eu.cessda.cmv.core;
 
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
-import org.gesis.commons.xml.SaxXercesAgainstSchemaValidator;
-import org.gesis.commons.xml.ddi.Ddi251ClasspathEntityResolver;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -43,16 +41,6 @@ class MandatoryNodeIfParentPresentConstraintTest
 	{
 		testEnv = DefaultTestEnv.newInstance( MandatoryNodeIfParentPresentConstraintTest.class );
 		factory = new CessdaMetadataValidatorFactory();
-		SaxXercesAgainstSchemaValidator xmlValidator = new SaxXercesAgainstSchemaValidator();
-		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/22-document-invalid-1.xml" ),
-				new Ddi251ClasspathEntityResolver() );
-		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/22-document-invalid-2.xml" ),
-				new Ddi251ClasspathEntityResolver() );
-		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/22-document-valid-1.xml" ),
-				new Ddi251ClasspathEntityResolver() );
-		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/22-document-valid-2.xml" ),
-				new Ddi251ClasspathEntityResolver() );
-		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/22-profile.xml" ) );
 	}
 
 	@Test

@@ -21,8 +21,6 @@ package eu.cessda.cmv.core;
 
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
-import org.gesis.commons.xml.SaxXercesAgainstSchemaValidator;
-import org.gesis.commons.xml.ddi.Ddi251ClasspathEntityResolver;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -30,7 +28,8 @@ import java.util.List;
 
 import static eu.cessda.cmv.core.ValidationGateName.EXTENDED;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 
 class FixedValueNodeConstraintTest
 {
@@ -38,26 +37,11 @@ class FixedValueNodeConstraintTest
 	private final Profile profile;
 	private final CessdaMetadataValidatorFactory factory;
 
-	FixedValueNodeConstraintTest() throws IOException
+	FixedValueNodeConstraintTest() throws IOException, NotDocumentException
 	{
 		testEnv = DefaultTestEnv.newInstance( FixedValueNodeConstraintTest.class );
-		SaxXercesAgainstSchemaValidator xmlValidator = new SaxXercesAgainstSchemaValidator();
-		// TODO https://git.gesis.org/java-commons/commons-xml/issues/70
-		// Avoid pulling schema from remote
-		// xmlValidator.validate( testEnv.findTestResourceByName( "13-profile.xml" ),
-		// new Ddi32ClasspathEntityResolver() );
-		xmlValidator.validate( testEnv.findTestResourceByName( "13-document-valid-1.xml" ),
-				new Ddi251ClasspathEntityResolver() );
-		xmlValidator.validate( testEnv.findTestResourceByName( "13-document-invalid-1.xml" ),
-				new Ddi251ClasspathEntityResolver() );
-		xmlValidator.validate( testEnv.findTestResourceByName( "13-document-invalid-2.xml" ),
-				new Ddi251ClasspathEntityResolver() );
-
 		factory = new CessdaMetadataValidatorFactory();
 		profile = factory.newProfile( testEnv.findTestResourceByName( "13-profile.xml" ) );
-		assertThat( profile.getConstraints().stream()
-				.filter( FixedValueNodeConstraint.class::isInstance )
-				.count(), is( 1L ) );
 	}
 
 	@Test

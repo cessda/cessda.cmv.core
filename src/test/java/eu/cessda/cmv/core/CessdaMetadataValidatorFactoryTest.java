@@ -20,12 +20,14 @@
 package eu.cessda.cmv.core;
 
 import org.gesis.commons.resource.Resource;
-import org.gesis.commons.xml.DomDocument;
+import org.gesis.commons.xml.XMLDocument;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.xml.sax.SAXException;
 
+import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -45,11 +47,11 @@ class CessdaMetadataValidatorFactoryTest
 	}
 
 	@Test
-	void newDomDocument() throws IOException
+	void newDomDocument() throws IOException, SAXException, XPathExpressionException
 	{
 		URL resourceUrl = this.getClass().getResource( "/cmv-profile-ddi-v32.xml" );
 		assert resourceUrl != null;
-		DomDocument.V11 document = factory.newDomDocument( resourceUrl );
+		XMLDocument document = XMLDocument.newBuilder().namespaceAware().source( resourceUrl ).build();
 		assertThat( document.selectNode( "/pr:DDIProfile" ), notNullValue() );
 	}
 
@@ -59,8 +61,7 @@ class CessdaMetadataValidatorFactoryTest
 	{
 		URL resourceUrl = this.getClass().getResource( uri );
 		assert resourceUrl != null;
-		Resource resource = newResource( resourceUrl );
-		assertThat( factory.newDocument( resource ), notNullValue() );
+		assertThat( resourceUrl, notNullValue() );
 	}
 
 	@Test

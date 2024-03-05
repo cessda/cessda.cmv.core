@@ -21,6 +21,7 @@ package eu.cessda.cmv.core;
 
 import org.gesis.commons.xml.xpath.XPathTokenizer;
 
+import javax.xml.xpath.XPathExpressionException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ class MandatoryNodeIfParentPresentConstraint extends NodeConstraint
 	}
 
 	@Override
-	public List<Validator> newValidators( Document document )
+	public List<Validator> newNodeValidators( Document document ) throws XPathExpressionException
 	{
 		List<Validator> validators = new ArrayList<>();
 

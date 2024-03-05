@@ -23,52 +23,53 @@ import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.xml.xpath.XPathExpressionException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Collections;
 import java.util.List;
 
-class ControlledVocabularyRepositoryConstraint implements Constraint
+class ControlledVocabularyRepositoryConstraint extends NodeConstraint
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger( ControlledVocabularyRepositoryConstraint.class );
 
-	private final String locationPath;
 	private final String type;
-	private final String uri;
+	private final URI uri;
 
-	public ControlledVocabularyRepositoryConstraint(
-			String locationPath,
-			String repositoryType,
-			String repositoryUri )
+	ControlledVocabularyRepositoryConstraint( String locationPath, String repositoryType, URI repositoryUri )
 	{
-		this.locationPath = locationPath;
+        super(locationPath);
 		this.type = repositoryType;
 		this.uri = repositoryUri;
 	}
 
 	@Override
-	public List<Validator> newValidators( Document document )
+	public List<Validator> newNodeValidators( Document document ) throws XPathExpressionException
 	{
-		ControlledVocabularyRepository repository;
-		try
-		{
-			Class<?> clazz = Class.forName( type );
-			repository = (ControlledVocabularyRepository) clazz
-				.getDeclaredConstructor( URI.class )
-				.newInstance( new URI(uri) );
-		}
-		catch ( ReflectiveOperationException | URISyntaxException e )
-		{
-			LOGGER.warn( "Instancing {} failed, falling back to empty controlled vocabulary repository", type, e );
-			repository = EmptyControlledVocabularyRepository.INSTANCE;
-		}
+		// Attempt to load a cached repository, fall back to creating a new repository if not present
+		ControlledVocabularyRepository repository = document.findControlledVocabularyRepository(uri);
 
-		document.register( uri, repository );
+		if ( repository == null )
+		{
+			try
+			{
+				Class<?> clazz = Class.forName( type );
+				repository = (ControlledVocabularyRepository) clazz
+					.getDeclaredConstructor( URI.class )
+					.newInstance( uri );
+			}
+			catch ( ReflectiveOperationException e )
+			{
+				LOGGER.warn( "Instancing {} failed, falling back to empty controlled vocabulary repository", type, e );
+				repository = EmptyControlledVocabularyRepository.INSTANCE;
+			}
+
+			document.register( repository );
+		}
 
 		int count = 0;
-		for ( Node node : document.getNodes( locationPath ) )
+		for ( Node node : document.getNodes( getLocationPath() ) )
 		{
-			if ( node.getTextContent().contentEquals( uri ) )
+			if ( node.getTextContent().contentEquals( uri.toString() ) )
 			{
 				count++;
 			}

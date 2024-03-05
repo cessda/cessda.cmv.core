@@ -21,6 +21,7 @@ package eu.cessda.cmv.core;
 
 import org.junit.jupiter.api.Test;
 
+import javax.xml.xpath.XPathExpressionException;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,7 +44,7 @@ class BasicValidationGateTest
 	}
 
 	@Test
-	void invalid()
+	void invalid() throws XPathExpressionException
 	{
 		// given
 		Document document = mock( Document.class );
@@ -62,7 +63,7 @@ class BasicValidationGateTest
 	}
 
 	@Test
-	void valid()
+	void valid() throws XPathExpressionException
 	{
 		// given
 		Document document = mock( Document.class );

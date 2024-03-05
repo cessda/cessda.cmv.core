@@ -21,6 +21,8 @@ package eu.cessda.cmv.core;
 
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 
+import javax.xml.xpath.XPathExpressionException;
+import java.net.URI;
 import java.util.List;
 
 public interface Document
@@ -30,15 +32,26 @@ public interface Document
 	 *
 	 * @param locationPath the XPath to the nodes to look up.
 	 */
-	List<Node> getNodes( String locationPath );
+	List<Node> getNodes( String locationPath ) throws XPathExpressionException;
 
 	/**
-	 * Register a URI to a {@link ControlledVocabularyRepository} instance. The {@link ControlledVocabularyRepository}
-	 * can be looked up using {@link #findControlledVocabularyRepository(String)} with a registered URI.
+	 * Register a {@link ControlledVocabularyRepository} instance. The {@link ControlledVocabularyRepository}
+	 * can be looked up using {@link #findControlledVocabularyRepository(URI)} with a registered URI.
 	 *
 	 * @param uri the URI of the controlled vocabulary repository.
 	 * @param controlledVocabularyRepository the repository.
 	 */
+	void register( ControlledVocabularyRepository controlledVocabularyRepository );
+
+	/**
+	 * Register a URI to a {@link ControlledVocabularyRepository} instance. The {@link ControlledVocabularyRepository}
+	 * can be looked up using {@link #findControlledVocabularyRepository(URI)} with a registered URI.
+	 *
+	 * @param uri the URI of the controlled vocabulary repository.
+	 * @param controlledVocabularyRepository the repository.
+	 * @deprecated {@link ControlledVocabularyRepository} instances store a URI internally so this is redundant
+	 */
+	@Deprecated
 	void register( String uri, ControlledVocabularyRepository controlledVocabularyRepository );
 
 	/**
@@ -49,6 +62,22 @@ public interface Document
 	 *
 	 * @param uri the URI of the controlled vocabulary.
 	 * @return the controlled vocabulary, or {@code null} if the uri was not registered.
+	 * @deprecated use {@link Document#findControlledVocabularyRepository(URI)} instead.
 	 */
-	ControlledVocabularyRepository findControlledVocabularyRepository( String uri );
+	@Deprecated
+	default ControlledVocabularyRepository findControlledVocabularyRepository( String uri )
+	{
+		return findControlledVocabularyRepository( URI.create( uri ) );
+	}
+
+	/**
+	 * Find a registered {@link ControlledVocabularyRepository} instance.
+	 * <p>
+	 * {@link ControlledVocabularyRepository} instances are registered using
+	 * {@link #register(ControlledVocabularyRepository)}.
+	 *
+	 * @param uri the URI of the controlled vocabulary.
+	 * @return the controlled vocabulary, or {@code null} if the uri was not registered.
+	 */
+	ControlledVocabularyRepository findControlledVocabularyRepository( URI uri );
 }

@@ -21,6 +21,7 @@ package eu.cessda.cmv.core;
 
 import org.junit.jupiter.api.Test;
 
+import javax.xml.xpath.XPathExpressionException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +36,7 @@ import static org.mockito.Mockito.when;
 class StandardValidationGateTest
 {
 	@Test
-	void validate()
+	void validate() throws XPathExpressionException
 	{
 		// given
 		Document document = mock( Document.class );

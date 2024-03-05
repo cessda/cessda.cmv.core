@@ -21,13 +21,14 @@ package eu.cessda.cmv.core;
 
 import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.ResourceLabelProvider;
-import org.gesis.commons.xml.DomDocument;
-import org.gesis.commons.xml.XercesXalanDocument;
+import org.gesis.commons.xml.XMLDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
 
+import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -44,10 +45,7 @@ public class ProfileResourceLabelProvider extends ResourceLabelProvider
 
 		try ( InputStream inputStream = resource.readInputStream() )
 		{
-			DomDocument.V14 document = XercesXalanDocument.newBuilder()
-				.ofInputStream( inputStream )
-				.namespaceUnaware()
-				.build();
+			XMLDocument document = XMLDocument.newBuilder().namespaceUnaware().source( inputStream ).build();
 
 			Node profileNameNode = document.selectNode( "/DDIProfile/DDIProfileName/String" );
 			Node versionNode = document.selectNode( "/DDIProfile/Version" );
@@ -58,7 +56,7 @@ public class ProfileResourceLabelProvider extends ResourceLabelProvider
 				return profileNameNode.getTextContent() + " " + versionNode.getTextContent();
 			}
 		}
-		catch ( IOException | DOMException | IllegalArgumentException e )
+		catch ( IOException | DOMException | SAXException | XPathExpressionException e )
 		{
 			LOGGER.warn( "Failed to read profile name and version from the document: {}", e.toString(), e );
 		}
