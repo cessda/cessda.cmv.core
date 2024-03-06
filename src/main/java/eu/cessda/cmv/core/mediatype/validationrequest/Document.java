@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Schema( subTypes = { UriDocument.class, ContentDocument.class } )
-@XmlJavaTypeAdapter( DocumentV0Adapter.class )
+@XmlJavaTypeAdapter( DocumentAdapter.class )
 public interface Document
 {
 	InputStream toInputStream() throws IOException;

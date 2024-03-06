@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.net.URI;
 
-class DocumentV0Adapter extends XmlAdapter<DocumentV0Adapter.AdaptedDocument, Document>
+class DocumentAdapter extends XmlAdapter<DocumentAdapter.AdaptedDocument, Document>
 {
 	@Override
 	public AdaptedDocument marshal( Document document )

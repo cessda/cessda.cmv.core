@@ -32,7 +32,6 @@ import org.gesis.commons.resource.Resource;
 import org.gesis.commons.resource.TextResource;
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -47,9 +46,7 @@ import java.util.stream.Stream;
 
 import static com.fasterxml.jackson.databind.PropertyNamingStrategies.LOWER_CAMEL_CASE;
 import static com.fasterxml.jackson.databind.PropertyNamingStrategies.UPPER_CAMEL_CASE;
-import static eu.cessda.cmv.core.mediatype.validationrequest.ValidationRequest.SCHEMALOCATION_FILENAME;
 import static org.gesis.commons.resource.Resource.newResource;
-import static org.gesis.commons.test.hamcrest.FileMatchers.hasEqualContent;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -193,17 +190,6 @@ class ValidationRequestTest
 		// A comparison between dissimilar types should not be equal
 		assertThat( firstPopulatedRequest, not( equalTo( null ) ) );
 		assertThat( firstPopulatedRequest, not( equalTo( new Object() ) ) );
-	}
-
-	@Test
-	@Disabled( "Schema generation not correct because of DocumentV0Adapter usage" )
-	void generateSchema()
-	{
-		File actualFile = new File( testEnv.newDirectory(), SCHEMALOCATION_FILENAME );
-		ValidationRequest.generateSchema( actualFile );
-
-		File expectedFile = testEnv.findTestResourceByName( SCHEMALOCATION_FILENAME );
-		assertThat( actualFile, hasEqualContent( expectedFile ) );
 	}
 
 	private static class ValidationRequestProvider

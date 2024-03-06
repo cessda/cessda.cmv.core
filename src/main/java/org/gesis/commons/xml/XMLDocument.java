@@ -18,7 +18,6 @@ import java.util.*;
 
 import static java.util.Objects.requireNonNull;
 import static java.util.Optional.ofNullable;
-import static javax.xml.XMLConstants.FEATURE_SECURE_PROCESSING;
 import static javax.xml.XMLConstants.XMLNS_ATTRIBUTE;
 import static javax.xml.xpath.XPathConstants.NODESET;
 
@@ -188,18 +187,14 @@ public class XMLDocument
 		private static DocumentBuilderFactory getDocumentBuilderFactory() throws ParserConfigurationException
 		{
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
-			factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-			factory.setFeature( FEATURE_SECURE_PROCESSING, true );
+			factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
 			return factory;
 		}
 
 		private static SAXParserFactory getSaxParserFactory() throws ParserConfigurationException, SAXNotRecognizedException, SAXNotSupportedException
 		{
 			SAXParserFactory factory = SAXParserFactory.newInstance();
-			factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
-			factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-			factory.setFeature( FEATURE_SECURE_PROCESSING, true );
+			factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
 			return factory;
 		}
 
