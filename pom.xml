@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>eu.cessda.cmv</groupId>
 	<artifactId>cmv-core</artifactId>
-	<version>2.0.1-SNAPSHOT</version>
+	<version>3.0.0-SNAPSHOT</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -11,7 +11,6 @@
 		<doclint>none</doclint><!-- https://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html -->
 		<!-- Exclude mediatype classes from coverage analysis -->
 		<sonar.coverage.exclusions>src/main/java/eu/cessda/cmv/core/mediatype/**/*.java</sonar.coverage.exclusions>
-		<xalan.version>2.7.3</xalan.version>
 	</properties>
 
 	<dependencies>
@@ -30,28 +29,7 @@
 					<groupId>xerces</groupId>
 					<artifactId>xercesImpl</artifactId>
 				</exclusion>
-				<!-- Exclude Logback as the downstream applications should provide its own SLF4J provider -->
-				<exclusion>
-					<groupId>ch.qos.logback</groupId>
-					<artifactId>logback-classic</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.gesis.commons</groupId>
-			<artifactId>commons-resource</artifactId>
-			<version>0.8.0</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-core</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-web</artifactId>
-				</exclusion>
-				<!-- Exclude Logback as the downstream applications should provide its own SLF4J provider -->
+				<!-- Exclude Logback as the downstream application should provide its own SLF4J provider -->
 				<exclusion>
 					<groupId>ch.qos.logback</groupId>
 					<artifactId>logback-classic</artifactId>
@@ -141,6 +119,11 @@
 			<artifactId>logback-classic</artifactId>
 			<version>1.5.2</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.xmlunit</groupId>
+			<artifactId>xmlunit-matchers</artifactId>
+			<version>2.9.1</version>
 		</dependency>
 	</dependencies>
 

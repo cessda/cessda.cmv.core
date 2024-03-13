@@ -45,7 +45,7 @@ public class ProfileResourceLabelProvider extends ResourceLabelProvider
 
 		try ( InputStream inputStream = resource.readInputStream() )
 		{
-			XMLDocument document = XMLDocument.newBuilder().namespaceUnaware().source( inputStream ).build();
+			XMLDocument document = XMLDocument.newBuilder().namespaceAware( false ).source( inputStream ).build();
 
 			Node profileNameNode = document.selectNode( "/DDIProfile/DDIProfileName/String" );
 			Node versionNode = document.selectNode( "/DDIProfile/Version" );

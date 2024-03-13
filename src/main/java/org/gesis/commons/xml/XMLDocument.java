@@ -42,6 +42,31 @@ public class XMLDocument
 		this.namespaceContext = getSimpleNamespaceContext(document);
 	}
 
+	public boolean setRootElement( String location, String prefix, String namespace ) throws XPathExpressionException
+	{
+		NamespaceContext nsContext = new NamespaceContext(Collections.singletonMap( prefix, namespace ));
+
+		XPath xpath = xPathFactory.newXPath();
+		xpath.setNamespaceContext( nsContext );
+		XPathExpression metadataXPath = xpath.compile( location );
+
+		NodeList metadataElements = (NodeList) metadataXPath.evaluate( document, XPathConstants.NODESET );
+		Node metadataElement = metadataElements.item( 0 );
+
+		if (metadataElement instanceof Element)
+		{
+			// Move the found element to the root of the document
+			document.removeChild( document.getDocumentElement() );
+			document.appendChild( metadataElement );
+			document.getDocumentElement().setAttribute( "xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance" );
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	private static SimpleNamespaceContext getSimpleNamespaceContext(Document document)
 	{
 		SimpleNamespaceContext simpleNamespaceContext = new SimpleNamespaceContext( false );
@@ -121,6 +146,14 @@ public class XMLDocument
 	{
 		requireNonNull( node );
 		return ofNullable( (LocationInfo) node.getUserData( LocationInfo.class.getCanonicalName() ) );
+	}
+
+	/**
+	 * The namespace of the root element of the document.
+	 */
+	public String getNamespace()
+	{
+		return document.getDocumentElement().getNamespaceURI();
 	}
 
 	public static Builder newBuilder()
@@ -244,7 +277,7 @@ public class XMLDocument
 			return this;
 		}
 
-		public Builder printPrettyWithIndentation( Integer indentation )
+		public Builder printPrettyWithIndentation( int indentation )
 		{
 			this.prettyPrintIndentation = indentation;
 			return this;
@@ -254,16 +287,6 @@ public class XMLDocument
 		{
 			this.isNamespaceAware = namespaceAware;
 			return this;
-		}
-
-		public Builder namespaceAware()
-		{
-			return namespaceAware( true );
-		}
-
-		public Builder namespaceUnaware()
-		{
-			return namespaceAware( false );
 		}
 
 		public Builder locationInfoAware( boolean locationInfoAware )
@@ -318,6 +341,33 @@ public class XMLDocument
 			{
 				return builder.parse( inputSource );
 			}
+		}
+	}
+
+	private static class NamespaceContext implements javax.xml.namespace.NamespaceContext
+	{
+		private final Map<String, String> contextMap;
+
+		private NamespaceContext(Map<String, String> contextMap) {
+			this.contextMap = contextMap;
+		}
+
+		@Override
+		public String getNamespaceURI( String prefix )
+		{
+			return contextMap.get( prefix );
+		}
+
+		@Override
+		public String getPrefix( String namespaceURI )
+		{
+			return null;
+		}
+
+		@Override
+		public Iterator<String> getPrefixes( String namespaceURI )
+		{
+			return null;
 		}
 	}
 }

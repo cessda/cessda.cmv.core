@@ -20,23 +20,15 @@
 package eu.cessda.cmv.core;
 
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
-import org.apache.tika.Tika;
-import org.apache.tika.detect.CompositeDetector;
-import org.gesis.commons.resource.io.DdiDetector;
-import org.gesis.commons.resource.io.DdiInputStream;
-import org.gesis.commons.resource.io.OaipmhV20Detector;
-import org.gesis.commons.xml.SimpleNamespaceContext;
 import org.gesis.commons.xml.XMLDocument;
 import org.gesis.commons.xml.XmlNotWellformedException;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import javax.xml.XMLConstants;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.*;
-import java.io.*;
+import javax.xml.xpath.XPathExpressionException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
@@ -60,9 +52,9 @@ public class CessdaMetadataValidatorFactory
 		"PredicatelessXPathConstraint",
 		"RecommendedNodeConstraint"
 	) ) );
+	private static final String OAI_PMH_XML_NAMESPACE = "http://www.openarchives.org/OAI/2.0/";
 
-    private final Tika documentMediaTypeDetector = new Tika( new CompositeDetector( new DdiDetector(), new OaipmhV20Detector() ) );
-	private final ConcurrentHashMap<URI, ControlledVocabularyRepository> cvrMap = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<URI, ControlledVocabularyRepository> cvrMap = new ConcurrentHashMap<>();
 
 	/**
 	 * Parse the XML at the given file into a {@link Document}. The XML document must be either a DDI document
@@ -123,31 +115,31 @@ public class CessdaMetadataValidatorFactory
 		return name.getValidationGate();
 	}
 
-	public Profile newProfile( URI uri ) throws IOException, NotDocumentException
+	public Profile newProfile( URI uri ) throws NotDocumentException
 	{
 		Objects.requireNonNull( uri, "uri must not be null" );
 		XMLDocument.Builder documentBuilder = XMLDocument.newBuilder().source( uri );
 		return newProfile( documentBuilder );
 	}
 
-	public Profile newProfile( URL url ) throws IOException, NotDocumentException
+	public Profile newProfile( URL url ) throws NotDocumentException
 	{
 		Objects.requireNonNull( url, "url must not be null" );
 		XMLDocument.Builder documentBuilder = XMLDocument.newBuilder().source( url );
 		return newProfile( documentBuilder );
 	}
 
-	public Profile newProfile( File file ) throws IOException, NotDocumentException
+	public Profile newProfile( File file ) throws NotDocumentException
 	{
 		Objects.requireNonNull( file, "file must not be null" );
 		XMLDocument.Builder documentBuilder = XMLDocument.newBuilder().source( file );
 		return newProfile( documentBuilder );
 	}
 
-	public Profile newProfile( InputStream inputStream ) throws IOException, NotDocumentException
+	public Profile newProfile( InputStream inputStream ) throws NotDocumentException
 	{
 		Objects.requireNonNull( inputStream, "inputStream must not be null" );
-		XMLDocument.Builder documentBuilder = XMLDocument.newBuilder().source( new DdiInputStream( inputStream ) );
+		XMLDocument.Builder documentBuilder = XMLDocument.newBuilder().source( inputStream );
 		return newProfile( documentBuilder );
 	}
 
@@ -229,50 +221,21 @@ public class CessdaMetadataValidatorFactory
 	{
 		Objects.requireNonNull( inputStream, "inputStream is null" );
 
-		// Encapsulate the input stream into a BufferedInputStream if mark() is not supported
-		if ( !inputStream.markSupported() )
-		{
-			inputStream = new BufferedInputStream( inputStream );
-		}
-
 		try
 		{
-			String mediaType = documentMediaTypeDetector.detect( inputStream );
-			if ( DdiDetector.MEDIATYPE.equals( mediaType ) )
-			{
-				// Parse as DDI
-				return new DomCodebookDocument( XMLDocument.newBuilder().locationInfoAware(true).namespaceAware().source( inputStream ).build(), cvrMap );
-			}
-			else if ( OaipmhV20Detector.MEDIATYPE.equals( mediaType ) )
+			// Parse the XML document
+			XMLDocument document = XMLDocument.newBuilder().locationInfoAware( true ).namespaceAware( true ).source( inputStream ).build();
+			String namespace = document.getNamespace();
+
+			if ( OAI_PMH_XML_NAMESPACE.equals( namespace ))
 			{
 				// Try to extract <metadata> and recurse
-				DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-				documentBuilderFactory.setAttribute( XMLConstants.ACCESS_EXTERNAL_DTD, "" );
-				documentBuilderFactory.setAttribute( XMLConstants.ACCESS_EXTERNAL_SCHEMA, "" );
-				documentBuilderFactory.setNamespaceAware( true );
-				DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-				org.w3c.dom.Document sourceDocument = documentBuilder.parse( inputStream );
-
-				SimpleNamespaceContext nsContext = new SimpleNamespaceContext();
-				nsContext.bindNamespaceUri( "oai", "http://www.openarchives.org/OAI/2.0/" );
-				XPath xpath = XPathFactory.newInstance().newXPath();
-				xpath.setNamespaceContext( nsContext );
-				XPathExpression metadataXPath = xpath.compile("/oai:OAI-PMH/oai:GetRecord/oai:record/oai:metadata/*" );
-				NodeList metadataElements = (NodeList) metadataXPath.evaluate( sourceDocument, XPathConstants.NODESET );
-
-				if (metadataElements.getLength() != 0)
-				{
-                    org.w3c.dom.Document targetDocument = documentBuilder.newDocument();
-					targetDocument.appendChild( targetDocument.adoptNode( metadataElements.item( 0 ) ) );
-					targetDocument.getDocumentElement().setAttribute( "xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance" );
-					return new DomCodebookDocument( XMLDocument.newBuilder().locationInfoAware(true).namespaceAware().source( targetDocument ).build(), cvrMap );
-				}
+				document.setRootElement( "/oai:OAI-PMH/oai:GetRecord/oai:record/oai:metadata/*", "oai", OAI_PMH_XML_NAMESPACE );
 			}
 
-			// Media-type detection failed, or no metadata was present
-			throw new NotDocumentException( mediaType );
+			return new DomCodebookDocument( document, cvrMap );
 		}
-		catch ( XmlNotWellformedException | XPathExpressionException | ParserConfigurationException | SAXException e )
+		catch ( XmlNotWellformedException | XPathExpressionException | SAXException e )
 		{
 			throw new NotDocumentException( e );
 		}

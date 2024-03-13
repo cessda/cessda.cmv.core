@@ -30,9 +30,8 @@ import eu.cessda.cmv.core.ValidationService;
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -44,15 +43,13 @@ import static com.fasterxml.jackson.databind.PropertyNamingStrategies.LOWER_CAME
 import static com.fasterxml.jackson.databind.PropertyNamingStrategies.UPPER_CAMEL_CASE;
 import static eu.cessda.cmv.core.ValidationGateName.STANDARD;
 import static eu.cessda.cmv.core.mediatype.validationreport.ValidationReport.SCHEMALOCATION_FILENAME;
-import static org.gesis.commons.test.hamcrest.FileMatchers.hasEqualContent;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 
 class ValidationReportTest
 {
-	private static final Logger LOGGER = LoggerFactory.getLogger( ValidationReportTest.class );
-
-	private final TestEnv.V11 testEnv;
+    private final TestEnv.V11 testEnv;
 
 	ValidationReportTest()
 	{
@@ -79,11 +76,9 @@ class ValidationReportTest
 
 		// Read and write the report to an XML file
 		validationReport.saveAs( file );
-		validationReport = ValidationReport.open( file );
 
 		// Compare the report to the expected XML
-		ValidationReport expectedReport = ValidationReport.open( testEnv.findTestResourceByName( file.getName() ) );
-		assertThat( validationReport, equalTo( expectedReport ) );
+		assertThat( new StreamSource( file ), isSimilarTo( new StreamSource( testEnv.findTestResourceByName( "eclipselink-moxy.xml" ) ) ).ignoreWhitespace() );
 	}
 
 	@Test
@@ -116,12 +111,13 @@ class ValidationReportTest
 
 	@Test
 	void generateSchema()
-	{
+    {
 		File expectedFile = testEnv.findTestResourceByName( SCHEMALOCATION_FILENAME );
 		File actualFile = new File( testEnv.newDirectory(), SCHEMALOCATION_FILENAME );
 
 		ValidationReport.generateSchema( actualFile );
 
-		assertThat( actualFile, hasEqualContent( expectedFile ) );
+		// Compare the generated file to the expected file
+		assertThat( new StreamSource( actualFile ), isSimilarTo( new StreamSource( expectedFile ) ).ignoreWhitespace() );
 	}
 }
