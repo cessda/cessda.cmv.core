@@ -6,6 +6,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.*;
 import javax.xml.xpath.*;
 import java.io.File;
@@ -42,7 +43,7 @@ public class XMLDocument
 		this.namespaceContext = getSimpleNamespaceContext(document);
 	}
 
-	public boolean setRootElement( String location, String prefix, String namespace ) throws XPathExpressionException
+	public void setRootElement( String location, String prefix, String namespace ) throws XPathExpressionException
 	{
 		NamespaceContext nsContext = new NamespaceContext(Collections.singletonMap( prefix, namespace ));
 
@@ -59,11 +60,10 @@ public class XMLDocument
 			document.removeChild( document.getDocumentElement() );
 			document.appendChild( metadataElement );
 			document.getDocumentElement().setAttribute( "xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance" );
-			return true;
 		}
 		else
 		{
-			return false;
+			throw new IllegalArgumentException("No element matching " + location + " found");
 		}
 	}
 
@@ -220,15 +220,58 @@ public class XMLDocument
 		private static DocumentBuilderFactory getDocumentBuilderFactory() throws ParserConfigurationException
 		{
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+
+			try
+			{
+				factory.setFeature( "http://apache.org/xml/features/disallow-doctype-decl", true );
+				return factory;
+			}
+			catch ( ParserConfigurationException e )
+			{
+				// try the next one
+			}
+
+			try
+			{
+				factory.setFeature( "http://xml.org/sax/features/external-general-entities", false );
+				factory.setFeature( "http://xml.org/sax/features/external-parameter-entities", false );
+				return factory;
+			}
+			catch ( ParserConfigurationException e )
+			{
+				// try the next one
+			}
+
+			// All JAXP 1.5 parsers are required to support these attributes
+			factory.setAttribute( XMLConstants.ACCESS_EXTERNAL_DTD, "" );
+			factory.setAttribute( XMLConstants.ACCESS_EXTERNAL_SCHEMA, "" );
 			return factory;
 		}
 
 		private static SAXParserFactory getSaxParserFactory() throws ParserConfigurationException, SAXNotRecognizedException, SAXNotSupportedException
 		{
 			SAXParserFactory factory = SAXParserFactory.newInstance();
-			factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-			return factory;
+			try
+			{
+				factory.setFeature( "http://apache.org/xml/features/disallow-doctype-decl", true );
+				return factory;
+			}
+			catch ( ParserConfigurationException e )
+			{
+				// try the next one
+			}
+
+			try
+			{
+				factory.setFeature( "http://xml.org/sax/features/external-general-entities", false );
+				factory.setFeature( "http://xml.org/sax/features/external-parameter-entities", false );
+				return factory;
+			}
+			catch ( ParserConfigurationException e )
+			{
+				// return without setting
+				return factory;
+			}
 		}
 
 		private boolean isLocationInfoAware = false;
