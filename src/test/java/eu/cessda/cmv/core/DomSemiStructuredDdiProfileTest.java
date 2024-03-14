@@ -88,9 +88,9 @@ class DomSemiStructuredDdiProfileTest
 		assertThat( profile.getConstraints(), hasSize( 44 + 44 + 22 + 8 + 5 + 14 + 2 ) );
 	}
 
-	private long countConstraints( eu.cessda.cmv.core.Profile profile, Class<? extends Constraint> clazz )
+	private int countConstraints( eu.cessda.cmv.core.Profile profile, Class<? extends Constraint> clazz )
 	{
-		return profile.getConstraints().stream().filter( clazz::isInstance ).count();
+		return (int) profile.getConstraints().stream().filter( clazz::isInstance ).count();
 	}
 
 	@Test
