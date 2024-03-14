@@ -99,9 +99,10 @@ class DomSemiStructuredDdiProfileTest
 		// given
 		URL sourceUrl = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
 
-		File expectedFile = testEnv.findTestResourceByName( "cdc25_profile_cmv.xml");
+		URL expectedFile = getClass().getResource( "/profiles/cdc25_profile_cmv.xml" );
 		File actualFile = new File( testEnv.newDirectory(), "cdc25_profile_cmv.xml" );
 
+		assert expectedFile != null;
 		assert sourceUrl != null;
 
 		// when
@@ -111,6 +112,6 @@ class DomSemiStructuredDdiProfileTest
 		jaxbProfile.saveAs( actualFile );
 
 		// Compare the generated file to the expected file
-		assertThat( new StreamSource( actualFile ), isSimilarTo( new StreamSource( expectedFile ) ).ignoreWhitespace() );
+        assertThat( new StreamSource( actualFile ), isSimilarTo( new StreamSource( expectedFile.toExternalForm() ) ).ignoreWhitespace() );
 	}
 }

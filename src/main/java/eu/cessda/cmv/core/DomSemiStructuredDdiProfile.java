@@ -28,42 +28,37 @@ import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-import static java.util.Collections.unmodifiableList;
+import static java.util.Collections.unmodifiableSet;
 
-class DomSemiStructuredDdiProfile implements Profile
+class DomSemiStructuredDdiProfile extends AbstractProfile
 {
-	private final XMLDocument document;
-	private List<Constraint> constraints;
-	private String profileName;
+	private final String profileName;
+	private final LinkedHashSet<Constraint> constraints;
 
 	DomSemiStructuredDdiProfile( XMLDocument document ) throws IOException, NotDocumentException
 	{
 		try
 		{
-			this.document = document;
-			parseProfileName();
+			this.constraints = new LinkedHashSet<>();
+			this.profileName = parseProfileName( document );
 
-			constraints = new ArrayList<>();
 			for ( Node usedNode : document.selectNodes( "/DDIProfile/Used" ) )
 			{
 				constraints.add( new CompilableXPathConstraint( getLocationPath( usedNode ) ) );
 				constraints.add( new PredicatelessXPathConstraint( getLocationPath( usedNode ) ) );
-				parseControlledVocabularyRepositoryConstraint( usedNode );
+				parseControlledVocabularyRepositoryConstraint( document, usedNode );
 
 				parseMandatoryNodeConstraint( usedNode );
-				parseOptionalNodeConstraint( usedNode );
-				parseNotBlankNodeConstraint( usedNode );
+				parseOptionalNodeConstraint( document, usedNode );
+				parseNotBlankNodeConstraint( document, usedNode );
 				parseMaximumElementOccurrenceConstraint( usedNode );
-				parseMandatoryNodeIfParentPresentConstraint( usedNode );
+				parseMandatoryNodeIfParentPresentConstraint( document, usedNode );
 				parseFixedValueNodeConstraint( usedNode );
 
-				parseCodeValueOfControlledVocabularyConstraint( usedNode );
-				parseDescriptiveTermOfControlledVocabularyConstraint( usedNode );
+				parseCodeValueOfControlledVocabularyConstraint( document, usedNode );
+				parseDescriptiveTermOfControlledVocabularyConstraint( document, usedNode );
 			}
 		}
 		catch ( SAXException | URISyntaxException e )
@@ -96,7 +91,9 @@ class DomSemiStructuredDdiProfile implements Profile
 			}
 		}
 
-		this.constraints = new ArrayList<>(orderedConstraints);
+		// Clear the constraints list and add in the ordered constraints
+		this.constraints.clear();
+		this.constraints.addAll( orderedConstraints );
 	}
 
 	private static String getLocationPath( Node usedNode )
@@ -104,16 +101,20 @@ class DomSemiStructuredDdiProfile implements Profile
 		return usedNode.getAttributes().getNamedItem( "xpath" ).getTextContent();
 	}
 
-	private void parseProfileName() throws XPathExpressionException
+	private String parseProfileName( XMLDocument document ) throws XPathExpressionException
 	{
 		Node nameNode = document.selectNode( "/DDIProfile/DDIProfileName" );
 		if ( nameNode != null )
 		{
-			profileName = nameNode.getTextContent();
+			return nameNode.getTextContent().trim();
+		}
+		else
+		{
+			return null;
 		}
 	}
 
-	private Optional<XMLDocument> findExtension( Node usedNode ) throws IOException, SAXException, XPathExpressionException
+	private static Optional<XMLDocument> findExtension( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
 		String extensionRecognizingXPath = "Instructions/Content[contains(.,'<Constraints>')]";
 		Node constraintsNode = document.selectNode( usedNode, extensionRecognizingXPath );
@@ -156,7 +157,7 @@ class DomSemiStructuredDdiProfile implements Profile
 		}
 	}
 
-	private void parseOptionalNodeConstraint( Node usedNode ) throws IOException, SAXException, XPathExpressionException
+	private void parseOptionalNodeConstraint( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
 		Attr isRequiredNode = (Attr) usedNode.getAttributes().getNamedItem( "isRequired" );
 
@@ -167,7 +168,7 @@ class DomSemiStructuredDdiProfile implements Profile
 
 		if ( document.selectNode( usedNode, "Description[Content='Required: Recommended']" ) != null
 				|| document.selectNode( usedNode, "Description[Content='Recommended']" ) != null
-				|| hasRecommendedNodeConstraintExtension( usedNode ) )
+				|| hasRecommendedNodeConstraintExtension( document, usedNode ) )
 		{
 			constraints.add( new RecommendedNodeConstraint( getLocationPath( usedNode ) ) );
 		}
@@ -178,9 +179,9 @@ class DomSemiStructuredDdiProfile implements Profile
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private boolean hasRecommendedNodeConstraintExtension( Node usedNode ) throws IOException, SAXException, XPathExpressionException
+	private boolean hasRecommendedNodeConstraintExtension( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
-		Optional<XMLDocument> extensionOpt = findExtension( usedNode );
+		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
 		if (extensionOpt.isPresent())
 		{
 			XMLDocument extension = extensionOpt.get();
@@ -191,9 +192,9 @@ class DomSemiStructuredDdiProfile implements Profile
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private void parseCodeValueOfControlledVocabularyConstraint( Node usedNode ) throws IOException, SAXException, XPathExpressionException
+	private void parseCodeValueOfControlledVocabularyConstraint( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
-		Optional<XMLDocument> extensionOpt = findExtension( usedNode );
+		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
 		if (extensionOpt.isPresent())
 		{
 			XMLDocument extension = extensionOpt.get();
@@ -207,9 +208,9 @@ class DomSemiStructuredDdiProfile implements Profile
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private void parseDescriptiveTermOfControlledVocabularyConstraint( Node usedNode ) throws IOException, SAXException, XPathExpressionException
+	private void parseDescriptiveTermOfControlledVocabularyConstraint( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
-		Optional<XMLDocument> extensionOpt = findExtension( usedNode );
+		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
 		if (extensionOpt.isPresent())
 		{
 			XMLDocument extension = extensionOpt.get();
@@ -223,9 +224,9 @@ class DomSemiStructuredDdiProfile implements Profile
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private void parseControlledVocabularyRepositoryConstraint( Node usedNode ) throws IOException, SAXException, XPathExpressionException, URISyntaxException
+	private void parseControlledVocabularyRepositoryConstraint( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException, URISyntaxException
 	{
-		Optional<XMLDocument> extensionOpt = findExtension( usedNode );
+		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
 		if (extensionOpt.isPresent())
 		{
 			XMLDocument extension = extensionOpt.get();
@@ -253,9 +254,9 @@ class DomSemiStructuredDdiProfile implements Profile
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private void parseMandatoryNodeIfParentPresentConstraint( Node usedNode ) throws IOException, SAXException, XPathExpressionException
+	private void parseMandatoryNodeIfParentPresentConstraint( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
-		Optional<XMLDocument> extensionOpt = findExtension( usedNode );
+		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
 		if (extensionOpt.isPresent())
 		{
 			XMLDocument extension = extensionOpt.get();
@@ -269,9 +270,9 @@ class DomSemiStructuredDdiProfile implements Profile
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private void parseNotBlankNodeConstraint( Node usedNode ) throws IOException, SAXException, XPathExpressionException
+	private void parseNotBlankNodeConstraint( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
-		Optional<XMLDocument> extensionOpt = findExtension( usedNode );
+		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
 		if (extensionOpt.isPresent())
 		{
 			XMLDocument extension = extensionOpt.get();
@@ -285,9 +286,15 @@ class DomSemiStructuredDdiProfile implements Profile
 	}
 
 	@Override
-	public List<Constraint> getConstraints()
+	public Set<Constraint> getConstraints()
 	{
-		return unmodifiableList( constraints );
+		return unmodifiableSet( constraints );
+	}
+
+	@Override
+	public String getProfileName()
+	{
+		return profileName;
 	}
 
 	eu.cessda.cmv.core.mediatype.profile.Profile toJaxbProfile()

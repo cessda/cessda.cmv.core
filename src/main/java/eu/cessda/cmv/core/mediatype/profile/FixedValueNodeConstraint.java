@@ -19,8 +19,14 @@
  */
 package eu.cessda.cmv.core.mediatype.profile;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+import java.util.Objects;
 
+@XmlType( name = FixedValueNodeConstraint.JAXB_TYPE )
+@XmlAccessorType( XmlAccessType.FIELD )
 public class FixedValueNodeConstraint extends NodeConstraint
 {
 	public static final String JAXB_ELEMENT = "FixedValueNodeConstraint";
@@ -49,5 +55,21 @@ public class FixedValueNodeConstraint extends NodeConstraint
 	public void setFixedValue( String fixedValue )
 	{
 		this.fixedValue = fixedValue;
+	}
+
+	@Override
+	public boolean equals( Object o )
+	{
+		if ( this == o ) return true;
+		if ( o == null || getClass() != o.getClass() ) return false;
+		if ( !super.equals( o ) ) return false;
+		FixedValueNodeConstraint that = (FixedValueNodeConstraint) o;
+		return Objects.equals( fixedValue, that.fixedValue );
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash( super.hashCode(), fixedValue );
 	}
 }

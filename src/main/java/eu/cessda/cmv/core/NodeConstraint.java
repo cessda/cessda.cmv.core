@@ -21,6 +21,7 @@ package eu.cessda.cmv.core;
 
 import javax.xml.xpath.XPathExpressionException;
 import java.util.List;
+import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
@@ -54,5 +55,20 @@ abstract class NodeConstraint implements Constraint
 	protected String getLocationPath()
 	{
 		return locationPath;
+	}
+
+	@Override
+	public boolean equals( Object o )
+	{
+		if ( this == o ) return true;
+		if ( o == null || getClass() != o.getClass() ) return false;
+		NodeConstraint that = (NodeConstraint) o;
+		return Objects.equals( locationPath, that.locationPath );
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash( locationPath );
 	}
 }

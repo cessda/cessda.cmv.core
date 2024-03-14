@@ -19,24 +19,37 @@
  */
 package eu.cessda.cmv.core;
 
-import org.junit.jupiter.api.Disabled;
+import org.gesis.commons.xml.XMLDocument;
 import org.junit.jupiter.api.Test;
+import org.xml.sax.SAXException;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
-import java.util.Objects;
 
-import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 
 class DomProfileTest
 {
 	@Test
-	@Disabled( "see also DomSemiStructuredDdiProfileTest::toJaxbProfileV0" )
-	void test()
+	void test() throws IOException, SAXException, NotDocumentException
 	{
-		URL url = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile_cmv.xml" );
-		DomProfile profile = new DomProfile( newResource( Objects.requireNonNull( url ) ).readInputStream() );
-		assertThat( profile.getConstraints(), hasSize( 62 * 3 ) );
+		try ( InputStream profileStream = getClass().getResourceAsStream( "/profiles/cdc25_profile_cmv.xml" ) )
+		{
+			DomProfile actualProfile = new DomProfile( profileStream );
+			assertThat( actualProfile.getConstraints(), hasSize( 61 + 61 + 27 + 10 + 5 + 24 + 12 ) );
+
+			// Compare to parsing the DDI actualProfile directly
+			URL url = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
+			assert url != null;
+
+
+			// should be equal
+			eu.cessda.cmv.core.Profile expectedProfile = new DomSemiStructuredDdiProfile( XMLDocument.newBuilder().source( url ).build() );
+			actualProfile.equals( expectedProfile );
+			assertThat( actualProfile, equalTo( expectedProfile ) );
+		}
 	}
 }

@@ -2,7 +2,7 @@
  * #%L
  * cmv-core
  * %%
- * Copyright (C) 2020 - 2021 CESSDA ERIC
+ * Copyright (C) 2020 - 2024 CESSDA ERIC
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,11 +19,23 @@
  */
 package eu.cessda.cmv.core;
 
-import java.util.Set;
+import java.util.Objects;
 
-public interface Profile
+public abstract class AbstractProfile implements Profile
 {
-	String getProfileName();
+	@Override
+	public boolean equals( Object o )
+	{
+		if ( this == o ) return true;
+		if ( !( o instanceof AbstractProfile ) ) return false;
+		Profile that = (Profile) o;
+		return Objects.equals( getProfileName(), that.getProfileName() ) &&
+			Objects.equals( getConstraints(), that.getConstraints() );
+	}
 
-	Set<Constraint> getConstraints();
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash( getProfileName(), getConstraints() );
+	}
 }

@@ -22,6 +22,7 @@ package eu.cessda.cmv.core;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.xpath.XPathExpressionException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,10 +42,10 @@ class StandardValidationGateTest
 		// given
 		Document document = mock( Document.class );
 		when( document.getNodes( anyString() ) ).thenReturn( emptyList() );
-		Profile profile = mock( Profile.class );
-		when( profile.getConstraints() ).thenReturn( asList(
+		Profile profile = mock( AbstractProfile.class );
+		when( profile.getConstraints() ).thenReturn( new HashSet<>( asList(
 				new MandatoryNodeConstraint( "/path/to/mandatory/node" ),
-				new RecommendedNodeConstraint( "/path/to/recommended/node" ) ) );
+				new RecommendedNodeConstraint( "/path/to/recommended/node" ) ) ) );
 
 		// when
 		ValidationGate validationGate = new StandardValidationGate();

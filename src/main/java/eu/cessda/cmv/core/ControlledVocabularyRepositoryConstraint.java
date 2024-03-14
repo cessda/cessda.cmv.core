@@ -27,6 +27,7 @@ import javax.xml.xpath.XPathExpressionException;
 import java.net.URI;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 class ControlledVocabularyRepositoryConstraint extends NodeConstraint
 {
@@ -83,5 +84,21 @@ class ControlledVocabularyRepositoryConstraint extends NodeConstraint
 		{
 			return Collections.emptyList();
 		}
+	}
+
+	@Override
+	public boolean equals( Object o )
+	{
+		if ( this == o ) return true;
+		if ( o == null || getClass() != o.getClass() ) return false;
+		if ( !super.equals( o ) ) return false;
+		ControlledVocabularyRepositoryConstraint that = (ControlledVocabularyRepositoryConstraint) o;
+		return Objects.equals( type, that.type ) && Objects.equals( uri, that.uri );
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash( super.hashCode(), type, uri );
 	}
 }

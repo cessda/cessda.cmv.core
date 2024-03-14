@@ -22,6 +22,7 @@ package eu.cessda.cmv.core;
 import javax.xml.xpath.XPathExpressionException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
@@ -51,5 +52,21 @@ class FixedValueNodeConstraint extends NodeConstraint
 	public String getFixedValue()
 	{
 		return fixedValue;
+	}
+
+	@Override
+	public boolean equals( Object o )
+	{
+		if ( this == o ) return true;
+		if ( o == null || getClass() != o.getClass() ) return false;
+		if ( !super.equals( o ) ) return false;
+		FixedValueNodeConstraint that = (FixedValueNodeConstraint) o;
+		return Objects.equals( fixedValue, that.fixedValue );
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash( super.hashCode(), fixedValue );
 	}
 }

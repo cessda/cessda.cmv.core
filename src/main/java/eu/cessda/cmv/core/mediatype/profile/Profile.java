@@ -59,23 +59,33 @@ public class Profile extends JaxbDocument
 
 	@XmlElements( {
 			@XmlElement(
-					name = MaximumElementOccurrenceConstraint.JAXB_ELEMENT,
-					type = MaximumElementOccurrenceConstraint.class ),
+					name = CompilableXPathConstraint.JAXB_ELEMENT,
+					type = CompilableXPathConstraint.class ),
+			@XmlElement(
+					name = FixedValueNodeConstraint.JAXB_ELEMENT,
+					type = FixedValueNodeConstraint.class ),
 			@XmlElement(
 					name = MandatoryNodeConstraint.JAXB_ELEMENT,
 					type = MandatoryNodeConstraint.class ),
 			@XmlElement(
+					name = MandatoryNodeIfParentPresentConstraint.JAXB_ELEMENT,
+					type = MandatoryNodeIfParentPresentConstraint.class ),
+			@XmlElement(
+					name = MaximumElementOccurrenceConstraint.JAXB_ELEMENT,
+					type = MaximumElementOccurrenceConstraint.class ),
+			@XmlElement(
+					name = NotBlankNodeConstraint.JAXB_ELEMENT,
+					type = NotBlankNodeConstraint.class ),
+			@XmlElement(
 					name = OptionalNodeConstraint.JAXB_ELEMENT,
 					type = OptionalNodeConstraint.class ),
-			@XmlElement(
-					name = RecommendedNodeConstraint.JAXB_ELEMENT,
-					type = RecommendedNodeConstraint.class ),
 			@XmlElement(
 					name = PredicatelessXPathConstraint.JAXB_ELEMENT,
 					type = PredicatelessXPathConstraint.class ),
 			@XmlElement(
-					name = CompilableXPathConstraint.JAXB_ELEMENT,
-					type = CompilableXPathConstraint.class )
+					name = RecommendedNodeConstraint.JAXB_ELEMENT,
+					type = RecommendedNodeConstraint.class ),
+
 	} )
 	private List<Constraint> constraints;
 

@@ -22,6 +22,7 @@ package eu.cessda.cmv.core;
 import javax.xml.xpath.XPathExpressionException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 class MaximumElementOccurrenceConstraint extends NodeConstraint
 {
@@ -43,5 +44,21 @@ class MaximumElementOccurrenceConstraint extends NodeConstraint
 	long getMaxOccurs()
 	{
 		return maxOccurs;
+	}
+
+	@Override
+	public boolean equals( Object o )
+	{
+		if ( this == o ) return true;
+		if ( o == null || getClass() != o.getClass() ) return false;
+		if ( !super.equals( o ) ) return false;
+		MaximumElementOccurrenceConstraint that = (MaximumElementOccurrenceConstraint) o;
+		return maxOccurs == that.maxOccurs;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash( super.hashCode(), maxOccurs );
 	}
 }
