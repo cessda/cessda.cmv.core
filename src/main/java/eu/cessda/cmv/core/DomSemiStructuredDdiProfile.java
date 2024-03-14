@@ -306,7 +306,7 @@ class DomSemiStructuredDdiProfile implements Profile
 				locationPath = ( (NodeConstraint) constraint ).getLocationPath();
 			}
 
-			eu.cessda.cmv.core.mediatype.profile.Constraint jaxbConstraint = null;
+			eu.cessda.cmv.core.mediatype.profile.Constraint jaxbConstraint;
 
             if ( constraint instanceof CompilableXPathConstraint )
             {
