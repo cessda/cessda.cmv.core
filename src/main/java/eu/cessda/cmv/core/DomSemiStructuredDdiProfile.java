@@ -290,7 +290,7 @@ class DomSemiStructuredDdiProfile implements Profile
 		return unmodifiableList( constraints );
 	}
 
-	public eu.cessda.cmv.core.mediatype.profile.Profile toJaxbProfileV0()
+	eu.cessda.cmv.core.mediatype.profile.Profile toJaxbProfile()
 	{
 		eu.cessda.cmv.core.mediatype.profile.Profile jaxbProfile = new eu.cessda.cmv.core.mediatype.profile.Profile();
 		List<eu.cessda.cmv.core.mediatype.profile.Constraint> jaxbConstraints = jaxbProfile.getConstraints();
@@ -320,6 +320,22 @@ class DomSemiStructuredDdiProfile implements Profile
             {
                 jaxbConstraint = new eu.cessda.cmv.core.mediatype.profile.MaximumElementOccurrenceConstraint( locationPath, ( (MaximumElementOccurrenceConstraint) constraint ).getMaxOccurs() );
             }
+			else if ( constraint instanceof FixedValueNodeConstraint )
+			{
+				jaxbConstraint = new eu.cessda.cmv.core.mediatype.profile.FixedValueNodeConstraint( locationPath, ( (FixedValueNodeConstraint) constraint ).getFixedValue() );
+			}
+			else if ( constraint instanceof NotBlankNodeConstraint )
+			{
+				jaxbConstraint = new eu.cessda.cmv.core.mediatype.profile.NotBlankNodeConstraint( locationPath );
+			}
+			else if (constraint instanceof MandatoryNodeConstraint )
+			{
+				jaxbConstraint = new eu.cessda.cmv.core.mediatype.profile.MandatoryNodeConstraint( locationPath );
+			}
+			else if ( constraint instanceof MandatoryNodeIfParentPresentConstraint )
+			{
+				jaxbConstraint = new eu.cessda.cmv.core.mediatype.profile.MandatoryNodeIfParentPresentConstraint( locationPath );
+			}
             else if ( constraint instanceof RecommendedNodeConstraint )
             {
                 jaxbConstraint = new eu.cessda.cmv.core.mediatype.profile.RecommendedNodeConstraint( locationPath );
@@ -328,12 +344,14 @@ class DomSemiStructuredDdiProfile implements Profile
             {
                 jaxbConstraint = new eu.cessda.cmv.core.mediatype.profile.OptionalNodeConstraint( locationPath );
             }
-
-			if (jaxbConstraint != null)
+			else
 			{
-				jaxbConstraints.add( jaxbConstraint );
+				// Ideally this should never be reached, but it is useful in testing to catch any unexpected constraints
+				throw new IllegalStateException( "Unexpected constraint " + constraint.getClass() );
 			}
-		}
+
+            jaxbConstraints.add( jaxbConstraint );
+        }
 
 		return jaxbProfile;
 	}

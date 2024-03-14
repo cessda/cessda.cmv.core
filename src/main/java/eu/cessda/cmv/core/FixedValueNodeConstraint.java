@@ -47,4 +47,9 @@ class FixedValueNodeConstraint extends NodeConstraint
 		}
 		return validators;
 	}
+
+	public String getFixedValue()
+	{
+		return fixedValue;
+	}
 }
