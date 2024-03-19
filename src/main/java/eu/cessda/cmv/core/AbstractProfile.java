@@ -21,10 +21,20 @@ package eu.cessda.cmv.core;
 
 import java.util.Objects;
 
+/**
+ * This class implements the {@link Object#equals(Object)} and {@link Object#hashCode()} methods
+ * to fulfill the equality contract between instances of {@link Profile}.
+ * <p>
+ * Profiles are considered to be equal if each profile has the same constraints. Performing a validation using
+ * equivalent profiles should emit identical constraint violations. The ordering of the constraints is unimportant.
+ * <p>
+ * The profile name and version is not considered important for the purposes of profile equality, and is ignored.
+ */
 public abstract class AbstractProfile implements Profile
 {
 	/**
-	 * Tests two profiles for
+	 * Tests two profiles for equivalence. Profiles are equivalent if they have identical constraints.
+	 *
 	 * @param obj the reference object to compare.
 	 * @return {@code true} if the profiles have the same constraints, {@code false} otherwise.
 	 */
