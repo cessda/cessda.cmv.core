@@ -21,12 +21,11 @@ package eu.cessda.cmv.core.mediatype.validationrequest;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.eclipse.persistence.oxm.annotations.XmlCDATA;
+import org.xml.sax.InputSource;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
+import java.io.StringReader;
 import java.util.Objects;
 
 import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
@@ -59,9 +58,10 @@ public class ContentDocument implements Document
 	}
 
 	@Override
-	public InputStream toInputStream()
+	public InputSource toInputSource()
 	{
-		return new ByteArrayInputStream( content.getBytes( StandardCharsets.UTF_8 ) );
+		StringReader reader = new StringReader( content );
+		return new InputSource( reader );
 	}
 
 	@Override

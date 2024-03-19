@@ -20,11 +20,10 @@
 package eu.cessda.cmv.core.mediatype.validationrequest;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import org.xml.sax.InputSource;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.URI;
 import java.util.Objects;
 
@@ -57,9 +56,9 @@ public class UriDocument implements Document
 	}
 
 	@Override
-	public InputStream toInputStream() throws IOException
+	public InputSource toInputSource()
 	{
-		return uri.toURL().openStream();
+		return new InputSource( uri.toASCIIString() );
     }
 
 	@Override
