@@ -38,7 +38,6 @@ public interface Document
 	 * Register a {@link ControlledVocabularyRepository} instance. The {@link ControlledVocabularyRepository}
 	 * can be looked up using {@link #findControlledVocabularyRepository(URI)} with a registered URI.
 	 *
-	 * @param uri the URI of the controlled vocabulary repository.
 	 * @param controlledVocabularyRepository the repository.
 	 */
 	void register( ControlledVocabularyRepository controlledVocabularyRepository );
