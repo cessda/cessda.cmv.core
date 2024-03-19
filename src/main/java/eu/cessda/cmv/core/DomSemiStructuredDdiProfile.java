@@ -22,10 +22,12 @@ package eu.cessda.cmv.core;
 import org.gesis.commons.xml.XMLDocument;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Node;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
+import java.io.StringReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
@@ -35,6 +37,7 @@ import static java.util.Collections.unmodifiableSet;
 class DomSemiStructuredDdiProfile extends AbstractProfile
 {
 	private final String profileName;
+	private final String profileVersion;
 	private final LinkedHashSet<Constraint> constraints;
 
 	DomSemiStructuredDdiProfile( XMLDocument document ) throws IOException, NotDocumentException
@@ -43,6 +46,7 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		{
 			this.constraints = new LinkedHashSet<>();
 			this.profileName = parseProfileName( document );
+			this.profileVersion = parseProfileVersion( document );
 
 			for ( Node usedNode : document.selectNodes( "/DDIProfile/Used" ) )
 			{
@@ -101,12 +105,25 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		return usedNode.getAttributes().getNamedItem( "xpath" ).getTextContent();
 	}
 
-	private String parseProfileName( XMLDocument document ) throws XPathExpressionException
+	private static String parseProfileName( XMLDocument document ) throws XPathExpressionException
 	{
 		Node nameNode = document.selectNode( "/DDIProfile/DDIProfileName" );
 		if ( nameNode != null )
 		{
 			return nameNode.getTextContent().trim();
+		}
+		else
+		{
+			return null;
+		}
+	}
+
+	private static String parseProfileVersion( XMLDocument document ) throws XPathExpressionException
+	{
+		Node versionNode = document.selectNode( "/DDIProfile/Version" );
+		if ( versionNode != null )
+		{
+			return versionNode.getTextContent().trim();
 		}
 		else
 		{
@@ -120,7 +137,9 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		Node constraintsNode = document.selectNode( usedNode, extensionRecognizingXPath );
 		if ( constraintsNode != null )
 		{
-			XMLDocument extension = XMLDocument.newBuilder().source( constraintsNode.getTextContent() ).build();
+			StringReader constraintReader = new StringReader( constraintsNode.getTextContent() );
+			InputSource inputSource = new InputSource( constraintReader );
+			XMLDocument extension = XMLDocument.newBuilder().build( inputSource );
 			return Optional.of( extension );
 		}
 		else
@@ -295,6 +314,12 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 	public String getProfileName()
 	{
 		return profileName;
+	}
+
+	@Override
+	public String getProfileVersion()
+	{
+		return profileVersion;
 	}
 
 	eu.cessda.cmv.core.mediatype.profile.Profile toJaxbProfile()

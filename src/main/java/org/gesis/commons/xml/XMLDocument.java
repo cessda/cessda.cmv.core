@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,12 +28,7 @@ import org.xml.sax.SAXNotSupportedException;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.*;
 import javax.xml.xpath.*;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringReader;
-import java.net.URI;
-import java.net.URL;
 import java.util.*;
 
 import static java.util.Objects.requireNonNull;
@@ -296,48 +291,6 @@ public class XMLDocument
 		private boolean isLocationInfoAware = false;
 		private boolean isNamespaceAware = false;
 		private int prettyPrintIndentation = 0;
-		private InputSource inputSource;
-		private Document document;
-
-		public Builder()
-		{
-			printPrettyWithIndentation( 0 );
-		}
-
-		public Builder source( File file )
-		{
-			return source( file.toURI() );
-		}
-
-		public Builder source( URL url )
-		{
-			inputSource = new InputSource( url.toExternalForm() );
-			return this;
-		}
-
-		public Builder source( URI uri )
-		{
-			inputSource = new InputSource( uri.toASCIIString() );
-			return this;
-		}
-
-		public Builder source( String content )
-		{
-			inputSource = new InputSource( new StringReader( content ) );
-			return this;
-		}
-
-		public Builder source( InputStream inputStream )
-		{
-			inputSource = new InputSource( inputStream );
-			return this;
-		}
-
-		public Builder source( Document document )
-		{
-			this.document = document;
-			return this;
-		}
 
 		public Builder printPrettyWithIndentation( int indentation )
 		{
@@ -357,12 +310,9 @@ public class XMLDocument
 			return this;
 		}
 
-		public XMLDocument build() throws IOException, SAXException
+		public XMLDocument build( InputSource inputSource ) throws IOException, SAXException
 		{
-			if (document == null)
-			{
-				document = parseInputSource( inputSource );
-			}
+			Document document = parseInputSource( inputSource );
 			return new XMLDocument( document, prettyPrintIndentation, isNamespaceAware );
 		}
 

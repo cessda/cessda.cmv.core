@@ -57,6 +57,9 @@ public class Profile extends JaxbDocument
 	@XmlElement
 	private String name;
 
+	@XmlElement
+	private String version;
+
 	@XmlElements( {
 			@XmlElement(
 					name = CompilableXPathConstraint.JAXB_ELEMENT,
@@ -103,6 +106,16 @@ public class Profile extends JaxbDocument
 	public void setName( String name )
 	{
 		this.name = name;
+	}
+
+	public String getVersion()
+	{
+		return version;
+	}
+
+	public void setVersion( String version )
+	{
+		this.version = version;
 	}
 
 	public List<Constraint> getConstraints()
@@ -160,12 +173,13 @@ public class Profile extends JaxbDocument
 		if ( o == null || getClass() != o.getClass() ) return false;
 		Profile profile = (Profile) o;
 		return Objects.equals( name, profile.name ) &&
-			Objects.equals( constraints, profile.constraints );
+			   Objects.equals( version, profile.version ) &&
+			   Objects.equals( constraints, profile.constraints );
 	}
 
 	@Override
 	public int hashCode()
 	{
-		return Objects.hash( name, constraints );
+		return Objects.hash( name, version, constraints );
 	}
 }

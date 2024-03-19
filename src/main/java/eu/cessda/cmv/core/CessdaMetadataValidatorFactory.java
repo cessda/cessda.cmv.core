@@ -22,14 +22,13 @@ package eu.cessda.cmv.core;
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 import org.gesis.commons.xml.XMLDocument;
 import org.gesis.commons.xml.XmlNotWellformedException;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.xpath.XPathExpressionException;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.util.*;
@@ -61,16 +60,14 @@ public class CessdaMetadataValidatorFactory
 	 * or an OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
 	 *
 	 * @param file the file where the XML to be parsed is located.
-	 * @throws NotDocumentException if the XML is not well-formed, or is not detected as a DDI document.
+	 * @throws NotDocumentException if the XML is not well-formed.
 	 * @throws IOException          if an IO error occurs.
 	 */
 	public Document newDocument( File file ) throws IOException, NotDocumentException
 	{
 		Objects.requireNonNull( file, "file is not null" );
-		try ( FileInputStream inputStream = new FileInputStream( file ) )
-		{
-			return newDocument( inputStream );
-		}
+		InputSource inputSource = new InputSource( file.toURI().toASCIIString() );
+		return newDocument( inputSource );
 	}
 
 	/**
@@ -78,15 +75,15 @@ public class CessdaMetadataValidatorFactory
 	 * or an OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
 	 *
 	 * @param uri the URI where the XML to be parsed is located.
-	 * @throws NotDocumentException  if the XML is not well-formed, or is not detected as a DDI document.
-	 * @throws MalformedURLException if the given URI cannot be constructed to a URL
+	 * @throws NotDocumentException  if the XML is not well-formed.
 	 * @throws IOException           if an IO error occurs.
 	 * @implNote this calls {@link #newDocument(URL)} using {@link URI#toURL()} to transform the URI to a URL.
 	 */
 	public Document newDocument( URI uri ) throws IOException, NotDocumentException
 	{
 		Objects.requireNonNull( uri, "uri is not null" );
-		return newDocument( uri.toURL() );
+		InputSource inputSource = new InputSource( uri.toASCIIString() );
+		return newDocument( inputSource );
 	}
 
 	/**
@@ -94,16 +91,28 @@ public class CessdaMetadataValidatorFactory
 	 * or an OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
 	 *
 	 * @param url the URL where the XML to be parsed is located.
-	 * @throws NotDocumentException if the XML is not well-formed, or is not detected as a DDI document.
+	 * @throws NotDocumentException if the XML is not well-formed.
 	 * @throws IOException          if an IO error occurs.
 	 */
 	public Document newDocument( URL url ) throws IOException, NotDocumentException
 	{
-		Objects.requireNonNull( url, "url is not null" );
-		try ( InputStream inputStream = url.openStream() )
-		{
-			return newDocument( inputStream );
-		}
+		Objects.requireNonNull( url, "url is null" );
+		InputSource inputSource = new InputSource( url.toExternalForm() );
+		return newDocument( inputSource );
+	}
+
+	/**
+	 * Parse the XML located at the given URL into a {@link Document}. The XML document must be either a DDI document
+	 * or an OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
+	 *
+	 * @param inputStream the input stream of the XML to be parsed.
+	 * @throws NotDocumentException if the XML is not well-formed.
+	 * @throws IOException          if an IO error occurs.
+	 */
+	public Document newDocument( InputStream inputStream ) throws IOException, NotDocumentException
+	{
+		Objects.requireNonNull( inputStream, "inputStream is null" );
+		return newDocument( new InputSource( inputStream ) );
 	}
 
 	/**
@@ -118,36 +127,36 @@ public class CessdaMetadataValidatorFactory
 	public Profile newProfile( URI uri ) throws NotDocumentException
 	{
 		Objects.requireNonNull( uri, "uri must not be null" );
-		XMLDocument.Builder documentBuilder = XMLDocument.newBuilder().source( uri );
-		return newProfile( documentBuilder );
+		InputSource inputSource = new InputSource( uri.toASCIIString() );
+		return newProfile( inputSource );
 	}
 
 	public Profile newProfile( URL url ) throws NotDocumentException
 	{
 		Objects.requireNonNull( url, "url must not be null" );
-		XMLDocument.Builder documentBuilder = XMLDocument.newBuilder().source( url );
-		return newProfile( documentBuilder );
+		InputSource inputSource = new InputSource( url.toExternalForm() );
+		return newProfile( inputSource );
 	}
 
 	public Profile newProfile( File file ) throws NotDocumentException
 	{
 		Objects.requireNonNull( file, "file must not be null" );
-		XMLDocument.Builder documentBuilder = XMLDocument.newBuilder().source( file );
-		return newProfile( documentBuilder );
+		InputSource inputSource = new InputSource( file.toURI().toASCIIString() );
+		return newProfile( inputSource );
 	}
 
 	public Profile newProfile( InputStream inputStream ) throws NotDocumentException
 	{
 		Objects.requireNonNull( inputStream, "inputStream must not be null" );
-		XMLDocument.Builder documentBuilder = XMLDocument.newBuilder().source( inputStream );
-		return newProfile( documentBuilder );
+		InputSource inputSource = new InputSource( inputStream );
+		return newProfile( inputSource );
 	}
 
-	private Profile newProfile( XMLDocument.Builder documentBuilder ) throws NotDocumentException
+	private Profile newProfile( InputSource inputSource ) throws NotDocumentException
 	{
 		try
 		{
-			XMLDocument document = documentBuilder.build();
+			XMLDocument document = XMLDocument.newBuilder().build(inputSource);
 			return new DomSemiStructuredDdiProfile( document );
 		}
 		catch ( SAXException | IOException e )
@@ -213,18 +222,18 @@ public class CessdaMetadataValidatorFactory
 	 * Parse the given XML into a {@link Document}. The XML document must be either a DDI document or an
 	 * OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
 	 *
-	 * @param inputStream the input stream containing the XML to be parsed.
-	 * @throws NotDocumentException if the XML is not well-formed, or is not detected as a DDI document.
+	 * @param inputSource the input source of the XML to be parsed.
+	 * @throws NotDocumentException if the XML is not well-formed.
 	 * @throws IOException          if an IO error occurs.
 	 */
-	public Document newDocument( InputStream inputStream ) throws IOException, NotDocumentException
+	public Document newDocument( InputSource inputSource ) throws IOException, NotDocumentException
 	{
-		Objects.requireNonNull( inputStream, "inputStream is null" );
+		Objects.requireNonNull( inputSource, "inputSource is null" );
 
 		try
 		{
 			// Parse the XML document
-			XMLDocument document = XMLDocument.newBuilder().locationInfoAware( true ).namespaceAware( true ).source( inputStream ).build();
+			XMLDocument document = XMLDocument.newBuilder().locationInfoAware( true ).namespaceAware( true ).build( inputSource );
 			String namespace = document.getNamespace();
 
 			if ( OAI_PMH_XML_NAMESPACE.equals( namespace ))

@@ -21,6 +21,7 @@ package eu.cessda.cmv.core;
 
 import org.gesis.commons.xml.XMLDocument;
 import org.junit.jupiter.api.Test;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
@@ -47,8 +48,8 @@ class DomProfileTest
 
 
 			// should be equal
-			eu.cessda.cmv.core.Profile expectedProfile = new DomSemiStructuredDdiProfile( XMLDocument.newBuilder().source( url ).build() );
-			actualProfile.equals( expectedProfile );
+			InputSource inputSource = new InputSource( url.toExternalForm() );
+			eu.cessda.cmv.core.Profile expectedProfile = new DomSemiStructuredDdiProfile( XMLDocument.newBuilder().build( inputSource ) );
 			assertThat( actualProfile, equalTo( expectedProfile ) );
 		}
 	}

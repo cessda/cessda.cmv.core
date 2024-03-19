@@ -23,19 +23,23 @@ import java.util.Objects;
 
 public abstract class AbstractProfile implements Profile
 {
+	/**
+	 * Tests two profiles for
+	 * @param obj the reference object to compare.
+	 * @return {@code true} if the profiles have the same constraints, {@code false} otherwise.
+	 */
 	@Override
-	public boolean equals( Object o )
+	public boolean equals( Object obj )
 	{
-		if ( this == o ) return true;
-		if ( !( o instanceof AbstractProfile ) ) return false;
-		Profile that = (Profile) o;
-		return Objects.equals( getProfileName(), that.getProfileName() ) &&
-			Objects.equals( getConstraints(), that.getConstraints() );
+		if ( this == obj ) return true;
+		if ( !( obj instanceof AbstractProfile ) ) return false;
+		Profile that = (Profile) obj;
+		return Objects.equals( getConstraints(), that.getConstraints() );
 	}
 
 	@Override
 	public int hashCode()
 	{
-		return Objects.hash( getProfileName(), getConstraints() );
+		return Objects.hash( getConstraints() );
 	}
 }

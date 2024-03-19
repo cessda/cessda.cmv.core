@@ -25,6 +25,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.xpath.XPathExpressionException;
@@ -51,7 +52,8 @@ class CessdaMetadataValidatorFactoryTest
 	{
 		URL resourceUrl = this.getClass().getResource( "/cmv-profile-ddi-v32.xml" );
 		assert resourceUrl != null;
-		XMLDocument document = XMLDocument.newBuilder().namespaceAware( true ).source( resourceUrl ).build();
+		InputSource inputSource = new InputSource( resourceUrl.toExternalForm() );
+		XMLDocument document = XMLDocument.newBuilder().namespaceAware( true ).build( inputSource );
 		assertThat( document.selectNode( "/pr:DDIProfile" ), notNullValue() );
 	}
 

@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 import org.w3c.dom.Node;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.xpath.XPathExpressionException;
@@ -49,7 +50,8 @@ class DemoDocumentsTest
                 {
                     try
                     {
-                        return XMLDocument.newBuilder().source( resource ).build();
+						InputSource inputSource = new InputSource( resource.toExternalForm() );
+                        return XMLDocument.newBuilder().build( inputSource );
                     }
                     catch ( IOException | SAXException e )
                     {

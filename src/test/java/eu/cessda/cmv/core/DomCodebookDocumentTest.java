@@ -22,6 +22,7 @@ package eu.cessda.cmv.core;
 import org.gesis.commons.xml.XMLDocument;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import java.net.URL;
@@ -38,7 +39,8 @@ class DomCodebookDocumentTest
 		assert url != null;
 
 		// when
-		Executable executable = () -> new DomCodebookDocument( XMLDocument.newBuilder().source( url ).build() );
+		InputSource inputSource = new InputSource( url.toExternalForm() );
+		Executable executable = () -> new DomCodebookDocument( XMLDocument.newBuilder().build( inputSource ) );
 		// then
 		assertThrows( SAXException.class, executable );
 	}

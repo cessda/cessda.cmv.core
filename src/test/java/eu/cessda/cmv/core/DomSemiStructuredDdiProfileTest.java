@@ -26,6 +26,7 @@ import org.gesis.commons.xml.XMLDocument;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.transform.stream.StreamSource;
@@ -106,7 +107,8 @@ class DomSemiStructuredDdiProfileTest
 		assert sourceUrl != null;
 
 		// when
-        DomSemiStructuredDdiProfile profile = new DomSemiStructuredDdiProfile( XMLDocument.newBuilder().source( sourceUrl ).build() );
+		InputSource inputSource = new InputSource( sourceUrl.toExternalForm() );
+		DomSemiStructuredDdiProfile profile = new DomSemiStructuredDdiProfile( XMLDocument.newBuilder().build( inputSource ) );
 		Profile jaxbProfile = profile.toJaxbProfile();
 		assertThat( jaxbProfile.getConstraints(), hasSize( 61 + 61 + 27 + 10 + 5 + 24 + 12 ) );
 		jaxbProfile.saveAs( actualFile );

@@ -25,5 +25,7 @@ public interface Profile
 {
 	String getProfileName();
 
+	String getProfileVersion();
+
 	Set<Constraint> getConstraints();
 }

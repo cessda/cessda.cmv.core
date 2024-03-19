@@ -21,6 +21,7 @@ package eu.cessda.cmv.core;
 
 import java.io.InputStream;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import static java.util.Collections.unmodifiableSet;
@@ -28,13 +29,16 @@ import static java.util.Collections.unmodifiableSet;
 class DomProfile extends AbstractProfile
 {
 	private final String profileName;
+	private final String profileVersion;
 	private final Set<Constraint> constraints;
 
 	public DomProfile( InputStream inputStream )
 	{
+		eu.cessda.cmv.core.mediatype.profile.Profile profile = eu.cessda.cmv.core.mediatype.profile.Profile.read( inputStream );
+		Objects.requireNonNull( profile.getConstraints(), "profile constraints must not be null" );
+
 		this.constraints = new LinkedHashSet<>();
 
-		eu.cessda.cmv.core.mediatype.profile.Profile profile = eu.cessda.cmv.core.mediatype.profile.Profile.read( inputStream );
 		for ( eu.cessda.cmv.core.mediatype.profile.Constraint constraint : profile.getConstraints() )
 		{
 			if ( constraint instanceof eu.cessda.cmv.core.mediatype.profile.CompilableXPathConstraint )
@@ -80,7 +84,23 @@ class DomProfile extends AbstractProfile
 			}
 		}
 
-		this.profileName = profile.getName().trim();
+		if (profile.getName() != null)
+		{
+			this.profileName = profile.getName().trim();
+		}
+		else
+		{
+			this.profileName = null;
+		}
+
+		if (profile.getVersion() != null)
+		{
+			this.profileVersion = profile.getVersion().trim();
+		}
+		else
+		{
+			this.profileVersion = null;
+		}
 	}
 
 	@Override
@@ -93,6 +113,12 @@ class DomProfile extends AbstractProfile
 	public String getProfileName()
 	{
 		return profileName;
+	}
+
+	@Override
+	public String getProfileVersion()
+	{
+		return profileVersion;
 	}
 
 	private void parse( eu.cessda.cmv.core.mediatype.profile.MaximumElementOccurrenceConstraint jaxbConstraint )
