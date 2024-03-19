@@ -28,6 +28,13 @@ import java.util.List;
 public interface Document
 {
 	/**
+	 * Gets the URI of the source of the document.
+	 *
+	 * @return the URI, or {@code null} if the document was constructed from a source that didn't specify a URI.
+	 */
+	URI getURI();
+
+	/**
 	 * Get a list of DOM nodes found at the given XPath.
 	 *
 	 * @param locationPath the XPath to the nodes to look up.
@@ -41,33 +48,6 @@ public interface Document
 	 * @param controlledVocabularyRepository the repository.
 	 */
 	void register( ControlledVocabularyRepository controlledVocabularyRepository );
-
-	/**
-	 * Register a URI to a {@link ControlledVocabularyRepository} instance. The {@link ControlledVocabularyRepository}
-	 * can be looked up using {@link #findControlledVocabularyRepository(URI)} with a registered URI.
-	 *
-	 * @param uri the URI of the controlled vocabulary repository.
-	 * @param controlledVocabularyRepository the repository.
-	 * @deprecated {@link ControlledVocabularyRepository} instances store a URI internally so this is redundant
-	 */
-	@Deprecated
-	void register( String uri, ControlledVocabularyRepository controlledVocabularyRepository );
-
-	/**
-	 * Find a registered {@link ControlledVocabularyRepository} instance.
-	 * <p>
-	 * {@link ControlledVocabularyRepository} instances are registered using
-	 * {@link #register(String, ControlledVocabularyRepository)}.
-	 *
-	 * @param uri the URI of the controlled vocabulary.
-	 * @return the controlled vocabulary, or {@code null} if the uri was not registered.
-	 * @deprecated use {@link Document#findControlledVocabularyRepository(URI)} instead.
-	 */
-	@Deprecated
-	default ControlledVocabularyRepository findControlledVocabularyRepository( String uri )
-	{
-		return findControlledVocabularyRepository( URI.create( uri ) );
-	}
 
 	/**
 	 * Find a registered {@link ControlledVocabularyRepository} instance.

@@ -24,9 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
-import eu.cessda.cmv.core.CessdaMetadataValidatorFactory;
-import eu.cessda.cmv.core.NotDocumentException;
-import eu.cessda.cmv.core.ValidationService;
+import eu.cessda.cmv.core.*;
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
 import org.junit.jupiter.api.Test;
@@ -49,7 +47,8 @@ import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 
 class ValidationReportTest
 {
-    private final TestEnv.V11 testEnv;
+	private final CessdaMetadataValidatorFactory factory = new CessdaMetadataValidatorFactory();
+	private final TestEnv.V11 testEnv;
 
 	ValidationReportTest()
 	{
@@ -58,9 +57,13 @@ class ValidationReportTest
 
 	private ValidationReport newValidationReport() throws IOException, NotDocumentException, URISyntaxException
 	{
-		URI document = Objects.requireNonNull( getClass().getResource( "/demo-documents/ddi-v25/ukds-7481.xml" ) ).toURI();
-		URI profile = Objects.requireNonNull( getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ) ).toURI();
-		ValidationService validationService = new CessdaMetadataValidatorFactory().newValidationService();
+		URI documentURI = Objects.requireNonNull( getClass().getResource( "/demo-documents/ddi-v25/ukds-7481.xml" ) ).toURI();
+		URI profileURI = Objects.requireNonNull( getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ) ).toURI();
+
+		Document document = factory.newDocument(documentURI);
+		Profile profile = factory.newProfile( profileURI );
+
+		ValidationService validationService = factory.newValidationService();
 		return validationService.validate( document, profile, STANDARD );
 	}
 

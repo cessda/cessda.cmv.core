@@ -40,7 +40,7 @@ class DomCodebookDocumentTest
 
 		// when
 		InputSource inputSource = new InputSource( url.toExternalForm() );
-		Executable executable = () -> new DomCodebookDocument( XMLDocument.newBuilder().build( inputSource ) );
+		Executable executable = () -> new DomCodebookDocument( url.toURI(), XMLDocument.newBuilder().build( inputSource ) );
 		// then
 		assertThrows( SAXException.class, executable );
 	}

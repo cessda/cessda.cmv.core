@@ -40,18 +40,26 @@ class DomCodebookDocument implements Document
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger( DomCodebookDocument.class );
 
+	private final URI uri;
 	private final XMLDocument document;
 	private final Map<URI, ControlledVocabularyRepository> controlledVocabularyRepositoryMap;
 
-	DomCodebookDocument( XMLDocument document )
+	DomCodebookDocument( URI uri, XMLDocument document )
     {
-		this( document, new HashMap<>() );
+		this( uri, document, new HashMap<>() );
 	}
 
-	DomCodebookDocument( XMLDocument document, Map<URI, ControlledVocabularyRepository> cvrMap )
+	DomCodebookDocument( URI uri, XMLDocument document, Map<URI, ControlledVocabularyRepository> cvrMap )
 	{
+		this.uri = uri;
 		this.controlledVocabularyRepositoryMap = cvrMap;
 		this.document = document;
+	}
+
+	@Override
+	public URI getURI()
+	{
+		return uri;
 	}
 
 	@Override
@@ -150,14 +158,6 @@ class DomCodebookDocument implements Document
 	{
 		requireNonNull( controlledVocabularyRepository, "controlledVocabularyRepository must not be null" );
 		controlledVocabularyRepositoryMap.put( controlledVocabularyRepository.getUri(), controlledVocabularyRepository );
-	}
-
-	@Override
-	public void register( String uri, ControlledVocabularyRepository controlledVocabularyRepository )
-	{
-		requireNonNull( uri, "uri must not be null" );
-		requireNonNull( controlledVocabularyRepository, "controlledVocabularyRepository must not be null" );
-		controlledVocabularyRepositoryMap.put( URI.create(uri), controlledVocabularyRepository );
 	}
 
 	@Override

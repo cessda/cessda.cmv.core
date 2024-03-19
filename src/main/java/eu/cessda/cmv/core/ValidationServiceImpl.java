@@ -19,133 +19,31 @@
  */
 package eu.cessda.cmv.core;
 
-import eu.cessda.cmv.core.mediatype.validationreport.ConstraintViolation;
 import eu.cessda.cmv.core.mediatype.validationreport.ValidationReport;
-import org.gesis.commons.resource.Resource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 class ValidationServiceImpl implements ValidationService
 {
-	private static final Logger LOGGER = LoggerFactory.getLogger( ValidationServiceImpl.class );
-
-	private final CessdaMetadataValidatorFactory factory;
-
-	ValidationServiceImpl( CessdaMetadataValidatorFactory factory )
+	public ValidationReport validate( Document document, Profile profile, ValidationGateName validationGateName )
 	{
-		this.factory = factory;
+		return validate( document, profile, validationGateName.getValidationGate() );
 	}
 
-	@Override
-	public ValidationReport validate(
-			URI documentUri,
-			URI profileUri,
-			ValidationGateName validationGateName ) throws IOException, NotDocumentException
-	{
-		Document document = factory.newDocument( documentUri );
-		Profile profile = factory.newProfile( profileUri );
-		return validate( document,
-				documentUri,
-				profile,
-				profileUri,
-				validationGateName );
-	}
-
-	@Override
-	public ValidationReport validate(
-			Resource documentResource,
-			Resource profileResource,
-			ValidationGateName validationGateName ) throws IOException, NotDocumentException
-	{
-		try (
-			InputStream documentStream = documentResource.readInputStream();
-			InputStream profileStream = profileResource.readInputStream()
-		)
-		{
-			Document document = factory.newDocument( documentStream );
-			Profile profile = factory.newProfile( profileStream );
-			return validate( document,
-				documentResource.getUri(),
-				profile,
-				profileResource.getUri(),
-				validationGateName );
-		}
-	}
-
-	private static ValidationReport validate( Document document, Profile profile, URI documentUri, URI profileUri, ValidationGate validationGate )
-	{
-		ValidationReport validationReport = validate( document, documentUri, profile, validationGate );
-		LOGGER.info( "Validation executed: CUSTOM, {}, {}", documentUri, profileUri );
-		return validationReport;
-	}
-
-	private static ValidationReport validate(
-			Document document,
-			URI documentUri,
-			Profile profile,
-			URI profileUri,
-			ValidationGateName validationGateName )
-	{
-		ValidationReport validationReport = validate( document, documentUri, profile, validationGateName.getValidationGate() );
-		LOGGER.info( "Validation executed: {}, {}, {}", validationGateName, documentUri, profileUri );
-		return validationReport;
-	}
-
-	private static ValidationReport validate( Document document, URI documentUri, Profile profile, ValidationGate validationGate )
+	public ValidationReport validate( Document document, Profile profile, ValidationGate validationGate )
 	{
 		List<eu.cessda.cmv.core.ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// Transform all constraint violations into the media-type form
-		List<ConstraintViolation> mediaTypeConstraintViolations = new ArrayList<>( constraintViolations.size() );
+		List<eu.cessda.cmv.core.mediatype.validationreport.ConstraintViolation> mediaTypeConstraintViolations = new ArrayList<>( constraintViolations.size() );
 		for ( eu.cessda.cmv.core.ConstraintViolation constraintViolation : constraintViolations )
 		{
-			ConstraintViolation mediaTypeViolation = new ConstraintViolation( constraintViolation );
+			eu.cessda.cmv.core.mediatype.validationreport.ConstraintViolation mediaTypeViolation = new eu.cessda.cmv.core.mediatype.validationreport.ConstraintViolation( constraintViolation );
 			mediaTypeConstraintViolations.add( mediaTypeViolation );
 		}
 
 		// Create the validation report
-		return new ValidationReport( documentUri, mediaTypeConstraintViolations );
-	}
-
-	@Override
-	public ValidationReport validate(
-			URI documentUri,
-			URI profileUri,
-			ValidationGate validationGate ) throws IOException, NotDocumentException
-	{
-		Document document = factory.newDocument( documentUri );
-		Profile profile = factory.newProfile( profileUri );
-		return ValidationServiceImpl.validate( document,
-				profile,
-				documentUri,
-				profileUri,
-				validationGate );
-	}
-
-	@Override
-	public ValidationReport validate(
-			Resource documentResource,
-			Resource profileResource,
-			ValidationGate validationGate ) throws IOException, NotDocumentException
-	{
-		try (
-			InputStream documentStream = documentResource.readInputStream();
-			InputStream profileStream = profileResource.readInputStream()
-		)
-		{
-			Document document = factory.newDocument( documentStream );
-			Profile profile = factory.newProfile( profileStream );
-			return ValidationServiceImpl.validate( document,
-				profile,
-				documentResource.getUri(),
-				profileResource.getUri(),
-				validationGate );
-		}
+		return new ValidationReport( document.getURI(), mediaTypeConstraintViolations );
 	}
 }

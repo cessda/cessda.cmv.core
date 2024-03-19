@@ -22,6 +22,8 @@ package eu.cessda.cmv.core;
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 import org.gesis.commons.xml.XMLDocument;
 import org.gesis.commons.xml.XmlNotWellformedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -30,6 +32,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -38,6 +41,8 @@ import static java.util.Objects.requireNonNull;
 
 public class CessdaMetadataValidatorFactory
 {
+	private static final Logger log = LoggerFactory.getLogger( CessdaMetadataValidatorFactory.class );
+
 	private static final Set<String> CONSTRAINTS = Collections.unmodifiableSet( new HashSet<>( Arrays.asList(
 		"CompilableXPathConstraint",
 		"ControlledVocabularyRepositoryConstraint",
@@ -67,7 +72,7 @@ public class CessdaMetadataValidatorFactory
 	{
 		Objects.requireNonNull( file, "file is not null" );
 		InputSource inputSource = new InputSource( file.toURI().toASCIIString() );
-		return newDocument( inputSource );
+		return newDocument( file.toURI(), inputSource );
 	}
 
 	/**
@@ -83,7 +88,7 @@ public class CessdaMetadataValidatorFactory
 	{
 		Objects.requireNonNull( uri, "uri is not null" );
 		InputSource inputSource = new InputSource( uri.toASCIIString() );
-		return newDocument( inputSource );
+		return newDocument( uri, inputSource );
 	}
 
 	/**
@@ -97,8 +102,19 @@ public class CessdaMetadataValidatorFactory
 	public Document newDocument( URL url ) throws IOException, NotDocumentException
 	{
 		Objects.requireNonNull( url, "url is null" );
+
+		URI uri = null;
+		try
+		{
+			uri = url.toURI();
+		}
+		catch ( URISyntaxException e )
+		{
+			log.warn( "Couldn't convert {} into a URI: {}", url, e.getMessage() );
+		}
+
 		InputSource inputSource = new InputSource( url.toExternalForm() );
-		return newDocument( inputSource );
+        return newDocument( uri, inputSource );
 	}
 
 	/**
@@ -229,6 +245,25 @@ public class CessdaMetadataValidatorFactory
 	public Document newDocument( InputSource inputSource ) throws IOException, NotDocumentException
 	{
 		Objects.requireNonNull( inputSource, "inputSource is null" );
+		URI uri = null;
+		if (inputSource.getSystemId() != null)
+		{
+			try
+			{
+				uri = new URI( inputSource.getSystemId() );
+			}
+			catch ( URISyntaxException e )
+			{
+				log.warn( "Couldn't convert {} into a URI: {}", inputSource.getSystemId(), e.getMessage() );
+			}
+		}
+
+		return newDocument( uri, inputSource );
+	}
+
+	private Document newDocument( URI uri, InputSource inputSource ) throws IOException, NotDocumentException
+	{
+		Objects.requireNonNull( inputSource, "inputSource is null" );
 
 		try
 		{
@@ -242,7 +277,7 @@ public class CessdaMetadataValidatorFactory
 				document.setRootElement( "/oai:OAI-PMH/oai:GetRecord/oai:record/oai:metadata/*", "oai", OAI_PMH_XML_NAMESPACE );
 			}
 
-			return new DomCodebookDocument( document, cvrMap );
+			return new DomCodebookDocument( uri, document, cvrMap );
 		}
 		catch ( XmlNotWellformedException | XPathExpressionException | SAXException e )
 		{
@@ -260,6 +295,6 @@ public class CessdaMetadataValidatorFactory
 
 	public ValidationService newValidationService()
 	{
-		return new ValidationServiceImpl( this );
+		return new ValidationServiceImpl();
 	}
 }
