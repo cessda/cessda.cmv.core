@@ -30,10 +30,9 @@ This is a short snippet showing how to use the validator.
 void validateUsingFiles()
 {
 	CessdaMetadataValidatorFactory factory = new CessdaMetadataValidatorFactory();
-	ValidationService.V10 validationService = factory.newValidationService();
-	Resource document = Resource.newResource( new File( "path/to/ddi-document.xml" ) );
-	Resource profile = Resource.newResource( new File( "path/to/ddi-profile.xml" ) );
-	ValidationReportV0 validationReport = validationService.validate( document, profile, BASIC );
+	Document document = factory.newDocument( new File( "path/to/ddi-document.xml" ) );
+	Profile profile = factory.newProfile( new File( "path/to/ddi-profile.xml" ) );
+	ValidationReport validationReport = factory.validate( document, profile, BASIC );
 	boolean isValid = validationReport.getConstraintViolations().isEmpty();
 	validationReport.getConstraintViolations().forEach( cv -> System.out.println( cv.getMessage() ) );
 }

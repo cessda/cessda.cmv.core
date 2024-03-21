@@ -37,15 +37,14 @@ class JdkValidationServiceTest
 	@Test
 	void validate() throws IOException, NotDocumentException
 	{
-		ValidationService validationService = factory.newValidationService();
 		URL documentUri = this.getClass().getResource( "/demo-documents/ddi-v25/gesis-2800.xml" );
 		URL profileUri = this.getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
 
 		Document document = factory.newDocument( documentUri );
 		Profile profile = factory.newProfile( profileUri );
 
-		ValidationReport validationReportFromGateName = validationService.validate( document, profile, BASIC );
-		ValidationReport validationReportFromGate = validationService.validate( document, profile, BASIC.getValidationGate() );
+		ValidationReport validationReportFromGateName = factory.validate( document, profile, BASIC );
+		ValidationReport validationReportFromGate = factory.validate( document, profile, BASIC.getValidationGate() );
 
 		// Assert that 4 constraint violations were found
 		assertThat( validationReportFromGateName.getConstraintViolations(), hasSize( 4 ) );

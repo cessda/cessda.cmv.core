@@ -24,7 +24,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
-import eu.cessda.cmv.core.*;
+import eu.cessda.cmv.core.CessdaMetadataValidatorFactory;
+import eu.cessda.cmv.core.Document;
+import eu.cessda.cmv.core.NotDocumentException;
+import eu.cessda.cmv.core.Profile;
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
 import org.junit.jupiter.api.Test;
@@ -63,8 +66,7 @@ class ValidationReportTest
 		Document document = factory.newDocument(documentURI);
 		Profile profile = factory.newProfile( profileURI );
 
-		ValidationService validationService = factory.newValidationService();
-		return validationService.validate( document, profile, STANDARD );
+		return factory.validate( document, profile, STANDARD );
 	}
 
 	@Test

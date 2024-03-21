@@ -47,7 +47,7 @@ class DomSemiStructuredDdiProfileTest
 	@ParameterizedTest
 	@ValueSource(
 			strings = { "/demo-documents/ddi-v25/cdc25_profile.xml", "/demo-documents/ddi-v25/cdc_122_profile.xml" } )
-	void constructMultilingualProfiles( String classpathLocation ) throws NotDocumentException
+	void constructMultilingualProfiles( String classpathLocation ) throws NotDocumentException, IOException
 	{
 		// given
 		URL url = getClass().getResource( classpathLocation );
@@ -70,7 +70,7 @@ class DomSemiStructuredDdiProfileTest
 	@ValueSource(
 			strings = { "/demo-documents/ddi-v25/cdc25_profile_mono.xml",
 					"/demo-documents/ddi-v25/cdc_122_profile_mono.xml" } )
-	void constructMonolingualProfiles( String classpathLocation ) throws NotDocumentException
+	void constructMonolingualProfiles( String classpathLocation ) throws NotDocumentException, IOException
 	{
 		// given
 		URL url = getClass().getResource( classpathLocation );

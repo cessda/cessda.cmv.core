@@ -28,10 +28,5 @@ public interface ValidationService
 	ValidationReport validate(
 			Document document,
 			Profile profile,
-			ValidationGateName validationGateName ) throws IOException, NotDocumentException;
-
-	ValidationReport validate(
-			Document document,
-			Profile profile,
 			ValidationGate validationGate ) throws IOException, NotDocumentException;
 }

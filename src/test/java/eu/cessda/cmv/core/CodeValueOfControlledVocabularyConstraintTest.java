@@ -36,7 +36,7 @@ class CodeValueOfControlledVocabularyConstraintTest
 	private final Profile profile;
 	private final CessdaMetadataValidatorFactory factory;
 
-	CodeValueOfControlledVocabularyConstraintTest() throws NotDocumentException
+	CodeValueOfControlledVocabularyConstraintTest() throws NotDocumentException, IOException
 	{
 		testEnv = DefaultTestEnv.newInstance( CodeValueOfControlledVocabularyConstraintTest.class );
 		factory = new CessdaMetadataValidatorFactory();
