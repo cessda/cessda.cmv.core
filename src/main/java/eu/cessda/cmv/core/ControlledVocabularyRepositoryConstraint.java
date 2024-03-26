@@ -46,6 +46,7 @@ class ControlledVocabularyRepositoryConstraint implements Constraint
 		this.uri = repositoryUri;
 	}
 
+	@SuppressWarnings( "OverlyBroadCatchBlock" )
 	@Override
 	public List<Validator> newValidators( Document document )
 	{

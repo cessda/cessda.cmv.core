@@ -57,7 +57,7 @@ class DomCodebookDocument implements Document
 		List<Node> nodes = new ArrayList<>();
 		for ( org.w3c.dom.Node domNode : document.selectNodes( locationPath ) )
 		{
-			Node node;
+			NodeImpl node;
 			if ( locationPath.equals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit" )
 					|| locationPath.equals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" ) )
 			{
@@ -75,7 +75,7 @@ class DomCodebookDocument implements Document
 			}
 			else
 			{
-				node = new Node( locationPath, domNode.getTextContent(), document.getLocationInfo( domNode )
+				node = new NodeImpl( locationPath, domNode.getTextContent(), document.getLocationInfo( domNode )
 						.orElse( null ) );
 			}
 			countChildNodes( node, domNode );
@@ -96,7 +96,7 @@ class DomCodebookDocument implements Document
 		}
 	}
 
-	private void countChildNodes( Node node, org.w3c.dom.Node domNode )
+	private void countChildNodes( NodeImpl node, org.w3c.dom.Node domNode )
 	{
 		if ( domNode.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE )
 		{

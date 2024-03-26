@@ -22,7 +22,7 @@ package eu.cessda.cmv.core;
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 import org.gesis.commons.xml.LocationInfo;
 
-class ControlledVocabularyNode extends Node
+class ControlledVocabularyNode extends NodeImpl
 {
 	private final ControlledVocabularyRepository controlledVocabularyRepository;
 

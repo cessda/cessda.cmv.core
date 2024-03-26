@@ -37,7 +37,7 @@ class NotBlankNodeValidator implements Validator
 	@Override
 	public Optional<ConstraintViolation> validate()
 	{
-		boolean isBlank = node.getTextContent().trim().length() == 0;
+		boolean isBlank = node.getTextContent().trim().isEmpty();
 		if ( isBlank )
 		{
 			return ofNullable( newConstraintViolation() );

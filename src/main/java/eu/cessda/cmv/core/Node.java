@@ -2,14 +2,14 @@
  * #%L
  * cmv-core
  * %%
- * Copyright (C) 2020 - 2021 CESSDA ERIC
+ * Copyright (C) 2020 - 2023 CESSDA ERIC
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,60 +21,31 @@ package eu.cessda.cmv.core;
 
 import org.gesis.commons.xml.LocationInfo;
 
-import java.util.HashMap;
-
-import static java.util.Objects.requireNonNull;
-
-class Node
+public interface Node
 {
-	private final String locationPath;
-	private final String textContent;
-	private final LocationInfo locationInfo;
-	private final HashMap<String, Integer> childCounter = new HashMap<>();
+	/**
+	 * The XPath of this node in the document.
+	 */
+	String getLocationPath();
 
-	Node( String locationPath, String textContent, LocationInfo locationInfo )
-	{
-		requireNonNull( locationPath );
+	/**
+	 * The text content of this node and its descendants.
+	 */
+	String getTextContent();
 
-		this.locationPath = locationPath;
-		this.textContent = textContent;
-		this.locationInfo = locationInfo;
-	}
+	/**
+	 * The location of this node in the document.
+	 */
+	LocationInfo getLocationInfo();
 
-	public String getLocationPath()
-	{
-		return locationPath;
-	}
-
-	public String getTextContent()
-	{
-		return textContent;
-	}
-
-	public LocationInfo getLocationInfo()
-	{
-		return locationInfo;
-	}
-
-	public void incrementChildCount( String relativeLocationPath )
-	{
-		requireNonNull( relativeLocationPath );
-		childCounter.compute( relativeLocationPath, (path, counter) ->
-		{
-			if ( counter == null )
-			{
-				// Initialise the mapping with 1
-				return 1;
-			}
-			else
-			{
-				return counter + 1;
-			}
-		} );
-	}
-
-	public int getChildCount( String relativeLocationPath )
-	{
-		return childCounter.getOrDefault( relativeLocationPath, 0 );
-	}
+	/**
+	 * Returns the number of children of this node that satisfy the given XPath.
+	 * <p>
+	 * The XPath is resolved relative to this node. For example, a node at
+	 * {@code /node} and a relative location path of {@code ./child} would
+	 * be resolved to {@code /node/child}.
+	 *
+	 * @return the count of children that satisfy the given relative XPath.
+	 */
+	int getChildCount( String relativeLocationPath );
 }

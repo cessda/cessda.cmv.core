@@ -33,7 +33,7 @@ class NotBlankNodeValidatorTest
 	void validate_empty()
 	{
 		// given: empty text content
-		Node node = new Node( "/path/to/node", "", null );
+		Node node = new NodeImpl( "/path/to/node", "", null );
 		Validator validator = new NotBlankNodeValidator( node );
 
 		// when
@@ -47,7 +47,7 @@ class NotBlankNodeValidatorTest
 	void validate_blank()
 	{
 		// given: blank text content
-		Node node = new Node( "/path/to/node", "   ", null );
+		Node node = new NodeImpl( "/path/to/node", "   ", null );
 		Validator validator = new NotBlankNodeValidator( node );
 
 		// when
@@ -61,7 +61,7 @@ class NotBlankNodeValidatorTest
 	void validate_notBlank()
 	{
 		// given: not blank text content
-		Node node = new Node( "/path/to/node", "not blank", null );
+		Node node = new NodeImpl( "/path/to/node", "not blank", null );
 		Validator validator = new NotBlankNodeValidator( node );
 
 		// when
