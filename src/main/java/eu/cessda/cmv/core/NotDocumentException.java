@@ -25,12 +25,12 @@ public class NotDocumentException extends Exception
 {
 	private static final long serialVersionUID = -2148512119063297931L;
 
-	public NotDocumentException( String message )
+	NotDocumentException( String mediaType )
 	{
-		super( format( "Not CMV document: %s", message ) );
+		super( format( "Not CMV document: Detected media type: %s", mediaType ) );
 	}
 
-	public NotDocumentException( Throwable throwable )
+	NotDocumentException( Throwable throwable )
 	{
 		super( throwable );
 	}

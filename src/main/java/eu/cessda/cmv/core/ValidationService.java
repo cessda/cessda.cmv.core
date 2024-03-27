@@ -20,30 +20,13 @@
 package eu.cessda.cmv.core;
 
 import eu.cessda.cmv.core.mediatype.validationreport.ValidationReport;
-import org.gesis.commons.resource.Resource;
 
 import java.io.IOException;
-import java.net.URI;
 
 public interface ValidationService
 {
 	ValidationReport validate(
-			URI documentUri,
-			URI profileUri,
-			ValidationGateName validationGateName ) throws IOException, NotDocumentException;
-
-	ValidationReport validate(
-			Resource document,
-			Resource profile,
-			ValidationGateName validationGateName ) throws IOException, NotDocumentException;
-
-	ValidationReport validate(
-			URI documentUri,
-			URI profileUri,
-			ValidationGate validationGate ) throws IOException, NotDocumentException;
-
-	ValidationReport validate(
-			Resource documentResource,
-			Resource profileResource,
+			Document document,
+			Profile profile,
 			ValidationGate validationGate ) throws IOException, NotDocumentException;
 }

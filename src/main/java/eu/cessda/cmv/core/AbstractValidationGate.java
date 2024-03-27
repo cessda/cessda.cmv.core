@@ -48,8 +48,8 @@ abstract class AbstractValidationGate implements ValidationGate
 	@Override
 	public List<ConstraintViolation> validate( Document document, Profile profile )
 	{
-		requireNonNull( document );
-		requireNonNull( profile );
+		requireNonNull( document, "document is null" );
+		requireNonNull( profile, "profile is null" );
 
 		List<ConstraintViolation> constraintViolations = new ArrayList<>();
 		for ( Constraint constraint : profile.getConstraints() )

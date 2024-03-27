@@ -20,39 +20,43 @@
 package eu.cessda.cmv.core;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Objects;
 
-class DomProfile implements Profile
+class DomProfile extends AbstractProfile
 {
-	private final List<Constraint> constraints;
-
 	public DomProfile( InputStream inputStream )
 	{
-		constraints = new ArrayList<>();
+		this(eu.cessda.cmv.core.mediatype.profile.Profile.read( inputStream ));
+	}
 
-		eu.cessda.cmv.core.mediatype.profile.Profile profile = eu.cessda.cmv.core.mediatype.profile.Profile.read( inputStream );
+	private DomProfile(eu.cessda.cmv.core.mediatype.profile.Profile profile) {
+		super(
+			profile.getName() != null ? profile.getName().trim() : null,
+			profile.getVersion() != null ? profile.getVersion().trim() : null,
+			new LinkedHashSet<>()
+		);
+
+		// Validate constraints list is not null
+		Objects.requireNonNull( profile.getConstraints(), "profile constraints must not be null" );
+
 		for ( eu.cessda.cmv.core.mediatype.profile.Constraint constraint : profile.getConstraints() )
 		{
 			if ( constraint instanceof eu.cessda.cmv.core.mediatype.profile.CompilableXPathConstraint )
 			{
 				parse( (eu.cessda.cmv.core.mediatype.profile.CompilableXPathConstraint) constraint );
 			}
-			else if ( constraint instanceof eu.cessda.cmv.core.mediatype.profile.PredicatelessXPathConstraint )
+			else if ( constraint instanceof eu.cessda.cmv.core.mediatype.profile.FixedValueNodeConstraint )
 			{
-				parse( (eu.cessda.cmv.core.mediatype.profile.PredicatelessXPathConstraint) constraint );
+				parse( (eu.cessda.cmv.core.mediatype.profile.FixedValueNodeConstraint) constraint );
 			}
 			else if ( constraint instanceof eu.cessda.cmv.core.mediatype.profile.MandatoryNodeConstraint )
 			{
 				parse( (eu.cessda.cmv.core.mediatype.profile.MandatoryNodeConstraint) constraint );
 			}
-			else if ( constraint instanceof eu.cessda.cmv.core.mediatype.profile.RecommendedNodeConstraint )
+			else if ( constraint instanceof eu.cessda.cmv.core.mediatype.profile.MandatoryNodeIfParentPresentConstraint )
 			{
-				parse( (eu.cessda.cmv.core.mediatype.profile.RecommendedNodeConstraint) constraint );
-			}
-			else if ( constraint instanceof eu.cessda.cmv.core.mediatype.profile.OptionalNodeConstraint )
-			{
-				parse( (eu.cessda.cmv.core.mediatype.profile.OptionalNodeConstraint) constraint );
+				parse( (eu.cessda.cmv.core.mediatype.profile.MandatoryNodeIfParentPresentConstraint) constraint);
 			}
 			else if ( constraint instanceof eu.cessda.cmv.core.mediatype.profile.MaximumElementOccurrenceConstraint )
 			{
@@ -62,13 +66,24 @@ class DomProfile implements Profile
 			{
 				parse( (eu.cessda.cmv.core.mediatype.profile.NotBlankNodeConstraint) constraint );
 			}
+			else if ( constraint instanceof eu.cessda.cmv.core.mediatype.profile.OptionalNodeConstraint )
+			{
+				parse( (eu.cessda.cmv.core.mediatype.profile.OptionalNodeConstraint) constraint );
+			}
+			else if ( constraint instanceof eu.cessda.cmv.core.mediatype.profile.PredicatelessXPathConstraint )
+			{
+				parse( (eu.cessda.cmv.core.mediatype.profile.PredicatelessXPathConstraint) constraint );
+			}
+			else if ( constraint instanceof eu.cessda.cmv.core.mediatype.profile.RecommendedNodeConstraint )
+			{
+				parse( (eu.cessda.cmv.core.mediatype.profile.RecommendedNodeConstraint) constraint );
+			}
+			else
+			{
+				// Ideally this should never be reached, but it is useful in testing to catch any unexpected constraints
+				throw new IllegalStateException( "Unexpected constraint " + constraint.getClass() );
+			}
 		}
-	}
-
-	@Override
-	public List<Constraint> getConstraints()
-	{
-		return constraints;
 	}
 
 	private void parse( eu.cessda.cmv.core.mediatype.profile.MaximumElementOccurrenceConstraint jaxbConstraint )
@@ -112,6 +127,18 @@ class DomProfile implements Profile
 	private void parse( eu.cessda.cmv.core.mediatype.profile.CompilableXPathConstraint jaxbConstraint )
 	{
 		CompilableXPathConstraint constraint = new CompilableXPathConstraint( jaxbConstraint.getLocationPath() );
+		constraints.add( constraint );
+	}
+
+	private void parse( eu.cessda.cmv.core.mediatype.profile.FixedValueNodeConstraint jaxbConstraint )
+	{
+		FixedValueNodeConstraint constraint = new FixedValueNodeConstraint( jaxbConstraint.getLocationPath(), jaxbConstraint.getFixedValue() );
+		constraints.add( constraint );
+	}
+
+	private void parse( eu.cessda.cmv.core.mediatype.profile.MandatoryNodeIfParentPresentConstraint jaxbConstraint )
+	{
+		MandatoryNodeIfParentPresentConstraint constraint = new MandatoryNodeIfParentPresentConstraint( jaxbConstraint.getLocationPath() );
 		constraints.add( constraint );
 	}
 }

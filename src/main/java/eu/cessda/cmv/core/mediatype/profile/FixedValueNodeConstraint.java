@@ -17,41 +17,44 @@
  * limitations under the License.
  * #L%
  */
-package eu.cessda.cmv.core;
+package eu.cessda.cmv.core.mediatype.profile;
 
-import javax.xml.xpath.XPathExpressionException;
-import java.util.ArrayList;
-import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
-import static java.util.Objects.requireNonNull;
-
-class FixedValueNodeConstraint extends NodeConstraint
+@XmlType( name = FixedValueNodeConstraint.JAXB_TYPE )
+@XmlAccessorType( XmlAccessType.FIELD )
+public class FixedValueNodeConstraint extends NodeConstraint
 {
-	private final String fixedValue;
+	public static final String JAXB_ELEMENT = "FixedValueNodeConstraint";
+	public static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
+
+	@XmlElement
+	private String fixedValue;
+
+	public FixedValueNodeConstraint()
+	{
+		super( null );
+		this.fixedValue = null;
+	}
 
 	public FixedValueNodeConstraint( String locationPath, String fixedValue )
 	{
 		super( locationPath );
-		this.fixedValue = requireNonNull( fixedValue );
-	}
-
-	@Override
-	public List<Validator> newNodeValidators( Document document ) throws XPathExpressionException
-	{
-		List<Node> nodes = document.getNodes( getLocationPath() );
-		List<Validator> validators = new ArrayList<>();
-		for ( Node node : nodes )
-		{
-			FixedValueNodeValidator fixedValueNodeValidator = new FixedValueNodeValidator( node, fixedValue );
-			validators.add( fixedValueNodeValidator );
-		}
-		return validators;
+		this.fixedValue = fixedValue;
 	}
 
 	public String getFixedValue()
 	{
 		return fixedValue;
+	}
+
+	public void setFixedValue( String fixedValue )
+	{
+		this.fixedValue = fixedValue;
 	}
 
 	@Override

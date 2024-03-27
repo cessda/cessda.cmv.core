@@ -30,7 +30,7 @@ class NodeInProfileConstraint extends NodeConstraint
 	}
 
 	@Override
-	public List<Validator> newValidators( Document document )
+	public List<Validator> newNodeValidators( Document document )
 	{
 		// TODO Implement NodeInProfileValidator #59
 		return Collections.emptyList();

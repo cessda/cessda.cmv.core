@@ -19,8 +19,10 @@
  */
 package eu.cessda.cmv.core;
 
+import javax.xml.xpath.XPathExpressionException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 class MaximumElementOccurrenceConstraint extends NodeConstraint
 {
@@ -33,9 +35,30 @@ class MaximumElementOccurrenceConstraint extends NodeConstraint
 	}
 
 	@Override
-	public List<Validator> newValidators( Document document )
+	public List<Validator> newNodeValidators( Document document ) throws XPathExpressionException
 	{
 		long actualCount = document.getNodes( getLocationPath() ).size();
 		return Collections.singletonList( new MaximumElementOccurrenceValidator( getLocationPath(), actualCount, maxOccurs ) );
+	}
+
+	long getMaxOccurs()
+	{
+		return maxOccurs;
+	}
+
+	@Override
+	public boolean equals( Object o )
+	{
+		if ( this == o ) return true;
+		if ( o == null || getClass() != o.getClass() ) return false;
+		if ( !super.equals( o ) ) return false;
+		MaximumElementOccurrenceConstraint that = (MaximumElementOccurrenceConstraint) o;
+		return maxOccurs == that.maxOccurs;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash( super.hashCode(), maxOccurs );
 	}
 }

@@ -21,8 +21,6 @@ package eu.cessda.cmv.core;
 
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
-import org.gesis.commons.xml.SaxXercesAgainstSchemaValidator;
-import org.gesis.commons.xml.ddi.Ddi251ClasspathEntityResolver;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -41,12 +39,7 @@ class OptionalNodeConstraintTest
 	OptionalNodeConstraintTest()
 	{
 		testEnv = DefaultTestEnv.newInstance( OptionalNodeConstraintTest.class );
-		SaxXercesAgainstSchemaValidator xmlValidator = new SaxXercesAgainstSchemaValidator();
-		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/12-document-invalid-missing.xml" ),
-				new Ddi251ClasspathEntityResolver() );
-		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/12-document-valid.xml" ),
-				new Ddi251ClasspathEntityResolver() );
-		xmlValidator.validate( testEnv.findTestResourceByName( "ddi-v25/12-profile.xml" ) );
+
 		factory = new CessdaMetadataValidatorFactory();
 		validationGate = new StrictValidationGate();
 	}

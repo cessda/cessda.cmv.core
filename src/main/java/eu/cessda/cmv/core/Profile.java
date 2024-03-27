@@ -19,9 +19,33 @@
  */
 package eu.cessda.cmv.core;
 
-import java.util.List;
+import java.util.Set;
 
+/**
+ * A profile is a set of constraints that can be used to validate XML documents. The CESSDA Metadata Validator
+ * validates a document using these constraints using a validation gate, which defines which constraints are
+ * used for validation.
+ * <p>
+ * Profiles are considered to be equal if each profile has the same constraints. Performing a validation using
+ * equivalent profiles should emit identical constraint violations. The ordering of the constraints is unimportant.
+ * <p>
+ * The profile name and version is not considered important for the purposes of profile equality, and is ignored.
+ */
 public interface Profile
 {
-	List<Constraint> getConstraints();
+	/**
+	 * Returns the name of the profile, or {@code null} if the profile doesn't have a name.
+	 */
+	String getProfileName();
+
+	/**
+	 * Returns the version of the profile, or {@code null} if the profile doesn't have a name.
+	 */
+	String getProfileVersion();
+
+	/**
+	 * A set of constraints that can be used to validate documents.
+	 * @return a set of constraints.
+	 */
+	Set<Constraint> getConstraints();
 }

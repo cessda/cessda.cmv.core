@@ -23,6 +23,7 @@ import org.hamcrest.Matcher;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import javax.xml.xpath.XPathExpressionException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -73,7 +74,7 @@ class PredicatelessXPathConstraintTest
 
 	@ParameterizedTest
 	@MethodSource( newTestParameters )
-	void newValidators( TestParameter testParameter )
+	void newValidators( TestParameter testParameter ) throws XPathExpressionException
 	{
 		// given
 		Constraint constraint = new PredicatelessXPathConstraint( testParameter.locationPath );
@@ -87,7 +88,7 @@ class PredicatelessXPathConstraintTest
 		assertThat( validator.validate(), testParameter.expectedConstraintViolation );
 	}
 
-	private Document mockDocument( String locationPath )
+	private Document mockDocument( String locationPath ) throws XPathExpressionException
 	{
 		Document document = mock( Document.class );
 		Node node = new Node( "/DDIProfile/Used/@xpath", locationPath, null );

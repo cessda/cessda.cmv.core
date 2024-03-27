@@ -1,5 +1,5 @@
 {
-  "DocumentUri" : "file:/home/alex/git/cessda.cmv.core/target/classes/demo-documents/ddi-v25/ukds-7481.xml",
+  "DocumentUri" : "urn:uuid:00000000-0000-0000-0000-000000000000",
   "ConstraintViolation" : [ {
     "message" : "'/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocab' is recommended",
     "LocationInfo" : null
@@ -7,7 +7,7 @@
     "message" : "'/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocabURI' is recommended",
     "LocationInfo" : null
   }, {
-    "message" : "'./@event' is mandatory in /codeBook/stdyDscr/stdyInfo/sumDscr/collDate (lineNumber: 74)",
+    "message" : "'./@event' is mandatory in /codeBook/stdyDscr/stdyInfo/sumDscr/collDate",
     "LocationInfo" : {
       "lineNumber" : 74,
       "columnNumber" : 33

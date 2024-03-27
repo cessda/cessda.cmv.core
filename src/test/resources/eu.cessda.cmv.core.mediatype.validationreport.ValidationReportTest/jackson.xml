@@ -1,5 +1,5 @@
 <ValidationReport>
-  <DocumentUri>file:/home/alex/git/cessda.cmv.core/target/classes/demo-documents/ddi-v25/ukds-7481.xml</DocumentUri>
+  <DocumentUri>urn:uuid:00000000-0000-0000-0000-000000000000</DocumentUri>
   <ConstraintViolation>
     <ConstraintViolation>
       <Message>'/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocab' is recommended</Message>
@@ -10,7 +10,7 @@
       <LocationInfo/>
     </ConstraintViolation>
     <ConstraintViolation>
-      <Message>'./@event' is mandatory in /codeBook/stdyDscr/stdyInfo/sumDscr/collDate (lineNumber: 74)</Message>
+      <Message>'./@event' is mandatory in /codeBook/stdyDscr/stdyInfo/sumDscr/collDate</Message>
       <LocationInfo>
         <LineNumber>74</LineNumber>
         <ColumnNumber>33</ColumnNumber>

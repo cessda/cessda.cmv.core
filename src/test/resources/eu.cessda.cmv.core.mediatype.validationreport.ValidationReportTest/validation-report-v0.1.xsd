@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="cmv:validation-report:v0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="cmv:validation-report:v0" elementFormDefault="qualified">
+<xsd:schema xmlns:ns0="cmv:validation-report:v0" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="cmv:validation-report:v0" elementFormDefault="qualified">
    <xsd:complexType name="ValidationReportType">
       <xsd:sequence>
          <xsd:element name="DocumentUri" type="xsd:string" minOccurs="0"/>

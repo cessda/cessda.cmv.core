@@ -23,19 +23,19 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType( name = OptionalNodeConstraint.JAXB_TYPE )
+@XmlType( name = MandatoryNodeIfParentPresentConstraint.JAXB_TYPE )
 @XmlAccessorType( XmlAccessType.FIELD )
-public class OptionalNodeConstraint extends NodeConstraint
+public class MandatoryNodeIfParentPresentConstraint extends NodeConstraint
 {
-	public static final String JAXB_ELEMENT = "OptionalNodeConstraint";
+	public static final String JAXB_ELEMENT = "MandatoryNodeIfParentPresentConstraint";
 	public static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
 
-	public OptionalNodeConstraint()
+	public MandatoryNodeIfParentPresentConstraint()
 	{
 		super( null );
 	}
 
-	public OptionalNodeConstraint( String locationPath )
+	public MandatoryNodeIfParentPresentConstraint( String locationPath )
 	{
 		super( locationPath );
 	}

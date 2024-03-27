@@ -19,49 +19,61 @@
  */
 package eu.cessda.cmv.core;
 
-import org.gesis.commons.resource.io.DdiInputStream;
-import org.gesis.commons.xml.DomDocument;
-import org.gesis.commons.xml.XercesXalanDocument;
+import org.gesis.commons.xml.XMLDocument;
 import org.w3c.dom.Attr;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import javax.xml.xpath.XPathExpressionException;
+import java.io.IOException;
+import java.io.StringReader;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.*;
 
-import static java.util.Collections.unmodifiableList;
+import static java.util.Collections.unmodifiableSet;
 
-class DomSemiStructuredDdiProfile implements Profile
+class DomSemiStructuredDdiProfile extends AbstractProfile
 {
-	private final org.gesis.commons.xml.DomDocument.V11 document;
-	private List<Constraint> constraints;
-	private final eu.cessda.cmv.core.mediatype.profile.Profile jaxbProfile;
 
-	public DomSemiStructuredDdiProfile( DdiInputStream inputStream )
+	DomSemiStructuredDdiProfile( XMLDocument document ) throws IOException, NotDocumentException
 	{
-		document = XercesXalanDocument.newBuilder().ofInputStream( inputStream ).build();
-
-		jaxbProfile = new eu.cessda.cmv.core.mediatype.profile.Profile();
-		parseProfileName();
-
-		constraints = new ArrayList<>();
-		for ( org.w3c.dom.Node usedNode : document.selectNodes( "/DDIProfile/Used" ) )
+		super(parseProfileName( document ), parseProfileVersion( document ), new LinkedHashSet<>());
+		try
 		{
-			constraints.add( new CompilableXPathConstraint( getLocationPath( usedNode ) ) );
-			jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.CompilableXPathConstraint( getLocationPath( usedNode ) ) );
-			constraints.add( new PredicatelessXPathConstraint( getLocationPath( usedNode ) ) );
-			jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.PredicatelessXPathConstraint( getLocationPath( usedNode ) ) );
-			parseControlledVocabularyRepositoryConstraint( usedNode );
+			for ( Node usedNode : document.selectNodes( "/DDIProfile/Used" ) )
+			{
+				if (!(usedNode instanceof Element))
+				{
+					continue;
+				}
+				Element usedElement = (Element) usedNode;
 
-			parseMandatoryNodeConstraint( usedNode );
-			parseOptionalNodeConstraint( usedNode );
-			parseNotBlankNodeConstraint( usedNode );
-			parseMaximumElementOccurrenceConstraint( usedNode );
-			parseMandatoryNodeIfParentPresentConstraint( usedNode );
-			parseFixedValueNodeConstraint( usedNode );
+				constraints.add( new CompilableXPathConstraint( getLocationPath( usedElement ) ) );
+				constraints.add( new PredicatelessXPathConstraint( getLocationPath( usedElement ) ) );
+				parseControlledVocabularyRepositoryConstraint( document, usedElement );
 
-			parseCodeValueOfControlledVocabularyConstraint( usedNode );
-			parseDescriptiveTermOfControlledVocabularyConstraint( usedNode );
+				parseMandatoryNodeConstraint( usedElement );
+				parseOptionalNodeConstraint( document, usedElement );
+				parseNotBlankNodeConstraint( document, usedElement );
+				parseMaximumElementOccurrenceConstraint( usedElement );
+				parseMandatoryNodeIfParentPresentConstraint( document, usedElement );
+				parseFixedValueNodeConstraint( usedElement );
+
+				parseCodeValueOfControlledVocabularyConstraint( document, usedElement );
+				parseDescriptiveTermOfControlledVocabularyConstraint( document, usedElement );
+			}
+		}
+		catch ( SAXException | URISyntaxException e )
+		{
+			throw new NotDocumentException( e );
+		}
+		catch ( XPathExpressionException e )
+		{
+			// given that all the XPaths are hardcoded, this should never be thrown
+			throw new IllegalStateException( e );
 		}
 
 		if ( constraints.isEmpty() )
@@ -84,34 +96,78 @@ class DomSemiStructuredDdiProfile implements Profile
 			}
 		}
 
-		this.constraints = new ArrayList<>(orderedConstraints);
+		// Clear the constraints list and add in the ordered constraints
+		this.constraints.clear();
+		this.constraints.addAll( orderedConstraints );
 	}
 
-	private static String getLocationPath( org.w3c.dom.Node usedNode )
+	private static String getLocationPath( Element usedNode )
 	{
-		return usedNode.getAttributes().getNamedItem( "xpath" ).getTextContent();
-	}
-
-	private void parseProfileName()
-	{
-		org.w3c.dom.Node nameNode = document.selectNode( "/DDIProfile/DDIProfileName" );
-		if ( nameNode != null )
+		Attr xpath = usedNode.getAttributeNode( "xpath" );
+		if (xpath != null)
 		{
-			jaxbProfile.setName( nameNode.getTextContent().trim() );
+			return xpath.getTextContent();
+		}
+		else
+		{
+			return null;
 		}
 	}
 
-	private Optional<DomDocument.V13> findExtension( org.w3c.dom.Node usedNode )
+	static String parseProfileName( XMLDocument document )
+	{
+		Node nameNode;
+		try
+		{
+			nameNode = document.selectNode( "/DDIProfile/DDIProfileName" );
+		}
+		catch ( XPathExpressionException e )
+		{
+			throw new IllegalStateException(e);
+		}
+
+		if ( nameNode != null )
+		{
+			return nameNode.getTextContent().trim();
+		}
+		else
+		{
+			return null;
+		}
+	}
+
+	static String parseProfileVersion( XMLDocument document )
+    {
+		Node versionNode;
+		try
+		{
+			versionNode = document.selectNode( "/DDIProfile/Version" );
+		}
+		catch ( XPathExpressionException e )
+		{
+			throw new IllegalStateException(e);
+		}
+
+		if ( versionNode != null )
+		{
+			return versionNode.getTextContent().trim();
+		}
+		else
+		{
+			return null;
+		}
+	}
+
+	private static Optional<XMLDocument> findExtension( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
 		String extensionRecognizingXPath = "Instructions/Content[contains(.,'<Constraints>')]";
-		org.w3c.dom.Node constraintsNode = document.selectNode( usedNode, extensionRecognizingXPath );
+		Node constraintsNode = document.selectNode( usedNode, extensionRecognizingXPath );
 		if ( constraintsNode != null )
 		{
-			return Optional.of( (DomDocument.V13) XercesXalanDocument.newBuilder()
-					.ofContent( constraintsNode.getTextContent().trim() )
-					.printPrettyWithIndentation( 2 )
-					.build()
-					.omitWhitespaceOnlyTextNodes() );
+			StringReader constraintReader = new StringReader( constraintsNode.getTextContent() );
+			InputSource inputSource = new InputSource( constraintReader );
+			XMLDocument extension = XMLDocument.newBuilder().build( inputSource );
+			return Optional.of( extension );
 		}
 		else
 		{
@@ -119,22 +175,21 @@ class DomSemiStructuredDdiProfile implements Profile
 		}
 	}
 
-	private void parseMandatoryNodeConstraint( org.w3c.dom.Node usedNode )
+	private void parseMandatoryNodeConstraint( Element usedNode )
 	{
-		org.w3c.dom.Node isRequiredNode = usedNode.getAttributes().getNamedItem( "isRequired" );
+		Node isRequiredNode = usedNode.getAttributes().getNamedItem( "isRequired" );
 		if ( isRequiredNode != null && isRequiredNode.getNodeValue().equalsIgnoreCase( "true" ) )
 		{
 			constraints.add( new MandatoryNodeConstraint( getLocationPath( usedNode ) ) );
-			jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.MandatoryNodeConstraint( getLocationPath( usedNode ) ) );
 		}
 	}
 
-	private void parseFixedValueNodeConstraint( org.w3c.dom.Node usedNode )
+	private void parseFixedValueNodeConstraint( Element usedNode )
 	{
-		org.w3c.dom.Node fixedValueNode = usedNode.getAttributes().getNamedItem( "fixedValue" );
-		if ( fixedValueNode != null && fixedValueNode.getNodeValue().equalsIgnoreCase( "true" ) )
+		Node fixedValueNode = usedNode.getAttributes().getNamedItem( "fixedValue" );
+		if ( fixedValueNode != null && Boolean.parseBoolean( fixedValueNode.getNodeValue() ) )
 		{
-			org.w3c.dom.Node defaultValueNode = usedNode.getAttributes().getNamedItem( "defaultValue" );
+			Node defaultValueNode = usedNode.getAttributes().getNamedItem( "defaultValue" );
 			// TODO Find similar or generalized constraint like
 			// MandatoryNodeIfParentPresentConstraint
 			// defaultValue attribute is mandatory if fixedValue attribute is present
@@ -148,136 +203,215 @@ class DomSemiStructuredDdiProfile implements Profile
 		}
 	}
 
-	private void parseOptionalNodeConstraint( org.w3c.dom.Node usedNode )
+	private void parseOptionalNodeConstraint( XMLDocument document, Element usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
-		org.w3c.dom.Node isRequiredNode = usedNode.getAttributes().getNamedItem( "isRequired" );
+		Attr isRequiredNode = usedNode.getAttributeNode( "isRequired" );
 
-		if ( isRequiredNode != null && "true".equalsIgnoreCase( ((Attr) isRequiredNode).getValue() ) )
+		if ( isRequiredNode != null && Boolean.parseBoolean( isRequiredNode.getValue() ) )
 		{
 			return;
 		}
 
 		if ( document.selectNode( usedNode, "Description[Content='Required: Recommended']" ) != null
 				|| document.selectNode( usedNode, "Description[Content='Recommended']" ) != null
-				|| hasRecommendedNodeConstraintExtension( usedNode ) )
+				|| hasRecommendedNodeConstraintExtension( document, usedNode ) )
 		{
 			constraints.add( new RecommendedNodeConstraint( getLocationPath( usedNode ) ) );
-			jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.RecommendedNodeConstraint( getLocationPath( usedNode ) ) );
 		}
 		else
 		{
 			constraints.add( new OptionalNodeConstraint( getLocationPath( usedNode ) ) );
-			jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.OptionalNodeConstraint( getLocationPath( usedNode ) ) );
 		}
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private boolean hasRecommendedNodeConstraintExtension( org.w3c.dom.Node usedNode )
+	private boolean hasRecommendedNodeConstraintExtension( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
-		Optional<DomDocument.V13> extension = findExtension( usedNode );
-		if ( extension.isPresent() )
+		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
+		if (extensionOpt.isPresent())
 		{
+			XMLDocument extension = extensionOpt.get();
 			String locationPath = "/Constraints/RecommendedNodeConstraint";
-			return !extension.get().selectNodes( locationPath ).isEmpty();
+			return !extension.selectNodes( locationPath ).isEmpty();
 		}
 		return false;
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private void parseCodeValueOfControlledVocabularyConstraint( org.w3c.dom.Node usedNode )
+	private void parseCodeValueOfControlledVocabularyConstraint( XMLDocument document, Element usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
-		findExtension( usedNode ).ifPresent( extension ->
+		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
+		if (extensionOpt.isPresent())
 		{
+			XMLDocument extension = extensionOpt.get();
 			String locationPath = "/Constraints/CodeValueOfControlledVocabularyConstraint";
 			int nodeCount = extension.selectNodes( locationPath ).size();
 			for ( int i = 0; i < nodeCount; i++ )
 			{
 				constraints.add( new CodeValueOfControlledVocabularyConstraint( getLocationPath( usedNode ) ) );
 			}
-		} );
+		}
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private void parseDescriptiveTermOfControlledVocabularyConstraint( org.w3c.dom.Node usedNode )
+	private void parseDescriptiveTermOfControlledVocabularyConstraint( XMLDocument document, Element usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
-		findExtension( usedNode ).ifPresent( extension ->
+		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
+		if (extensionOpt.isPresent())
 		{
+			XMLDocument extension = extensionOpt.get();
 			String locationPath = "/Constraints/DescriptiveTermOfControlledVocabularyConstraint";
 			int nodeCount = extension.selectNodes( locationPath ).size();
 			for ( int i = 0; i < nodeCount; i++ )
 			{
 				constraints.add( new DescriptiveTermOfControlledVocabularyConstraint( getLocationPath( usedNode ) ) );
 			}
-		} );
+		}
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private void parseControlledVocabularyRepositoryConstraint( org.w3c.dom.Node usedNode )
+	private void parseControlledVocabularyRepositoryConstraint( XMLDocument document, Element usedNode ) throws IOException, SAXException, XPathExpressionException, URISyntaxException
 	{
-		findExtension( usedNode ).ifPresent( extension ->
+		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
+		if (extensionOpt.isPresent())
 		{
+			XMLDocument extension = extensionOpt.get();
 			String locationPath = "/Constraints/ControlledVocabularyRepositoryConstraint";
-			for ( org.w3c.dom.Node constraintNode : extension.selectNodes( locationPath ) )
+			for ( Node constraintNode : extension.selectNodes( locationPath ) )
 			{
 				Constraint constraint = new ControlledVocabularyRepositoryConstraint(
 						getLocationPath( usedNode ),
 						extension.selectNode( constraintNode, "./RepositoryType" ).getTextContent(),
-						extension.selectNode( constraintNode, "./RepositoryUri" ).getTextContent() );
+						new URI( extension.selectNode( constraintNode, "./RepositoryUri" ).getTextContent() ) );
 				constraints.add( constraint );
 			}
-		} );
+		}
 	}
 
-	private void parseMaximumElementOccurrenceConstraint( org.w3c.dom.Node usedNode )
+	private void parseMaximumElementOccurrenceConstraint( Element usedNode )
 	{
-		org.w3c.dom.Node limitMaxOccursNode = usedNode.getAttributes().getNamedItem( "limitMaxOccurs" );
+		Attr limitMaxOccursNode = usedNode.getAttributeNode( "limitMaxOccurs" );
 		if ( limitMaxOccursNode != null )
 		{
 			constraints.add( new MaximumElementOccurrenceConstraint(
-					getLocationPath( usedNode ),
-					Long.parseLong( limitMaxOccursNode.getNodeValue() ) ) );
-			jaxbProfile.getConstraints().add( new eu.cessda.cmv.core.mediatype.profile.MaximumElementOccurrenceConstraint(
 					getLocationPath( usedNode ),
 					Long.parseLong( limitMaxOccursNode.getNodeValue() ) ) );
 		}
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private void parseMandatoryNodeIfParentPresentConstraint( org.w3c.dom.Node usedNode )
+	private void parseMandatoryNodeIfParentPresentConstraint( XMLDocument document, Element usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
-		findExtension( usedNode ).ifPresent( extension ->
+		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
+		if (extensionOpt.isPresent())
 		{
+			XMLDocument extension = extensionOpt.get();
 			String locationPath = "/Constraints/MandatoryNodeIfParentPresentConstraint";
 			if ( !extension.selectNodes( locationPath ).isEmpty() )
 			{
 				Constraint constraint = new MandatoryNodeIfParentPresentConstraint( getLocationPath( usedNode ) );
 				constraints.add( constraint );
 			}
-		} );
+		}
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private void parseNotBlankNodeConstraint( org.w3c.dom.Node usedNode )
+	private void parseNotBlankNodeConstraint( XMLDocument document, Element usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
-		findExtension( usedNode ).ifPresent( extension ->
+		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
+		if (extensionOpt.isPresent())
 		{
+			XMLDocument extension = extensionOpt.get();
 			String locationPath = "/Constraints/NotBlankNodeConstraint";
 			if ( !extension.selectNodes( locationPath ).isEmpty() )
 			{
 				Constraint constraint = new NotBlankNodeConstraint( getLocationPath( usedNode ) );
 				constraints.add( constraint );
 			}
-		} );
+		}
 	}
 
 	@Override
-	public List<Constraint> getConstraints()
+	public Set<Constraint> getConstraints()
 	{
-		return unmodifiableList( constraints );
+		return unmodifiableSet( constraints );
 	}
 
-	public eu.cessda.cmv.core.mediatype.profile.Profile toJaxbProfileV0()
+	@Override
+	public String getProfileName()
 	{
+		return profileName;
+	}
+
+	@Override
+	public String getProfileVersion()
+	{
+		return profileVersion;
+	}
+
+	eu.cessda.cmv.core.mediatype.profile.Profile toJaxbProfile()
+	{
+		eu.cessda.cmv.core.mediatype.profile.Profile jaxbProfile = new eu.cessda.cmv.core.mediatype.profile.Profile();
+		List<eu.cessda.cmv.core.mediatype.profile.Constraint> jaxbConstraints = jaxbProfile.getConstraints();
+
+		// Set the name of the profile
+		jaxbProfile.setName( profileName );
+
+		for ( Constraint constraint : constraints )
+		{
+			String locationPath = null;
+			if (constraint instanceof NodeConstraint)
+			{
+				locationPath = ( (NodeConstraint) constraint ).getLocationPath();
+			}
+
+			eu.cessda.cmv.core.mediatype.profile.Constraint jaxbConstraint;
+
+            if ( constraint instanceof CompilableXPathConstraint )
+            {
+                jaxbConstraint = new eu.cessda.cmv.core.mediatype.profile.CompilableXPathConstraint( locationPath );
+            }
+			else if ( constraint instanceof PredicatelessXPathConstraint )
+            {
+                jaxbConstraint = new eu.cessda.cmv.core.mediatype.profile.PredicatelessXPathConstraint( locationPath );
+            }
+            else if ( constraint instanceof MaximumElementOccurrenceConstraint )
+            {
+                jaxbConstraint = new eu.cessda.cmv.core.mediatype.profile.MaximumElementOccurrenceConstraint( locationPath, ( (MaximumElementOccurrenceConstraint) constraint ).getMaxOccurs() );
+            }
+			else if ( constraint instanceof FixedValueNodeConstraint )
+			{
+				jaxbConstraint = new eu.cessda.cmv.core.mediatype.profile.FixedValueNodeConstraint( locationPath, ( (FixedValueNodeConstraint) constraint ).getFixedValue() );
+			}
+			else if ( constraint instanceof NotBlankNodeConstraint )
+			{
+				jaxbConstraint = new eu.cessda.cmv.core.mediatype.profile.NotBlankNodeConstraint( locationPath );
+			}
+			else if (constraint instanceof MandatoryNodeConstraint )
+			{
+				jaxbConstraint = new eu.cessda.cmv.core.mediatype.profile.MandatoryNodeConstraint( locationPath );
+			}
+			else if ( constraint instanceof MandatoryNodeIfParentPresentConstraint )
+			{
+				jaxbConstraint = new eu.cessda.cmv.core.mediatype.profile.MandatoryNodeIfParentPresentConstraint( locationPath );
+			}
+            else if ( constraint instanceof RecommendedNodeConstraint )
+            {
+                jaxbConstraint = new eu.cessda.cmv.core.mediatype.profile.RecommendedNodeConstraint( locationPath );
+            }
+            else if ( constraint instanceof OptionalNodeConstraint )
+            {
+                jaxbConstraint = new eu.cessda.cmv.core.mediatype.profile.OptionalNodeConstraint( locationPath );
+            }
+			else
+			{
+				// Ideally this should never be reached, but it is useful in testing to catch any unexpected constraints
+				throw new IllegalStateException( "Unexpected constraint " + constraint.getClass() );
+			}
+
+            jaxbConstraints.add( jaxbConstraint );
+        }
+
 		return jaxbProfile;
 	}
 }

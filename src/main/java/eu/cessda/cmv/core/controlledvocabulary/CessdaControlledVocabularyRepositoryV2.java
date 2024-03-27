@@ -19,7 +19,7 @@
  */
 package eu.cessda.cmv.core.controlledvocabulary;
 
-import com.jayway.jsonpath.Configuration;
+import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.InvalidJsonException;
 import com.jayway.jsonpath.JsonPath;
 import org.gesis.commons.resource.Resource;
@@ -28,9 +28,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashSet;
-import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
@@ -47,10 +47,9 @@ public class CessdaControlledVocabularyRepositoryV2 extends AbstractControlledVo
 	 */
 	public CessdaControlledVocabularyRepositoryV2( URI uri )
 	{
-		requireNonNull( uri );
-		setUri( uri );
+		super( requireNonNull( uri ) );
 
-		try ( InputStream inputStream = openInputStream( uri ) )
+		try ( InputStream inputStream = openInputStream( uri.toURL() ) )
 		{
 			parseDocument( inputStream );
 		}
@@ -68,12 +67,11 @@ public class CessdaControlledVocabularyRepositoryV2 extends AbstractControlledVo
 	 */
 	public CessdaControlledVocabularyRepositoryV2( Resource resource )
 	{
-		requireNonNull( resource );
-		setUri( resource.getUri() );
+		super ( requireNonNull( resource ).getUri() );
 
 		try ( InputStream inputStream = resource.getUri().getScheme().startsWith( "http" )
 			// The Resource object doesn't set the necessary headers, use a URLConnection directly
-			? openInputStream( resource.getUri() )
+			? openInputStream( resource.getUri().toURL() )
 			: resource.readInputStream() )
 		{
 			parseDocument( inputStream );
@@ -86,16 +84,14 @@ public class CessdaControlledVocabularyRepositoryV2 extends AbstractControlledVo
 
 	private void parseDocument( InputStream inputStream )
 	{
-		Object document = Configuration.defaultConfiguration().jsonProvider().parse( inputStream, "UTF-8" );
-		List<String> list = JsonPath.read( document, "$.versions.*.concepts.*.notation" );
-		setCodeValues( new HashSet<>( list ) );
-		list = JsonPath.read( document, "$.versions.*.concepts.*.title" );
-		setDescriptiveTerms( new HashSet<>( list ) );
+		DocumentContext document = JsonPath.parse( inputStream );
+		setCodeValues( new HashSet<>( document.read(  "$.versions.*.concepts.*.notation" ) ) );
+		setDescriptiveTerms( new HashSet<>( document.read(  "$.versions.*.concepts.*.title" ) ) );
 	}
 
-	private static InputStream openInputStream( URI uri ) throws IOException
+	private static InputStream openInputStream( URL url ) throws IOException
 	{
-		URLConnection urlConnection = uri.toURL().openConnection();
+		URLConnection urlConnection = url.openConnection();
 
 		if ( urlConnection instanceof HttpURLConnection )
 		{

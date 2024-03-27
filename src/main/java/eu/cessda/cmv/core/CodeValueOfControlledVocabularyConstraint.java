@@ -19,27 +19,22 @@
  */
 package eu.cessda.cmv.core;
 
+import javax.xml.xpath.XPathExpressionException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-
-class CodeValueOfControlledVocabularyConstraint implements Constraint
+class CodeValueOfControlledVocabularyConstraint extends NodeConstraint
 {
-	private final String locationPath;
-
 	public CodeValueOfControlledVocabularyConstraint( String locationPath )
 	{
-		requireNonNull( locationPath );
-		this.locationPath = locationPath;
+        super(locationPath);
 	}
 
 	@Override
-	public List<Validator> newValidators( Document document )
+	public List<Validator> newNodeValidators( Document document ) throws XPathExpressionException
 	{
-		requireNonNull( document );
 		List<Validator> validators = new ArrayList<>();
-		for ( Node node : document.getNodes( locationPath ) )
+		for ( Node node : document.getNodes( getLocationPath() ) )
 		{
 			if (node instanceof ControlledVocabularyNode)
 			{
@@ -48,7 +43,7 @@ class CodeValueOfControlledVocabularyConstraint implements Constraint
 			}
 			else
 			{
-				throw new IllegalArgumentException(locationPath + " in document does not represent a controlled vocabulary");
+				throw new IllegalArgumentException(getLocationPath() + " in document does not represent a controlled vocabulary");
 			}
 		}
 		return validators;

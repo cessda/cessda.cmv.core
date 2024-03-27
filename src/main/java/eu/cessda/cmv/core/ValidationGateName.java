@@ -19,8 +19,9 @@
  */
 package eu.cessda.cmv.core;
 
-@SuppressWarnings( "deprecation" )
-public enum ValidationGateName
+import java.util.List;
+
+public enum ValidationGateName implements ValidationGate
 {
 	BASIC( new BasicValidationGate() ),
 	BASICPLUS( new BasicPlusValidationGate() ),
@@ -38,5 +39,11 @@ public enum ValidationGateName
 	public ValidationGate getValidationGate()
 	{
 		return validationGate;
+	}
+
+	@Override
+	public List<ConstraintViolation> validate( Document document, Profile profile )
+	{
+		return validationGate.validate( document, profile );
 	}
 }

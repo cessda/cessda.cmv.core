@@ -20,7 +20,7 @@
 package eu.cessda.cmv.core.mediatype.validationrequest;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.gesis.commons.resource.Resource;
+import org.xml.sax.InputSource;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
@@ -28,7 +28,6 @@ import java.net.URI;
 import java.util.Objects;
 
 import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
-import static org.gesis.commons.resource.Resource.newResource;
 
 public class UriDocument implements Document
 {
@@ -57,10 +56,10 @@ public class UriDocument implements Document
 	}
 
 	@Override
-	public Resource toResource()
+	public InputSource toInputSource()
 	{
-		return newResource( uri );
-	}
+		return new InputSource( uri.toASCIIString() );
+    }
 
 	@Override
 	public boolean equals( Object o )

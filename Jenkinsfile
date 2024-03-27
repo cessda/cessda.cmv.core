@@ -25,7 +25,7 @@ pipeline {
 				stage('Build Project') {
 					steps {
 						withMaven {
-							sh './mvnw clean install -U'
+							sh './mvnw clean install'
 						}
 					}
 					when { branch 'main' }

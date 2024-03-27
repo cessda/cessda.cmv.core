@@ -20,37 +20,34 @@
 package eu.cessda.cmv.core;
 
 import eu.cessda.cmv.core.mediatype.profile.Profile;
-import org.gesis.commons.resource.io.DdiInputStream;
-import org.junit.jupiter.api.Disabled;
+import org.gesis.commons.test.DefaultTestEnv;
+import org.gesis.commons.test.TestEnv;
+import org.gesis.commons.xml.XMLDocument;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
+import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.util.Objects;
 
-import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.io.FileMatchers.anExistingFile;
+import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 
 class DomSemiStructuredDdiProfileTest
 {
-	private final CessdaMetadataValidatorFactory factory;
-
-	DomSemiStructuredDdiProfileTest()
-	{
-		factory = new CessdaMetadataValidatorFactory();
-	}
+	private final CessdaMetadataValidatorFactory factory = new CessdaMetadataValidatorFactory();
+	private final TestEnv.V14 testEnv = DefaultTestEnv.newInstance( DomSemiStructuredDdiProfileTest.class );
 
 	@ParameterizedTest
 	@ValueSource(
 			strings = { "/demo-documents/ddi-v25/cdc25_profile.xml", "/demo-documents/ddi-v25/cdc_122_profile.xml" } )
-	void constructMultilingualProfiles( String classpathLocation ) throws IOException
+	void constructMultilingualProfiles( String classpathLocation ) throws NotDocumentException, IOException
 	{
 		// given
 		URL url = getClass().getResource( classpathLocation );
@@ -73,7 +70,7 @@ class DomSemiStructuredDdiProfileTest
 	@ValueSource(
 			strings = { "/demo-documents/ddi-v25/cdc25_profile_mono.xml",
 					"/demo-documents/ddi-v25/cdc_122_profile_mono.xml" } )
-	void constructMonolingualProfiles( String classpathLocation ) throws IOException
+	void constructMonolingualProfiles( String classpathLocation ) throws NotDocumentException, IOException
 	{
 		// given
 		URL url = getClass().getResource( classpathLocation );
@@ -98,20 +95,25 @@ class DomSemiStructuredDdiProfileTest
 	}
 
 	@Test
-	@Disabled( "Own profile format is not up-to-date" ) // TODO
-	void toJaxbProfileV0() throws IOException
+	void toJaxbProfile() throws IOException, NotDocumentException, SAXException
 	{
 		// given
 		URL sourceUrl = getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
-		File targetFile = new File( "target", "cdc25_profile_cmv.xml" );
+
+		URL expectedFile = getClass().getResource( "/profiles/cdc25_profile_cmv.xml" );
+		File actualFile = new File( testEnv.newDirectory(), "cdc25_profile_cmv.xml" );
+
+		assert expectedFile != null;
+		assert sourceUrl != null;
 
 		// when
-		InputStream inputStream = newResource( Objects.requireNonNull( sourceUrl ) ).readInputStream();
-		DomSemiStructuredDdiProfile profile = new DomSemiStructuredDdiProfile(
-			new DdiInputStream( inputStream ) );
-		Profile jaxbProfile = profile.toJaxbProfileV0();
-		jaxbProfile.saveAs( targetFile );
-		assertThat( targetFile, anExistingFile() );
-		assertThat( jaxbProfile.getConstraints(), hasSize( 183 ) ); // why not 203 ?
+		InputSource inputSource = new InputSource( sourceUrl.toExternalForm() );
+		DomSemiStructuredDdiProfile profile = new DomSemiStructuredDdiProfile( XMLDocument.newBuilder().build( inputSource ) );
+		Profile jaxbProfile = profile.toJaxbProfile();
+		assertThat( jaxbProfile.getConstraints(), hasSize( 61 + 61 + 27 + 10 + 5 + 24 + 12 ) );
+		jaxbProfile.saveAs( actualFile );
+
+		// Compare the generated file to the expected file
+        assertThat( new StreamSource( actualFile ), isSimilarTo( new StreamSource( expectedFile.toExternalForm() ) ).ignoreWhitespace() );
 	}
 }

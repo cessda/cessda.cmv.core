@@ -2,7 +2,7 @@
 <ValidationReport
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="cmv:validation-report:v0 https://raw.githubusercontent.com/cessda/cessda.cmv.core/stable/schema/validation-report-v0.1.xsd" xmlns="cmv:validation-report:v0">
-	<DocumentUri>file:/home/alex/git/cessda.cmv.core/target/classes/demo-documents/ddi-v25/ukds-7481.xml</DocumentUri>
+	<DocumentUri>urn:uuid:00000000-0000-0000-0000-000000000000</DocumentUri>
 	<ConstraintViolation>
 		<Message>'/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocab' is recommended</Message>
 	</ConstraintViolation>
@@ -10,7 +10,7 @@
 		<Message>'/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocabURI' is recommended</Message>
 	</ConstraintViolation>
 	<ConstraintViolation>
-		<Message>'./@event' is mandatory in /codeBook/stdyDscr/stdyInfo/sumDscr/collDate (lineNumber: 74)</Message>
+		<Message>'./@event' is mandatory in /codeBook/stdyDscr/stdyInfo/sumDscr/collDate</Message>
 		<LocationInfo>
          <LineNumber>74</LineNumber>
          <ColumnNumber>33</ColumnNumber>

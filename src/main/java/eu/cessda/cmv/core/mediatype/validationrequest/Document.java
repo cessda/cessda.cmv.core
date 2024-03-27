@@ -20,17 +20,17 @@
 package eu.cessda.cmv.core.mediatype.validationrequest;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.gesis.commons.resource.Resource;
+import org.xml.sax.InputSource;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
 @Schema( subTypes = { UriDocument.class, ContentDocument.class } )
-@XmlJavaTypeAdapter( DocumentV0Adapter.class )
+@XmlJavaTypeAdapter( DocumentAdapter.class )
 public interface Document
 {
-	Resource toResource();
+	InputSource toInputSource();
 
 	default List<String> validate()
 	{

@@ -19,6 +19,7 @@
  */
 package eu.cessda.cmv.core;
 
+import javax.xml.xpath.XPathExpressionException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ class MandatoryNodeConstraint extends NodeConstraint
 	}
 
 	@Override
-	public List<Validator> newValidators( Document document )
+	public List<Validator> newNodeValidators( Document document ) throws XPathExpressionException
 	{
 		List<Node> nodes = document.getNodes( getLocationPath() );
 		List<Validator> validators = new ArrayList<>(nodes.size() + 1);
