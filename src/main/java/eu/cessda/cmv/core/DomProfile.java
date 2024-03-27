@@ -22,22 +22,23 @@ package eu.cessda.cmv.core;
 import java.io.InputStream;
 import java.util.LinkedHashSet;
 import java.util.Objects;
-import java.util.Set;
-
-import static java.util.Collections.unmodifiableSet;
 
 class DomProfile extends AbstractProfile
 {
-	private final String profileName;
-	private final String profileVersion;
-	private final Set<Constraint> constraints;
-
 	public DomProfile( InputStream inputStream )
 	{
-		eu.cessda.cmv.core.mediatype.profile.Profile profile = eu.cessda.cmv.core.mediatype.profile.Profile.read( inputStream );
-		Objects.requireNonNull( profile.getConstraints(), "profile constraints must not be null" );
+		this(eu.cessda.cmv.core.mediatype.profile.Profile.read( inputStream ));
+	}
 
-		this.constraints = new LinkedHashSet<>();
+	private DomProfile(eu.cessda.cmv.core.mediatype.profile.Profile profile) {
+		super(
+			profile.getName() != null ? profile.getName().trim() : null,
+			profile.getVersion() != null ? profile.getVersion().trim() : null,
+			new LinkedHashSet<>()
+		);
+
+		// Validate constraints list is not null
+		Objects.requireNonNull( profile.getConstraints(), "profile constraints must not be null" );
 
 		for ( eu.cessda.cmv.core.mediatype.profile.Constraint constraint : profile.getConstraints() )
 		{
@@ -83,42 +84,6 @@ class DomProfile extends AbstractProfile
 				throw new IllegalStateException( "Unexpected constraint " + constraint.getClass() );
 			}
 		}
-
-		if (profile.getName() != null)
-		{
-			this.profileName = profile.getName().trim();
-		}
-		else
-		{
-			this.profileName = null;
-		}
-
-		if (profile.getVersion() != null)
-		{
-			this.profileVersion = profile.getVersion().trim();
-		}
-		else
-		{
-			this.profileVersion = null;
-		}
-	}
-
-	@Override
-	public Set<Constraint> getConstraints()
-	{
-		return unmodifiableSet( constraints );
-	}
-
-	@Override
-	public String getProfileName()
-	{
-		return profileName;
-	}
-
-	@Override
-	public String getProfileVersion()
-	{
-		return profileVersion;
 	}
 
 	private void parse( eu.cessda.cmv.core.mediatype.profile.MaximumElementOccurrenceConstraint jaxbConstraint )

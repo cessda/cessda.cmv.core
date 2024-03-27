@@ -110,7 +110,8 @@ public class XMLDocument
 
 	public Node selectNode( Node context, String xPath ) throws XPathExpressionException
 	{
-		return (Node) newXPathExpression( xPath ).evaluate( context, XPathConstants.NODE );
+		XPathExpression expression = newXPathExpression( xPath );
+		return (Node) expression.evaluate( context, XPathConstants.NODE );
 	}
 
 	public List<Node> selectNodes( Node context, String locationPath ) throws XPathExpressionException
@@ -118,8 +119,9 @@ public class XMLDocument
 		requireNonNull( context );
 		requireNonNull( locationPath );
 
-		NodeList nodeList = (NodeList) newXPathExpression( locationPath ).evaluate( context, NODESET );
-		ArrayList<Node> nodes = new ArrayList<>();
+		XPathExpression expression = newXPathExpression( locationPath );
+		NodeList nodeList = (NodeList) expression.evaluate( context, NODESET );
+		ArrayList<Node> nodes = new ArrayList<>(nodeList.getLength());
 		for ( int i = 0; i < nodeList.getLength(); i++ )
 		{
 			nodes.add( nodeList.item( i ) );
@@ -134,27 +136,29 @@ public class XMLDocument
 
 	private XPathExpression newXPathExpression( String locationPath ) throws XPathExpressionException
 	{
-		if ( xPathExpressionMap.containsKey( locationPath ) )
-		{
-			return xPathExpressionMap.get( locationPath );
-		}
-		else
-		{
-			XPath xpath = xPathFactory.newXPath();
-			XPathExpression xPathExpression;
-			if ( isNamespaceAware )
-			{
-				xpath.setNamespaceContext( namespaceContext );
+		XPathExpression xPathExpression = xPathExpressionMap.get( locationPath );
+
+        if ( xPathExpression == null )
+        {
+			// XPathExpression is not cached, compile
+            XPath xpath = xPathFactory.newXPath();
+
+            if ( isNamespaceAware )
+            {
+                xpath.setNamespaceContext( namespaceContext );
                 xPathExpression = xpath.compile( namespaceContext.decorateDefaultNamespace( locationPath ) );
-			}
-			else
-			{
-				xPathExpression = xpath.compile( locationPath );
-			}
-			xPathExpressionMap.put( locationPath, xPathExpression );
-			return xPathExpression;
-		}
-	}
+            }
+            else
+            {
+                xPathExpression = xpath.compile( locationPath );
+            }
+
+			// Cache the compiled XPathExpression for future use
+            xPathExpressionMap.put( locationPath, xPathExpression );
+        }
+
+        return xPathExpression;
+    }
 
 	public Optional<LocationInfo> getLocationInfo( Node node )
 	{

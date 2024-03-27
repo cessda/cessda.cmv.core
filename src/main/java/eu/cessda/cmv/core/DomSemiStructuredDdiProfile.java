@@ -21,6 +21,7 @@ package eu.cessda.cmv.core;
 
 import org.gesis.commons.xml.XMLDocument;
 import org.w3c.dom.Attr;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -36,33 +37,33 @@ import static java.util.Collections.unmodifiableSet;
 
 class DomSemiStructuredDdiProfile extends AbstractProfile
 {
-	private final String profileName;
-	private final String profileVersion;
-	private final LinkedHashSet<Constraint> constraints;
 
 	DomSemiStructuredDdiProfile( XMLDocument document ) throws IOException, NotDocumentException
 	{
+		super(parseProfileName( document ), parseProfileVersion( document ), new LinkedHashSet<>());
 		try
 		{
-			this.constraints = new LinkedHashSet<>();
-			this.profileName = parseProfileName( document );
-			this.profileVersion = parseProfileVersion( document );
-
 			for ( Node usedNode : document.selectNodes( "/DDIProfile/Used" ) )
 			{
-				constraints.add( new CompilableXPathConstraint( getLocationPath( usedNode ) ) );
-				constraints.add( new PredicatelessXPathConstraint( getLocationPath( usedNode ) ) );
-				parseControlledVocabularyRepositoryConstraint( document, usedNode );
+				if (!(usedNode instanceof Element))
+				{
+					continue;
+				}
+				Element usedElement = (Element) usedNode;
 
-				parseMandatoryNodeConstraint( usedNode );
-				parseOptionalNodeConstraint( document, usedNode );
-				parseNotBlankNodeConstraint( document, usedNode );
-				parseMaximumElementOccurrenceConstraint( usedNode );
-				parseMandatoryNodeIfParentPresentConstraint( document, usedNode );
-				parseFixedValueNodeConstraint( usedNode );
+				constraints.add( new CompilableXPathConstraint( getLocationPath( usedElement ) ) );
+				constraints.add( new PredicatelessXPathConstraint( getLocationPath( usedElement ) ) );
+				parseControlledVocabularyRepositoryConstraint( document, usedElement );
 
-				parseCodeValueOfControlledVocabularyConstraint( document, usedNode );
-				parseDescriptiveTermOfControlledVocabularyConstraint( document, usedNode );
+				parseMandatoryNodeConstraint( usedElement );
+				parseOptionalNodeConstraint( document, usedElement );
+				parseNotBlankNodeConstraint( document, usedElement );
+				parseMaximumElementOccurrenceConstraint( usedElement );
+				parseMandatoryNodeIfParentPresentConstraint( document, usedElement );
+				parseFixedValueNodeConstraint( usedElement );
+
+				parseCodeValueOfControlledVocabularyConstraint( document, usedElement );
+				parseDescriptiveTermOfControlledVocabularyConstraint( document, usedElement );
 			}
 		}
 		catch ( SAXException | URISyntaxException e )
@@ -100,14 +101,31 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		this.constraints.addAll( orderedConstraints );
 	}
 
-	private static String getLocationPath( Node usedNode )
+	private static String getLocationPath( Element usedNode )
 	{
-		return usedNode.getAttributes().getNamedItem( "xpath" ).getTextContent();
+		Attr xpath = usedNode.getAttributeNode( "xpath" );
+		if (xpath != null)
+		{
+			return xpath.getTextContent();
+		}
+		else
+		{
+			return null;
+		}
 	}
 
-	private static String parseProfileName( XMLDocument document ) throws XPathExpressionException
+	static String parseProfileName( XMLDocument document )
 	{
-		Node nameNode = document.selectNode( "/DDIProfile/DDIProfileName" );
+		Node nameNode;
+		try
+		{
+			nameNode = document.selectNode( "/DDIProfile/DDIProfileName" );
+		}
+		catch ( XPathExpressionException e )
+		{
+			throw new IllegalStateException(e);
+		}
+
 		if ( nameNode != null )
 		{
 			return nameNode.getTextContent().trim();
@@ -118,9 +136,18 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		}
 	}
 
-	private static String parseProfileVersion( XMLDocument document ) throws XPathExpressionException
-	{
-		Node versionNode = document.selectNode( "/DDIProfile/Version" );
+	static String parseProfileVersion( XMLDocument document )
+    {
+		Node versionNode;
+		try
+		{
+			versionNode = document.selectNode( "/DDIProfile/Version" );
+		}
+		catch ( XPathExpressionException e )
+		{
+			throw new IllegalStateException(e);
+		}
+
 		if ( versionNode != null )
 		{
 			return versionNode.getTextContent().trim();
@@ -148,7 +175,7 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		}
 	}
 
-	private void parseMandatoryNodeConstraint( Node usedNode )
+	private void parseMandatoryNodeConstraint( Element usedNode )
 	{
 		Node isRequiredNode = usedNode.getAttributes().getNamedItem( "isRequired" );
 		if ( isRequiredNode != null && isRequiredNode.getNodeValue().equalsIgnoreCase( "true" ) )
@@ -157,7 +184,7 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		}
 	}
 
-	private void parseFixedValueNodeConstraint( Node usedNode )
+	private void parseFixedValueNodeConstraint( Element usedNode )
 	{
 		Node fixedValueNode = usedNode.getAttributes().getNamedItem( "fixedValue" );
 		if ( fixedValueNode != null && Boolean.parseBoolean( fixedValueNode.getNodeValue() ) )
@@ -176,9 +203,9 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		}
 	}
 
-	private void parseOptionalNodeConstraint( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException
+	private void parseOptionalNodeConstraint( XMLDocument document, Element usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
-		Attr isRequiredNode = (Attr) usedNode.getAttributes().getNamedItem( "isRequired" );
+		Attr isRequiredNode = usedNode.getAttributeNode( "isRequired" );
 
 		if ( isRequiredNode != null && Boolean.parseBoolean( isRequiredNode.getValue() ) )
 		{
@@ -211,7 +238,7 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private void parseCodeValueOfControlledVocabularyConstraint( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException
+	private void parseCodeValueOfControlledVocabularyConstraint( XMLDocument document, Element usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
 		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
 		if (extensionOpt.isPresent())
@@ -227,7 +254,7 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private void parseDescriptiveTermOfControlledVocabularyConstraint( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException
+	private void parseDescriptiveTermOfControlledVocabularyConstraint( XMLDocument document, Element usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
 		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
 		if (extensionOpt.isPresent())
@@ -243,7 +270,7 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private void parseControlledVocabularyRepositoryConstraint( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException, URISyntaxException
+	private void parseControlledVocabularyRepositoryConstraint( XMLDocument document, Element usedNode ) throws IOException, SAXException, XPathExpressionException, URISyntaxException
 	{
 		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
 		if (extensionOpt.isPresent())
@@ -261,9 +288,9 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		}
 	}
 
-	private void parseMaximumElementOccurrenceConstraint( Node usedNode )
+	private void parseMaximumElementOccurrenceConstraint( Element usedNode )
 	{
-		Node limitMaxOccursNode = usedNode.getAttributes().getNamedItem( "limitMaxOccurs" );
+		Attr limitMaxOccursNode = usedNode.getAttributeNode( "limitMaxOccurs" );
 		if ( limitMaxOccursNode != null )
 		{
 			constraints.add( new MaximumElementOccurrenceConstraint(
@@ -273,7 +300,7 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private void parseMandatoryNodeIfParentPresentConstraint( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException
+	private void parseMandatoryNodeIfParentPresentConstraint( XMLDocument document, Element usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
 		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
 		if (extensionOpt.isPresent())
@@ -289,7 +316,7 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 	}
 
 	@SuppressWarnings( "squid:S1075" )
-	private void parseNotBlankNodeConstraint( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException
+	private void parseNotBlankNodeConstraint( XMLDocument document, Element usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
 		Optional<XMLDocument> extensionOpt = findExtension( document, usedNode );
 		if (extensionOpt.isPresent())

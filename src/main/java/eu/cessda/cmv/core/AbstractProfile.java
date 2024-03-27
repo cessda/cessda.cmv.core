@@ -19,7 +19,9 @@
  */
 package eu.cessda.cmv.core;
 
+import java.util.Collections;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * This class implements the {@link Object#equals(Object)} and {@link Object#hashCode()} methods
@@ -32,6 +34,35 @@ import java.util.Objects;
  */
 public abstract class AbstractProfile implements Profile
 {
+	protected final String profileName;
+	protected final String profileVersion;
+	protected final Set<Constraint> constraints;
+
+	protected AbstractProfile( String profileName, String profileVersion, Set<Constraint> constraints )
+	{
+		this.profileName = profileName;
+		this.profileVersion = profileVersion;
+		this.constraints = constraints;
+	}
+
+	@Override
+	public String getProfileName()
+	{
+		return profileName;
+	}
+
+	@Override
+	public String getProfileVersion()
+	{
+		return profileVersion;
+	}
+
+	@Override
+	public Set<Constraint> getConstraints()
+	{
+		return Collections.unmodifiableSet( constraints );
+	}
+
 	/**
 	 * Tests two profiles for equivalence. Profiles are equivalent if they have identical constraints.
 	 *
@@ -42,14 +73,20 @@ public abstract class AbstractProfile implements Profile
 	public boolean equals( Object obj )
 	{
 		if ( this == obj ) return true;
-		if ( !( obj instanceof AbstractProfile ) ) return false;
+		if ( !( obj instanceof Profile ) ) return false;
 		Profile that = (Profile) obj;
-		return Objects.equals( getConstraints(), that.getConstraints() );
+		return Objects.equals( constraints, that.getConstraints() );
 	}
 
 	@Override
 	public int hashCode()
 	{
-		return Objects.hash( getConstraints() );
+		return Objects.hash( constraints );
+	}
+
+	@Override
+	public String toString()
+	{
+		return profileName + ": " + profileVersion;
 	}
 }

@@ -148,6 +148,20 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 	}
 
 	/**
+	 * Parse the XML contained in the request to a {@link Document}. The XML document must be either a DDI document
+	 * or an OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
+	 *
+	 * @param document the request document.
+	 * @throws NotDocumentException if the XML is not well-formed.
+	 * @throws IOException          if an IO error occurs.
+	 */
+	public Document newDocument( eu.cessda.cmv.core.mediatype.validationrequest.Document document ) throws IOException, NotDocumentException
+	{
+		Objects.requireNonNull( document, "document is null" );
+		return newDocument( document.toInputSource() );
+	}
+
+	/**
 	 * Returns a validation gate with the given name.
 	 */
 	public static ValidationGate getValidationGate( ValidationGateName name )
@@ -220,6 +234,19 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 		Objects.requireNonNull( inputStream, "inputStream must not be null" );
 		InputSource inputSource = new InputSource( inputStream );
 		return newProfile( inputSource );
+	}
+
+	/**
+	 * Parse the XML represented by the given request into a {@link Profile}.
+	 * The XML document must be a valid DDI profile.
+	 *
+	 * @param profile the request containing the XML to be parsed.
+	 * @throws NotDocumentException if the XML is not well-formed, or no valid constraints were found.
+	 */
+	public Profile newProfile( eu.cessda.cmv.core.mediatype.validationrequest.Document profile ) throws NotDocumentException, IOException
+	{
+		Objects.requireNonNull( profile, "profile must not be null" );
+		return newProfile( profile.toInputSource() );
 	}
 
 	/**
