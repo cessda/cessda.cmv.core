@@ -43,6 +43,7 @@ class ControlledVocabularyRepositoryConstraint extends NodeConstraint
 		this.uri = repositoryUri;
 	}
 
+	@SuppressWarnings( "OverlyBroadCatchBlock" )
 	@Override
 	public List<Validator> newNodeValidators( Document document ) throws XPathExpressionException
 	{
