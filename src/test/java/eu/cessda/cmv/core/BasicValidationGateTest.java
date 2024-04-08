@@ -67,7 +67,7 @@ class BasicValidationGateTest
 		// given
 		Document document = mock( Document.class );
 		when( document.getNodes( "/path/to/mandatory/node" ) )
-				.thenReturn( Collections.singletonList( new Node( "/path/to/mandatory/node", "at-least-one", null ) ) );
+				.thenReturn( Collections.singletonList( new NodeImpl( "/path/to/mandatory/node", "at-least-one", null ) ) );
 		Profile profile = mock( Profile.class );
 		when( profile.getConstraints() ).thenReturn( asList(
 				new MandatoryNodeConstraint( "/path/to/mandatory/node" ),

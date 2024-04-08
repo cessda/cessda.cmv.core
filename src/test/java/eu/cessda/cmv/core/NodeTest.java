@@ -29,7 +29,7 @@ class NodeTest
 	@Test
 	void getChildCount()
 	{
-		Node node = new Node( "/path/to/element", "value", null );
+		NodeImpl node = new NodeImpl( "/path/to/element", "value", null );
 		String locationPath = "./@attribute";
 		assertThat( node.getChildCount( locationPath ), equalTo( 0 ) );
 		node.incrementChildCount( locationPath );
