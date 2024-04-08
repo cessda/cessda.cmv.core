@@ -42,7 +42,7 @@ class StandardValidationGateTest
 		// given
 		Document document = mock( Document.class );
 		when( document.getNodes( anyString() ) ).thenReturn( emptyList() );
-		Profile profile = mock( AbstractProfile.class );
+		Profile profile = mock( Profile.class );
 		when( profile.getConstraints() ).thenReturn( new HashSet<>( asList(
 				new MandatoryNodeConstraint( "/path/to/mandatory/node" ),
 				new RecommendedNodeConstraint( "/path/to/recommended/node" ) ) ) );

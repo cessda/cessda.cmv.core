@@ -49,7 +49,7 @@ class ElementInSetValidatorTest
 
 	private Node mockNode( String element )
 	{
-		Node node = Mockito.mock( NodeImpl.class );
+		Node node = Mockito.mock( Node.class );
 		when( node.getTextContent() ).thenReturn( element );
 		return node;
 	}
