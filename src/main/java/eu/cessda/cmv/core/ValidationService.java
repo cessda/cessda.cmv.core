@@ -22,9 +22,67 @@ package eu.cessda.cmv.core;
 import eu.cessda.cmv.core.mediatype.validationreport.ValidationReport;
 
 import java.io.IOException;
+import java.net.URI;
 
 public interface ValidationService
 {
+	/**
+	 * Validates the document against the given profile using the specified validation gate.
+	 *
+	 * @param documentUri the URI of the document to validate.
+	 * @param profileUri the URI of the profile to validate the document against.
+	 * @param validationGateName the validation gate to use.
+	 * @return the validation report.
+	 * @deprecated use {@link ValidationService#validate(Document, Profile, ValidationGate)} instead.
+	 */
+	@Deprecated
+	default ValidationReport validate(
+			URI documentUri,
+			URI profileUri,
+			ValidationGateName validationGateName ) throws IOException, NotDocumentException
+	{
+		return validate( documentUri, profileUri, validationGateName.getValidationGate() );
+	}
+
+	/**
+	 * Validates the document against the given profile using the specified validation gate.
+	 *
+	 * @param document the document to validate.
+	 * @param profile the profile to validate the document against.
+	 * @param validationGateName the validation gate to use.
+	 * @return the validation report.
+	 */
+	default ValidationReport validate(
+			Document document,
+			Profile profile,
+			ValidationGateName validationGateName ) throws IOException, NotDocumentException
+	{
+		return validate( document, profile, validationGateName.getValidationGate() );
+	}
+
+	/**
+	 * Validates the document against the given profile using the specified validation gate.
+	 *
+	 * @param documentUri the URI of the document to validate.
+	 * @param profileUri the URI of the profile to validate the document against.
+	 * @param validationGate the validation gate to use.
+	 * @return the validation report.
+	 * @deprecated use {@link ValidationService#validate(Document, Profile, ValidationGate)} instead.
+	 */
+	@Deprecated
+	ValidationReport validate(
+			URI documentUri,
+			URI profileUri,
+			ValidationGate validationGate ) throws IOException, NotDocumentException;
+
+	/**
+	 * Validates the document against the given profile using the specified validation gate.
+	 *
+	 * @param document the document to validate.
+	 * @param profile the profile to validate the document against.
+	 * @param validationGate the validation gate to use.
+	 * @return the validation report.
+	 */
 	ValidationReport validate(
 			Document document,
 			Profile profile,

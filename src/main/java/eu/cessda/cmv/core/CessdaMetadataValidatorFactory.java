@@ -384,11 +384,29 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 	/**
 	 * Validates the document against the given profile using the specified validation gate.
 	 *
+	 * @param documentUri the URI of the document to validate.
+	 * @param profileUri the URI of the profile to validate the document against.
+	 * @param validationGate the validation gate to use.
+	 * @return the validation report.
+	 */
+	@Override
+	public ValidationReport validate( URI documentUri, URI profileUri, ValidationGate validationGate ) throws IOException, NotDocumentException
+	{
+		Document document = newDocument( documentUri );
+		Profile profile = newProfile( profileUri );
+
+		return validate( document, profile, validationGate );
+	}
+
+	/**
+	 * Validates the document against the given profile using the specified validation gate.
+	 *
 	 * @param document the document to validate.
 	 * @param profile the profile to validate the document against.
 	 * @param validationGate the validation gate to use.
 	 * @return the validation report.
 	 */
+	@Override
 	public ValidationReport validate( Document document, Profile profile, ValidationGate validationGate )
 	{
 		List<eu.cessda.cmv.core.ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
@@ -403,5 +421,13 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 
 		// Create the validation report
 		return new ValidationReport( document.getURI(), mediaTypeConstraintViolations );
+	}
+
+	/**
+	 * Returns this as a validation service for compatibility with previous versions of CMV
+	 */
+	public ValidationService newValidationService()
+	{
+		return this;
 	}
 }
