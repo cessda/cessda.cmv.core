@@ -25,6 +25,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
+/**
+ * 	A constraint that enforces the metadata document is valid only if the
+ * 	node value equals to the fixed value defined in the constraint.
+ */
 @XmlType( name = FixedValueNodeConstraint.JAXB_TYPE )
 @XmlAccessorType( XmlAccessType.FIELD )
 public class FixedValueNodeConstraint extends NodeConstraint
@@ -35,12 +39,21 @@ public class FixedValueNodeConstraint extends NodeConstraint
 	@XmlElement
 	private String fixedValue;
 
+	/**
+	 * Construct a new fixed value node constraint with the location and fixed value set to {@code null}.
+	 */
 	public FixedValueNodeConstraint()
 	{
 		super( null );
 		this.fixedValue = null;
 	}
 
+	/**
+	 * Construct a new fixed value node constraint.
+	 *
+	 * @param locationPath the XPath of the node.
+	 * @param fixedValue the fixed value of the node.
+	 */
 	public FixedValueNodeConstraint( String locationPath, String fixedValue )
 	{
 		super( locationPath );

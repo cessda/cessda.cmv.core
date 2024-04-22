@@ -2,7 +2,7 @@
  * #%L
  * cmv-core
  * %%
- * Copyright (C) 2020 - 2021 CESSDA ERIC
+ * Copyright (C) 2020 - 2024 CESSDA ERIC
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,32 @@ import java.util.List;
 
 import static org.gesis.commons.xml.xpath.XPathTokenizer.PARENT;
 
+/**
+ *	A constraint specifying an XML node (element or attribute) described by a predicate-less
+ *	XPath expression must be present and not blank if the element's parent is present.
+ * 	<p>
+ * 	This constraint can be defined in a DDI profile using this representation
+ * 	<pre>{@code
+ * 	<pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/IDNo/@agency" isRequired="false">
+ *		<pr:Instructions>
+ *			<r:Content>
+ *		 	<!-- Constraint is a string, it must be escaped or wrapped in a CDATA section -->
+ *				<![CDATA[
+ *				<Constraints>
+ *					<MandatoryNodeIfParentPresentConstraint/>
+ * 				</Constraints>
+ *				]]>
+ *			</r:Content>
+ *		</pr:Instructions>
+ *	</pr:Used>}
+ */
 class MandatoryNodeIfParentPresentConstraint extends NodeConstraint
 {
+	/**
+	 * Construct a new mandatory node constraint.
+	 *
+	 * @param locationPath the XPath of the node.
+	 */
 	public MandatoryNodeIfParentPresentConstraint( String locationPath )
 	{
 		super( locationPath );

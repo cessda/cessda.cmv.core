@@ -36,6 +36,9 @@ import static java.util.Optional.ofNullable;
 import static javax.xml.XMLConstants.XMLNS_ATTRIBUTE;
 import static javax.xml.xpath.XPathConstants.NODESET;
 
+/**
+ * Abstracts a {@link Document} and provides easy-to-use XPath APIs using a single object.
+ */
 public class XMLDocument
 {
 
@@ -57,6 +60,15 @@ public class XMLDocument
 		this.namespaceContext = getSimpleNamespaceContext(document);
 	}
 
+	/**
+	 * Set the root of the document to the element located at the given XPath.
+	 * The document is modified by this method.
+	 *
+	 * @param location the XPath of the element that should become the root.
+	 * @param prefix the prefix of the namespace.
+	 * @param namespace the namespace.
+	 * @throws XPathExpressionException if the XPath cannot be evaluated.
+	 */
 	public void setRootElement( String location, String prefix, String namespace ) throws XPathExpressionException
 	{
 		NamespaceContext nsContext = new NamespaceContext(Collections.singletonMap( prefix, namespace ));

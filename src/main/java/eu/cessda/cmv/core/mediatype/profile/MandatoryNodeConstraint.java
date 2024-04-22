@@ -23,6 +23,10 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
+/**
+ *	A constraint specifying an XML node (element or attribute) described by a predicate-less
+ *	XPath expression must be present and not blank in the document.
+ */
 @XmlType( name = MandatoryNodeConstraint.JAXB_TYPE )
 @XmlAccessorType( XmlAccessType.FIELD )
 public class MandatoryNodeConstraint extends NodeConstraint
@@ -30,11 +34,19 @@ public class MandatoryNodeConstraint extends NodeConstraint
 	public static final String JAXB_ELEMENT = "MandatoryNodeConstraint";
 	public static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
 
+	/**
+	 * Construct a new mandatory node constraint with the location set to {@code null}.
+	 */
 	public MandatoryNodeConstraint()
 	{
 		super( null );
 	}
 
+	/**
+	 * Construct a new mandatory node constraint.
+	 *
+	 * @param locationPath the XPath of the node.
+	 */
 	public MandatoryNodeConstraint( String locationPath )
 	{
 		super( locationPath );

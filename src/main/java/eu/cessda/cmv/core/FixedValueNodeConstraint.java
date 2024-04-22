@@ -2,7 +2,7 @@
  * #%L
  * cmv-core
  * %%
- * Copyright (C) 2020 - 2021 CESSDA ERIC
+ * Copyright (C) 2020 - 2024 CESSDA ERIC
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,29 @@ import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * 	A constraint that enforces the metadata document is valid only if the
+ * 	node value equals to the fixed value defined in the constraint.
+ * 	<p>
+ * 	This constraint can be defined in a DDI profile using this representation
+ * 	<pre>{@code
+ *  <pr:Used
+ * 		xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocab"
+ *  	defaultValue="DDI Analysis Unit"
+ *   	fixedValue="true"/>
+ *  </pr:Used>}
+ * </pre>
+ */
 class FixedValueNodeConstraint extends NodeConstraint
 {
 	private final String fixedValue;
 
+	/**
+	 * Construct a new fixed value node constraint.
+	 *
+	 * @param locationPath the XPath of the node.
+	 * @param fixedValue the fixed value of the node.
+	 */
 	public FixedValueNodeConstraint( String locationPath, String fixedValue )
 	{
 		super( locationPath );

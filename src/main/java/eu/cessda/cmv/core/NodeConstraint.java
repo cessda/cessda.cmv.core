@@ -25,11 +25,19 @@ import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Base class for constraints that reference an XML using an XPath
+ */
 abstract class NodeConstraint implements Constraint
 {
 	private final String locationPath;
 
-	NodeConstraint( String locationPath )
+	/**
+	 * Construct a new NodeConstraint using the given location XPath.
+	 *
+	 * @param locationPath the location of the node
+	 */
+	protected NodeConstraint( String locationPath )
 	{
 		requireNonNull( locationPath );
 		// TODO: Validate XPath
@@ -50,7 +58,14 @@ abstract class NodeConstraint implements Constraint
 		}
 	}
 
-	protected abstract List<Validator> newNodeValidators( Document document) throws XPathExpressionException;
+	/**
+	 * Create a new node validator, extends {@link #newValidators(Document)} to support throwing {@link XPathExpressionException}.
+	 *
+	 * @param document the document.
+	 * @return a list of validators.
+	 * @throws XPathExpressionException if there is a problem evaluating the XPath.
+	 */
+	protected abstract List<Validator> newNodeValidators( Document document ) throws XPathExpressionException;
 
 	protected String getLocationPath()
 	{
