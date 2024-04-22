@@ -20,27 +20,29 @@
 package eu.cessda.cmv.core.controlledvocabulary;
 
 import java.net.URI;
+import java.util.Collections;
+import java.util.Objects;
 import java.util.Set;
 
 abstract class AbstractControlledVocabularyRepository implements ControlledVocabularyRepository
 {
-	private URI uri;
-	private Set<String> codeValues;
-	private Set<String> descriptiveTerms;
-
-	protected void setUri( URI uri )
+	protected AbstractControlledVocabularyRepository( URI uri )
 	{
 		this.uri = uri;
 	}
 
+	private final URI uri;
+	private Set<String> codeValues;
+	private Set<String> descriptiveTerms;
+
 	protected void setCodeValues( Set<String> codeValues )
 	{
-		this.codeValues = codeValues;
+		this.codeValues = Collections.unmodifiableSet( codeValues );
 	}
 
 	protected void setDescriptiveTerms( Set<String> descriptiveTerms )
 	{
-		this.descriptiveTerms = descriptiveTerms;
+		this.descriptiveTerms = Collections.unmodifiableSet( descriptiveTerms );
 	}
 
 	@Override
@@ -59,5 +61,20 @@ abstract class AbstractControlledVocabularyRepository implements ControlledVocab
 	public URI getUri()
 	{
 		return uri;
+	}
+
+	@Override
+	public boolean equals( Object o )
+	{
+		if ( this == o ) return true;
+		if ( o == null || getClass() != o.getClass() ) return false;
+		AbstractControlledVocabularyRepository that = (AbstractControlledVocabularyRepository) o;
+		return uri.equals( that.uri );
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash( uri );
 	}
 }

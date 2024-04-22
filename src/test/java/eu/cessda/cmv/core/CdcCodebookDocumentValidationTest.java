@@ -38,7 +38,7 @@ class CdcCodebookDocumentValidationTest
 	private final Profile profile;
 	private final CessdaMetadataValidatorFactory factory;
 
-	CdcCodebookDocumentValidationTest() throws IOException
+	CdcCodebookDocumentValidationTest() throws IOException, NotDocumentException
 	{
 		factory = new CessdaMetadataValidatorFactory();
 		profile = factory.newProfile( getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ) );

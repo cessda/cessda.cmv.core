@@ -55,7 +55,7 @@ abstract class ElementOfControlledVocabularyValidator implements Validator
 		}
 		else
 		{
-			Set<String> elementSet = elementName.getElementSetProvider().apply( repository );
+			Set<String> elementSet = elementName.getElementSet( repository );
 			if ( !elementSet.contains( node.getTextContent() ) )
 			{
 				String message = format( "%s '%s' in '%s' is not element of the controlled vocabulary in '%s'",
@@ -88,9 +88,9 @@ abstract class ElementOfControlledVocabularyValidator implements Validator
 			return text;
 		}
 
-		Function<ControlledVocabularyRepository, Set<String>> getElementSetProvider()
+		Set<String> getElementSet( ControlledVocabularyRepository repository )
 		{
-			return elementSetProvider;
+			return elementSetProvider.apply( repository );
 		}
 	}
 }

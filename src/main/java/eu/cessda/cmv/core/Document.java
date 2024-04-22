@@ -21,34 +21,42 @@ package eu.cessda.cmv.core;
 
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 
+import javax.xml.xpath.XPathExpressionException;
+import java.net.URI;
 import java.util.List;
 
 public interface Document
 {
 	/**
+	 * Gets the URI of the source of the document.
+	 *
+	 * @return the URI, or {@code null} if the document was constructed from a source that didn't specify a URI.
+	 */
+	URI getURI();
+
+	/**
 	 * Get a list of DOM nodes found at the given XPath.
 	 *
 	 * @param locationPath the XPath to the nodes to look up.
 	 */
-	List<Node> getNodes( String locationPath );
+	List<Node> getNodes( String locationPath ) throws XPathExpressionException;
 
 	/**
-	 * Register a URI to a {@link ControlledVocabularyRepository} instance. The {@link ControlledVocabularyRepository}
-	 * can be looked up using {@link #findControlledVocabularyRepository(String)} with a registered URI.
+	 * Register a {@link ControlledVocabularyRepository} instance. The {@link ControlledVocabularyRepository}
+	 * can be looked up using {@link #findControlledVocabularyRepository(URI)} with a registered URI.
 	 *
-	 * @param uri the URI of the controlled vocabulary repository.
 	 * @param controlledVocabularyRepository the repository.
 	 */
-	void register( String uri, ControlledVocabularyRepository controlledVocabularyRepository );
+	void register( ControlledVocabularyRepository controlledVocabularyRepository );
 
 	/**
 	 * Find a registered {@link ControlledVocabularyRepository} instance.
 	 * <p>
 	 * {@link ControlledVocabularyRepository} instances are registered using
-	 * {@link #register(String, ControlledVocabularyRepository)}.
+	 * {@link #register(ControlledVocabularyRepository)}.
 	 *
 	 * @param uri the URI of the controlled vocabulary.
 	 * @return the controlled vocabulary, or {@code null} if the uri was not registered.
 	 */
-	ControlledVocabularyRepository findControlledVocabularyRepository( String uri );
+	ControlledVocabularyRepository findControlledVocabularyRepository( URI uri );
 }

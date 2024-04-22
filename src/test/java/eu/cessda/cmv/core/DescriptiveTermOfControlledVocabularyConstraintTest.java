@@ -36,17 +36,23 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 	private final Profile profile;
 	private final CessdaMetadataValidatorFactory factory;
 
-	DescriptiveTermOfControlledVocabularyConstraintTest() throws IOException
+	DescriptiveTermOfControlledVocabularyConstraintTest() throws IOException, NotDocumentException
 	{
 		testEnv = DefaultTestEnv.newInstance( DescriptiveTermOfControlledVocabularyConstraintTest.class );
 		factory = new CessdaMetadataValidatorFactory();
 		profile = factory.newProfile( testEnv.findTestResourceByName( "ddi-v25/27-profile.xml" ) );
+
+	}
+
+	@Test
+	void validate_profile()
+	{
 		assertThat( profile.getConstraints().stream()
-				.filter( ControlledVocabularyRepositoryConstraint.class::isInstance )
-				.count(), is( 4L ) );
+			.filter( ControlledVocabularyRepositoryConstraint.class::isInstance )
+			.count(), is( 4L ) );
 		assertThat( profile.getConstraints().stream()
-				.filter( DescriptiveTermOfControlledVocabularyConstraint.class::isInstance )
-				.count(), is( 1L ) );
+			.filter( DescriptiveTermOfControlledVocabularyConstraint.class::isInstance )
+			.count(), is( 1L ) );
 	}
 
 	@Test

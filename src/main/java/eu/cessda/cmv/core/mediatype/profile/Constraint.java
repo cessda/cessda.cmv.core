@@ -32,6 +32,6 @@ public abstract class Constraint
 
 	protected Constraint()
 	{
-		// Sonar expects explicit constructor
+		// Must be instanced by subclasses
 	}
 }

@@ -21,8 +21,6 @@ package eu.cessda.cmv.core;
 
 import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
-import org.gesis.commons.xml.SaxXercesAgainstSchemaValidator;
-import org.gesis.commons.xml.ddi.Ddi251ClasspathEntityResolver;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -42,10 +40,9 @@ class MaximumElementOccurrenceConstraintTest
 	{
 		testEnv = DefaultTestEnv.newInstance( MaximumElementOccurrenceConstraintTest.class );
 		factory = new CessdaMetadataValidatorFactory();
-		SaxXercesAgainstSchemaValidator xmlValidator = new SaxXercesAgainstSchemaValidator();
-		xmlValidator.validate( testEnv.findTestResourceByName( "bad-case.xml" ), new Ddi251ClasspathEntityResolver() );
-		xmlValidator.validate( testEnv.findTestResourceByName( "good-case.xml" ), new Ddi251ClasspathEntityResolver() );
+
 	}
+
 
 	@Test
 	void validate_invalid() throws IOException, NotDocumentException

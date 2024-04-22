@@ -19,27 +19,23 @@
  */
 package eu.cessda.cmv.core;
 
+import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
 import java.util.Optional;
 
-import static java.util.Objects.requireNonNull;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
 
 class CompilableXPathValidator implements Validator
 {
-	private final XPathFactory factory;
+	private final XPath xpath;
 	private String reason;
 	private final Node node;
 
-	CompilableXPathValidator( Node node, XPathFactory factory )
+	CompilableXPathValidator( Node node, XPath xpath )
 	{
-		requireNonNull( node );
-		requireNonNull( factory );
-
 		this.node = node;
-		this.factory = factory;
+		this.xpath = xpath;
 	}
 
 	@Override
@@ -48,11 +44,7 @@ class CompilableXPathValidator implements Validator
 
 		try
 		{
-			// XPathFactory instances are not thread safe
-			synchronized ( factory )
-			{
-				factory.newXPath().compile( node.getTextContent() );
-			}
+			xpath.compile( node.getTextContent() );
 			return empty();
 		}
 		catch ( XPathExpressionException e )

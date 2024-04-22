@@ -21,7 +21,9 @@ package eu.cessda.cmv.core;
 
 import org.junit.jupiter.api.Test;
 
+import javax.xml.xpath.XPathExpressionException;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 import static eu.cessda.cmv.core.ValidationGateName.BASIC;
@@ -43,15 +45,15 @@ class BasicValidationGateTest
 	}
 
 	@Test
-	void invalid()
+	void invalid() throws XPathExpressionException
 	{
 		// given
 		Document document = mock( Document.class );
 		when( document.getNodes( anyString() ) ).thenReturn( emptyList() );
 		Profile profile = mock( Profile.class );
-		when( profile.getConstraints() ).thenReturn( asList(
+		when( profile.getConstraints() ).thenReturn( new HashSet<>( asList(
 				new MandatoryNodeConstraint( "/path/to/mandatory/node" ),
-				new RecommendedNodeConstraint( "/path/to/recommended/node" ) ) );
+				new RecommendedNodeConstraint( "/path/to/recommended/node" ) ) ) );
 
 		// when
 		ValidationGate validationGate = factory.newValidationGate( BASIC );
@@ -62,16 +64,16 @@ class BasicValidationGateTest
 	}
 
 	@Test
-	void valid()
+	void valid() throws XPathExpressionException
 	{
 		// given
 		Document document = mock( Document.class );
 		when( document.getNodes( "/path/to/mandatory/node" ) )
 				.thenReturn( Collections.singletonList( new NodeImpl( "/path/to/mandatory/node", "at-least-one", null ) ) );
 		Profile profile = mock( Profile.class );
-		when( profile.getConstraints() ).thenReturn( asList(
+		when( profile.getConstraints() ).thenReturn( new HashSet<>( asList(
 				new MandatoryNodeConstraint( "/path/to/mandatory/node" ),
-				new RecommendedNodeConstraint( "/path/to/recommended/node" ) ) );
+				new RecommendedNodeConstraint( "/path/to/recommended/node" ) ) ) );
 
 		// when
 		ValidationGate validationGate = factory.newValidationGate( BASIC );

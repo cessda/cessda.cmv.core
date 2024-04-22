@@ -19,14 +19,12 @@
  */
 package eu.cessda.cmv.core.controlledvocabulary;
 
-import com.jayway.jsonpath.Configuration;
+import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import org.gesis.commons.resource.Resource;
-import org.gesis.commons.resource.TextResource;
 
 import java.net.URI;
 import java.util.HashSet;
-import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
@@ -39,13 +37,9 @@ public class CessdaControlledVocabularyRepository extends AbstractControlledVoca
 
 	public CessdaControlledVocabularyRepository( Resource resource )
 	{
-		requireNonNull( resource );
-		setUri( resource.getUri() );
-		Object document = Configuration.defaultConfiguration().jsonProvider()
-				.parse( new TextResource( resource ).toString() );
-		List<String> list = JsonPath.read( document, "$.conceptAsMap.*.notation" );
-		setCodeValues( new HashSet<>( list ) );
-		list = JsonPath.read( document, "$.conceptAsMap.*.title" );
-		setDescriptiveTerms( new HashSet<>( list ) );
+		super( requireNonNull( resource ).getUri() );
+		DocumentContext document = JsonPath.parse( resource.readInputStream() );
+		setCodeValues( new HashSet<>( document.read( "$.conceptAsMap.*.notation" ) ) );
+		setDescriptiveTerms( new HashSet<>( document.read( "$.conceptAsMap.*.title" ) ) );
 	}
 }

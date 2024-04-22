@@ -19,6 +19,12 @@
  */
 package eu.cessda.cmv.core.mediatype.profile;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType( name = CompilableXPathConstraint.JAXB_TYPE )
+@XmlAccessorType( XmlAccessType.FIELD )
 public class CompilableXPathConstraint extends NodeConstraint
 {
 	public static final String JAXB_ELEMENT = "CompilableXPathConstraint";
