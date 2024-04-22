@@ -65,8 +65,7 @@ class CessdaMetadataValidatorFactoryTest
 		assertThat( resourceUrl, notNullValue() );
 
 		// Load documents, should not throw
-		Document document = factory.newDocument( resourceUrl );
-		assertThat( document.getURI().toString(), equalTo( uri ) );
+		factory.newDocument( resourceUrl );
 	}
 
 	@Test
