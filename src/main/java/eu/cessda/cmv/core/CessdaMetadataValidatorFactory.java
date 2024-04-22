@@ -44,6 +44,8 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 {
 	private static final Logger log = LoggerFactory.getLogger( CessdaMetadataValidatorFactory.class );
 
+	private static final String URI_CONVERSION_FAILED = "Couldn't convert {} into a URI: {}";
+
 	private static final Set<String> CONSTRAINTS = Collections.unmodifiableSet( new HashSet<>( Arrays.asList(
 		"CompilableXPathConstraint",
 		"ControlledVocabularyRepositoryConstraint",
@@ -59,7 +61,7 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 	) ) );
 	private static final String OAI_PMH_XML_NAMESPACE = "http://www.openarchives.org/OAI/2.0/";
 
-    private final ConcurrentHashMap<URI, ControlledVocabularyRepository> cvrMap = new ConcurrentHashMap<>();
+	private final ConcurrentHashMap<URI, ControlledVocabularyRepository> cvrMap = new ConcurrentHashMap<>();
 
     /**
 	 * Parse the XML at the given file into a {@link Document}. The XML document must be either a DDI document
@@ -126,7 +128,7 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 		}
 		catch ( URISyntaxException e )
 		{
-			log.warn( "Couldn't convert {} into a URI: {}", url, e.getMessage() );
+			log.warn( URI_CONVERSION_FAILED, url, e.getMessage() );
 		}
 
 		InputSource inputSource = new InputSource( url.toExternalForm() );
@@ -342,7 +344,7 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 			}
 			catch ( URISyntaxException e )
 			{
-				log.warn( "Couldn't convert {} into a URI: {}", inputSource.getSystemId(), e.getMessage() );
+				log.warn( URI_CONVERSION_FAILED, inputSource.getSystemId(), e.getMessage() );
 			}
 		}
 

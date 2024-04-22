@@ -23,6 +23,8 @@ import eu.cessda.cmv.core.mediatype.validationreport.ValidationReport;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 import static eu.cessda.cmv.core.ValidationGateName.BASIC;
@@ -45,6 +47,24 @@ class JdkValidationServiceTest
 
 		ValidationReport validationReportFromGateName = factory.validate( document, profile, BASIC );
 		ValidationReport validationReportFromGate = factory.validate( document, profile, BASIC.getValidationGate() );
+
+		// Assert that 4 constraint violations were found
+		assertThat( validationReportFromGateName.getConstraintViolations(), hasSize( 4 ) );
+		assertThat( validationReportFromGate.getConstraintViolations(), hasSize( 4 ) );
+
+		// Assert that both reports are equal
+		assertThat( validationReportFromGateName, equalTo( validationReportFromGate ) );
+	}
+
+	@SuppressWarnings( "deprecation" )
+	@Test
+	void validateWithURIs() throws IOException, NotDocumentException, URISyntaxException
+	{
+		URI documentUri = this.getClass().getResource( "/demo-documents/ddi-v25/gesis-2800.xml" ).toURI();
+		URI profileUri = this.getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" ).toURI();
+
+		ValidationReport validationReportFromGateName = factory.validate( documentUri, profileUri, BASIC );
+		ValidationReport validationReportFromGate = factory.validate( documentUri, profileUri, BASIC.getValidationGate() );
 
 		// Assert that 4 constraint violations were found
 		assertThat( validationReportFromGateName.getConstraintViolations(), hasSize( 4 ) );
