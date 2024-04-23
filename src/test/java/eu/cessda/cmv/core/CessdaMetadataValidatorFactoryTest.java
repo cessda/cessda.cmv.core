@@ -19,7 +19,6 @@
  */
 package eu.cessda.cmv.core;
 
-import org.gesis.commons.resource.Resource;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -29,7 +28,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
-import static org.gesis.commons.resource.Resource.newResource;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -68,14 +66,16 @@ class CessdaMetadataValidatorFactoryTest
 		factory.newDocument( resourceUrl );
 	}
 
-	@Test
-	void newDocumentWithNotWellFormedDocument() throws IOException
+	@ParameterizedTest
+	@ValueSource( strings = { "/demo-documents/ddi-v25/oaipmh-missing-metadata.xml", "/demo-documents/ddi-v25/ukds-7481-not-wellformed.xml-invalid", } )
+	void newDocumentWithNotWellFormedDocument( String uri ) throws IOException
 	{
 		// given
-		URL resourceUrl = getClass().getResource( "/demo-documents/ddi-v25/ukds-7481-not-wellformed.xml-invalid" );
+		URL resourceUrl = this.getClass().getResource( uri );
 		assert resourceUrl != null;
-		Resource resource = newResource( resourceUrl );
-		try ( InputStream inputStream = resource.readInputStream() )
+
+		// Load stream
+		try ( InputStream inputStream = resourceUrl.openStream() )
 		{
 			// when
 			Executable executable = () -> factory.newDocument( inputStream );
