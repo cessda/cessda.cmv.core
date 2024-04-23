@@ -89,7 +89,7 @@ public class XMLDocument
 		}
 		else
 		{
-			throw new IllegalArgumentException("No element matching " + location + " found");
+			throw new XPathExpressionException("No element matching " + location + " found");
 		}
 	}
 
