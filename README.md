@@ -40,6 +40,10 @@ void validateUsingFiles()
 
 For more detailed information, consult the JavaDoc.
 
+## Logging
+
+Logging is provided using SLF4J. Applications integrating CMV Core must provide their own SLF4J implementation (such as Logback) for logs to be outputted.
+
 ## Dependency Information
 
 Add CESSDA Maven Repository to your `pom.xml`:
