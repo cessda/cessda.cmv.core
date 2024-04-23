@@ -22,7 +22,6 @@ package eu.cessda.cmv.core.controlledvocabulary;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.InvalidJsonException;
 import com.jayway.jsonpath.JsonPath;
-import org.gesis.commons.resource.Resource;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,49 +35,20 @@ import static java.util.Objects.requireNonNull;
 
 public class CessdaControlledVocabularyRepositoryV2 extends AbstractControlledVocabularyRepository
 {
-
-	private static final String MESSAGE = "Resource not found";
-
 	/**
 	 * Construct a new ControlledVocabulary using the given URI.
 	 *
 	 * @param uri the URI of the controlled vocabulary.
-	 * @throws IllegalArgumentException if an IO error occurs.
+	 * @throws InvalidJsonException if the JSON is invalid.
+	 * @throws IOException if an IO error occurs.
 	 */
-	public CessdaControlledVocabularyRepositoryV2( URI uri )
+	public CessdaControlledVocabularyRepositoryV2( URI uri ) throws IOException
 	{
 		super( requireNonNull( uri ) );
 
 		try ( InputStream inputStream = openInputStream( uri.toURL() ) )
 		{
 			parseDocument( inputStream );
-		}
-		catch ( IOException | InvalidJsonException e )
-		{
-			throw new IllegalArgumentException( MESSAGE, e );
-		}
-	}
-
-	/**
-	 * Construct a new ControlledVocabulary using the given {@link Resource}.
-	 *
-	 * @param resource the resource of the controlled vocabulary.
-	 * @throws IllegalArgumentException if an IO error occurs.
-	 */
-	public CessdaControlledVocabularyRepositoryV2( Resource resource )
-	{
-		super ( requireNonNull( resource ).getUri() );
-
-		try ( InputStream inputStream = resource.getUri().getScheme().startsWith( "http" )
-			// The Resource object doesn't set the necessary headers, use a URLConnection directly
-			? openInputStream( resource.getUri().toURL() )
-			: resource.readInputStream() )
-		{
-			parseDocument( inputStream );
-		}
-		catch ( IOException | InvalidJsonException e )
-		{
-			throw new IllegalArgumentException( MESSAGE, e );
 		}
 	}
 

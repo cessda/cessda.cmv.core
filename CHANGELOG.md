@@ -14,6 +14,40 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - *Fixed (for any bug fixes)*
 - *Security (in case of vulnerabilities)*
 
+## [3.0.0] - 2024-04-30
+
+### Migration Notes
+
+Because `org.gesis.commons.resource.Resource` can no longer be used as a source for `Document` and `Profile` instances, uses of these must be migrated to use another type.
+
+Applications must provide their own SLF4J implementation for logging to work properly. A warning message will be printed if no SLF4J implementation is found.
+
+### Added
+
+* Added a public `Node` interface
+* Added the ability to cached parsed `Document` and `Profile` instances by creating `CessdaMetadataValidatorFactory.newDocument()` and `CessdaMetadataValidatorFactory.newProfile()` for common source type
+* Added implementations for `equals()` and `hashCode()` for profiles and all constraints
+* Enabled tests for mediatype classes (`ValidationRequest` and `ValidationReport`) to ensure that the JSON and XML representations are generated and parsed correctly
+* Added `Profile.getProfileName()` and `Profile.getProfileVersion()` so that the name and version of a profile can be programatically retrieved
+
+### Changed
+
+* Refactored `ConstraintViolation.getMessage()` to only return the message without location information
+	* The previous behaviour has been moved to `ConstraintViolation.toString()`
+* Renamed the `Node` class to `NodeImpl`
+* Optimise parsing documents that are wrapped in an OAI-PMH wrapper by avoiding serializing and parsing the contents of the `<metadata>` element
+
+### Fixed
+
+* Fixed missing constraints when using `DomSemiStructuredDdiProfile.toJaxbProfile()`
+* Fixed incomplete parsing of `eu.cessda.cmv.core.mediatype.profile.Profile`
+* Fixed `DomProfile` missing constraints
+
+### Removed
+
+* Removed the ability to use `org.gesis.commons.resource.Resource` as a source for `Document` and `Profile` instances
+* Removed `ProfileResourceLabelProvider`
+
 ## [2.0.0] - 2023-10-17
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10013270.svg)](https://doi.org/10.5281/zenodo.10013270)
@@ -163,6 +197,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added badges to REAMDME
   ([#53](https://github.com/cessda/cessda.cmv.core/issues/53))
 
+[3.0.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/3.0.0
 [2.0.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/2.0.0
 [1.1.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/1.1.0
 [1.0.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/v1.0.0

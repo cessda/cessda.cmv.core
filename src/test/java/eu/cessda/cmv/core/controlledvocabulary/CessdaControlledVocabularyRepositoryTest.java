@@ -24,6 +24,7 @@ import org.gesis.commons.test.TestEnv;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.IOException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -33,7 +34,7 @@ class CessdaControlledVocabularyRepositoryTest
 	private final TestEnv.V13 testEnv = DefaultTestEnv.newInstance( CessdaControlledVocabularyRepositoryTest.class );
 
 	@Test
-	void findCodeValues_AnalysisUnit_20()
+	void findCodeValues_AnalysisUnit_20() throws IOException
 	{
 		org.hamcrest.Matcher<Iterable<? extends String>> expectedValues = contains(
 				"Group",
@@ -62,7 +63,7 @@ class CessdaControlledVocabularyRepositoryTest
 	}
 
 	@Test
-	void findDescriptiveTerms_AnalysisUnit_20()
+	void findDescriptiveTerms_AnalysisUnit_20() throws IOException
 	{
 		org.hamcrest.Matcher<Iterable<? extends String>> expectedValues = contains(
 				"Group",

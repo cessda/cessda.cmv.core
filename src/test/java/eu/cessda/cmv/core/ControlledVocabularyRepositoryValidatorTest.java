@@ -23,6 +23,7 @@ import eu.cessda.cmv.core.controlledvocabulary.CessdaControlledVocabularyReposit
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.Optional;
 
@@ -33,7 +34,7 @@ import static org.hamcrest.Matchers.equalTo;
 class ControlledVocabularyRepositoryValidatorTest
 {
 	@Test
-	void validate_valid()
+	void validate_valid() throws IOException
 	{
 		// given
 		URI uri = URI.create( "https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0" );
@@ -52,9 +53,9 @@ class ControlledVocabularyRepositoryValidatorTest
 	{
 		// given
 		URI uri = URI.create( "https://localhost/v2/vocabularies/AnalysisUnit/10.0?languageVersion=en-10.0" );
-		IllegalArgumentException exception = Assertions.assertThrows( IllegalArgumentException.class, () -> new CessdaControlledVocabularyRepositoryV2( uri ) );
+		IOException exception = Assertions.assertThrows( IOException.class, () -> new CessdaControlledVocabularyRepositoryV2( uri ) );
 
 		// then
-		assertThat( exception.getMessage(), equalTo( "Resource not found" ) );
+		assertThat( exception.getMessage(), equalTo( "Connection refused: connect" ) );
 	}
 }

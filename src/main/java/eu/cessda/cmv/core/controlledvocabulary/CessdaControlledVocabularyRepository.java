@@ -21,25 +21,22 @@ package eu.cessda.cmv.core.controlledvocabulary;
 
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
-import org.gesis.commons.resource.Resource;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.util.HashSet;
 
-import static java.util.Objects.requireNonNull;
-
 public class CessdaControlledVocabularyRepository extends AbstractControlledVocabularyRepository
 {
-	public CessdaControlledVocabularyRepository( URI uri )
+	public CessdaControlledVocabularyRepository( URI uri ) throws IOException
 	{
-		this( Resource.<Resource>newResource( requireNonNull( uri ) ) );
-	}
-
-	public CessdaControlledVocabularyRepository( Resource resource )
-	{
-		super( requireNonNull( resource ).getUri() );
-		DocumentContext document = JsonPath.parse( resource.readInputStream() );
-		setCodeValues( new HashSet<>( document.read( "$.conceptAsMap.*.notation" ) ) );
-		setDescriptiveTerms( new HashSet<>( document.read( "$.conceptAsMap.*.title" ) ) );
+		super( uri );
+		try ( InputStream repositoryStream = uri.toURL().openStream() )
+		{
+			DocumentContext document = JsonPath.parse( repositoryStream );
+			setCodeValues( new HashSet<>( document.read( "$.conceptAsMap.*.notation" ) ) );
+			setDescriptiveTerms( new HashSet<>( document.read( "$.conceptAsMap.*.title" ) ) );
+		}
 	}
 }
