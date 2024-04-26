@@ -19,6 +19,7 @@
  */
 package eu.cessda.cmv.core;
 
+import javax.xml.namespace.NamespaceContext;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
@@ -37,12 +38,14 @@ public abstract class AbstractProfile implements Profile
 	protected final String profileName;
 	protected final String profileVersion;
 	protected final Set<Constraint> constraints;
+	private final NamespaceContext namespaceContext;
 
-	protected AbstractProfile( String profileName, String profileVersion, Set<Constraint> constraints )
+	protected AbstractProfile( String profileName, String profileVersion, Set<Constraint> constraints, NamespaceContext namespaceContext )
 	{
 		this.profileName = profileName;
 		this.profileVersion = profileVersion;
 		this.constraints = constraints;
+		this.namespaceContext = namespaceContext;
 	}
 
 	@Override
@@ -61,6 +64,11 @@ public abstract class AbstractProfile implements Profile
 	public Set<Constraint> getConstraints()
 	{
 		return Collections.unmodifiableSet( constraints );
+	}
+
+	@Override
+	public NamespaceContext getNamespaceContext() {
+		return namespaceContext;
 	}
 
 	/**

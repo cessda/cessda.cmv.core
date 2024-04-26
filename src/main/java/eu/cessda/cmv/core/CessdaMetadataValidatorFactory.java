@@ -263,6 +263,7 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 		try
 		{
 			XMLDocument document = XMLDocument.newBuilder().build(inputSource);
+			document.setNamespaceContext( DomSemiStructuredDdiProfile.getProfileNamespaceContext() );
 			return new DomSemiStructuredDdiProfile( document );
 		}
 		catch ( SAXException e )
@@ -358,13 +359,14 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 		try
 		{
 			// Parse the XML document
-			XMLDocument document = XMLDocument.newBuilder().locationInfoAware( true ).namespaceAware( true ).build( inputSource );
+			XMLDocument document = XMLDocument.newBuilder().locationInfoAware( true ).build( inputSource );
 			String namespace = document.getNamespace();
 
 			if ( OAI_PMH_XML_NAMESPACE.equals( namespace ))
 			{
 				// Try to extract <metadata> and recurse
-				document.setRootElement( "/oai:OAI-PMH/oai:GetRecord/oai:record/oai:metadata/*", "oai", OAI_PMH_XML_NAMESPACE );
+				CMVNamespaceContext namespaceContext = new CMVNamespaceContext( Collections.singletonMap( "oai", OAI_PMH_XML_NAMESPACE ) );
+				document.setRootElement( "/oai:OAI-PMH/oai:GetRecord/oai:record/oai:metadata/*", namespaceContext );
 			}
 
 			return new DomCodebookDocument( uri, document, cvrMap );

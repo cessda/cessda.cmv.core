@@ -21,6 +21,7 @@ package eu.cessda.cmv.core;
 
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 
+import javax.xml.namespace.NamespaceContext;
 import javax.xml.xpath.XPathExpressionException;
 import java.net.URI;
 import java.util.List;
@@ -59,4 +60,6 @@ public interface Document
 	 * @return the controlled vocabulary, or {@code null} if the uri was not registered.
 	 */
 	ControlledVocabularyRepository findControlledVocabularyRepository( URI uri );
+
+	void setNamespaceContext( NamespaceContext namespaceContext );
 }

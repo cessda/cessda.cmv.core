@@ -34,7 +34,8 @@ class DomProfile extends AbstractProfile
 		super(
 			profile.getName() != null ? profile.getName().trim() : null,
 			profile.getVersion() != null ? profile.getVersion().trim() : null,
-			new LinkedHashSet<>()
+			new LinkedHashSet<>(),
+			new CMVNamespaceContext()
 		);
 
 		// Validate constraints list is not null

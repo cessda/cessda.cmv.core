@@ -19,15 +19,18 @@
  */
 package eu.cessda.cmv.core;
 
-import static java.lang.String.format;
-
 public class NotDocumentException extends Exception
 {
 	private static final long serialVersionUID = -2148512119063297931L;
 
-	NotDocumentException( String mediaType )
+	NotDocumentException( String message )
 	{
-		super( format( "Not CMV document: Detected media type: %s", mediaType ) );
+		super( message );
+	}
+
+	NotDocumentException( String message, Throwable throwable )
+	{
+		super( message, throwable );
 	}
 
 	NotDocumentException( Throwable throwable )

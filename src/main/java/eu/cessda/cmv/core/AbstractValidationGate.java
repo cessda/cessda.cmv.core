@@ -51,6 +51,10 @@ abstract class AbstractValidationGate implements ValidationGate
 		requireNonNull( document, "document is null" );
 		requireNonNull( profile, "profile is null" );
 
+		// Set the namespace context
+		document.setNamespaceContext( profile.getNamespaceContext() );
+
+		// Validate the document against the constraints
 		List<ConstraintViolation> constraintViolations = new ArrayList<>();
 		for ( Constraint constraint : profile.getConstraints() )
 		{
@@ -64,5 +68,4 @@ abstract class AbstractValidationGate implements ValidationGate
 		}
 		return constraintViolations;
 	}
-
 }

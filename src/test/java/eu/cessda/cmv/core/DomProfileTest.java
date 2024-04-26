@@ -49,7 +49,9 @@ class DomProfileTest
 
 			// should be equal
 			InputSource inputSource = new InputSource( url.toExternalForm() );
-			eu.cessda.cmv.core.Profile expectedProfile = new DomSemiStructuredDdiProfile( XMLDocument.newBuilder().build( inputSource ) );
+			XMLDocument document = XMLDocument.newBuilder().build( inputSource );
+			document.setNamespaceContext( DomSemiStructuredDdiProfile.getProfileNamespaceContext() );
+			eu.cessda.cmv.core.Profile expectedProfile = new DomSemiStructuredDdiProfile( document );
 			assertThat( actualProfile, equalTo( expectedProfile ) );
 		}
 	}
