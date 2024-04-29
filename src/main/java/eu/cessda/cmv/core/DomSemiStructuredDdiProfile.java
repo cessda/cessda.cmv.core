@@ -20,6 +20,8 @@
 package eu.cessda.cmv.core;
 
 import org.gesis.commons.xml.XMLDocument;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -39,12 +41,15 @@ import java.util.Optional;
 
 class DomSemiStructuredDdiProfile extends AbstractProfile
 {
+	private static final Logger log = LoggerFactory.getLogger( DomSemiStructuredDdiProfile.class );
 
 	DomSemiStructuredDdiProfile( XMLDocument document ) throws IOException, NotDocumentException
 	{
 		super(parseProfileName( document ), parseProfileVersion( document ), new LinkedHashSet<>(), bindNamespacesToPrefixes( document ));
 		try
 		{
+			parseXPathVersion( document );
+
 			for ( Node usedNode : document.selectNodes( "/pr:DDIProfile/pr:Used" ) )
 			{
 				if (!(usedNode instanceof Element))
@@ -119,18 +124,6 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		List<Node> nodes;
 		try
 		{
-			// Check XPath specification version
-			Node xpathNode = document.selectNode( "/pr:DDIProfile/pr:XPathVersion" );
-			if ( xpathNode != null )
-			{
-				String xpathVersion = xpathNode.getTextContent().trim();
-				if ( !xpathVersion.equals( "1.0" ) )
-				{
-					// Only version 1.0 is supported
-					throw new NotDocumentException( "XPathVersion \"" + xpathVersion + "\" not supported. Supported XPath versions are \"1.0\"" );
-				}
-			}
-
 			nodes = document.selectNodes( "/pr:DDIProfile/pr:XMLPrefixMap" );
 		}
 		catch ( XPathExpressionException e )
@@ -176,6 +169,25 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		}
 
 		return namespaceContext;
+	}
+
+	private static void parseXPathVersion( XMLDocument document ) throws XPathExpressionException, NotDocumentException
+	{
+		// Check XPath specification version
+		Node xpathNode = document.selectNode( "/pr:DDIProfile/pr:XPathVersion" );
+		if ( xpathNode != null )
+		{
+			String xpathVersion = xpathNode.getTextContent().trim();
+			if ( !xpathVersion.equals( "1.0" ) )
+			{
+				// Only version 1.0 is supported
+				throw new NotDocumentException( "XPathVersion \"" + xpathVersion + "\" not supported. Supported XPath versions are \"1.0\"" );
+			}
+		}
+		else
+		{
+			log.warn( "XPathVersion is not specified, defaulting to 1.0" );
+		}
 	}
 
 	private static String getLocationPath( Element usedNode )
