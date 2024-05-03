@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pr:DDIProfile xmlns:r="ddi:reusable:3_2"
-    xmlns:pr="ddi:ddiprofile:3_2" 
+    xmlns:pr="ddi:ddiprofile:3_2"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="ddi:ddiprofile:3_2 https://ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/ddiprofile.xsd">
 	<r:Agency>int.cessda</r:Agency>
@@ -8,5 +8,9 @@
 	<r:Version>1</r:Version>
     <pr:XPathVersion>1.0</pr:XPathVersion>
     <pr:DDINamespace>2.5</pr:DDINamespace>
-    <pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/IDNo" isRequired="false" />
+	<pr:XMLPrefixMap>
+		<pr:XMLPrefix>ddi</pr:XMLPrefix>
+		<pr:XMLNamespace>ddi:codebook:2_5</pr:XMLNamespace>
+	</pr:XMLPrefixMap>
+    <pr:Used xpath="/ddi:codeBook/ddi:stdyDscr/ddi:citation/ddi:titlStmt/ddi:IDNo" isRequired="false" />
 </pr:DDIProfile>
