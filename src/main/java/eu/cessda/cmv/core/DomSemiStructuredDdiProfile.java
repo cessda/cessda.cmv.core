@@ -31,9 +31,10 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
-
-import static java.util.Collections.unmodifiableSet;
+import java.util.ArrayDeque;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Optional;
 
 class DomSemiStructuredDdiProfile extends AbstractProfile
 {
@@ -329,24 +330,6 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 				constraints.add( constraint );
 			}
 		}
-	}
-
-	@Override
-	public Set<Constraint> getConstraints()
-	{
-		return unmodifiableSet( constraints );
-	}
-
-	@Override
-	public String getProfileName()
-	{
-		return profileName;
-	}
-
-	@Override
-	public String getProfileVersion()
-	{
-		return profileVersion;
 	}
 
 	eu.cessda.cmv.core.mediatype.profile.Profile toJaxbProfile()
