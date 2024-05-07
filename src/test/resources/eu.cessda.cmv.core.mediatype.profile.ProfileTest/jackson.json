@@ -1,0 +1,41 @@
+{
+	"name": "Test Profile",
+	"version": "1.0",
+	"prefixMaps": [
+		{
+			"prefix": "ddi",
+			"namespace": "ddi:codebook:2_5"
+		},
+		{
+			"prefix": "xsi",
+			"namespace": "http://www.w3.org/2001/XMLSchema-instance"
+		}
+	],
+	"constraints": [
+		{
+			"locationPath": null
+		},
+		{
+			"locationPath": "/fixed/value/node/location/path",
+			"fixedValue": "Fixed value"
+		},
+		{
+			"locationPath": "/mandatory/node/location/path"
+		},
+		{
+			"locationPath": "/mandatory/node/if/parent/present/location/path"
+		},
+		{
+			"locationPath": "/not/blank/node/constraint"
+		},
+		{
+			"locationPath": "/optional/node/constraint"
+		},
+		{
+			"locationPath": "/predicateless/xpath/node/constraint"
+		},
+		{
+			"locationPath": "/recommended/node/constraint"
+		}
+	]
+}

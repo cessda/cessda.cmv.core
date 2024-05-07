@@ -19,6 +19,7 @@
  */
 package eu.cessda.cmv.core.mediatype.profile;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
 import org.gesis.commons.xml.jaxb.JaxbDocument;
 
@@ -38,7 +39,7 @@ import java.util.Objects;
 public class Profile extends JaxbDocument
 {
 	static final String MAJOR = "0";
-	static final String MINOR = "1";
+	static final String MINOR = "2";
 	static final String VERSION = MAJOR + "." + MINOR;
 	public static final String MEDIATYPE = "application/vnd.eu.cessda.cmv.core.mediatype.profile.v" + VERSION + "+xml";
 	static final String SCHEMALOCATION_HOST = "https://raw.githubusercontent.com/cessda/cessda.cmv.core/stable/schema";
@@ -59,6 +60,11 @@ public class Profile extends JaxbDocument
 
 	@XmlElement
 	private String version;
+
+	@JsonProperty( "prefixMaps" )
+	@XmlElement( name = "PrefixMap" )
+	@XmlElementWrapper( name = "PrefixMaps" )
+	private List<PrefixMap> prefixMap;
 
 	@XmlElements( {
 			@XmlElement(
@@ -116,6 +122,16 @@ public class Profile extends JaxbDocument
 	public void setVersion( String version )
 	{
 		this.version = version;
+	}
+
+	public List<PrefixMap> getPrefixMap()
+	{
+		return prefixMap;
+	}
+
+	public void setPrefixMap( List<PrefixMap> prefixMap )
+	{
+		this.prefixMap = prefixMap;
 	}
 
 	public List<Constraint> getConstraints()

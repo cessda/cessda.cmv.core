@@ -66,7 +66,7 @@ ________________________________________________________________________________
             <r:Content>ElementType: Content element</r:Content>
             <r:Content>ElementRepeatable: No</r:Content>
             <r:Content>Usage: Title of the CDC XML document - note that the Study Title goes in
-                /codeBook/stdyDscr/citation/titlStmt/titl</r:Content>
+                /ddi:codeBook/ddi:stdyDscr/ddi:citation/ddi:titlStmt/ddi:titl</r:Content>
         </r:Description>
         <pr:Instructions>
             <r:Content><![CDATA[
@@ -76,7 +76,7 @@ ________________________________________________________________________________
 			]]></r:Content>
         </pr:Instructions>
     </pr:Used>
-    <pr:Used xpath="/codeBook/docDscr/citation/titlStmt/titl/@xml:lang" isRequired="false">
+    <pr:Used xpath="/ddi:codeBook/ddi:docDscr/ddi:citation/ddi:titlStmt/ddi:titl/@xml:lang" isRequired="false">
         <r:Description>
             <r:Content>Required: Mandatory if 'titl' element is present</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
@@ -92,7 +92,7 @@ ________________________________________________________________________________
             </r:Content>
         </pr:Instructions>
     </pr:Used>
-     <pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/titl" isRequired="true">
+     <pr:Used xpath="/ddi:codeBook/ddi:stdyDscr/ddi:citation/ddi:titlStmt/ddi:titl" isRequired="true">
         <r:Description>
             <r:Content>Required: Mandatory</r:Content>
             <r:Content>ElementType: Content element</r:Content>
@@ -102,7 +102,7 @@ ________________________________________________________________________________
             <r:Content>CDC UI Label: Study title</r:Content>
         </r:Description>
     </pr:Used>
-    <pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/titl/@xml:lang" isRequired="true">
+    <pr:Used xpath="/ddi:codeBook/ddi:stdyDscr/ddi:citation/ddi:titlStmt/ddi:titl/@xml:lang" isRequired="true">
         <r:Description>
             <r:Content>Required: Mandatory</r:Content>
             <r:Content>ElementType: Attribute</r:Content>
