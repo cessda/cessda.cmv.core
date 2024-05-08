@@ -40,10 +40,10 @@ public class Profile extends JaxbDocument
 {
 	static final String MAJOR = "0";
 	static final String MINOR = "2";
-	static final String VERSION = MAJOR + "." + MINOR;
-	public static final String MEDIATYPE = "application/vnd.eu.cessda.cmv.core.mediatype.profile.v" + VERSION + "+xml";
+	static final String SCHEMA_VERSION = MAJOR + "." + MINOR;
+	public static final String MEDIATYPE = "application/vnd.eu.cessda.cmv.core.mediatype.profile.v" + SCHEMA_VERSION + "+xml";
 	static final String SCHEMALOCATION_HOST = "https://raw.githubusercontent.com/cessda/cessda.cmv.core/stable/schema";
-	public static final String SCHEMALOCATION_FILENAME = "profile-v" + VERSION + ".xsd";
+	public static final String SCHEMALOCATION_FILENAME = "profile-v" + SCHEMA_VERSION + ".xsd";
 
 	static final String NAMESPACE_DEFAULT_PREFIX = "";
 	static final String NAMESPACE_DEFAULT_URI = "cmv:profile:v" + MAJOR;
