@@ -1,5 +1,7 @@
 package eu.cessda.cmv.core;
 
+import eu.cessda.cmv.core.mediatype.profile.PrefixMap;
+
 import javax.xml.namespace.NamespaceContext;
 import java.util.*;
 
@@ -32,6 +34,14 @@ public class CMVNamespaceContext implements NamespaceContext
 	public CMVNamespaceContext( Map<String, String> bindings )
 	{
 		bindings.forEach( this::bindNamespaceURI );
+	}
+
+	CMVNamespaceContext( List<PrefixMap> prefixMaps )
+	{
+		for ( PrefixMap prefixMap : prefixMaps )
+		{
+			bindNamespaceURI( prefixMap.getPrefix(), prefixMap.getNamespace() );
+		}
 	}
 
 	@Override
@@ -174,6 +184,11 @@ public class CMVNamespaceContext implements NamespaceContext
 		{
 			return null;
 		}
+	}
+
+	Map<String, String> getAllBindings()
+	{
+		return Collections.unmodifiableMap( prefixToNamespaceURI );
 	}
 
 	/**

@@ -19,6 +19,7 @@
  */
 package eu.cessda.cmv.core;
 
+import eu.cessda.cmv.core.mediatype.profile.PrefixMap;
 import org.gesis.commons.xml.XMLDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,10 +35,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayDeque;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 class DomSemiStructuredDdiProfile extends AbstractProfile
 {
@@ -425,9 +423,25 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		eu.cessda.cmv.core.mediatype.profile.Profile jaxbProfile = new eu.cessda.cmv.core.mediatype.profile.Profile();
 		List<eu.cessda.cmv.core.mediatype.profile.Constraint> jaxbConstraints = jaxbProfile.getConstraints();
 
-		// Set the name of the profile
+		// Set the name and version of the profile
 		jaxbProfile.setName( profileName );
+		jaxbProfile.setVersion( profileVersion );
 
+		// Set the namespace context
+		List<PrefixMap> prefixMaps = new ArrayList<>();
+
+		// This will always be an instance of CMVNamespaceContext, so this is a safe cast
+		CMVNamespaceContext namespaceContext = (CMVNamespaceContext) getNamespaceContext();
+		for( Map.Entry<String, String> binding : namespaceContext.getAllBindings().entrySet() )
+		{
+			PrefixMap prefixMap = new PrefixMap();
+			prefixMap.setPrefix( binding.getKey() );
+			prefixMap.setNamespace( binding.getValue() );
+			prefixMaps.add( prefixMap );
+		}
+		jaxbProfile.setPrefixMap(prefixMaps);
+
+		// Set constraints
 		for ( Constraint constraint : constraints )
 		{
 			String locationPath = null;

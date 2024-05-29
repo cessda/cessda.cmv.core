@@ -126,6 +126,11 @@ public class Profile extends JaxbDocument
 
 	public List<PrefixMap> getPrefixMap()
 	{
+		if (prefixMap == null)
+		{
+			// Instance prefixMap if null, ensures getPrefixMap() cannot return null
+			prefixMap = new ArrayList<>(0);
+		}
 		return prefixMap;
 	}
 
@@ -136,6 +141,11 @@ public class Profile extends JaxbDocument
 
 	public List<Constraint> getConstraints()
 	{
+		if (constraints == null)
+		{
+			// Instance constraints if null, ensures getConstraints() cannot return null
+			constraints = new ArrayList<>(0);
+		}
 		return constraints;
 	}
 

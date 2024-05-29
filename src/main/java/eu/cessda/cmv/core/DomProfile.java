@@ -21,7 +21,6 @@ package eu.cessda.cmv.core;
 
 import java.io.InputStream;
 import java.util.LinkedHashSet;
-import java.util.Objects;
 
 class DomProfile extends AbstractProfile
 {
@@ -34,12 +33,9 @@ class DomProfile extends AbstractProfile
 		super(
 			profile.getName() != null ? profile.getName().trim() : null,
 			profile.getVersion() != null ? profile.getVersion().trim() : null,
-			new LinkedHashSet<>(),
-			new CMVNamespaceContext()
+			new LinkedHashSet<>(profile.getConstraints().size()),
+			new CMVNamespaceContext(profile.getPrefixMap())
 		);
-
-		// Validate constraints list is not null
-		Objects.requireNonNull( profile.getConstraints(), "profile constraints must not be null" );
 
 		for ( eu.cessda.cmv.core.mediatype.profile.Constraint constraint : profile.getConstraints() )
 		{
