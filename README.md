@@ -1,8 +1,9 @@
 # CESSDA Metadata Validator Core
 
-[![SQAaaS badge](https://github.com/EOSC-synergy/SQAaaS/raw/master/badges/badges_150x116/badge_software_silver.png)](https://api.eu.badgr.io/public/assertions/XjKOzihPQAuRUX0aZC7VTw "SQAaaS silver badge achieved")
+[![SQAaaS badge](https://github.com/EOSC-synergy/SQAaaS/raw/master/badges/badges_150x116/badge_software_silver.png)](https://api.eu.badgr.io/public/assertions/iBUYN3BVQheGBxkG5Y02Ag "SQAaaS silver badge achieved")
 
-[![SQAaaS badge shields.io](https://img.shields.io/badge/sqaaas%20software-silver-lightgrey)](https://api.eu.badgr.io/public/assertions/XjKOzihPQAuRUX0aZC7VTw "SQAaaS silver badge achieved")
+[![SQAaaS badge shields.io](https://img.shields.io/badge/sqaaas%20software-silver-lightgrey)](https://api.eu.badgr.io/public/assertions/iBUYN3BVQheGBxkG5Y02Ag "SQAaaS silver badge achieved")
+
 
 
 [![Build Status](https://jenkins.cessda.eu/buildStatus/icon?job=cessda.cmv.core%2Fmaster)](https://jenkins.cessda.eu/job/cessda.cmv.core/job/master/)
