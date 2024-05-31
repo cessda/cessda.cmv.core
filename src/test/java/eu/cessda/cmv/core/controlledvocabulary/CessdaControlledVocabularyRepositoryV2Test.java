@@ -162,6 +162,6 @@ class CessdaControlledVocabularyRepositoryV2Test
 		URI url = URI.create( "http://localhost/v2/vocabularies/AnalysisUnit/0.0?languageVersion=en-0.0" );
 		Exception exception = assertThrows( IOException.class,
 				() -> new CessdaControlledVocabularyRepositoryV2( url ) );
-		assertThat( exception.getMessage(), is( "Connection refused: connect" ) );
+		assertThat( exception.getMessage(), startsWith( "Connection refused" ) );
 	}
 }
