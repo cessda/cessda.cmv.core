@@ -143,7 +143,7 @@ public class NamespaceContextImpl implements NamespaceContext
 	 * @param namespaceURI the namespace to bind.
 	 * @return the previously bound namespace, or {@code null} if there was no binding.
 	 */
-	String bindNamespaceURI( String prefix, String namespaceURI )
+	public String bindNamespaceURI( String prefix, String namespaceURI )
 	{
 		requireNonNull( prefix, PREFIX_NULL );
 		requireNonNull( namespaceURI, NAMESPACE_URI_NULL );
@@ -179,7 +179,7 @@ public class NamespaceContextImpl implements NamespaceContext
 	 * @param prefix the prefix to unbind.
 	 * @return the namespace URI that was bound, or {@code null} if there was no binding.
 	 */
-	String removeBinding( String prefix )
+	public String removeBinding( String prefix )
 	{
 		Objects.requireNonNull( prefix, PREFIX_NULL );
 
@@ -213,7 +213,7 @@ public class NamespaceContextImpl implements NamespaceContext
 	/**
 	 * Return a map of prefix/namespace bindings.
 	 */
-	Map<String, String> getAllBindings()
+	public Map<String, String> getAllBindings()
 	{
 		return Collections.unmodifiableMap( prefixToNamespaceURI );
 	}
@@ -221,7 +221,7 @@ public class NamespaceContextImpl implements NamespaceContext
 	/**
 	 * Clear all bindings from the NamespaceContext.
 	 */
-	void clear()
+	public void clear()
 	{
 		prefixToNamespaceURI.clear();
 		namespaceURIToPrefixes.clear();
