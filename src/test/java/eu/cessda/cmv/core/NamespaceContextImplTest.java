@@ -36,6 +36,11 @@ class NamespaceContextImplTest
 		// Assert unmapped prefixes behave as expected
 		assertThat( nsContext.getNamespaceURI( "unmapped-prefix" ), equalTo( NULL_NS_URI ) );
 		assertThat( nsContext.getPrefix( "unmapped-namespace-uri" ), nullValue() );
+
+		// Create another instance and assert equality
+		NamespaceContextImpl nsContext2  = new NamespaceContextImpl(exampleMapping);
+		assertThat( nsContext, equalTo( nsContext2 ) );
+		assertThat( nsContext.hashCode(), equalTo( nsContext2.hashCode() ) );
 	}
 
 	@Test
