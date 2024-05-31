@@ -129,6 +129,13 @@ class CdcCodebookDocumentValidationTest
 			4 + 18 + ( 10 )
 		));
 
+		testParameters.add( new TestParameter(
+			"/ddi-with-namespace-prefix.xml",
+			10,
+			10 + ( 26 ),
+			10 + 26 + ( 23 )
+		) );
+
 		return testParameters.stream();
 	}
 
