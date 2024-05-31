@@ -19,13 +19,18 @@
  */
 package org.gesis.commons.xml;
 
-import org.w3c.dom.*;
+import eu.cessda.cmv.core.NamespaceContextImpl;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 
 import javax.xml.XMLConstants;
+import javax.xml.namespace.NamespaceContext;
 import javax.xml.parsers.*;
 import javax.xml.xpath.*;
 import java.io.IOException;
@@ -33,7 +38,6 @@ import java.util.*;
 
 import static java.util.Objects.requireNonNull;
 import static java.util.Optional.ofNullable;
-import static javax.xml.XMLConstants.XMLNS_ATTRIBUTE;
 import static javax.xml.xpath.XPathConstants.NODESET;
 
 /**
@@ -43,12 +47,12 @@ public class XMLDocument
 {
 
 	private final Document document;
-	private final SimpleNamespaceContext namespaceContext;
-    private final boolean isNamespaceAware;
-    private final XPathFactory xPathFactory = XPathFactory.newInstance();
+	private final XPathFactory xPathFactory = XPathFactory.newInstance();
 	private final Map<String, XPathExpression> xPathExpressionMap = new HashMap<>();
 
-	private XMLDocument( Document document, int prettyPrintIndentation, boolean isNamespaceAware )
+	private NamespaceContext namespaceContext = new NamespaceContextImpl();
+
+	private XMLDocument( Document document, int prettyPrintIndentation )
     {
 		if ( prettyPrintIndentation < 0 )
 		{
@@ -56,8 +60,11 @@ public class XMLDocument
 		}
 
         this.document = document;
-		this.isNamespaceAware = isNamespaceAware;
-		this.namespaceContext = getSimpleNamespaceContext(document);
+	}
+
+	public void setNamespaceContext( NamespaceContext namespaceContext)
+	{
+		this.namespaceContext = namespaceContext;
 	}
 
 	/**
@@ -65,14 +72,11 @@ public class XMLDocument
 	 * The document is modified by this method.
 	 *
 	 * @param location the XPath of the element that should become the root.
-	 * @param prefix the prefix of the namespace.
-	 * @param namespace the namespace.
+	 * @param nsContext the namespace context of the XPath.
 	 * @throws XPathExpressionException if the XPath cannot be evaluated.
 	 */
-	public void setRootElement( String location, String prefix, String namespace ) throws XPathExpressionException
+	public void setRootElement( String location, NamespaceContext nsContext ) throws XPathExpressionException
 	{
-		NamespaceContext nsContext = new NamespaceContext(Collections.singletonMap( prefix, namespace ));
-
 		XPath xpath = xPathFactory.newXPath();
 		xpath.setNamespaceContext( nsContext );
 		XPathExpression metadataXPath = xpath.compile( location );
@@ -91,28 +95,6 @@ public class XMLDocument
 		{
 			throw new XPathExpressionException("No element matching " + location + " found");
 		}
-	}
-
-	private static SimpleNamespaceContext getSimpleNamespaceContext(Document document)
-	{
-		SimpleNamespaceContext simpleNamespaceContext = new SimpleNamespaceContext( false );
-		Element documentElement = document.getDocumentElement();
-		if ( documentElement != null )
-		{
-			NamedNodeMap documentElementAttributes = documentElement.getAttributes();
-			for ( int i = 0; i < documentElementAttributes.getLength(); i++ )
-			{
-				Node attribute = documentElementAttributes.item( i );
-				if ( attribute.getNodeName().startsWith( XMLNS_ATTRIBUTE ) )
-				{
-					simpleNamespaceContext.bindNamespaceUri(
-						attribute.getNodeName().replaceAll( "xmlns:?", "" ),
-						attribute.getNodeValue()
-					);
-				}
-			}
-		}
-		return simpleNamespaceContext;
 	}
 
 	public Node selectNode( String xPath ) throws XPathExpressionException
@@ -154,16 +136,8 @@ public class XMLDocument
         {
 			// XPathExpression is not cached, compile
             XPath xpath = xPathFactory.newXPath();
-
-            if ( isNamespaceAware )
-            {
-                xpath.setNamespaceContext( namespaceContext );
-                xPathExpression = xpath.compile( namespaceContext.decorateDefaultNamespace( locationPath ) );
-            }
-            else
-            {
-                xPathExpression = xpath.compile( locationPath );
-            }
+			xpath.setNamespaceContext( namespaceContext );
+			xPathExpression = xpath.compile( locationPath  );
 
 			// Cache the compiled XPathExpression for future use
             xPathExpressionMap.put( locationPath, xPathExpression );
@@ -193,7 +167,7 @@ public class XMLDocument
 
 	public static class Builder
 	{
-		private static final ThreadLocal<DocumentBuilder> namespaceAwareDocumentBuilder = ThreadLocal.withInitial( () -> {
+		private static final ThreadLocal<DocumentBuilder> documentBuilder = ThreadLocal.withInitial( () -> {
 			try
 			{
 				DocumentBuilderFactory factory = getDocumentBuilderFactory();
@@ -206,39 +180,11 @@ public class XMLDocument
 			}
 		} );
 
-		private static final ThreadLocal<DocumentBuilder> namespaceUnawareDocumentBuilder = ThreadLocal.withInitial( () -> {
-			try
-			{
-				DocumentBuilderFactory factory = getDocumentBuilderFactory();
-				factory.setNamespaceAware( false );
-				return factory.newDocumentBuilder();
-			}
-			catch ( ParserConfigurationException e )
-			{
-				throw new IllegalStateException(e);
-			}
-		} );
-
-
-
-		private static final ThreadLocal<SAXParser> namespaceAwareSAXParser = ThreadLocal.withInitial( () -> {
+		private static final ThreadLocal<SAXParser> saxParser = ThreadLocal.withInitial( () -> {
 			try
 			{
 				SAXParserFactory factory = getSaxParserFactory();
 				factory.setNamespaceAware( true );
-				return factory.newSAXParser();
-			}
-			catch ( ParserConfigurationException | SAXException e )
-			{
-				throw new IllegalStateException(e);
-			}
-		} );
-
-		private static final ThreadLocal<SAXParser> namespaceUnawareSAXParser = ThreadLocal.withInitial( () -> {
-			try
-			{
-				SAXParserFactory factory = getSaxParserFactory();
-				factory.setNamespaceAware( false );
 				return factory.newSAXParser();
 			}
 			catch ( ParserConfigurationException | SAXException e )
@@ -305,18 +251,11 @@ public class XMLDocument
 		}
 
 		private boolean isLocationInfoAware = false;
-		private boolean isNamespaceAware = false;
 		private int prettyPrintIndentation = 0;
 
 		public Builder printPrettyWithIndentation( int indentation )
 		{
 			this.prettyPrintIndentation = indentation;
-			return this;
-		}
-
-		public Builder namespaceAware( boolean namespaceAware )
-		{
-			this.isNamespaceAware = namespaceAware;
 			return this;
 		}
 
@@ -329,37 +268,19 @@ public class XMLDocument
 		public XMLDocument build( InputSource inputSource ) throws IOException, SAXException
 		{
 			Document document = parseInputSource( inputSource );
-			return new XMLDocument( document, prettyPrintIndentation, isNamespaceAware );
+			return new XMLDocument( document, prettyPrintIndentation );
 		}
 
 		private Document parseLocationInfoAware( InputSource inputSource, Document document ) throws SAXException, IOException
 		{
-			SAXParser parser;
-			if (isNamespaceAware)
-			{
-				parser = namespaceAwareSAXParser.get();
-			}
-			else
-			{
-				parser = namespaceUnawareSAXParser.get();
-			}
-
+			SAXParser parser = saxParser.get();
 			parser.parse( inputSource, new LocationInfoHandler( document ) );
 			return document;
 		}
 
 		private Document parseInputSource( InputSource inputSource ) throws IOException, SAXException
 		{
-
-			DocumentBuilder builder;
-			if (isNamespaceAware)
-			{
-				builder = namespaceAwareDocumentBuilder.get();
-			}
-			else
-			{
-				builder = namespaceUnawareDocumentBuilder.get();
-			}
+			DocumentBuilder builder = documentBuilder.get();
 
 			if ( isLocationInfoAware )
 			{
@@ -369,33 +290,6 @@ public class XMLDocument
 			{
 				return builder.parse( inputSource );
 			}
-		}
-	}
-
-	private static class NamespaceContext implements javax.xml.namespace.NamespaceContext
-	{
-		private final Map<String, String> contextMap;
-
-		private NamespaceContext(Map<String, String> contextMap) {
-			this.contextMap = contextMap;
-		}
-
-		@Override
-		public String getNamespaceURI( String prefix )
-		{
-			return contextMap.get( prefix );
-		}
-
-		@Override
-		public String getPrefix( String namespaceURI )
-		{
-			return null;
-		}
-
-		@Override
-		public Iterator<String> getPrefixes( String namespaceURI )
-		{
-			return null;
 		}
 	}
 }

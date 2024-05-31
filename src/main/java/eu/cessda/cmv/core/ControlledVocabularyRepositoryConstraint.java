@@ -88,6 +88,16 @@ class ControlledVocabularyRepositoryConstraint extends NodeConstraint
 	}
 
 	@Override
+	public String toString()
+	{
+		return "ControlledVocabularyRepositoryConstraint{" +
+			"locationPath='" + getLocationPath() + '\'' +
+			", type='" + type + '\'' +
+			", uri=" + uri +
+			'}';
+	}
+
+	@Override
 	public boolean equals( Object o )
 	{
 		if ( this == o ) return true;

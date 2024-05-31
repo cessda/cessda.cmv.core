@@ -23,9 +23,11 @@ import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 import org.gesis.commons.xml.XMLDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 
+import javax.xml.namespace.NamespaceContext;
 import javax.xml.xpath.XPathExpressionException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -62,6 +64,11 @@ class DomCodebookDocument implements Document
 		return uri;
 	}
 
+	public void setNamespaceContext( NamespaceContext namespaceContext )
+	{
+		document.setNamespaceContext( namespaceContext );
+	}
+
 	@Override
 	public List<Node> getNodes( String locationPath ) throws XPathExpressionException
 	{
@@ -71,14 +78,14 @@ class DomCodebookDocument implements Document
 		for ( org.w3c.dom.Node domNode : document.selectNodes( locationPath ) )
 		{
 			NodeImpl node;
-			if ( locationPath.equals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit" )
-					|| locationPath.equals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" ) )
+
+			if ( "anlyUnit".equals( domNode.getLocalName() ) || "concept".equals( domNode.getLocalName() ) )
 			{
 				ControlledVocabularyRepository repository = null;
 
 				try
 				{
-					URI vocabURI = getVocabURI( domNode );
+					URI vocabURI = getVocabURI( (Element) domNode );
 					if (vocabURI != null) {
 						repository = findControlledVocabularyRepository( vocabURI );
 					}
@@ -134,23 +141,26 @@ class DomCodebookDocument implements Document
 		}
 	}
 
-	private URI getVocabURI( org.w3c.dom.Node node ) throws URISyntaxException, XPathExpressionException
+	private URI getVocabURI( Element node ) throws URISyntaxException
 	{
-		org.w3c.dom.Node result = null;
-		if ( node.getNodeName().equals( "concept" ) )
+		org.w3c.dom.Attr result = null;
+
+		if ( "anlyUnit".equals( node.getLocalName() ) )
 		{
-			if ( node.getAttributes() != null )
+			NodeList childNodeList = node.getElementsByTagName( "concept" );
+			if (childNodeList.getLength() > 0)
 			{
-				result = node.getAttributes().getNamedItem( "vocabURI" );
+				Element conceptElement = (Element) childNodeList.item( 0 );
+				result = conceptElement.getAttributeNode( "vocabURI" );
 			}
-
 		}
-		else if ( node.getNodeName().equals( "anlyUnit" ) )
+		else
 		{
-			result = document.selectNode( node, "concept/@vocabURI" );
+			// Concept element
+			result = node.getAttributeNode( "vocabURI" );
 		}
 
-        return result != null ? new URI( result.getTextContent() ) : null;
+		return result != null ? new URI( result.getValue() ) : null;
 	}
 
 	@Override
