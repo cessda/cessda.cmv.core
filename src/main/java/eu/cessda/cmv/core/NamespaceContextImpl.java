@@ -78,8 +78,6 @@ public class NamespaceContextImpl implements NamespaceContext
 
 		switch ( prefix )
 		{
-			case DEFAULT_NS_PREFIX:
-				return NULL_NS_URI;
 			case XML_NS_PREFIX:
 				return XML_NS_URI;
 			case XMLNS_ATTRIBUTE:
@@ -99,15 +97,22 @@ public class NamespaceContextImpl implements NamespaceContext
 
 		switch ( namespaceURI )
 		{
-			case NULL_NS_URI:
-				return DEFAULT_NS_PREFIX;
 			case XML_NS_URI:
 				return XML_NS_PREFIX;
 			case XMLNS_ATTRIBUTE_NS_URI:
 				return XMLNS_ATTRIBUTE;
 			default:
 				Set<String> prefixSet = namespaceURIToPrefixes.getOrDefault( namespaceURI, Collections.emptySet() );
-				return prefixSet.stream().findAny().orElse( null );
+				Iterator<String> prefixIterator = prefixSet.iterator();
+				if (prefixIterator.hasNext())
+				{
+					// return first entry
+					return prefixIterator.next();
+				}
+				else
+				{
+					return null;
+				}
 		}
 	}
 
@@ -133,6 +138,7 @@ public class NamespaceContextImpl implements NamespaceContext
 				break;
 		}
 
+		// Make the set unmodifiable, then return the iterator
 		return Collections.unmodifiableSet( prefixSet ).iterator();
 	}
 
@@ -149,7 +155,7 @@ public class NamespaceContextImpl implements NamespaceContext
 		requireNonNull( namespaceURI, NAMESPACE_URI_NULL );
 
 		// Fail mapping if the default prefixes are remapped
-		if ( prefix.equals( DEFAULT_NS_PREFIX ) || prefix.equals( XML_NS_PREFIX ) || prefix.equals( XMLNS_ATTRIBUTE ) )
+		if ( prefix.equals( XML_NS_PREFIX ) || prefix.equals( XMLNS_ATTRIBUTE ) )
 		{
 			throw new IllegalArgumentException( "Prefix \"" + prefix + "\" cannot be rebound" );
 		}
@@ -184,7 +190,7 @@ public class NamespaceContextImpl implements NamespaceContext
 		Objects.requireNonNull( prefix, PREFIX_NULL );
 
 		// Fail mapping if the default prefixes are remapped
-		if ( prefix.equals( DEFAULT_NS_PREFIX ) || prefix.equals( XML_NS_PREFIX ) || prefix.equals( XMLNS_ATTRIBUTE ) )
+		if ( prefix.equals( XML_NS_PREFIX ) || prefix.equals( XMLNS_ATTRIBUTE ) )
 		{
 			throw new IllegalArgumentException( prefix + " cannot be unbound" );
 		}
