@@ -19,7 +19,7 @@
  */
 package org.gesis.commons.xml;
 
-import eu.cessda.cmv.core.CMVNamespaceContext;
+import eu.cessda.cmv.core.NamespaceContextImpl;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -50,7 +50,7 @@ public class XMLDocument
 	private final XPathFactory xPathFactory = XPathFactory.newInstance();
 	private final Map<String, XPathExpression> xPathExpressionMap = new HashMap<>();
 
-	private NamespaceContext namespaceContext = new CMVNamespaceContext();
+	private NamespaceContext namespaceContext = new NamespaceContextImpl();
 
 	private XMLDocument( Document document, int prettyPrintIndentation )
     {
@@ -62,7 +62,7 @@ public class XMLDocument
         this.document = document;
 	}
 
-	public void setNamespaceContext(NamespaceContext namespaceContext)
+	public void setNamespaceContext( NamespaceContext namespaceContext)
 	{
 		this.namespaceContext = namespaceContext;
 	}

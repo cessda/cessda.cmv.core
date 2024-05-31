@@ -1,3 +1,22 @@
+/*-
+ * #%L
+ * cmv-core
+ * %%
+ * Copyright (C) 2020 - 2024 CESSDA ERIC
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 package eu.cessda.cmv.core;
 
 import eu.cessda.cmv.core.mediatype.profile.PrefixMap;
@@ -11,7 +30,7 @@ import static javax.xml.XMLConstants.*;
 /**
  * Fully compliant implementation of {@link NamespaceContext}.
  */
-public class CMVNamespaceContext implements NamespaceContext
+public class NamespaceContextImpl implements NamespaceContext
 {
 	private static final String PREFIX_NULL = "prefix is null";
 	private static final String NAMESPACE_URI_NULL = "namespaceURI is null";
@@ -22,7 +41,7 @@ public class CMVNamespaceContext implements NamespaceContext
 	/**
 	 * Construct a new instance of NamespaceContext with no bindings.
 	 */
-	public CMVNamespaceContext()
+	public NamespaceContextImpl()
 	{
 	}
 
@@ -31,12 +50,17 @@ public class CMVNamespaceContext implements NamespaceContext
 	 *
 	 * @param bindings the bindings to set, the prefix is the key, the namespace is the value.
 	 */
-	public CMVNamespaceContext( Map<String, String> bindings )
+	public NamespaceContextImpl( Map<String, String> bindings )
 	{
 		bindings.forEach( this::bindNamespaceURI );
 	}
 
-	CMVNamespaceContext( List<PrefixMap> prefixMaps )
+	/**
+	 * Construct a new instance of NamespaceContext with the bindings set using the list of prefix maps.
+	 *
+	 * @param prefixMaps a list of prefix maps.
+	 */
+	NamespaceContextImpl( List<PrefixMap> prefixMaps )
 	{
 		for ( PrefixMap prefixMap : prefixMaps )
 		{
@@ -186,6 +210,9 @@ public class CMVNamespaceContext implements NamespaceContext
 		}
 	}
 
+	/**
+	 * Return a map of prefix/namespace bindings.
+	 */
 	Map<String, String> getAllBindings()
 	{
 		return Collections.unmodifiableMap( prefixToNamespaceURI );
@@ -204,8 +231,8 @@ public class CMVNamespaceContext implements NamespaceContext
 	public boolean equals( Object o )
 	{
 		if ( this == o ) return true;
-		if ( !( o instanceof CMVNamespaceContext ) ) return false;
-		CMVNamespaceContext that = (CMVNamespaceContext) o;
+		if ( !( o instanceof NamespaceContextImpl ) ) return false;
+		NamespaceContextImpl that = (NamespaceContextImpl) o;
 		return Objects.equals( prefixToNamespaceURI, that.prefixToNamespaceURI );
 	}
 

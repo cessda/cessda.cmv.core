@@ -34,7 +34,7 @@ class DomProfile extends AbstractProfile
 			profile.getName() != null ? profile.getName().trim() : null,
 			profile.getVersion() != null ? profile.getVersion().trim() : null,
 			new LinkedHashSet<>(profile.getConstraints().size()),
-			new CMVNamespaceContext(profile.getPrefixMap())
+			new NamespaceContextImpl(profile.getPrefixMap())
 		);
 
 		for ( eu.cessda.cmv.core.mediatype.profile.Constraint constraint : profile.getConstraints() )

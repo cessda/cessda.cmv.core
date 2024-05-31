@@ -106,17 +106,17 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		this.constraints.addAll( orderedConstraints );
 	}
 
-	static CMVNamespaceContext getProfileNamespaceContext()
+	static NamespaceContextImpl getProfileNamespaceContext()
 	{
-		CMVNamespaceContext nsContext = new CMVNamespaceContext();
+		NamespaceContextImpl nsContext = new NamespaceContextImpl();
 		nsContext.bindNamespaceURI( "pr", "ddi:ddiprofile:3_2" );
 		nsContext.bindNamespaceURI( "r", "ddi:reusable:3_2" );
 		return nsContext;
 	}
 
-	private static CMVNamespaceContext bindNamespacesToPrefixes( XMLDocument document ) throws NotDocumentException
+	private static NamespaceContextImpl bindNamespacesToPrefixes( XMLDocument document ) throws NotDocumentException
 	{
-		CMVNamespaceContext namespaceContext = new CMVNamespaceContext();
+		NamespaceContextImpl namespaceContext = new NamespaceContextImpl();
 
 		// Discover namespace of target documents
 		List<Node> nodes;
@@ -431,7 +431,7 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		List<PrefixMap> prefixMaps = new ArrayList<>();
 
 		// This will always be an instance of CMVNamespaceContext, so this is a safe cast
-		CMVNamespaceContext namespaceContext = (CMVNamespaceContext) getNamespaceContext();
+		NamespaceContextImpl namespaceContext = (NamespaceContextImpl) getNamespaceContext();
 		for( Map.Entry<String, String> binding : namespaceContext.getAllBindings().entrySet() )
 		{
 			PrefixMap prefixMap = new PrefixMap();

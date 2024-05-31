@@ -365,7 +365,7 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 			if ( OAI_PMH_XML_NAMESPACE.equals( namespace ))
 			{
 				// Try to extract <metadata> and recurse
-				CMVNamespaceContext namespaceContext = new CMVNamespaceContext( Collections.singletonMap( "oai", OAI_PMH_XML_NAMESPACE ) );
+				NamespaceContextImpl namespaceContext = new NamespaceContextImpl( Collections.singletonMap( "oai", OAI_PMH_XML_NAMESPACE ) );
 				document.setRootElement( "/oai:OAI-PMH/oai:GetRecord/oai:record/oai:metadata/*", namespaceContext );
 			}
 
