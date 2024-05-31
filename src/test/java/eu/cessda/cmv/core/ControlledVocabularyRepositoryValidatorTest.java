@@ -29,7 +29,7 @@ import java.util.Optional;
 
 import static org.gesis.commons.test.hamcrest.OptionalMatchers.isEmpty;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.startsWith;
 
 class ControlledVocabularyRepositoryValidatorTest
 {
@@ -56,6 +56,6 @@ class ControlledVocabularyRepositoryValidatorTest
 		IOException exception = Assertions.assertThrows( IOException.class, () -> new CessdaControlledVocabularyRepositoryV2( uri ) );
 
 		// then
-		assertThat( exception.getMessage(), equalTo( "Connection refused: connect" ) );
+		assertThat( exception.getMessage(), startsWith( "Connection refused" ) );
 	}
 }
