@@ -9,3 +9,6 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    ignore:
+        - dependency-name: "ch.qos.logback:logback-classic"
+          versions: ">=1.4.0"

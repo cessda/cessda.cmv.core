@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.0.0] - 2024-04-30
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11083094.svg)](https://doi.org/10.5281/zenodo.11083094)
+
 ### Migration Notes
 
 Because `org.gesis.commons.resource.Resource` can no longer be used as a source for `Document` and `Profile` instances, uses of these must be migrated to use another type.
