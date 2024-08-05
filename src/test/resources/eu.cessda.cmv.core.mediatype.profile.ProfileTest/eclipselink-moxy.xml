@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Profile xsi:schemaLocation="cmv:profile:v0 https://raw.githubusercontent.com/cessda/cessda.cmv.core/stable/schema/profile-v0.2.xsd" xmlns="cmv:profile:v0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>Test Profile</Name>
+	<Version>1.0</Version>
+	<PrefixMaps>
+		<PrefixMap>
+			<Prefix>ddi</Prefix>
+			<Namespace>ddi:codebook:2_5</Namespace>
+		</PrefixMap>
+		<PrefixMap>
+			<Prefix>xsi</Prefix>
+			<Namespace>http://www.w3.org/2001/XMLSchema-instance</Namespace>
+		</PrefixMap>
+	</PrefixMaps>
+	<CompilableXPathConstraint/>
+	<FixedValueNodeConstraint>
+		<LocationPath>/fixed/value/node/location/path</LocationPath>
+		<FixedValue>Fixed value</FixedValue>
+	</FixedValueNodeConstraint>
+	<MandatoryNodeConstraint>
+		<LocationPath>/mandatory/node/location/path</LocationPath>
+	</MandatoryNodeConstraint>
+	<MandatoryNodeIfParentPresentConstraint>
+		<LocationPath>/mandatory/node/if/parent/present/location/path</LocationPath>
+	</MandatoryNodeIfParentPresentConstraint>
+	<NotBlankNodeConstraint>
+		<LocationPath>/not/blank/node/constraint</LocationPath>
+	</NotBlankNodeConstraint>
+	<OptionalNodeConstraint>
+		<LocationPath>/optional/node/constraint</LocationPath>
+	</OptionalNodeConstraint>
+	<PredicatelessXPathConstraint>
+		<LocationPath>/predicateless/xpath/node/constraint</LocationPath>
+	</PredicatelessXPathConstraint>
+	<RecommendedNodeConstraint>
+		<LocationPath>/recommended/node/constraint</LocationPath>
+	</RecommendedNodeConstraint>
+</Profile>

@@ -108,7 +108,9 @@ class DomSemiStructuredDdiProfileTest
 
 		// when
 		InputSource inputSource = new InputSource( sourceUrl.toExternalForm() );
-		DomSemiStructuredDdiProfile profile = new DomSemiStructuredDdiProfile( XMLDocument.newBuilder().build( inputSource ) );
+		XMLDocument document = XMLDocument.newBuilder().build( inputSource );
+		document.setNamespaceContext( DomSemiStructuredDdiProfile.getProfileNamespaceContext() );
+		DomSemiStructuredDdiProfile profile = new DomSemiStructuredDdiProfile( document );
 		Profile jaxbProfile = profile.toJaxbProfile();
 		assertThat( jaxbProfile.getConstraints(), hasSize( 61 + 61 + 27 + 10 + 5 + 24 + 12 ) );
 		jaxbProfile.saveAs( actualFile );

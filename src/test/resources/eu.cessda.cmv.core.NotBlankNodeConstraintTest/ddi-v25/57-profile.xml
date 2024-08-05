@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pr:DDIProfile xmlns:r="ddi:reusable:3_2" xmlns:xhtml="http://www.w3.org/1999/xhtml"
-    xmlns:pr="ddi:ddiprofile:3_2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="ddi:ddiprofile:3_2 https://ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/ddiprofile.xsd">
+<pr:DDIProfile xmlns:r="ddi:reusable:3_2"
+			   xmlns:pr="ddi:ddiprofile:3_2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			   xsi:schemaLocation="ddi:ddiprofile:3_2 https://ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/ddiprofile.xsd">
     <r:Agency>int.cessda</r:Agency>
     <r:ID>ddi-v25-10-profile</r:ID>
     <r:Version>1</r:Version>
     <pr:XPathVersion>1.0</pr:XPathVersion>
     <pr:DDINamespace>2.5</pr:DDINamespace>
-    <pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/titl" isRequired="false">
+	<pr:XMLPrefixMap>
+		<pr:XMLPrefix>ddi</pr:XMLPrefix>
+		<pr:XMLNamespace>ddi:codebook:2_5</pr:XMLNamespace>
+	</pr:XMLPrefixMap>
+    <pr:Used xpath="/ddi:codeBook/ddi:stdyDscr/ddi:citation/ddi:titlStmt/ddi:titl" isRequired="false">
       <pr:Instructions>
         <r:Content><![CDATA[
         <Constraints>

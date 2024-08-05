@@ -73,6 +73,12 @@ abstract class NodeConstraint implements Constraint
 	}
 
 	@Override
+	public String toString()
+	{
+		return this.getClass().getSimpleName() + "{" + "locationPath='" + locationPath + '\'' + '}';
+	}
+
+	@Override
 	public boolean equals( Object o )
 	{
 		if ( this == o ) return true;

@@ -19,10 +19,7 @@
  */
 package eu.cessda.cmv.core;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 import static java.util.Objects.requireNonNull;
 
@@ -51,6 +48,10 @@ abstract class AbstractValidationGate implements ValidationGate
 		requireNonNull( document, "document is null" );
 		requireNonNull( profile, "profile is null" );
 
+		// Set the namespace context
+		document.setNamespaceContext( profile.getNamespaceContext() );
+
+		// Validate the document against the constraints
 		List<ConstraintViolation> constraintViolations = new ArrayList<>();
 		for ( Constraint constraint : profile.getConstraints() )
 		{
@@ -65,4 +66,18 @@ abstract class AbstractValidationGate implements ValidationGate
 		return constraintViolations;
 	}
 
+	@Override
+	public boolean equals( Object o )
+	{
+		if ( this == o ) return true;
+		if ( !( o instanceof AbstractValidationGate ) ) return false;
+		AbstractValidationGate that = (AbstractValidationGate) o;
+		return Objects.equals( constraintTypes, that.constraintTypes );
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Objects.hashCode( constraintTypes );
+	}
 }

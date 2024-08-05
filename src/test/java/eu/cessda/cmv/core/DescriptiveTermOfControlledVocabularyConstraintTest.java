@@ -66,7 +66,7 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
-		assertThat( constraintViolations, hasSize( 0 ) );
+		assertThat( "Unexpected constraint violations: " + constraintViolations.toString(), constraintViolations, hasSize( 0 ) );
 	}
 
 	@Test
@@ -82,7 +82,7 @@ class DescriptiveTermOfControlledVocabularyConstraintTest
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
 		assertThat( constraintViolations.get( 0 ).toString(),
-				equalTo( "Descriptive term 'Family.HouseholdFamily' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit' is not element of the controlled vocabulary in 'https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0' (lineNumber: 28, columnNumber: 27)" ) );
+				equalTo( "Descriptive term 'Family.HouseholdFamily' in '/ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:sumDscr/ddi:anlyUnit' is not element of the controlled vocabulary in 'https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0' (lineNumber: 28, columnNumber: 27)" ) );
 	}
 
 	@Test

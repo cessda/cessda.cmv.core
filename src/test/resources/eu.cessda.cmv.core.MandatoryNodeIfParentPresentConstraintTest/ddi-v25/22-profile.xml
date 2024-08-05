@@ -9,8 +9,12 @@
 	<r:Version>1</r:Version>
 	<pr:XPathVersion>1.0</pr:XPathVersion>
 	<pr:DDINamespace>2.5</pr:DDINamespace>
-	<pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/IDNo" isRequired="false"/>
-	<pr:Used xpath="/codeBook/stdyDscr/citation/titlStmt/IDNo/@agency" isRequired="false">
+	<pr:XMLPrefixMap>
+		<pr:XMLPrefix>ddi</pr:XMLPrefix>
+		<pr:XMLNamespace>ddi:codebook:2_5</pr:XMLNamespace>
+	</pr:XMLPrefixMap>
+	<pr:Used xpath="/ddi:codeBook/ddi:stdyDscr/ddi:citation/ddi:titlStmt/ddi:IDNo" isRequired="false"/>
+	<pr:Used xpath="/ddi:codeBook/ddi:stdyDscr/ddi:citation/ddi:titlStmt/ddi:IDNo/@agency" isRequired="false">
 		<pr:Instructions>
 			<r:Content>
 				<![CDATA[

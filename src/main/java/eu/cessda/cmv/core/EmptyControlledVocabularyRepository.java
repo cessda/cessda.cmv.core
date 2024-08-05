@@ -30,8 +30,8 @@ import static java.util.Collections.emptySet;
 class EmptyControlledVocabularyRepository implements ControlledVocabularyRepository
 {
 	// Use the nil UUID for all instances
-	private static final UUID UUID = new UUID( 0, 0 );
-	private static final URI uri = URI.create( "urn:uuid:" + UUID );
+	private static final UUID NIL_UUID = new UUID( 0, 0 );
+	private static final URI NIL_URI = URI.create( "urn:uuid:" + NIL_UUID );
 
 	/**
 	 * The common instance for all EmptyControlledVocabularyRepository objects.
@@ -55,6 +55,6 @@ class EmptyControlledVocabularyRepository implements ControlledVocabularyReposit
 	@Override
 	public URI getUri()
 	{
-		return uri;
+		return NIL_URI;
 	}
 }

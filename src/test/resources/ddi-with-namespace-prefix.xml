@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file was produced automatically by the OpenDataForge
+ Codebook XML Generator v2015.10.19                       
+                                                          
+ For more information on our products or services visit	 
+ http://www.mtna.us.-->
+<ddi:codeBook version="2.5" ID="gQOltsyJqbaJ4uTo" codeBookAgency="ex.ample" elementVersion="1.0.0" xmlns:ddi="ddi:codebook:2_5">
+  <ddi:docDscr>
+    <ddi:citation>
+      <ddi:titlStmt>
+        <ddi:titl>dftest</ddi:titl>
+      </ddi:titlStmt>
+      <ddi:prodStmt>
+        <ddi:prodDate date="2022-04-19 23:51:28">2022-04-19 23:51:28</ddi:prodDate>
+        <ddi:software version="1.0.0">SledgeHammer</ddi:software>
+      </ddi:prodStmt>
+    </ddi:citation>
+  </ddi:docDscr>
+  <ddi:stdyDscr>
+    <ddi:citation>
+      <ddi:titlStmt>
+        <ddi:titl>dftest</ddi:titl>
+      </ddi:titlStmt>
+      <ddi:prodStmt/>
+    </ddi:citation>
+  </ddi:stdyDscr>
+  <ddi:fileDscr ID="GMVgoniMVqcPOq84">
+    <ddi:fileTxt>
+      <ddi:fileName>dftest</ddi:fileName>
+      <ddi:dimensns>
+        <ddi:caseQnty>215</ddi:caseQnty>
+        <ddi:varQnty>5</ddi:varQnty>
+      </ddi:dimensns>
+      <ddi:fileType>SPSS</ddi:fileType>
+    </ddi:fileTxt>
+  </ddi:fileDscr>
+  <ddi:dataDscr>
+    <ddi:var ID="a8NAJN1kfLqdBmwA" name="Area" files="GMVgoniMVqcPOq84" dcml="0">
+      <ddi:location width="5" StartPos="1" EndPos="5"/>
+      <ddi:labl xml-lang="en">Residence area</ddi:labl>
+      <ddi:invalrng>
+        <ddi:item VALUE="-9"/>
+        <ddi:item VALUE="-8"/>
+      </ddi:invalrng>
+      <ddi:catgry missing="Y">
+        <ddi:catValu>-9</ddi:catValu>
+        <ddi:labl xml-lang="en">Don't know</ddi:labl>
+      </ddi:catgry>
+      <ddi:catgry missing="Y">
+        <ddi:catValu>-8</ddi:catValu>
+        <ddi:labl xml-lang="en">Undecided</ddi:labl>
+      </ddi:catgry>
+      <ddi:catgry>
+        <ddi:catValu>1</ddi:catValu>
+        <ddi:labl xml-lang="en">Rural</ddi:labl>
+      </ddi:catgry>
+      <ddi:catgry>
+        <ddi:catValu>2</ddi:catValu>
+        <ddi:labl xml-lang="en">Urban</ddi:labl>
+      </ddi:catgry>
+      <ddi:varFormat type="numeric" schema="other" formatname="F">F5.0</ddi:varFormat>
+    </ddi:var>
+    <ddi:var ID="NDmEXXHmBRyjEtYz" name="Gender" files="GMVgoniMVqcPOq84" dcml="0">
+      <ddi:location width="7" StartPos="6" EndPos="12"/>
+      <ddi:labl xml-lang="en">Respondent's gender</ddi:labl>
+      <ddi:invalrng>
+        <ddi:item VALUE="-9"/>
+        <ddi:item VALUE="-8"/>
+      </ddi:invalrng>
+      <ddi:catgry missing="Y">
+        <ddi:catValu>-9</ddi:catValu>
+        <ddi:labl xml-lang="en">Don't know</ddi:labl>
+      </ddi:catgry>
+      <ddi:catgry missing="Y">
+        <ddi:catValu>-8</ddi:catValu>
+        <ddi:labl xml-lang="en">Undecided</ddi:labl>
+      </ddi:catgry>
+      <ddi:catgry>
+        <ddi:catValu>1</ddi:catValu>
+        <ddi:labl xml-lang="en">Males</ddi:labl>
+      </ddi:catgry>
+      <ddi:catgry>
+        <ddi:catValu>2</ddi:catValu>
+        <ddi:labl xml-lang="en">Females</ddi:labl>
+      </ddi:catgry>
+      <ddi:varFormat type="numeric" schema="other" formatname="F">F7.0</ddi:varFormat>
+    </ddi:var>
+    <ddi:var ID="xrssbf9D0vCMjSvj" name="Age" files="GMVgoniMVqcPOq84" dcml="0">
+      <ddi:location width="2" StartPos="13" EndPos="14"/>
+      <ddi:labl xml-lang="en">Respondent's age</ddi:labl>
+      <ddi:invalrng>
+        <ddi:item VALUE="-9"/>
+      </ddi:invalrng>
+      <ddi:catgry missing="Y">
+        <ddi:catValu>-9</ddi:catValu>
+        <ddi:labl xml-lang="en">Don't know</ddi:labl>
+      </ddi:catgry>
+      <ddi:varFormat type="numeric" schema="other" formatname="F">F2.0</ddi:varFormat>
+    </ddi:var>
+    <ddi:var ID="nItAjxBRVLcxnynS" name="Children" files="GMVgoniMVqcPOq84" dcml="0">
+      <ddi:location width="2" StartPos="15" EndPos="16"/>
+      <ddi:labl xml-lang="en">Numer of children</ddi:labl>
+      <ddi:invalrng>
+        <ddi:item VALUE="-9"/>
+      </ddi:invalrng>
+      <ddi:catgry missing="Y">
+        <ddi:catValu>-9</ddi:catValu>
+        <ddi:labl xml-lang="en">Don't know</ddi:labl>
+      </ddi:catgry>
+      <ddi:varFormat type="numeric" schema="other" formatname="F">F2.0</ddi:varFormat>
+    </ddi:var>
+    <ddi:var ID="W5XFFOwRYifWckDQ" name="fweight" files="GMVgoniMVqcPOq84" dcml="2">
+      <ddi:location width="17" StartPos="17" EndPos="33"/>
+      <ddi:labl xml-lang="en">Frequency weights</ddi:labl>
+      <ddi:varFormat type="numeric" schema="other" formatname="F">F17.2</ddi:varFormat>
+    </ddi:var>
+  </ddi:dataDscr>
+</ddi:codeBook>

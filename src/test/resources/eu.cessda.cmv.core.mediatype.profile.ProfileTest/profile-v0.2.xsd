@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:ns0="cmv:profile:v0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="cmv:profile:v0"
+			elementFormDefault="qualified">
+   <xsd:complexType name="ProfileType">
+      <xsd:sequence>
+         <xsd:element name="Name" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Version" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="PrefixMaps" minOccurs="0">
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="PrefixMap" type="ns0:PrefixMapType" minOccurs="0" maxOccurs="unbounded"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+         <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="CompilableXPathConstraint" type="ns0:CompilableXPathConstraintType" minOccurs="0"/>
+            <xsd:element name="FixedValueNodeConstraint" type="ns0:FixedValueNodeConstraintType" minOccurs="0"/>
+            <xsd:element name="MandatoryNodeConstraint" type="ns0:MandatoryNodeConstraintType" minOccurs="0"/>
+            <xsd:element name="MandatoryNodeIfParentPresentConstraint" type="ns0:MandatoryNodeIfParentPresentConstraintType" minOccurs="0"/>
+            <xsd:element name="MaximumElementOccuranceConstraint" type="ns0:MaximumElementOccuranceConstraintType" minOccurs="0"/>
+            <xsd:element name="NotBlankNodeConstraint" type="ns0:NotBlankNodeConstraintType" minOccurs="0"/>
+            <xsd:element name="OptionalNodeConstraint" type="ns0:OptionalNodeConstraintType" minOccurs="0"/>
+            <xsd:element name="PredicatelessXPathConstraint" type="ns0:PredicatelessXPathConstraintType" minOccurs="0"/>
+            <xsd:element name="RecommendedNodeConstraint" type="ns0:RecommendedNodeConstraintType" minOccurs="0"/>
+         </xsd:choice>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PrefixMapType">
+      <xsd:sequence>
+         <xsd:element name="Prefix" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Namespace" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="CompilableXPathConstraintType">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:NodeConstraintType">
+            <xsd:sequence/>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="NodeConstraintType" abstract="true">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:ConstraintType">
+            <xsd:sequence>
+               <xsd:element name="LocationPath" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="ConstraintType" abstract="true"/>
+   <xsd:complexType name="FixedValueNodeConstraintType">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:NodeConstraintType">
+            <xsd:sequence>
+               <xsd:element name="FixedValue" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="MandatoryNodeConstraintType">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:NodeConstraintType">
+            <xsd:sequence/>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="MandatoryNodeIfParentPresentConstraintType">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:NodeConstraintType">
+            <xsd:sequence/>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="MaximumElementOccuranceConstraintType">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:NodeConstraintType">
+            <xsd:sequence>
+               <xsd:element name="MaxOccurs" type="xsd:long"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="NotBlankNodeConstraintType">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:NodeConstraintType">
+            <xsd:sequence/>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="OptionalNodeConstraintType">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:NodeConstraintType">
+            <xsd:sequence/>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="PredicatelessXPathConstraintType">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:NodeConstraintType">
+            <xsd:sequence/>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="RecommendedNodeConstraintType">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:NodeConstraintType">
+            <xsd:sequence/>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:element name="Profile" type="ns0:ProfileType"/>
+</xsd:schema>

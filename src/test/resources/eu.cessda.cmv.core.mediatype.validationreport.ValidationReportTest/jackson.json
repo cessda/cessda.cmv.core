@@ -1,49 +1,64 @@
 {
-  "DocumentUri" : "urn:uuid:00000000-0000-0000-0000-000000000000",
-  "ConstraintViolation" : [ {
-    "message" : "'/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocab' is recommended",
-    "LocationInfo" : null
-  }, {
-    "message" : "'/codeBook/stdyDscr/stdyInfo/subject/topcClas/@vocabURI' is recommended",
-    "LocationInfo" : null
-  }, {
-    "message" : "'./@event' is mandatory in /codeBook/stdyDscr/stdyInfo/sumDscr/collDate",
-    "LocationInfo" : {
-      "lineNumber" : 74,
-      "columnNumber" : 33
-    }
-  }, {
-    "message" : "'/codeBook/stdyDscr/stdyInfo/sumDscr/nation/@abbr' is recommended",
-    "LocationInfo" : null
-  }, {
-    "message" : "'/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' is recommended",
-    "LocationInfo" : null
-  }, {
-    "message" : "'/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocab' is recommended",
-    "LocationInfo" : null
-  }, {
-    "message" : "'/codeBook/stdyDscr/method/dataColl/timeMeth/concept' is recommended",
-    "LocationInfo" : null
-  }, {
-    "message" : "'/codeBook/stdyDscr/method/dataColl/timeMeth/concept/@vocab' is recommended",
-    "LocationInfo" : null
-  }, {
-    "message" : "'/codeBook/stdyDscr/method/dataColl/sampProc/concept' is recommended",
-    "LocationInfo" : null
-  }, {
-    "message" : "'/codeBook/stdyDscr/method/dataColl/sampProc/concept/@vocab' is recommended",
-    "LocationInfo" : null
-  }, {
-    "message" : "'/codeBook/stdyDscr/method/dataColl/collMode/concept' is recommended",
-    "LocationInfo" : null
-  }, {
-    "message" : "'/codeBook/stdyDscr/method/dataColl/collMode/concept/@vocab' is recommended",
-    "LocationInfo" : null
-  }, {
-    "message" : "'/codeBook/fileDscr/fileTxt/fileName' is recommended",
-    "LocationInfo" : null
-  }, {
-    "message" : "'/codeBook/fileDscr/fileTxt/fileName/@xml:lang' is recommended",
-    "LocationInfo" : null
-  } ]
+	"DocumentUri": "urn:uuid:00000000-0000-0000-0000-000000000000",
+	"ConstraintViolation": [
+		{
+			"message": "'/ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:subject/ddi:topcClas/@vocab' is recommended",
+			"LocationInfo": null
+		},
+		{
+			"message": "'/ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:subject/ddi:topcClas/@vocabURI' is recommended",
+			"LocationInfo": null
+		},
+		{
+			"message": "'./@event' is mandatory in /ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:sumDscr/ddi:collDate",
+			"LocationInfo": {
+				"lineNumber": 74,
+				"columnNumber": 33
+			}
+		},
+		{
+			"message": "'/ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:sumDscr/ddi:nation/@abbr' is recommended",
+			"LocationInfo": null
+		},
+		{
+			"message": "'/ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:sumDscr/ddi:anlyUnit/ddi:concept' is recommended",
+			"LocationInfo": null
+		},
+		{
+			"message": "'/ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:sumDscr/ddi:anlyUnit/ddi:concept/@vocab' is recommended",
+			"LocationInfo": null
+		},
+		{
+			"message": "'/ddi:codeBook/ddi:stdyDscr/ddi:method/ddi:dataColl/ddi:timeMeth/ddi:concept' is recommended",
+			"LocationInfo": null
+		},
+		{
+			"message": "'/ddi:codeBook/ddi:stdyDscr/ddi:method/ddi:dataColl/ddi:timeMeth/ddi:concept/@vocab' is recommended",
+			"LocationInfo": null
+		},
+		{
+			"message": "'/ddi:codeBook/ddi:stdyDscr/ddi:method/ddi:dataColl/ddi:sampProc/ddi:concept' is recommended",
+			"LocationInfo": null
+		},
+		{
+			"message": "'/ddi:codeBook/ddi:stdyDscr/ddi:method/ddi:dataColl/ddi:sampProc/ddi:concept/@vocab' is recommended",
+			"LocationInfo": null
+		},
+		{
+			"message": "'/ddi:codeBook/ddi:stdyDscr/ddi:method/ddi:dataColl/ddi:collMode/ddi:concept' is recommended",
+			"LocationInfo": null
+		},
+		{
+			"message": "'/ddi:codeBook/ddi:stdyDscr/ddi:method/ddi:dataColl/ddi:collMode/ddi:concept/@vocab' is recommended",
+			"LocationInfo": null
+		},
+		{
+			"message": "'/ddi:codeBook/ddi:fileDscr/ddi:fileTxt/ddi:fileName' is recommended",
+			"LocationInfo": null
+		},
+		{
+			"message": "'/ddi:codeBook/ddi:fileDscr/ddi:fileTxt/ddi:fileName/@xml:lang' is recommended",
+			"LocationInfo": null
+		}
+	]
 }
