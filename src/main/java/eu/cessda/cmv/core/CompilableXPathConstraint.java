@@ -19,26 +19,29 @@
  */
 package eu.cessda.cmv.core;
 
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.util.ArrayList;
 import java.util.List;
 
 class CompilableXPathConstraint extends NodeConstraint
 {
+	private static final ThreadLocal<XPath> XPATH_LOCAL = ThreadLocal.withInitial( () -> XPathFactory.newInstance().newXPath() );
+
 	public CompilableXPathConstraint( String locationPath )
 	{
 		super( locationPath );
 	}
 
 	@Override
-	public List<Validator> newValidators( Document document )
+	public List<Validator> newNodeValidators( Document document ) throws XPathExpressionException
 	{
-		XPathFactory factory = XPathFactory.newInstance();
 		List<Node> nodes = document.getNodes( getLocationPath() );
 		List<Validator> validators = new ArrayList<>(nodes.size());
 		for ( Node node : nodes )
 		{
-			CompilableXPathValidator compilableXPathValidator = new CompilableXPathValidator( node, factory );
+			CompilableXPathValidator compilableXPathValidator = new CompilableXPathValidator( node, XPATH_LOCAL.get() );
 			validators.add( compilableXPathValidator );
 		}
 		return validators;

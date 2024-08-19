@@ -57,25 +57,38 @@ public class Profile extends JaxbDocument
 	@XmlElement
 	private String name;
 
+	@XmlElement
+	private String version;
+
 	@XmlElements( {
 			@XmlElement(
-					name = MaximumElementOccurrenceConstraint.JAXB_ELEMENT,
-					type = MaximumElementOccurrenceConstraint.class ),
+					name = CompilableXPathConstraint.JAXB_ELEMENT,
+					type = CompilableXPathConstraint.class ),
+			@XmlElement(
+					name = FixedValueNodeConstraint.JAXB_ELEMENT,
+					type = FixedValueNodeConstraint.class ),
 			@XmlElement(
 					name = MandatoryNodeConstraint.JAXB_ELEMENT,
 					type = MandatoryNodeConstraint.class ),
 			@XmlElement(
+					name = MandatoryNodeIfParentPresentConstraint.JAXB_ELEMENT,
+					type = MandatoryNodeIfParentPresentConstraint.class ),
+			@XmlElement(
+					name = MaximumElementOccurrenceConstraint.JAXB_ELEMENT,
+					type = MaximumElementOccurrenceConstraint.class ),
+			@XmlElement(
+					name = NotBlankNodeConstraint.JAXB_ELEMENT,
+					type = NotBlankNodeConstraint.class ),
+			@XmlElement(
 					name = OptionalNodeConstraint.JAXB_ELEMENT,
 					type = OptionalNodeConstraint.class ),
-			@XmlElement(
-					name = RecommendedNodeConstraint.JAXB_ELEMENT,
-					type = RecommendedNodeConstraint.class ),
 			@XmlElement(
 					name = PredicatelessXPathConstraint.JAXB_ELEMENT,
 					type = PredicatelessXPathConstraint.class ),
 			@XmlElement(
-					name = CompilableXPathConstraint.JAXB_ELEMENT,
-					type = CompilableXPathConstraint.class )
+					name = RecommendedNodeConstraint.JAXB_ELEMENT,
+					type = RecommendedNodeConstraint.class ),
+
 	} )
 	private List<Constraint> constraints;
 
@@ -93,6 +106,16 @@ public class Profile extends JaxbDocument
 	public void setName( String name )
 	{
 		this.name = name;
+	}
+
+	public String getVersion()
+	{
+		return version;
+	}
+
+	public void setVersion( String version )
+	{
+		this.version = version;
 	}
 
 	public List<Constraint> getConstraints()
@@ -150,12 +173,13 @@ public class Profile extends JaxbDocument
 		if ( o == null || getClass() != o.getClass() ) return false;
 		Profile profile = (Profile) o;
 		return Objects.equals( name, profile.name ) &&
-			Objects.equals( constraints, profile.constraints );
+			   Objects.equals( version, profile.version ) &&
+			   Objects.equals( constraints, profile.constraints );
 	}
 
 	@Override
 	public int hashCode()
 	{
-		return Objects.hash( name, constraints );
+		return Objects.hash( name, version, constraints );
 	}
 }

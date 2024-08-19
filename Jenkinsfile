@@ -25,7 +25,7 @@ pipeline {
 				stage('Build Project') {
 					steps {
 						withMaven {
-							sh './mvnw clean install -U'
+							sh './mvnw clean install'
 						}
 					}
 					when { branch 'main' }
@@ -71,7 +71,12 @@ pipeline {
 					sh './mvnw jar:jar javadoc:jar source:jar deploy:deploy'
 				}
 			}
-			when { branch 'main' }
+			when {
+				anyOf {
+					branch 'main'
+					buildingTag()
+				}
+			}
 		}
 	}
 }

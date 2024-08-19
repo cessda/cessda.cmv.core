@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>2020-08-31T09:48:40Z</responseDate>
+  <request metadataPrefix="ddi_c" identifier="oai:fsd.uta.fi:FSD3307" verb="GetRecord">http://services.fsd.uta.fi/v0/oai</request>
+  <GetRecord>
+    <record>
+      <header>
+        <identifier>oai:fsd.uta.fi:FSD3307</identifier>
+        <datestamp>2020-08-12T23:00:17Z</datestamp>
+        <setSpec>data_kind:Kvantitatiivinen</setSpec><setSpec>data_kind:Quantitative</setSpec><setSpec>study_groups:yks</setSpec><setSpec>language:fi</setSpec><setSpec>language:en</setSpec>
+      </header>
+    </record>
+  </GetRecord>
+</OAI-PMH>

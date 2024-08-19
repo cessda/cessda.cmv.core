@@ -23,19 +23,31 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType( name = OptionalNodeConstraint.JAXB_TYPE )
+/**
+ *	A constraint specifying an XML node (element or attribute) described by a predicate-less
+ *	XPath expression must be present and not blank if the element's parent is present.
+ */
+@XmlType( name = MandatoryNodeIfParentPresentConstraint.JAXB_TYPE )
 @XmlAccessorType( XmlAccessType.FIELD )
-public class OptionalNodeConstraint extends NodeConstraint
+public class MandatoryNodeIfParentPresentConstraint extends NodeConstraint
 {
-	public static final String JAXB_ELEMENT = "OptionalNodeConstraint";
+	public static final String JAXB_ELEMENT = "MandatoryNodeIfParentPresentConstraint";
 	public static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
 
-	public OptionalNodeConstraint()
+	/**
+	 * Construct a new mandatory node if parent present constraint with the location set to {@code null}.
+	 */
+	public MandatoryNodeIfParentPresentConstraint()
 	{
 		super( null );
 	}
 
-	public OptionalNodeConstraint( String locationPath )
+	/**
+	 * Construct a new mandatory node if parent present constraint.
+	 *
+	 * @param locationPath the XPath of the node.
+	 */
+	public MandatoryNodeIfParentPresentConstraint( String locationPath )
 	{
 		super( locationPath );
 	}

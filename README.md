@@ -1,6 +1,10 @@
 # CESSDA Metadata Validator Core
 
-[![SQA badge](https://api.eu.badgr.io/public/assertions/SSQHSCmuQg2tZF2qNstYtA/image)](https://api.eu.badgr.io/public/assertions/-zO9RwXITZSJlhLKlgj_dA)
+[![SQAaaS badge](https://github.com/EOSC-synergy/SQAaaS/raw/master/badges/badges_150x116/badge_software_silver.png)](https://api.eu.badgr.io/public/assertions/iBUYN3BVQheGBxkG5Y02Ag "SQAaaS silver badge achieved")
+
+[![SQAaaS badge shields.io](https://img.shields.io/badge/sqaaas%20software-silver-lightgrey)](https://api.eu.badgr.io/public/assertions/iBUYN3BVQheGBxkG5Y02Ag "SQAaaS silver badge achieved")
+
+
 
 [![Build Status](https://jenkins.cessda.eu/buildStatus/icon?job=cessda.cmv.core%2Fmaster)](https://jenkins.cessda.eu/job/cessda.cmv.core/job/master/)
 [![Quality Gate Status](https://sonarqube.cessda.eu/api/project_badges/measure?project=eu.cessda.cmv%3Acmv-core&metric=alert_status)](https://sonarqube.cessda.eu/dashboard?id=eu.cessda.cmv%3Acmv-core)
@@ -27,16 +31,19 @@ This is a short snippet showing how to use the validator.
 void validateUsingFiles()
 {
 	CessdaMetadataValidatorFactory factory = new CessdaMetadataValidatorFactory();
-	ValidationService.V10 validationService = factory.newValidationService();
-	Resource document = Resource.newResource( new File( "path/to/ddi-document.xml" ) );
-	Resource profile = Resource.newResource( new File( "path/to/ddi-profile.xml" ) );
-	ValidationReportV0 validationReport = validationService.validate( document, profile, BASIC );
+	Document document = factory.newDocument( new File( "path/to/ddi-document.xml" ) );
+	Profile profile = factory.newProfile( new File( "path/to/ddi-profile.xml" ) );
+	ValidationReport validationReport = factory.validate( document, profile, BASIC );
 	boolean isValid = validationReport.getConstraintViolations().isEmpty();
 	validationReport.getConstraintViolations().forEach( cv -> System.out.println( cv.getMessage() ) );
 }
 ```
 
 For more detailed information, consult the JavaDoc.
+
+## Logging
+
+Logging is provided using SLF4J. Applications integrating CMV Core must provide their own SLF4J implementation (such as Logback) for logs to be outputted.
 
 ## Dependency Information
 

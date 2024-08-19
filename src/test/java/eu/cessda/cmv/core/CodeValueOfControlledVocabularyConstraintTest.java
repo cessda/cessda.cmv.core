@@ -36,17 +36,22 @@ class CodeValueOfControlledVocabularyConstraintTest
 	private final Profile profile;
 	private final CessdaMetadataValidatorFactory factory;
 
-	CodeValueOfControlledVocabularyConstraintTest() throws IOException
+	CodeValueOfControlledVocabularyConstraintTest() throws NotDocumentException, IOException
 	{
 		testEnv = DefaultTestEnv.newInstance( CodeValueOfControlledVocabularyConstraintTest.class );
 		factory = new CessdaMetadataValidatorFactory();
 		profile = factory.newProfile( testEnv.findTestResourceByName( "9-profile.xml" ) );
+	}
+
+	@Test
+	void validate_profile()
+	{
 		assertThat( profile.getConstraints().stream()
-				.filter( ControlledVocabularyRepositoryConstraint.class::isInstance )
-				.count(), is( 2L ) );
+			.filter( ControlledVocabularyRepositoryConstraint.class::isInstance )
+			.count(), is( 2L ) );
 		assertThat( profile.getConstraints().stream()
-				.filter( CodeValueOfControlledVocabularyConstraint.class::isInstance )
-				.count(), is( 1L ) );
+			.filter( CodeValueOfControlledVocabularyConstraint.class::isInstance )
+			.count(), is( 1L ) );
 	}
 
 	@Test
@@ -61,8 +66,8 @@ class CodeValueOfControlledVocabularyConstraintTest
 
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
-		assertThat( constraintViolations.get( 0 ).getMessage(),
-				equalTo( "Code value 'Person' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' is not element of the controlled vocabulary in 'https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0' (lineNumber: 16)" ) );
+		assertThat( constraintViolations.get( 0 ).toString(),
+				equalTo( "Code value 'Person' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' is not element of the controlled vocabulary in 'https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0' (lineNumber: 16, columnNumber: 113)" ) );
 	}
 
 	@Test
@@ -77,8 +82,8 @@ class CodeValueOfControlledVocabularyConstraintTest
 
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
-		assertThat( constraintViolations.get( 0 ).getMessage(),
-				equalTo( "Code value 'Family.HouseholdFamily' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' cannot be validated because no controlled vocabulary is declared (lineNumber: 28)" ) );
+		assertThat( constraintViolations.get( 0 ).toString(),
+				equalTo( "Code value 'Family.HouseholdFamily' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' cannot be validated because no controlled vocabulary is declared (lineNumber: 28, columnNumber: 30)" ) );
 	}
 
 	@Test

@@ -21,13 +21,42 @@ package eu.cessda.cmv.core;
 
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 
+import javax.xml.xpath.XPathExpressionException;
+import java.net.URI;
 import java.util.List;
 
 public interface Document
 {
-	List<Node> getNodes( String locationPath );
+	/**
+	 * Gets the URI of the source of the document.
+	 *
+	 * @return the URI, or {@code null} if the document was constructed from a source that didn't specify a URI.
+	 */
+	URI getURI();
 
-	void register( String uri, ControlledVocabularyRepository controlledVocabularyRepository );
+	/**
+	 * Get a list of DOM nodes found at the given XPath.
+	 *
+	 * @param locationPath the XPath to the nodes to look up.
+	 */
+	List<Node> getNodes( String locationPath ) throws XPathExpressionException;
 
-	ControlledVocabularyRepository findControlledVocabularyRepository( String uri );
+	/**
+	 * Register a {@link ControlledVocabularyRepository} instance. The {@link ControlledVocabularyRepository}
+	 * can be looked up using {@link #findControlledVocabularyRepository(URI)} with a registered URI.
+	 *
+	 * @param controlledVocabularyRepository the repository.
+	 */
+	void register( ControlledVocabularyRepository controlledVocabularyRepository );
+
+	/**
+	 * Find a registered {@link ControlledVocabularyRepository} instance.
+	 * <p>
+	 * {@link ControlledVocabularyRepository} instances are registered using
+	 * {@link #register(ControlledVocabularyRepository)}.
+	 *
+	 * @param uri the URI of the controlled vocabulary.
+	 * @return the controlled vocabulary, or {@code null} if the uri was not registered.
+	 */
+	ControlledVocabularyRepository findControlledVocabularyRepository( URI uri );
 }

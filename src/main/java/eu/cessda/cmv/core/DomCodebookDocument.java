@@ -20,15 +20,19 @@
 package eu.cessda.cmv.core;
 
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
-import org.gesis.commons.xml.XercesXalanDocument;
+import org.gesis.commons.xml.XMLDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.NodeList;
 
-import java.io.InputStream;
+import javax.xml.xpath.XPathExpressionException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
 import static java.util.Objects.requireNonNull;
 
@@ -36,40 +40,62 @@ class DomCodebookDocument implements Document
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger( DomCodebookDocument.class );
 
-	private final org.gesis.commons.xml.DomDocument.V12 document;
-	private final HashMap<String, ControlledVocabularyRepository> controlledVocabularyRepositoryMap = new HashMap<>();
+	private final URI uri;
+	private final XMLDocument document;
+	private final Map<URI, ControlledVocabularyRepository> controlledVocabularyRepositoryMap;
 
-	public DomCodebookDocument( InputStream inputStream )
+	DomCodebookDocument( URI uri, XMLDocument document )
+    {
+		this( uri, document, new HashMap<>() );
+	}
+
+	DomCodebookDocument( URI uri, XMLDocument document, Map<URI, ControlledVocabularyRepository> cvrMap )
 	{
-		requireNonNull( inputStream );
-
-		document = XercesXalanDocument.newBuilder()
-				.ofInputStream( inputStream )
-				.locationInfoAware()
-				.namespaceAware()
-				.build();
+		this.uri = uri;
+		this.controlledVocabularyRepositoryMap = cvrMap;
+		this.document = document;
 	}
 
 	@Override
-	public List<Node> getNodes( String locationPath )
+	public URI getURI()
+	{
+		return uri;
+	}
+
+	@Override
+	public List<Node> getNodes( String locationPath ) throws XPathExpressionException
 	{
 		requireNonNull( locationPath );
 
 		List<Node> nodes = new ArrayList<>();
 		for ( org.w3c.dom.Node domNode : document.selectNodes( locationPath ) )
 		{
-			Node node;
+			NodeImpl node;
 			if ( locationPath.equals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit" )
 					|| locationPath.equals( "/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept" ) )
 			{
+				ControlledVocabularyRepository repository = null;
+
+				try
+				{
+					URI vocabURI = getVocabURI( domNode );
+					if (vocabURI != null) {
+						repository = findControlledVocabularyRepository( vocabURI );
+					}
+				}
+				catch ( URISyntaxException e )
+				{
+					LOGGER.warn( "Controlled Vocabulary Repository URI is invalid: {}", e.getMessage());
+				}
+
 				node = new ControlledVocabularyNode( locationPath,
 					mapNodeToText( domNode ),
 					document.getLocationInfo( domNode ).orElse( null ),
-					findControlledVocabularyRepository( getVocabURI( domNode ) ) );
+					repository );
 			}
 			else
 			{
-				node = new Node( locationPath, domNode.getTextContent(), document.getLocationInfo( domNode )
+				node = new NodeImpl( locationPath, domNode.getTextContent(), document.getLocationInfo( domNode )
 						.orElse( null ) );
 			}
 			countChildNodes( node, domNode );
@@ -80,8 +106,6 @@ class DomCodebookDocument implements Document
 
 	private String mapNodeToText( org.w3c.dom.Node domNode )
 	{
-		requireNonNull( domNode );
-
 		if ( domNode.getChildNodes().getLength() == 0 )
 		{
 			return domNode.getTextContent().trim();
@@ -92,25 +116,25 @@ class DomCodebookDocument implements Document
 		}
 	}
 
-	private void countChildNodes( Node node, org.w3c.dom.Node domNode )
+	private void countChildNodes( NodeImpl node, org.w3c.dom.Node domNode )
 	{
-		requireNonNull( node );
-		requireNonNull( domNode );
-
 		if ( domNode.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE )
 		{
-			for ( int i = 0; i < domNode.getAttributes().getLength(); i++ )
+			NamedNodeMap domNodeAttributes = domNode.getAttributes();
+			for ( int i = 0; i < domNodeAttributes.getLength(); i++ )
 			{
-				node.incrementChildCount( "./@" + domNode.getAttributes().item( i ).getNodeName() );
+				node.incrementChildCount( "./@" + domNodeAttributes.item( i ).getNodeName() );
 			}
-			for ( int i = 0; i < domNode.getChildNodes().getLength(); i++ )
+
+			NodeList childNodes = domNode.getChildNodes();
+			for ( int i = 0; i < childNodes.getLength(); i++ )
 			{
-				node.incrementChildCount( "./" + domNode.getChildNodes().item( i ).getNodeName() );
+				node.incrementChildCount( "./" + childNodes.item( i ).getNodeName() );
 			}
 		}
 	}
 
-	private String getVocabURI( org.w3c.dom.Node node )
+	private URI getVocabURI( org.w3c.dom.Node node ) throws URISyntaxException, XPathExpressionException
 	{
 		org.w3c.dom.Node result = null;
 		if ( node.getNodeName().equals( "concept" ) )
@@ -126,27 +150,20 @@ class DomCodebookDocument implements Document
 			result = document.selectNode( node, "concept/@vocabURI" );
 		}
 
-		return result != null ? result.getTextContent() : null;
+        return result != null ? new URI( result.getTextContent() ) : null;
 	}
 
 	@Override
-	public void register( String uri, ControlledVocabularyRepository controlledVocabularyRepository )
+	public void register( ControlledVocabularyRepository controlledVocabularyRepository )
 	{
-		Objects.requireNonNull( controlledVocabularyRepository, "controlledVocabularyRepository must not be null" );
-		controlledVocabularyRepositoryMap.put( uri, controlledVocabularyRepository );
+		requireNonNull( controlledVocabularyRepository, "controlledVocabularyRepository must not be null" );
+		controlledVocabularyRepositoryMap.put( controlledVocabularyRepository.getUri(), controlledVocabularyRepository );
 	}
 
 	@Override
-	public ControlledVocabularyRepository findControlledVocabularyRepository( String uri )
+	public ControlledVocabularyRepository findControlledVocabularyRepository( URI uri )
 	{
-		if ( controlledVocabularyRepositoryMap.containsKey( uri ) )
-		{
-			return controlledVocabularyRepositoryMap.get( uri );
-		}
-		else
-		{
-			LOGGER.warn( "ControlledVocabularyRepository for '{}' not found", uri );
-			return null;
-		}
+		requireNonNull( uri, "uri must not be null" );
+		return controlledVocabularyRepositoryMap.get( uri );
 	}
 }

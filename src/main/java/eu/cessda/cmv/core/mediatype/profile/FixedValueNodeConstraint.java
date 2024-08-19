@@ -2,7 +2,7 @@
  * #%L
  * cmv-core
  * %%
- * Copyright (C) 2020 - 2024 CESSDA ERIC
+ * Copyright (C) 2020 - 2021 CESSDA ERIC
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,31 +17,36 @@
  * limitations under the License.
  * #L%
  */
-package eu.cessda.cmv.core;
+package eu.cessda.cmv.core.mediatype.profile;
 
-import javax.xml.xpath.XPathExpressionException;
-import java.util.ArrayList;
-import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * 	A constraint that enforces the metadata document is valid only if the
  * 	node value equals to the fixed value defined in the constraint.
- * 	<p>
- * 	This constraint can be defined in a DDI profile using this representation
- * 	<pre>{@code
- *  <pr:Used
- * 		xpath="/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocab"
- *  	defaultValue="DDI Analysis Unit"
- *   	fixedValue="true"/>
- *  </pr:Used>}
- * </pre>
  */
-class FixedValueNodeConstraint extends NodeConstraint
+@XmlType( name = FixedValueNodeConstraint.JAXB_TYPE )
+@XmlAccessorType( XmlAccessType.FIELD )
+public class FixedValueNodeConstraint extends NodeConstraint
 {
-	private final String fixedValue;
+	public static final String JAXB_ELEMENT = "FixedValueNodeConstraint";
+	public static final String JAXB_TYPE = JAXB_ELEMENT + "Type";
+
+	@XmlElement
+	private String fixedValue;
+
+	/**
+	 * Construct a new fixed value node constraint with the location and fixed value set to {@code null}.
+	 */
+	public FixedValueNodeConstraint()
+	{
+		super( null );
+		this.fixedValue = null;
+	}
 
 	/**
 	 * Construct a new fixed value node constraint.
@@ -52,25 +57,17 @@ class FixedValueNodeConstraint extends NodeConstraint
 	public FixedValueNodeConstraint( String locationPath, String fixedValue )
 	{
 		super( locationPath );
-		this.fixedValue = requireNonNull( fixedValue );
-	}
-
-	@Override
-	public List<Validator> newNodeValidators( Document document ) throws XPathExpressionException
-	{
-		List<Node> nodes = document.getNodes( getLocationPath() );
-		List<Validator> validators = new ArrayList<>();
-		for ( Node node : nodes )
-		{
-			FixedValueNodeValidator fixedValueNodeValidator = new FixedValueNodeValidator( node, fixedValue );
-			validators.add( fixedValueNodeValidator );
-		}
-		return validators;
+		this.fixedValue = fixedValue;
 	}
 
 	public String getFixedValue()
 	{
 		return fixedValue;
+	}
+
+	public void setFixedValue( String fixedValue )
+	{
+		this.fixedValue = fixedValue;
 	}
 
 	@Override
