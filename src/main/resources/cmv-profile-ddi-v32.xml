@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pr:DDIProfile 
- xmlns:pr="ddi:ddiprofile:3_2" 
- xmlns:r="ddi:reusable:3_2" 
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<pr:DDIProfile
+ xmlns:pr="ddi:ddiprofile:3_2"
+ xmlns:r="ddi:reusable:3_2"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="ddi:ddiprofile:3_2 https://ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/ddiprofile.xsd">
   <r:Agency>int.cessda</r:Agency>
   <r:ID>cmv-profile-ddi-v32</r:ID>
   <r:Version>1.0.0</r:Version>
   <pr:XPathVersion>1.0</pr:XPathVersion>
   <pr:DDINamespace>3.2</pr:DDINamespace>
+  <pr:XMLPrefixMap>
+    <pr:XMLPrefix>pr</pr:XMLPrefix>
+    <pr:XMLNamespace>ddi:ddiprofile:3_2</pr:XMLNamespace>
+  </pr:XMLPrefixMap>
   <pr:Used xpath="/pr:DDIProfile/pr:Used/@xpath" isRequired="true" />
   <pr:Used xpath="/pr:DDIProfile/pr:Used/@isRequired" isRequired="true" />
 </pr:DDIProfile>

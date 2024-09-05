@@ -47,6 +47,15 @@ class MaximumElementOccurrenceConstraint extends NodeConstraint
 	}
 
 	@Override
+	public String toString()
+	{
+		return "MaximumElementOccurrenceConstraint{" +
+			"locationPath='" + getLocationPath() + '\'' +
+			", maxOccurs=" + maxOccurs +
+			'}';
+	}
+
+	@Override
 	public boolean equals( Object o )
 	{
 		if ( this == o ) return true;

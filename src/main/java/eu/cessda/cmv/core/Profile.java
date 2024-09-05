@@ -19,6 +19,7 @@
  */
 package eu.cessda.cmv.core;
 
+import javax.xml.namespace.NamespaceContext;
 import java.util.Set;
 
 /**
@@ -48,4 +49,6 @@ public interface Profile
 	 * @return a set of constraints.
 	 */
 	Set<Constraint> getConstraints();
+
+	NamespaceContext getNamespaceContext();
 }

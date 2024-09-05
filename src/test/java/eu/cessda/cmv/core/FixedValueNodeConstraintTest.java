@@ -55,7 +55,7 @@ class FixedValueNodeConstraintTest
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
-		assertThat( constraintViolations, hasSize( 0 ) );
+		assertThat( "Unexpected constraint violations: " + constraintViolations.toString(), constraintViolations, hasSize( 0 ) );
 	}
 
 	@Test
@@ -71,7 +71,7 @@ class FixedValueNodeConstraintTest
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
 		assertThat( constraintViolations.get( 0 ).toString(),
-				equalTo( "'DDI Analyseeinheit' is not equal to fixed value 'DDI Analysis Unit' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocab' (lineNumber: 13, columnNumber: 44)" ) );
+				equalTo( "'DDI Analyseeinheit' is not equal to fixed value 'DDI Analysis Unit' in '/ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:sumDscr/ddi:anlyUnit/ddi:concept/@vocab' (lineNumber: 13, columnNumber: 44)" ) );
 	}
 
 	@Test
@@ -87,6 +87,6 @@ class FixedValueNodeConstraintTest
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
 		assertThat( constraintViolations.get( 0 ).getMessage(),
-				equalTo( "'/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept/@vocab' is optional" ) );
+				equalTo( "'/ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:sumDscr/ddi:anlyUnit/ddi:concept/@vocab' is optional" ) );
 	}
 }

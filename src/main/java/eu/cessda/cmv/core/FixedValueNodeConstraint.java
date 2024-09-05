@@ -74,6 +74,15 @@ class FixedValueNodeConstraint extends NodeConstraint
 	}
 
 	@Override
+	public String toString()
+	{
+		return "FixedValueNodeConstraint{" +
+			"locationPath='" + getLocationPath() + '\'' +
+			", fixedValue='" + fixedValue + '\'' +
+			'}';
+	}
+
+	@Override
 	public boolean equals( Object o )
 	{
 		if ( this == o ) return true;

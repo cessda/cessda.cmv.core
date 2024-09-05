@@ -19,6 +19,7 @@
  */
 package eu.cessda.cmv.core.mediatype.profile;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.gesis.commons.xml.jaxb.DefaultNamespacePrefixMapper;
 import org.gesis.commons.xml.jaxb.JaxbDocument;
 
@@ -38,11 +39,11 @@ import java.util.Objects;
 public class Profile extends JaxbDocument
 {
 	static final String MAJOR = "0";
-	static final String MINOR = "1";
-	static final String VERSION = MAJOR + "." + MINOR;
-	public static final String MEDIATYPE = "application/vnd.eu.cessda.cmv.core.mediatype.profile.v" + VERSION + "+xml";
+	static final String MINOR = "2";
+	static final String SCHEMA_VERSION = MAJOR + "." + MINOR;
+	public static final String MEDIATYPE = "application/vnd.eu.cessda.cmv.core.mediatype.profile.v" + SCHEMA_VERSION + "+xml";
 	static final String SCHEMALOCATION_HOST = "https://raw.githubusercontent.com/cessda/cessda.cmv.core/stable/schema";
-	public static final String SCHEMALOCATION_FILENAME = "profile-v" + VERSION + ".xsd";
+	public static final String SCHEMALOCATION_FILENAME = "profile-v" + SCHEMA_VERSION + ".xsd";
 
 	static final String NAMESPACE_DEFAULT_PREFIX = "";
 	static final String NAMESPACE_DEFAULT_URI = "cmv:profile:v" + MAJOR;
@@ -59,6 +60,11 @@ public class Profile extends JaxbDocument
 
 	@XmlElement
 	private String version;
+
+	@JsonProperty( "prefixMaps" )
+	@XmlElement( name = "PrefixMap" )
+	@XmlElementWrapper( name = "PrefixMaps" )
+	private List<PrefixMap> prefixMap;
 
 	@XmlElements( {
 			@XmlElement(
@@ -118,8 +124,28 @@ public class Profile extends JaxbDocument
 		this.version = version;
 	}
 
+	public List<PrefixMap> getPrefixMap()
+	{
+		if (prefixMap == null)
+		{
+			// Instance prefixMap if null, ensures getPrefixMap() cannot return null
+			prefixMap = new ArrayList<>(0);
+		}
+		return prefixMap;
+	}
+
+	public void setPrefixMap( List<PrefixMap> prefixMap )
+	{
+		this.prefixMap = prefixMap;
+	}
+
 	public List<Constraint> getConstraints()
 	{
+		if (constraints == null)
+		{
+			// Instance constraints if null, ensures getConstraints() cannot return null
+			constraints = new ArrayList<>(0);
+		}
 		return constraints;
 	}
 

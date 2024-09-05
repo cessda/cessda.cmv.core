@@ -19,10 +19,14 @@
  */
 package eu.cessda.cmv.core;
 
+import eu.cessda.cmv.core.mediatype.profile.PrefixMap;
 import org.gesis.commons.xml.XMLDocument;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -31,20 +35,20 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayDeque;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 class DomSemiStructuredDdiProfile extends AbstractProfile
 {
+	private static final Logger log = LoggerFactory.getLogger( DomSemiStructuredDdiProfile.class );
 
 	DomSemiStructuredDdiProfile( XMLDocument document ) throws IOException, NotDocumentException
 	{
-		super(parseProfileName( document ), parseProfileVersion( document ), new LinkedHashSet<>());
+		super(parseProfileName( document ), parseProfileVersion( document ), new LinkedHashSet<>(), bindNamespacesToPrefixes( document ));
 		try
 		{
-			for ( Node usedNode : document.selectNodes( "/DDIProfile/Used" ) )
+			parseXPathVersion( document );
+
+			for ( Node usedNode : document.selectNodes( "/pr:DDIProfile/pr:Used" ) )
 			{
 				if (!(usedNode instanceof Element))
 				{
@@ -102,6 +106,88 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		this.constraints.addAll( orderedConstraints );
 	}
 
+	static NamespaceContextImpl getProfileNamespaceContext()
+	{
+		NamespaceContextImpl nsContext = new NamespaceContextImpl();
+		nsContext.bindNamespaceURI( "pr", "ddi:ddiprofile:3_2" );
+		nsContext.bindNamespaceURI( "r", "ddi:reusable:3_2" );
+		return nsContext;
+	}
+
+	private static NamespaceContextImpl bindNamespacesToPrefixes( XMLDocument document ) throws NotDocumentException
+	{
+		NamespaceContextImpl namespaceContext = new NamespaceContextImpl();
+
+		// Discover namespace of target documents
+		List<Node> nodes;
+		try
+		{
+			nodes = document.selectNodes( "/pr:DDIProfile/pr:XMLPrefixMap" );
+		}
+		catch ( XPathExpressionException e )
+		{
+			throw new IllegalArgumentException( e );
+		}
+
+		for ( Node prefixNode : nodes )
+		{
+			if (!(prefixNode instanceof Element))
+			{
+				continue;
+			}
+			Element prefixElement = (Element) prefixNode;
+
+			String prefix = null;
+			String namespace = null;
+
+			// Extract the namespace and prefix from the map
+			NodeList childNodes = prefixElement.getChildNodes();
+			for (int i = 0; i < childNodes.getLength(); i++ )
+			{
+				Node childNode = childNodes.item( i );
+				if ( "pr:XMLPrefix".equals( childNode.getNodeName() ) )
+				{
+					prefix = childNode.getTextContent();
+				}
+				else if ( "pr:XMLNamespace".equals( childNode.getNodeName() ) )
+				{
+					namespace = childNode.getTextContent();
+				}
+			}
+
+			// TODO: validate prefix and namespace
+			try
+			{
+				namespaceContext.bindNamespaceURI( prefix, namespace );
+			}
+			catch ( IllegalArgumentException e )
+			{
+				throw new NotDocumentException( "Failed to bind XMLPrefixMap namespaces: " + e.getMessage(), e );
+			}
+		}
+
+		return namespaceContext;
+	}
+
+	private static void parseXPathVersion( XMLDocument document ) throws XPathExpressionException, NotDocumentException
+	{
+		// Check XPath specification version
+		Node xpathNode = document.selectNode( "/pr:DDIProfile/pr:XPathVersion" );
+		if ( xpathNode != null )
+		{
+			String xpathVersion = xpathNode.getTextContent().trim();
+			if ( !xpathVersion.equals( "1.0" ) )
+			{
+				// Only version 1.0 is supported
+				throw new NotDocumentException( "XPathVersion \"" + xpathVersion + "\" not supported. Supported XPath versions are \"1.0\"" );
+			}
+		}
+		else
+		{
+			log.warn( "XPathVersion is not specified, defaulting to 1.0" );
+		}
+	}
+
 	private static String getLocationPath( Element usedNode )
 	{
 		Attr xpath = usedNode.getAttributeNode( "xpath" );
@@ -120,7 +206,7 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		Node nameNode;
 		try
 		{
-			nameNode = document.selectNode( "/DDIProfile/DDIProfileName" );
+			nameNode = document.selectNode( "/pr:DDIProfile/pr:DDIProfileName" );
 		}
 		catch ( XPathExpressionException e )
 		{
@@ -142,7 +228,7 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		Node versionNode;
 		try
 		{
-			versionNode = document.selectNode( "/DDIProfile/Version" );
+			versionNode = document.selectNode( "/pr:DDIProfile/r:Version" );
 		}
 		catch ( XPathExpressionException e )
 		{
@@ -161,7 +247,7 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 
 	private static Optional<XMLDocument> findExtension( XMLDocument document, Node usedNode ) throws IOException, SAXException, XPathExpressionException
 	{
-		String extensionRecognizingXPath = "Instructions/Content[contains(.,'<Constraints>')]";
+		String extensionRecognizingXPath = "pr:Instructions/r:Content[contains(.,'<Constraints>')]";
 		Node constraintsNode = document.selectNode( usedNode, extensionRecognizingXPath );
 		if ( constraintsNode != null )
 		{
@@ -213,8 +299,8 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 			return;
 		}
 
-		if ( document.selectNode( usedNode, "Description[Content='Required: Recommended']" ) != null
-				|| document.selectNode( usedNode, "Description[Content='Recommended']" ) != null
+		if ( document.selectNode( usedNode, "pr:Description[r:Content='Required: Recommended']" ) != null
+				|| document.selectNode( usedNode, "pr:Description[r:Content='Recommended']" ) != null
 				|| hasRecommendedNodeConstraintExtension( document, usedNode ) )
 		{
 			constraints.add( new RecommendedNodeConstraint( getLocationPath( usedNode ) ) );
@@ -337,9 +423,25 @@ class DomSemiStructuredDdiProfile extends AbstractProfile
 		eu.cessda.cmv.core.mediatype.profile.Profile jaxbProfile = new eu.cessda.cmv.core.mediatype.profile.Profile();
 		List<eu.cessda.cmv.core.mediatype.profile.Constraint> jaxbConstraints = jaxbProfile.getConstraints();
 
-		// Set the name of the profile
+		// Set the name and version of the profile
 		jaxbProfile.setName( profileName );
+		jaxbProfile.setVersion( profileVersion );
 
+		// Set the namespace context
+		List<PrefixMap> prefixMaps = new ArrayList<>();
+
+		// This will always be an instance of CMVNamespaceContext, so this is a safe cast
+		NamespaceContextImpl namespaceContext = (NamespaceContextImpl) getNamespaceContext();
+		for( Map.Entry<String, String> binding : namespaceContext.getAllBindings().entrySet() )
+		{
+			PrefixMap prefixMap = new PrefixMap();
+			prefixMap.setPrefix( binding.getKey() );
+			prefixMap.setNamespace( binding.getValue() );
+			prefixMaps.add( prefixMap );
+		}
+		jaxbProfile.setPrefixMap(prefixMaps);
+
+		// Set constraints
 		for ( Constraint constraint : constraints )
 		{
 			String locationPath = null;
