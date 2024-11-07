@@ -14,6 +14,62 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - *Fixed (for any bug fixes)*
 - *Security (in case of vulnerabilities)*
 
+# [4.0.0] - 2024-11-12
+
+### Migration Notes
+
+Due to changes in XML namespace support previous DDI profiles will validate differently. For correct validation, use the following profiles:
+
+* CDC DDI 2.5 profiles - use version 3.0.0 or newer
+* CDC DDI 2.6 profiles - use version 2.0.0 or newer
+* CDC DDI 3.2 profile - use version 2.0.0 or newer
+* CDC DDI 3.3 profile - use version 2.0.0 or newer
+* EQB DDI 2.5 profile - use version 1.0.0 or newer
+
+Built-in profiles have been updated accordingly.
+
+### Breaking Changes
+
+Before prefixes were not treated separately from the rest of the element's name. Now prefixes are mapped onto namespaces using the mappings defined in the profile.
+
+Prefix-to-namespace mapping is extracted from the DDI profile using `XMLPrefixMap` elements.
+
+```xml
+<pr:DDIProfile xmlns:pr="ddi:ddiprofile:3_2">
+...
+    <pr:XMLPrefixMap>
+        <pr:XMLPrefix>ddi</pr:XMLPrefix>
+        <pr:XMLNamespace>ddi:codebook:2_5</pr:XMLNamespace>
+    </pr:XMLPrefixMap>
+...
+</pr:DDIProfile>
+```
+
+Referencing elements in XPaths that don't have a namespace prefix (e.g. `/element`) always refers to the empty namespace "". Attempting to map such a prefix will have no effect. This is a limitation of the XPath 1.0 specification.
+
+The JAXBProfile serialisations and corresponding schemas have been updated.
+
+```xml
+<Profile xmlns="cmv:profile:v0">
+...
+	<PrefixMaps>
+		<PrefixMap>
+			<Prefix>ddi</Prefix>
+			<Namespace>ddi:codebook:2_5</Namespace>
+		</PrefixMap>
+		<PrefixMap>
+			<Prefix>xsi</Prefix>
+			<Namespace>http://www.w3.org/2001/XMLSchema-instance</Namespace>
+		</PrefixMap>
+	</PrefixMaps>
+...
+</Profile>
+```
+
+### Added
+
+* Added a NamespaceContext implementation for mapping prefixes to XML namespaces
+
 ## [3.0.0] - 2024-04-30
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11083094.svg)](https://doi.org/10.5281/zenodo.11083094)
@@ -199,6 +255,7 @@ Applications must provide their own SLF4J implementation for logging to work pro
 - Added badges to REAMDME
   ([#53](https://github.com/cessda/cessda.cmv.core/issues/53))
 
+[4.0.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/4.0.0
 [3.0.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/3.0.0
 [2.0.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/2.0.0
 [1.1.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/1.1.0
