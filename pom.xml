@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>eu.cessda.cmv</groupId>
 	<artifactId>cmv-core</artifactId>
-	<version>4.0.0-SNAPSHOT</version>
+	<version>4.0.0</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -302,7 +302,7 @@
 	</organization>
 	<scm>
 		<developerConnection>scm:git:https://github.com/cessda/cessda.cmv.core.git</developerConnection>
-	  <tag>HEAD</tag>
+	  <tag>4.0.0</tag>
   </scm>
 	<ciManagement>
 		<system>Jenkins</system>
