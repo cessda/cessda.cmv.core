@@ -372,9 +372,17 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 
 			return new DomCodebookDocument( uri, document, cvrMap );
 		}
-		catch ( NoSuchNodeException | XPathExpressionException | SAXException e )
+		catch ( NoSuchNodeException  | SAXException e )
 		{
 			throw new NotDocumentException( e );
+		}
+		catch ( XPathExpressionException e )
+		{
+			/*
+			 XPathExpressionException should never be thrown as the
+			 XPath used to set the root element will always be valid
+			*/
+			throw new IllegalStateException( e );
 		}
 	}
 
