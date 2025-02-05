@@ -21,6 +21,7 @@ package eu.cessda.cmv.core;
 
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 import eu.cessda.cmv.core.mediatype.validationreport.ValidationReport;
+import org.gesis.commons.xml.NoSuchNodeException;
 import org.gesis.commons.xml.XMLDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -371,7 +372,7 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 
 			return new DomCodebookDocument( uri, document, cvrMap );
 		}
-		catch ( XPathExpressionException | SAXException e )
+		catch ( NoSuchNodeException | XPathExpressionException | SAXException e )
 		{
 			throw new NotDocumentException( e );
 		}

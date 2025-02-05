@@ -74,8 +74,9 @@ public class XMLDocument
 	 * @param location the XPath of the element that should become the root.
 	 * @param nsContext the namespace context of the XPath.
 	 * @throws XPathExpressionException if the XPath cannot be evaluated.
+	 * @throws NoSuchNodeException if the XPath does not resolve an {@link Element}.
 	 */
-	public void setRootElement( String location, NamespaceContext nsContext ) throws XPathExpressionException
+	public void setRootElement( String location, NamespaceContext nsContext ) throws XPathExpressionException, NoSuchNodeException
 	{
 		XPath xpath = xPathFactory.newXPath();
 		xpath.setNamespaceContext( nsContext );
@@ -93,7 +94,7 @@ public class XMLDocument
 		}
 		else
 		{
-			throw new XPathExpressionException("No element matching " + location + " found");
+			throw new NoSuchNodeException(location);
 		}
 	}
 
