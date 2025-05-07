@@ -1,9 +1,12 @@
 package eu.cessda.cmv.core;
 
+import org.gesis.commons.test.DefaultTestEnv;
+import org.gesis.commons.test.TestEnv;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -14,20 +17,26 @@ import static org.hamcrest.Matchers.hasSize;
 class ListRecordsTest
 {
 
-	private final CessdaMetadataValidatorFactory factory = new CessdaMetadataValidatorFactory();
+	private final TestEnv.V13 testEnv;
+	private final CessdaMetadataValidatorFactory factory;
+
+	ListRecordsTest()
+	{
+		testEnv = DefaultTestEnv.newInstance( ListRecordsTest.class );
+		factory = new CessdaMetadataValidatorFactory();
+	}
 
 	@Test
 	void splitListRecordsResponse() throws IOException, SAXException, NotDocumentException
 	{
-		URL documentURL = this.getClass().getResource( "/demo-documents/ddi-v25/listrecordsresponse.xml");
-		assert documentURL != null;
+		File documentURL = testEnv.findTestResourceByName("list-records-response.xml");
 
 		// Load profile
 		URL profileUrl = this.getClass().getResource( "/demo-documents/ddi-v25/cdc25_profile.xml" );
 		Profile profile = factory.newProfile( profileUrl );
 
 		// Split document
-		List<Document> documentList = factory.splitListRecordsResponse( new InputSource( documentURL.toExternalForm() ) );
+		List<Document> documentList = factory.splitListRecordsResponse( new InputSource( documentURL.toURI().toString() ) );
 		assertThat(documentList, hasSize(3));
 
 		// Create validation gate
