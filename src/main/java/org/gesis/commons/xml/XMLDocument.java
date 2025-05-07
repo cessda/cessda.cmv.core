@@ -20,10 +20,7 @@
 package org.gesis.commons.xml;
 
 import eu.cessda.cmv.core.NamespaceContextImpl;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
@@ -52,13 +49,8 @@ public class XMLDocument
 
 	private NamespaceContext namespaceContext = new NamespaceContextImpl();
 
-	private XMLDocument( Document document, int prettyPrintIndentation )
+	private XMLDocument( Document document )
     {
-		if ( prettyPrintIndentation < 0 )
-		{
-			throw new IllegalArgumentException( "Indentation for pretty printing must be non-negative" );
-		}
-
         this.document = document;
 	}
 
@@ -71,16 +63,16 @@ public class XMLDocument
 	 * Set the root of the document to the element located at the given XPath.
 	 * The document is modified by this method.
 	 *
-	 * @param location the XPath of the element that should become the root.
+	 * @param xPath the XPath of the element that should become the root.
 	 * @param nsContext the namespace context of the XPath.
 	 * @throws XPathExpressionException if the XPath cannot be evaluated.
 	 * @throws NoSuchNodeException if the XPath does not resolve an {@link Element}.
 	 */
-	public void setRootElement( String location, NamespaceContext nsContext ) throws XPathExpressionException, NoSuchNodeException
+	public void setRootElement( String xPath, NamespaceContext nsContext ) throws XPathExpressionException, NoSuchNodeException
 	{
 		XPath xpath = xPathFactory.newXPath();
 		xpath.setNamespaceContext( nsContext );
-		XPathExpression metadataXPath = xpath.compile( location );
+		XPathExpression metadataXPath = xpath.compile( xPath );
 
 		NodeList metadataElements = (NodeList) metadataXPath.evaluate( document, XPathConstants.NODESET );
 		Node metadataElement = metadataElements.item( 0 );
@@ -94,8 +86,31 @@ public class XMLDocument
 		}
 		else
 		{
-			throw new NoSuchNodeException(location);
+			throw new NoSuchNodeException(xPath);
 		}
+	}
+
+	public XMLDocument createDocumentFromElement(Element element)
+	{
+		// Create an empty document
+		Document newDocument = Builder.documentBuilder.get().newDocument();
+
+		// Detach the element from the parent node
+		Node adoptedNode;
+		try
+		{
+			// Directly adopt the node
+			adoptedNode = newDocument.adoptNode( element );
+		}
+		catch ( DOMException e )
+		{
+			// Node cannot be directly imported, import the node instead
+			adoptedNode = newDocument.importNode( element, true );
+		}
+		newDocument.appendChild( adoptedNode );
+
+		// Return the newly created XMLDocument
+		return new XMLDocument( newDocument );
 	}
 
 	public Node selectNode( String xPath ) throws XPathExpressionException
@@ -129,6 +144,7 @@ public class XMLDocument
 		return selectNodes( document.getDocumentElement(), xPath );
 	}
 
+	@SuppressWarnings( "java:S3824" )
 	private XPathExpression newXPathExpression( String locationPath ) throws XPathExpressionException
 	{
 		XPathExpression xPathExpression = xPathExpressionMap.get( locationPath );
@@ -252,13 +268,6 @@ public class XMLDocument
 		}
 
 		private boolean isLocationInfoAware = false;
-		private int prettyPrintIndentation = 0;
-
-		public Builder printPrettyWithIndentation( int indentation )
-		{
-			this.prettyPrintIndentation = indentation;
-			return this;
-		}
 
 		public Builder locationInfoAware( boolean locationInfoAware )
 		{
@@ -269,13 +278,13 @@ public class XMLDocument
 		public XMLDocument build( InputSource inputSource ) throws IOException, SAXException
 		{
 			Document document = parseInputSource( inputSource );
-			return new XMLDocument( document, prettyPrintIndentation );
+			return new XMLDocument( document );
 		}
 
 		private Document parseLocationInfoAware( InputSource inputSource, Document document ) throws SAXException, IOException
 		{
 			SAXParser parser = saxParser.get();
-			parser.parse( inputSource, new LocationInfoHandler( document ) );
+			parser.parse( inputSource, new LocationInfoAwareHandler( document ) );
 			return document;
 		}
 
