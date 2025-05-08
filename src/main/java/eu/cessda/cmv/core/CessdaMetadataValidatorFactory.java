@@ -21,9 +21,12 @@ package eu.cessda.cmv.core;
 
 import eu.cessda.cmv.core.controlledvocabulary.ControlledVocabularyRepository;
 import eu.cessda.cmv.core.mediatype.validationreport.ValidationReport;
+import org.gesis.commons.xml.NoSuchNodeException;
 import org.gesis.commons.xml.XMLDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -125,6 +128,7 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 		try
 		{
 			uri = url.toURI();
+			return newDocument( uri );
 		}
 		catch ( URISyntaxException e )
 		{
@@ -371,9 +375,17 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 
 			return new DomCodebookDocument( uri, document, cvrMap );
 		}
-		catch ( XPathExpressionException | SAXException e )
+		catch ( NoSuchNodeException  | SAXException e )
 		{
 			throw new NotDocumentException( e );
+		}
+		catch ( XPathExpressionException e )
+		{
+			/*
+			 XPathExpressionException should never be thrown as the
+			 XPath used to set the root element will always be valid
+			*/
+			throw new IllegalStateException( e );
 		}
 	}
 
@@ -425,6 +437,67 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 
 		// Create the validation report
 		return new ValidationReport( document.getURI(), mediaTypeConstraintViolations );
+	}
+
+	/**
+	 * Split an OAI-PMH ListRecords response into individual documents.
+	 * <p>
+	 * The URI of the documents will be {@link InputSource#getSystemId()}#oai-pmh-id
+	 *
+	 * @param inputSource the source document to be split.
+	 * @return a list of split documents.
+	 * @throws IllegalArgumentException if the document is not an OAI-PMH ListRecords response.
+	 * @throws IOException if an IO error occurs.
+	 * @throws SAXException if the XML cannot be parsed.
+	 */
+	public List<Document> splitListRecordsResponse( InputSource inputSource ) throws IOException, SAXException
+	{
+		// Parse the input source
+		XMLDocument listRecordsResponse = XMLDocument.newBuilder().locationInfoAware( true ).build( inputSource );
+		listRecordsResponse.setNamespaceContext( new NamespaceContextImpl( Collections.singletonMap( "oai", OAI_PMH_XML_NAMESPACE ) ) );
+
+		// Split the document into constituent records
+		try
+		{
+			// Determine if this is a list records response
+			Node node = listRecordsResponse.selectNode( "/oai:OAI-PMH/oai:request" );
+			if (node == null)
+			{
+				throw new IllegalArgumentException("Document is not an OAI-PMH response");
+			}
+
+			if (!"ListRecords".equals(((Element) node).getAttribute( "verb" )))
+			{
+				throw new IllegalArgumentException("OAI-PMH response is not a ListRecords response");
+			}
+
+			List<Node> recordNodeList = listRecordsResponse.selectNodes( "/oai:OAI-PMH/oai:ListRecords/oai:record" );
+			List<Document> documentList = new ArrayList<>(recordNodeList.size());
+			for ( Node recordNode : recordNodeList)
+			{
+				Node metadataNode = listRecordsResponse.selectNode( recordNode, "oai:metadata/*" );
+				if ( metadataNode != null )
+				{
+					// Get document identifier
+					Node identifierElement = listRecordsResponse.selectNode( recordNode, "oai:header/oai:identifier" );
+					String identifier = identifierElement.getTextContent();
+
+					// Create document from the metadata node
+					XMLDocument documentFromElement = XMLDocument.createDocumentFromElement( (Element) metadataNode );
+
+					// Convert to Document
+					Document doc = new DomCodebookDocument( URI.create( inputSource.getSystemId() + '#' + identifier ), documentFromElement );
+					documentList.add( doc );
+				}
+			}
+
+			// Return
+			return documentList;
+		}
+		catch ( XPathExpressionException e )
+		{
+			throw new IllegalStateException( e );
+		}
 	}
 
 	/**

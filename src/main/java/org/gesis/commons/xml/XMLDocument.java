@@ -20,10 +20,7 @@
 package org.gesis.commons.xml;
 
 import eu.cessda.cmv.core.NamespaceContextImpl;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
@@ -42,6 +39,8 @@ import static javax.xml.xpath.XPathConstants.NODESET;
 
 /**
  * Abstracts a {@link Document} and provides easy-to-use XPath APIs using a single object.
+ * <p>
+ * The {@link XMLDocument} class is not thread-safe.
  */
 public class XMLDocument
 {
@@ -52,13 +51,8 @@ public class XMLDocument
 
 	private NamespaceContext namespaceContext = new NamespaceContextImpl();
 
-	private XMLDocument( Document document, int prettyPrintIndentation )
+	private XMLDocument( Document document )
     {
-		if ( prettyPrintIndentation < 0 )
-		{
-			throw new IllegalArgumentException( "Indentation for pretty printing must be non-negative" );
-		}
-
         this.document = document;
 	}
 
@@ -71,15 +65,16 @@ public class XMLDocument
 	 * Set the root of the document to the element located at the given XPath.
 	 * The document is modified by this method.
 	 *
-	 * @param location the XPath of the element that should become the root.
+	 * @param xPath the XPath of the element that should become the root.
 	 * @param nsContext the namespace context of the XPath.
 	 * @throws XPathExpressionException if the XPath cannot be evaluated.
+	 * @throws NoSuchNodeException if the XPath does not resolve an {@link Element}.
 	 */
-	public void setRootElement( String location, NamespaceContext nsContext ) throws XPathExpressionException
+	public void setRootElement( String xPath, NamespaceContext nsContext ) throws XPathExpressionException, NoSuchNodeException
 	{
 		XPath xpath = xPathFactory.newXPath();
 		xpath.setNamespaceContext( nsContext );
-		XPathExpression metadataXPath = xpath.compile( location );
+		XPathExpression metadataXPath = xpath.compile( xPath );
 
 		NodeList metadataElements = (NodeList) metadataXPath.evaluate( document, XPathConstants.NODESET );
 		Node metadataElement = metadataElements.item( 0 );
@@ -93,27 +88,92 @@ public class XMLDocument
 		}
 		else
 		{
-			throw new XPathExpressionException("No element matching " + location + " found");
+			throw new NoSuchNodeException(xPath);
 		}
 	}
 
+	/**
+	 * Create a new XML document using the specified {@link Element} as the root node.
+	 * <p>
+	 * The element and all its descendants are adopted into the new document and will
+	 * be removed from the source document.
+	 *
+	 * @param element the root element.
+	 * @return a new document with the element as the root node.
+	 */
+	public static XMLDocument createDocumentFromElement(Element element)
+	{
+		// Create an empty document
+		Document newDocument = Builder.documentBuilder.get().newDocument();
+
+		// Detach the element from the parent node
+		Node adoptedNode = null;
+		try
+		{
+			// Directly adopt the node
+			adoptedNode = newDocument.adoptNode( element );
+		}
+		catch ( DOMException e )
+		{
+			// ignore the failure here - try importing the node instead
+		}
+
+		if (adoptedNode == null)
+		{
+			// Node cannot be directly imported, import the node instead
+			adoptedNode = newDocument.importNode( element, true );
+		}
+
+		// Append the node as the root element
+		newDocument.appendChild( adoptedNode );
+
+		// Return the newly created XMLDocument
+		return new XMLDocument( newDocument );
+	}
+
+	/**
+	 * Select a {@link Node} by evaluating a XPath expression using the document
+	 * element as the context the XPath will be evaluated in.
+	 *
+	 * @param xPath the XPath expression to evaluate.
+	 * @return the first matching node, or {@code null} if no nodes matched.
+	 * @throws XPathExpressionException if the XPath expression cannot be compiled.
+	 */
 	public Node selectNode( String xPath ) throws XPathExpressionException
 	{
 		return selectNode( document.getDocumentElement(), xPath );
 	}
 
+	/**
+	 * Select a {@link Node} by evaluating a XPath expression using the provided
+	 * node as a context the XPath expression will be evaluated in.
+	 *
+	 * @param context the context the XPath expression will be evaluated in.
+	 * @param xPath the XPath expression to evaluate.
+	 * @return the first matching node, or {@code null} if no nodes matched.
+	 * @throws XPathExpressionException if the XPath expression cannot be compiled.
+	 */
 	public Node selectNode( Node context, String xPath ) throws XPathExpressionException
 	{
 		XPathExpression expression = newXPathExpression( xPath );
 		return (Node) expression.evaluate( context, XPathConstants.NODE );
 	}
 
-	public List<Node> selectNodes( Node context, String locationPath ) throws XPathExpressionException
+	/**
+	 * Select a list of {@link Node}s by evaluating a XPath expression using the provided
+	 * node as a context the XPath expression will be evaluated in.
+	 *
+	 * @param context the context the XPath expression will be evaluated in.
+	 * @param xPath the XPath expression to evaluate.
+	 * @return a list of matching nodes.
+	 * @throws XPathExpressionException if the XPath expression cannot be compiled.
+	 */
+	public List<Node> selectNodes( Node context, String xPath ) throws XPathExpressionException
 	{
 		requireNonNull( context );
-		requireNonNull( locationPath );
+		requireNonNull( xPath );
 
-		XPathExpression expression = newXPathExpression( locationPath );
+		XPathExpression expression = newXPathExpression( xPath );
 		NodeList nodeList = (NodeList) expression.evaluate( context, NODESET );
 		ArrayList<Node> nodes = new ArrayList<>(nodeList.getLength());
 		for ( int i = 0; i < nodeList.getLength(); i++ )
@@ -123,24 +183,40 @@ public class XMLDocument
 		return nodes;
 	}
 
+	/**
+	 * Select a list of {@link Node}s by evaluating a XPath expression using the document
+	 * element as the context the XPath will be evaluated in.
+	 *
+	 * @param xPath the XPath expression to evaluate.
+	 * @return a list of matching nodes.
+	 * @throws XPathExpressionException if the XPath expression cannot be compiled.
+	 */
 	public List<Node> selectNodes( String xPath ) throws XPathExpressionException
 	{
 		return selectNodes( document.getDocumentElement(), xPath );
 	}
 
-	private XPathExpression newXPathExpression( String locationPath ) throws XPathExpressionException
+	/**
+	 * Compile an XPath expression for later evaluation.
+	 *
+	 * @param xPath the XPath expression.
+	 * @return a compiled XPath expression.
+	 * @throws XPathExpressionException if the expression cannot be compiled.
+	 */
+	@SuppressWarnings( "java:S3824" )
+	private XPathExpression newXPathExpression( String xPath ) throws XPathExpressionException
 	{
-		XPathExpression xPathExpression = xPathExpressionMap.get( locationPath );
+		XPathExpression xPathExpression = xPathExpressionMap.get( xPath );
 
         if ( xPathExpression == null )
         {
 			// XPathExpression is not cached, compile
             XPath xpath = xPathFactory.newXPath();
 			xpath.setNamespaceContext( namespaceContext );
-			xPathExpression = xpath.compile( locationPath  );
+			xPathExpression = xpath.compile( xPath  );
 
 			// Cache the compiled XPathExpression for future use
-            xPathExpressionMap.put( locationPath, xPathExpression );
+            xPathExpressionMap.put( xPath, xPathExpression );
         }
 
         return xPathExpression;
@@ -251,13 +327,6 @@ public class XMLDocument
 		}
 
 		private boolean isLocationInfoAware = false;
-		private int prettyPrintIndentation = 0;
-
-		public Builder printPrettyWithIndentation( int indentation )
-		{
-			this.prettyPrintIndentation = indentation;
-			return this;
-		}
 
 		public Builder locationInfoAware( boolean locationInfoAware )
 		{
@@ -268,13 +337,13 @@ public class XMLDocument
 		public XMLDocument build( InputSource inputSource ) throws IOException, SAXException
 		{
 			Document document = parseInputSource( inputSource );
-			return new XMLDocument( document, prettyPrintIndentation );
+			return new XMLDocument( document );
 		}
 
 		private Document parseLocationInfoAware( InputSource inputSource, Document document ) throws SAXException, IOException
 		{
 			SAXParser parser = saxParser.get();
-			parser.parse( inputSource, new LocationInfoHandler( document ) );
+			parser.parse( inputSource, new LocationInfoAwareHandler( document ) );
 			return document;
 		}
 
