@@ -483,7 +483,7 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 					String identifier = identifierElement.getTextContent();
 
 					// Create document from the metadata node
-					XMLDocument documentFromElement = listRecordsResponse.createDocumentFromElement( (Element) metadataNode );
+					XMLDocument documentFromElement = XMLDocument.createDocumentFromElement( (Element) metadataNode );
 
 					// Convert to Document
 					Document doc = new DomCodebookDocument( URI.create( inputSource.getSystemId() + '#' + identifier ), documentFromElement );

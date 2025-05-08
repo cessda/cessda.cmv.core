@@ -39,6 +39,8 @@ import static javax.xml.xpath.XPathConstants.NODESET;
 
 /**
  * Abstracts a {@link Document} and provides easy-to-use XPath APIs using a single object.
+ * <p>
+ * The {@link XMLDocument} class is not thread-safe.
  */
 public class XMLDocument
 {
@@ -90,13 +92,22 @@ public class XMLDocument
 		}
 	}
 
-	public XMLDocument createDocumentFromElement(Element element)
+	/**
+	 * Create a new XML document using the specified {@link Element} as the root node.
+	 * <p>
+	 * The element and all its descendants are adopted into the new document and will
+	 * be removed from the source document.
+	 *
+	 * @param element the root element.
+	 * @return a new document with the element as the root node.
+	 */
+	public static XMLDocument createDocumentFromElement(Element element)
 	{
 		// Create an empty document
 		Document newDocument = Builder.documentBuilder.get().newDocument();
 
 		// Detach the element from the parent node
-		Node adoptedNode;
+		Node adoptedNode = null;
 		try
 		{
 			// Directly adopt the node
@@ -104,32 +115,65 @@ public class XMLDocument
 		}
 		catch ( DOMException e )
 		{
+			// ignore the failure here - try importing the node instead
+		}
+
+		if (adoptedNode == null)
+		{
 			// Node cannot be directly imported, import the node instead
 			adoptedNode = newDocument.importNode( element, true );
 		}
+
+		// Append the node as the root element
 		newDocument.appendChild( adoptedNode );
 
 		// Return the newly created XMLDocument
 		return new XMLDocument( newDocument );
 	}
 
+	/**
+	 * Select a {@link Node} by evaluating a XPath expression using the document
+	 * element as the context the XPath will be evaluated in.
+	 *
+	 * @param xPath the XPath expression to evaluate.
+	 * @return the first matching node, or {@code null} if no nodes matched.
+	 * @throws XPathExpressionException if the XPath expression cannot be compiled.
+	 */
 	public Node selectNode( String xPath ) throws XPathExpressionException
 	{
 		return selectNode( document.getDocumentElement(), xPath );
 	}
 
+	/**
+	 * Select a {@link Node} by evaluating a XPath expression using the provided
+	 * node as a context the XPath expression will be evaluated in.
+	 *
+	 * @param context the context the XPath expression will be evaluated in.
+	 * @param xPath the XPath expression to evaluate.
+	 * @return the first matching node, or {@code null} if no nodes matched.
+	 * @throws XPathExpressionException if the XPath expression cannot be compiled.
+	 */
 	public Node selectNode( Node context, String xPath ) throws XPathExpressionException
 	{
 		XPathExpression expression = newXPathExpression( xPath );
 		return (Node) expression.evaluate( context, XPathConstants.NODE );
 	}
 
-	public List<Node> selectNodes( Node context, String locationPath ) throws XPathExpressionException
+	/**
+	 * Select a list of {@link Node}s by evaluating a XPath expression using the provided
+	 * node as a context the XPath expression will be evaluated in.
+	 *
+	 * @param context the context the XPath expression will be evaluated in.
+	 * @param xPath the XPath expression to evaluate.
+	 * @return a list of matching nodes.
+	 * @throws XPathExpressionException if the XPath expression cannot be compiled.
+	 */
+	public List<Node> selectNodes( Node context, String xPath ) throws XPathExpressionException
 	{
 		requireNonNull( context );
-		requireNonNull( locationPath );
+		requireNonNull( xPath );
 
-		XPathExpression expression = newXPathExpression( locationPath );
+		XPathExpression expression = newXPathExpression( xPath );
 		NodeList nodeList = (NodeList) expression.evaluate( context, NODESET );
 		ArrayList<Node> nodes = new ArrayList<>(nodeList.getLength());
 		for ( int i = 0; i < nodeList.getLength(); i++ )
@@ -139,25 +183,40 @@ public class XMLDocument
 		return nodes;
 	}
 
+	/**
+	 * Select a list of {@link Node}s by evaluating a XPath expression using the document
+	 * element as the context the XPath will be evaluated in.
+	 *
+	 * @param xPath the XPath expression to evaluate.
+	 * @return a list of matching nodes.
+	 * @throws XPathExpressionException if the XPath expression cannot be compiled.
+	 */
 	public List<Node> selectNodes( String xPath ) throws XPathExpressionException
 	{
 		return selectNodes( document.getDocumentElement(), xPath );
 	}
 
+	/**
+	 * Compile an XPath expression for later evaluation.
+	 *
+	 * @param xPath the XPath expression.
+	 * @return a compiled XPath expression.
+	 * @throws XPathExpressionException if the expression cannot be compiled.
+	 */
 	@SuppressWarnings( "java:S3824" )
-	private XPathExpression newXPathExpression( String locationPath ) throws XPathExpressionException
+	private XPathExpression newXPathExpression( String xPath ) throws XPathExpressionException
 	{
-		XPathExpression xPathExpression = xPathExpressionMap.get( locationPath );
+		XPathExpression xPathExpression = xPathExpressionMap.get( xPath );
 
         if ( xPathExpression == null )
         {
 			// XPathExpression is not cached, compile
             XPath xpath = xPathFactory.newXPath();
 			xpath.setNamespaceContext( namespaceContext );
-			xPathExpression = xpath.compile( locationPath  );
+			xPathExpression = xpath.compile( xPath  );
 
 			// Cache the compiled XPathExpression for future use
-            xPathExpressionMap.put( locationPath, xPathExpression );
+            xPathExpressionMap.put( xPath, xPathExpression );
         }
 
         return xPathExpression;
