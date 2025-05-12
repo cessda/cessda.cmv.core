@@ -176,4 +176,10 @@ class DomCodebookDocument implements Document
 		requireNonNull( uri, "uri must not be null" );
 		return controlledVocabularyRepositoryMap.get( uri );
 	}
+
+	@Override
+	public String toString()
+	{
+		return "DomCodebookDocument{uri=" + uri + '}';
+	}
 }
