@@ -446,29 +446,28 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 	 *
 	 * @param inputSource the source document to be split.
 	 * @return a list of split documents.
-	 * @throws IllegalArgumentException if the document is not an OAI-PMH ListRecords response.
 	 * @throws IOException if an IO error occurs.
-	 * @throws SAXException if the XML cannot be parsed.
+	 * @throws NotDocumentException if the document is not an OAI-PMH ListRecords response or if the XML is not well-formed.
 	 */
-	public List<Document> splitListRecordsResponse( InputSource inputSource ) throws IOException, SAXException
+	public List<Document> splitListRecordsResponse( InputSource inputSource ) throws IOException, NotDocumentException
 	{
-		// Parse the input source
-		XMLDocument listRecordsResponse = XMLDocument.newBuilder().locationInfoAware( true ).build( inputSource );
-		listRecordsResponse.setNamespaceContext( new NamespaceContextImpl( Collections.singletonMap( "oai", OAI_PMH_XML_NAMESPACE ) ) );
-
 		// Split the document into constituent records
 		try
 		{
+			// Parse the input source
+			XMLDocument listRecordsResponse = XMLDocument.newBuilder().locationInfoAware( true ).build( inputSource );
+			listRecordsResponse.setNamespaceContext( new NamespaceContextImpl( Collections.singletonMap( "oai", OAI_PMH_XML_NAMESPACE ) ) );
+
 			// Determine if this is a list records response
 			Node node = listRecordsResponse.selectNode( "/oai:OAI-PMH/oai:request" );
 			if (node == null)
 			{
-				throw new IllegalArgumentException("Document is not an OAI-PMH response");
+				throw new NotDocumentException("Document is not an OAI-PMH response");
 			}
 
 			if (!"ListRecords".equals(((Element) node).getAttribute( "verb" )))
 			{
-				throw new IllegalArgumentException("OAI-PMH response is not a ListRecords response");
+				throw new NotDocumentException("OAI-PMH response is not a ListRecords response");
 			}
 
 			List<Node> recordNodeList = listRecordsResponse.selectNodes( "/oai:OAI-PMH/oai:ListRecords/oai:record" );
@@ -493,6 +492,10 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 
 			// Return
 			return documentList;
+		}
+		catch ( SAXException e )
+		{
+			throw new NotDocumentException( e );
 		}
 		catch ( XPathExpressionException e )
 		{

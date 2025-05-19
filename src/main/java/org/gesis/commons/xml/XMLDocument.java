@@ -213,7 +213,7 @@ public class XMLDocument
 			// XPathExpression is not cached, compile
             XPath xpath = xPathFactory.newXPath();
 			xpath.setNamespaceContext( namespaceContext );
-			xPathExpression = xpath.compile( xPath  );
+			xPathExpression = xpath.compile( xPath );
 
 			// Cache the compiled XPathExpression for future use
             xPathExpressionMap.put( xPath, xPathExpression );
