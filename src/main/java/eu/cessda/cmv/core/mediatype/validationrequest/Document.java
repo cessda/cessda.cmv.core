@@ -30,6 +30,9 @@ import java.util.List;
 @XmlJavaTypeAdapter( DocumentAdapter.class )
 public interface Document
 {
+	/**
+	 * Create an InputSource that can be used to parse the document.
+	 */
 	InputSource toInputSource();
 
 	default List<String> validate()
