@@ -23,7 +23,6 @@ import org.gesis.commons.test.DefaultTestEnv;
 import org.gesis.commons.test.TestEnv;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 import java.io.File;
 import java.io.IOException;
@@ -47,7 +46,7 @@ class ListRecordsTest
 	}
 
 	@Test
-	void splitListRecordsResponse() throws IOException, SAXException, NotDocumentException
+	void splitListRecordsResponse() throws IOException, NotDocumentException
 	{
 		File documentURL = testEnv.findTestResourceByName("list-records-response.xml");
 
