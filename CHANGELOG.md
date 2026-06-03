@@ -14,6 +14,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - *Fixed (for any bug fixes)*
 - *Security (in case of vulnerabilities)*
 
+## [4.1.0] - 2026-06-05
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20523167.svg)](https://doi.org/10.5281/zenodo.20523167)
+
+The main feature is a new method, `splitListRecordsResponse()`, which takes an XML `InputSource`, detects if the document given is a `ListRecords` response, and splits the document into individual `Document` objects that can then be validated. The URI of the split documents is set to `InputSource.getSystemId() + '#' + identifier`. The method throws `IllegalArgumentException` if the XML document is not a `ListRecords` response.
+
+### Added
+
+* Added support for validating OAI-PMH ListRecord responses ([#261](https://github.com/cessda/cessda.cmv.core/issues/261)
+* Added documentation to `XMLDocument` methods
+
+### Fixed
+
+* Fixed missing case where `XMLDocument.createDocumentFromElement()` could fail to import the root node
+
+### Changed
+
+* Make `XMLDocument.createDocumentFromElement()` static
+
 ## [4.0.0] - 2025-01-09
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14620708.svg)](https://doi.org/10.5281/zenodo.14620708)
@@ -88,7 +107,7 @@ Applications must provide their own SLF4J implementation for logging to work pro
 * Added the ability to cached parsed `Document` and `Profile` instances by creating `CessdaMetadataValidatorFactory.newDocument()` and `CessdaMetadataValidatorFactory.newProfile()` for common source type
 * Added implementations for `equals()` and `hashCode()` for profiles and all constraints
 * Enabled tests for mediatype classes (`ValidationRequest` and `ValidationReport`) to ensure that the JSON and XML representations are generated and parsed correctly
-* Added `Profile.getProfileName()` and `Profile.getProfileVersion()` so that the name and version of a profile can be programatically retrieved
+* Added `Profile.getProfileName()` and `Profile.getProfileVersion()` so that the name and version of a profile can be programmatically retrieved
 
 ### Changed
 
@@ -254,9 +273,10 @@ Applications must provide their own SLF4J implementation for logging to work pro
 - Finalized OptionalNodeConstraint
 - Added Code of Conduct, Changelog
   ([#54](https://github.com/cessda/cessda.cmv.core/issues/54))
-- Added badges to REAMDME
+- Added badges to README
   ([#53](https://github.com/cessda/cessda.cmv.core/issues/53))
 
+[4.1.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/4.1.0
 [4.0.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/4.0.0
 [3.0.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/3.0.0
 [2.0.0]: https://github.com/cessda/cessda.cmv.core/releases/tag/2.0.0
