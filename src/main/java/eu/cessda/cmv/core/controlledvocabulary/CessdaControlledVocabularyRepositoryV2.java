@@ -65,7 +65,22 @@ public class CessdaControlledVocabularyRepositoryV2 extends AbstractControlledVo
 
 		if ( urlConnection instanceof HttpURLConnection )
 		{
-			urlConnection.addRequestProperty( "Accept", "application/json" );
+			// Cast to HttpURLConnection
+			HttpURLConnection httpConnection = (HttpURLConnection) urlConnection;
+
+			// Ask for a JSON response
+			httpConnection.addRequestProperty( "Accept", "application/json" );
+
+			// Throws IOException for 400+ codes
+			httpConnection.getInputStream();
+
+			// check status code
+			int statusCode = httpConnection.getResponseCode();
+			if ( statusCode >= 300 )
+			{
+				String location = httpConnection.getHeaderField( "location" );
+				throw new IOException(url + ": Not redirecting to " + location);
+			}
 		}
 
 		return urlConnection.getInputStream();
