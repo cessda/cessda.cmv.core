@@ -97,6 +97,6 @@ class CodeValueOfControlledVocabularyConstraintTest
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
-		assertThat( constraintViolations, hasSize( 0 ) );
+		assertThat( constraintViolations.toString(), constraintViolations, hasSize( 0 ) );
 	}
 }

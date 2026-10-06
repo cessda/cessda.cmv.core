@@ -66,58 +66,63 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 
 	private final ConcurrentHashMap<URI, ControlledVocabularyRepository> cvrMap = new ConcurrentHashMap<>();
 
-    /**
-	 * Parse the XML at the given file into a {@link Document}. The XML document must be either a DDI document
-	 * or an OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
+	/**
+	 * Parse the XML into a {@link Document}.
+	 * <p>
+	 * If the XML document is an OAI-PMH GetRecord response it must contain a {@code <metadata>} element.
 	 *
-	 * @param file the file where the XML to be parsed is located.
-	 * @throws NotDocumentException if the XML is not well-formed.
+	 * @param file the file where the XML is located.
+	 * @throws NotDocumentException if the XML is not well-formed, or if the document is an OAI-PMH document
+	 * 									and is not a {@code GetRecord} response with valid metadata.
 	 * @throws IOException          if an IO error occurs.
 	 */
 	public Document newDocument( File file ) throws IOException, NotDocumentException
 	{
 		Objects.requireNonNull( file, "file is not null" );
-		InputSource inputSource = new InputSource( file.toURI().toASCIIString() );
-		return newDocument( file.toURI(), inputSource );
+		return newDocument( file.toURI() );
 	}
 
 	/**
-	 * Parse the XML at the given path into a {@link Document}. The XML document must be either a DDI document
-	 * or an OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
+	 * Parse the XML into a {@link Document}.
+	 * <p>
+	 * If the XML document is an OAI-PMH GetRecord response it must contain a {@code <metadata>} element.
 	 *
-	 * @param path the path where the XML to be parsed is located.
-	 * @throws NotDocumentException if the XML is not well-formed.
+	 * @param path the path where the XML is located.
+	 * @throws NotDocumentException if the XML is not well-formed, or if the document is an OAI-PMH document
+	 * 									and is not a {@code GetRecord} response with valid metadata.
 	 * @throws IOException          if an IO error occurs.
 	 */
 	public Document newDocument( Path path ) throws IOException, NotDocumentException
 	{
 		Objects.requireNonNull( path, "path is not null" );
-		InputSource inputSource = new InputSource( path.toUri().toASCIIString() );
-		return newDocument( path.toUri(), inputSource );
+		return newDocument( path.toUri() );
 	}
 
 	/**
-	 * Parse the XML located at the given URI into a {@link Document}. The XML document must be either a DDI document
-	 * or an OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
+	 * Parse the XML into a {@link Document}.
+	 * <p>
+	 * If the XML document is an OAI-PMH GetRecord response it must contain a {@code <metadata>} element.
 	 *
-	 * @param uri the URI where the XML to be parsed is located.
-	 * @throws NotDocumentException  if the XML is not well-formed.
-	 * @throws IOException           if an IO error occurs.
-	 * @implNote this calls {@link #newDocument(URL)} using {@link URI#toURL()} to transform the URI to a URL.
+	 * @param uri the URI where the XML is located.
+	 * @throws NotDocumentException if the XML is not well-formed, or if the document is an OAI-PMH document
+	 * 									and is not a {@code GetRecord} response with valid metadata.
+	 * @throws IOException          if an IO error occurs.
 	 */
 	public Document newDocument( URI uri ) throws IOException, NotDocumentException
 	{
 		Objects.requireNonNull( uri, "uri is not null" );
-		InputSource inputSource = new InputSource( uri.toASCIIString() );
+		InputSource inputSource = new InputSource( uri.toString() );
 		return newDocument( uri, inputSource );
 	}
 
 	/**
-	 * Parse the XML located at the given URL into a {@link Document}. The XML document must be either a DDI document
-	 * or an OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
+	 * Parse the XML into a {@link Document}.
+	 * <p>
+	 * If the XML document is an OAI-PMH GetRecord response it must contain a {@code <metadata>} element.
 	 *
-	 * @param url the URL where the XML to be parsed is located.
-	 * @throws NotDocumentException if the XML is not well-formed.
+	 * @param url the URL where the XML is located.
+	 * @throws NotDocumentException if the XML is not well-formed, or if the document is an OAI-PMH document
+	 * 									and is not a {@code GetRecord} response with valid metadata.
 	 * @throws IOException          if an IO error occurs.
 	 */
 	public Document newDocument( URL url ) throws IOException, NotDocumentException
@@ -140,11 +145,13 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 	}
 
 	/**
-	 * Parse the XML located at the given URL into a {@link Document}. The XML document must be either a DDI document
-	 * or an OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
+	 * Parse the XML into a {@link Document}.
+	 * <p>
+	 * If the XML document is an OAI-PMH GetRecord response it must contain a {@code <metadata>} element.
 	 *
-	 * @param inputStream the input stream of the XML to be parsed.
-	 * @throws NotDocumentException if the XML is not well-formed.
+	 * @param inputStream the input stream of the XML.
+	 * @throws NotDocumentException if the XML is not well-formed, or if the document is an OAI-PMH document
+	 * 									and is not a {@code GetRecord} response with valid metadata.
 	 * @throws IOException          if an IO error occurs.
 	 */
 	public Document newDocument( InputStream inputStream ) throws IOException, NotDocumentException
@@ -154,11 +161,13 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 	}
 
 	/**
-	 * Parse the XML contained in the request to a {@link Document}. The XML document must be either a DDI document
-	 * or an OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
+	 * Parse the XML into a {@link Document}.
+	 * <p>
+	 * If the XML document is an OAI-PMH GetRecord response it must contain a {@code <metadata>} element.
 	 *
 	 * @param document the request document.
-	 * @throws NotDocumentException if the XML is not well-formed.
+	 * @throws NotDocumentException if the XML is not well-formed, or if the document is an OAI-PMH document
+	 * 									and is not a {@code GetRecord} response with valid metadata.
 	 * @throws IOException          if an IO error occurs.
 	 */
 	public Document newDocument( eu.cessda.cmv.core.mediatype.validationrequest.Document document ) throws IOException, NotDocumentException
@@ -330,11 +339,13 @@ public class CessdaMetadataValidatorFactory implements ValidationService
 	}
 
 	/**
-	 * Parse the given XML into a {@link Document}. The XML document must be either a DDI document or an
-	 * OAI-PMH document with a valid DDI document in the {@code <metadata>} element.
+	 * Parse the XML into a {@link Document}.
+	 * <p>
+	 * If the XML document is an OAI-PMH GetRecord response it must contain a {@code <metadata>} element.
 	 *
 	 * @param inputSource the input source of the XML to be parsed.
-	 * @throws NotDocumentException if the XML is not well-formed.
+	 * @throws NotDocumentException if the XML is not well-formed, or if the document is an OAI-PMH document
+ * 									and is not a {@code GetRecord} response with valid metadata.
 	 * @throws IOException          if an IO error occurs.
 	 */
 	public Document newDocument( InputSource inputSource ) throws IOException, NotDocumentException
