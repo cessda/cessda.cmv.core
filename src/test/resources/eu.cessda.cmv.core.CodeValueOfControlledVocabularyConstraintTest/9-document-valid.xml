@@ -13,7 +13,7 @@
 				<anlyUnit>
 					<concept vocabURI="https://vocabularies.cessda.eu/urn/urn:ddi:int.ddi.cv:AnalysisUnit:2.0">Individual</concept>
 					<concept vocabURI="https://vocabularies.cessda.eu/urn/urn:ddi:int.ddi.cv:AnalysisUnit:2.0">HousingUnit</concept>
-					<concept vocabURI="https://vocabularies.cessda.eu/urn/urn:ddi:int.ddi.cv:AnalysisUnit:2.0">TextUnit</concept>
+					<concept vocabURI="https://vocabularies.cessda.eu/urn/urn:ddi:int.ddi.cv:AnalysisUnit:2.0">MediaUnit.Text</concept>
 				</anlyUnit>
 			</sumDscr>
 		</stdyInfo>

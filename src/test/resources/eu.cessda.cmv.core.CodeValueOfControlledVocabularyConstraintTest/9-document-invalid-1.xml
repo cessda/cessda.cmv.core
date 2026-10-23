@@ -1,5 +1,5 @@
 <codeBook xmlns="ddi:codebook:2_5"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="ddi:codebook:2_5 https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd">
 	<stdyDscr>
 		<citation>
@@ -10,13 +10,13 @@
 		<stdyInfo>
 			<sumDscr>
 				<anlyUnit>
-					<concept vocabURI="https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0">Individual</concept>
+					<concept vocabURI="https://vocabularies.cessda.eu/urn/urn:ddi:int.ddi.cv:AnalysisUnit:2.0">Individual</concept>
 					<!-- valid, no message -->
-					
-					<concept vocabURI="https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0">Person</concept>
+
+					<concept vocabURI="https://vocabularies.cessda.eu/urn/urn:ddi:int.ddi.cv:AnalysisUnit:2.0">Person</concept>
 					<!-- invalid, this message:
-					CodeValue 'Person' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' is not element 
-					of the controlled vocabulary in 'https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0'
+					CodeValue 'Person' in '/codeBook/stdyDscr/stdyInfo/sumDscr/anlyUnit/concept' is not element
+					of the controlled vocabulary in 'https://vocabularies.cessda.eu/urn/urn:ddi:int.ddi.cv:AnalysisUnit:2.0'
 					 -->
 				</anlyUnit>
 			</sumDscr>
