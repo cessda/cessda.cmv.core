@@ -16,7 +16,7 @@ pipeline {
 		stage('Pull SDK Docker Image') {
 			agent {
 				docker {
-					image 'openjdk:8'
+					image 'eclipse-temurin:8'
 					reuseNode true
 				}
 			}
@@ -62,7 +62,7 @@ pipeline {
 		stage('Deploy Project') {
 			agent {
 				docker {
-					image 'openjdk:8'
+					image 'eclipse-temurin:8'
 					reuseNode true
 				}
 			}
