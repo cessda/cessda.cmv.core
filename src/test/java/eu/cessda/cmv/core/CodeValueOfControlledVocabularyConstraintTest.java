@@ -67,7 +67,7 @@ class CodeValueOfControlledVocabularyConstraintTest
 		// then
 		assertThat( constraintViolations, hasSize( 1 ) );
 		assertThat( constraintViolations.get( 0 ).toString(),
-				equalTo( "Code value 'Person' in '/ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:sumDscr/ddi:anlyUnit/ddi:concept' is not element of the controlled vocabulary in 'https://vocabularies.cessda.eu/v2/vocabularies/AnalysisUnit/2.0?languageVersion=en-2.0' (lineNumber: 16, columnNumber: 113)" ) );
+				equalTo( "Code value 'Person' in '/ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:sumDscr/ddi:anlyUnit/ddi:concept' is not present in the controlled vocabulary at 'https://vocabularies.cessda.eu/urn/urn:ddi:int.ddi.cv:AnalysisUnit:2.0' (lineNumber: 16, columnNumber: 97)" ) );
 	}
 
 	@Test
@@ -97,6 +97,6 @@ class CodeValueOfControlledVocabularyConstraintTest
 		List<ConstraintViolation> constraintViolations = validationGate.validate( document, profile );
 
 		// then
-		assertThat( constraintViolations, hasSize( 0 ) );
+		assertThat( constraintViolations.toString(), constraintViolations, hasSize( 0 ) );
 	}
 }
