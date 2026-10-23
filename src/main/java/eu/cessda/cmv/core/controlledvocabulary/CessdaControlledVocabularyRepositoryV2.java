@@ -25,16 +25,16 @@ import com.jayway.jsonpath.JsonPath;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.HashSet;
 
 import static java.util.Objects.requireNonNull;
 
 public class CessdaControlledVocabularyRepositoryV2 extends AbstractControlledVocabularyRepository
 {
+	private static final JsonPath codeValuesPath = JsonPath.compile( "$.versions.*.concepts.*.notation" );
+	private static final JsonPath descriptiveTermsPath = JsonPath.compile("$.versions.*.concepts.*.title" );
+
 	/**
 	 * Construct a new ControlledVocabulary using the given URI.
 	 *
@@ -48,26 +48,9 @@ public class CessdaControlledVocabularyRepositoryV2 extends AbstractControlledVo
 
 		try ( InputStream inputStream = openInputStream( uri.toURL() ) )
 		{
-			parseDocument( inputStream );
+			DocumentContext document = JsonPath.parse( inputStream );
+			setCodeValues( new HashSet<>( document.read(  codeValuesPath ) ) );
+			setDescriptiveTerms( new HashSet<>( document.read(  descriptiveTermsPath ) ) );
 		}
-	}
-
-	private void parseDocument( InputStream inputStream )
-	{
-		DocumentContext document = JsonPath.parse( inputStream );
-		setCodeValues( new HashSet<>( document.read(  "$.versions.*.concepts.*.notation" ) ) );
-		setDescriptiveTerms( new HashSet<>( document.read(  "$.versions.*.concepts.*.title" ) ) );
-	}
-
-	private static InputStream openInputStream( URL url ) throws IOException
-	{
-		URLConnection urlConnection = url.openConnection();
-
-		if ( urlConnection instanceof HttpURLConnection )
-		{
-			urlConnection.addRequestProperty( "Accept", "application/json" );
-		}
-
-		return urlConnection.getInputStream();
 	}
 }
