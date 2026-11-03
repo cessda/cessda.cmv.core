@@ -19,21 +19,46 @@
  */
 package eu.cessda.cmv.core.controlledvocabulary;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
 abstract class AbstractControlledVocabularyRepository implements ControlledVocabularyRepository
 {
+	private final URI uri;
+	private Set<String> codeValues;
+	private Set<String> descriptiveTerms;
+
 	protected AbstractControlledVocabularyRepository( URI uri )
 	{
 		this.uri = uri;
 	}
 
-	private final URI uri;
-	private Set<String> codeValues;
-	private Set<String> descriptiveTerms;
+	/**
+	 * Open an input stream for a given URL. If the URL represents an HTTP
+	 * connection, the {@code Accept} header will be set to {@code application/json}.
+	 *
+	 * @param url the url.
+	 * @return the input stream.
+	 * @throws IOException if an I/O error occurs.
+	 */
+	protected static InputStream openInputStream( URL url ) throws IOException
+	{
+		URLConnection urlConnection = url.openConnection();
+
+		if ( urlConnection instanceof HttpURLConnection )
+		{
+			urlConnection.addRequestProperty( "Accept", "application/json" );
+		}
+
+		return urlConnection.getInputStream();
+	}
 
 	protected void setCodeValues( Set<String> codeValues )
 	{

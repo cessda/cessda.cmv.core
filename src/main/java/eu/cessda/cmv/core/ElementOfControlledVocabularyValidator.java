@@ -58,7 +58,7 @@ abstract class ElementOfControlledVocabularyValidator implements Validator
 			Set<String> elementSet = elementName.getElementSet( repository );
 			if ( !elementSet.contains( node.getTextContent() ) )
 			{
-				String message = format( "%s '%s' in '%s' is not element of the controlled vocabulary in '%s'",
+				String message = format( "%s '%s' in '%s' is not present in the controlled vocabulary at '%s'",
 						elementName.getText(), node.getTextContent(), node.getLocationPath(), repository.getUri() );
 				return Optional.of( new ConstraintViolation( message, node.getLocationInfo() ) );
 			}
