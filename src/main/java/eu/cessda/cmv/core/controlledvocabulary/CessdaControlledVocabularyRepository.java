@@ -29,14 +29,17 @@ import java.util.HashSet;
 
 public class CessdaControlledVocabularyRepository extends AbstractControlledVocabularyRepository
 {
+	private static final JsonPath codeValuesPath = JsonPath.compile( "$.conceptAsMap.*.notation" );
+	private static final JsonPath descriptiveTermsPath = JsonPath.compile("$.conceptAsMap.*.title" );
+
 	public CessdaControlledVocabularyRepository( URI uri ) throws IOException
 	{
 		super( uri );
-		try ( InputStream repositoryStream = uri.toURL().openStream() )
+		try ( InputStream repositoryStream = openInputStream( uri.toURL() ) )
 		{
 			DocumentContext document = JsonPath.parse( repositoryStream );
-			setCodeValues( new HashSet<>( document.read( "$.conceptAsMap.*.notation" ) ) );
-			setDescriptiveTerms( new HashSet<>( document.read( "$.conceptAsMap.*.title" ) ) );
+			setCodeValues( new HashSet<>( document.read( codeValuesPath ) ) );
+			setDescriptiveTerms( new HashSet<>( document.read( descriptiveTermsPath ) ) );
 		}
 	}
 }
