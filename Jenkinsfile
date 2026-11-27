@@ -25,7 +25,7 @@ pipeline {
 				stage('Build Project') {
 					steps {
 						withMaven {
-							sh './mvnw clean install'
+							sh 'export MAVEN_ARGS=${MAVEN_CONFIG} && ./mvnw clean install'
 						}
 					}
 					when { branch 'main' }
@@ -34,7 +34,7 @@ pipeline {
 				stage('Test Project') {
 					steps {
 						withMaven {
-							sh './mvnw clean test'
+							sh 'export MAVEN_ARGS=${MAVEN_CONFIG} && ./mvnw clean test'
 						}
 					}
 					when { not { branch 'main' } }
@@ -50,7 +50,7 @@ pipeline {
 			steps {
 				withSonarQubeEnv('cessda-sonar') {
 					withMaven {
-						sh './mvnw sonar:sonar'
+						sh 'export MAVEN_ARGS=${MAVEN_CONFIG} && ./mvnw sonar:sonar'
 					}
 				}
 				timeout(time: 1, unit: 'HOURS') {
@@ -68,7 +68,7 @@ pipeline {
 			}
 			steps {
 				withMaven {
-					sh './mvnw jar:jar javadoc:jar source:jar deploy:deploy'
+					sh 'export MAVEN_ARGS=${MAVEN_CONFIG} && ./mvnw jar:jar javadoc:jar source:jar deploy:deploy'
 				}
 			}
 			when {

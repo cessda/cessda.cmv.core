@@ -334,12 +334,12 @@
 		<repository>
 			<id>cessda-nexus</id>
 			<name>CESSDA Nexus Repository</name>
-			<url>https://nexus.cessda.eu/repository/maven-releases/</url>
+			<url>https://nexus.cessda.eu/repository/maven-releases</url>
 		</repository>
 		<snapshotRepository>
 			<id>cessda-nexus-snapshot</id>
 			<name>CESSDA Nexus Snapshot Repository</name>
-			<url>https://nexus.cessda.eu/repository/maven-snapshots/</url>
+			<url>https://nexus.cessda.eu/repository/maven-snapshots</url>
 			<uniqueVersion>true</uniqueVersion>
 		</snapshotRepository>
 	</distributionManagement>
