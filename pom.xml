@@ -278,6 +278,12 @@
 					<tagNameFormat>@{project.version}</tagNameFormat>
 				</configuration>
 			</plugin>
+			<!-- SonarQube -->
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>5.9.0.7382</version>
+			</plugin>
 		</plugins>
 		<resources>
 			<resource>
